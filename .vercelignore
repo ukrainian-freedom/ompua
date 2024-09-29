@@ -1,0 +1,17 @@
+.git
+.github
+.task
+.vscode
+
+data/
+docs.bleve/
+frontend/node_modules/
+frontend/cache/
+frontend/build/
+frontend/.next/
+app/
+internal/
+
+*.exe
+.env
+*.db
