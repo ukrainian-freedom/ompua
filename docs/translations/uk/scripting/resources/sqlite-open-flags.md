@@ -1,42 +1,44 @@
 ---
-title: SQLite Open Flags
-description: SQLite open flags definitions.
+заголовок: Відкриті прапори SQLite
+description: Визначення відкритих прапорів SQLite.
 ---
 
 :::note
 
-These flags are used by [DB_Open](../functions/db_open).
+Ці прапори використовуються [DB_Open](../functions/db_open).
 
 :::
 
-| Definitions               | Description   |
+| Визначення | Опис
 |---------------------------|---------------|
-| UNKNOWN_SQLITE_OPEN       |               |
-| SQLITE_OPEN_READONLY      |               |
-| SQLITE_OPEN_READWRITE     |               |
-| SQLITE_OPEN_CREATE        |               |
-| SQLITE_OPEN_DELETEONCLOSE | Requires VFS. |
-| SQLITE_OPEN_EXCLUSIVE     | Requires VFS. |
-| SQLITE_OPEN_AUTOPROXY     | Requires VFS. |
-| SQLITE_OPEN_URI           |               |
-| SQLITE_OPEN_MEMORY        |               |
-| SQLITE_OPEN_MAIN_DB       | Requires VFS. |
-| SQLITE_OPEN_TEMP_DB       | Requires VFS. |
-| SQLITE_OPEN_TRANSIENT_DB  | Requires VFS. |
-| SQLITE_OPEN_MAIN_JOURNAL  | Requires VFS. |
-| SQLITE_OPEN_TEMP_JOURNAL  | Requires VFS. |
-| SQLITE_OPEN_SUBJOURNAL    | Requires VFS. |
-| SQLITE_OPEN_SUPER_JOURNAL | Requires VFS. |
-| SQLITE_OPEN_NOMUTEX       |               |
-| SQLITE_OPEN_FULLMUTEX     |               |
-| SQLITE_OPEN_SHAREDCACHE   |               |
-| SQLITE_OPEN_PRIVATECACHE  |               |
-| SQLITE_OPEN_WAL           | Requires VFS. |
-| SQLITE_OPEN_NOFOLLOW      |               |
-| SQLITE_OPEN_EXRESCODE     |               |
+| UNKNOWN_SQLITE_OPEN
+| SQLITE_OPEN_READONLY
+| SQLITE_OPEN_READWRITE
+| SQLITE_OPEN_CREATE
+| SQLITE_OPEN_DELETEONCLOSE | Потрібна VFS. |
+| SQLITE_OPEN_EXCLUSIVE | Потрібна VFS. |
+| SQLITE_OPEN_AUTOPROXY | Потрібен VFS. |
+| SQLITE_OPEN_URI
+| SQLITE_OPEN_MEMORY
+| SQLITE_OPEN_MAIN_DB | Потрібен VFS. |
+| SQLITE_OPEN_TEMP_DB | Потрібен VFS. |
+| SQLITE_OPEN_TRANSIENT_DB | Потрібен VFS. |
+| SQLITE_OPEN_MAIN_JOURNAL | Потрібен VFS. |
+| SQLITE_OPEN_TEMP_JOURNAL | Потрібен VFS. |
+| SQLITE_OPEN_SUBJOURNAL | Потрібен VFS. |
+| SQLITE_OPEN_SUPER_JOURNAL | Потрібен VFS. |
+| SQLITE_OPEN_NOMUTEX
+| SQLITE_OPEN_FULLMUTEX
+| SQLITE_OPEN_SHAREDCACHE
+| SQLITE_OPEN_PRIVATECACHE
+| SQLITE_OPEN_WAL | Потрібен VFS. |
+| SQLITE_OPEN_NOFOLLOW
+| SQLITE_OPEN_EXRESCODE
 
-:::note
+:::примітка
 
-Learn about VFS at https://www.sqlite.org/c3ref/vfs.html
+Дізнатися про VFS можна на сторінці https://www.sqlite.org/c3ref/vfs.html.
 
 :::
+
+

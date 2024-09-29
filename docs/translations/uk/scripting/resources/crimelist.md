@@ -1,33 +1,35 @@
 ---
-title: Crime List
-description: Crime List used by PlayCrimeReportForPlayer function.
-sidebar_label: Crime List
+заголовок: Список злочинів
+description: Список злочинів, що використовується функцією PlayCrimeReportForPlayer.
+sidebar_label: Список злочинів
 ---
 
 :::info
 
-Here you can find all of the crime IDs used by [PlayCrimeReportForPlayer](../functions/PlayCrimeReportForPlayer) function.
+Тут ви можете знайти всі ідентифікатори злочинів, що використовуються функцією [PlayCrimeReportForPlayer](../functions/PlayCrimeReportForPlayer).
 
 :::
 
-| Crime ID | Ten-code | Description                                              |
+| Ідентифікатор злочину | Десятизначний код | Опис
 | -------- | -------- | -------------------------------------------------------- |
-| 3        | 10-71    | Advise nature of fire (size, type, contents of building) |
-| 4        | 10-37    | Emergency road repairs needed                            |
-| 5        | 10-81    | Breatherlizer Report                                     |
-| 6        | 10-24    | Assignment Completed                                     |
-| 7        | 10-21    | Call () by phone                                         |
-| 8        | 10-21    | Call () by phone                                         |
-| 9        | 10-21    | Call () by phone                                         |
-| 10       | 10-17    | Meet Complainant                                         |
-| 11       | 10-81    | Breatherlizer Report                                     |
-| 12       | 10-91    | Pick up prisoner/subject                                 |
-| 13       | 10-28    | Vehicle registration information                         |
-| 14       | 10-81    | Breathalyzer                                             |
-| 15       | 10-28    | Vehicle registration information                         |
-| 16       | 10-91    | Pick up prisoner/subject                                 |
-| 17       | 10-34    | Riot                                                     |
-| 18       | 10-37    | (Investigate) suspicious vehicle                         |
-| 19       | 10-81    | Breathalyzer                                             |
-| 21       | 10-7     | Out of service                                           |
-| 22       | 10-7     | Out of service                                           |
+| 3 | 10-71 | Повідомте про характер пожежі (розмір, тип, вміст будівлі)
+| 4 10-37 Потрібен терміновий ремонт дороги
+| 5 ¦ 10-81 ¦Доповідь про дихальний апарат.
+| 6 | 10-24 | Завдання виконано.
+| 7. 10-21. Зателефонувати по телефону.
+| 8 10-21 Зателефонувати по телефону
+| 9 | 10-21 | Зателефонувати по телефону
+| 10. 10-17. Зустрітися зі скаржником.
+| 11 10-81 Звіт по алкотестеру.
+| 12. 10-91. Забрати ув'язненого/підслідного.
+| 13 10-28 Перевірити реєстраційні дані транспортного засобу.
+| 14 10-81 Перевірка на алкотестері.
+| 15 ¦ 10-28 ¦Реєстраційні дані транспортного засобу.
+| 16. 10-91. Забрати ув'язненого/підслідного.
+| 17 10-34 Бунт.
+| 18 10-37 (Перевірка) підозрілого автомобіля.
+| 19 10-81 Перевірка на алкоголь.
+| 21 10-7 Не працює.
+| 22 10-7 Не працює.
+
+

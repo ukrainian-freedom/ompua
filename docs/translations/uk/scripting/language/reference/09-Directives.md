@@ -1,318 +1,320 @@
-# Directives
+# Директиви
 
 ---
 
-All directives must appear first on a line (they may be preceded by white space,
-but not by any other characters). All directives start with the character # and
-the complete instruction may not span more than one line.
+Всі директиви повинні бути першими в рядку (їм може передувати пробіл,
+але не будь-які інші символи). Всі директиви починаються з символу # і
+повна інструкція не може займати більше одного рядка.
 
-**#assert** _constant expression_
+**#assert** _константний вираз_
 
-    Issues a compile time error if the supplied constant expression evalu-
-    ates to zero. The #assert directive is most useful to guard against
-    implementation defined constructs on which a program may depend,
-    such as the cell size in bits, or the number of packed characters per cell.
+    Видає помилку під час компіляції, якщо заданий константний вираз дорівнює нулю.
+    дорівнює нулю. Директива #assert найбільш корисна для захисту від
+    конструкцій, визначених реалізацією, від яких може залежати програма,
+    наприклад, розмір комірки у бітах або кількість упакованих символів у комірці.
 
-**#define** _pattern replacement_
+**#визначити** _заміну шаблону
 
-    Defines a text substitution macro. The pattern is matched to all lines
-    read from the source files; the sections that match are replaced by
-    the replacement texts. The pattern and the replacement texts may
-    contain parameters, denoted by “%0” to “%9”. See page 93 for details
-    and examples on text substitution.
+    Визначає макрос заміни тексту. Шаблон порівнюється з усіма рядками
+    прочитаних з вихідних файлів; секції, що збігаються, замінюються
+    текстами заміни. Шаблон і текст заміни можуть
+    містити параметри від "%0" до "%9". Докладнішу інформацію див. на сторінці 93
+    та приклади заміни текстів.
 
 **#emit** _opcode, parameters_
 
-    The #emit directive serves as an inline assembler. It is currently used
-    only for testing the abstract machine.
+    Директива #emit виконує роль вбудованого асемблера. Наразі вона використовується
+    лише для тестування абстрактної машини.
 
 **#endinput & #endscript**
 
-    Closes the current file and thereby ignores
-    all the text below the #endinput directive.
-    The directive #endscript is a synonym for #endinput.
+    Закриває поточний файл і тим самим ігнорує
+    весь текст нижче директиви #endinput.
+    Директива #endscript є синонімом директиви #endinput.
 
-**#error**
+**#Помилка!
 
-    message: Signals a “user error” with the specified message. User er-
-    rors are fatal errors and they serve a similar purpose as the #assert
-    directive.
+    повідомлення: Сигналізує про "помилку користувача" із вказаним повідомленням. Помилки користувача - це фатальні помилки.
+    є фатальними помилками і виконують ту саму функцію, що й директива #assert
+    директива #assert.
 
-**#file** _name_
+**#файл** _ім'я_.
 
-    Adjusts the name for the current file. This directive is used implicitly
-    by the text preprocessor; there is usually no need to set a filename
-    explicitly.
+    Змінює назву для поточного файлу. Ця директива використовується неявно
+    текстовим препроцесором; зазвичай немає необхідності задавати ім'я файлу
+    явно.
 
-**#if** _constant expression_, #elseif, #else, #endif
+**#if** _константний вираз_, #elseif, #else, #endif
 
-    Portions of a program may be parsed or be ignored depending on cer-
-    tain conditions. The pawn parser (compiler or interpreter) generates
-    code only for those portions for which the condition is true.
+    Частини програми можуть бути проаналізовані або проігноровані залежно від певних умов.
+    певних умов. Синтаксичний аналізатор (компілятор або інтерпретатор) генерує
+    код лише для тих частин, для яких умова є істинною.
 
-    The directive #if must be followed by a constant expression. To check
-    whether a variable or constant is defined, use the defined operator.
+    Після директиви #if повинен слідувати константний вираз. Щоб перевірити
+    чи визначена змінна або константа, використовуйте оператор defined.
 
-    Zero or more #elseif directives may follow the initial #if directive.
-    These blocks are skipped if any of the preceding #if or #elseif blocks
-    were parsed (i.e. not skipped). As with the #if directive, a constant
-    expression must follow the #elseif expression.
+    Після початкової директиви #if може слідувати нуль або більше директив #elseif.
+    Ці блоки пропускаються, якщо будь-який з попередніх блоків #if або #elseif
+    були розібрані (тобто не пропущені). Як і у випадку з директивою #if, константний вираз
+    повинен слідувати за виразом #elseif.
 
-    The #else causes the parser to skip all lines up to #endif if the pre-
-    ceding #if or any of the preceding #elseif directives were “true”, and
-    the parses these lines if all preceding blocks were skipped. The #else
-    directive may be omitted; if present, there may be only be one #else
-    associated with each #if.
+    Директива #else змушує синтаксичний аналізатор пропустити всі рядки до #endif, якщо попередня директива #if або будь-яка з попередніх директив #elseif
+    директива #if або будь-яка з попередніх директив #elseif були "істинними", і
+    якщо всі попередні блоки було пропущено, то синтаксичний аналізатор аналізує ці рядки. Директиву #else
+    можна опустити; якщо вона присутня, то може бути лише одна #else
+    пов'язана з кожним #if.
 
-    The #endif directive terminates a program portion that is parsed con-
-    ditionally. Conditional directives can be nested and each #if directive
-    must be ended by an #endif directive.
+    Директива #endif завершує частину програми, яка розбирається кон
+    умовно. Умовні директиви можуть бути вкладеними і кожна директива #if
+    повинна завершуватися директивою #endif.
 
-**#include** _filename_ or _< filename >_
+**#include** _ім'я_ або _< ім'я файлу >_.
 
-    Inserts the contents of the specified file at the current position within
-    the current file. A filename between angle brackets (“<” and “>”)
-    refers to a system file; the pawn parser (compiler or interpreter) will
-    search for such files only in a preset list of directories and not in the
-    “current” directory. Filenames that are unquoted or that appear in
-    double quotes are normal include files, for which a pawn parser will
-    look in the currect directory first.
+    Вставляє вміст вказаного файлу у поточну позицію всередині
+    поточного файлу. Ім'я файлу у кутових дужках ("<" і ">")
+    вказує на системний файл; синтаксичний аналізатор (компілятор або інтерпретатор)
+    шукатиме такі файли лише у визначеному списку каталогів, а не у
+    "поточному" каталозі. Назви файлів без лапок або у подвійних лапках
+    подвійних лапках, є звичайними файлами, що включаються, для яких синтаксичний аналізатор
+    спочатку шукатиме у правильному каталозі.
 
-    The pawn parser first attempts to open the file with the specified
-    name. If that fails, it tries appending the extensions “.inc”, “.p”
-    and “.pawn” to the filename (in that order). The proposed default
-    extension of include files is “.inc”.
+    Парсер пішаків спочатку намагається відкрити файл з вказаним ім'ям
+    ім'ям. Якщо це не вдасться, він спробує додати до файлу розширення ".inc", ".p"
+    і ".pawn" до імені файлу (у цьому порядку). Пропоноване розширення за замовчуванням
+    розширенням файлів, що включаються, є ".inc".
 
-    When the file can be opened successfully, the #include directive de-
-    fines a constant with the name “_inc_” plus the base name of the
-    file (the filename without path and extension) and the value 1. If
-    the constant already exists, the #include directive skips opening and
-    including the file, thus preventing a double inclusion. To force a dou-
-    ble include, remove the constant definition with the #undef directive
-    before the second inclusion of the file.
+    Після успішного відкриття файлу, директива #include дефініціює константу з ім'ям
+    створює константу з іменем "_inc_" плюс базове ім'я файлу (базове ім'я файлу) і значення 1.
+    файлу (ім'я файлу без шляху та розширення) і значення 1. Якщо
+    константа вже існує, директива #include пропускає відкриття та
+    включення файлу, таким чином запобігаючи подвійному включенню. Щоб примусово виконати подвійне включення, видаліть визначення константи
+    включення, видаліть визначення константи за допомогою директиви #undef
+    перед другим включенням файлу.
 
-**#line** _number_
+**#рядок** _номер_.
 
-    The current line number (in the current file). This directive is used
-    implicitly by the text preprocessor; there is usually no need to set the
-    line number explicitly.
+    Номер поточного рядка (у поточному файлі). Ця директива використовується
+    неявно використовується текстовим препроцесором; зазвичай немає необхідності задавати
+    номер рядка явно.
 
-**#pragma** _extra information_
+**#pragma** _додаткова інформація_
 
-    A “pragma” is a hook for a parser to specify additional settings, such
-    as warning levels or extra capabilities. Common #pragmas are:
+    "Прагма" - це гачок для синтаксичного аналізатора, за допомогою якого можна вказати додаткові параметри, такі як
+    наприклад, рівні попереджень або додаткові можливості. Найпоширеніші #прагми - це:
 
-    **#pragma** align
+    **#pragma** вирівняти
 
-        Aligns the next declaration to the offset set with the alignment
-        compiler option. Some (native) functions may perform better
-        with parameters that are passed by reference when these are on
-        boundaries of 8, 16, or even 32 bytes. Alignment requirements
-        are dependent of the host applications.
+        Вирівнює наступне оголошення за зсувом, заданим параметром вирівнювання
+        компілятора. Деякі (власні) функції можуть працювати краще
+        з параметрами, які передаються за посиланням, якщо вони знаходяться на
+        8, 16 або навіть 32 байти. Вимоги до вирівнювання
+        залежать від використовуваної програми.
 
-        Putting the #pragma align line in front of a declaration of a
-        global or a static variable aligns this variable to the bound-
-        ary set with the compiler option. Note that this #pragma
-        aligns only the variable that immediately follows the #pragma.
-        The alignment of subsequent variables depends on the size and
-        alignment of the variables that precede it. For example, if a
-        global array variable of 2 cells is aligned on a 16-byte boundary
-        and a cell is 4 bytes, the next global variable is located 8 bytes
-        further.
+        Додавання рядка #pragma align перед оголошенням глобальної або статичної змінної
+        глобальної або статичної змінної вирівнює цю змінну за заданим компілятором
+        ary, заданого компілятором. Зауважте, що ця #pragma
+        вирівнює тільки ту змінну, яка безпосередньо слідує за #pragma.
+        Вирівнювання наступних змінних залежить від розміру та
+        вирівнювання змінних, що передують їй. Наприклад, якщо змінна
+        глобальна змінна масиву з 2 комірок вирівняна по межі 16 байт
+        а комірка має розмір 4 байти, то наступна глобальна змінна розташовується на 8 байт
+        далі.
 
-        Putting the #pragma align line in front of a declaration of
-        a function will align the stack frame of that function to the
-        boundary specified earlier, with the result that the first local,
-        non-“static”, variable is aligned to that boundary. The align-
-        ment of subsequent variables depends on the size and align-
-        ment of the variables that precede it. In practice, to align a
-        local non-static variable, you must align the function’s stack
-        frame and declare that variable before any other variables.
+        Додавання рядка #pragma align перед оголошенням функції
+        функції вирівняє рамку стеку цієї функції за вказаною раніше межею
+        вказаною раніше, у результаті чого перша локальна,
+        не "статична" змінна буде вирівняна до цієї межі. Вирівнювання наступних змінних залежить від
+        вирівнювання наступних змінних залежить від розміру та вирівнювання змінних, що передували
+        вирівнювання змінних, що їй передують. На практиці, щоб вирівняти локальну нестатичну змінну
+        локальну нестатичну змінну, ви повинні вирівняти стек функції
+        і оголосити цю змінну перед будь-якими іншими змінними.
 
     **#pragma** amxlimit *value*
 
-        Sets the maximum size, in bytes, that the compiled script may
-        grow to. This pragma is useful for (embedded) environments
-        where the maximum size of a script is bound to a hard upper
-        limit.
+        Задає максимальний розмір у байтах, до якого може зрости скомпільований скрипт
+        скомпільований скрипт. Ця прагма корисна для (вбудованих) середовищ
+        де максимальний розмір скрипта обмежено жорсткою верхньою межею
+        обмеженням.
 
-        If there is no setting for the amount of RAM for the data and
-        stack (see the pragma amxram), this refers to the total memory
-        requirements; if the amount of RAM is explicitly set, this value
+        Якщо не задано обсяг оперативної пам'яті для стеку даних та
+        стеку (див. прагму amxram), це значення відноситься до загальних вимог до пам'яті
+        якщо обсяг оперативної пам'яті задано явно, то це значення
 
-        only goves the amount of memory needed for the code and the
-        static data.
+        визначає лише обсяг пам'яті, необхідний для коду та
+        статичних даних.
 
     **#pragma** amxram *value*
 
-        Sets the maximum memory requirements, in bytes, for data
-        and stack that a compiled script may have. This value is is
-        useful for (embedded) environments where the maximum data
-        size of a script is bound to a hard upper limit. Especially in
+        Встановлює максимальні вимоги до пам'яті, у байтах, для даних
+        та стеку, які може мати скомпільований скрипт. Це значення є
+        корисним для (вбудованих) середовищ, де максимальний розмір даних
+        де максимальний розмір даних скрипта обмежено жорсткою верхньою межею. Особливо у
 
-        the case where the pawn script runs from ROM, the sizes for
-        the code and data sections need both to be set.
+        У випадку, коли скрипт пішака запускається з ПЗП, розміри секцій коду та
+        секції коду та секції даних потрібно встановити обидва.
 
-    **#pragma** codepage *name/value*
+    **#pragma** кодова сторінка *ім'я/значення*
 
-        The pawn parser can translate characters in unpacked strings
-        and character constants to Unicode/UCS-4 “wide” characters.
-        This #pragma indicates the codepage that must be used for
-        the translation. See the section “Internationalization” on page
+        Парсер пішаків може переводити символи у розпакованих рядках
+        і символьні константи у "широкі" символи Unicode/UCS-4.
+        Ця #pragma вказує кодову сторінку, яка має бути використана для
+        перекладу. Див. розділ "Інтернаціоналізація" на сторінці
 
-        139 for details and required extra resources for the codepage
-        translation.
+        139 для отримання детальної інформації та необхідних додаткових ресурсів для перекладу кодової сторінки
+        перекладу.
 
-    **#pragma** compress *value*
+    **#pragma** стиснути *значення*
 
-        The pawn parser may write the generated P-code in compact
-        or plain (“non-compact”) encoding. The default depends on
-        the parser configuration (and, perhaps, user settings). This
-        #pragma allows the script writer to override the default and
+        Синтаксичний аналізатор може записувати згенерований P-код у компактному
+        або у звичайному ("некомпактному") кодуванні. Вибір за замовчуванням залежить від
+        конфігурації синтаксичного аналізатора (і, можливо, налаштувань користувача). Цей параметр
+        #pragma дозволяє автору сценарію перевизначити значення за замовчуванням і
 
-        force compact encoding (when value is non-zero) or to force
-        plain encoding (when value is zero). Especially toggling com-
-        pact encoding off (forcing plain encoding) is useful, because
+        примусити компактне кодування (якщо значення ненульове) або примусити
+        звичайне кодування (коли значення дорівнює нулю). Особливо корисним є вимкнення кодування ком
+        pact-кодування (примусове кодування) є корисним, оскільки
 
-        the pawn parser may be unable to compile a particular script
-        in “compact encoding” mode.
+        парсер пішаків не зможе скомпілювати певний скрипт
+        у режимі "компактного кодування".
 
-    **#pragma** ctrlchar *character*
+    **#pragma** ctrlchar *символ
 
-        Defines the character to use to indicate the start of a “escape sequence”.
-        By default, the control character is “\”.
+        Визначає символ, який слід використовувати для позначення початку "послідовності екранування".
+        За замовчуванням, керуючим символом є "\".
 
-        For example
+        Наприклад
 
-        `#pragma ctrlchar ’\$’**`
+        `#pragma ctrlchar '\$'**`
 
-        You may give the new value for the control character as a char-
-        acter constant (between single quotes) or as a decimal or hex-
-        adecimal value. When you omit the value of the new control
-        character, the parser reverts to the default control character.
+        Ви можете задати нове значення для керуючого символу як константу char-
+        константу актора (в одинарних лапках) або десяткове чи шістнадцяткове значення
+        десяткове або шістнадцяткове значення. Якщо ви не вкажете значення нового керуючого символу
+        синтаксичний аналізатор повернеться до керуючого символу за замовчуванням.
 
     **#pragma dynamic** *value*
 
-        Sets the size, in cells, of the memory block for dynamic data
-        (the stack and the heap) to the value specified by the expres-
-        sion. The default size of the dynamic data block is implemen-
-        tation defined. An implementation may also choose to grow
-        the block on an as-needed basis (see the host program’s docu-
-        mentation, or the “Implementor’s Guide” for details).
+        Встановлює розмір в комірках блоку пам'яті для динамічних даних
+        (стеку та купи) до значення, вказаного у виразі
+        виразом. За замовчуванням розмір блоку динамічних даних дорівнює
+        визначений реалізацією. Реалізація може також вирішити збільшити
+        блок за потребою (див. документацію до програми-хоста, або "Реалізатор").
+        документацію до основної програми або "Посібник реалізатора" для отримання детальної інформації).
 
-    **#pragma library** *name*
+    **#бібліотека прагматики** *ім'я*
 
-        Sets the name of the (dynamically linked) extension module
-        that contains required native functions. This #pragma should
-        appear above native function declarations that are part of the
-        extension module.
+        Задає ім'я (динамічно зв'язаного) модуля розширення
+        який містить необхідні нативні функції. Ця #прагма повинна
+        з'являтися над оголошеннями власних функцій, які є частиною
+        модуля розширення.
 
-        The library name parameter may be absent, in which case
-        any subsequent native function declarations are not associated
-        with any extension module.
+        Параметр імені бібліотеки може бути відсутнім, у цьому випадку
+        будь-які наступні оголошення власних функцій не пов'язуються
+        з будь-яким модулем розширення.
 
-        The scope of this #pragma runs from the line at which it ap-
-        pears until the end of the file in which it appears. In typical
-        usage, a #pragma library line will appear at the top of an
-        include file that declares native functions for an extension mod-
-        ule, and the scope of the library “link” ends at the end of that
-        include file.
+        Область видимості цієї #прагми починається з рядка, на якому вона починається
+        до кінця файлу, у якому вона з'являється. У типовому
+        використання, рядок бібліотеки #pragma з'являється у верхній частині файлу
+        include-файлу, який оголошує власні функції для розширення mod- ule.
+        ule, а область видимості бібліотеки "link" закінчується у кінці цього
+        include-файлу.
 
     **#pragma pack** *value*
 
-        If value is zero, packed literal strings start with “!"” (exclama-
-        tion point + double quote) and unpacked literal strings with
-        only a double quote (“"”), as described in this manual at page 99.
-        If value is non-zero, the syntax for packed and unpacked
-        literal strings is swapped: literal strings that start with a dou-
-        ble quote are packed and literal strings that start with “!"”
-        are unpacked.
+        Якщо значення дорівнює нулю, упаковані літеральні рядки починаються з "!"" (знак оклику + подвійна лапка), а розпаковані - з "!"" (знак
+        (знак оклику + подвійні лапки), а розпаковані літеральні рядки
+        лише з подвійних лапок ("""), як описано у цьому посібнику на сторінці 99.
+        Якщо значення ненульове, синтаксис упакованих і неупакованих
+        буквених рядків міняється місцями: буквені рядки, які починаються з подвійних лапок, пакуються, а буквені рядки, які починаються з подвійних лапок, пакуються
+        лапки, пакуються, а літеральні рядки, що починаються з "!""
+        розпаковуються.
 
-    **#pragma rational** *tagname(value)*
+    **#pragma rational** *tagname(value)* *tagname(value)*
 
-        Enables support for rational numbers. The tagname is the
-        name of the tag that rational numbers will have; typically one
-        chooses the names “Float:” or “Fixed:”. The presence of
-        value in parentheses behind tagname is optional: if it is omit-
-        ted, a rational number is stored as a “floating point” value
-        according to the IEEE 754 norm; if it is present, a rational
-        number is a fixed precision number (“scaled integer”) with the
-        specified number of decimals.
+        Вмикає підтримку раціональних чисел. Назва тегу - це
+        ім'я тегу, який матимуть раціональні числа; зазвичай
+        вибирають назви "Float:" або "Fixed:". Наявність значення
+        у дужках після tagname не є обов'язковим: якщо його не вказано, раціональне число
+        раціональне число зберігається як значення з "плаваючою комою"
+        відповідно до стандарту IEEE 754; якщо воно присутнє, раціональне число є числом фіксованої
+        число є числом фіксованої точності ("масштабоване ціле") із
+        вказаною кількістю знаків після коми.
 
-    **#pragma semicolon** *value*
+    **#прагматична крапка з комою** *значення*
 
-        If value is zero, no semicolon is required to end a statement if
-        that statement is last on a line. Semicolons are still needed to
-        separate multiple statements on the same line.
+        Якщо значення дорівнює нулю, крапка з комою не ставиться у кінці оператора, якщо
+        цей оператор є останнім у рядку. Крапка з комою потрібна для того, щоб
+        відокремлення декількох операторів на одному рядку.
 
-        When semicolons are optional (the default), a postfix operator
-        (one of “++”, “--” and “char”) may not be the first token on
-        a line, as they will be interpreted as prefix operators.
+        Якщо крапка з комою необов'язкова (за замовчуванням), постфіксний оператор
+        (один з "++", "--" і "char") не може бути першою лексемою у
+        рядку, оскільки вони будуть інтерпретуватися як префіксні оператори.
 
     **#pragma tabsize** *value*
 
-        The number of characters between two consecutive tab posi-
-        tions. The default value is 8. You may need to set the tab
-        size to avoid warning 217 (loose indentation) if the source code
-        is indented alternately with spaces and with tab characters.
-        Alternatively, by setting the “tabsize” #pragma to zero, the
-        parser will no longer issue warning 217.
+        Кількість символів між двома послідовними позиціями табуляції
+        табуляції. Значення за замовчуванням дорівнює 8. Вам може знадобитися встановити розмір табуляції
+        щоб уникнути попередження 217 (вільний відступ), якщо у вихідному коді
+        відступається поперемінно то пробілами, то символами табуляції.
+        Крім того, якщо ви встановите "tabsize" #pragma у нуль, парсер
+        синтаксичний аналізатор більше не видаватиме попередження 217.
 
-    **#pragma unused** *symbol,...*
+    **#прагма не використовується** *символ,...*
 
-        Marks the named symbol as “used”. Normally, the pawn
-        parser warns about unused variables and unused local con-
-        stants. In most situations, these variables and constants are
-        redundant, and it is better to remove them for the sake of code
+        Позначає названий символ як "використаний". Зазвичай синтаксичний аналізатор pawn
+        попереджає про невикористані змінні та невикористані локальні константи.
+        константи. У більшості ситуацій ці змінні та константи є
+        надлишковими, і їх краще вилучити для оптимізації коду
 
-        clarity. Especially in the case of local constants, it may, how-
-        ever, be better (or required) to keep the constant definitions.
-        This #pragma then permits to mark the symbol (variable or
-        constant) as “used”, and avoid a parser warning.
+        ясність. Особливо у випадку локальних констант, може бути
+        краще (або обов'язково) зберігати визначення констант.
+        Ця #прагма дозволяє позначити символ (змінну чи константу) як "використаний" і уникнути попередження синтаксичного аналізатора.
+        константу) як "використаний" і уникнути попередження синтаксичного аналізатора.
 
-        The #pragma must appear after the symbol declaration —but
-        it need not appear immediately after the declaration.
+        Символ #pragma має з'являтися після оголошення символу -але
+        вона не обов'язково має з'являтися одразу після оголошення.
 
-        Multiple symbol names may appear in a single #pragma; the
-        symbols must be separated by commas.
+        В одній #pragma може з'являтися декілька назв символів; символи
+        повинні бути розділені комами.
 
-**#section** _name_
+**#розділ** _назва_.
 
-    Starts a new section for the generated code. Any variables and func-
-    tions that are declared “static” are only visible to the section to
-    which they belong. By default, each source file is a separate section
-    and there is only one section per file.
+    Починає новий розділ для згенерованого коду. Будь-які змінні та функції, оголошені "статичними
+    які оголошено "статичними", будуть видимими лише у секції, до якої вони належать.
+    до якого вони належать. За замовчуванням, кожен вихідний файл є окремою секцією
+    і в одному файлі може бути лише одна секція.
 
-    With the #section directive, you can create multiple sections in a
+    За допомогою директиви #section ви можете створити декілька секцій в одному
 
-    source file. The name of a section is optional, if it is not set, a unique
-    identifier for the source file is used for the name of the section.
+    вихідний файл. Назва розділу не є обов'язковою, якщо її не задано, для назви розділу використовується унікальний
+    для назви секції використовується унікальний ідентифікатор вихідного файлу.
 
-    Any declared section ends automatically at the end of the file.
+    Будь-яка оголошена секція автоматично завершується в кінці файлу.
 
-**#tryinclude** _filename_ or _< filename >_
+**#tryinclude** _ім'я_ або _< ім'я файлу >_.
 
-    This directive behaves similarly as the #include directive, but it does
-    not give an error when the file to include does not exist —i.e., try to
-    include but fail silently on error.
+    Ця директива поводиться подібно до директиви #include, але вона
+    не видає помилки, якщо файл, який потрібно включити, не існує - тобто, якщо ви спробуєте
+    включити, але мовчки завершиться з помилкою.
 
-**#undef** _name_
+**#undef** _ім'я_.
 
-    Removes a text substitution macro or a numeric constant declared
-    with const. The “name” parameter must be the macro “prefix” —the
-    alphanumeric part of the macro. See page 93 for details and examples
-    on text substitution.
+    Видаляє макрос підстановки тексту або числову константу, оголошену
+    з константою const. Параметр "name" має бути "префіксом" макросу - буквено-цифровою частиною макросу
+    буквено-цифровою частиною макросу. Докладні відомості та приклади див. на сторінці 93
+    про підстановку тексту.
 
 ---
 
-`See also “Predefined constants” on page 102`
+`Див. також "Попередньо визначені константи" на сторінці 102`.
 
 `Escape character: 99`
 
-`Rational number support: 98`
+Підтримка раціональних чисел: 98`
 
-`Warning messages: 161`
+Попереджувальні повідомлення: 161`
 
 ---
 
-[Go Back to Contents](00-Contents.md)
+[Повернутися до змісту](00-Contents.md)
+
+

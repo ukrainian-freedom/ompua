@@ -1,268 +1,270 @@
 ---
-title: Dialog Styles
+заголовок: Стилі діалогів
 ---
 
-:::note
+:::примітка
 
-- In [OnDialogResponse](../callbacks/OnDialogResponse), pressing **button1** sets **response** to **1**, while pressing **button2** sets **response** to **0**.
-- Every dialog can have an optional button 2. To make it disappear leave it empty, like in the first example. Players won't be able to click it, but they will be able to press ESC and trigger [OnDialogResponse](../callbacks/OnDialogResponse) with **response** = **0**.
-- [ShowPlayerDialog](../functions/ShowPlayerDialog): Color embedding can be used for every string: **caption**, **info**, **button1** and **button2**.
+- У [OnDialogResponse](../callbacks/OnDialogResponse) натискання **button1** встановлює **відповідь** на **1**, а натискання **button2** встановлює **відповідь** на **0**.
+- Кожен діалог може мати додаткову кнопку 2. Щоб вона зникла, залиште її порожньою, як у першому прикладі. Гравці не зможуть натиснути її, але зможуть натиснути ESC і викликати [OnDialogResponse](../callbacks/OnDialogResponse) з **response** = **0**.
+- [ShowPlayerDialog](../functions/ShowPlayerDialog): Вбудовування кольору можна використовувати для кожного рядка: **caption**, **info**, **button1** та **button2**.
 
 :::
 
-- This page describes the behavior of [ShowPlayerDialog](../functions/ShowPlayerDialog) and [OnDialogResponse](../callbacks/OnDialogResponse).
-- For various limitations, visit the [Limits](../resources/limits) page.
-- For the response examples, this code will be used:
+- На цій сторінці описано поведінку функцій [ShowPlayerDialog](../functions/ShowPlayerDialog) та [OnDialogResponse](../callbacks/OnDialogResponse).
+- Для ознайомлення з різними обмеженнями відвідайте сторінку [Limits](../resources/limits).
+- У прикладах відповідей буде використано цей код:
 
 ```c
 public OnDialogResponse( playerid, dialogid, response, listitem, inputtext[ ] )
 {
-    printf("playerid = %d, dialogid = YOUR_DIALOGID, response = %d, listitem = %d, inputtext = '%s' (size: %d)", playerid, response, listitem, inputtext, strlen(inputtext));
+    printf(«playerid = %d, dialogid = YOUR_DIALOGID, response = %d, listitem = %d, inputtext = “%s” (size: %d)», playerid, response, listitem, inputtext, strlen(inputtext));
     return 1;
 }
 ```
 
 ---
   
-## Style 0: `DIALOG_STYLE_MSGBOX`
+## Стиль 0: `DIALOG_STYLE_MSGBOX`
 
 ![](/images/dialogStyles/Dialog_style_msgbox.png)
 
-Showing:
+Показати:
 
-:::note
+:::примітка
 
-- **\t** adds a TAB (more space).
-- **\n** creates a new line.
-- [Color embedding](colorslist#color-embedding) won't reset after **\n** or **\t**.
+- **\t** додає табуляцію (більше місця).
+- **\n** створює новий рядок.
+- [Color embedding](colorslist#color-embedding) не скидається після **\n** або **\t**.
 
 :::
 
 ```c
-ShowPlayerDialog(playerid, YOUR_DIALOGID, DIALOG_STYLE_MSGBOX, "Caption", "Info\n\tInfo", "Button 1", "");
+ShowPlayerDialog(playerid, YOUR_DIALOGID, DIALOG_STYLE_MSGBOX, «Caption», «Info\n\tInfo», «Button 1», «»);
 ```
 
-### Response Output
+### Виведення відповіді
 
-:::note
+:::примітка
 
-- **listitem** is always **-1**.
-- **inputtext** is always empty.
+- **listitem** завжди **-1**.
+- **inputtext** завжди порожній.
 
 :::
 
 ```c
-// pressed the button
+// натиснули кнопку
 playerid = 0, dialogid = YOUR_DIALOGID, response = 1, listitem = -1, inputtext = '' (size: 0)
 
-// pressed ESC (as the second button isn't visible)
+// натиснули ESC (оскільки другу кнопку не видно)
 playerid = 0, dialogid = YOUR_DIALOGID, response = 0, listitem = -1, inputtext = '' (size: 0)
 ```
 
 ---
   
-## Style 1: `DIALOG_STYLE_INPUT`
+## Стиль 1: `DIALOG_STYLE_INPUT`.
 
 ![](/images/dialogStyles/Dialog_style_input.png)
 
-Showing:
+Показати:
 
-:::note
+:::примітка
 
-- **\t** adds a TAB (more space).
-- **\n** creates a new line.
-- [Color embedding](colorslist#color-embedding) won't reset after **\n** or **\t**.
+- **\t** додає TAB (додатковий пробіл).
+- **\n** створює новий рядок.
+- [Color embedding](colorslist#color-embedding) не скидається після **\n** або **\t**.
 
 :::
 
 ```c
-ShowPlayerDialog(playerid, YOUR_DIALOGID, DIALOG_STYLE_INPUT, "Caption", "Enter information below:", "Button 1", "Button 2");
+ShowPlayerDialog(playerid, YOUR_DIALOGID, DIALOG_STYLE_INPUT, «Підпис», «Введіть інформацію нижче:», «Кнопка 1», «Кнопка 2»);
 ```
 
-### Response Output
+### Виведення відповіді
 
-:::note
+:::примітка
 
-- **listitem** is always **-1**.
-- **inputtext** is the text written by the user, including colors.
+- **listitem** завжди дорівнює **-1**.
+- **inputtext** - це текст, написаний користувачем, включаючи кольори.
 
 :::
 
 ```c
-// wrote "input" and pressed the left button
+// написав «input» і натиснув ліву кнопку
 playerid = 0, dialogid = YOUR_DIALOGID, response = 1, listitem = -1, inputtext = 'input' (size: 5)
 
-// wrote "input" and pressed the right button
+// написали «input» і натиснули праву кнопку
 playerid = 0, dialogid = YOUR_DIALOGID, response = 0, listitem = -1, inputtext = 'input' (size: 5)
 ```
 
 ---
   
-## Style 2: `DIALOG_STYLE_LIST`
+## Стиль 2: `DIALOG_STYLE_LIST` (список стилів діалогу)
 
 ![](/images/dialogStyles/Dialog_style_list.png)
 
-Showing:
+Показати:
 
-:::note
+:::примітка
 
-- **\t** adds a TAB (more space).
-- **\n** creates a new line.
-- [Color embedding](colorslist#color-embedding) won't reset after **\t**.
+- **\t** додає TAB (більше місця).
+- **\n** створює новий рядок.
+- [Color embedding](colorslist#color-embedding) не скидається після **\t**.
 
 :::
 
 ```c
-ShowPlayerDialog(playerid, YOUR_DIALOGID, DIALOG_STYLE_LIST, "Caption", "Item 0\n{FFFF00}Item 1\nItem 2", "Button 1", "Button 2");
+ShowPlayerDialog(playerid, YOUR_DIALOGID, DIALOG_STYLE_LIST, «Caption», «Item 0\n{FFFF00}Item 1\nItem 2», «Button 1», «Button 2»);
 ```
 
-### Response output:
+### Виведення відповіді:
 
 :::note
 
-- **listitem** is the number of the selected item, starting from **0**.
-- **inputtext** is the text contained by the selected listitem, without the colors.
+- **listitem** - номер вибраного елемента, починаючи з **0**.
+- **inputtext** - текст, що міститься у вибраному пункті списку, без кольорів.
 
 :::
 
 ```c
-// selected the first list item and pressed the left button
+// вибрали перший елемент списку і натиснули ліву кнопку миші
 playerid = 0, dialogid = YOUR_DIALOGID, response = 1, listitem = 0, inputtext = 'Item 0' (size: 6)
 
-// selected the second list item and pressed the right button
+// вибрали другий елемент списку і натиснули праву кнопку
 playerid = 0, dialogid = YOUR_DIALOGID, response = 0, listitem = 1, inputtext = 'Item 1' (size: 6)
 ```
 
 ---
   
-## Style 3: `DIALOG_STYLE_PASSWORD`
+## Стиль 3: `DIALOG_STYLE_PASSWORD
 
-:::note
+:::примітка
 
-- Similar to **DIALOG_STYLE_INPUT**.
+- Подібно до **DIALOG_STYLE_INPUT**.
 
 :::
 
 ![](/images/dialogStyles/Dialog_style_password.png)
 
-Showing:
+Відображається:
 
-:::note
+:::примітка
 
-- **\t** adds a TAB (more space).
-- **\n** creates a new line.
+- **\t** додає TAB (більше пробілів).
+- **\n** створює новий рядок.
 
 :::
 
 ```c
-ShowPlayerDialog(playerid, YOUR_DIALOGID, DIALOG_STYLE_PASSWORD, "Caption", "Enter private information below:", "Button 1", "Button 2");
+ShowPlayerDialog(playerid, YOUR_DIALOGID, DIALOG_STYLE_PASSWORD, «Caption», «Введіть приватну інформацію нижче:», «Button 1», «Button 2»);
 ```
 
-### Response Output
+### Виведення відповіді
 
-:::note
+:::примітка
 
-- **listitem** is always **-1**.
-- **inputtext** is the text contained by the selected listitem, without the colors.
+- **listitem** завжди дорівнює **-1**.
+- **inputtext** - це текст, що міститься у вибраному пункті списку, без кольорів.
 
 :::
 
 ```c
-// wrote "input" and pressed the left button
+// написали «input» і натиснули ліву кнопку
 playerid = 0, dialogid = YOUR_DIALOGID, response = 1, listitem = -1, inputtext = 'input' (size: 5)
 
-// wrote "input" and pressed the right button
+// написали «input» і натиснули праву кнопку
 playerid = 0, dialogid = YOUR_DIALOGID, response = 0, listitem = -1, inputtext = 'input' (size: 5)
 ```
 
 ---
   
-## Style 4: `DIALOG_STYLE_TABLIST`
+## Стиль 4: `DIALOG_STYLE_TABLIST
 
 :::note
 
-- Similar to **DIALOG_STYLE_LIST**.
+- Подібно до **DIALOG_STYLE_LIST**.
 
 :::
 
 ![](/images/dialogStyles/Dialog_style_tablist.png)
 
-Showing:
+Показано:
 
-:::note
+:::примітка
 
-- **\t** creates a new column.
-- **\n** creates a new list item.
-- [Color embedding](colorslist#color-embedding) resets after **\n** and **\t**.
-- The first **info** row contains the header.
+- **\t** створює новий стовпчик.
+- **\n** створює новий елемент списку.
+- [Вбудовування кольорів](colorslist#color-embedding) скидається після **\n** та **\t**.
+- Перший рядок **info** містить заголовок.
 
 :::
 
 ```c
-ShowPlayerDialog(playerid, YOUR_DIALOGID, DIALOG_STYLE_TABLIST, "Caption",
-"Deagle\t$5000\t100\n\
+ShowPlayerDialog(playerid, YOUR_DIALOGID, DIALOG_STYLE_TABLIST, «Caption»,
+«Deagle\t$5000\t100\n\
 {FF0000}Sawnoff\t{33AA33}$5000\t100\n\
-Pistol\t$1000\t50",
-"Button 1", "Button 2");
+Пістолет\t$1000\t50»,
+«Кнопка 1», “Кнопка 2”);
 ```
 
-:::note
+:::примітка
 
-- **listitem** is the number of the selected item, starting from **0**.
-- **inputtext** is the text contained by the _first column_ of the selected **listitem**, without the colors.
+- **listitem** - номер вибраного елемента, починаючи з **0**.
+- **inputtext** - текст, що міститься у _першому стовпчику_ вибраного **listitem**, без кольорів.
 
 :::
 
 ```c
-// selected the first list item and pressed the left button
+// виділили перший елемент списку і натиснули ліву кнопку миші
 playerid = 0, dialogid = YOUR_DIALOGID, response = 1, listitem = 0, inputtext = 'Deagle' (size: 6)
 
-// selected the second list item and pressed the right button
+// вибрали другий елемент списку і натиснули праву кнопку
 playerid = 0, dialogid = YOUR_DIALOGID, response = 0, listitem = 1, inputtext = 'Sawnoff' (size: 7)
 ```
 
 ---
   
-## Style 5: `DIALOG_STYLE_TABLIST_HEADERS`
+## Стиль 5: `DIALOG_STYLE_TABLIST_HEADERS
 
-:::note
+:::примітка
 
-- Similar to **DIALOG_STYLE_LIST**.
+- Подібно до **DIALOG_STYLE_LIST**.
 
 :::
 
 ![](/images/dialogStyles/Dialog_style_tablist_headers.png)
 
-Showing:
+Показано:
 
-:::note
+:::примітка
 
-- **\t** creates a new column.
-- **\n** creates a new list item.
-- [Color embedding](colorslist#color-embedding) resets after **\n** and **\t**.
-- The first **info** row contains the header.
+- **\t** створює новий стовпчик.
+- **\n** створює новий елемент списку.
+- [Вбудовування кольору](colorslist#color-embedding) скидається після **\n** та **\t**.
+- Перший рядок **info** містить заголовок.
 
 :::
 
 ```c
-ShowPlayerDialog(playerid, YOUR_DIALOGID, DIALOG_STYLE_TABLIST_HEADERS, "Caption",
-"Header 1\tHeader 2\tHeader 3\n\
-Item 1 Column 1\tItem 1 Column 2\tItem 1 Column 3\n\
-{FF0000}Item 2 Column 1\t{33AA33}Item 2 Column 2\tItem 2 Column 3",
-"Button 1", "Button 2");
+ShowPlayerDialog(playerid, YOUR_DIALOGID, DIALOG_STYLE_TABLIST_HEADERS, «Caption»,
+«Заголовок 1\tЗаголовок 2\tЗаголовок 3\n\n\
+Елемент 1, стовпчик 1\tЕлемент 1, стовпчик 2\tЕлемент 1, стовпчик 3\n\
+{FF0000}Елемент 2 стовпчик 1\t{33AA33}Елемент 2 стовпчик 2\tЕлемент 2 стовпчик 3»,
+«Кнопка 1», “Кнопка 2”);
 ```
 
-:::note
+:::примітка
 
-- **listitem** is the number of the selected item, starting from **0**.
-- **inputtext** is the text contained by the _first column_ of the selected **listitem**, without the colors.
+- **listitem** - номер вибраного елемента, починаючи з **0**.
+- **inputtext** - текст, що міститься у _першому стовпчику_ вибраного **listitem**, без кольорів.
 
 :::
 
 ```c
-// selected the first list item and pressed the left button
+// виділили перший елемент списку і натиснули ліву кнопку миші
 playerid = 0, dialogid = YOUR_DIALOGID, response = 1, listitem = 0, inputtext = 'Item 1 Column 1' (size: 15)
 
-// selected the first list item and pressed the right button
+// виділили перший елемент списку і натиснули праву кнопку миші
 playerid = 0, dialogid = YOUR_DIALOGID, response = 0, listitem = 1, inputtext = 'Item 2 Column 1' (size: 15)
 ```
+
+

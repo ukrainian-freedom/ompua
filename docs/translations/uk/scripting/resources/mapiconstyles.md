@@ -1,17 +1,19 @@
 ---
-title: Map Icon Styles
-description: A list of Map Icons
+заголовок: Стилі піктограм мапи
+description: Список стилів піктограм мапи
 ---
 
 :::info
 
-This page has a list of all map icon styles which can be used by [SetPlayerMapIcon](../functions/SetPlayerMapIcon) function.
+Ця сторінка містить список усіх стилів піктограм мапи, які можуть бути використані функцією [SetPlayerMapIcon](../functions/SetPlayerMapIcon).
 
 :::
 
-| Value  | Constant                  | Has checkpoint marker | Radar map range                        |
+| Значення | Постійне | Має маркер контрольної точки | Діапазон мапи радара
 | ------ | ------------------------- | --------------------- | -------------------------------------- |
-| 0      | MAPICON_LOCAL             | No                    | Close proximity Only                   |
-| 1      | MAPICON_GLOBAL            | No                    | Show on radar edge as long as in range |
-| 2      | MAPICON_LOCAL_CHECKPOINT  | Yes                   | Close proximity only                   |
-| 3      | MAPICON_GLOBAL_CHECKPOINT | Yes                   | Show on radar edge as long as in range |
+| 0 | MAPICON_LOCAL | Немає | Тільки поблизу
+| 1 | MAPICON_GLOBAL | Ні | Показувати на краю радара, якщо він у зоні досяжності
+| 2 | MAPICON_LOCAL_CHECKPOINT | Так | Лише в безпосередній близькості
+| 3 | MAPICON_GLOBAL_CHECKPOINT | Так | Показувати на краю радара, якщо він у зоні досяжності
+
+

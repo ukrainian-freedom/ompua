@@ -1,83 +1,83 @@
-# Foreword
+# Передмова
 
 ---
 
-“pawn” is a simple, typeless, 32-bit “scripting” language with a C-like syntax.
-Execution speed, stability, simplicity and a small footprint were essential
-design
-criterions for both the language and the interpreter/abstract machine that a
-pawn program runs on.
+"pawn" - це проста, безтипова, 32-розрядна "скриптова" мова з C-подібним синтаксисом.
+Швидкість виконання, стабільність, простота і невеликий розмір були важливими.
+дизайн
+критеріями як для мови, так і для інтерпретатора/абстрактної машини, на якій працює
+на якій працює програма-пішак.
 
-An application or tool cannot do or be everything for all users.  
-This not
+Додаток або інструмент не може робити або бути всім для всіх користувачів.  
+Це не
 
-other software systems, it also explains the presence of extensive configuration
-options and macro or scripting languages in applications. My own applications
-have contained a variety of little languages; most were very simple, some were
-extensive. . . and most needs could have been solved by a general  
-purpose
-language with a special purpose library. Hence, pawn.
+інших програмних систем, це також пояснює наявність широких конфігураційних
+опцій конфігурації, макросів та скриптових мов у програмах. Мої власні програми
+містили різноманітні маленькі мови; більшість з них були дуже простими, деякі були
+широкі. . . і більшість потреб можна було вирішити за допомогою загальної
+мова
+мовою загального призначення з бібліотекою спеціального призначення. Отже, пішак.
 
-The pawn language was designed as a flexible language for manipulating ob-
-jects in a host application. The tool set (compiler, abstract machine)  
-were
-written so that they were easily extensible and would run on different  
-soft-
-ware/hardware architectures.
+Мова пішаків була розроблена як гнучка мова для маніпулювання об'єктами в головному додатку.
+об'єктами у хост-додатку. Інструментарій (компілятор, абстрактна машина)
+були
+написані так, щоб їх можна було легко розширювати і вони працювали на різних
+програмне
+програмно-апаратних архітектурах.
 
 ## ♦
 
-pawn is a descendent of the original Small C by Ron Cain and James Hendrix,
-which at its turn was a subset of C. Some of the modifications that I did to
-Small C, e.g. the removal of the type system and the substitution of pointers by
-references, were so fundamental that I could hardly call my language a “subset
+pawn є нащадком оригінального Small C Рона Кейна та Джеймса Хендрікса,
+яка в свою чергу була підмножиною C. Деякі з модифікацій, які я зробив у
+Small C, наприклад, видалення системи типів та заміна вказівників на
+посиланнями, були настільки фундаментальними, що я навряд чи міг би назвати свою мову "підмножиною
 
-of C” or a “C dialect” anymore. Therefore, I stripped off the “C” from the title
-and used the name “Small” for the name of the language in my publication in
-Dr. Dobb’s Journal and the years since. During development and maintenance
-of the product, I received many requests for changes. One of the frequently
-requested changes was to use a different name for the language —searching
-for information on the Small scripting language on the Internet was hindered
-by “small” being such a common word. The name change occurred together
-with a significant change in the language: the support of “states” (and state
-machines).
+"С" або "діалекту С" більше не існує. Тому я прибрав "С" з назви
+і використовував назву "малий" для назви мови в моїй публікації в
+Dr. Dobb's Journal і в наступні роки. Під час розробки та підтримки
+продукту, я отримав багато запитів на зміни. Однією з найпоширеніших
+змін було використання іншої назви мови - searching - для пошуку
+інформації про малу скриптову мову в Інтернеті був ускладнений
+через те, що слово "малий" було дуже поширеним. Зміна назви відбулася разом
+зі значною зміною в мові: підтримка "станів" (і державних
+машин).
 
-I am indebted to Ron Cain and James Hendrix (and more recently, Andy
-Yuen), and to Dr. Dobb’s Journal to get this ball rolling. Although I must
-have touched nearly every line of the original code multiple times, the Small
-C origins are still clearly visible.
+Я в боргу перед Роном Кейном і Джеймсом Гендріксом (а віднедавна і перед Енді Юеном), а також перед журналом Dr.
+Юену), а також "Журналу доктора Добба" за те, що вони дали поштовх цій справі. Хоча я, мабуть.
+торкався майже кожного рядка оригінального коду кілька разів, витоки Small
+C все ще чітко простежується.
 
 ## ♦
 
 ---
 
-A detailed treatise of the design goals and compromises is in appendix C; here
-I would like to summarize a few key points. As written in the previous para-
-graphs, pawn is for customizing applications (by writing scripts), not for writ-
-ing applications. pawn is weak on data structuring because pawn programs
-are intended to manipulate objects (text, sprites, streams, queries, . . . ) in
-the
-host application, but the pawn program is, by intent, denied direct access to
-any data outside its abstract machine. The only means that a pawn program
-has to manipulate objects in the host application is by calling subroutines, so
-called “native functions”, that the host application provides.
+Детальний трактат про цілі проєктування та компроміси міститься в додатку С; тут
+Я хотів би підсумувати кілька ключових моментів. Як було написано в попередньому пункті
+графіках, pawn призначена для кастомізації додатків (шляхом написання скриптів), а не для написання додатків.
+pawn слабкий у структуруванні даних, тому що pawn-програми призначені для маніпулювання об'єктами
+призначені для маніпулювання об'єктами (текстом, спрайтами, потоками, запитами, ... ) у
+хост-додатку
+хост-додатку, але пішаковій програмі навмисно відмовлено у прямому доступі до
+до будь-яких даних за межами своєї абстрактної машини. Єдиний спосіб, яким піша програма
+маніпулювати об'єктами у головній програмі - це виклик підпрограм, так званих "власних функцій".
+так звані "власні функції", які надає хост-програма.
 
-pawn is flexible in that key area: calling functions. pawn supports default val-
-ues for any of the arguments of a function (not just the last),
-call-by-reference
-as well as call-by-value, and “named” as well as “positional” function argu-
-ments. pawn does not have a “type checking” mechanism, by virtue of being
-a typeless language, but it does offer in replacement a “classification
-checking”
-mechanism, called “tags”. The tag system is especially convenient for function
-arguments because each argument may specify multiple acceptable tags.
+pawn є гнучкою у цій ключовій області: виклик функцій. pawn підтримує стандартні значення за замовчуванням
+для будь-якого з аргументів функції (не лише для останнього),
+виклик за посиланням
+а також виклик за значенням, "іменовані" та "позиційні" аргументи функції.
+pawn не має механізму "перевірки типів", оскільки є безтиповою мовою.
+безтипова мова, але вона пропонує натомість "перевірку класифікації".
+перевірку"
+механізм "перевірки класифікації", який називається "тегами". Система тегів особливо зручна для аргументів функцій
+аргументів, оскільки кожен аргумент може містити декілька допустимих тегів.
 
-but in their combination. For pawn, I feel that the combination of named ar-
-guments —which lets you specify function arguments in any order, and default
-values —which allows you to skip specifying arguments that you are not inter-
-ested in, blend together to a convenient and “descriptive” way to call (native)
-functions to manipulate objects in the host application.
+а в їхньому поєднанні. Для пішака, я вважаю, що комбінація іменованих аргументів, яка дозволяє задавати аргументи функції за замовчуванням, є
+guments - що дозволяє вам вказувати аргументи функції у довільному порядку, та default
+значень за замовчуванням, що дозволяє пропустити вказівку аргументів, в яких ви не розбираєтесь, - дуже добре поєднуються.
+поєднуються у зручний та "описовий" спосіб виклику (нативних) функцій для маніпулювання об'єктами.
+функції для маніпулювання об'єктами у хост-додатку.
 
 ---
 
-[Go Back to Contents](00-Contents.md)
+[Повернутися до змісту](00-Contents.md)

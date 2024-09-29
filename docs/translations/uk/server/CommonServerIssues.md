@@ -1,82 +1,84 @@
 ---
-title: Common Server Issues
+назва: Загальні проблеми сервера
 ---
 
-## Server instantly crashes when started
+## Сервер миттєво падає під час запуску
 
-Most commonly it's an error in your server.cfg file or your gamemode is missing. Check the server_log.txt file and the reason should be located at the bottom. If not, check crashinfo.txt file. The better solution to find out what is causing the crash is using the Crash detect plugin by Zeex/0x5A656578 ([click for link](https://github.com/Zeex/samp-plugin-crashdetect)) which will give more information like line numbers, function names, parameter values, etc. If the script is compiled in debug mode (-d3 flag) to make compiler put extra information about all that stuff into the output .amx.
+Найчастіше це помилка у файлі server.cfg або відсутній ігровий режим. Перевірте файл server_log.txt, причина повинна бути внизу. Якщо ні, перевірте файл crashinfo.txt. Кращим рішенням для з'ясування причини падіння буде використання плагіна Crash detect від Zeex/0x5A656578 ([натисніть для посилання](https://github.com/Zeex/samp-plugin-crashdetect)), який надасть більше інформації, наприклад, номери рядків, назви функцій, значення параметрів тощо. Якщо скрипт компілюється в режимі відлагодження (прапорець -d3), компілятор виведе додаткову інформацію про все це у вихідний .amx.
 
-## Server is not working - firewall is disabled
+## Сервер не працює - брандмауер відключено
 
-You will need to forward your ports to allow players to join your server. You can forward your ports using the PF Port Checker. Download it from: www.portforward.com If the ports are not forwarded that means you have to open them in your router. You can check the router list at [http://portforward.com/english/routers/port_forwarding/routerindex.htm](http://portforward.com/english/routers/port_forwarding/routerindex.htm "http://portforward.com/english/routers/port_forwarding/routerindex.htm")
+Щоб гравці могли приєднатися до вашого сервера, вам потрібно переадресувати ваші порти. Ви можете переадресувати порти за допомогою програми PF Port Checker. Завантажте його з: www.portforward.com Якщо порти не перенаправляються, це означає, що вам потрібно відкрити їх у вашому маршрутизаторі. Ви можете перевірити список маршрутизаторів на [http://portforward.com/english/routers/port_forwarding/routerindex.htm](http://portforward.com/english/routers/port_forwarding/routerindex.htm «http://portforward.com/english/routers/port_forwarding/routerindex.htm»).
 
-It has all the information on how to forward ports.
+Там є вся інформація про те, як перенаправляти порти.
 
-## 'Packet was modified'
+## 'Пакет було змінено'
 
-The error commonly shown as:
-
-```
-[hh:mm:ss] Packet was modified, sent by id: <id>, ip: <ip>:<port>
-```
-
-happens when a player times out or is currently having connection issues.
-
-## 'Warning: client exceeded messageslimit'
-
-The error commonly shown as:
+Помилка, яка зазвичай відображається у вигляді:
 
 ```
-Warning: client exceeded 'messageslimit' (1) <ip>:<port> (<count>) Limit: x/sec
+[hh:mm:ss] Пакет було змінено, надіслано id: <id>, ip: <ip>:<порт>.
 ```
 
-happens when number of messages per second a client sends to the server exceeds.
+трапляється, коли у гравця закінчився тайм-аут або виникли проблеми зі з'єднанням.
 
-## 'Warning: client exceeded ackslimit'
+## 'Попередження: клієнт перевищив ліміт повідомлень'
 
-The error commonly shown as:
+Помилка, яка зазвичай відображається як:
 
 ```
-Warning: client exceeded 'ackslimit' <ip>:<port> (<count>) Limit: x/sec
+Попередження: клієнт перевищив 'messageslimit' (1) <ip>:<port> (<count>) Ліміт: x/sec
 ```
 
-happens when acks limit exceeds.
+виникає, коли клієнт перевищує кількість повідомлень на секунду, які він надсилає на сервер.
+
+## 'Попередження: клієнт перевищив ліміт ackslimit'
+
+Помилка, яка зазвичай відображається як:
+
+```
+Попередження: клієнт перевищив 'ackslimit' <ip>:<port> (<count>) Ліміт: x/sec
+```
+
+виникає при перевищенні ліміту acks.
 
 ## 'Warning: client exceeded messageholelimit'
 
-The error commonly shown as:
+Помилка, яка зазвичай відображається як:
 
 ```
 Warning: client exceeded 'messageholelimit' (<type>) <ip>:<port> (<count>) Limit: x
 ```
 
-happens when message hole limit exceeds.
+виникає при перевищенні ліміту дірки в повідомленні.
 
-## 'Warning: Too many out-of-order messages'
+## 'Попередження: Too many out-of-porder messages'
 
-The error commonly shown as:
+Помилка, яка зазвичай відображається як:
 
 ```
-Warning: Too many out-of-order messages from player <ip>:<port> (<count>) Limit: x (messageholelimit)
+Попередження: Занадто багато невпорядкованих повідомлень від гравця <ip>:<порт> (<count>) Ліміт: x (messageholelimit)
 ```
 
-Happens when 'out of order messages' reuses messageholelimit setting.
+Трапляється, коли для «повідомлень, що вийшли з ладу» повторно використовується значення параметра messageholelimit.
 
-For more information about this, refer to [this](ControllingServer#RCON_Commands)
+Для отримання додаткової інформації про це зверніться до [this](ControllingServer#RCON_Commands)
 
-## Players constantly getting "Unacceptable NickName" error but it is valid
+## Гравці постійно отримують помилку «Неприпустимий нікнейм», але він дійсний
 
-If you are sure you use an acceptable name and the server runs on Windows then try to change the compatibility option of the samp-server.exe to Windows 98 and it should be fixed after a server restart.
+Якщо ви впевнені, що використовуєте прийнятне ім'я і сервер працює під Windows, спробуйте змінити параметр сумісності samp-server.exe на Windows 98, після перезапуску сервера помилка має бути виправлена.
 
-Windows servers with high up time may also cause this issue to occur. This has been noticed of around 50 days of server up time. To resolve it, a reboot is required.
+Сервери Windows з великим часом роботи також можуть спричинити цю проблему. Це було помічено на серверах, які працювали близько 50 днів. Для усунення цієї проблеми потрібно перезавантажити сервер.
 
-## `MSVCR___.dll`/`MSVCP___.dll` not found
+## `MSVCR___.dll`/`MSVCP___.dll` не знайдено
 
-This problem regularly occurs on Windows servers when trying to load a plugin that was developed using a higher version of the Visual C++ runtime than is currently installed on your computer. To fix this, download the appropriate Microsoft Visual C++ runtime libraries. Note that the SA-MP server is 32 bit, therefore you'll also need to download the 32 bit (x86) version of the runtime, regardless of architecture. The version of the runtime you specifically require is denoted by the numbers in the filename (see the table below), although it does not hurt to install all of them. These libraries do not stack, or in other words: you won't get the runtimes for the 2013 and earlier versions if you only install the 2015 version.
+Ця проблема регулярно виникає на серверах Windows при спробі завантажити плагін, який був розроблений з використанням більш високої версії середовища виконання Visual C++, ніж та, що встановлена на вашому комп'ютері. Щоб виправити це, завантажте відповідні бібліотеки середовища виконання Microsoft Visual C++. Зверніть увагу, що сервер SA-MP є 32-розрядним, тому вам також потрібно завантажити 32-розрядну (x86) версію середовища виконання, незалежно від архітектури. Версія середовища виконання, яка вам потрібна, позначається цифрами у назві файлу (див. таблицю нижче), хоча не завадить встановити їх усі. Ці бібліотеки не вкладаються у стек, або іншими словами: ви не отримаєте середовища виконання для 2013 і попередніх версій, якщо встановите лише версію 2015 року.
 
-| Version number | Runtime                                       |
+| Номер версії | Час виконання
 | -------------- | --------------------------------------------- |
-| 10.0           | Microsoft Visual C++ 2010 x86 Redistributable |
-| 11.0           | Microsoft Visual C++ 2012 x86 Redistributable |
-| 12.0           | Microsoft Visual C++ 2013 x86 Redistributable |
-| 14.0           | Microsoft Visual C++ 2015 x86 Redistributable |
+| 10.0 | Microsoft Visual C++ 2010 x86 Redistributable
+| 11.0 Microsoft Visual C++ 2012 x86 Redistributable
+| 12.0 Microsoft Visual C++ 2013 x86 Redistributable
+| 14.0 | Microsoft Visual C++ 2015 x86 Redistributable
+
+

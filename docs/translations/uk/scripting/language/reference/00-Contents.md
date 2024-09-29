@@ -1,10 +1,10 @@
 # PAWN
 
-![Pawn](https://i.ibb.co/SRbRt3C/pawn-icon-daddy-DOT-small.png)
+![Пішак](https://i.ibb.co/SRbRt3C/pawn-icon-daddy-DOT-small.png)
 
-### embedded scripting language
+### вбудована мова сценаріїв
 
-##### February 2006
+##### лютий 2006
 
 ---
 
@@ -14,70 +14,72 @@
 
 ---
 
-“Java” is a trademark of Sun Microsystems, Inc.
+"Java" є торговою маркою компанії Sun Microsystems, Inc.
 
-“Microsoft” and “Microsoft Windows” are registered trademarks of  
+"Microsoft" та "Microsoft Windows" є зареєстрованими товарними знаками
 Microsoft Corporation.
 
-“Linux” is a registered trademark of Linus Torvalds.
+"Linux" є зареєстрованою торговою маркою Лінуса Торвальдса.
 
-“CompuPhase” is a registered trademark of ITB CompuPhase.
+"CompuPhase" є зареєстрованою торговою маркою ITB CompuPhase.
 
-“Unicode” is a registered trademark of Unicode, Inc.
+"Unicode" є зареєстрованою торговою маркою компанії Unicode, Inc.
 
-Copyright c 1997–2006, ITB CompuPhase
+Copyright c 1997-2006, ITB CompuPhase
 
-Eerste Industriestraat 19–21, 1401VL Bussum The Netherlands (Pays Bas)
-telephone: (+31)-(0)35 6939 261
+Eerste Industriestraat 19-21, 1401VL Bussum Нідерланди (Pays Bas)
+телефон: (+31)-(0)35 6939 261
 
 e-mail: info@compuphase.com, http://www.compuphase.com
 
-The information in this manual and the associated software are provided “as
-is”. There are no guarantees, explicit or implied, that the software and the
-manual are accurate.
+Інформація в цьому посібнику та пов'язане з ним програмне забезпечення надається "як є".
+як є". Не існує жодних гарантій, явних чи неявних, що програмне забезпечення та
+посібник є точними.
 
-Requests for corrections and additions to the manual and the software can be
-directed to ITB CompuPhase at the above address.
+Запити на виправлення та доповнення до посібника та програмного забезпечення можуть бути
+до ITB CompuPhase за вищевказаною адресою.
 
-Typeset with TEX in the “Computer Modern” and “Palatino” typefaces at a base
-size of 11 points.
-
----
-
-# Table of contents
+Набрано в редакторі TEX шрифтами "Computer Modern" та "Palatino" в базовій гарнітурі
+розміром 11 пунктів.
 
 ---
 
-[Foreword](01-Foreword.md) - Page 3-5
+# Зміст
 
-[A tutorial introduction](02-A-tutorial-introduction.md) - Page 5-62
+---
 
-[Data and declarations](03-Data-and-declarations.md) - Page 62-70
+[Передмова](01-Foreword.md) - Сторінка 3-5
 
-[Functions](04-Functions.md) - Page 70-93
+[Вступ до підручника](02-A-tutorial-introduction.md) - Сторінка 5-62
 
-[The preprocessor](05-The-preprocessor.md) - Page 93-97
+[Дані та декларації](03-Data-and-declarations.md) - Сторінка 62-70
 
-[General syntax](06-General-syntax.md) - Page 97-104
+[Функції](04-Functions.md) - Сторінка 70-93
 
-[Operators and expressions](07-Operators-and-expressions.md) - Page 104-112
+[Препроцесор](05-The-preprocessor.md) - Сторінка 93-97
 
-[Statements](08-Statements.md) - Page 112-117
+[Загальний синтаксис](06-General-syntax.md) - Сторінка 97-104
 
-[Directives](09-Directives.md) - Page 117-124
+[Оператори та вирази](07-Operators-and-expressions.md) - Page 104-112
 
-[Proposed function library](10-Proposed-function-library.md) - Page 124-134
+[Заяви](08-Statements.md) - Сторінка 112-117
 
-[Pitfalls: differences from C](11-Pitfalls-differences-from-C.md) - Page 134-137
+[Директиви](09-Directives.md) - Сторінка 117-124
 
-[Assorted tips](12-Assorted-tips.md) - Page 137-148
+[Запропонована бібліотека функцій](10-Proposed-function-library.md) - Page 124-134
 
-[Appendices](13-Appendices.md) - Page 148-183
+[Підводні камені: відмінності від C](11-Pitfalls-differences-from-C.md) - Сторінка 134-137
 
-∟ [Error and warning messages](12-Appendices.md#error-and-warning-messages) - Page 148-168
+[Асортимент порад](12-Assorted-tips.md) - Сторінка 137-148
 
-∟ [The compiler](13-Appendices.md#the-compiler) - Page 168-174
+[Додатки](13-Appendices.md) - Сторінка 148-183
 
-∟ [Rationale](13-Appendices.md#rationale) - Page 174-181
+∟ [Повідомлення про помилки та попередження](12-Appendices.md#error-and-warning-messages) - Сторінка 148-168
 
-∟ [License](13-Appendices.md#license) - Page 181-183
+∟ [Компілятор](13-Appendices.md#the-compiler) - Сторінка 168-174
+
+∟ [Обґрунтування](13-Appendices.md#rationale) - Сторінка 174-181
+
+∟ [Ліцензія](13-Appendices.md#license) - Сторінка 181-183
+
+

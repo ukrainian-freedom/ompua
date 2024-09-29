@@ -1,27 +1,29 @@
 ---
-title: Bullet Hit Types
+заголовок: Типи поранень від куль
 ---
 
 :::info
 
-This page contains all of the bullet hit types which are used by [OnPlayerWeaponShot](../callbacks/OnPlayerWeaponShot).
+Ця сторінка містить всі типи влучання кулі, які використовуються [OnPlayerWeaponShot](../callbacks/OnPlayerWeaponShot).
 
 :::
 
 ---
 
-| Value | Definition                    |
+| Значення | Визначення
 | ----- | ----------------------------- |
-| 0     | BULLET_HIT_TYPE_NONE          |
-| 1     | BULLET_HIT_TYPE_PLAYER        |
-| 2     | BULLET_HIT_TYPE_VEHICLE       |
-| 3     | BULLET_HIT_TYPE_OBJECT        |
-| 4     | BULLET_HIT_TYPE_PLAYER_OBJECT |
+| 0 | ТИП_ПОТРАПЛЯННЯ_КУЛІ_ВІДСУТНІЙ
+| 1 BULLET_HIT_TYPE_PLAYER
+| 2 ТИП_ПОРАНЕННЯ_ТРАНСПОРТНОГО_ЗАСОБУ
+| 3 КУЛЯ_ПОТРАПИЛА_В_ОБ'ЄКТ
+| 4 ТИП_ПОРАНЕННЯ_ГРАВЕЦЬ_ОБ'ЄКТ
 
 ---
 
-:::caution
+:::обережно
 
-BULLET_HIT_TYPE_PLAYER is also called for NPCs. Actors are ignored by this callback and detects as BULLET_HIT_TYPE_NONE.
+BULLET_HIT_TYPE_PLAYER також викликається для NPC. Актори ігноруються цим викликом і визначаються як BULLET_HIT_TYPE_NONE.
 
 :::
+
+

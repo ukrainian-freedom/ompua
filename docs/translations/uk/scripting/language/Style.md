@@ -1,42 +1,42 @@
 ---
-title: "Pawn Style Guide"
-description: A short guide on the generally accepted naming conventions and other aspects of Pawn source code to aid easier communication of intent and streamline debugging and sharing of code.
+назва: "Путівник по пішаковому стилю"
+description: Короткий посібник із загальноприйнятих угод щодо іменування та інших аспектів вихідного коду Pawn, щоб полегшити спілкування про наміри та спростити налагодження і спільне використання коду.
 ---
 
-This document is a short guide on the generally accepted naming conventions and other aspects of Pawn source code to aid easier communication of intent and streamline debugging and sharing of code.
+Цей документ є коротким посібником із загальноприйнятих угод щодо іменування та інших аспектів вихідного коду Pawn, щоб полегшити спілкування про наміри та спростити налагодження і спільне використання коду.
 
-See also:
+Дивіться також:
 
-- [Modern Pawn](https://github.com/Southclaws/sampctl/wiki/Modern-Pawn)
+- [Сучасний пішак](https://github.com/Southclaws/sampctl/wiki/Modern-Pawn)
 - [Pawn Package](https://github.com/Southclaws/sampctl/wiki/Packages)
 
-## Terminology
+## Термінологія
 
-### Statement
+### Заява
 
-A statement is a piece of code that imperatively tells the host program to do something. A statement is a valid piece of code that yields some result.
+Оператор - це фрагмент коду, який імперативно наказує головній програмі щось зробити. Оператор - це дійсний фрагмент коду, який дає певний результат.
 
 ```c
 a = b + c;
 ```
 
-This is a statement composed of a variable being assigned the result of an [#Expression].
+Це оператор, що складається зі змінної, якій присвоюється результат [#Вираз].
 
 ```c
 SetPlayerColor(playerid, 0xFF4700FF);
 ```
 
-This is a statement telling the program to call a function with some arguments.
+Це інструкція, яка вказує програмі викликати функцію з деякими аргументами.
 
 ```c
 x + 8
 ```
 
-This is _not_ a statement as the result is not used anywhere, this is just an [#Expression].
+Це _не_ оператор, оскільки результат ніде не використовується, це просто [#Вираз].
 
-### Compound Statement
+### Складений оператор
 
-A compound statement is a collection of statements surrounded by braces.
+Складений оператор - це набір операторів, оточених фігурними дужками.
 
 ```c
 {
@@ -45,7 +45,7 @@ A compound statement is a collection of statements surrounded by braces.
 }
 ```
 
-This is a compound statement composed of two statements.
+Це складений оператор, що складається з двох операторів.
 
 ```c
 if (a == b)
@@ -54,103 +54,103 @@ if (a == b)
 }
 ```
 
-This is a compound statement with an `if` condition, this is usually referred to as an "if statement".
+Це складений оператор з умовою `if`, який зазвичай називають "оператором if".
 
 ```c
 return Function1(), Function2(), Function3();
 ```
 
-This is _not_ a compound statement, it's a chain of statements separated by commas. This form of chaining statements is considered bad practice.
+Це _не_ складний оператор, а ланцюжок операторів, розділених комами. Така форма ланцюжка операторів вважається поганою практикою.
 
-### Expression
+### Вираз
 
-An expression is a piece of syntax that yields a value, it's not a valid statement unless the yielded value is used in some way.
+Вираз - це частина синтаксису, яка повертає значення, він не є дійсним оператором, якщо отримане значення не використовується якимось чином.
 
-Expressions are often composed to form statements.
+Вирази часто складаються для формування тверджень.
 
 ```c
 a + b
 ```
 
-This is a simple addition expression that takes two values and applies the add operator to them.
+Це простий вираз додавання, який приймає два значення і застосовує до них оператор додавання.
 
-## Guidelines
+## Вказівки
 
-### Braces
+### Брекети.
 
-Allman braces are preferred:
+Перевага надається брекетам Allman:
 
-```pawn
-function()
+```пішак
+функція()
 {
     //
 }
 ```
 
-However, if you can't shake the muscle memory, K&R braces are also valid Pawn:
+Однак, якщо м'язову пам'ять не вдається струснути, брекети K&R також є дійсним пішаком:
 
-```pawn
+пішак
 function() {
     //
 }
 ```
 
-### Switches
+### Перемикачі
 
-Switches must use two indent levels, one for the `switch` block and another for each `case` statement or compound statement.
+Перемикачі повинні використовувати два рівні відступів: один для блоку switch і другий для кожного оператора case або складеного оператора.
 
-```pawn
-switch (variable)
+```пішак
+switch (змінна)
 {
     case 0:
-        return 0;
+        повернути 0;
     case 1:
-        return 1;
+        повернути 1;
     case 2:
-        return 2;
-    default:
-        return -1;
+        повернути 2;
+    за замовчуванням:
+        повернути -1;
 }
 ```
 
-```pawn
-switch (variable)
+```пішак
+switch (змінна)
 {
-    case 0:
+    case 0
     {
-        // code...
+        // код...
         return 0;
     }
-    case 1:
+    case 1
     {
-        // code...
+        // код...
         return 1;
     }
-    case 2:
+    case 2
     {
-        // code...
+        // код...
         return 2;
     }
     default:
     {
-        // code...
+        // код...
         return -1;
     }
 }
 ```
 
-### Compound Statements (Blocks)
+### Складені оператори (блоки)
 
-Blocks must always use braces, even if only a single line of code exists within a block. This applies to all levels including functions.
+Блоки завжди повинні використовувати фігурні дужки, навіть якщо в блоці є лише один рядок коду. Це стосується всіх рівнів, включаючи функції.
 
-```pawn
+пішак
 func()
 {
     singleLineExpr();
 }
 ```
 
-```pawn
+пішак
 func()
 {
     if ()
@@ -160,7 +160,7 @@ func()
 }
 ```
 
-```pawn
+пішак
 func()
 {
     if ()
@@ -178,83 +178,85 @@ func()
 }
 ```
 
-### Naming
+### Іменування
 
-#### Functions
+#### Функції
 
-Functions must be named with `PascalCase`.
+Функції повинні бути названі з використанням регістру `PascalCase`.
 
-#### Global Variables
+#### Глобальні змінні
 
-Global variables declared using `new` must always use `g_` prefixed PascalCase, so `g_VariableName`, however if they are declared using `static` they must always use `s_` prefixed PascalCase, so `s_VariableName`
+Глобальні змінні, оголошені з використанням `new`, завжди повинні використовувати `g_` префікс PascalCase, тобто `g_VariableName`, однак якщо вони оголошені з використанням `static`, вони завжди повинні використовувати `_` префікс PascalCase, тобто `_VariableName`.
 
-Constant globals must use `SCREAMING_SNAKE_CASE`.
+Константні глобали повинні використовувати `SCREAMING_SNAKE_CASE`.
 
-#### Local Variables
+#### Локальні змінні
 
-Local variables must always use `camelCase` and must never use single letter names, apart from:
+Локальні змінні завжди повинні використовувати `camelCase` і ніколи не повинні використовувати однолітерні імена, крім:
 
-- `i`, `j`, `k`, etc in `for` loops
-- `x`, `y`, `z`, etc in mathematical contexts
+- `i`, `j`, `k` і т.д. у циклах for
+- `x`, `y`, `z` тощо в математичних контекстах
 
-#### Enumerators
+#### Переписувачі
 
-Enumerators, if named, must be prefixed with `E_` (a strong tag) or `e_` (a weak tag)
+Перелічувачі, якщо вони названі, повинні мати префікс `E_` (сильний тег) або `e_` (слабкий тег)
 
-Enumerator fields must also be `SCREAMING_SNAKE_CASE` and use the enumerator name as a prefix.
+Поля перелічувачів також мають бути `SCREAMING_SNAKE_CASE` і використовувати ім'я перелічувача як префікс.
 
-```pawn
+пішак
 static enum E_PLAYER_DATA {
     E_PLAYER_CASH,
     Float:E_PLAYER_HEALTH,
 }
 ```
 
-Using a weak tag
+Використання слабкого тегу
 
-```pawn
+пішак
 static enum e_PLAYER_DATA {
     E_PLAYER_CASH,
     Float:E_PLAYER_HEALTH,
 }
 ```
 
-Non-named enumerator fields must also be `SCREAMING_SNAKE_CASE` and use the enumerator name as a prefix.
+Неіменовані поля-зчислювачі також мають бути `SCREAMING_SNAKE_CASE` і використовувати ім'я зчислювача як префікс.
 
-```pawn
+пішак
 static enum {
     ENUMATOR_INTEGER,
     Float:ENUMATOR_FLOAT,
 }
 ```
 
-Enumerators must always be declared `static` unless used outside the module.
+Перелічувачі завжди мають бути оголошені як `статичні`, якщо вони не використовуються за межами модуля.
 
-#### Macros and Pre-Processor Definitions
+#### Макроси та визначення препроцесора
 
-Macros must always use `SCREAMING_SNAKE_CASE` regardless of their usage.
+Макроси завжди повинні використовувати `SCREAMING_SNAKE_CASE` незалежно від їхнього використання.
 
-Pre-Processor definitions (constant definitions) must also use `SCREAMING_SNAKE_CASE`.
+Визначення препроцесора (визначення констант) також повинні використовувати `SCREAMING_SNAKE_CASE`.
 
-This helps differentiate between variables and constants as well as functions and macros.
+Це допомагає розрізняти змінні та константи, а також функції та макроси.
 
-It's generally advised to avoid inventing new syntactical elements in order to prevent confusion among newcomers as to which words are part of the language and which words are from libraries.
+Загалом рекомендується уникати винайдення нових синтаксичних елементів, щоб запобігти плутанині серед новачків щодо того, які слова є частиною мови, а які - з бібліотек.
 
-However, some older libraries do this and cannot change because of backwards compatibility.
+Однак деякі старі бібліотеки роблять це і не можуть змінитися через зворотну сумісність.
 
-### Documentation
+### Документація
 
-Always document exported functions with a simple line comment in the format `// FunctionName does X, Y and Z and returns A` where the first word is the name of the function itself followed by a brief description of what it does. No need to waste time describing each individual parameter. For example:
+Завжди документуйте експортовані функції простим рядковим коментарем у форматі `// FunctionName does X, Y and Z and returns A`, де перше слово - це назва самої функції, за яким слідує короткий опис того, що вона робить. Не потрібно витрачати час на опис кожного окремого параметра. Наприклад:
 
-```pawn
-// LoadPlayerAccount is called to initiate the account load process. This
-// function will trigger HTTP calls to get player data, it will display dialogs
-// to the player and eventually, once the process has completed, the event
-// `OnPlayerLogin` is emitted on success. On failure, the player is kicked.
+```пішак
+// LoadPlayerAccount викликається для ініціювання процесу завантаження акаунта. Ця
+// функція буде ініціювати HTTP-дзвінки для отримання даних гравця, показуватиме діалоги
+// гравцеві і, врешті-решт, після завершення процесу, подія
+// `OnPlayerLogin` буде згенеровано у разі успіху. У разі невдачі гравця буде викинуто.
 stock Error:LoadPlayerAccount(playerid)
 {
-    // code...
+    // код...
 }
 ```
 
-Each package should have a `README` and, if necessary, each module should have a comment on the very first line describing what that module provides.
+Кожен пакунок повинен мати `README` і, якщо необхідно, кожен модуль повинен мати коментар у першому рядку з описом того, що надає цей модуль.
+
+

@@ -1,60 +1,60 @@
 ---
-title: Light States
-description: Information about byte size and its corresponding light state bits.
+заголовок: Light States
+description: Інформація про розмір байта та відповідні йому біти світлових станів.
 ---
 
-:::note
+:::примітка
 
-Light states are used by natives such as [GetVehicleDamageStatus](../functions/GetVehicleDamageStatus) and [UpdateVehicleDamageStatus](../functions/UpdateVehicleDamageStatus).
-
-:::
-
-:::note
-
-The lights on vehicles with 2 wheels (and thus 2 lights) can not be changed.
+Світлові стани використовуються нативними функціями, такими як [GetVehicleDamageStatus](../functions/GetVehicleDamageStatus) та [UpdateVehicleDamageStatus](../functions/UpdateVehicleDamageStatus).
 
 :::
 
-:::note
+:::примітка
 
-The two back lights of a vehicle can not be changed separately.
+На транспортних засобах з 2-ма колесами (і, відповідно, 2-ма ліхтарями) не можна змінювати підсвічування.
 
 :::
 
-## Which bit stores what?
+:::примітка
 
-The damage of all lights will be saved together in 1 byte (which is 8 bits). Each bit stores whether the corresponding light is **broken (value 1)** or **not (value 0)**.
+Обидва задні ліхтарі транспортного засобу не можуть бути змінені окремо.
 
-- The **first bit** stores the state of the **front-left** light.
-- The **third bit** stores the state of the **front-right** light.
-- The **zeventh bit** stores the state of the **back** lights.
-- The rest of the bits are empty.
+:::
 
-Notice that the bits are counted from behind, so the first bit is the rightmost bit.
+## Який біт що зберігає?
+
+Пошкодження всіх ліхтарів зберігаються разом в 1 байт (8 біт). Кожен біт зберігає, чи є відповідна фара **пошкодженою (значення 1)** або **непошкодженою (значення 0)**.
+
+- Перший біт** зберігає стан **переднього лівого** ліхтаря.
+- Третій біт** зберігає стан **переднього правого** ліхтаря.
+- У **сьомому біті** зберігається стан **заднього** ліхтаря.
+- Решта бітів порожні.
+
+Зверніть увагу, що біти рахуються ззаду, тому перший біт є крайнім правим.
 
 ---
   
-## Example
+## Приклад
 
-The following code tells that both front lights are broken and the back lights are not:
+Наступний код повідомляє, що обидва передніх ліхтаря несправні, а задні - ні:
 
 `0000 0101`
 
-However, SA-MP returns a decimal number so you have to convert it to a binary number first to get a result like above. What SA-MP would return given the example above is this:
+Однак, SA-MP повертає десяткове число, тому вам доведеться спочатку перетворити його у двійкове, щоб отримати результат, як показано вище. У наведеному вище прикладі SA-MP поверне наступне число:
 
 `5`
 
 ---
   
-## Info table
+## Інформаційна таблиця
 
-Here is a visual representation of the light states. Vehicle viewed from a top-down perspective, with the upper values being the front of the vehicle and the lower values the back of the vehicle.
+Ось візуальне представлення станів світла. Транспортний засіб розглядається з перспективи зверху вниз, де верхні значення - це передня частина транспортного засобу, а нижні - задня частина.
 
-**Legend:**
+**Легенда:**
 
 ```
-o - enabled light
-x - disabled light
+o - увімкнене світло
+x - вимкнене світло
 ```
 
 0: (0000 0000)
@@ -121,25 +121,27 @@ x - disabled light
     x-x
 ```
 
-Other values not listed here can change the lights, but they are just repeats of other values (e.g. 15 has the same outcome as 5). After 255 the values will wrap around, 256 will be set as 0, 257 as 1 and so on.
+Інші значення, не перелічені тут, можуть змінювати колір, але вони просто повторюють інші значення (наприклад, 15 має той самий результат, що і 5). Після 255 значення будуть повторюватися, 256 буде встановлено як 0, 257 як 1 і так далі.
 
 ---
   
-## Example usage
+## Приклад використання
 
-To disable the back two lights of a vehicle while keeping the front unchanged:
+Вимкнути два задніх ліхтаря автомобіля, залишивши передні без змін:
 
 ```c
-new 
-	VEHICLE_PANEL_STATUS:panels,
-	VEHICLE_DOOR_STATUS:doors,
-	VEHICLE_LIGHT_STATUS:lights,
-	VEHICLE_TIRE_STATUS:tires;
+новий 
+	VEHICLE_PANEL_STATUS:панелі,
+	VEHICLE_DOOR_STATUS:двері,
+	VEHICLE_LIGHT_STATUS:фари,
+	VEHICLE_TIRE_STATUS:шини;
 
-GetVehicleDamageStatus(vehicleid, panels, doors, lights, tires);
-UpdateVehicleDamageStatus(vehicleid, panels, doors, (lights | VEHICLE_LIGHT_STATUS:0b01000000), tires); // The '0b' part means that the following number is in binary. Just the same way that '0x' indicates a hexadecimal number.
+GetVehicleDamageStatus(vehicleid, панелі, двері, фари, шини);
+UpdateVehicleDamageStatus(vehicleid, panels, doors, (lights | VEHICLE_LIGHT_STATUS:0b01000000), tires); // Частина '0b' означає, що наступне число є двійковим. Так само, як '0x' вказує на шістнадцяткове число.
 ```
 
-## See also
+## Дивіться також
 
-- [Vehicle Light Status](../resources/vehicle-light-status)
+- [Статус світла автомобіля](../resources/vehicle-light-status)
+
+

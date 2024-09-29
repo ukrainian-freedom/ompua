@@ -1,264 +1,264 @@
-# A tutorial introduction
+# Вступ до підручника
 
 ---
 
-pawn is a simple programming language with a syntax reminiscent to the “C”
-programming language. A pawn program consists of a set of functions and
-a set of variables. The variables are data objects and the functions contain
-instructions (called “statements”) that operate on the data objects or that perform tasks.
+pawn - це проста мова програмування з синтаксисом, що нагадує мову програмування "C"
+мову програмування "C". Піша програма складається з набору функцій та
+набору змінних. Змінні є об'єктами даних, а функції містять
+інструкції (так звані "оператори"), які оперують об'єктами даних або виконують завдання.
 
-The first program in almost any computer language is one that prints a simple
-string; printing “Hello world” is a classic example. In pawn, the program would look like:
+Перша програма майже на будь-якій комп'ютерній мові - це програма, яка виводить простий
+рядок; друк "Hello world" є класичним прикладом. На пішаку ця програма виглядатиме так:
 
-Listing: hello.p
+Посилання: hello.p
 
 ```c
 
 main()
-    printf  "Hello  world\n"
+    printf "Hello world\n"
 
 ```
 
-This manual assumes that you know how to run a pawn program; if not, please
-consult the application manual (more hints are at page 168).
+Цей посібник передбачає, що ви знаєте, як працювати з програмою застави; якщо ні, будь ласка
+зверніться до посібника з використання програми (більше підказок на сторінці 168).
 
-A pawn program starts execution in an “entry” function∗ —in nearly all ex-
-amples of this manual, this entry function is called “main”. Here, the function
-main contains only a single instruction, which is at the line below the function
-head itself. Line breaks and indenting are insignificant; the invocation of the
-function print could equally well be on the same line as the head of function main.
+Програма-пішак починає виконання у функції "входу "* - майже у всіх прикладах цього посібника ця функція
+прикладах цього посібника ця функція входу називається "main". Тут функція
+main містить лише одну інструкцію, яка знаходиться на рядок нижче самої функції
+головкою самої функції. Розриви рядків і відступи незначні; виклик функції
+функції print може з однаковим успіхом знаходитися у тому ж рядку, що і заголовок функції main.
 
-The definition of a function requires that a pair of parentheses follow the func-
-tion name. If a function takes parameters, their declarations appear between
-the parentheses. The function main does not take any parentheses. The rules
-are different for a function invocation (or a function call); parentheses are
-optional in the call to the print function.
+Визначення функції вимагає, щоб після назви функції була пара круглих дужок
+іменем функції. Якщо функція отримує параметри, їх оголошення розміщуються між
+круглими дужками. Функція main не береться в круглі дужки. Правила
+для виклику функції (або виклику функції) є іншими; дужки є
+у виклику функції print дужки не обов'язкові.
 
-The single argument of the print function is a string, which must be enclosed
-in double quotes. The characters \n near the end of the string form an escape
-sequence, in this case they indicate a “newline” symbol. When print encoun-
-ters the newline escape sequence, it advances the cursor to the first column of
-the next line. One has to use the \n escape sequence to insert a “newline” into
-the string, because a string may not wrap over multiple lines.
-
----
-
-###### ∗ This should not be confused with the “state” entry functions, which are called entry, but serve a different purpose — see page 42.
-
-`Compiling and running scripts: see page 168`
-
-`String literals: 99 Escape sequence: 99`
+Єдиним аргументом функції print є рядок, який потрібно взяти в подвійні лапки
+у подвійні лапки. Символи \n у кінці рядка утворюють екранування
+послідовність, у цьому випадку вони позначають символ "переведення рядка". При виведенні на друк символ \n зустрічається
+символ переведення рядка на новий рядок, курсор буде переведено на перший стовпчик
+наступного рядка. Щоб вставити "новий рядок" у рядок, слід використовувати екрануючу послідовність \n, оскільки
+рядка, оскільки рядок не може переноситися на декілька рядків.
 
 ---
 
-pawn is a “case sensitive” language: upper and lower case letters are considered
-to be different letters. It would be an error to spell the function printf in the
-above example as “PrintF”. Keywords and predefined symbols, like the name
-of function “main”, must be typed in lower case.
+###### ∗ Це не слід плутати з функціями введення "стану", які також називаються введенням, але мають іншу мету - див. стор. 42
 
-If you know the C language, you may feel that the above example does not
-look much like the equivalent “Hello world” program in C/C++. pawn can
-also look very similar to C, though. The next example program is also valid
-pawn syntax (and it has the same semantics as the earlier example):
+`Складання та запуск скриптів: див. сторінку 168
 
-Listing: hello.p — C style
+`Строкові літерали: 99 Екранована послідовність: 99`
+
+---
+
+pawn є "чутливою до регістру" мовою: великі та малі літери вважаються
+різними літерами. Буде помилкою написати функцію printf у вищенаведеному прикладі
+у наведеному вище прикладі як "PrintF". Ключові слова та наперед визначені символи, такі як ім'я
+функції "main", повинні бути набрані в нижньому регістрі.
+
+Якщо ви знаєте мову C, вам може здатися, що вищенаведений приклад не
+схожий на еквівалентну програму "Hello world" на C/C++. пішак може
+також може виглядати дуже схоже на C. Наступний приклад програми також є правильним
+синтаксису pawn (і вона має ту ж саму семантику, що і попередній приклад):
+
+Лістинг: hello.p - стиль C
 
 ```c
 
-#include  <console>
+#include <console> #include <console>
 
 main()
 {
-    printf("Hello  world\n");
+    printf("Hello world\n");
 }
 
 ```
 
-These first examples also reveal a few differences between pawn and the C language:
+Ці перші приклади також показують деякі відмінності між пішаком і мовою C:
 
-- there is usually no need to include any system-defined “header file”;
+- зазвичай немає необхідності включати будь-який системний "заголовний файл";
 
-- semicolons are optional (except when writing multiple statements on one line);
+- крапка з комою не обов'язкова (за винятком випадків, коли в одному рядку записано декілька операторів);
 
-- when the body of a function is a single instruction, the braces (for a compound instruction) are optional;
+- коли тіло функції є однією інструкцією, дужки (для складеної інструкції) не є обов'язковими;
 
-- when you do not use the result of a function in an expression or assignment, parentheses around the function argument are optional.
+- якщо ви не використовуєте результат функції у виразі або присвоюванні, дужки навколо аргументу функції є необов'язковими.
 
-As an aside, the few preceding points refer to optional syntaxes. It is
-your choice what syntax you wish to use: neither style is “deprecated” or  
-“considered harmful”. The examples in this manual position the braces and use
-an indentation that is known as the “Whitesmith’s style”, but pawn is a free
-format language and other indenting styles are just as good.
+Зауважимо, що кілька попередніх пунктів стосуються необов'язкових синтаксисів. Це
+який синтаксис ви бажаєте використовувати: жоден стиль не є "застарілим" або
+"вважається шкідливим". У прикладах, наведених у цьому посібнику, розставляються дужки і використовується
+відступ, відомий як "стиль Уайтсміта", але pawn - це вільна мова форматування, а інші стилі відступів
+мова форматування, і інші стилі відступів так само хороші.
 
-Because pawn is designed to be an extension language for applications,
-the function set/library that a pawn program has at its disposal depends on the
-host application. As a result, the pawn language has no intrinsic knowledge
-of any function. The print function, used in this first example, must be made
-available by the host application and be “declared” to the pawn parser.
-
----
-
-###### ∗ In the language specification, the term “parser” refers to any implementation that processes and runs on conforming Pawn programs —either interpreters or compilers.
-
-`More function descriptions at page 124`
+Оскільки pawn розроблено як мову розширення для додатків,
+набір функцій/бібліотека, яку має у своєму розпорядженні pawn-програма, залежить від
+хост-додатку. Як наслідок, мова pawn не має власних знань
+про жодну функцію. Функція друку, яка використовується у цьому першому прикладі, повинна бути
+доступною хост-програмі і має бути "оголошена" синтаксичному аналізатору.
 
 ---
 
-It is assumed, however, that all host applications provide a minimal set of common
-functions, like print and printf.
+###### ∗ У специфікації мови термін "синтаксичний аналізатор" означає будь-яку реалізацію, яка обробляє та виконує відповідні програми Pawn - інтерпретатори або компілятори
 
-In some environments, the display or terminal must be enabled before any text
-can be output onto it. If this is the case, you must add a call to the function
-“console” before the first call to function print or printf. The console
-function also allows you to specify device characteristics, such as the number
-of lines and columns of the display. The example programs in this  
-manual do not use the console functions, because many platforms do not require or provide it.
+`Більше описів функцій на стор. 124`
 
-### • Arithmetic
+---
 
-Fundamental elements of most programs are calculations, decisions  
-(conditional execution), iterations (loops) and variables to store input data, output
-data and intermediate results. The next program example illustrates many of
-these concepts. The program calculates the greatest common divisor of two
-values using an algorithm invented by Euclides.
+Однак передбачається, що всі програми хоста надають мінімальний набір загальних
+функцій, таких як print та printf.
 
-Listing: gcd.p
+У деяких середовищах дисплей або термінал потрібно увімкнути, перш ніж виводити на нього текст
+може бути виведено на нього. У такому випадку вам слід додати виклик функції
+"console" перед першим викликом функції print або printf. Функція console
+також дозволяє вказати характеристики пристрою, такі як кількість
+рядків і стовпчиків на дисплеї. Приклади програм у цьому
+посібнику не використовують консольні функції, оскільки багато платформ не вимагають або не надають їх.
+
+### - Арифметика
+
+Фундаментальними елементами більшості програм є обчислення, рішення
+(умовне виконання), ітерації (цикли) та змінні для зберігання вхідних даних, вихідних
+даних та проміжних результатів. Наступний приклад програми ілюструє багато з
+з цих понять. Програма обчислює найбільший спільний дільник двох
+значень, використовуючи алгоритм, винайдений Евклідом.
+
+Лістинг: gcd.p
 
 ```c
 
-/*  the  greatest  common  divisor  of  two  values,  using  Euclides’
-algorithm  */
+/* найбільший спільний дільник двох величин, використовуючи алгоритм Евкліда
+за алгоритмом Евкліда */
 
 main()
 {
-    print  "Input  two  values\n"
-    new  a  =  getvalue()
-    new  b  =  getvalue()
-    while  (a  !=  b)
-    if  (a  >  b)
-        a  =  a  -  b
+    print "Введіть два значення\n"
+    new a = getvalue()
+    new b = getvalue()
+    while (a != b)
+    if (a > b)
+        a = a - b
     else
-        b  =  b  -  a
-    printf  "The  greatest  common  divisor  is  %d\n",  a
+        b = b - a
+    printf "Найбільший спільний дільник дорівнює %d\n", a
 }
 
 ```
 
-Function main now contains more than just a single “print” statement. When
-the body of a function contains more than one statement, these statements
-must be embodied in braces —the “{” and “}” characters. This groups the in-
-structions to a single compound statement. The notion of grouping statements
-in a compound statement applies as well to the bodies of if–else and loop instructions.
+Функція main тепер містить більше, ніж один оператор "print". Коли
+тіло функції містить більше одного оператора, ці оператори
+слід брати у фігурні дужки - символи "{" і "}". Це групує конструкції in-
+конструкції в один складений оператор. Поняття групування інструкцій
+у складеному операторі застосовується також до тіл інструкцій if-else та циклу.
 
-The new keyword creates a variable. The name of the variable follows new.
-It Data declarations is common, but not imperative,
-to assign a value to the variable already at the moment of its creation.
+Ключове слово new створює змінну. Ім'я змінної слідує за new.
+Це оголошення даних є загальноприйнятим, але не обов'язковим,
+для присвоєння значення змінній вже в момент її створення.
 
-`Compound statement: 112`
+Складений вираз: 112`
 
-`Data declarations are covered in detail starting at page 62`
-
----
-
-Variables must be declared before they are used in an expression.
-The getvalue function (also common predefined function)
-reads in a value from the keyboard and returns the result. Note that pawn
-is a typeless language, all variables are numeric
-cells that can hold a signed integral value.
-
-The getvalue function name is followed by a pair of parentheses. These are
-required because the value that getvalue returns is stored in a variable. Nor-
-mally, the function’s arguments (or parameters) would appear between  
-the parentheses, but getvalue (as used in this program) does not take any
-explicit arguments. If you do not assign the result of a function to a variable
-or use it in a expression in another way, the parentheses are optional. For
-example, the result of the print and printf statements are not used. You
-may still use parentheses around the arguments, but it is not required.
-
-Loop instructions, like “while”, repeat a single instruction as long as the loop
-condition (the expression between parentheses) is “true”. One can  
-execute multiple instructions in a loop by grouping them in a compound statement.
-The if–else instruction has one instruction for the “true” clause and one for the “false”.
-
-Observe that some statements, like while and if–else, contain (or  
-“fold around”) another instruction —in the case of if–else even two other instructions.
-The complete bundle is, again, a single instruction. That is:
-
-- the assignment statements “a = a - b” below the if and “b = b - a” below the else are statements;
-
-- the if–else statement folds around these two assignment statements and forms a single statement of itself;
-
-- the while statement folds around the if–else statement and forms, again, a single statement.
-
-It is common to make the nesting of the statements explicit by indenting any
-sub-statements below a statement in the source text. In the “Greatest Com-
-mon Divisor” example, the left margin indent increases by four space characters
-after the while statement, and again after the if and else keywords. State-
-ments that belong to the same level, such as both printf invocations and the
-while loop, have the same indentation.
-
-The loop condition for the while loop is “(a != b)”; the symbol != is the
-“not equal to” operator. That is, the if–else instruction is repeated  
-until “a” equals “b”. It is good practice to indent the instructions that run under
-control of another statement, as is done in the preceding example.
+Детально про декларування даних йдеться на сторінці 62
 
 ---
 
-The call to printf, near the bottom of the example, differs from the print call
-right below the opening brace (“{”). The “f” in printf stands for “formatted”,
-which means that the function can format and print numeric values and other
-data (in a user-specified format), as well as literal text. The %d symbol in the
-string is a token that indicates the position and the format that the subsequent
-argument to function printf should be printed. At run time, the token %d is
-replaced by the value of variable “a” (the second argument of printf).
+Змінні мають бути оголошені до того, як вони будуть використані у виразі.
+Функція getvalue (також поширена попередньо визначена функція)
+зчитує значення з клавіатури і повертає результат. Зауважте, що pawn
+це безтипова мова, всі змінні є числовими
+клітинками, які можуть містити знакове інтегральне значення.
 
-Function print can only print text; it is quicker than printf. If you want to
-print a literal “%” at the display, you have to use print, or you have to double
-it in the string that you give to printf. That is:
+Ім'я функції getvalue супроводжується парою круглих дужок. Вони є обов'язковими
+необхідні, оскільки значення, яке повертає getvalue, зберігається у змінній. Крім того, аргументи (або параметри) функції getvalue
+Зазвичай, аргументи (або параметри) функції не з'являються між дужками, але
+дужками, але getvalue (у цій програмі) не приймає жодних
+явних аргументів. Якщо ви не присвоюєте результат функції змінній
+або не використовуєте її у виразі іншим чином, дужки не є обов'язковими. Наприклад
+наприклад, результат операторів print і printf не використовується. Ви
+можете використовувати дужки навколо аргументів, але це не є обов'язковим.
 
-`print "20% of the personnel accounts for 80% of the costs\n"`
+Інструкції циклу, такі як "while", повторюють одну інструкцію до тих пір, поки умова циклу
+(вираз у круглих дужках) є "істинною". Можна
+виконати кілька інструкцій у циклі, згрупувавши їх у складеному операторі.
+Інструкція if-else має одну інструкцію для умови "істина" і одну для умови "хибність".
 
-and
+Зверніть увагу, що деякі оператори, такі як while та if-else, містять (або
+"обгортають" іншу інструкцію - у випадку if-else навіть дві інші інструкції.
+Повний набір - це, знову ж таки, одна інструкція. Тобто
 
-`printf "20%% of the personnel accounts for 80%% of the costs\n"`
+- оператори присвоювання "a = a - b" під if та "b = b - a" під else є операторами;
 
-print the same string.
+- інструкція if-else згортається навколо цих двох інструкцій присвоювання і утворює єдину інструкцію;
+
+- інструкція while згортається навколо інструкції if-else і утворює, знову ж таки, єдину інструкцію.
+
+Зазвичай, вкладеність операторів вказується з допомогою відступів під будь-якими
+підречення під твердженням у вихідному тексті. У прикладі "Найбільший дільник компанії" відступ від лівого поля збільшується на чотири пробіли.
+У прикладі "Найбільший дільник числа" відступ від лівого поля збільшується на чотири пробіли
+після оператора while, а також після ключових слів if та else. Стан - це стан, в якому перебувають
+стани, які належать до одного рівня, наприклад, виклик printf і цикл while, мають однаковий відступ від поля.
+цикл while, мають однаковий відступ.
+
+Умова циклу для циклу while має вигляд "(a != b)"; символ != - це оператор
+оператор "не дорівнює". Тобто, інструкція if-else повторюється
+до тих пір, поки "a" не стане рівним "b". Доброю практикою є використання відступів для інструкцій, які виконуються під управлінням іншого оператора
+інструкції, які виконуються під керуванням іншого оператора, як це зроблено у попередньому прикладі.
 
 ---
 
-`"while" loop: 116`
+Виклик printf у нижній частині прикладу відрізняється від виклику print
+безпосередньо під відкриваючою фігурною дужкою ("{"). "f" у printf означає "відформатований",
+що означає, що функція може форматувати і виводити числові значення та інші
+дані (у форматі, визначеному користувачем), а також буквальний текст. Символ %d у рядку
+є маркером, який вказує на позицію і формат, у якому має бути наступний
+аргумент функції printf має бути надруковано. Під час виконання функції лексема %d замінюється
+замінюється значенням змінної "a" (другий аргумент printf).
 
-`"if else": 114`
+Функція print може друкувати лише текст; вона швидша за printf. Якщо вам потрібно
+вивести на екран літеру "%", вам слід скористатися print або подвоїти
+у рядку, який ви передаєте функції printf. Тобто
 
-`Relational operators: 107`
+`print "20% персоналу припадає на 80% витрат\n"` `print "20% персоналу припадає на 80% витрат\n"`
+
+і
+
+`printf "20%% персоналу припадає на 80%% витрат\n"`.
+
+вивести той самий рядок.
 
 ---
 
-### • Arrays and constants
+Цикл while: 116`
 
-Next to simple variables with a size of a single cell, pawn supports “array
-variables” that hold many cells/values. The following example program displays
-a series of prime numbers using the well known “sieve of Eratosthenes”. The
-program also introduces another new concept: symbolic constants.
-Symbolic constants look like variables, but they cannot be changed.
+"якщо інакше": 114`
 
-Listing: sieve.p
+`Реляційні оператори: 107`
+
+---
+
+### - Масиви та константи
+
+Окрім простих змінних розміром в одну комірку, pawn підтримує "масивні
+змінні", які містять багато комірок/значень. Наступний приклад програми виводить на екран
+ряд простих чисел, використовуючи добре відоме "решето Ератосфена". Програма
+також вводить ще одну нову концепцію: символьні константи.
+Символічні константи виглядають як змінні, але їх не можна змінювати.
+
+Посилання: sieve.p
 
 ```c
 
-/*  Print  all  primes  below  100,  using  the  "Sieve  of  Eratosthenes"  */
+/* Виведіть усі прості числа до 100, використовуючи "сито Ератосфена" */
 
 main()
 {
-    const  max_primes  =  100
-    new  series[max_primes]  =  {  true,  ...  }
-    for  (new  i  =  2;  i  <  max_primes;  ++i)
-    if  (series[i])
+    const max_primes = 100
+    new series[max_primes] = { true, ...  }
+    for (new i = 2; i < max_primes; ++i)
+    if (series[i])
     {
-        printf  "%d  ",  i
-        /*  filter  all  multiples  of  this  "prime"  from  the  list  */
-        for  (new  j  =  2  *  i;  j  <  max_primes;  j  +=  i)
-            series[j]  =  false
+        printf "%d ", i
+        /* відфільтрувати усі кратні даному "простому" зі списку */
+        for (new j = 2 * i; j < max_primes; j += i)
+            series[j] = false
     }
 }
 
@@ -266,239 +266,239 @@ main()
 
 ---
 
-When a program or sub-program has some fixed limit built-in, it is good prac-
-tice create a symbolic constant for it. In the preceding example, the symbol
-max_primes is a constant with the value 100. The program uses the symbol
-max_primes three times after its definition: in the declaration of the variable
-series and in both for loops. If we were to adapt the program to print all
-primes below 500, there is now only one line to change.
+Якщо програма або підпрограма має вбудовану фіксовану межу, корисно створити для неї символічну константу.
+створити для нього символічну константу. У попередньому прикладі символ
+max_primes є константою зі значенням 100. Програма використовує символ
+max_primes тричі після його визначення: в оголошенні змінної
+series та в обох циклах for. Якщо адаптувати програму так, щоб вона виводила усі
+простих чисел, менших за 500, потрібно змінити лише один рядок.
 
-Like simple variables, arrays may be initialized upon creation. pawn offers a
-convenient shorthand to initialize all elements to a fixed value:
-all hundred
-elements of the “series” array are set to true —without requiring that the
-programmer types in the word “true” a hundred times. The symbols true
-and false are predefined constants.
+Як і прості змінні, масиви можуть бути ініціалізовані при створенні. pawn пропонує
+зручний скорочений запис для ініціалізації всіх елементів фіксованим значенням:
+усі сто
+елементам масиву "series" присвоюється значення true - без необхідності вводити слово "true" сто разів.
+від програміста сто разів вводити слово "true". Символи true
+та false є наперед визначеними константами.
 
-When a simple variable, like the variables i and j in the primes sieve example,
-is declared in the first expression of a for loop, the variable is  
-valid only inside the loop.
-Variable declaration has its own rules; it is not a
-statement — although it looks like one.
-One of those rules is that the first expression
-of a for loop may contain a variable declaration.
+Коли в першому виразі циклу оголошується проста змінна, як, наприклад, змінні i та j у прикладі з просіюванням простих чисел,
+оголошується у першому виразі циклу for, змінна
+дійсна тільки всередині циклу.
+Оголошення змінної має свої правила; це не інструкція
+хоч і виглядає як інструкція.
+Одне з цих правил полягає в тому, що перший вираз
+циклу for може містити оголошення змінної.
 
-Both for loops also introduce new operators in their third expression.
-The ++ operator increments its operand by one; that is, ++i is equal to i = i + 1.
-The += operator adds the expression on its right to the variable on its left;
-that is, j += i is equal to j = j + i.
+Обидва цикли for також вводять нові оператори у своєму третьому виразі.
+Оператор ++ збільшує операнд на одиницю, тобто ++i дорівнює i = i + 1.
+Оператор += додає вираз праворуч від нього до змінної ліворуч;
+тобто j += i дорівнює j = j + i.
 
-There is an “off-by-one” issue that you need to be aware if when working with
-arrays. The first element in the series array is series[0], so if the array
-holds max_primes elements, the last element in the array is series[max_primes 1].
-If max_primes is 100, the last element, then, is series[99]. Accessing series[100] is invalid.
+Існує проблема "off-by-one", про яку потрібно знати, якщо ви працюєте з
+масивами. Першим елементом масиву series є series[0], тому якщо масив
+містить max_primes елементів, останнім елементом масиву буде series[max_primes 1].
+Якщо max_primes дорівнює 100, то останнім елементом буде series[99]. Звернення до series[100] є некоректним.
 
-`Constant declaration: 101`
+Постійна декларація: 101`
 
-`Progressive initiallers: 65`
+Прогресивні ініціатори: 65`
 
-`"for" loop: 113`
+Цикл "for": 113`
 
-`An overview of all operators: 104`
+`Огляд всіх операторів: 104`
 
-### • Functions
+### - Функції
 
-Larger programs separate tasks and operations into functions. Using functions
-increases the modularity of programs and functions, when well written, are
-portable to other programs. The following example implements a function to
-calculate numbers from the Fibonacci series.
+У великих програмах завдання та операції поділяються на функції. Використання функцій
+підвищує модульність програм, а функції, якщо вони добре написані, є
+переносяться в інші програми. У наступному прикладі реалізовано функцію для
+обчислення чисел з ряду Фібоначчі.
 
-The Fibonacci sequence was discovered by Leonardo “Fibonacci” of Pisa, an
-Italian mathematician of the 13th century—whose greatest achievement was
-popularizing for the Western world the Hindu-Arabic numerals. The goal of
-the sequence was to describe the growth of a population of (idealized) rabbits;
+Послідовність Фібоначчі була відкрита Леонардо "Фібоначчі" з Пізи, італійським математиком
+італійським математиком 13 століття, чиїм найбільшим досягненням була
+популяризація індуїстсько-арабської системи числення у західному світі. Метою
+послідовності було описати зростання популяції (ідеалізованих) кроликів;
 
-and the sequence is 1, 1, 2, 3, 5, 8, 13, 21,. . .
-(every next value is the sum of its two predecessors).
+і послідовність має вигляд 1, 1, 2, 3, 5, 8, 13, 21,. . . .
+(кожне наступне значення є сумою двох попередніх).
 
-Listing: fib.p
+Лістинг: fib.p
 
 ```c
 
-/*  Calculation  of  Fibonacci  numbers  by  iteration  */
+/* Обчислення чисел Фібоначчі за допомогою ітерацій */ ** Обчислення чисел Фібоначчі за допомогою ітерацій */
 
 main()
 {
-    print  "Enter  a  value:  "
-    new  v  =  getvalue()
-    if  (v  >  0)
-        printf  "The  value  of  Fibonacci  number  %d  is  %d\n", v,  fibonacci(v)
+    print "Введіть значення:  "
+    new v = getvalue()
+    if (v > 0)
+        printf "Значення числа Фібоначчі %d дорівнює %d\n", v, fibonacci(v)
     else
-        printf  "The  Fibonacci  number  %d  does  not  exist\n",  v
+        printf "Число Фібоначчі %d не існує\n", v
 }
 fibonacci(n)
 {
-    assert  n  >  0
-    new  a  =  0,  b  =  1
-    (new  i  =  2;  i  <  n;  i++)
+    assert n > 0
+    new a = 0, b = 1
+    (new i = 2; i < n; i++)
     {
-        new  c  =  a  +  b
-        a  =  b
-        b  =  c
+        new c = a + b
+        a = b
+        b = c
     }
-    return  a  +  b
+    return a + b
 }
 
 ```
 
-The assert instruction at the top of the fibonacci function deserves explicit
-mention; it guards against “impossible” or invalid conditions. A negative Fi-
-bonacci number is invalid, and the assert statement flags it as a programmer’s
-error if this case ever occurs. Assertions should only flag programmer’s
-errors, never user input errors.
+Інструкція assert у верхній частині функції Фібоначчі заслуговує на окрему
+згадки; вона захищає від "неможливих" або недопустимих умов. Від'ємне число Фі
+боначчі є неприпустимим, і інструкція assert позначає це як помилку програміста, якщо такий випадок трапляється.
+помилкою програміста, якщо такий випадок трапляється. Оператори ствердження повинні позначати лише помилки програміста
+помилки програміста, але не помилки введення даних користувачем.
 
-The implementation of a user-defined function is not much different than that
-of function main. Function fibonacci shows two new concepts, though: it
-receives an input value through a parameter and it returns a value (it has a
-“result”).
+Реалізація функції, визначеної користувачем, мало чим відрізняється від реалізації
+функції main. Однак функція fibonacci демонструє два нових поняття: вона
+отримує вхідне значення через параметр і повертає значення (має параметр
+"результат").
 
-Function parameters are declared in the function header; the single parameter
-in this example is “n”. Inside the function, a parameter behaves as a  
-local variable, but one whose value is passed from the outside at
-the call to the function.
+Параметри функції оголошуються у заголовку функції; єдиний параметр
+у цьому прикладі є "n". Усередині функції параметр поводиться як
+локальна змінна, але така, значення якої передається ззовні при
+виклику функції.
 
-The return statement ends a function and sets the result of the function.
-It need not appear at the very end of the function; early exits are permitted.
+Оператор return завершує функцію і встановлює результат виконання функції.
+Він не обов'язково повинен з'являтися в самому кінці функції; допускається достроковий вихід.
 
-`"assert" statement: 112`
+твердження "стверджую": 112`
 
-`Funcitons: properties & features: 70`
-
----
-
-The main function of the Fibonacci example calls predefined “native” functions,
-like getvalue and printf, as well as the user-defined function fibonacci.
-From the perspective of calling a function (as in function main), there is no
-difference between user-defined and native functions.
-
-The Fibonacci numbers sequence describes a surprising variety of natural phe-
-nomena. For example, the two or three sets of spirals in pineapples, pine cones
-and sunflowers usually have consecutive Fibonacci numbers between 5 and 89
-as their number of spirals. The numbers that occur naturally in branching
-patterns (e.g. that of plants) are indeed Fibonacci numbers. Finally, although
-the Fibonacci sequence is not a geometric sequence, the further the sequence
-is extended, the more closely the ratio between successive terms approaches
-the Golden Ratio, of 1.618. . . ∗ that appears so often in art and architecture.
-
-### • Call-by-reference & call-by-value
-
-Dates are a particularly rich source of algorithms and conversion routines,
-because the calenders that a date refers to have known such a diversity,
-through time and around the world.
-
-The “Julian Day Number” is attributed to Josephus Scaliger† and it counts
-the number of days since November 24, 4714 BC (proleptic Gregorian cal-
-endar‡). Scaliger chose that date because it marked the coincidence of three
-well-established cycles: the 28-year Solar Cycle (of the old Julian calendar),
-the 19-year Metonic Cycle and the 15-year Indiction Cycle (periodic taxes or gov-
-ernmental requisitions in ancient Rome), and because no literature or recorded
-history was known to predate that particular date in the remote past. Scaliger
-used this concept to reconcile dates in historic documents, later astronomers
-embraced it to calculate intervals between two events more easily.
+`Функціонали: властивості та особливості: 70`
 
 ---
 
-###### ∗ The exact value for the Golden Ratio is 1/2(√5 + 1). The relation between Fibonacci numbers and the Golden Ratio also allows for a “direct” calculation of any sequence number, instead of the iterative method described here.
+Головна функція прикладу Фібоначчі викликає попередньо визначені "рідні" функції,
+такі як getvalue і printf, а також визначену користувачем функцію fibonacci.
+З точки зору виклику функції (як і у функції main), немає ніякої
+різниці між визначеними та власними функціями немає.
 
-###### ∗ There is some debate on exactly what Josephus Scaliger invented and who or what he called it after.
+Послідовність чисел Фібоначчі описує дивовижне розмаїття природних явищ.
+номенів. Наприклад, два або три набори спіралей в ананасах, соснових шишках
+та соняшнику зазвичай мають послідовність чисел Фібоначчі від 5 до 89
+відповідно до кількості спіралей. Числа, які природно зустрічаються у розгалужених
+(наприклад, у рослин) дійсно є числами Фібоначчі. Нарешті, хоча
+послідовність Фібоначчі не є геометричною послідовністю, чим далі послідовність
+тим ближче співвідношення між послідовними членами наближається до
+до золотого перетину, що дорівнює 1.618. . . ∗ що так часто зустрічається в мистецтві та архітектурі.
 
-###### ∗ The Gregorian calendar was decreed to start on 15 October 1582 by pope Gregory XIII, which means that earlier dates do not really exist in the Gregorian calendar. When extending the Gregorian calendar to days before 15 October 1582, we refer to it as the proleptic Gregorian calendar.
+### - Виклик за посиланням та виклик за значенням
 
-`Native function interface: 85`
+Дати є особливо багатим джерелом алгоритмів та процедур перетворення,
+тому що календарі, на які посилається дата, знали таке розмаїття,
+у різні часи та у різних куточках світу.
+
+"Число юліанських днів" приписується Йосипу Скалігеру† і рахує
+кількість днів, починаючи з 24 листопада 4714 року до н.е. (пролептичне григоріанське кал
+endar‡). Скалігер обрав цю дату, оскільки вона знаменувала собою збіг трьох
+добре відомих циклів: 28-річного сонячного циклу (за старим юліанським календарем),
+19-річного метонічного циклу та 15-річного циклу індикацій (періодичні податки або урядові реквізиції в
+(періодичні податки або державні реквізиції у Стародавньому Римі), а також тому, що жодна література чи записана історія не існувала до
+до цієї дати в далекому минулому не існувало жодних літературних чи історичних пам'яток. Скалігер
+використовував цю концепцію для узгодження дат в історичних документах, а пізніше астрономи
+пізніше астрономи, щоб легше обчислювати інтервали між двома подіями.
 
 ---
 
-Julian Day numbers (sometimes denoted with unit “jd”) should not be con-
-fused with Julian Dates (the number of days since the start of the same year),
-or with the Julian calendar that was introduced by Julius Caesar.
+###### ∗ Точне значення золотого перетину дорівнює 1/2(√5 + 1). Зв'язок між числами Фібоначчі та золотим перетином також дозволяє "прямо" обчислити будь-який номер послідовності, замість описаного тут ітераційного методу
 
-Below is a program that calculates the Julian Day number from a date in
-the (proleptic) Gregorian calendar, and vice versa. Note that in the proleptic
-Gregorian calendar, the first year is 1 AD (Anno Domini) and the year before
-that is 1 BC (Before Christ): year zero does not exist! The program uses
-negative year values for BC years and positive (non-zero) values for AD years.
+###### ∗ Існують суперечки щодо того, що саме винайшов Йосип Скалігер і на честь кого чи чого він його назвав
 
-Listing: julian.p
+###### ∗ Григоріанський календар був запроваджений 15 жовтня 1582 року папою Григорієм XIII, а це означає, що більш ранні дати в григоріанському календарі насправді не існують. Коли ми поширюємо григоріанський календар на дні до 15 жовтня 1582 року, ми називаємо його пролептичним григоріанським календарем
+
+`Власний інтерфейс функцій: 85`
+
+---
+
+Числа юліанських днів (іноді позначаються одиницею "jd") не слід змішувати з юліанськими датами (кількістю днів у році).
+з юліанськими датами (кількість днів від початку одного року),
+або з юліанським календарем, запровадженим Юлієм Цезарем.
+
+Нижче наведено програму, яка обчислює номер юліанського дня за датою в
+(пролептичному) григоріанському календарі, і навпаки. Зверніть увагу, що у пролептичному
+Григоріанському календарі першим роком є 1 рік нашої ери (Anno Domini), а попереднім роком
+тобто 1 до н.е. (до Різдва Христового): нульового року не існує! Програма використовує
+від'ємні значення року для років до нашої ери і додатні (ненульові) значення для років нашої ери.
+
+Лістинг: julian.p
 
 ```c
 
-/*  calculate  Julian  Day  number  from  a  date,  and  vice  versa  */
+/* обчислити число юліанського дня за датою, і навпаки */.
 
 main()
 {
-    new  d,  m,  y,  jdn
-    print  "Give  a  date  (dd-mm-yyyy):  "
+    new d, m, y, jdn
+    print "Введіть дату (дд-мм-гггг):  "
 
-    d  =  getvalue(_,  ’-’,  ’/’)
-    m  =  getvalue(_,  ’-’,  ’/’)
-    y  =  getvalue()
-    jdn  =  DateToJulian(d,  m,  y)
+    d = getvalue(_, '-', '/')
+    m = getvalue(_, '-', '/')
+    y = getvalue()
+    jdn = DateToJulian(d, m, y)
 
-    printf("Date  %d/%d/%d  =  %d  JD\n",  d,  m,  y,  jdn)
-    print  "Give  a  Julian  Day  Number:  "
+    printf("Дата %d/%d/%d = %d JD\n", d, m, y, jdn)
+    вивести "Введіть номер дня за юліанським календарем: "
 
-    jdn  =  getvalue()
-    JulianToDate  jdn,  d,  m,  y
+    jdn = getvalue()
+    JulianToDate jdn, d, m, y
 
-    printf  "%d  JD  =  %d/%d/%d\n",  jdn,  d,  m,  y
+    printf "%d JD = %d/%d/%d\n", jdn, d, m, y
 }
 
-DateToJulian(day,  month,  year)
+DateToJulian(день, місяць, рік)
 {
-    /*  The  first  year  is  1.  Year  0  does  not  exist:  it  is  1  BC  (or  -1)  */
+    /* Перший рік - 1.  Року 0 не існує: це 1 до н.е. (або -1) */.
 
-    assert  year  !=  0
-    if  (year  <  0)
+    assert year != 0
+    if (year < 0)
     year++
 
-    /*  move  January  and  February  to  the  end  of  the  previous  year  */
+    /* перенести січень і лютий на кінець попереднього року */.
 
-    if  (month  <=  2)
-    year--,  month  +=  12
-    new  jdn  =  365*year  +  year/4  -  year/100  +  year/400
-    +  (153*month  -  457)  /  5
-    +  day  +  1721119
+    if (month <= 2)
+    рік--, місяць += 12
+    new jdn = 365*рік + рік/4 - рік/100 + рік/400
+    + (153*місяць - 457) / 5
+    + день + 1721119
 
-    return  jdn
+    return jdn
 }
 
-JulianToDate(jdn,  &day,  &month,  &year)
+JulianToDate(jdn, &day, &month, &year)
 {
-    jdn  -=  1721119
+    jdn -= 1721119
 
-    /*  approximate  year,  then  adjust  in  a  loop  */
+    /* приблизний рік, потім скоригуйте в циклі */
 
-    year  =  (400  *  jdn)  /  146097
-    while  (365*year  +  year/4  -  year/100  +  year/400  <  jdn)
+    year = (400 * jdn) / 146097
+    while (365*year + year/4 - year/100 + year/400 < jdn)
         year++
-    year--
-    /*  determine  month  */
+    рік--
+    /* визначення місяця */
 
-    jdn  -=  365*year  +  year/4  -  year/100  +  year/400
-    month  =  (5*jdn  +  457)  /  153
+    jdn -= 365*рік + рік/4 - рік/100 + рік/400
+    місяць = (5*jdn + 457) / 153
 
-    /*  determine  day  */
+    /* визначте день */
 
-    day  =  jdn  -  (153*month  -  457)  /  5
+    день = jdn - (153*місяць - 457) / 5
 
-    /*  move  January  and  February  to  start  of  the  year  */
+    /* перенести січень і лютий на початок року */.
 
-    if  (month  >  12)
-        month  -=  12,  year++
+    if (month > 12)
+        month -= 12, year++
 
-    /*  adjust  negative  years  (year  0  must  become  1  BC,  or  -1)  */
+    /* відкоригувати від'ємні роки (0 рік має стати 1 роком до н.е., або -1) */.
 
-    if  (year  <=  0)
+    if (year <= 0)
         year--
 }
 
@@ -506,1018 +506,1018 @@ JulianToDate(jdn,  &day,  &month,  &year)
 
 ---
 
-Function main starts with creating variables to hold the day, month and year,
-and the calculated Julian Day number. Then it reads in a date —three calls to
-getvalue— and calls function DateToJulian to calculate the day number. Af-
-ter calculating the result, main prints the date that you entered and the Julian
-Day number for that date. Now, let us focus on function DateToJulian. . .
+Основна частина функції починається зі створення змінних для зберігання дня, місяця та року,
+та обчисленого числа юліанського дня. Потім вона зчитує дату - три виклики функції
+getvalue- і викликає функцію DateToJulian для обчислення номера дня. Після обчислення результату
+обчислення результату, main виводить дату, яку ви ввели, і число дня за юліанським календарем для цієї дати.
+День за юліанським календарем для цієї дати. Тепер зосередимося на функції DateToJulian. . .
 
-Near the top of function DateToJulian, it increments the year value if it is
-negative; it does this to cope with the absence of a “zero” year in the
-proleptic Gregorian calendar. In other words, function DateToJulian modifies its func-
-tion arguments (later, it also modifies month). Inside a function, an argument
-behaves like a local variable: you may modify it. These modifications remain
-local to the function DateToJulian, however. Function main passes the values
-of d, m and y into DateToJulian, who maps them to its function arguments
-day, month and year respectively. Although DateToJulian modifies year and
-month, it does not change y and m in function main; it only changes local copies
-of y and m. This concept is called “call by value”.
+У верхній частині функції DateToJulian збільшує значення року, якщо воно від'ємне
+від'ємне; це робиться для того, щоб впоратися з відсутністю "нульового" року у
+пролептичному григоріанському календарі. Іншими словами, функція DateToJulian модифікує свої аргументи функції
+аргументи функції (пізніше вона також змінює місяць). Усередині функції аргумент
+поводиться як локальна змінна: ви можете змінювати його. Ці зміни залишаються
+локальними для функції DateToJulian. Функція main передає значення
+d, m і y у DateToJulian, яка зіставляє їх з аргументами своєї функції
+день, місяць і рік відповідно. Хоча DateToJulian змінює рік і
+month, він не змінює y та m у функції main; він лише змінює локальні копії
+y та m. Ця концепція називається "виклик за значенням".
 
-The example intentionally uses different names for the local variables in the
-functions main and DateToJulian, for the purpose of making the above ex-
-planation easier. Renaming main’s variables d, m and y to day, month
-and year respectively, does not change the matter: then you just happen to have
-two local variables called day, two called month and two called year, which is
-perfectly valid in pawn.
+У прикладі навмисно використовуються різні імена для локальних змінних у функціях
+функції main і DateToJulian, щоб полегшити наведену вище екс-планіровку.
+спрощення наведеного вище прикладу. Перейменування змінних d, m та y у функції main на day, month
+і рік відповідно, не змінює суті справи: тоді у вас просто з'являться
+дві локальні змінні з іменами day, two з іменами month і two з іменами year, що
+цілком допустимо у пішаку.
 
-`"Call by value" versus "Call by reference": 71`
+"Виклик за значенням" проти "Виклику за посиланням": 71`
 
 ---
 
-The remainder of function DateToJulian is, regarding the
-pawn language, uninteresting arithmetic.
+Решта функції DateToJulian є, з точки зору
+пішакової мови, нецікава арифметика.
 
-Returning to the second part of the function main we see that it now asks
-for a day number and calls another function, JulianToDate, to find the date
-that matches the day number. Function JulianToDate is interesting because
-it takes one input argument (the Julian Day number) and needs to calculate
-three output values, the day, month and year. Alas, a function can only have
-a single return value —that is, a return statement in a function may
-only contain one expression. To solve this, JulianToDate specifically requests that
-changes that it makes to some of its function arguments are copied back to the
-variables of the caller of the function. Then, in main, the variables that must
-hold the result of JulianToDate are passed as arguments to JulianToDate.
+Повертаючись до другої частини функції main, ми бачимо, що тепер вона запитує
+номер дня і викликає іншу функцію, JulianToDate, щоб знайти дату
+яка відповідає номеру дня. Функція JulianToDate цікава тим, що
+вона отримує один вхідний аргумент (номер дня за юліанським календарем) і повинна обчислити
+три вихідних значення: день, місяць і рік. На жаль, функція може мати лише
+єдине значення, що повертається - тобто, оператор повернення у функції може
+може містити лише один вираз. Щоб вирішити цю проблему, JulianToDate спеціально вимагає, щоб
+щоб зміни, які він вносить до деяких аргументів функції, копіювалися назад до
+змінні викликувача функції. Тоді, в основному, змінні, які повинні
+зберігати результат роботи JulianToDate, передаються як аргументи до JulianToDate.
 
-Function JulianToDate marks the appropriate arguments for being “copied
-back to caller” by prefixing them with an & symbol. Arguments with an & are
-copied back, arguments without is are not. “Copying back” is actually not the
-correct term. An argument tagged with an & is passed to the function in a
-special way that allows the function to directly modify the original variable.
-This is called “call by reference” and an argument that uses it is a “reference argument”.
+Функція JulianToDate позначає відповідні аргументи для "копіювання
+назад до абонента", додаючи до них символ &. Аргументи з & будуть
+копіюються, аргументи без символу & - ні. "Копіювання назад" насправді не є
+правильний термін. Аргумент, позначений &, передається у функцію у
+спеціальним способом, який дозволяє функції безпосередньо модифікувати вихідну змінну.
+Це називається "виклик за посиланням", а аргумент, який його використовує - "аргумент-посилання".
 
-In other words, if main passes y to JulianToDate —who maps it to its function
-argument year— and JulianToDate changes year, then JulianToDate really
-changes y. Only through reference arguments can a function directly modify
-a variable that is declared in a different function.
+Іншими словами, якщо main передає y до JulianToDate - яка зіставляє його зі своєю функцією
+аргументу year- і JulianToDate змінює рік, то JulianToDate дійсно
+змінює y. Тільки через аргументи-посилання функція може безпосередньо змінювати
+змінну, оголошену в іншій функції.
 
-To summarize the use of call-by-value versus call-by-reference: if a function
-has one output value, you typically use a return statement; if a function has
-more output values, you use reference arguments. You may combine the two
-inside a single function, for example in a function that returns its “normal”
-output via a reference argument and an error code in its return value.
+Підсумовуючи використання виклику за значенням у порівнянні з викликом за посиланням: якщо функція
+має одне вихідне значення, ви зазвичай використовуєте інструкцію return; якщо функція має
+більше вихідних значень, ви використовуєте аргументи-посилання. Ви можете комбінувати ці два способи
+в одній функції, наприклад, у функції, яка повертає свій "звичайний"
+за допомогою аргументу-посилання та коду помилки у значенні, що повертається.
 
-As an aside, many desktop application use conversions to and from  
-Julian Day numbers (or varieties of it) to conveniently calculate the number of days
-between to dates or to calculate the date that is 90 days from now —for example.---
+Крім того, багато десктопних додатків використовують перетворення в і з
+чисел Юліанського дня (або його різновидів) для зручного обчислення кількості днів
+між датами або для обчислення дати, яка буде через 90 днів - наприклад.---.
 
-### • Rational numbers
+### - Раціональні числа
 
-All calculations done up to this point involved only whole numbers —integer
-values. pawn also has support for numbers that can hold fractional values:
+Усі обчислення, які ми проводили до цього моменту, стосувалися лише цілих чисел -integer
+pawn також підтримує числа, які можуть містити дробові значення:
 
-these are called “rational numbers”. However, whether this support is enabled
-depends on the host application.
+їх називають "раціональними числами". Однак, чи буде увімкнено цю підтримку
+залежить від використовуваної програми.
 
-Rational numbers can be implemented as either floating-point or fixed-point
-numbers. Floating-point arithmetic is commonly used for general-purpose and
-scientific calculations, while fixed-point arithmetic is more suitable for
-financial processing and applications where rounding errors should not come into
+Раціональні числа можуть бути реалізовані як числа з плаваючою або фіксованою комою
+з плаваючою або фіксованою комою. Арифметика з плаваючою комою зазвичай використовується для обчислень загального призначення та
+наукових обчислень, тоді як арифметика з фіксованою комою більше підходить для
+фінансової обробки та додатків, де помилки округлення не повинні виникати
 
-play (or at least, they should be predictable). The pawn toolkit has both a
-floating-point and a fixed-point module, and the details (and
-trade-offs) for
-these modules in their respective documentation. The issue is, however, that a
-host application may implement either floating-point or fixed-point, or both
-or neither.∗ The program below requires that at least either kind of rational
-number support is available; it will fail to run if the host application does
-not support rational numbers at all.
+(або, принаймні, вони мають бути передбачуваними). Інструментарій пішака має як модуль з плаваючою, так і з фіксованою комою
+з плаваючою та фіксованою точкою, а також деталі (і
+компроміси) для
+цих модулів у відповідній документації. Проблема, однак, полягає у тому, що
+хост-програма може реалізовувати або плаваючу, або фіксовану комірку, або обидві
+або жодну з них.∗ Програма, наведена нижче, вимагає наявності принаймні одного з типів раціональної
+раціональних чисел; вона не зможе запуститися, якщо хост-програма не підтримує
+не підтримує раціональні числа взагалі.
 
-Listing: c2f.p
+Лістинг: c2f.p
 
 ```c
 
 main()
 {
-    new  Rational:  Celsius
-    new  Rational:  Fahrenheit
-    print  "Celsius\t  Fahrenheit\n"
-    for  (Celsius  =  5;  Celsius  <=  25;  Celsius++)
+    new Rational:  Цельсій
+    new Rational:  Фаренгейт
+    вивести "Celsius\t Fahrenheit\n"
+    for (Celsius = 5; Celsius <= 25; Celsius++)
     {
-        Fahrenheit  =  (Celsius  *  1.8)  +  32
-        printf  "%r  \t  %r\n",  Celsius,  Fahrenheit
+        Фаренгейт = (Цельсій * 1.8) + 32
+        printf "%r \t %r\n", Celsius, Fahrenheit
     }
 }
 
 ```
 
-The example program converts a table of degrees Celsius to degrees Fahrenheit.
-The first directive of this program is to import definitions for rational number
-support from an include file. The file “rational” includes either support
-for floating-point numbers or for fixed-point numbers, depending on what is available.
+У прикладі програма перетворює таблицю градусів Цельсія у градуси Фаренгейта.
+Першою директивою цієї програми є імпорт визначень для підтримки раціональних чисел
+підтримки раціональних чисел з включаємого файлу. Файл "rational" містить або підтримку
+для чисел з плаваючою комою або для чисел з фіксованою комою, залежно від того, що доступно.
 
-The variables Celsius and Fahrenheit are declared with a tag “Rational:”
-between the keyword new and the variable name. A tag name denotes the
-purpose of the variable, its permitted use and, as a special
-case for rational numbers, its memory lay-out.
-
----
-
-###### ∗ Actually, this is already true of all native functions, including all native functions that the examples in this manual use.
-
-`Tag names: 68`
+Змінні Celsius і Fahrenheit оголошуються з тегом "Rational:"
+між ключовим словом new та іменем змінної. Ім'я тегу вказує на
+призначення змінної, її дозволене використання і, як окремий випадок для раціональних чисел
+для раціональних чисел - розташування у пам'яті.
 
 ---
 
-The Rational: tag tells the pawn parser that the variables Celsius and Fahrenheit
-contain fractional values, rather than whole numbers.
+###### ∗ Власне, це вже стосується всіх нативних функцій, включно з усіма нативними функціями, які використовуються у прикладах у цьому посібнику
 
-The equation for obtaining degrees Fahrenheit from degrees Celsius is
+`Імена тегів: 68
+
+---
+
+Тег Rational: вказує синтаксичному аналізатору, що змінні Celsius і Fahrenheit
+містять дробові значення, а не цілі числа.
+
+Рівняння для отримання градусів Фаренгейта з градусів Цельсія має вигляд
 
 °F = ⁹⁄₅ + 32 °C
 
-The program uses the value 1.8 for the quotient 9/₅. When rational number
-support is enabled, pawn supports values with a fractional part behind  
-the decimal point.
+Програма використовує значення 1.8 для частки 9/₅. Якщо увімкнено підтримку раціональних чисел
+підтримка раціональних чисел, пішак підтримує значення з дробовою частиною після
+десятковою крапкою.
 
-The only other non-trivial change from earlier programs is that the format
-string for the printf function now has variable placeholders denoted with
-“%r” instead of “%d”. The placeholder %r prints a rational number at
-the position; %d is only for integers (“whole numbers”).
+Єдиною нетривіальною зміною у порівнянні з попередніми програмами є те, що у рядку формату
+для функції printf тепер містить заповнювачі змінних, які позначаються
+"%r" замість "%d". Заповнювач %r друкує раціональне число у позиції
+позиції; %d призначено лише для цілих чисел ("цілих чисел").
 
-I used the include file “rational” rather than “float” or “fixed” in an
-attempt to make the example program portable. If you know that the host
-application supports floating point arithmetic, it may be more convenient to
-“#include” the definitions from the file float and use the tag Float: instead
-of Rational —when doing so, you should also replace %r by %f in the call to
-printf. For details on fixed point and floating point support, please see the
-application notes “Fixed Point Support Library” and “Floating Point Support
-Library” that are available separately.
+Я використовував файл включення "rational", а не "float" або "fixed" у
+щоб зробити приклад програми портативним. Якщо ви знаєте, що програма на хості
+додаток підтримує арифметику з плаваючою комою, може бути зручніше
+"#include" визначення з файлу float і використовувати тег Float: замість
+замість Rational - при цьому вам також слід замінити %r на %f у виклику
+printf. Докладні відомості про підтримку фіксованої та плаваючої копійок наведено у
+"Бібліотека підтримки фіксованої точки" та "Бібліотека підтримки плаваючої точки", які доступні окремо.
+Floating Point Support Library", які можна завантажити окремо.
 
-### • Strings
+### - Рядки
 
-pawn has no intrinsic “string” type; character strings are stored in arrays, with
-the convention that the array element behind the last valid character is zero.
-Working with strings is therefore equivalent with working with arrays.
+пішак не має внутрішнього типу "рядок"; рядки символів зберігаються у масивах, з
+домовленістю, що елемент масиву за останнім допустимим символом дорівнює нулю.
+Тому робота з рядками еквівалентна роботі з масивами.
 
-Among the simplest of encryption schemes is the one called “ROT13” —
-actually the algorithm is quite “weak” from a cryptographical point of view. It
-is most widely used in public electronic forums (BBSes, Usenet) to hide texts
-from casual reading, such as the solution to puzzles or riddles. ROT13 simply
-“rotates” the alphabet by half its length, i.e. 13 characters. It is a symmetric
-operation: applying it twice on the same text reveals the original.
+Серед найпростіших схем шифрування є схема під назвою "ROT13" -
+насправді алгоритм досить "слабкий" з криптографічної точки зору. Він
+найбільш широко використовується на публічних електронних форумах (BBS, Usenet) для приховування текстів
+від випадкового читання, наприклад, розгадки ребусів або загадок. ROT13 просто
+"обертає" алфавіт на половину його довжини, тобто на 13 символів. Це симетрична
+операція симетрична: якщо застосувати її двічі до одного і того ж тексту, можна побачити оригінал.
 
 ---
 
-Listing: rot13.p
+Лістинг: rot13.p
 
 ```c
 
-/*  Simple  encryption,  using  ROT13  */
+/* Просте шифрування, з використанням ROT13 */ ** Просте шифрування, з використанням ROT13 */
 
 main()
 {
-    printf  "Please  type  the  string  to  mangle:  "
+    printf "Будь ласка, введіть рядок для манглування:  "
 
-    new  str[100]
-    getstring  str,  sizeof  str
-    rot13  str
+    новий рядок str[100]
+    getstring str, sizeof str
+    rot13 str
 
-    printf  "After  mangling,  the  string  is:  \"%s\"\n",  str
+    printf "Після спотворення рядок має вигляд:  \"%s\"\n", str
 }
 
 rot13(string[])
 {
-    for  (new  index  =  0;  string[index];  index++)
-    if  (’a’  <=  string[index]  <=  ’z’)
-        string[index]  =  (string[index]  -  ’a’  +  13)  %  26  +  ’a’
-    else  if  (’A’  <=  string[index]  <=  ’Z’)
-        string[index]  =  (string[index]  -  ’A’  +  13)  %  26  +  ’A’
+    for (new index = 0; string[index]; index++)
+    if ('a' <= string[index] <= 'z')
+        string[index] = (string[index] - 'a' + 13) % 26 + 'a'
+    else if ('A' <= string[index] <= 'Z')
+        string[index] = (string[index] - 'A' + 13) % 26 + 'A'
 }
 
 ```
 
-In the function header of rot13, the parameter “string” is declared as an
-array, but without specifying the size of the array —there is no value between
-the square brackets. When you specify a size for an array in a function header,
-it must match the size of the actual parameter in the function call. Omitting
-the array size specification in the function header removes this restriction and
-allows the function to be called with arrays of any size. You must then have
-some other means of determining the (maximum) size of the array. In the case
-of a string parameter, one can simply search for the zero terminator.
+У заголовку функції rot13 параметр "string" оголошено як масив
+але без зазначення розміру масиву - між квадратними дужками немає значення
+квадратними дужками. Коли ви вказуєте розмір масиву у заголовку функції,
+він повинен відповідати розміру фактичного параметра у виклику функції. Опускання
+вказівки розміру масиву у заголовку функції знімає це обмеження і
+дозволяє викликати функцію з масивами будь-якого розміру. У такому випадку ви повинні мати
+якийсь інший спосіб визначення (максимального) розміру масиву. У випадку
+рядкового параметра можна просто шукати нульовий термінатор.
 
-The for loop that walks over the string is typical for string processing func-
-tions. Note that the loop condition is “string[index]”. The rule for true/
-false conditions in pawn is that any value is “true”, except zero. That is,
-when the array cell at string[index] is zero, it is “false” and the loop aborts.
+Цикл for, який проходить над рядком, є типовим для функцій обробки рядків
+ції обробки рядків. Зверніть увагу, що умовою циклу є "рядок[індекс]". Правило для умов true/
+false в pawn полягає в тому, що будь-яке значення є "істинним", окрім нуля. Тобто
+коли комірка масиву за адресою string[index] дорівнює нулю, це означає "false" і цикл переривається.
 
-The ROT13 algorithm rotates only letters; digits, punctuation and special
-characters are left unaltered. Additionally, upper and lower case letters must
-be handled separately. Inside the for loop, two if statements filter out the
-characters of interest. The way that the second if is chained to the “else”
-clause of the first if is noteworthy, as it is a typical method of
-testing for multiple non-overlapping conditions.
+Алгоритм ROT13 обертає лише літери; цифри, знаки пунктуації та спеціальні
+символи залишаються незмінними. Крім того, великі та малі літери повинні
+оброблятися окремо. Усередині циклу for два оператори if відфільтровують
+символи, що нас цікавлять. Звертає на себе увагу те, як другий if пов'язаний з оператором "else"
+першого if заслуговує на увагу, оскільки це типовий метод
+перевірки декількох умов, що не перетинаються.
 
-Earlier in this chapter, the concept of “call by value” versus “call by
-reference” were discussed. When you are working with strings, or arrays in general, note
-that pawn always passes arrays by reference. It does this to conserve memory
-and to increase performance —arrays can be large data structures and passing
-them by value requires a copy of this data structure to be made, taking both memory and time.
+Раніше в цьому розділі було розглянуто поняття "виклик за значенням" та "виклик за
+посиланням". Коли ви працюєте з рядками або масивами взагалі, зверніть увагу на те, що
+що пішак завжди передає масиви за посиланням. Це робиться для економії пам'яті
+і для підвищення продуктивності - масиви можуть бути великими структурами даних і передача
+їх за значенням вимагає створення копії цієї структури даних, що займає як пам'ять, так і час.
 
 ---
 
-`A function that takes an array as an argument and that does not change it, may mark the argument as “const”; see page 72`
+`Функція, яка отримує масив як аргумент і не змінює його, може позначити аргумент як "const"; див. сторінку 72`.
 
-Due to this rule, function rot13 can modify its function
-parameter (called “string” in the example) without needing to declare as a
-reference argument.
+Завдяки цьому правилу функція rot13 може модифікувати свій параметр function
+(у прикладі - "рядок") без необхідності оголошувати його як аргумент
+аргумент-посилання.
 
-Another point of interest are the conditions in the two if statements. The first
-if, for example, holds the condition “’a’ <= string[index] <= ’z’”, which
-means that the expression is true if (and only if) both ’a’ <= string[index]
-and string[index] <= ’z’ are true. In the combined expression, the rela-
-tional operators are said to be “chained”, as they chain multiple comparisons
-in one condition.
+Ще одним моментом, що викликає інтерес, є умови у двох операторах if. Перший з них
+if, наприклад, містить умову "'a' <= string[index] <= 'z'", що
+означає, що вираз істинний тоді (і тільки тоді), коли 'a' <= string[index]
+та string[index] <= 'z' є істинними. У комбінованому виразі оператори відношення
+оператори відношення називаються "ланцюговими", оскільки вони об'єднують декілька порівнянь
+в одній умові.
 
-Finally, note how the last printf in function main uses the escape sequence
-\" to print a double quote. Normally a double quote ends the literal string;
-the escape sequence “\"” inserts a double quote into the string.
+Нарешті, зверніть увагу на те, як останній printf у функції main використовує екрануючу послідовність
+\" для друку подвійних лапок. Зазвичай подвійні лапки ставляться у кінці рядка з літералами;
+екрануюча послідовність "\"" вставляє подвійні лапки у рядок.
 
-Staying on the subject of strings and arrays, below is a program that separates
-a string of text into individual words and counts them. It is a simple program
-that shows a few new features of the pawn language.
+Продовжуючи тему рядків і масивів, нижче наведено програму, яка розділяє
+рядок тексту на окремі слова і підраховує їх. Це проста програма
+яка демонструє декілька нових можливостей пішакової мови.
 
-Listing: wcount.p
+Лістинг: wcount.p
 
 ```c
 
-/*  word  count:  count  words  on  a  string  that  the  user  types  */
+/* підрахунок слів: підрахунок слів у рядку, який вводить користувач */
 
 main()
 {
-    print  "Please  type  a  string:  "
-    new  string[100]
-    getstring  string,  sizeof  string
+    print "Будь ласка, введіть рядок:  "
+    новий рядок[100]
+    getstring string, sizeof string
 
-    new  count  =  0
+    new count = 0
 
-    new  word[20]
-    new  index
-    for (  ;;  )
+    нове слово[20]
+    новий індекс
+    for ( ;; )
     {
-        word  =  strtok(string,  index)
-        if  (strlen(word)  ==  0)
+        word = strtok(string, index)
+        if (strlen(word) == 0)
             break
         count++
-        printf  "Word  %d:  ’%s’\n",  count,  word
+        printf "Слово %d: '%s'\n", count, word
     }
-    printf  "\nNumber  of  words:  %d\n",  count
+    printf "\nКількість слів: %d\n", count
 }
 
-strtok(const  string[],  &index)
+strtok(const string[], &index)
 {
-    new  length  =  strlen(string)
+    new length = strlen(string)
 
-    /*  skip  leading  white  space  */
-    while  (index  <  length  &&  string[index]  <=  ’  ’)
+    /* пропустити початковий пробіл */
+    while (index < length && string[index] <= ' ')
         index++
-    /*  store  the  word  letter  for  letter  */
-    new  offset  =  index                            /*  save  start position  of  token  */
-    new  result[20]                                  /*  string  to store  the  word  in  */
-    while  (index  <  length
-        &&  string[index]  >  ’  ’
-        &&  index  -  offset  <  sizeof  result  -  1)
+    /* зберігаємо слово літера за літерою */
+    new offset = index /* зберігаємо початкову позицію токена */
+    new result[20] /* рядок для збереження слова */
+    while (index < length
+        && string[index] > ' '
+        && index - offset < sizeof result - 1)
     {
-        result[index  -  offset]  =  string[index]
+        result[index - offset] = string[index]
         index++
     }
-    result[index  -  offset]  =  EOS                 /*  zero-terminate  the string  */
-    return  result
+    result[index - offset] = EOS /* зрівняти рядок в нуль */
+    повернути результат
 }
 
 ```
 
 ---
 
-`Relational operators: 107`
+`Реляційні оператори: 107`
 
-`Escape sequence: 99`
+Послідовність втечі: 99`
 
-Function main first displays a message and retrieves a string that  
-the user must type. Then it enters a loop: writing “for (;;)” creates a loop
-without initialisation, without increment and without test —it is an infinite loop,
+Функція main спочатку показує повідомлення і отримує рядок, який
+користувач повинен ввести. Потім вона входить у цикл: запис "for (;;)" створює цикл
+без ініціалізації, без інкременту і без тесту - це нескінченний цикл,
 
-equivalent to “while (true)”. However, where the pawn parser will give you
-a warning if you type “while (true)” (something along the line “redundant
-test expression; always true”), “for (;;)” passes the parser without warning.
+еквівалентно "while (true)". Однак, якщо синтаксичний аналізатор видасть вам
+попередження, якщо ви введете "while (true)" (щось на кшталт "надлишковий тестовий вираз; завжди істинний"), то "for" пройде повз нього.
+тестовий вираз; завжди істинний"), "for (;;)" пройде через синтаксичний аналізатор без попередження.
 
-A typical use for an infinite loop is a case where you need a loop  
-with the test in the middle —a hybrid between a while and a do. . . while loop, so to
-speak. pawn does not support loops-with-a-test-in-the middle directly,  
-but you can imitate one by coding an infinite loop with a conditional break. In
-this example program, the loop:
+Типовим застосуванням нескінченного циклу є випадок, коли вам потрібен цикл
+з тестом в середині - гібрид між циклом while і do. . . . циклом while, так би мовити.
+pawn не підтримує цикли з тестом в середині безпосередньо,
+але ви можете імітувати його, закодувавши нескінченний цикл з умовним розривом. У
+цьому прикладі програми, цикл
 
-- gets a word from the string —code before the test ;
+- отримує слово з рядка -code перед тестом ;
 
-- tests wether a new word is available, and breaks out of the loop if not —the test in the middle;
+- перевіряє, чи доступне нове слово, і виходить з циклу, якщо ні - тест в середині;
 
-- prints the word and its sequence number —code after the test .
+- виводить слово та його порядковий номер - код після тесту .
 
-As is apparent from the line “word = strtok(string, index)” (and the
-declaration of variable word), pawn supports array assignment and functions
-returning arrays. The pawn parser verifies that the array that strtok returns
-has the same size and dimensions as the variable that it is assigned into.
+Як видно з рядка "word = strtok(string, index)" (і
+оголошення змінної word), pawn підтримує присвоювання масивів та функції
+що повертають масиви. Синтаксичний аналізатор pawn перевіряє, що масив, який повертає функція strtok
+має той самий розмір і розмірність, що і змінна, якій він присвоюється.
 
-Function strlen is a native function (predefined), but strtok is not: it must be
-implemented by ourselves. The function strtok was inspired by the function of
-the same name from C/C++, but it does not modify the source string. Instead
+Функція strlen є нативною функцією (попередньо визначеною), але strtok не є такою: її потрібно
+реалізувати самостійно. Функція strtok була натхненна однойменною функцією
+з тією ж назвою з C/C++, але вона не змінює вихідний рядок. Замість цього
 
-it copies characters from the source string, word for word, into a local array,
-which it then returns.
+вона копіює символи з вихідного рядка, слово за словом, у локальний масив,
+який потім повертає.
 
 ---
 
-### • Arrays and enumerations (structured data)
+### - Масиви та зчислення (структуровані дані)
 
-In a typeless language, we might assign a different purpose to some  
-array elements than to other elements in the same array. pawn supports enumerated
-constants with an extension that allows it to mimic some functionality that
-other languages implement with “structures” or “records”.
+У безтиповій мові ми можемо призначити деяким елементам масиву
+елементам масиву, ніж іншим елементам того ж масиву. pawn підтримує перераховані
+константи з розширенням, яке дозволяє імітувати деякі функції, які
+які інші мови реалізують за допомогою "структур" або "записів".
 
-The example to illustrate enumerations and arrays is longer than  
-previous pawn programs, and it also displays a few other features, such as global
-variables and named parameters.
-Listing: queue.p
+Приклад для ілюстрації зчислень та масивів довший за
+попередніх програм-пішаків, а також демонструє деякі інші особливості, такі як глобальні
+змінні та іменовані параметри.
+Лістинг: queue.p
 
 ```c
 
-/*  Priority  queue  (for  simple  text  strings)  */
+/* Пріоритетна черга (для простих текстових рядків) */
 
-enum  message
+enum message
 {
-    text[40  char],
-    priority
+    text[40 char],
+    пріоритет
 }
 
 main()
 {
-    new  msg[message]
+    new msg[повідомлення]
 
-    /*  insert  a  few  items  (read  from  console  input)  */
+    /* вставити декілька елементів (зчитати з консольного вводу) */
 
-    printf  "Please  insert  a  few  messages  and  their  priorities;  \
-        end  with  an  empty  string\n"
-    for  (  ;;  )
+    printf "Будь ласка, вставте декілька повідомлень та їхні пріоритети; \
+        закінчити порожнім рядком\n"
+    for ( ;; )
     {
-        printf  "Message:    "
-        getstring  .string  =  msg[text],  .maxlength  =  40,  .pack  =  true
-        if  (strlen(msg[text])  ==  0)
+        printf "Повідомлення:    "
+        getstring .string = msg[text], .maxlength = 40, .pack = true
+        if (strlen(msg[text]) == 0)
             break
-        printf  "Priority:  "
-        msg[priority]  =  getvalue()
-        if  (!insert(msg))
+        printf "Пріоритет:  "
+        msg[priority] = getvalue()
+        if (!insert(msg))
         {
-            printf  "Queue  is  full,  cannot  insert  more  items\n"
+            printf "Черга переповнена, неможливо вставити більше елементів\n"
             break
         }
     }
-    /*  now  print  the  messages  extracted  from  the  queue  */
-    printf  "\nContents  of  the  queue:\n"
-    while  (extract(msg))
-        printf  "[%d]  %s\n",  msg[priority],  msg[text]
+    /* тепер виводимо повідомлення, витягнуті з черги */
+    printf "\nВміст черги:\n"
+    while (extract(msg))
+        printf "[%d] %s\n", msg[пріоритет], msg[текст]
 }
 
-const  queuesize  =  10
-new  queue[queuesize][message]
-new  queueitems  =  0
-insert(const  item[message])
+const queuesize = 10
+new queue[queuesize][message][message]
+new queueitems = 0
+insert(const item[message])
 {
-    /*  check  if  the  queue  can  hold  one  more  message  */
-    if  (queueitems  ==  queuesize)
-        return  false                         /*  queue  is  full  */
+    /* перевіряємо, чи може черга вмістити ще одне повідомлення */
+    if (queueitems == queuesize)
+        return false /* черга переповнена */
 
-    /*  find  the  position  to  insert  it  to  */
-    new  pos  =  queueitems                 /*  start  at  the  bottom  */
-    while  (pos  >  0  &&  item[priority]  >  queue[pos-1][priority])
-        --pos                                        /*  higher  priority:  move  one  position  up  */
+    /* знайти позицію для вставки */
+    new pos = queueitems /* починаємо знизу */
+    while (pos > 0 && item[priority] > queue[pos-1][priority])
+        --pos /* вищий пріоритет: перемістити на одну позицію вгору */
 
-    /*  make  place  for  the  item  at  the  insertion  spot  */
-    for  (new  i  =  queueitems;  i  >  pos;  --i)
-        queue[i]  =  queue[i-1]
+    /* створюємо місце для елементу в місці вставки */
+    for (new i = queueitems; i > pos; --i)
+        queue[i] = queue[i-1]
 
-    /*  add  the  message  to  the  correct  slot  */
-        queue[pos]  =  item
+    /* додаємо повідомлення у потрібний слот */
+        queue[pos] = item
     queueitems++
 
-    return  true
+    return true
 }
 
 extract(item[message])
 {
-    /*  check  whether  the  queue  has  one  more  message  */
-    if  (queueitems  ==  0)
-        return  false                         /*  queue  is  empty  */
+    /* перевіряємо, чи є в черзі ще одне повідомлення */
+    if (queueitems == 0)
+        return false /* черга порожня */
 
-    /*  copy  the  topmost  item  */
-    item  =  queue[0]
+    /* копіюємо самий верхній елемент */
+    item = queue[0]
     --queueitems
 
-    /*  move  the  queue  one  position  up  */
-    for  (new  i  =  0;  i  <  queueitems;  ++i)
-        queue[i]  =  queue[i+1]
+    /* пересуваємо чергу на одну позицію вгору */
+    for (new i = 0; i < queueitems; ++i)
+        queue[i] = queue[i+1]
 
-    return  true
+    return true
 }
 
 ```
 
 ---
 
-`"for" loop: 113`
+Цикл "for": 113`
 
-`"enum" statement: 101`
+Оператор перебору: 101`
 
-`"char" operator: 110`
+Оператор "char": 110`
 
-Near the top of the program listing is the declaration of the enumeration mes-
-sage. This enumeration defines two constants: text, which is zero, and pri-
-ority, which is 11 (assuming a 32-bit cell). The idea behind an enumeration
-is to quickly define a list of symbolic constants without duplicates. By
-default, every constant in the list is 1 higher than its predecessor and the very  
-first constant in the list is zero. However, you may give an extra increment for a
-constant so that the successor has a value of 1 plus that extra increment. The
+У верхній частині лістингу програми знаходиться оголошення перечислювача mes-
+sage. Цей зчислювач визначає дві константи: text, яка дорівнює нулю, і pri- ority, яка дорівнює 11.
+аботність, яка дорівнює 11 (припускаючи, що комірка 32-розрядна). Ідея перечислення полягає у тому, щоб
+полягає у швидкому визначенні списку символічних констант без дублікатів. За
+кожна константа у списку на 1 більша за свою попередницю, а найперша константа у списку дорівнює нулю.
+перша константа у списку дорівнює нулю. Однак, ви можете вказати додатковий інкремент для константи
+таким чином, щоб константа-спадкоємець мала значення 1 плюс цей додатковий приріст. Для цього слід скористатися командою
 
-text constant specifies an extra increment of 40 char. In pawn, char is an
-operator, it returns the number of cells needed to
-hold a packed string of the
+text задає додатковий приріст на 40 char. У пішаку char - це оператор
+оператором, який повертає кількість комірок, необхідних для
+для розміщення упакованого рядка типу
 
-specified number of characters. Assuming a 32-bit cell and a 8-bit character,
-10 cells can hold 40 packed characters.
+задану кількість символів. Припустимо, що комірка 32-бітна, а символ 8-бітний,
+10 комірок можуть містити 40 упакованих символів.
 
-Immediately at the top of function main, a new array variable is declared with
-the size of message. The symbol message is the name of the enumeration. It
-is also a constant with the value of the last constant in the enumeration list
-plus the optional extra increment for that last element. So in this example,
-message is 12. That is to say, array msg is declared to hold 12 cells.
+Одразу на початку функції main оголошується нова змінна масиву з параметрами
+розміром message. Символ message - це ім'я перечислення. Це
+також є константою зі значенням останньої константи у списку зчислень
+плюс необов'язковий додатковий приріст для цього останнього елемента. Отже, у цьому прикладі
+message дорівнює 12. Тобто, масив msg оголошено таким, що містить 12 комірок.
 
-Further in main are two loops. The for loop reads strings and priority values
-from the console and inserts them in a queue. The while loop below  
+Далі в main йдуть два цикли. Цикл for зчитує рядки та значення пріоритетів
+з консолі і вставляє їх у чергу. Цикл while, наведений нижче
 that
-extracts element by element from the queue and prints the information on the
-screen. The point to note, is that the for loop stores both the string and the
-priority number (an integer) in the same variable msg; indeed, function main
-declares only a single variable. Function getstring stores the message text
-that you type starting at array msg[text] while the priority value is stored
-(by an assignment a few lines lower) in msg[priority]. The printf function
-in the while loop reads the string and the value from those positions as well.
+витягує елемент за елементом з черги і виводить інформацію на
+на екран. Слід зазначити, що цикл for зберігає як рядок, так і
+номер пріоритету (ціле число) у тій самій змінній msg; дійсно, функція main
+оголошує лише одну змінну. Функція getstring зберігає текст повідомлення
+яке ви вводите, починаючи з масиву msg[text], а значення пріоритету зберігається
+(за присвоюванням кількома рядками нижче) у msg[priority]. Функція printf
+у циклі while зчитує рядок і значення також з цих позицій.
 
-At the same time, the msg array is an entity on itself: it is passed in its
-entirety
-to function insert. That function, near the end, says “queue[queueitems]
+У той же час, масив msg є сутністю сам по собі: він передається повністю
+цілком
+у функцію insert. Ця функція наприкінці говорить "queue[queueitems]
 
-= item”, where item is an array with size message and queue is a  
-two-
-dimensional array that holds queuesize elements of size message. The decla-
-ration of queue and queuesize are just above function insert.
+= item", де item - масив з розміром повідомлення, а queue - це
+двовимірний
+вимірний масив, який містить елементи розміру queue з повідомленням size. Оголошення queue та queuesize
+queue та queuesize знаходиться трохи вище функції insert.
 
-The example implements a “priority queue”. You can insert a number  
-of
-messages into the queue and when these messages all have the same priority,
-they are extracted from the queue in the same order. However, when  
-the
-messages have different priorities, the one with the highest priority comes out
-first. The “intelligence” for this operation is inside function insert: it
-first
-determines the position of the new message to add, then moves a few messages
-one position upward to make space for the new message. Function extract
-simply always retrieves the first element of the queue and shifts all remaining
-elements down by one position.
+У прикладі реалізовано "пріоритетну чергу". Ви можете вставити кількість
+повідомлень
+повідомлень у чергу, і коли всі ці повідомлення мають однаковий пріоритет,
+вони будуть витягнуті з черги у тому ж порядку. Однак, коли
+повідомлення
+повідомлення мають різні пріоритети, то повідомлення з найвищим пріоритетом витягується
+першим. "Розум" для цієї операції знаходиться всередині функції insert: вона
+спочатку
+визначає позицію нового повідомлення, яке потрібно додати, потім пересуває кілька повідомлень
+на одну позицію вгору, щоб звільнити місце для нового повідомлення. Функція extract
+просто завжди отримує перший елемент черги і зсуває всі інші
+елементи вниз на одну позицію.
 
-Note that both functions insert and extract work on two shared variables,
-queue and queueitems. A variable that is declared inside a function,  
-like
-variable msg in function main can only be accessed from within that function.
-A “global variable” is accessible by all functions, and that variable is
-declared
-outside the scope of any function. Variables must still be declared before they
-are used, so main cannot access variables queue and queueitems, but both
-insert and extract can.
-
----
-
-Function extract returns the messages with the highest priority via its func-
-tion argument item. That is, it changes its function argument by copying the
-first element of the queue array into item. Function insert copies in the other
-direction and it does not change its function argument item. In such a case,
-it is advised to mark the function argument as “const”. This helps the pawn
-parser to both check for errors and to generate better (more compact, quicker) code.
-
-A final remark on this latest sample is the call to getstring in function main:
-note how the parameters are attributed with a description. The first param-
-eter is labeled “.string”, the second “.maxlength” and the third “.pack”.
-Function getstring receives “named parameters” rather than positional pa-
-rameters. The order in which named parameters are listed is not important.
-Named parameters are convenient in specifying —and deciphering— long pa-
-rameter lists.
+Зверніть увагу, що обидві функції insert і extract працюють з двома спільними змінними,
+queue та queueitems. Змінна, яка оголошена всередині функції,
+наприклад
+змінна msg у функції main, може бути доступна лише з цієї функції.
+"Глобальна змінна" доступна усім функціям, і ця змінна
+оголошена
+за межами області видимості будь-якої функції. Змінні все одно мають бути оголошені до того, як їх буде використано
+тому main не може отримати доступ до змінних queue і queueitems, але обидві функції
+insert і extract можуть.
 
 ---
 
-`Named parameters: 74`
+Функція extract повертає повідомлення з найвищим пріоритетом через аргумент функції
+аргумент функції. Тобто вона змінює свій аргумент функції шляхом копіювання
+першого елемента масиву черги в item. Функція insert копіює у зворотному
+напрямку і не змінює аргумент функції item. У такому випадку
+рекомендується позначати аргумент функції як "const". Це допоможе синтаксичному аналізатору pawn
+як перевіряти помилки, так і генерувати кращий (компактніший, швидший) код.
 
-### • Bit operations to manipulate ‘‘sets’’
-
-A few algorithms are most easily solved with “set operations”, like
-intersection,
-union and inversion. In the figure below, for example, we want to design an
-algorithm that returns us the points that can be reached from some other point
-in a specified maximum number of steps. For example, if we ask it to
-return the points that can be reached in two steps starting from B, the algorithm has
-to return C, D, E and F, but not G because G takes three steps from B.
-
-Our approach is to keep, for each point in the graph, the set of other points
-that it can reach in one step —this is the “next_step” set. We  
-also have a “result” set that keeps all points that we have found so far. We start by
-setting the result set equal to the next_step set for the departure point. Now
-we have in the result set all points that one can reach in one step. Then, for
-every point in our result set, we create a union of the result set and the
-next_step set for that point. This process is iterated for a specified number of loops.
+Останнє зауваження щодо цього останнього прикладу - виклик getstring у функції main:
+Зверніть увагу на те, як параметрам присвоюються описи. Перший параметр
+етер має назву ".string", другий - ".maxlength", а третій - ".pack".
+Функція getstring отримує "іменовані параметри", а не позиційні параметри.
+раметри. Порядок перерахування іменованих параметрів не має значення.
+Іменовані параметри зручні для вказівки - і розшифровки - довгих списків па
+раметрів у довгих списках.
 
 ---
 
-An example may clarify the procedure outlined above. When the departure
-point is B, we start by setting the result set to D and E —these are the
-points that one can reach from B in one step. Then, we walk through
-the result set. The first point that we encounter in the set is D, and we check
-what points can be reached from D in one step: these are C and F. So we add
-C and F to the result set. We knew that the points that can be reached from
-D in one step are C and F, because C and F are in the next_step set for
+Іменовані параметри: 74`
 
-D. So what we do is to merge the next_step set for point D into the result
-set. The merge is called a “union” in set theory. That handles D. The original
-result set also contained point E, but the next_step set for E is empty, so
-no more point is added. The new result set therefore now contains C, D, E and F.
+### - Бітові операції для маніпулювання ''множинами''
+
+Деякі алгоритми найпростіше розв'язуються за допомогою "операцій над множинами", наприклад
+перетин,
+об'єднання та інверсія. На рисунку нижче, наприклад, ми хочемо розробити алгоритм
+алгоритм, який повертає нам точки, до яких можна дістатися з деякої іншої точки
+за вказану максимальну кількість кроків. Наприклад, якщо ми попросимо його
+повернути точки, яких можна досягти за два кроки, починаючи з точки B, алгоритм повинен
+повернути C, D, E і F, але не G, тому що G знаходиться на відстані трьох кроків від B.
+
+Наш підхід полягає в тому, щоб зберігати для кожної точки графіка множину інших точок
+до яких вона може дістатися за один крок - це множина "next_step". У нас також є
+також маємо множину "результат", яка зберігає всі точки, які ми вже знайшли. Ми почнемо з того, що
+встановлюємо множину результатів рівною множині next_step для точки відправлення. Тепер
+ми маємо у результуючій множині всі точки, які можна досягти за один крок. Далі, для
+кожної точки в нашій множині результатів ми створюємо об'єднання множини результатів і
+наступного_кроку для цієї точки. Цей процес повторюється протягом заданої кількості циклів.
+
+---
+
+Процедуру, описану вище, можна пояснити на прикладі. Коли відправною точкою
+B, ми починаємо з того, що встановлюємо значення набору результатів на D і E - це точки, до яких
+точки, до яких можна дістатися з B за один крок. Потім ми проходимо через
+множину результатів. Перша точка, яку ми зустрічаємо у множині - це D, і ми перевіряємо
+в які точки можна потрапити з D за один крок: це точки C і F. Отже, ми додаємо
+C і F до множини результатів. Ми знаємо, що точки, до яких можна дістатися з
+D за один крок, є C і F, тому що C і F знаходяться у множині next_step для
+
+D. Отже, ми об'єднаємо множину next_step для точки D з множиною result
+множину. Об'єднання називається "об'єднанням" у теорії множин. Це обробляє точку D. Початковий
+також містила точку E, але множина next_step для E порожня, тому
+більше не додається жодної точки. Таким чином, нова результуюча множина тепер містить C, D, E і F.
 
 ![img](https://i.ibb.co/m9Dq7x2/image.png)
 
-A set is a general purpose container for elements. The only information that
-a set holds of an element is whether it is present in the set or not. The order
-of elements in a set is insignificant and a set cannot contain the same element
+Набір - це контейнер загального призначення для елементів. Єдина інформація, яку
+про елемент - це те, чи присутній він у множині, чи ні. Порядок
+елементів у множині є несуттєвим, і множина не може містити один і той самий елемент
 
-multiple times. The pawn language does not provide a “set” data type or
-operators that work on sets. However, sets with up to 32 elements can be
-simulated by bit operations. It takes just one bit to store a “present/absent”
-status and a 32-bit cell can therefore maintain the status for 32 set elements
-—provided that each element is assigned a unique bit position.
+декілька разів. У мові пішаків не передбачено типу даних "множина" або
+операторів, які працюють з множинами. Однак, множини з 32 елементами можуть бути
+симулювати за допомогою бітових операцій. Для зберігання стану "присутній/відсутній" потрібен лише один біт
+і 32-бітова комірка може зберігати стан для 32 елементів множини
+-за умови, що кожному елементу присвоєно унікальну бітову позицію.
 
-The relation between set operations and bitwise operations is summarized in
-the following table. In the table, an upper case letter stands for a set and a
-lower case letter for an element from that set.
+Зв'язок між операціями над множинами та побітовими операціями наведено у
+наступній таблиці. У таблиці велика літера позначає множину, а
+мала літера - елемент з цієї множини.
 
-| concept      | mathematical notation | pawn expression |
+| поняття, математичні позначення, вираз пішака.
 | ------------ | --------------------- | --------------- |
-| intersection | A ∩ B                 | A & B           |
-| union        | A ∪ B                 | A I B           |
-| complement   | A                     | ~A              |
-| empty set    | ε                     | 0               |
-| membership   | x ∈ A                 | (1 << x ) & A   |
+| перетин | A ∩ B | A & B | A & B
+| об'єднання | A ∪ B | A I B
+| доповнення A ~ A ~ A
+| порожня множина ε = 0
+членство | x ∈ A | (1 << x ) & A | | (1 << x ) & A | | (1 << x ) & A | | (1 << x ) & A |)
 
 ---
 
-To test for membership —that is, to query whether a set holds a particular
-element, create a set with just one element and take the intersection. If the
-result is 0 (the empty set) the element is not in the set. Bit numbering starts
-typically at zero; the lowest bit is bit 0 and the highest bit in a 32-bit cell
-is bit 31. To make a cell with only bit 7 set, shift the value 1 left by seven
-—or in a pawn expression: “1 << 7”.
+Щоб перевірити множину на приналежність, тобто запитати, чи містить вона певний
+створіть множину з одним елементом і візьміть точку перетину. Якщо результат
+дорівнює 0 (порожня множина), то елемента немає у множині. Нумерація бітів починається
+зазвичай з нуля; молодший біт - це біт 0, а старший біт у 32-бітній комірці
+є біт 31. Щоб зробити комірку з бітом 7 у множині, зсуньте значення 1 вліво на сім одиниць
+-або у виразі з пішаком: "1 << 7".
 
-Below is the program that implements the algorithm described earlier to find
-all points that can be reached from a specific departure in a given number of
-steps. The algorithm is completely in the findtargets function.
+Нижче наведено програму, яка реалізує описаний раніше алгоритм пошуку
+всіх точок, до яких можна дістатися з заданого пункту відправлення за задану кількість
+кроків. Алгоритм повністю знаходиться у функції findtargets.
 
-Listing: set.p
+Лістинг: set.p
 
 ```c
 
-/*  Set  operations,  using  bit  arithmetic  */
+/* Операції над множинами, використовуючи бітову арифметику */
 
 main()
 {
-    enum  (<<=  1)  {  A  =  1,  B,  C,  D,  E,  F,  G  }
-    new  nextstep[]  =
+    enum (<<= 1) { A = 1, B, C, D, E, F, G }
+    new nextstep[] =
 
-        {  C  |  E,       /*  A  can  reach  C  and  E  */
-           D  |  E,          /*  B    "        "      D  and  E  */
-           G,                /*  C    "        "      G  */
-           C  |  F,          /*  D    "        "      C  and  F  */
-           0,                /*  E    "        "      none  */
-           0,                /*  F    "        "      none  */
-           E  |  F,          /*  G    "        "      E  and  F  */
+        { C | E, /* A може дістатися до C і E */
+           D | E, /* B " " D і E */
+           G, /* C " " G */
+           C | F, /* D " " C і F */
+           0, /* E " " немає */
+           0, /* F " " немає */
+           E | F, /* G " " E та F */
         }
-    #pragma  unused  A,  B
+    #pragma unused A, B
 
-    print  "The  departure  point:  "
-    new  source  =  clamp(  .value  =  toupper(getchar())  -  ’A’,
-                .min  =  0,
-                .max  =  sizeof  nextstep  -  1
+    вивести "Точка відправлення: "
+    new source = clamp( .value = toupper(getchar()) - 'A',
+                .min = 0,
+                .max = sizeof nextstep - 1
                  )
-    print  "\nThe  number  of  steps:  "
-    new  steps  =  getvalue()
+    print "\nКількість кроків:  "
+    new steps = getvalue()
 
-    /*  make  the  set  */
-    new  result  =  findtargets(source,  steps,  nextstep)
-    printf  "The  points  reachable  from  %c  in  %d  steps:  ",  source+’A’,
-    steps
-    for  (new  i  =  0;  i  <  sizeof  nextstep;  i++)
-        if  (result  &  1  <<  i)
-            printf  "%c  ",  i  +  ’A’
+    /* створюємо множину */
+    new result = findtargets(source, steps, nextstep)
+    printf "Точки досяжні з %c за %d кроків:  ", source+'A',
+    кроки
+    for (new i = 0; i < sizeof nextstep; i++)
+        if (result & 1 << i)
+            printf "%c ", i + 'A'
 }
 
-findtargets(source,  steps,  nextstep[],  numpoints  =  sizeof  nextstep)
+findtargets(source, steps, nextstep[], numpoints = sizeof nextstep)
 {
-    new  result  =  0
-    new  addedpoints  =  nextstep[source]
-    while  (steps--  >  0  &&  result  !=  addedpoints)
+    новий результат = 0
+    new addedpoints = nextstep[source]
+    while (steps-- > 0 && result != addedpoints)
     {
-        result  =  addedpoints
-        for  (new  i  =  0;  i  <  numpoints;  i++)
-            if  (result  &  1  <<  i)
-                addedpoints  |=  nextstep[i]
+        result = addedpoints
+        for (new i = 0; i < numpoints; i++)
+            if (result & 1 << i)
+                addedpoints |= nextstep[i]
     }
-    return  result
+    return result
 }
 
 ```
 
 ---
 
-The enum statement just below the header of the main function declares the
-constants for the nodes A to G, but with a twist. Usually, the enum starts
-counting from zero; here, the value of the first constant, A, is explicitly set to
+Інструкція enum, що знаходиться під заголовком головної функції, оголошує константи
+константи для вершин від A до G, але з деякими змінами. Зазвичай, перерахування починається
+відлік з нуля; тут значення першої константи, A, явно задано у вигляді
 
-1.  More noteworthy is the expression “(<<= 1)” between the enum keyword
-    and the opening brace that starts the constant list: it specifies a “bit
-    shifting” increment. By default, every constant in an enum list gets a value that is
-    1 above its predecessor, but you can specify every successive constant
-    in an enumeration to have a value that is:
+1. На особливу увагу заслуговує вираз "(<<= 1)" між ключовим словом enum
+    і відкриваючою фігурною дужкою, з якої починається список констант: він задає "бітовий" приріст
+    зсув" приросту. За замовчуванням, кожна константа у переліку отримує значення, яке на
+    на 1 більше за попередню, але ви можете вказати кожну наступну константу
+    у зчисленні, щоб вона мала значення, яке є:
 
-_its predecessor incremented by any value (not just 1) —e.g., “(+= 5)”;_
+його попередник збільшується на будь-яке значення (не лише на 1) - наприклад, "(+= 5)";_.
 
-_its predecessor multiplied by any value —e.g., “(_= 3)”;\_
+_його попередник, помножений на будь-яке значення - наприклад, "(_= 3)";\_
 
-_its predecessor bit-shifted to the left by any value —e.g., “(<<= 1)”;_
+_попередник зсунуто вліво на довільну величину - наприклад, "(<<= 1)";_.
 
-Note that, in binary arithmetic, shifting left by one bit amounts to the same
-as multiplying by two, meaning that `(/*= 2)` and `(<<= 1)` do the same thing.
+Зауважте, що у двійковій арифметиці зсув вліво на один біт дорівнює
+що і множення на два, тобто `(/*= 2)` і `(<<= 1)` роблять те саме.
 
-When working with sets, a typical task that pops up is to determine the number
-of elements in the set. A straightforward function that does this is below:
+При роботі з множинами типовою задачею, яка виникає, є визначення кількості
+елементів у множині. Нижче наведено просту функцію, яка виконує цю задачу:
 
-Listing: simple bitcount function
+Лістинг: проста функція підрахунку бітів
 
 ```c
 
 bitcount(set)
 {
-    new  count  =  0
-    for  (new  i  =  0;  i  <  cellbits;  i++)
-        if  (set  &  (1  <<  i))
+    new count = 0
+    for (new i = 0; i < cellbits; i++)
+        if (set & (1 << i))
             count++
-    return  count
+    повернути count
 }
 
 ```
 
-With a cell size of 32 bits, this function’s loop iterates 32 times to check for
-a single bit at each iteration. With a bit of binary arithmetic magic, we can
-reduce it to loop only for the number of bits that are “set”.  
-That is, the following function iterates only once if the input value has only one bit set:
+При розмірі комірки у 32 біти цикл цієї функції повторюється 32 рази для перевірки
+один біт на кожній ітерації. За допомогою магії двійкової арифметики ми можемо
+зменшити цикл до циклу лише для кількості "встановлених" бітів.  
+Тобто, наступна функція виконується лише один раз, якщо у вхідному значенні встановлений лише один біт:
 
-Listing: improved bitcount function
+Лістинг: покращено функцію бітового лічильника
 
 ```c
 
 bitcount(set)
 {
-    new  count  =  0
-    if  (set)
+    new count = 0
+    if (set)
         do
             count++
-        while  ((set  =  set  &  (set  -  1)))
-    return  count
+        while ((set = set & (set - 1)))
+    return count
 }
 
 ```
 
 ---
 
-`“enum” statement: 101`
+Оператор перебору: 101`
 
-`“cellbits” constant: 102`
-
----
-
-### • A simple RPN calculator
-
-The common mathematical notation, with expressions like “26 3 (5 + 2)”,
-is known as the algebraic notation. It is a compact notation and  
-we have
-grown accustomed to it. pawn and by far most other programming languages
-use the algebraic notation for their programming expressions. The algebraic
-
-notation does have a few disadvantages, though. For instance, it occasionally
-requires that the order of operations is made explicit by folding a part of the
-expression in parentheses. The expression at the top of this paragraph  
-can
-be rewritten to eliminate the parentheses, but at the cost of nearly doubling
-its length. In practice, the algebraic notation is augmented with precedence
-level rules that say, for example, that multiplication goes before addition and
-subtraction.∗ Precedence levels greatly reduce the need for parentheses, but it
-does not fully avoid them. Worse is that when the number of operators grows large,
-the hierarchy of precedence levels and the particular precedence  
-level for each operator becomes hard to memorize —which is why an operator-rich
-language as APL does away with precedence levels altogether.
-
-Around 1920, the Polish mathematician Jan ´Lukasiewicz demonstrated that
-by putting the operators in front of their operands, instead of between them,
-
-precedence levels became redundant and parentheses were never necessary.
-This notation became known as the “Polish Notation”.† Charles Hamblin
-proposed later to put operators behind the operands, calling it the “Reverse Polish Notation”.
+`"cellbits" константа: 102`.
 
 ---
 
-###### ∗ These rules are often summarized in a mnemonic like “Please Excuse My Dear Aunt Sally” (Parentheses, Exponentiation, Multiplication, Division, Addition, Subtraction)
+### - Простий калькулятор RPN
 
-###### \* Polish Notation is completely unrelated to “Hungarian Notation” —which is just the habit of adding “type” or “purpose” identification warts to names of variables or functions
+Загальноприйнятий математичний запис, що містить вирази на кшталт "26 3 (5 + 2)",
+відомий як алгебраїчний запис. Це компактний запис і
+ми
+звикли до нього. pawn і, безумовно, більшість інших мов програмування
+використовують алгебраїчний запис для своїх програмних виразів. Алгебраїчний запис
+
+однак, має кілька недоліків. Наприклад, іноді
+вимагає, щоб порядок виконання операцій був явним, для чого частину виразу
+виразу у дужках. Вираз у верхній частині цього абзацу
+можна
+можна переписати, прибравши дужки, але це призведе до збільшення його довжини майже удвічі.
+його довжини. На практиці алгебраїчні позначення доповнюються правилами рівня пріоритету
+які говорять, наприклад, що множення йде перед додаванням і відніманням.
+віднімання.∗ Рівні пріоритетів значно зменшують потребу в дужках, але не позбавляють від них повністю.
+не позбавляють від них повністю. Гірше те, що коли кількість операторів стає великою,
+ієрархія рівнів пріоритету і конкретний рівень пріоритету
+ієрархія рівнів пріоритету і конкретний рівень пріоритету для кожного оператора стають важкими для запам'ятовування - саме тому багата на оператори
+мова, як APL, взагалі відмовляється від рівнів пріоритету.
+
+Приблизно у 1920 році польський математик Ян Лукасевич продемонстрував, що
+поставивши оператори перед операндами, а не між ними,
+
+рівні пріоритету стали зайвими, а дужки ніколи не були потрібними.
+Цей запис став відомим як "польський запис".† Чарльз Гамблін
+пізніше запропонував розміщувати оператори за операндами, назвавши його "зворотним польським записом".
 
 ---
 
-`Algebraic notation is also called “infix” notation`
+###### ∗ Ці правила часто узагальнюються в мнемоніці на кшталт "Будь ласка, вибачте мою дорогу тітку Саллі" (дужки, піднесення до степеня, множення, ділення, додавання, віднімання)
 
-`Reverse Polish Notation is also called “postfix” notation`
+###### \* Польська нотація абсолютно не пов'язана з "угорською нотацією" - це просто звичка додавати до назв змінних або функцій ідентифікаційні знаки "тип" або "призначення"
 
 ---
 
-The advantage of reversing the order is that the operators
-are listed in the same order as they must be executed: when  
-reading the operators from the left to the right, you also have the operations to perform in
-that order. The algebraic expression from the beginning of this section would
-read in rpn as:
+`Алгебраїчна нотація також називається "інфіксною" нотацією`.
 
-`26 3 5 2 + × −`
+`Зворотна польська нотація також називається "постфіксною" нотацією`.
 
-When looking at the operators only, we have: first an addition, then a mul-
-tiplication and finally a subtraction. The operands of each operator are read
-from right to left: the operands for the + operator are the values 5  
-and 2, those for the operator are the result of the previous addition
-and the value 3, and so on.
+---
 
-It is helpful to imagine the values to be stacked on a pile, where the operators
-take one or more operands from the top of the pile and put a result back on top
-of the pile. When reading through the rpn expression, the values 26, 3, 5 and
-2 are “stacked” in that order. The operator + removes the top two elements
+Перевага зворотного порядку полягає у тому, що оператори
+перераховані у тому ж порядку, у якому вони повинні бути виконані: при
+читаючи оператори зліва направо, ви також матимете операції, які потрібно виконати у
+тому ж порядку. Алгебраїчний вираз, наведений на початку цього розділу, матиме вигляд
+читається у rpn як:
 
-from the stack (5 and 2) and pushes the sum of these values back —the stack
-now reads “26 3 7”. Then, the operator removes 3 and 7 and pushes the
-product of the values onto the stack —the stack is “26 21”. Finally, the
-operator subtracts 21 from 26 and stores the single value 5, the end result of
-the expression, back onto the stack.
+`26 3 5 2 + × -`
 
-Reverse Polish Notation became popular because it was easy to understand and
-easy to implement in (early) calculators. It also opens the way to operators
-with more than two operands (e.g. integration) or operators with more than
-one result (e.g. conversion between polar and cartesian coordinates).
+Якщо розглядати лише оператори, то ми маємо: спочатку додавання, потім множення, а потім віднімання.
+множення і, нарешті, віднімання. Операнди кожного оператора зчитуються
+справа наліво: операндами для оператора + є значення 5
+і 2, для оператора - результат попереднього додавання
+і значення 3, і так далі.
 
-The main program for a Reverse Polish Notation calculator is below:
+Корисно уявити собі значення, які потрібно скласти у стопку, де оператори
+беруть один або декілька операндів з вершини купи і кладуть результат назад на вершину
+стопки. При зчитуванні виразу rpn значення 26, 3, 5 і
+2 "складаються" у такому порядку. Оператор + видаляє два верхні елементи
 
-Listing: rpn.p
+зі стеку (5 і 2) і відсуває суму цих значень назад - стек
+тепер має вигляд "26 3 7". Потім оператор видаляє 3 і 7 і виштовхує
+добуток цих значень до стеку - у стеку тепер "26 21". Нарешті, оператор
+віднімає 21 від 26 і зберігає єдине значення 5, кінцевий результат
+виразу, назад у стек.
+
+Зворотна польська система числення стала популярною, тому що її було легко зрозуміти і
+легко реалізувати у (ранніх) калькуляторах. Він також відкриває шлях до операторів
+з більш ніж двома операндами (наприклад, інтегрування) або операторів з більш ніж
+одним результатом (наприклад, перетворення між полярними та декартовими координатами).
+
+Основна програма для калькулятора зворотної польської нотації знаходиться нижче:
+
+Посилання: rpn.p
 
 ```c
 
-/*  a  simple  RPN  calculator  */
-#include  strtok
-#include  stack
-#include  rpnparse
+/* простий калькулятор RPN */
+#include strtok
+#include stack
+#include rpnparse
 
 main()
 {
-    print  "Type  an  expression  in  Reverse  Polish  Notation:  "
-    new  string[100]
-    getstring  string,  sizeof  string
-    rpncalc  string
+    print "Введіть вираз у зворотному польському записі:  "
+    new string[100]
+    getstring рядок, sizeof рядок
+    rpncalc рядок
 }
 
 ```
 
 ---
 
-The main program contains very little code itself; instead it includes the re-
-quired code from three other files, each of which implements a few functions
-that, together, build the rpn calculator. When programs or scripts get larger,
-it is usually advised to spread the implementation over several files, in
-order to make maintenance easier.
+Основна програма містить дуже мало власне коду; натомість вона включає в себе перероблений код з трьох інших файлів.
+код з трьох інших файлів, кожен з яких реалізує декілька функцій, які разом створюють
+які разом створюють калькулятор rpn. Коли програми або скрипти стають більшими,
+зазвичай рекомендується розподіляти реалізацію по декількох файлах, щоб
+щоб полегшити супровід.
 
-Function main first puts up a prompt and calls the native function getstring
-to read an expression that the user types. Then it calls the custom function
-rpncalc to do the real work. Function rpncalc is implemented in the  
-file rpnparse.inc, reproduced below:
+Функція main спочатку виводить запит і викликає власну функцію getstring
+щоб прочитати вираз, який ввів користувач. Потім вона викликає користувацьку функцію
+rpncalc для виконання реальної роботи. Функцію rpncalc реалізовано у файлі
+файлі rpnparse.inc, який наведено нижче:
 
-Listing: rpnparse.inc
+Лістинг: rpnparse.inc
 
 ````c
 
-/*  main  rpn  parser  and  lexical  analysis,  part  of  the  RPN  calculator  */
-#include  <rational>
-#include  <string>
+/* основний парсер rpn та лексичний аналіз, частина калькулятора RPN */
+#include <rational>
+#include <string>
 
-enum  token
+enum токен
 {
-    t_type,                       /*  operator  or  token  type  */
-    Rational:  t_value,           /*  value,  if  t_type  is  "Number"  */
-    t_word[20],                   /*  raw  string  */
+    t_type, /* тип оператора або токену */
+    Rational: t_value, /* значення, якщо t_type рівний "Число" */
+    t_word[20], /* сирий рядок */
 
 }
 
-const  Number     =  ’0’
-const  EndOfExpr  =  ’#’
+const Number = '0'
+const EndOfExpr = '#'
 
-rpncalc(const  string[])
+rpncalc(const string[])
 {
-    new  index
-    new  field[token]
-    for  (  ;;  )
+    новий індекс
+    нове поле[токен]
+    for ( ;; )
     {
-        field  =  gettoken(string,  index)
-        switch  (field[t_type])
+        field = gettoken(string, index)
+        switch (field[t_type])
         {
-            case  Number:
-                push  field[t_value]
-            case  ’+’:
-                push  pop()  +  pop()
-            case  ’-’:
-                push  -  pop()  +  pop()
-            case  ’*’:
-                push  pop()  *  pop()
-            case  ’/’,  ’:’:
-                push  1.0  /  pop()  *  pop()
-            case  EndOfExpr:
-                break      /*  exit  "for"  loop  */
-            default:
-                printf  "Unknown  operator  ’%s’\n",  field[t_word]
+            case Номер:
+                push field[t_value]
+            case '+':
+                push pop() + pop()
+            case '-':
+                push - pop() + pop()
+            case '*':
+                push pop() * pop()
+            case '/', ':':
+                push 1.0 / pop() * pop()
+            case EndOfExpr:
+                break /* вихід з циклу for */
+            за замовчуванням:
+                printf "Невідомий оператор '%s'\n", field[t_word]
         }
     }
-    printf  "Result  =  %r\n",  pop()
-    if  (clearstack())
-        print  "Stack  not  empty\n",  red
+    printf "Результат = %r\n", pop()
+    if (clearstack())
+        print "Стек не порожній\n", red
 }
 
-gettoken(const  string[],  &index)
+gettoken(const string[], &index)
 {
-    /*  first  get  the  next  "word"  from  the  string  */
-    new  word[20]
-    word  =  strtok(string,  index)
+    /* спочатку отримати наступне "слово" з рядка */
+    new word[20]
+    word = strtok(string, index)
 
-    /*  then  parse  it  */
-    new  field[token]
-    field[t_word]  =  word
-    if  (strlen(word)  ==  0)
+    /* потім розбираємо його */
+    new field[token]
+    field[t_word] = word
+    if (strlen(word) == 0)
     {
-        field[t_type]  =  EndOfExpr  /*  special  "stop"  symbol  */
-        field[t_value]  =  0
+        field[t_type] = EndOfExpr /* спеціальний "стоп" символ */
+        field[t_value] = 0
     }
-    else  if  (’0’  <=  word[0]  <=  ’9’)
+    else if ('0' <= word[0] <= '9')
     {
-        field[t_type]  =  Number
-        field[t_value]  =  rationalstr(word)
+        field[t_type] = Number
+        field[t_value] = rationalstr(word)
     }
     else
     {
-        field[t_type]  =  word[0]
-        field[t_value]  =  0
+        field[t_type] = word[0]
+        field[t_value] = 0
     }
-    return  field
+    поле повернення
 
 }
 
 ```***
 
-The rpn calculator uses rational number support and rpnparse.inc includes
-the “rational” file for that purpose. Almost all of the operations on rational
-numbers is hidden in the arithmetic. The only direct references to
-rational numbers are the “%r” format code in the printf statement near the bottom
-of function rpncalc and the call to rationalstr halfway function gettoken.
+Калькулятор rpn використовує підтримку раціональних чисел і rpnparse.inc містить
+файл "rational" для цієї мети. Майже всі операції над раціональними
+числами приховано в арифметиці. Єдиними прямими посиланнями на
+раціональних чисел є код формату "%r" у операторі printf у нижній частині
+функції rpncalc та виклик функції rationalstr на півдорозі gettoken.
 
-The first remarkable element in the file rpnparse.inc is the enum
-declaration, where one element has a tag (t_field) and the other element has a size
-(t_word). Function rpncalc declares variable field as an array using
-the enumeration symbol as its size. Behind the screens, this declaration does more
-than just create an array with 22 cells:
+Першим примітним елементом у файлі rpnparse.inc є оголошення enum
+де один елемент має тег (t_field), а інший елемент має розмір
+(t_word). Функція rpncalc оголошує змінну field як масив, використовуючи
+символ перечислення як його розмір. За кадром це оголошення робить більше
+ніж просто створює масив з 22 комірок:
 
-/*The index tag of the array is set to the tag name “token:”. This means that you can index the array with any of the elements from the enumeration, but not with values that have a different tag. In other words, field[t_type] is okay, but field[1] gives a parser diagnostic.
+/*Індексному тегу масиву присвоєно ім'я тегу "token:". Це означає, що ви можете індексувати масив будь-якими елементами зі зчислення, але не значеннями, які мають інший тег. Іншими словами, field[t_type] - це нормально, але field[1] видає діагностику синтаксичного аналізатора.
 
-/*The tag name of the enumeration overrules the tag name of the array variable, if any. The field variable is untagged, but field[t_value] has the tag Rational:, because the enumeration element t_value is declared as such. This, hence, allows you to create an array whose elements have different tag names.
+/*Ім'я тегу перечислення перекриває ім'я тегу змінної масиву, якщо такий є. Змінна field не має тегів, але field[t_value] має тег Rational:, оскільки так оголошено елемент перечислення t_value. Таким чином, ви можете створити масив, елементи якого мають різні імена тегів.
 
-/*When the enumeration element has a size, the array element indicated with that element is sometimes treated as a sub-array. In rpncalc, expression “field[t_type]” is a single cell, “field[t_value]” is a single cell, but “field[t_word]” is a one-dimensional array of 20 cells. We see that specifically in the line:
+/*Коли елемент перечислення має розмір, елемент масиву, на який вказує цей елемент, іноді розглядається як підмасив. У rpncalc вираз "поле[t_тип]" - це одна комірка, "поле[t_значення]" - одна комірка, але "поле[t_слово]" - це одновимірний масив з 20 комірок. Ми бачимо це конкретно в рядку:
 
-    printf  "Unknown  operator  ’%s’\n",  field[t_word]
+    printf "Unknown operator '%s'\n", field[t_word]
 
-where the format code %s expects a string —a zero-terminated array.
-
-
+де код формату %s очікує рядок - масив з нульовим закінченням.
 
 
 
-`Rational numbers, see also the “Celsius to Fahrenheit” example on page page 16`
-
-`“enum” statement: 101`
-
-`Another example of an index tag: page 68`
 
 
+Раціональні числа, див. також приклад "Перехід від градусів Цельсія до Фаренгейта" на стор. 16
 
-// came to here
+Оператор перебору: 101`
+
+`Інший приклад індексного тегу: page 68`.
+
+
+
+// прийшов сюди
 
 
 
 
 ***
 
-If you know C/C⁺⁺  or Java, you may want to look at the switch statement.
-The switch statement differs in a number of ways from the other languages
-that provide it. The cases are not fall-through, for example, which in
-turn means that the break statement for the case EndOfExpr breaks out of the
-enclosing loop, instead of out of the switch.
+Якщо ви знаєте C/C⁺⁺ або Java, вам варто звернути увагу на інструкцію switch.
+Оператор switch відрізняється кількома способами від інших мов
+у яких він реалізований. Наприклад, випадки не є випадаючими, що, у свою чергу, означає, що
+означає, що оператор break для випадку EndOfExpr виходить з охоплюючого циклу
+охоплюючого циклу, а не з switch.
 
-On the top of the for loop in function rpncalc, you will find the
-instruction “field = gettoken(string, index)”. As already exemplified in the
-wcount.p (“word count”) program on page 19, functions may return arrays.
-It gets more interesting for a similar line in function gettoken:
+У верхній частині циклу for у функції rpncalc ви знайдете інструкцію
+інструкцію "field = gettoken(string, index)". Як вже було показано у прикладі програми
+wcount.p ("підрахунок слів") на сторінці 19, функції можуть повертати масиви.
+Цікавіше виглядає подібний рядок у функції gettoken:
 
 field[t_word] = word
 
-where word is an array of 20 cells and field is an array of 22 cells.
-However, as the t_word enumeration field is declared as having a size of 20 cells,
-“field[t_word]” is considered a sub-array of 20 cells, precisely matching the
-array size of word.
+де word - масив з 20 комірок, а field - масив з 22 комірок.
+Однак, оскільки поле перерахування t_word оголошено як таке, що має розмір 20 комірок,
+"field[t_word]" вважається підмасивом з 20 комірок, що точно відповідає
+розміру масиву word.
 
-Listing: strtok.inc
+Лістинг: strtok.inc
 
 ```c
 
-/* extract words from a string (words must be separated by white space) */
-#include <string>
+/* витягнути слова з рядка (слова повинні бути відокремлені пропуском) */
+#include <string> </string
 
 strtok(const string[], &index)
 {
     new length = strlen(string)
 
-    /* skip leading white space */
-    while (index < length && string[index] <= ’ ’)
+    /* пропустити початковий пробіл */
+    while (index < length && string[index] <= ' ')
         index++
 
-    /* store the word letter for letter */
-    new offset = index     /* save start position of token */
-    new result[20]         /* string to store the word in */
+    /* зберігаємо слово літера за літерою */
+    new offset = index /* зберігаємо початкову позицію токена */
+    new result[20] /* рядок для збереження слова */
     while (index < length
-        && string[index] > ’ ’
+        && string[index] > ' '
         && index - offset < sizeof result - 1)
         {
             result[index - offset] = string[index]
             index++
         }
-    result[index - offset] = EOS /* zero-terminate the string */
+    result[index - offset] = EOS /* зрівняти рядок в нуль
 
-    return result
+    повернути результат
 }
 
 ````
 
 ---
 
-`“switch” statement: page 115`
+`"switch" оператор: page 115`
 
 ---
 
-Function strtok is the same as the one used in the wcount.p example. It is
-implemented in a separate file for the rpn calculator program. Note that the
-strtok function as it is implemented here can only handle words with up to 19
+Функція strtok така сама, як і у прикладі wcount.p. Її реалізовано
+реалізовано в окремому файлі для програми rpn calculator. Зауважте, що функція
+strtok у тому вигляді, у якому вона реалізована тут, може обробляти лише слова з довжиною до 19
 
-characters —the 20th character is the zero terminator. A truly general purpose
-re-usable implementation of an strtok function would pass the destination
-array as a parameter, so that it could handle words of any size. Supporting
-both packed and unpack strings would also be a useful feature of a  
-general purpose function.
+символів - 20-й символ є нульовим термінатором. Дійсно універсальна
+багаторазова реалізація функції strtok передавала б масив призначення
+як параметр, щоб вона могла обробляти слова будь-якого розміру. Підтримка
+як запакованих, так і розпакованих рядків також була б корисною властивістю
+функції загального призначення.
 
-When discussing the merits of Reverse Polish Notation, I mentioned that a
-stack is both an aid in “visualizing” the algorithm as well as a  
-convenient method to implement an rpn parser. This example rpn calculator, uses
-a stack with the ubiquitous functions push and pop. For error checking  
-and resetting the stack, there is a third function that clears the stack.
+При обговоренні переваг оберненого польського запису я згадував, що стек
+стек є одночасно і допоміжним засобом для "візуалізації" алгоритму, а також
+зручний метод для реалізації синтаксичного аналізатора rpn. У цьому прикладі rpn калькулятора використовується
+стек з повсюдно використовуваними функціями push і pop. Для перевірки помилок
+та скидання стеку є третя функція, яка очищає стек.
 
-Listing: stack.inc
+Лістинг: stack.inc
 
 ```c
 
-/* stack functions, part of the RPN calculator */
+/* стекові функції, частина обчислювача RPN */
 #include <rational>
 
 static Rational: stack[50]
@@ -1552,220 +1552,220 @@ clearstack()
 
 ---
 
-The file stack.inc includes the file rational again. This is technically not
-necessary (rpnparse.inc already included the definitions for rational number
-support), but it does not do any harm either and, for the sake of code re-use,
-it is better to make any file include the definitions of the libraries that it
-depends on.
+Файл stack.inc знову містить файл rational. Це технічно не є
+необхідності (rpnparse.inc вже містить визначення для підтримки раціональних чисел), але це не зашкодить
+раціональних чисел), але це також не зашкодить, і для зручності повторного використання коду,
+краще зробити так, щоб будь-який файл містив визначення бібліотек, від яких він
+залежить.
 
-Notice how the two global variables stack and stackidx are declared  
-as “static” variables; using the keyword static instead of new. Doing this makes
-the global variables “visible” in that file only. For all other files in a  
-larger project, the symbols stack and stackidx are invisible and they cannot (ac-
-cidentally) modify the variables. It also allows the other modules to declare
-their own private variables with these names, so it avoids name clashing.
+Зверніть увагу, що дві глобальні змінні stack і stackidx оголошено
+як "статичні" змінні; з використанням ключового слова static замість new. Це робить глобальні змінні
+глобальні змінні "видимими" лише у цьому файлі. Для всіх інших файлів у
+більшому проєкті, символи stack і stackidx є невидимими, і вони не можуть (випадково) змінювати змінні.
+випадково) модифікувати ці змінні. Це також дозволяє іншим модулям оголошувати
+власні приватні змінні з цими іменами, що дозволяє уникнути зіткнення імен.
 
-The rpn calculator is actually still a fairly small program, but it has been set
-up as if it were a larger program. It was also designed to demonstrate a set
-of elements of the pawn language and the example program could have been
-implemented more compactly.
+Калькулятор rpn насправді все ще досить маленька програма, але вона була налаштована
+так, ніби це велика програма. Він також був розроблений для демонстрації набору
+елементів пішакової мови, а приклад програми можна було б
+реалізовано більш компактно.
 
-### • Event-driven programming
+### - Програмування, кероване подіями
 
-All of the example programs that were developed in this chapter so far, have
-used a “lineal” programming model: they start with main and the code deter-
-mines what to do and when to request input. This programming model is easy
-to understand and it nicely fits most programming languages, but it is also a
-model does not fit many “real life” situations. Quite often, a program cannot
-simply process data and suggest that the user provides input only when it is
-ready for him/her. Instead, it is the user who decides when to provide input,
-and the program or script should be prepared to process it in an acceptable
-time, regardless of what it was doing at the moment.
+Всі приклади програм, які були розроблені в цій главі до цього часу, використовували
+використовували "лінійну" модель програмування: вони починаються з main, і код визначає, що робити, а що ні.
+що робити і коли запитувати вхідні дані. Цю модель програмування легко
+для розуміння, і вона добре підходить для більшості мов програмування, але ця модель не підходить для багатьох "реальних
+модель не підходить для багатьох ситуацій "реального життя". Досить часто програма не може
+просто обробити дані і запропонувати користувачеві ввести дані тільки тоді, коли він/вона
+користувачеві лише тоді, коли він/вона готовий(а). Натомість, саме користувач вирішує, коли надавати дані,
+а програма або скрипт повинні бути готові обробити його за прийнятний
+час, незалежно від того, що він робить у цей момент.
 
-The above description suggests that a program should therefore be able to in-
-terrupt its work and do other things before picking up the original task. In
-early implementations, this was indeed how such functionality was implemented: a
-multi-tasking system where one task (or thread) managed the background tasks
-and a second task/thread that sits in a loop continuously requesting user input.
-This is a heavy-weight solution, however. A more light-weight implementation
-of a responsive system is what is called the “event-driven” programming model.
-
----
-
-In the event-driven programming model, a program or script decomposes any
-lengthy (background) task into short manageable blocks and in between, it is
-available for input. Instead of having the program poll for input, however, the
-host application (or some other sub-system) calls a function that is attached
-to the event —but only if the event occurs.
-
-A typical event is “input”. Observe that input does not only come from human
-operators. Input packets can arrive over serial cables, network stacks,
-internal
-sub-systems such as timers and clocks, and all kinds of other equipment that
-you may have attached to your system. Many of the apparatus that produce
-input, just send it. The arrival of such input is an event, just like a key
-press.
-If you do not catch the event, a few of them may be stored in an  
-internal
-system queue, but once the queue is saturated the events are simply dropped.
-
-pawn directly supports the event-driven model, because it supports multiple
-entry points. The sole entry point of a lineal program is main; an event-driven
-program has an entry point for every event that it captures. When compared to
-the lineal model, event-driven programs often appear “bottom-up”: instead of
-
-your program calling into the host application and deciding what to do next,
-your program is being called from the outside and it is required to  
-respond
-appropriately and promptly.
-
-pawn does not specify a standard library, and so there is no guarantee that in
-a particular implementation, functions like printf and getvalue. Although
-it is suggested that every implementation provides a minimal console/terminal
-interface with a these functions, their availability is ultimately
-implementation-
-
-dependent. The same holds for the public functions —the entry points for a
-script. It is implementation-dependent which public functions a host applica-
-tion supports. The script in this section may therefore not run on your platform
-(even if all previous scripts ran fine). The tools in the standard
-distribution of
-the pawn system support all scripts developed in this manual, provided that
-
-your operating system or environment supports standard terminal functions
-
-such as setting the cursor position.
-
-An early programming language that was developed solely for teaching the
-concepts of programming to children was “Logo”. This dialect of LISP made
-programming visual by having a small robot, the “turtle”, drive over the floor
-under control of a simple program. This concept was then copied to moving
-a (usually triangular) cursor of the computer display, again under control of a
-program. A novelty was that the turtle now left a trail behind it, allowing you
-to create drawings by properly programming the turtle —it became known as turtle graphics.
+З наведеного вище опису випливає, що програма повинна мати можливість переривати свою роботу і займатися іншими справами до того, як вона почне виконувати початкове завдання.
+переривати свою роботу і виконувати інші дії перед тим, як продовжити виконання початкового завдання. У
+ранніх реалізаціях така функціональність дійсно була реалізована: багатозадачна система
+багатозадачна система, де одна задача (або потік) керувала фоновими завданнями
+а друга задача/потік, що знаходиться в циклі, постійно запитує вхідні дані у користувача.
+Однак це важке рішення. Більш легка реалізація
+адаптивної системи є те, що називається "подієво-керованою" моделлю програмування.
 
 ---
 
-`Public functions: 83`
+У моделі подієвого програмування програма або скрипт розбиває будь-яке
+довге (фонове) завдання на короткі керовані блоки, а в проміжках між ними
+доступні для введення. Однак, замість того, щоб програма опитувала вхідні дані, хост-додаток (або інша підсистема)
+хост-додаток (або якась інша підсистема) викликає функцію, яка приєднана
+до події - але тільки якщо подія відбувається.
+
+Типовою подією є "вхід". Зверніть увагу, що вхідні дані надходять не лише від
+операторів. Вхідні пакети можуть надходити через послідовні кабелі, мережеві стеки,
+внутрішні
+підсистеми, такі як таймери і годинники, а також всі види іншого обладнання, яке
+може бути підключено до вашої системи. Багато пристроїв, які створюють вхідні дані, просто надсилають їх.
+вхідні дані, просто надсилають їх. Надходження такого вхідного сигналу є подією, так само, як натискання клавіші
+натискання клавіші.
+Якщо ви не перехоплюєте події, деякі з них можуть зберігатися у
+внутрішня
+системної черги, але як тільки черга переповнюється, події просто відкидаються.
+
+pawn безпосередньо підтримує модель, керовану подіями, оскільки підтримує декілька
+точок входу. Єдиною точкою входу лінійної програми є головна; керована подіями
+програма має точку входу для кожної події, яку вона перехоплює. У порівнянні з
+лінійною моделлю, керовані подіями програми часто виглядають "знизу вгору": замість
+
+ваша програма викликає хост-додаток і вирішує, що робити далі,
+вашу програму викликають ззовні і вона повинна
+відповісти
+належним чином і швидко.
+
+pawn не вказує стандартну бібліотеку, і тому немає гарантії, що у
+конкретній реалізації будуть працювати функції типу printf та getvalue. Хоча
+передбачається, що кожна реалізація надає мінімальний консольний/термінальний
+інтерфейс з цими функціями, їх доступність, зрештою, залежить від
+реалізація-
+
+залежними. Те саме стосується публічних функцій - точок входу для
+скрипту. Це залежить від реалізації, які загальнодоступні функції підтримує хост-додаток.
+підтримує хост-додаток. Тому скрипт у цьому розділі може не працювати на вашій платформі
+(навіть якщо всі попередні скрипти працювали нормально). Інструменти зі стандартного
+дистрибутив
+системи pawn підтримують всі скрипти, розроблені у цьому посібнику, за умови, що
+
+ваша операційна система або середовище підтримує стандартні функції терміналу
+
+наприклад, встановлення положення курсору.
+
+Ранньою мовою програмування, яка була розроблена виключно для навчання дітей
+концепцій програмування для дітей, була "Лого". Цей діалект LISP робив програмування наочним
+програмування наочним, адже маленький робот, "черепашка", їздив по підлозі
+під контролем простої програми. Цю концепцію потім скопіювали для переміщення
+(зазвичай трикутного) курсору на дисплеї комп'ютера, знову ж таки під контролем
+програмою. Новинкою було те, що черепаха тепер залишала за собою слід, що дозволяло
+створювати малюнки, правильно запрограмувавши черепаху - це стало відомо як черепашача графіка.
 
 ---
 
-The term “turtle graphics” was also used for drawing inter-
-actively with the arrow keys on the keyboard and a “turtle” for the current
-position. This method of drawing pictures on the computer was briefly popular
-before the advent of the mouse.
+Державні функції: 83`
 
-Listing: turtle.p
+---
+
+Термін "черепашача графіка" також використовувався для позначення активної взаємодії з клавішами клавіатури, а "черепаха" - для позначення поточного
+активно за допомогою клавіш зі стрілками на клавіатурі та "черепашки" для позначення поточної
+позицію. Такий спосіб малювання на комп'ютері був популярним недовго
+до появи миші.
+
+Посилання: turtle.p
 
 ```c
 
 @keypressed(key)
 {
-    /_ get current position */
+    /_ отримати поточну позицію */
     new x, y
-    wherexy x, y
+    деxy x, y
 
-    /_ determine how the update the current position */
+    /_ визначення способу оновлення поточної позиції */
     switch (key)
     {
-        case ’u’: y-- /_ up */
-        case ’d’: y++ /_ down */
-        case ’l’: x-- /_ left */
-        case ’r’: x++ /_ right */
-        case ’\e’: exit /_ Escape = exit */
+        case 'u': y-- /_ вгору */
+        case 'd': y++ /_ вниз */
+        case 'l': x-- /_ вліво */
+        case 'r': x++ /_ right */
+        case '\e': exit /_ Escape = exit */
     }
 
-    /_ adjust the cursor position and draw something */
-    moveturtle x, y
+    /_ відрегулюйте положення курсору та намалюйте щось */
+    перемістити черепашку x, y
 }
 
 moveturtle(x, y)
 {
     gotoxy x, y
-    print ’/*’
+    вивести '/*'
     gotoxy x, y
 }
 
 ```
 
-The entry point of the above program is @keypressed —it is called on a
-key press. If you run the program and do not type any key, the  
-function @keypressed never runs; if you type ten keys, @keypressed runs ten times.
-Contrast this behaviour with main: function main runs immediately after you
-start the script and it runs only once.
+Точкою входу наведеної вище програми є @keypressed - вона викликається після натискання клавіші
+натискання клавіші. Якщо ви запустите програму і не введете жодної клавіші, функція
+функція @keypressed ніколи не виконується; якщо ви введете десять клавіш, @keypressed буде виконано десять разів.
+Порівняйте цю поведінку з функцією main: функція main виконується одразу після запуску скрипта.
+запуску скрипта і виконується лише один раз.
 
-It is still allowed to add a main function to an event-driven program: the main
-function will then serve for one-time initialization. A simple addition to this
-example program is to add a main function, in order to clear the  
-console/
-terminal window on entry and perhaps set the initial position of the “turtle”
-to the centre.
+Допускається додавання функції main до програми, керованої подіями: функція main
+слугуватиме для одноразової ініціалізації. Простим доповненням до цього
+прикладу програми є додавання головної функції для того, щоб очистити
+консоль/
+терміналу при вході і, можливо, встановити початкове положення "черепашки"
+у центр.
 
-Support for function keys and other special keys (e.g. the arrow keys) is highly
-system-dependent. On ANSI terminals, these keys produce different codes
-than in a Windows “DOS box”.
-
----
-
-In the spirit of keeping the example program
-portable, I have used common letters (“u” for up, “l” for left, etc.). This
-does not mean, however, that special keys are beyond pawn’s capabilities.
-
-In the “turtle” script, the “Escape” key terminates the host application through
-the instruction exit. For a simple pawn run-time host, this will indeed work.
-With host applications where the script is an add-on, or  
-host-applications
-
-that are embedded in a device, the script usually cannot terminate the host application.
-
-### • Multiple events
-
-The advantages of the event-driven programming model, for building reactive
-programs, become apparent in the presence of multiple events. In fact,
-the event-driven model is only useful if you have more that one entry  
-point; if your script just handles a single event, it might as well enter a polling
-loop for that single event. The more events need to be handled, the  
-harder the lineal programming model becomes. The script below implements a bare-bones
-“chat” program, using only two events: one for sending and one for receiving.
-The script allows users on a network (or perhaps over another connection) to
-exchange single-line messages.
-
-The script depends on the host application to provide the native and public
-functions for sending and receiving “datagrams” and for responding to keys
-that are typed in. How the host application sends its messages, over a serial
-line or using TCP/IP, the host application may decide itself. The tools in the
-
-standard pawn distribution push the messages over the TCP/IP network, and
-allow for a “broadcast” mode so that more than two people can chat with each other.
+Підтримка функціональних клавіш та інших спеціальних клавіш (наприклад, клавіш зі стрілками) сильно
+залежить від системи. На терміналах ANSI ці клавіші створюють інші коди
+ніж у "вікні DOS" Windows.
 
 ---
 
-Listing: chat.p
+Щоб зробити приклад програми
+я використовував звичайні літери ("u" для "вгору", "l" для "ліворуч" і т.д.). Це
+не означає, що спеціальні клавіші знаходяться поза межами можливостей пішака.
+
+У скрипті "черепаха" клавіша "Escape" завершує роботу хост-програми через
+інструкцією виходу. Для простого хоста часу виконання пішака це справді спрацює.
+З хост-додатками, де скрипт є надбудовою, або
+хост-додатками
+
+які вбудовані в пристрій, скрипт зазвичай не може завершити роботу хост-програми.
+
+### - Кілька подій
+
+Переваги моделі подієво-орієнтованого програмування для побудови реактивних
+програм стають очевидними при наявності декількох подій. Насправді,
+модель, керована подіями, корисна лише у випадку, якщо у вас більше однієї точки входу
+Якщо ваш скрипт обробляє лише одну подію, він може з таким самим успіхом створити цикл опитування
+цикл опитування для цієї єдиної події. Чим більше подій потрібно обробити, тим
+складнішою стає модель лінійного програмування. Наведений нижче скрипт реалізує просту програму
+програму "чату", використовуючи лише дві події: одну для надсилання і одну для отримання.
+Скрипт дозволяє користувачам у мережі (або, можливо, через інше з'єднання)
+обмінюватися однорядковими повідомленнями.
+
+Скрипт залежить від хост-додатку для надання власних та загальнодоступних
+функції для надсилання та отримання "дейтаграм" і для реагування на введені ключі
+які вводяться. Як хост-програма надсилає свої повідомлення, через послідовний
+послідовною лінією або за допомогою TCP/IP, хост-програма може вирішувати сама. Інструменти з набору
+
+стандартний розподіл пішаків пересилає повідомлення через мережу TCP/IP, і
+підтримувати режим "широкомовлення", щоб більше двох людей могли спілкуватися в чаті один з одним.
+
+---
+
+Лістинг: chat.p
 
 ```c
 
 #include <datagram>
 
 @receivestring(const message[], const source[])
-printf "[%s] says: %s\n", source, message
+printf "[%s] каже: %s\n", source, message
 
 @keypressed(key)
 {
-    static string[100 char]
-    static index
+    статичний рядок[100 char]
+    статичний індекс
 
-    if (key == ’\e’)
-        exit /* quit on ’Esc’ key */
+    if (key == '\e')
+        exit /* вихід за натисканням клавіші 'Esc' */
 
-    echo key
+    ехо-клавіша
 
-    if (key == ’\r’ || key == ’\n’ || index char == sizeof string)
+    if (key == '\r' || key == '\n' || index char == sizeof string)
     {
-        string{index} = ’\0’ /* terminate string */
-        sendstring string
+        string{index} = '\0' /* завершити рядок */
+        sendstring рядок
 
         index = 0
-        string[index] = ’\0’
+        string[index] = '\0'
     }
     else
         string{index++} = key
@@ -1774,139 +1774,139 @@ printf "[%s] says: %s\n", source, message
 echo(key)
 {
     new string[2 char] = { 0 }
-    string{0} = key == ’\r’ ? ’\n’ : key
-    printf string
+    string{0} = key == '\r' ? '\n' : key
+    printf рядок
 }
 
 ```
 
-The bulk of the above script handles gathering received key-presses  
-into a string and sending that string after seeing the enter key. The “Escape” key
-ends the program. The function echo serves to give visual feedback of what
-the user types: it builds a zero-terminated string from the key and prints it.
+Основна частина наведеного вище скрипта обробляє збір отриманих натискань клавіш
+у рядок і надсилає цей рядок після того, як побачить клавішу введення. Клавіша "Escape"
+завершує роботу програми. Функція echo слугує для візуального відображення того, що
+що вводить користувач: вона будує рядок з нульовим закінченням з клавіші і виводить його на друк.
 
-Despite its simplicity, this script has the interesting property that there is
-no fixed or prescribed order in which the messages are to be sent or received —
-there is no query–reply scheme where each host takes its turn in talking &
-listening. A new message may even be received while the user is typing its
-own message.∗
+Незважаючи на свою простоту, цей скрипт має цікаву властивість, яка полягає в тому, що в ньому
+немає фіксованого або прописаного порядку надсилання та отримання повідомлень
+немає схеми запитів-відповідей, де кожен хост має свою чергу говорити і
+слухати. Нове повідомлення може бути отримано навіть тоді, коли користувач набирає своє
+власне повідомлення.∗
 
-• State programming
+- Державне програмування
 
-In a program following the event-driven model, events arrive individually, and
-they are also responded to individually. On occasion, though, an event is part
-of a sequential flow, that must be handled in order. Examples are data transfer
-protocols over, for example, a serial line. Each event may carry a command,
-a snippet of data that is part of a larger file, an acknowledgement, or
-other signals that take part in the protocol.
-
----
-
-###### ∗ As this script makes no attempt to separate received messages from typed messages (for example, in two different scrollable regions), the terminal/console will look confusing when this happens. With an improved user-interface, this simple script could indeed be a nice message-base chat program
+У програмі, що працює за подієвою моделлю, події надходять індивідуально, і
+на них також реагують окремо. Однак іноді подія є частиною
+послідовного потоку, який має оброблятися у певному порядку. Прикладами є передача даних
+даних, наприклад, через послідовну лінію. Кожна подія може містити команду,
+фрагмент даних, який є частиною більшого файлу, підтвердження або
+інші сигнали, які беруть участь у протоколі.
 
 ---
 
-For the stream of events (and the data packets that they carry) to make sense,
-the event-driven program must follow a precise hand-shaking protocol.
-
-To adhere to a protocol, an event-driven program must respond to each event in
-compliance with the (recent) history of events received earlier and the
-responses to those events. In other words, the handling of one event may set
-up a “condition” or “environment” for the handling any one or more subsequent events.
-
-A simple, but quite effective, abstraction for constructing reactive systems
-that need to follow (partially) sequential protocols, is that of the “automaton” or
-state machine. As the number of states are usually finite, the theory often
-refers to such automatons as Finite State Automatons or Finite State Machines. In
-an automaton, the context (or condition) of an event is its state. An event
-that arrives may be handled differently depending on the state of the automaton,
-and in response to an event, the automaton may switch to another state —
-this is called a transition. A transition, in other words, as a response of the
-automaton to an event in the context of its state.
-
-Automatons are very common in software as well as in mechanical devices (you
-may see the Jacquard Loom as an early state machine). Automatons, with a
-finite number of states, are deterministic (i.e. predictable in behaviour)
-and their relatively simple design allows a straightforward
-implementation from a “state diagram”.
-
-![State diagram](https://i.ibb.co/k3kWVvy/image.png)
-
-In a state diagram, the states are usually represented as circles or  
-rounded rectangles and the arrows represent the transitions. As transitions are
-the response of the automaton to events, an arrow may also be seen as an event “that does something”.
+###### ∗ Оскільки цей скрипт не намагається відокремити отримані повідомлення від набраних (наприклад, у двох різних областях прокрутки), термінал/консоль виглядатиме заплутано, коли це станеться. З покращеним користувацьким інтерфейсом цей простий скрипт міг би стати чудовою програмою для чату на основі бази повідомлень
 
 ---
 
-An event/transition that is not defined in a particular
-state is assumed to have no effect —it is silently ignored. A filled dot
-represents the entry state, which your program (or the host application) must set in start-
-up. It is common to omit in a state diagram all event arrows that drop back
-into the same state, but here I have chosen to make the response to all events explicit.
+Щоб потік подій (і пакетів даних, які вони несуть) мав сенс,
+програма, керована подіями, повинна слідувати точному протоколу рукостискання.
 
-This state diagram is for “parsing” comments that start with `/*` and end
-with `*/`. There are states for plain text and for text inside a comment, plus
-two states for tentative entry into or exit from a comment. The automaton
-is intended to parse the comments interactively, from characters that the user
-types on the keyboard. Therefore, the only events that the automaton reacts
-on are key presses. Actually, there is only one event (“key-press”) and  
-the state switches are determined by event’s parameter: the key.
+Щоб дотримуватися протоколу, програма, керована подіями, повинна реагувати на кожну подію
+відповідно до (нещодавньої) історії подій, отриманих раніше, та
+відповідей на ці події. Іншими словами, обробка однієї події може встановити
+"умову" або "середовище" для обробки однієї або кількох наступних подій.
 
-pawn supports automatons and states directly in the language. Every func-
-tion∗ may optionally have one or more states assigned to it. pawn also supports
-multiple automatons, and each state is part of a particular automaton. The
+Простою, але досить ефективною абстракцією для побудови реактивних систем
+які повинні слідувати (частково) послідовним протоколам, є абстракція "автомата" або
+автомата. Оскільки кількість станів зазвичай скінченна, теорія часто
+часто називають такі автомати скінченними автоматами або автоматами зі скінченним числом станів (Finite State Automatons). В
+автоматі контекст (або умова) події є його станом. Подія
+що надходить, може оброблятися по-різному, залежно від стану автомата,
+і у відповідь на подію автомат може перейти в інший стан -
+це називається переходом. Перехід, іншими словами, як реакція автомата на подію в контексті
+автомата на подію в контексті його стану.
 
-following script implements the preceding state diagram (in a single, anony-
-mous, automaton). To differentiate plain text from comments, both are output
-in a different colour.
+Автомати дуже поширені як у програмному забезпеченні, так і в механічних пристроях (ви
+можна розглядати жакардовий ткацький верстат як ранній автомат). Автомати зі скінченною кількістю станів
+скінченною кількістю станів, є детермінованими (тобто передбачуваними у поведінці)
+і їх відносно проста конструкція дозволяє легко
+реалізацію з "діаграми станів".
 
-Listing: comment.p
+![Діаграма стану](https://i.ibb.co/k3kWVvy/image.png)
+
+На діаграмі станів стани зазвичай зображуються у вигляді кружечків або
+закругленими прямокутниками, а стрілки позначають переходи. Оскільки переходи є
+реакцією автомата на події, стрілка також може розглядатися як подія, "яка щось робить".
+
+---
+
+Подія/перехід, яка не визначена в конкретному
+стані, вважається, що вона не має ніякого ефекту - вона просто ігнорується. Заповнена крапка
+позначає початковий стан, який ваша програма (або хост-програма) повинна встановити під час запуску
+запуску. Зазвичай на діаграмі станів опускають усі стрілки подій, які повертають
+у той самий стан, але тут я вирішив зробити реакцію на всі події явною.
+
+Ця діаграма станів призначена для "розбору" коментарів, які починаються з `/*` і закінчуються
+символами `*/`. Існують стани для простого тексту і для тексту всередині коментаря, а також
+два стани для попереднього входу до коментаря або виходу з нього. Автомат
+призначений для інтерактивного розбору коментарів з символів, які користувач
+користувач набирає на клавіатурі. Тому єдиними подіями, на які реагує автомат
+є натискання клавіш. Власне, існує лише одна подія ("натискання клавіші") і
+перемикачі стану визначаються параметром події - клавішею.
+
+pawn підтримує автомати та стани безпосередньо у мові. Кожна функція*може мати один або декілька станів.
+функція* може за бажанням мати один або декілька станів. pawn також підтримує
+декілька автоматів, і кожен стан є частиною певного автомата. У мові pawn також підтримується декілька автоматів, і кожен стан є частиною певного автомата.
+
+Наступний скрипт реалізує попередню діаграму станів (в одному, анонімному, автоматі).
+автоматом). Щоб відрізнити звичайний текст від коментарів, обидва виводяться
+різними кольорами.
+
+Лістинг: comment.p
 
 ```c
 
-/* parse C comments interactively, using events and a state machine */
+/* розбирати коментарі C інтерактивно, використовуючи події та машину станів */.
 
 main()
-    state plain
+    стан рівнина
 
-@keypressed(key) <plain>
+@keypressed(key) <plain> <plain>
 {
-    state (key == ’/’) slash
-    if (key != ’/’)
+    state (key == '/') slash
+    if (key != '/')
         echo key
 }
 
-@keypressed(key) <slash>
+@keypressed(key) <slash> <slash> </slash
 {
-    state (key != ’/’) plain
-    state (key == ’/*’) comment
-    echo ’/’    /* print ’/’ held back from previous state */
-    if (key != ’/’)
+    state (key != '/') plain
+    state (key == '/*') comment
+    echo '/' /* print '/', що затримався з попереднього стану */
+    if (key != '/')
         echo key
 }
 
-@keypressed(key) <comment>
+@keypressed(key) <коментар> </коментар
 {
     echo key
-    state (key == ’/*’) star
+    state (key == '/*') star
 }
 
-@keypressed(key) <star>
+@keypressed(key) <звезда>
 {
     echo key
-    state (key != ’/*’) comment
-    state (key == ’/’) plain
+    state (key != '/*') comment
+    state (key == '/') plain
 }
 
-echo(key) <plain, slash>
+echo(key) <plain, slash>.
     printchar key, yellow
 
-echo(key) <comment, star>
+echo(key) <коментар, зірка>.
     printchar key, green
 
-printchar(ch, colour)
+printchar(ch, color)
 {
-    setattr .foreground = colour
+    setattr .foreground = color
     printf "%c", ch
 }
 
@@ -1914,160 +1914,160 @@ printchar(ch, colour)
 
 ---
 
-###### ∗ With the exception of “native functions” and user-defined operators.
+###### ∗ За винятком "власних функцій" та операторів, визначених користувачем
 
 ---
 
-Function main sets the starting state to main and exits; all logic  
-is eventdriven. when a key arrives in state plain, the program checks for  
-a slash and conditionally prints the received key. The interaction between the states
-plain and slash demonstrates a complexity that is typical for automatons:
-you must decide how to respond to an event when it arrives, without being
-able to “peek ahead” or undo responses to earlier events. This is usually the
-case for event-driven systems —you neither know what event you will receive
-next, nor when you will receive it, and whatever your response to the current
-event, there is a good chance that you cannot erase it on a future event and
-pretend that it never happened.
+Функція main встановлює початковий стан в main і виходить; вся логіка
+Коли ключ надходить у стан plain, програма перевіряє наявність
+косу риску і умовно виводить отриманий ключ. Взаємодія між станами
+plain та slash демонструє складність, характерну для автоматів:
+ви повинні вирішити, як реагувати на подію, коли вона надходить, не маючи можливості
+не маючи можливості "зазирнути наперед" або скасувати реакцію на попередні події. Зазвичай це стосується систем, керованих подіями
+випадку з системами, керованими подіями - ви не знаєте, яку подію отримаєте
+наступну подію, ані коли ви її отримаєте, і якою б не була ваша реакція на поточну
+подію, є велика ймовірність, що ви не зможете стерти її в майбутній події і
+зробити вигляд, що цього ніколи не було.
 
-In our particular case, when a slash arrives, this might be the start of a
-comment sequence (`/*`), but it is not necessarily so. By inference, we cannot decide
-on reception of the slash character what colour to print it in. Hence, we hold
-it back. However, there is no global variable in the script that says
-that a character is held back —in fact, apart from function parameters, no variable
-is declared at all in this script. The information about a character being held
-back is “hidden” in the state of the automaton.
+У нашому конкретному випадку, коли надходить слеш, це може бути початком послідовності коментарів
+послідовності коментарів (`/*`), але це не обов'язково так. Отже, ми не можемо вирішити, яким кольором друкувати
+яким кольором надрукувати символ косої риски. Отже, ми стримуємо
+його. Однак у скрипті немає глобальної змінної, яка б вказувала на те, що
+що символ затримується - насправді, окрім параметрів функції, у цьому скрипті не оголошено жодної змінної
+у цьому скрипті взагалі не оголошено жодної змінної. Інформація про те, що символ утримується
+"захована" у стані автомата.
 
-As is apparent in the script, state changes may be conditional. The condition
-is optional, and you can also use the common if–else construct to change states.
+Як видно зі скрипта, зміни стану можуть бути умовними. Умова
+не є обов'язковою, і ви також можете використовувати звичайну конструкцію if-else для зміни станів.
 
-Being state-dependent is not reserved for the event functions. Other functions
-may have state declarations as well, as the echo function demonstrates. When
-a function would have the same implementation for several states, you
-just need to write a single implementation and mention all applicable states. For
-function echo there are two implementations to handle the four states.†
+Залежність від стану не зарезервована для функцій подій. Інші функції
+також можуть мати оголошення стану, як це демонструє функція echo. Коли
+функція має однакову реалізацію для декількох станів, вам
+просто потрібно написати єдину реалізацію і згадати всі застосовні стани. Для
+echo є дві реалізації для обробки чотирьох станів.†
 
-That said, an automaton must be prepared to handle all events in any state.
-Typically, the automaton has neither control over which events arrive nor over
-when they arrive, so not handling an event in some state could lead to wrong
-decisions. It frequently happens, then, that a some events are meaningful only
-in a few specific states and that they should trigger an error or “reset” pro-
-cedure in all other cases. The function for handling the event in such “error”
-condition might then hold a lot of state names, if you were to mention them
-explicitly. There is a shorter way: by not mentioning any name between the
-angle brackets, the function matches all states that have not explicit imple-
-mentation elsewhere. So, for example, you could use the signature `echo(key) <>`
-for either of the two implementations (but not for both).
+При цьому автомат повинен бути готовим до обробки всіх подій у будь-якому стані.
+Як правило, автомат не контролює ні те, які події надходять, ні те, коли вони надходять.
+коли вони надходять, тому необробка події у певному стані може призвести до неправильних
+рішень. Тому часто трапляється, що деякі події мають сенс лише
+лише у кількох конкретних станах, і що вони повинні викликати помилку або процедуру "скидання" у всіх інших випадках.
+у всіх інших випадках вони повинні викликати помилку або процедуру "скидання". Функція для обробки події у такому стані "помилка"
+може містити багато назв станів, якщо ви будете згадувати їх
+їх явно. Існує коротший шлях: якщо не згадувати жодної назви між кутовими дужками
+кутовими дужками, функція зіставляє всі стани, які не мають явної імплементації деінде.
+не мають явної імплементації в інших місцях. Так, наприклад, ви можете використовувати сигнатуру `echo(key) <>`
+для будь-якої з двох реалізацій (але не для обох).
 
-A single anonymous automaton is pre-defined. If a program contains more
-than one automaton, the others must be explicitly mentioned, both in  
-the state classifier of the function and in the state instruction. To do so, add the
-name of the automaton in front of the state name and separate the names of
-the automaton and the state with a colon. That is, “parser:slash” stands
-for the state slash of the automaton parser. A function can only be part of a
-single automaton; you can share one implementation of a function for several
-states of the same automaton, but you cannot share that function for states
-of different automatons.
+Попередньо визначено один анонімний автомат. Якщо програма містить більше
+більше одного автомата, інші повинні бути явно вказані, як у класифікаторі станів функції, так і в
+класифікаторі станів функції, так і в інструкції стану. Для цього слід додати
+ім'я автомата перед ім'ям стану і розділити імена
+автомата і стану двокрапкою. Тобто, "parser:slash" означає
+означає слеш стану синтаксичного аналізатора автомата. Функція може бути частиною лише одного автомата
+одного автомата; ви можете використовувати одну реалізацію функції для декількох
+станів одного автомата, але ви не можете використовувати цю функцію для станів
+різних автоматів.
 
-### • Entry functions and automata theory
+### - Вхідні функції та теорія автоматів
 
-State machines, and the foundation of “automata theory”, originate from me-
-chanical design and pneumatic/electric switching circuits (using relays rather
-than transistors). Typical examples are coin acceptors, traffic light control
-and communication switching circuits. In these applications, robustness and pre-
-dictability are paramount, and it was found that these goals were best achieved
-when actions (output) were tied to the states rather than to the events (input).
+Державні автомати і основа "теорії автоматів" походять від механічного проєктування і пневматичних/пневматичних схем перемикання.
+механічного дизайну та пневматичних/електричних схем перемикання (з використанням реле, а не транзисторів).
+ніж транзистори). Типовими прикладами є монетоприймачі, керування світлофорами
+та комутаційні схеми зв'язку. У цих застосуваннях надійність і
+диктованість мають першорядне значення, і було виявлено, що ці цілі найкраще досягаються
+коли дії (вихід) були прив'язані до станів, а не до подій (вхід).
 
 ---
 
-###### \* A function that has the same implementation for all states, does not need a state classifierat all —see printchar.
+###### \* Функція, яка має однакову реалізацію для всіх станів, не потребує класифікатора станів - див. printchar
 
 ---
 
 ![pcl](https://i.ibb.co/PYnBGS9/image.png)
 
-###### Figure 1: Pedestrian crossing lights
+###### Малюнок 1: Світло на пішохідному переході
 
 ---
 
-Entering a state (optionally) causes activity; events cause state changes, but
-do not carry out other operations.
+Вхід у стан (необов'язково) спричиняє активність; події спричиняють зміну стану, але
+не виконують інших операцій.
 
-In a pedestrian crossing lights system, the lights for the vehicles and the
-pedestrians must be synchronized. Obviously, the combination of a green light for
-the traffic and a “walk” sign for the pedestrians is recipe for disaster. We
-can also immediately dismiss the combination of yellow /walk as too  
-dangerous. Thus, four combinations remain to be handled. The figure below is a  
-state diagram for the pedestrian crossing lights. The entire process is activated with
-a button, and operates on a timer.
+У системі освітлення пішохідного переходу світло для транспортних засобів і
+пішоходів повинні бути синхронізовані. Очевидно, що поєднання зеленого світла для
+зеленого світла для транспорту і знаку "пішохідний перехід" для пішоходів - це рецепт катастрофи. Ми
+можемо також одразу відкинути поєднання жовтого / пішохідний перехід як надто
+небезпечним. Таким чином, залишається розглянути чотири комбінації. На малюнку нижче наведено
+діаграма станів для світлофора пішохідного переходу. Весь процес активується за допомогою
+кнопкою і працює за таймером.
 
 ![pcl](https://i.ibb.co/9wNR3ry/image.png)
 
-When the state red/walk times out, the state cannot immediately go back to
-green/wait, because the pedestrians that are busy crossing the road at  
-that moment need some time to clear the road —the state red/wait
-allows for this.
+Коли закінчується час дії червоного сигналу світлофора, він не може негайно повернутися до
+зелений/зачекайте, тому що пішоходам, які в цей момент переходять дорогу, потрібен час, щоб
+в цей момент, потрібен час, щоб звільнити дорогу - стан червоний/зачекайте
+дозволяє це зробити.
 
 ---
 
-For purpose of demonstration, this pedestrian crossing has the added
-functionality that when a pedestrian pushes the button while the light for the
-traffic is already red, the time that the pedestrian has for crossing is lengthened.
-If the state is red/wait and the button is pressed, it switches back to red/walk.
-The englobing box around the states red/walk and red/wait for handling the
-button event is just a notational convenience: I could also have  
-drawn two arrows from either state back to red/walk. The script source code  
-(which follows below) reflects this same notational convenience, though.
+Для демонстрації, цей пішохідний перехід має додаткову
+що коли пішохід натискає на кнопку, коли світло світлофора вже горить червоним кольором, час на перехід збільшується.
+пішохід натискає на кнопку, коли світло вже червоне, час, який пішохід має для переходу, подовжується.
+Якщо стан світлофора червоний/зачекайте, а кнопка натиснута, він перемикається назад на червоний/пішохідний.
+Обвідна рамка навколо станів червоний/пішохідний та червоний/зачекайте для обробки події
+для обробки події натискання кнопки - це просто зручність для нотації: Я також міг би
+намалювати дві стрілки з обох станів назад до червоного/ходити. Вихідний код скрипту
+(який наведено нижче) відображає ту ж саму нотаційну зручність.
 
-In the implementation in the pawn language, the event functions now always
-have a single statement, which is either a state change or an empty statement.
-Events that do not cause a state change are absent in the diagram, but they
-must be handled in the script; hence, the “fall-back” event functions that do nothing.
+У реалізації на мові пішаків функції події тепер завжди
+мають один оператор, який є або зміною стану, або порожнім оператором.
+Події, які не викликають зміни стану, відсутні на діаграмі, але вони
+повинні бути оброблені в скрипті; звідси - "запасні" функції подій, які нічого не роблять.
 
-The output, in this example program only messages printed on the
-console, is all done in the special functions entry. The function entry may
-be seen as a main for a state: it is implicitly called when the  
-state that it is attached to is entered. Note that the entry function is also called  
-when “switching” to the state that the automaton is already in: when the state is
-red_walk an invocation of the @keypressed sets the state to red_walk (which
-it is already in) and causes the entry function of red_walk to run —this is a
-re-entry of the state.
+У цьому прикладі програми виводяться лише повідомлення, виведені на консоль
+виводяться за допомогою спеціальних функцій. Ввід функції можна
+можна розглядати як основний для стану: він неявно викликається, коли вводиться
+неявно викликається, коли вводиться стан, до якого вона приєднана. Зауважте, що функція входу також викликається
+при "переході" до стану, у якому автомат вже перебуває: коли стан
+red_walk виклик @keypressed встановлює стан у red_walk (у якому
+він вже перебуває) і викликає функцію входу в стан red_walk - це
+повторний вхід у стан.
 
-Listing: traffic.p
+Лістинг: traffic.p
 
 ```c
 
-/* traffic light synchronizer, using states in an event-driven model */
+/* Синхронізатор світлофора, що використовує стани у подієво-керованій моделі */
 #include <time>
 
-main()                     state green_wait
+main() state green_wait
 
-@keypressed(key) <green_wait>         state yellow_wait
-@keypressed(key) <red_walk, red_wait>     state red_walk
-@keypressed(key) <>             {} /* fallback */
+@keypressed(key) <green_wait> стан yellow_wait
+@keypressed(key) <red_walk, red_wait> стан red_walk
+@keypressed(key) <> {} /* запасний варіант */
 
-@timer() <yellow_wait>            state red_walk
-@timer() <red_walk>             state red_wait
-@timer() <red_wait>             state green_wait
-@timer() <>                 {} /* fallback */
+@timer() <yellow_wait> стан red_walk
+@timer() <red_walk> стан red_wait
+@timer() <red_wait> стан green_wait
+@timer() <> {} /* запасний варіант */
 
 entry() <green_wait>
-    print "Green / Don’t walk\n"
+    вивести "Зелений / Не ходити\n"
 
 entry() <yellow_wait>
 {
-    print "Yellow / Don’t walk\n"
+    print "Yellow / Don't walk\n"
     settimer 2000
 }
 
 entry() <red_walk>
 {
-    print "Red / Walk\n"
+    вивести "Red / Walk\n"
     settimer 5000
 }
 
 entry() <red_wait>
 {
-    print "Red / Don’t walk\n"
+    print "Red / Don't walk\n"
     settimer 2000
 }
 
@@ -2075,127 +2075,127 @@ entry() <red_wait>
 
 ---
 
-This example program has an additional dependency on the host application/
-environment: in addition to the “@keypressed” event function, the host must
-also provide an adjustable “@timer” event. Because of the timing functions,
-the script includes the system file time.inc near the top of the script.
+Цей приклад програми має додаткову залежність від хостового додатку/середовища
+оточення: на додаток до функції події "@натискання клавіші", хост повинен
+також передбачити регульовану подію "@timer". Через функції синхронізації,
+скрипт містить системний файл time.inc у верхній частині скрипта.
 
-The event functions with the state changes are all on the top part of the
-script. The functions are laid out to take a single line each, to suggest a  
-table-like structure. All state changes are unconditional in this example, but conditional
-state changes may be used with entry functions too. The bottom part are the
-event functions.
+Функції події зі зміною стану знаходяться у верхній частині
+сценарію. Функції розміщено так, щоб кожна з них займала один рядок, що створює
+структуру, схожу на таблицю. У цьому прикладі всі зміни стану є безумовними, але умовні
+зміни стану можна використовувати і з функціями входу. У нижній частині розташовані
+функції подій.
 
-Two transitions to the state red_walk exist —or three if you consider  
-the affection of multiple states to a single event function as a mere  
-notational convenience: from yellow_wait and from the combination of red_walk and
-red_wait. These transitions all pass through the same entry function, thereby
-reducing and simplifying the code.
+Існує два переходи до стану red_walk - або три, якщо врахувати
+залежність декількох станів від однієї функції події як просту
+нотаційною зручністю: від yellow_wait та від комбінації red_walk і
+red_wait. Всі ці переходи проходять через одну і ту ж функцію входу, таким чином
+скорочуючи і спрощуючи код.
 
-In automata theory, an automaton that associates output with state entries,
-such as this pedestrian traffic lights example, is a “Moore automaton”; an au-
-tomaton that associates output with (state-dependent) events or transitions is
-a “Mealy automaton”. The interactive comment parser on page 40 is a typical
-Mealy automaton. The two kinds are equivalent: a Mealy automaton can be
-converted to a Moore automaton and vice versa, although a Moore automa-
-ton may need more states to implement the same behaviour. In practice, the
-models are often mixed, with an overall “Moore automaton” design, and a few
-“Mealy states” where that saves a state.
+У теорії автоматів, автомат, який пов'язує вихід із входами в стан,
+як у прикладі з пішохідним світлофором, є "автоматом Мура"; автомат, який пов'язує вихід із входами
+автомат, який пов'язує вихід з (залежними від стану) подіями або переходами, називається
+"автоматом Мілі". Інтерактивний синтаксичний аналізатор коментарів на сторінці 40 є типовим
+автоматом Мілі. Ці два типи еквівалентні: автомат Мілі можна
+можна перетворити на автомат Мура і навпаки, хоча автомат Мура може потребувати більше станів для реалізації
+тону може знадобитися більше станів для реалізації тієї ж самої поведінки. На практиці, ці моделі часто змішуються.
+моделі часто змішуються, із загальним дизайном "автомата Мура" і декількома
+"дрібних станів", де це економить час.
 
-• State variables
+- Змінні стану
 
-The previous example was crafted to demonstrate a few properties of  
-state programming with pawn, but its model of a pedestrian crossing light is not
+Попередній приклад був створений для демонстрації деяких властивостей
+програмування станів з пішаком, але його модель світлофора на пішохідному переході не є
 
-very realistic. The first thing that is lacking is a degree of fairness : pedestrians
-should not be able to block car traffic indefinitly. The car traffic should
-see a green light for a period of some minimum duration after pedestrians have had
-their time slot for crossing the road. Secondly, many traffic lights have a kind
-of remote control ability, so that emergency traffic (ambulance, firetruck, . . . )
-can force green lights on their path. A well-known example of such remote
+дуже реалістично. Перше, чого не вистачає - це справедливості: пішоходи
+не повинні мати можливість блокувати автомобільний рух на невизначений час. Автомобільний рух повинен
+бачити зелене світло протягом певного мінімального періоду часу після того, як пішоходи
+пішоходи закінчили свій часовий інтервал для переходу дороги. По-друге, багато світлофорів мають
+можливість дистанційного керування, так що екстрений транспорт (швидка допомога, пожежна машина, ...)
+може змусити зелене світло ввімкнутись на їхньому шляху. Відомим прикладом такого дистанційного керування є
 
-control is the mirt system (Mobile Infra-Red Transmitter) but not de facto
-standard exists —the Netherlands use a radiographic system called vetag for
-instance.
-
----
-
-The new state diagram for the pedestrian crossing light has two more states,
-but more importantly: it needs to save data across events and share it between
-states. When the pedestrian presses the button while the state is red_wait, we
-neither want to react on the button immediately (this was our “fairness rule”),
-nor the button to be ignored or “forgotten”. In other words, we move to the
-state green_wait_interim regardless of the button press, but memorize the
-press for a decision made at the point of leaving state green_wait_interim.
-
-Automatons excel in modelling control flow in reactive/interactive
-systems, but data flow has traditionally been a weak point. To see why, consider that
-each event is handled individually by a function and that the local variables in
-that function disappear when the function returns. Local variables can, hence,
-not be used to pass data from one event to the next. Global variables, while
-providing a work-around, have drawbacks: global scope and and  
-“eternal” lifespan. If a variable is used only in the event handlers of a single state,
-it is desirable to hide it from the other states, in order to protect it from
-accidental modification. Likewise, shortening the lifespan to the state(s) that the
-variable is active in, reduces the memory footprint. “State variables” provide
-this mix of variable scope and variable lifespan that are tied to a series of states,
-rather than to functions or modules.
-
-pawn enriches the standard finite state machine (or automaton) with variables
-that are declared with a state classifier. These variables are only
-accessible from the listed states and the memory these variable hold may be  
-reused by other purposes while the automaton is in a different state (different than
-the ones listed). Apart from the state classifier, the declaration of a state
-
-variable is similar to that of a global variable. The declaration of the
-variable button_memo in the next listing illustrates the concept.
+контроль здійснюється за допомогою системи mirt (мобільний інфрачервоний передавач), але не де-факто
+стандарту не існує - наприклад, у Нідерландах використовується радіографічна система під назвою vetag.
+наприклад, Нідерланди використовують радіографічну систему під назвою vetag.
 
 ---
 
-Listing: traffic2.p
+Нова діаграма станів для пішохідного переходу має ще два стани,
+але що важливіше: вона повинна зберігати дані про всі події і ділитися ними між
+станами. Коли пішохід натискає на кнопку в стані red_wait, ми
+не хочемо реагувати на кнопку негайно (це було наше "правило справедливості")
+ані проігнорувати кнопку чи "забути" про неї. Іншими словами, ми переходимо до
+стан green_wait_interim незалежно від натискання кнопки, але запам'ятовуємо
+для рішення, прийнятого в момент виходу зі стану green_wait_interim, але запам'ятовуємо натиснуту кнопку.
+
+Автомати чудово моделюють потоки керування в реактивних/інтерактивних системах, але потік даних
+системах, але потік даних традиційно є їхнім слабким місцем. Щоб зрозуміти чому, врахуйте, що
+кожна подія обробляється функцією окремо, і що локальні змінні в
+що локальні змінні в цій функції зникають при поверненні функції. Отже, локальні змінні не можна
+не можна використовувати для передачі даних від однієї події до іншої. Глобальні змінні, хоча
+забезпечують обхідний шлях, мають недоліки: глобальна область видимості та
+"вічний" час життя. Якщо змінна використовується тільки в обробниках подій одного стану,
+бажано приховати її від інших станів, щоб захистити від
+випадкової модифікації. Аналогічно, скорочення часу життя до стану(-ів), в якому(-их) активна змінна
+змінна є активною, зменшує використання пам'яті. "Змінні стану" забезпечують
+поєднання області видимості змінної та часу життя змінної, які прив'язані до серії станів,
+а не до функцій чи модулів.
+
+pawn збагачує стандартну скінченну машину (або автомат) змінними
+які оголошуються за допомогою класифікатора станів. Ці змінні доступні тільки
+доступні лише з перелічених станів, а пам'ять, яку ці змінні займають, може бути
+повторно використовуватися для інших цілей, поки автомат знаходиться в іншому стані (відмінному від
+від перелічених). Окрім класифікатора станів, оголошення стану
+
+подібне до оголошення глобальної змінної. Оголошення змінної
+button_memo у наступному лістингу ілюструє цю концепцію.
+
+---
+
+Лістинг: traffic2.p
 
 ```c
 
-/* a more realistic traffic light synchronizer, including an
- * "override" for emergency vehicles
+/* більш реалістичний синхронізатор світлофорів, включаючи
+ * "обхід" для аварійних машин
  */
 
 #include <time>
 
 main()
-    state green_wait_interim
+    стан green_wait_interim
 
-new bool: button_memo <red_wait, green_wait_interim, yellow_wait>
+new bool: button_memo <red_wait, green_wait_interim, yellow_wait
 
 @keypressed(key)
 {
     switch (key)
     {
-        case ’ ’: button_press
-        case ’/*’: mirt_detect
+        case ' ': button_press
+        case '/*': mirt_detect
     }
 }
 
-button_press() <green_wait>
-    state yellow_wait
+button_press() <зелений_очікування>
+    стан жовте_очікування
 
-button_press() <red_wait, green_wait_interim>
+button_press() <red_wait, green_wait_interim>.
     button_memo = true
 
-button_press() <>         /* fallback */
+button_press() <> /* запасний варіант */
     {}
 
 mirt_detect()
     state mirt_override
 
-@timer() <yellow_wait>
-    state red_walk
+@timer() <yellow_wait> </yellow_wait
+    стан red_walk
 
-@timer() <red_walk>
-    state red_wait
+@timer() <червона_прогулянка>
+    стан red_wait
 
 @timer() <red_wait>
-    state green_wait_interim
+    стан green_wait_interim
 
 @timer() <green_wait_interim>
 {
@@ -2203,40 +2203,40 @@ mirt_detect()
     state (button_memo) yellow_wait
 }
 
-@timer() <mirt_override>
-    state green_wait
+@timer() <mirt_override> </mirt_override
+    стан green_wait
 
-@timer() <>             /* fallback */
+@timer() <> /* запасний варіант */
     {}
 
 entry() <green_wait_interim>
 {
-    print "Green / Don’t walk\n"
+    print "Зелений / Не ходити\n"
     settimer 5000
 }
 
 entry() <yellow_wait>
 {
-    print "Yellow / Don’t walk\n"
+    вивести "Жовтий / Не ходити\n"
     button_memo = false
     settimer 2000
 }
 
 entry() <red_walk>
 {
-    print "Red / Walk\n"
+    вивести "Red / Walk\n"
     settimer 5000
 }
 
 entry() <red_wait>
 {
-    print "Red / Don’t walk\n"
+    print "Red / Don't walk\n"
     settimer 2000
 }
 
 entry() <mirt_override>
 {
-    print "Green / Don’t walk\n"
+    print "Green / Don't walk\n"
     settimer 5000
 }
 
@@ -2244,642 +2244,643 @@ entry() <mirt_override>
 
 ---
 
-If a pedestrian pushes the button during mirt activity, that button press
-is
-forgotten. Unless emergencies are a frequent occurence, this is  
-probably a
-minor nuisance; and it is easy to fix, too.
+Якщо пішохід натискає кнопку під час активності mirt, це натискання кнопки
+буде
+забувається. Якщо аварійні ситуації не трапляються часто, це
+ймовірно
+незначною неприємністю; і це також легко виправити.
 
-• State programming wrap-up
+- Підсумки державної програми
 
-States are ubiquitous, even if we do not always recognize them as such. The
-concept of finite state machines has traditionally been applied mostly to pro-
+Держави є всюдисущими, навіть якщо ми не завжди визнаємо їх такими. Концепція
+Поняття скінченних автоматів традиційно застосовувалося переважно до про
 
-grams mimicking mechanical apparatus and software that implements commu-
-nication protocols. With the appearance of event-driven windowing systems,
-state machines now also appear in the GUI design of desktop programs. States
-abound in web programs, because the browser and the web-site scripting host
-have only a weak link, but the state machine in web applications is typically
-implemented in an ad-hoc manner.
+грами, що імітують механічні пристрої, та програмне забезпечення, яке реалізує протоколи зв'язку.
+комунікаційні протоколи. З появою віконних систем, керованих подіями,
+машини станів також з'явилися у графічному інтерфейсі десктопних програм. Стани
+рясніють у веб-програмах, тому що браузер і хост скриптів веб-сайту
+мають лише слабкий зв'язок, але машина станів у веб-додатках зазвичай
+реалізована спеціальним чином.
 
-States can also be recognized in common problems and riddles. In the well
-known riddle of the man that must move a cabbage, a sheep and a wolf across a river,
-∗ the states are obvious —the trick of the riddle is to avoid the forbidden
-states. But now that we are seeing states everywhere, the task is not to overdo it.
-
----
-
-For example, in the second implementation of a pedestrian crossing light, see
-page 47, I used a variable (button_memo) to hold a criterion for a decision made
-at a later time. An alternative implementation would be to throw in a couple
-of more states to hold the situations “red-wait-&-button-pressed” and “green-
-wait-interim-&-button-pressed”. No more variable would then be needed, but
-at the cost of a more complex state diagram and implementation. In general,
-the number of states should be kept small.
-
-Although automata provide a good abstraction to model reactive and interac-
-tive systems, coming to a correct diagram is not straightforward —and some-
-times just outright hard. Too often, the “sunny day scenario” of states and
-events is plotted out first, and everything straying from this path is then
-added on an impromptu basis. This approach carries the risk that some combinations
-of events & states are forgotten, and indeed I have encountered two comment
-parser diagrams (like the one at page 40) by different book/magazine authors
-that were flawed in such way. Instead, I advise to focus on the
-events and on the responses for individual events. For every state, every event should be
-considered; do not route events through a general purpose fall-back too eagerly.
-
-It has become common practice, unfortunately, to introduce automata theory
-with applications for which better solutions exist. One, oft repeated, example
-is that of an automaton that accumulates the value of a series of  
-coins, or that “calculates” the remainder after division by 3 of a binary number. These
-applications may have made sense in mechanical/pneumatic design where “the
-
-∗ A man has to ferry a wolf, a sheep and a cabbage across a  
-river in a boat, that just fits 2 things: the man and something else. If left alone the wolf will eat
-the sheep and the sheep will eat the cabbage. How can the man ferry them across the river?
-
-state” is the only memory that the automaton has, but in software, using vari-
-ables and arithmetic operations is the better choice. Another typical example
-is that of matching words or patterns using a state machine: every next let-
-ter that is input switches to a new state. Lexical scanners, such as the ones
-that compilers and interpreters use to interpret source code, might use such
-state machines to filter out “reserved words”. However, for any practical set
-of reserved words, such automatons become unwieldy, and no one will design
-them by hand. In addition, there is no reason why a lexical scanner cannot
-peek ahead in the text or jump back to a mark that it set earlier —which is
-one of the criterions for choosing a state implementation in the first place,
-and finally, solutions like trie lookups are likely simpler to design and implement
-while being at least as quick.
-
-What I have side-stepped in this book is a formal description for the notation
-in the state diagrams —in part because it is in line with the usual notation.
-For a state, the rounded rectangle holds the name of the state and optionally
-a brief description of what the state entry function does. The  
-arrow for a transition contains the name of the event (or pseudo-event), an  
-optional condition between square brackets and an optional action behind a slash (“/”).
-
-• Program verification
-
-Should the compiler/interpreter not catch all bugs? This rhetorical question
-has both technical and philosophical sides. I will forego all  
-non-technical aspects and only mention that, in practice, there is a tradeoff
-between the “expressiveness” of a computer language and the “enforced correctness” (or
-“provable correctness’) of programs in that language. Making a language very
-“strict” is not a solution if work needs to be done that exceeds the size of a
-toy program. A too strict language leaves the programmer struggling with the
-language, whereas the “problem to solve” should be the real struggle and the
-language should be a simple means to express the solution in.
-
-The goal of the pawn language is to provide the developer with an informal,
-and convenient to use, mechanism to test whether the program behaves as was
-intended. This mechanism is called “assertions” and, although the concept of
-assertions predates the idea of “design by contract”, it is most easily
-explained through the idea of design by contract.
-
-The “design by contract” paradigm provides an alternative approach for deal-
-ing with erroneous conditions. The premise is that the programmer  
-knows the task at hand, the conditions under which the software must operate and
-
-the environment. In such an environment, each function specifies the specific
-conditions, in the form of assertions , that must hold true before a client may
-execute the function. In addition, the function may also specify any conditions
-that hold true after it completes its operation. This is the “contract” of the
-function.
+Держави також можна впізнати у спільних проблемах і загадках. У добре
+відомій загадці про чоловіка, який повинен перевезти через річку капусту, вівцю і вовка,
+∗ стани очевидні - хитрість загадки полягає в тому, щоб уникнути заборонених
+станів. Але тепер, коли ми бачимо стани всюди, завдання полягає в тому, щоб не перестаратися.
 
 ---
 
-The name “design by contract” was coined by Bertrand Meyer and its princi-
-ples trace back to predicate logic and algorithmic analysis.
+Наприклад, у другій реалізації світлофора на пішохідному переході, див.
+сторінку 47, я використовував змінну (button_memo) для зберігання критерію для рішення, яке буде прийнято
+рішення, яке буде прийнято пізніше. Альтернативною реалізацією могло б бути додавання пари
+більше станів для утримання ситуацій "червоне - очікування і натиснута кнопка" і "зелене -
+проміжне очікування і натиснута кнопка". Тоді більше не знадобиться жодної змінної, але
+але ціною більш складної діаграми станів та реалізації. Загалом
+кількість станів повинна бути невеликою.
 
-• Preconditions specify the valid values of the input parameters and environmental attributes;
+Хоча автомати забезпечують хорошу абстракцію для моделювання реактивних та інтерактивних систем, створення правильної схеми не є простим завданням.
+тивних систем, прийти до правильної діаграми не так просто, а іноді просто важко.
+часом просто дуже складно. Занадто часто "сценарій сонячного дня" станів і
+подій, а все, що відхиляється від цього шляху, додається експромтом.
+додається експромтом. Такий підхід несе в собі ризик того, що деякі комбінації
+подій та станів будуть забуті, і дійсно, я зустрічав дві діаграми з коментарями
+діаграми синтаксичного аналізатора (на зразок тієї, що на сторінці 40) різних авторів книг/журналів
+які мали подібні недоліки. Натомість я раджу зосередитися на
+на подіях і на реакції на окремі події. Для кожної держави слід розглядати кожну подію
+розглядати кожну подію; не варто надто поспішно прокладати події через загальний запасний варіант.
 
-• Postconditions specify the output and the (possibly modified) environment;
+На жаль, стало поширеною практикою впроваджувати теорію автоматів
+з додатками, для яких існують кращі рішення. Один з прикладів, який часто повторюється
+це автомат, який накопичує вартість серії монет, або "обчислює" залишок від ділення
+монет, або який "обчислює" залишок після ділення на 3 двійкового числа. Ці
+застосування могли б мати сенс у механічному/пневматичному дизайні, де
 
-• Invariants indicate the conditions that must hold true at key points in a function, regardless of the path taken through the function.
+∗ Чоловік має переправити вовка, вівцю та капусту через річку в човні, який вміщує лише
+через річку у човні, який вміщує лише 2 речі: людину і ще щось. Якщо вовк залишиться сам, то з'їсть вівцю.
+вівцю, а вівця з'їсть капусту. Як чоловік може переправити їх через річку?
 
-For example, a function that computes a square root of a number may specify
-that its input parameter be non-negative. This is a precondition. It may also
-specify that its output, when squared, is the input value 0.01%. This is a
-postcondition; it verifies that the routine operated correctly. A convenient
-way to calculate a square root is via “bisection”. At each iteration, this algorithm
-gives at least one extra bit (binary digit) of accuracy. This is an invariant
-(it might be an invariant that is hard to check, though).
+стан" - це єдина пам'ять, яку має автомат, але в програмному забезпеченні краще використовувати змінні та арифметичні операції.
+варіацій та арифметичних операцій є кращим вибором. Інший типовий приклад
+це зіставлення слів або шаблонів за допомогою автомата станів: кожен наступний елемент, що вводиться, переходить у новий стан.
+кожний наступний введений елемент переходить у новий стан. Лексичні сканери, такі як ті.
+які компілятори та інтерпретатори використовують для інтерпретації вихідного коду, можуть використовувати такі
+станів для фільтрації "зарезервованих слів". Однак, для будь-якого практичного набору
+зарезервованих слів, такі автомати стають громіздкими, і ніхто не буде розробляти
+їх вручну. Крім того, немає жодної причини, чому лексичний сканер не може
+зазирнути вперед у тексті або повернутися до позначки, яку він встановив раніше - що є
+що є одним із критеріїв вибору державної реалізації в першу чергу,
+і, нарешті, рішення на кшталт трикратного пошуку, ймовірно, простіші в розробці та впровадженні
+але при цьому не менш швидкі.
 
-Preconditions, postconditions and invariants are similar in the sense that they
-all consist of a test and that a failed test indicates an error in  
-the implementation. As a result, you can implement preconditions, postconditions and
-invariants with a single construct: the “assertion”. For preconditions, write
-assertions at the very start of the routine; for invariants, write an assertion
-where the invariant should hold; for post conditions, write an assertion before
-each “return” statement or at the end of the function.
+У цій книжці я оминув формальний опис нотації для позначення
+на діаграмах станів - частково тому, що вона відповідає звичайній нотації.
+Закруглений прямокутник для стану містить назву стану і, за бажанням, короткий опис того, що робить функція входу в стан
+короткий опис того, що робить функція входу у стан. Стрілка
+для переходу містить назву події (або псевдоподії), необов'язкову умову
+необов'язкову умову у квадратних дужках і необов'язкову дію за косою рискою ("/").
 
-In pawn, the instruction is called assert; it is a simple statement that
-contains a test. If the test outcome is ”true”, nothing happens. If the outcome is
-”false”, the assert instruction terminates the program with a message containing the
-details of the assertion that failed.
+- Верифікація програми
 
-Assertions are checks that should never fail. Genuine errors, such  
-as user input errors, should be handled with explicit tests in the program, and  
-not with assertions. As a rule, the expressions contained in assertions should be
-free of side effects: an assertion should never contain code that your
-application requires for correct operation.
+Чи не повинен компілятор/інтерпретатор ловити всі помилки? Це риторичне питання
+має як технічну, так і філософську сторони. Я опускаю всі
+нетехнічні аспекти і лише зазначу, що на практиці існує компроміс
+між "виразністю" комп'ютерної мови та "примусовою правильністю" (або
+"доведеною коректністю" програм цією мовою. Зробити мову дуже
+"суворою" не є рішенням, якщо потрібно виконати роботу, яка перевищує розмір
+іграшкової програми. Занадто сувора мова змушує програміста боротися з
+мовою, в той час як "проблема, яку потрібно вирішити" повинна бути справжньою боротьбою, а
+а мова має бути простим засобом для вираження рішення.
 
----
+Мета мови пішаків - надати розробнику неформальний,
+і зручним у використанні механізмом для перевірки того, чи працює програма так, як було
+задумано. Цей механізм називається "твердженнями" і, хоча концепція
+тверджень передує ідеї "проєктування за контрактом", її найлегше пояснити через ідею
+пояснити через ідею проєктування за контрактом.
 
-`Example square root funczion (usin bisection): 79`
+Парадигма "проєктування за контрактом" пропонує альтернативний підхід до вирішення проблем, пов'язаних з помилковими умовами.
+з помилковими умовами. Передумовою є те, що програміст
+знає поставлену задачу, умови, за яких має працювати програма, і
 
----
-
-This does have the effect, however, that assertions never fire in a  
-bug-free program: they just make the code fatter and slower, without any user-visible
-benefit. It is not this bad, though. An additional feature of assertions is
-that you can build the source code without assertions simply using a flag or option
-to the pawn parser. The idea is that you enable assertions during development
-and build the “retail version” of the code without assertions. This is a better
-approach than removing the assertions, because all assertions are automatically
-“back” when recompiling the program —e.g. for maintenance.
-
-During maintenance, or even during the initial development, if you catch a bug
-that was not trapped by an assertion, before fixing the bug, you should think
-of how an assertion could have trapped this error. Then, add this assertion
-and test whether it indeed catches the bug before fixing the bug. By doing
-this, the code will gradually become sturdier and more reliable.
-
-• Documentation comments
-
-When programs become larger, documenting the program and the functions
-becomes vital for its maintenance, especially when working in a team. The
-pawn language tools have some features to assist you in documenting  
-thecode in comments. Documenting a program or library in its comments has a
-few advantages —for example: documentation is more easily kept up to date
-with the program, it is efficient in the sense that programming comments now
-double as documentation, and the parser helps your documentation efforts in
-generating syntax descriptions and cross references.
-
-Every comment that starts with three slashes
-(“/// ”) followed by white-space, or that starts with a slash and two stars (“//_/_ ”)
-followed by white-space is a
-special documentation comment. The pawn compiler extracts documentation
-comments and optionally writes these to a “report” file. See the application
-documentation, or appendix B, how to enable the report generation.
-
-As an aside, comments that start with “/_” must still be closed with “_/”.
-Single line documentation comments (“///”) close at the end of the line.
-
-The report file is an XML file that can subsequently be transformed to HTML
-documentation via an XSL/XSLT stylesheet, or be run through other tools to
-create printed documentation. The syntax of the report file is compatible with
-that of the “.Net” developer products —except that the pawn compiler stores
-more information in the report than just the extracted documentation strings.
-The report file contains a reference to the “smalldoc.xsl” stylesheet.
+середовище. У такому середовищі кожна функція визначає конкретні
+умови у вигляді тверджень, які мають бути істинними, перш ніж клієнт зможе
+виконати функцію. Крім того, функція може також визначати будь-які умови
+які мають бути істинними після того, як вона завершить свою роботу. Це і є "контракт" функції
+функції.
 
 ---
 
-`Comment syntax: 97`
+Назву "дизайн за контрактом" придумав Бертран Мейєр, а його принципи ґрунтуються на логіці предикатів та алгоритмічному аналізі.
+походить від логіки предикатів та алгоритмічного аналізу.
+
+- Передумови визначають допустимі значення вхідних параметрів та атрибутів середовища;
+
+- Постумови визначають вихідні дані та (можливо, модифіковане) середовище;
+
+- Інваріанти вказують на умови, які повинні виконуватися в ключових точках функції, незалежно від шляху, пройденого через функцію.
+
+Наприклад, функція, яка обчислює квадратний корінь з числа, може вказати
+що її вхідний параметр має бути невід'ємним. Це є передумовою. Вона також може
+вказати, що її вихід, піднесений до квадрату, дорівнює вхідному значенню 0.01%. Це постумова
+постумова; вона перевіряє правильність роботи підпрограми. Зручним
+спосіб обчислення квадратного кореня - це "бісекція". На кожній ітерації цей алгоритм
+дає принаймні один додатковий біт (двійкову цифру) точності. Це інваріант
+(хоча це може бути інваріант, який важко перевірити).
+
+Передумови, постумови та інваріанти схожі в тому сенсі, що вони
+всі вони складаються з тесту і що невдалий тест вказує на помилку у
+реалізації. Як наслідок, ви можете реалізувати передумови, постумови та інваріанти за допомогою однієї конструкції: "твердження".
+інваріанти за допомогою однієї конструкції: "твердження". Для передумов слід писати
+на самому початку підпрограми; для інваріантів напишіть твердження
+де інваріант має виконуватися; для постумов пишіть твердження перед
+кожним оператором "return" або в кінці функції.
+
+У pawn інструкція називається assert; це простий оператор, який
+містить тест. Якщо результат тесту "істина", нічого не відбувається. Якщо результат
+"false", інструкція assert завершує роботу програми з повідомленням, що містить
+що містить деталі невдалого твердження.
+
+Твердження - це перевірка, яка ніколи не повинна давати збоїв. Справжні помилки, такі як
+наприклад, помилки введення даних користувачем, слід обробляти за допомогою явних тестів у програмі, а
+а не з допомогою тверджень. Як правило, вирази, що містяться у твердженнях, повинні бути
+не мати побічних ефектів: твердження ніколи не повинно містити код, який потрібен для коректної роботи вашої
+програма потребує для коректної роботи.
 
 ---
 
-The example below illustrates documentation comments in a simple script that
-has a few functions. You may write documentation comments for a function
-above its declaration or in its body. All documentation comments that appear
-before the end of the function are attributed to the function. You can  
-also
-add documentation comments to global variables and global constants —these
-comments must appear above the declaration of the variable or constant. Fig-
-ure 2 shows part of the output for this (rather long) example. The style
-of the
-output is adjustable in the cascading style sheet (CSS-file) associated with the
-XSLT transformation file.
+`Приклад функції добування квадратного кореня (бісектриса usin): 79`
 
-Listing: weekday.p
+---
+
+Однак це призводить до того, що твердження ніколи не спрацьовують у
+без вад: вони просто роблять код товстішим і повільнішим, без жодної видимої користувачеві
+користі для користувача. Але не все так погано. Додатковою особливістю тверджень є те, що
+що ви можете збирати код без тверджень, просто використовуючи прапорець або опцію
+до синтаксичного аналізатора. Ідея полягає у тому, що ви вмикаєте твердження під час розробки
+і збираєте "роздрібну версію" коду без тверджень. Це кращий
+підхід, ніж вилучення тверджень, тому що всі твердження автоматично
+"повертаються" при перекомпіляції програми - наприклад, для технічного обслуговування.
+
+Під час супроводу, або навіть під час початкової розробки, якщо ви виявили помилку
+яка не була відловлена твердженням, перед тим, як виправити помилку, вам слід подумати
+про те, як твердження могло б запобігти цій помилці. Потім додайте це твердження
+і перевірте, чи дійсно воно перехоплює помилку, перш ніж виправляти її. Роблячи так
+код поступово стане міцнішим і надійнішим.
+
+- Коментарі до документації
+
+Коли програми стають більшими, документування програми та функцій
+стає життєво важливим для її підтримки, особливо під час роботи в команді. Інструменти мови
+pawn має деякі функції, які допоможуть вам у документуванні
+код у коментарях. Документування програми або бібліотеки у коментарях до неї має
+кілька переваг, наприклад: документацію легше підтримувати в актуальному стані
+з програмою, це ефективно у тому сенсі, що програмні коментарі тепер
+подвійно є документацією, а синтаксичний аналізатор допомагає вашим зусиллям з документування у створенні синтаксичних описів та
+створення синтаксичних описів та перехресних посилань.
+
+Кожен коментар, який починається з трьох косих рисок
+("/// "), за якими слідує пробіл, або починається з косої риски та двох зірочок ("//_/_ ")
+з подальшим пропуском, є
+спеціальним коментарем до документації. Компілятор pawn витягує коментарі документації
+і за бажанням записує їх до файлу "report". Зверніться до документації до програми
+документацію до програми або додаток B, щоб дізнатися, як увімкнути створення звіту.
+
+Зауважимо, що коментарі, які починаються з "/_", все одно слід закривати символом "_/".
+Однорядкові коментарі до документації ("///") закриваються у кінці рядка.
+
+Файл звіту - це XML-файл, який згодом може бути перетворений на HTML-документацію
+документацію за допомогою таблиці стилів XSL/XSLT або запускати за допомогою інших інструментів для
+для створення друкованої документації. Синтаксис файлу звіту сумісний з
+синтаксисом продуктів для розробників ".Net" - за винятком того, що заставний компілятор зберігає
+більше інформації у звіті, ніж просто витягнуті рядки документації.
+Файл звіту містить посилання на таблицю стилів "smalldoc.xsl".
+
+---
+
+`Коментувати синтаксис: 97`
+
+---
+
+Наведений нижче приклад ілюструє коментарі до документації у простому скрипті, який
+має декілька функцій. Ви можете писати коментарі до документації для функції
+над її оголошенням або в її тілі. Усі коментарі документації, які з'являються
+до кінця функції, приписуються функції. Ви можете
+також
+додати коментарі документації до глобальних змінних і глобальних констант - ці
+коментарі повинні з'являтися над оголошенням змінної або константи. На
+2 показано частину виводу для цього (досить довгого) прикладу. Стиль
+виведення
+можна налаштувати у каскадній таблиці стилів (CSS-файл), пов'язаній з файлом
+файлом перетворення XSLT.
+
+Посилання: weekday.p
 
 ```c
 
 /**
 
-- This program illustrates Zeller’s congruence algorithm to calculate
+- Ця програма ілюструє алгоритм конгруентності Целлера для обчислення
 
-- the day of the week given a date.
+- день тижня, на який припадає дата.
 
 */
 
 /**
 
-- <summary>
+- <summary> </summary> </summary> <summary> </summary
 
--        The  main  program:  asks  the  user  to  input  a  date  and  prints
+- Основна програма: просить користувача ввести дату і друкує
 
-  on
+  на
 
--        what  day  of  the  week  that  date  falls.
+- на який день тижня припадає ця дата.
 
-- </summary>
+- </summary> </summary> </summary> </summary> </summary> </summary
 
 */
 main()
 {
-    new day, month, year
+    новий день, місяць, рік
     if (readdate(day, month, year))
     {
-        new wkday = weekday(day, month, year)
-        printf "The date %d-%d-%d falls on a ", day, month, year
+        new wkday = weekday(день, місяць, рік)
+        printf "Дата %d-%d-%d припадає на ", день, місяць, рік
         switch (wkday)
         {
             case 0:
-            print "Saturday"
+            вивести "субота"
             case 1:
-            print "Sunday"
+            вивести "неділя"
             case 2:
-            print "Monday"
-            case 3:
-            print "Tuesday"
-            case 4:
-            print "Wednesday"
-            case 5:
-            print "Thursday"
-            case 6:
-            print "Friday"
+            вивести "понеділок"
+            випадок 3:
+            вивести "Tuesday"
+            випадок 4:
+            вивести "Wednesday"
+            випадок 5:
+            вивести "четвер"
+            випадок 6:
+            вивести "Friday"
         }
     }
     else
-        print "Invalid date"
+        вивести "Невірна дата"
     print "\n"
 }
 
 /**
 
-- <summary>
+- <summary> </summary> </summary> <summary> </summary
 
--      The  core  function  of  Zeller’s  congruence  algorithm.  The  function
+- Основна функція алгоритму конгруентності Целлера.  Функція
 
--      works  for  the  Gregorian  calender.
+- працює за григоріанським календарем.
 
-- </summary>
+- </summary> </summary> </summary> </summary> </summary> </summary
 
 -
 
-- <param  name="day">
+- <param name="day"> </param
 
--      The  day  in  the  month,  a  value  between  1  and  31.
+- День у місяці, значення від 1 до 31.
 
-- </param>
+- </param> </param
 
-- <param  name="month">
+- <param name="month"> </param
 
--      The  month:  a  value  between  1  and  12.
+- Місяць: значення від 1 до 12.
 
-- </param>
+- </param> </param
 
-- <param  name="year">
+- <param name="year"> </param name="year">
 
--      The  year  in  four  digits.
+- Рік з чотирьох цифр.
 
-- </param>
+- </param> </param
 
 -
 
 - <returns>
 
--      The  day  of  the  week,  where  0  is  Saturday  and  6  is  Friday.
+- День тижня, де 0 - субота, а 6 - п'ятниця.
 
-- </returns>
+- </returns> </returns> </returns> </returns> </returns> </returns
 
 -
 
-- <remarks>
+- <зауваження>
 
--      This  function  does  not  check  the  validity  of  the  date;  when
+- Ця функція не перевіряє дійсність дати; коли
 
-  the
+  "У нас тут є
 
--      date  in  the  parameters  is  invalid,  the  returned  "day  of  the
+- дата в параметрах невірна, повертається "day of the
 
-  week"
+  тиждень".
 
--      will  hold  an  incorrect  value.
+- буде мати неправильне значення.
 
--      <p/>
+- <p/>
 
--      This  equation  fails  in  many  programming  languages,  notably  most
+- Це рівняння не працює у багатьох мовах програмування, зокрема у більшості
 
--      implementations  of  C,  C++  and  Pascal,  because  these  languages
+- реалізаціями C, C++ та Pascal, оскільки ці мови
 
-  have
+  мають
 
--      a  loosely  defined  "remainder"  operator.  Pawn,  on  the  other
+- нечітко визначений оператор "залишок".  Пішак, з іншого боку
 
-  hand,
+  руку,
 
--      provides  the  true  modulus  operator,  as  defined  in  mathematical
+- надає істинний оператор за модулем, як визначено в математичній
 
--      theory  and  as  was  intended  by  Zeller.
+- теорію і так, як це було задумано Целлером.
 
-- </remarks>
+- </рекомендації></рекомендації
 
 */
 
-weekday(day, month, year)
+weekday(день, місяць, рік)
 {
 /**
 
-- <remarks>
+- <зауваження>
 
--      For  Zeller’s  congruence  algorithm,  the  months  January  and
+- Для алгоритму конгруентності Целлера місяці січень та
 
--      February  are  the  13th  and  14th  month  of  the  <em>preceding</em>
+- Лютий - 13-й і 14-й місяць <em>попереднього</em> року.
 
--      year.  The  idea  is  that  the  "difficult  month"  February  (which
+- року.  Ідея полягає в тому, що "важкий місяць" лютий (який
 
--      has  either  28  or  29  days)  is  moved  to  the  end  of  the  year.
+- має 28 або 29 днів) переноситься на кінець року.
 
-- </remarks>
+- </рекомендації></рекомендації
 
 */
 
     if (month <= 2)
         month += 12, --year
 
-    new j = year % 100
+    new j = рік % 100
     new e = year / 100
     return (day + (month+1)*26/10 + j + j/4 + e/4 - 2*e) % 7
 }
 
 /**
 
-- <summary>
+- <summary> </summary> </summary> <summary> </summary
 
--      Reads  a  date  and  stores  it  in  three  separate  fields.  tata
+- Зчитує дату та зберігає її у трьох окремих полях. tata
 
-- </summary>
+- </summary> </summary> </summary> </summary> </summary> </summary
 
 -
 
-- <param  name="day">
+- <param name="day"> </param
 
--      Will  hold  the  day  number  upon  return.
+- Після повернення зберігатиметься номер дня.
 
-- </param>
+- </param> </param
 
-- <param  name="month">
+- <param name="month"> </param
 
--      Will  hold  the  month  number  upon  return.
+- Зберігатиме номер місяця після повернення.
 
-- </param>
+- </param> </param
 
-- <param  name="year">
+- <param name="year"> </param name="year">
 
--      Will  hold  the  year  number  upon  return.
+- Зберігатиме номер року після повернення.
 
-- </param>
+- </param> </param
 
 -
 
 - <returns>
 
--      <em>true</em>  if  the  date  is  valid,  <em>false</em>  otherwise;
+- <em>true</em>, якщо дата дійсна, <em>false</em> в іншому випадку;
 
--      if  the  function  returns  <em>false</em>,  the  values  of
+- якщо функція повертає <em>false</em>, то значення
 
--      <paramref  name="day"/>,  <paramref  name="month"/>  and
+- <paramref name="day"/>, <paramref name="month"/> та
 
--      <paramref  name="year"/>  cannot  be  relied  upon.
+- <paramref name="year"/> не можна використовувати.
 
-- </returns>
+- </returns> </returns> </returns> </returns> </returns> </returns
 
 */
 
 bool: readdate(&day, &month, &year)
 {
-    print "Give a date (dd-mm-yyyy): "
-    day = getvalue(\_,’-’,’/’)
-    month = getvalue(\_,’-’,’/’)
+    print "Введіть дату (дд-мм-гггг): "
+    day = getvalue(\_,'-','/')
+    month = getvalue(\_,'-','/')
     year = getvalue()
     return 1 <= month <= 12 && 1 <= day <= daysinmonth(month,year)
 }
 
 /**
 
-- <summary>
+- <summary> </summary> </summary> <summary> </summary
 
--      Returns  whether  a  year  is  a  leap  year.
+- Повертає, чи є рік високосним.
 
-- </summary>
-
--
-
-- <param  name="year">
-
--      The  year  in  4  digits.
-
-- </param>
+- </summary> </summary> </summary> </summary> </summary> </summary
 
 -
 
-- <remarks>
+- <param name="year"> </param name="year">
 
--      A  year  is  a  leap  year:
+- Рік з 4-х цифр.
 
--      <ul>
+- </param> </param
 
--          <li>  if  it  is  divisable  by  4,  </li>
+-
 
--          <li>  but  <strong>not</strong>  if  it  is  divisable  by  100,
+- <зауваження>
 
-</li>
+- Рік - це високосний рік:
 
--          <li>  but  it  <strong>is</strong>  it  is  divisable  by  400.
+- <ul>
 
-</li>
+- <li> якщо воно ділиться на 4, </li>
 
--      </ul>
+- <li> але <strong>не</strong>, якщо воно ділиться на 100,
 
-- </remarks>
+</li> </li> <li>Примітка:</li>
+
+- <li> але воно <strong>є</strong> ділиться на 400.
+
+</li> </li> <li>Примітка:</li>
+
+- <ul>
+
+- </рекомендації></рекомендації
 
 */
 
-bool: isleapyear(year)
+bool: isleapyear(рік)
 
 return year % 400 == 0 || year % 100 != 0 && year % 4 == 0
 
 /**
 
-- <summary>
+- <summary> </summary> </summary> <summary> </summary
 
--      Returns  the  number  of  days  in  a  month  (the  month  is  an
+- Повертає кількість днів у місяці (місяць - це
 
-  integer
+  ціле число
 
--      in  the  range  1  ..  12).  One  needs  to  pass  in  the  year  as
+- в діапазоні 1 ... 12).  За рік потрібно здати як
 
-  well,
+  що ж,
 
--      because  the  function  takes  leap  years  into  account.
+- оскільки функція враховує високосні роки.
 
-- </summary>
+- </summary> </summary> </summary> </summary> </summary> </summary
 
 -
 
-- <param  name="month">
+- <param name="month"> </param
 
--      The  month  number,  a  value  between  1  and  12.
+- Номер місяця, значення від 1 до 12.
 
-- </param>
+- </param> </param
 
-- <param  name="year">
+- <param name="year"> </param name="year">
 
--      The  year  in  4  digits.
+- Рік з 4-х цифр.
 
-- </param>
+- </param> </param
 
 */
 
-daysinmonth(month, year)
+daysinmonth(місяць, рік)
 {
-    static daylist[] = { 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 }
+    static daylist[] = { 31, 28, 31, 30, 31, 30, 31, 30, 31, 30, 31, 30, 31, 30, 31 }
     assert 1 <= month <= 12
     return daylist[month-1] + \_:(month == 2 && isleapyear(year))
 }
 
 ```
 
-The format of the XML file created by “.Net” developer products is  
-documented in the Microsoft documentation. The pawn parser creates a mini-
-mal description of each function or global variable or constant that is used  
-in a project, regardless of whether you used documentation comments on that
-function/variable/constant. The parser also generates few tags of its own:
+Формат XML-файлу, що створюється продуктами для розробників ".Net"
+задокументовано у документації Microsoft. Синтаксичний аналізатор створює міні-опис кожної функції, змінної або константи, що використовується у файлі.
+опис кожної функції, глобальної змінної або константи, яка використовується в проєкті, незалежно від того, чи використовувалися
+у проєкті, незалежно від того, чи використовувалися для цього коментарі у документації
+функцію/змінну/константу. Синтаксичний аналізатор також генерує декілька власних тегів:
 
-| name       | info                                                                                                                                                                                                                               |
+| ім'я та інформація
 | ---------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| attribute  | Attributes for a function, such as “native” or “stock”.                                                                                                                                                                            |
-| automaton  | The automaton that the function belongs to (if any).                                                                                                                                                                               |
-| dependency | The names of the symbols (other functions, global variables and/global constants) that the function requires. If desired, a call tree can be constructed from the dependencies.                                                    |
-| param      | Function parameters. When you add a parameter description in a documentation comment, this description is combined with the auto-generated content for the parameter.                                                              |
-| paraminfo  | Tags and array or reference information on a parameter.                                                                                                                                                                            |
-| referrer   | All functions that refer to this symbol; i.e., all functions that use or call this variable/function. This information is sufficient to serve as a “cross-reference” —the “referrer” tree is the inverse of the “dependency” tree. |
+| attribute | Атрибути для функції, наприклад, "native" або "stock".                                                                                                                                                                            |
+| автомат | Автомат, до якого належить функція (якщо такий є).                                                                                                                                                                               |
+| залежність | Назви символів (інших функцій, глобальних змінних та/чи глобальних констант), яких потребує функція. За бажанням, з залежностей можна побудувати дерево викликів.                                                    |
+| param | Параметри функції. Коли ви додаєте опис параметра до коментаря документації, цей опис буде об'єднано з автоматично згенерованим вмістом для параметра.                                                              |
+| paraminfo | Теги та інформація про масив або посилання на параметр.                                                                                                                                                                            |
+| referrer | Усі функції, які посилаються на цей символ, тобто всі функції, які використовують або викликають цю змінну/функцію. Цієї інформації достатньо, щоб слугувати "перехресним посиланням" - дерево "посилань" є оберненим до дерева "залежностей". |
 
 ---
 
 ![fig2](https://i.ibb.co/VmQS0fL/image.png)
 
-###### Figure 2: Documentation generated from the source code
+###### Рисунок 2: Документація, створена на основі вихідного коду
 
-| name       | info                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       |
-| ---------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| stacksize  | The estimated number of cells that the function will allocate on the stack and heap. This stack usage estimate excludes the stack requirements of any functions that are “called” from the function to which the documentation applies. For example, function readdate is documented as taking 6 cells on the stack, but it also calls daysinmonth which takes 4 additional cells —and in turn calls isleapyear. To calculate the total stack requirements for function readdate, the call tree should be considered. In addition to the local variables and function parameters, the compiler also uses the stack for storing intermediate results in complex expressions. The stack space needed for these intermediate results are also excluded from this report. In general, the required overhead for the intermediate results is not cumulative (over all functions), which is why it would be inaccurate to add a “safety margin” to every function. For the program as a whole, a safety margin would be highly advised. See appendix B (page 168. for the -v option which can tell you the maximum estimate stack usage, based on the call tree. |
-| tagname    | The tag of the constant, variable, function result or function parameter(s).                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               |
-| transition | The transitions that the function provokes and their conditions —see the section of automatons on page 38.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
+| ім'я та інформація
+| ---------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+| stacksize | Орієнтовна кількість комірок, які функція виділить у стеку та купі. Ця оцінка використання стеку не враховує вимоги до стеку будь-яких функцій, які "викликаються" з функції, до якої застосовується документація. Наприклад, функція readdate задокументована як така, що займає 6 комірок у стеку, але вона також викликає daysinmonth, яка займає 4 додаткові комірки - і, у свою чергу, викликає isleapyear. Щоб обчислити загальні вимоги до стеку для функції readdate, слід розглянути дерево викликів. Окрім локальних змінних та параметрів функцій, компілятор також використовує стек для зберігання проміжних результатів у складних виразах. Простір у стеку, необхідний для цих проміжних результатів, також не розглядається у цьому звіті. Загалом, необхідні накладні витрати на проміжні результати не є кумулятивними (для всіх функцій), тому було б неточно додавати "запас міцності" до кожної функції. Для програми в цілому настійно рекомендується мати запас міцності. У додатку B (сторінка 168) описано опцію -v, за допомогою якої можна визначити максимальне використання стеку на основі дерева викликів. |
+| tagname | Мітка константи, змінної, результату функції або параметра(ів) функції.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               |
+| перехід | Переходи, які викликає функція, та їхні умови - див. розділ про автомати на сторінці 38.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
 
 ---
 
-All text in the documentation comment(s) is also copied to each  
-function,
-variable or constant to which it is attached. The text in the documentation
-comment is copied without further processing —with one exception, see below.
-As the rest of the report file is in XML format, and the most suitable way to
-process XML to on-line documentation is through an XSLT processor (such as
-a modern browser), you may choose to do any formatting in the documentation
-comments using HTML tags. Note that you will often need to explicitly close
-any HTML tags; the HTML standard does not require this, but XML/XSLT
-processors usually do. The pawn toolkit comes with an example XSLT file
+Весь текст у коментарях до документації також копіюється до кожної
+функцію,
+змінну або константу, до якої його приєднано. Текст у документації
+копіюється без подальшої обробки - за одним винятком, див. нижче.
+Оскільки решта файлу звіту знаходиться у форматі XML, а найбільш підходящим способом
+обробки XML в онлайнову документацію є XSLT-процесор (наприклад, сучасний браузер), ви можете вибрати
+сучасний браузер), ви можете вибрати будь-яке форматування в документації
+коментарі за допомогою тегів HTML. Зауважте, що вам часто потрібно буде явно закривати
+будь-які HTML-теги; стандарт HTML не вимагає цього, але XML/XSLT-процесори
+процесори XML/XLT зазвичай вимагають цього. Набір інструментів pawn постачається з прикладом XSLT-файлу
 
-(with a matching style sheet) which supports the following XML/HTML tags:
+(з відповідною таблицею стилів), який підтримує наступні теги XML/HTML:
 
-| name                          | info                                                                                                                                               |
+| ім'я та інформація
 | ----------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `<code> </code>`              | Preformatted source code in a monospaced font; although the “&”, “<” and “>” must be typed as “&amp;”, “&lt;” and “&rt;” respectively.             |
-| `<example> </example>`        | Text set under the sub-header “Example”.                                                                                                           |
-| `<param name="..."> </param>` | A parameter description, with the parameter name appearing inside the opening tag (the “name=” option) and the parameter description following it. |
-| `<paramref name="..." />`     | A reference to a parameter, with the parameter name appearing inside the opening tag (the “name=” option).                                         |
-| `<remarks> </remarks>`        | Text set under the sub-header "Remarks”.                                                                                                           |
-| `<returns> </returns>`        | Text set under the sub-header “Returns”.                                                                                                           |
-| `<seealso> </seealso>`        | Text set under the sub-header “See also”.                                                                                                          |
-| `<summary> </summary>`        | Text set immediately below the header of the symbol.                                                                                               |
-| `<section> </section>`        | Sets the text in a header. This should only be used in documentation that is not attached to a function or a variable.                             |
-| `<subsection> </subsection>`  | Sets the text in a sub-header. This should only be used in documentation that is not attached to a function or a variable.                         |
+| `<code> </code>` | Попередньо відформатований вихідний код шрифтом з моноширинним інтервалом; хоча символи "&", "<" і ">" мають бути набрані як "&amp;", "&lt;" і "&rt;" відповідно.             |
+| `<example> </example>` | Текст, розміщений під підзаголовком "Приклад".                                                                                                           |
+| `<param name="..."> </param>` | Опис параметра, причому ім'я параметра міститься у відкриваючому тезі (опція "name="), а опис параметра слідує за ним. |
+| `<paramref name="..." />` | Посилання на параметр, з назвою параметра всередині відкриваючого тегу (опція "name=").                                         |
+| | `<remarks> </remarks>` | Текст, розміщений під підзаголовком "Примітки".                                                                                                           |
+| `<returns> </returns>` | Текст у підзаголовку "Повернення".                                                                                                           |
+| `<seealso> </seealso>` | Текст у підзаголовку "Див. також".                                                                                                          |
+| `<summary> </summary>` | Текст, розміщений безпосередньо під заголовком символу.                                                                                               |
+| | `<section> </section>` | Задає текст у заголовку. Це слід використовувати лише у документації, яка не пов'язана з функцією або змінною.                             |
+| | `<підрозділ> <підрозділ>` | Задає текст у підзаголовку. Цей параметр слід використовувати лише у документації, яка не пов'язана з функцією або змінною.                         |
 
 ---
 
-The following additional HTML tags are supported for general purpose formatting text inside any of the above sections:
+Наступні додаткові HTML-теги підтримуються для загального форматування тексту всередині будь-якого з перерахованих вище розділів:
 
-| name             | info                                                                                                                                                                 |
+| ім'я та інформація
 | ---------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `<c> </c>`       | Text set in a monospaced font.                                                                                                                                       |
-| `<em> </em>`     | Text set emphasized, usually in italics.                                                                                                                             |
-| `<p> </p>`       | Text set in a new paragraph. Instead of wrapping <p> and </p> around every paragraph, inserting <p/> as a separator between two paragraphs produces the same effect. |
-| `<para> </para>` | An alternative for <p> </p>.                                                                                                                                         |
-| `<ul> </ul>`     | An unordered (bulleted) list.                                                                                                                                        |
-| `<ol> </ol>`     | An ordered (numbered) list.                                                                                                                                          |
-| `<li> </li>`     | An item in an ordered or unordered list.                                                                                                                             |
+| Текст набрано моноширинним шрифтом.                                                                                                                                       |
+| `<em> </em>` | Текст виділяється, зазвичай курсивом.                                                                                                                             |
+| `<p> </p>` | Текст починається з нового абзацу. Замість того, щоб обгортати <p> і </p> навколо кожного абзацу, можна вставити <p/> як роздільник між двома абзацами, що дасть той самий ефект. |
+| `<para> </para>` | Альтернатива для <p> </p>.                                                                                                                                         |
+| `<ul> </ul>` | Невпорядкований (маркований) список.                                                                                                                                        |
+| Впорядкований (нумерований) список.                                                                                                                                          |
+| Елемент у впорядкованому або невпорядкованому списку.                                                                                                                             |
 
 ---
 
-As stated, there is one exception in the processing of documentation  
-comments: if your documentation comment contains a `<param ...>` tag (and a
-matching `</param>`), the pawn parser looks up the parameter and combines
-your description of the parameter with the contents that it has automatically
-generated.
+Як зазначалося, є один виняток в обробці коментарів до документації
+коментарів документації: якщо ваш коментар документації містить тег `<param ...>` (і відповідний йому `</param>`), то
+відповідний `</param>`), парсер пішаків шукає параметр і комбінує
+ваш опис параметра із вмістом, який він автоматично
+згенерованим автоматично.
 
-### • Warnings and errors
+### - Попередження та помилки
 
-The big hurdle that I have stepped over is how to actually compile the code
-snippets presented in this chapter. The reason is that the procedure depends
-on the system that you are using: in some applications there is a “Make” or
-“Compile script” command button or menu option, while in other environments
-you have to type a command like “sc myscript” on a command prompt. If
-you are using the standard pawn toolset, you will find instructions of how to
-use the compiler and run-time in the companion booklet “The pawn booklet
-— Implementor’s Guide”.
+Великою перешкодою, яку я переступив, є те, як насправді скомпілювати код
+фрагментів коду, представлених у цій главі. Причина в тому, що процедура залежить від
+від системи, яку ви використовуєте: у деяких програмах є кнопка "Зробити" або
+"Скомпілювати скрипт" або пункт меню, тоді як в інших середовищах
+вам потрібно ввести команду на кшталт "sc myscript" у командному рядку. Якщо
+ви використовуєте стандартний набір інструментів pawn, ви знайдете настанови щодо
+використання компілятора і часу виконання у супровідному буклеті "The pawn booklet
 
-Regardless of the differences in launching the compile, the phenomenon that
-results from launching the compile are likely to be very similar  
-between all systems:
+- Посібник користувача".
 
-• either the compile succeeds and produces an executable program —that may or may not run automatically after the compile;
+Незалежно від відмінностей у запуску компілятора, явище, яке
+в результаті запуску компілятора, скоріш за все, буде дуже схожим
+між усіма системами:
 
-• or the compile gives a list of warning and error messages.
+- або компіляція завершиться успішно і створить виконувану програму, яка може запускатися автоматично після компіляції, а може і не запускатися;
 
----
-
-• Mistakes happen and the pawn parser tries to catch as many of them as it
-can. When you inspect the code that the pawn parser complains about, it
-may on occasion be rather difficult for you to see why the code is erroneous
-(or suspicious). The following hints may help:
-
-• Each error or warning number is numbered. You can look up the error message with this number in appendix A, along with a brief description on what the message really means.
-
-• If the pawn parser produces a list of errors, the first error in this list is a true error, but the diagnostic messages below it may not be errors at all. After the pawn parser sees an error, it tries to step over it and complete the compilation. However, the stumbling on the error may have confused the pawn parser so that subsequent legitimate statements are misinterpreted and reported as errors too. When in doubt, fix the first error and recompile.
-
-• The pawn parser checks only the syntax (spelling/grammar), not the semantics (i.e. the “meaning”) of the code. When it detects code that does not comply to the syntactical rules, there may actually be different ways in which the code can be changed to be “correct”, in the syntactical sense of the word —even though many of these “corrections” would lead to nonsensical code. The result is, though, that the pawn parser may have difficulty to precisely locate the error: it does not know what you meant to write. Hence, the parser often outputs two line numbers and the error is somewhere in the range (between the line numbers).
-
-• Remember that a program that has no syntactical errors (the pawn parser accepts it without error & warning messages) may still have semantical and logical errors which the pawn parser cannot catch. The assert instruction (page 112) is meant to help you catch these “run-time” errors.
+- або компілятор видасть список попереджень та повідомлень про помилки.
 
 ---
 
-### • In closing
+- Помилки трапляються, і парсер пішаків намагається зловити якомога більше з них
+може. Коли ви перевіряєте код, на який скаржиться синтаксичний аналізатор, то
+іноді вам може бути досить важко зрозуміти, чому код є помилковим
+(або підозрілий). Наступні підказки можуть вам допомогти:
 
-If you know the C programming language, you will have seen many concepts
-that you are familiar with, and a few new ones. If you don’t know C, the pace
-of this introduction has probably been quite high. Whether you are new to C
+- Кожна помилка або попередження пронумеровані. Ви можете знайти повідомлення про помилку з цим номером у додатку А разом з коротким описом того, що насправді означає це повідомлення.
 
-or experienced in C, I encourage you to read the following pages carefully. If
-you know C or a C-like language, by the way, you may want to consult the
-chapter “Pitfalls” (page 134) first.
+- Якщо синтаксичний аналізатор видає список помилок, то перша помилка у цьому списку є справжньою помилкою, але діагностичні повідомлення під нею можуть взагалі не бути помилками. Коли синтаксичний аналізатор бачить помилку, він намагається переступити через неї і завершити компіляцію. Однак, спотикання на помилці може збити синтаксичний аналізатор з пантелику, так що наступні правильні оператори будуть неправильно інтерпретовані і також повідомлені як помилки. Якщо ви сумніваєтеся, виправте першу помилку і повторіть компіляцію.
 
-This booklet attempts to be both an informal introduction and a (more formal)
-language specification at the same time, perhaps succeeding at neither. Since
-it is also the standard book on pawn,∗ the focus of this booklet is on
-being accurate and complete, rather than being easy to grasp.
+- Синтаксичний аналізатор перевіряє лише синтаксис (орфографію/граматику), а не семантику (тобто "значення") коду. Коли він виявляє код, який не відповідає синтаксичним правилам, насправді може існувати багато способів змінити код, щоб він став "правильним" у синтаксичному сенсі цього слова - навіть якщо багато з цих "виправлень" призведуть до безглуздого коду. В результаті, однак, синтаксичний аналізатор може мати труднощі з точним визначенням місця помилки: він не знає, що ви хотіли написати. Тому синтаксичний аналізатор часто виводить два номери рядків, а помилка знаходиться десь у діапазоні (між номерами рядків).
 
-The double nature of this booklet shows through in the order in  
-which it presents the subjects. The larger conceptual parts of the language, variables
-and functions, are covered first. The operators, the statements and general
-syntax rules follow later —not that they are less important, but they are easier
-to learn, to look up, or to take for granted.
+- Пам'ятайте, що програма, яка не містить синтаксичних помилок (синтаксичний аналізатор приймає її без повідомлень про помилки та попереджень), може мати семантичні та логічні помилки, які синтаксичний аналізатор не може виявити. Інструкція assert (стор. 112) призначена для того, щоб допомогти вам виявити ці помилки "під час виконання".
 
 ---
 
-###### ∗ It is no longer the only book on Pawn.
+### - На завершення
+
+Якщо ви знаєте мову програмування C, ви побачите багато концепцій
+з якими ви вже знайомі, а також кілька нових. Якщо ви не знаєте C, то темп
+цього вступу, ймовірно, був досить високим. Незалежно від того, чи ви новачок у C
+
+або досвідчені в C, я рекомендую вам уважно прочитати наступні сторінки. Якщо
+ви знаєте C або схожу на неї мову, до речі, вам варто спершу ознайомитися з
+розділ "Підводні камені" (сторінка 134).
+
+Ця брошура намагається бути водночас і неформальним вступом, і (більш формальною)
+специфікацією мови одночасно, можливо, не досягнувши успіху ні в тому, ні в іншому. Оскільки
+це також стандартна книга про пішаків,* основна увага в цій брошурі зосереджена на тому, щоб
+точності та повноті, а не на тому, щоб її було легко зрозуміти.
+
+Подвійна природа цього буклету проявляється в порядку, в якому
+в якому він представляє теми. Спочатку розглядаються великі концептуальні частини мови, змінні
+та функції, розглядаються спочатку. Оператори, оператори та загальні
+синтаксичні правила йдуть далі - не тому, що вони менш важливі, а тому, що їх легше
+вивчати, шукати або сприймати як належне.
 
 ---
 
-[Go Back to Contents](00-Contents.md)
+###### ∗ Це вже не єдина книга про Пішака
+
+---
+
+[Повернутися до змісту](00-Contents.md)

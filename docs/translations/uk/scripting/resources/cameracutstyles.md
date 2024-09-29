@@ -1,16 +1,18 @@
 ---
-title: Camera Cut Styles
+назва: Styles of Camera Cut Styles
 ---
 
 :::info
 
-Camera cut styles are used by natives such as [SetPlayerCameraLookAt](../functions/SetPlayerCameraLookAt), [InterpolateCameraPos](../functions/InterpolateCameraPos) and [InterpolateCameraLookAt](../functions/InterpolateCameraLookAt).
+Стилі кадрування камери використовуються нативними функціями, такими як [SetPlayerCameraLookAt](../functions/SetPlayerCameraLookAt), [InterpolateCameraPos](../functions/InterpolateCameraPos) та [InterpolateCameraLookAt](../functions/InterpolateCameraLookAt).
 
 :::
 
-## Cut Styles
+## Стилі кадрування
 
-| ID | Style | Description                    |
+| Ідентифікатор | Стиль | Опис
 | -- | ---- | ------------------------------- |
-| 1 | CAMERA_MOVE | The camera position and/or target will move to its new value over time. |
-| 2 | CAMERA_CUT | The camera position and/or target will move to its new value instantly. |
+| 1 | CAMERA_MOVE | Положення камери та/або об'єкта з часом змінюватиметься до нового значення. |
+| 2 | CAMERA_CUT | Положення камери та/або об'єкта буде миттєво змінено на нове значення. |
+
+

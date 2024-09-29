@@ -1,158 +1,158 @@
-# Statements
+# Виписки
 
 ---
 
-A statement may take one or more lines, whereas one line may contain two or
-more statements.
+Оператор може займати один або декілька рядків, тоді як один рядок може містити два або
+більше операторів.
 
-Control flow statements (if, if–else, for, while, do–while and switch) may be nested.
+Оператори керування потоком (if, if-else, for, while, do-while та switch) можуть бути вкладеними.
 
-**Statement label**
+**Етикетка заяви**
 
-    A label consists of an identifier followed by a colon (“:”).
-    A label is a “jump target” of the goto statement.
+    Мітка складається з ідентифікатора, за яким слідує двокрапка (":").
+    Мітка - це "ціль переходу" для оператора goto.
 
-    Each statement may be preceded by a label.
-    There must be a statement after the label; an empty statement is allowed.
+    Кожному оператору може передувати мітка.
+    Після мітки має бути оператор; порожній оператор допускається.
 
-    The scope of a label is the function in which it is declared
-    (a goto statement cannot therefore jump out off the current function to another function).
+    Областю видимості мітки є функція, в якій її оголошено
+    (отже, оператор goto не може переходити з поточної функції до іншої функції).
 
-**Compound statement**
+**Складений оператор
 
-    A compound statement is a series of zero or more statements
-    surrounded by braces ({ and }). The final brace (}) should not be followed by a semicolon.
-    Any statement may be replaced by a compound statement.
-    A compound statement is also called a block.
-    A compound statement with zero statements is a special case,
-    and it is called an “empty statement”.
+    Складений оператор - це послідовність з нуля або більше операторів
+    оточених фігурними дужками ({ і }). Після останньої фігурної дужки (}) не повинна стояти крапка з комою.
+    Будь-який оператор можна замінити складеним оператором.
+    Складений оператор також називають блоком.
+    Складений оператор з нульовими операторами є особливим випадком,
+    і називається "порожній інструкцією".
 
-**Expression statement**
+**Виразний оператор**
 
-    Any expression becomes a statement when a semicolon (“;”) is appended to it.
-    An expression also becomes a statement when only white space
-    follows it on the line and the expression cannot be extended over the next line.
+    Будь-який вираз стає оператором, коли до нього додається крапка з комою (";").
+    Вираз також стає оператором, якщо після нього у рядку стоїть лише пробіл
+    і вираз не може бути продовжений на наступний рядок.
 
-**Empty statement**
+**Порожній оператор
 
-    An empty statement performs no operation and consists of a
-    compound block with zero statements; that is, it consists of the tokens “{ }”.
-    Empty statements are used in control flow statements
-    if there is no action (e.g. while (!iskey()) {}) or when defining a label just
-    before the closing brace of a compound statement.
-    An empty statement does not end with a semicolon.
+    Порожній оператор не виконує ніяких операцій і складається зі складеного блоку
+    складеного блоку з нульовими операторами, тобто складається з лексем "{ }".
+    Порожні оператори використовуються в операторах потоку управління
+    якщо не виконується жодна дія (наприклад, while (!iskey()) {}) або при визначенні мітки безпосередньо
+    перед закриваючою дужкою складеного оператора.
+    Порожній оператор не закінчується крапкою з комою.
 
-**assert** _expression_
+**твердження** _вираз_.
 
-    Aborts the program with a run-time error
-    if the expression evaluates to logically “false”.
+    Перериває програму з помилкою під час виконання
+    якщо вираз обчислюється як логічне значення "false".
 
-**break**
+**Починається перерва.
 
-    Terminates and exits the smallest enclosing do,
-    for or while statement from any point within the loop
-    other than the logical end. The break statement moves program control
-    to the next statement outside the loop.
+    Завершує та виходить з найменшого охоплюючого циклу do,
+    for або while з будь-якої точки циклу
+    крім логічного кінця. Оператор break переміщує керування програмою
+    до наступного оператора за межами циклу.
 
-**continue**
+**Продовжуйте.
 
-    Terminates the current iteration of the smallest enclosing do,
-    for or while statement and moves program control to the condition part of the loop.
-    If the looping statement is a for statement,
-    control moves to the third expression in the for statement
-    (and thereafter to the second expression).
+    Завершує поточну ітерацію найменшого охоплюючого оператора do,
+    for або while і переводить керування програмою на частину умови циклу.
+    Якщо інструкція циклу є інструкцією for,
+    керування переміщується на третій вираз в інструкції for
+    (а потім на другий вираз).
 
-**do** _statement_ **while** ( _expression_ )
+**робити** _висловлювання_ **при цьому** ( _вираз_ )
 
-    Executes a statement before the condition part (the while clause) is evaluated.
-    The statement is repeated while the condition is logically “true”.
-    The statement is at least executed once.
+    Виконує оператор до того, як буде обчислено частину умови (оператор while).
+    Оператор повторюється, поки умова логічно "істинна".
+    Оператор виконується хоча б один раз.
 
-**exit** _expression_
+**вихід** _вираз_.
 
-    Abort the program. The expression is optional, but it must start
-    on the same line as the exit statement if it is present.
-    The exit instruction returns the expression value (plus the expression tag)
-    to the host application, or zero if no exit expression is present.
-    The significance and purpose of exit codes is implementation defined.
+    Перервати виконання програми. Вираз не є обов'язковим, але він повинен починатися
+    у тому ж рядку, що й інструкція виходу, якщо вона присутня.
+    Інструкція виходу повертає значення виразу (плюс тег виразу)
+    або нуль, якщо вираз виходу відсутній.
+    Значення і призначення кодів виходу визначається реалізацією.
 
-**for** ( _expression 1_ ; _expression 2_ ; _expression 3_ ) _statement_
+**for** ( _вираз 1_ ; _вираз 2_ ; _вираз 3_ ) _вираз_ ) _висловлювання_
 
-    All three expressions are optional.
+    Усі три вирази є необов'язковими.
 
-    *expression 1*
-        Evaluated only once, and before entering the loop.
-        This expression may be used to initialize a variable.
-        This expression may also hold a variable declaration, using the new syntax.
-        A variable declared in this expression exists only in the for loop.
+    *вираз 1*
+        Обчислюється лише один раз, перед входом у цикл.
+        Цей вираз можна використовувати для ініціалізації змінної.
+        Цей вираз також може містити оголошення змінної, використовуючи синтаксис new.
+        Змінна, оголошена у цьому виразі, існує лише у циклі for.
 
-    *expression 2*
-        Evaluated before each iteration of the loop and
-        ends the loop if the expression results to logically “false”.
-        If omitted, the result of expression 2 is assumed to be logically “true”.
+    *вираз* *вираз* *вираз* *вираз* *вираз* *вираз
+        Обчислюється перед кожною ітерацією циклу і
+        завершує цикл, якщо результат виразу є логічно "хибним".
+        Якщо його опустити, результат виразу 2 вважається логічно "істинним".
 
-    *expression 3*
-        Evaluated after each execution of the statement.
-        Program control moves from expression 3 to expression 2
-        for the next (conditional) iteration of the loop.
-        The statement for( ; ; ) is equivalent with while (true).
+    *вираз 3*
+        Обчислюється після кожного виконання оператора.
+        Управління програмою переходить з виразу 3 на вираз 2
+        для наступної (умовної) ітерації циклу.
+        Оператор for( ; ; ) еквівалентний оператору while (true).
 
 **goto** _label_
 
-    Moves program control (unconditionally) to the statement that follows the specified label.
-    The label must be within the same function as the
-    goto statement (a goto statement cannot jump out of a function).
+    Переміщує управління програмою (безумовно) на оператор, який слідує за вказаною міткою.
+    Мітка повинна знаходитися у тій самій функції, що й оператор
+    goto (оператор goto не може вийти за межі функції).
 
-**if** ( _expression_ ) _statement 1_ **else** _statement 2_
+**if** ( _вираз_ ) _оператор 1_ **else** _оператор 2_
 
-    Executes statement 1 if the expression results to logically “true”.
-    The else clause of the if statement is optional.
-    If the expression results to logically “false” and an else clause exists,
-    the statement associated with the else clause (statement 2) executes.
+    Виконує оператор 1, якщо вираз має логічне значення "істина".
+    Оператор else в інструкції if є необов'язковим.
+    Якщо вираз має логічне значення "хибне" і існує інструкція else,
+    виконується оператор, пов'язаний з інструкцією else (оператор 2).
 
-    When if statements are nested and else clauses are present,
-    a given else is associated with the closest preceding if statement in the same block.
+    Коли інструкції if є вкладеними і присутні оператори else,
+    заданий else асоціюється з найближчим попереднім оператором if у тому ж блоці.
 
-**return** _expression_
+**повернення** _вираз
 
-    Terminates the current function and moves program control
-    to the statement following the calling statement.
-    The value of the expression is returned as the function result.
-    The expression may be an array variable or a literal array.
+    Завершує поточну функцію і переміщує управління програмою
+    на оператор, наступний за викликаючим.
+    Значення виразу повертається як результат функції.
+    Вираз може бути змінною масиву або літеральним масивом.
 
-    The expression is optional, but it must start on the same line
-    as the return statement if it is present.
-    If absent, the value of the function is zero.
+    Вираз не є обов'язковим, але він повинен починатися з того ж рядка
+    з оператором return, якщо він присутній.
+    Якщо вираз відсутній, значення функції дорівнює нулю.
 
-**sleep** _expression_
+**спати** _вираз_.
 
-    Abort the program, but leave it in a re-startable state.
-    The expression is optional. If included, the sleep instruction
-    returns the expression value (plus the expression tag)
-    to the host application. The significance and purpose
-    of exit codes/tags is implementation defined;
-    typically, an application uses the sleep instruction to allow for
-    light-weight multitasking of several concurrent pawn programs,
-    or to implement “latent” functions.
+    Перервати програму, але залишити її у стані, придатному для повторного запуску.
+    Вираз не є обов'язковим. Якщо його включено, інструкція sleep
+    повертає значення виразу (плюс тег виразу)
+    програмі-хосту. Значення та призначення
+    кодів/міток виходу визначається реалізацією;
+    як правило, програма використовує інструкцію sleep, щоб забезпечити
+    полегшеної багатозадачності декількох паралельних програм-пішаків,
+    або для реалізації "прихованих" функцій.
 
-**state** ( _expression_ ) **automaton** :_name_
+**state** ( _вираз_ ) **automaton** :_ім'я_
 
-    Changes the current state in the specified automaton.
-    The expression between parentheses is optional; if it is absent,
-    the parentheses must be omitted as well.
-    The name of the automaton is optional as well,
-    when changing the state of the default, anonymous, automaton;
-    if the automaton name is absent, the colon (“:”) must be omitted as well.
+    Змінює поточний стан у вказаному автоматі.
+    Вираз у дужках не є обов'язковим; якщо його немає,
+    дужки також слід опустити.
+    Ім'я автомата також не є обов'язковим,
+    при зміні стану автомата за замовчуванням, анонімного, автомата;
+    якщо ім'я автомата відсутнє, двокрапка (":") також не ставиться.
 
-    Below are two examples of unconditional state changes. The first is for the default automaton:
-
-```
-
-state handshake
+    Нижче наведено два приклади безумовної зміни стану. Перший - для автомата за замовчуванням:
 
 ```
 
-    and the second for a specific automaton:
+державне рукостискання
+
+```
+
+    а другий - для конкретного автомата:
 
 ```
 
@@ -160,42 +160,42 @@ state gps:handshake
 
 ```
 
-    Often, whether or not a state changes depends on parameters of the event or the condition of the automaton as a whole.
-    Since conditional state changes are so frequent,
-    the condition may be in the state instruction itself.
-    ∗ The condition follows the keyword state, between parentheses.
-    The state will only change if the condition is logically “true”.
+    Часто зміна стану залежить від параметрів події або стану автомата в цілому.
+    Оскільки умовні зміни стану відбуваються так часто,
+    умова може міститися у самій інструкції стану.
+    ∗ Умова слідує за ключовим словом state у круглих дужках.
+    Стан зміниться лише тоді, коли умова буде логічно "істинною".
 
-    The state instruction causes an implied call to the
-    entry function for the indicated state —if such entry function exists.
+    Інструкція state викликає неявний виклик функції входу
+    для вказаного стану - якщо така функція існує.
 
-**switch** ( _expression_ ) { _case list_ }
+**switch** ( _вираз_ ) { _список_ регістрів_ }
 
-    Transfers control to different statements within the switch body depending
-    on the value of the switch expression.
-    The body of the switch statement is a compound statement,
-    which contains a series of “case clauses”.
+    Передає керування на різні оператори в тілі перемикача залежно від
+    від значення виразу switch.
+    Тіло оператора switch є складеним оператором,
+    який містить ряд "операторів переходу".
 
-    Each “case clause” starts with the keyword case followed by a constant list and one statement.
-    The constant list is a series of expressions, separated by comma’s,
-    that each evaluates to a constant value.
-    The constant list ends with a colon. To specify a “range” in the constant list,
-    separate the lower and upper bounds of the range with a double period (“..”).
-    An example of a range is: “case 1..9:”.
+    Кожне "case clause" починається з ключового слова case, за яким слідує список констант і один оператор.
+    Список констант - це ряд виразів, розділених комами,
+    кожен з яких обчислює константне значення.
+    Список констант закінчується двокрапкою. Щоб вказати "діапазон" у списку констант
+    відокремте нижню і верхню межі діапазону подвійною крапкою ("..").
+    Приклад діапазону "case 1..9:".
 
-    The switch statement moves control to a “case clause” if the value of one of the
-    expressions in the constant list is equal to the switch expression result.
+    Оператор switch переводить керування на "умовне речення", якщо значення одного з виразів
+    у списку констант дорівнює результату виразу switch.
 
-    The “default clause” consists of the keyword default and a colon.
-    The default clause is optional, but if it is included, it must be the last clause in the switch body.
-    The switch statement moves control to the “default clause” is executed
-    if none of the case clauses match the expression result.
+    "Елемент за замовчуванням" складається з ключового слова default і двокрапки.
+    Вираз за замовчуванням не є обов'язковим, але якщо його включено, він має бути останнім у тілі перемикача.
+    Оператор switch переводить керування на "умову за замовчуванням" виконується
+    якщо жоден з операторів case не збігається з результатом виразу.
 
-    Example:
+    Приклад:
 
 ---
 
-###### ∗ The alternative is to fold unconditional state changes in the common if–else construct.
+###### ∗ Альтернативою є складання безумовних змін стану в загальну конструкцію if-else.
 
 ---
 
@@ -203,55 +203,57 @@ state gps:handshake
 
 switch (weekday(12,31,1999))
 {
-    case 0, 1:              /* 0 == Saturday, 1 == Sunday */
+    case 0, 1: /* 0 == субота, 1 == неділя */
         print("weekend")
-    case 2:
-        print("Monday")
-    case 3:
-        print("Tuesday")
+    case 2
+        print("понеділок")
+    case 3
+        print("вівторок")
     case 4:
-        print("Wednesday")
+        print("середа")
     case 5:
-        print("Thursday")
+        print("четвер")
     case 6:
         print("Friday")
-    default:
-        print("invalid week day")
+    за замовчуванням:
+        print("невірний день тижня")
 }
 
 ```
 
-**while** ( _expression_ ) _statement_
+**при цьому** ( _вираз_ ) _вираз_ ) _висловлювання_
 
-    Evaluates the expression and executes the statement
-    if the expression result yields logically “true”.
-    After the statement has executed, program control returns to the expression again.
-    The statement is thus executed while the expression is true.
-
----
-
-`Identifiers: 97`
-
-`Example: 11 (assert)`
-
-`Example: 21 (break)`
-
-`Example: 27 (do while)`
-
-`Examples: 9, 11, 21 (for)`
-
-`Variable declarations: 62 (for)`
-
-`Example: 7 (if else)`
-
-`Examples: 11, 21 (return)`
-
-`See page 40 for examples of conditional state changes (state automaton)`
-
-`“entry” functions: 44 (state automaton)`
-
-`Examples: 7, 21, 26 (while)`
+    Обчислює вираз і виконує оператор
+    якщо результат виразу має логічне значення "істина".
+    Після виконання оператора управління програмою знову повертається до виразу.
+    Таким чином, оператор виконується доти, доки вираз є істинним.
 
 ---
 
-[Go Back to Contents](00-Contents.md)
+`Ідентифікатори: 97`.
+
+Приклад: 11 (стверджувати)`.
+
+Приклад: 21 (перерва)`.
+
+`Приклад: 27 (do while)`.
+
+Приклади: 9, 11, 21 (для)` `Приклади: 9, 11, 21 (для)
+
+Змінні декларації: 62 (за)
+
+`Приклад: 7 (якщо інакше)`.
+
+Приклади: 11, 21 (return)` `Приклади: 11, 21 (return)`
+
+Приклади умовних змін станів (автомат станів) див. на сторінці 40.
+
+"вхідні" функції: 44 (автомат)
+
+Приклади: 7, 21, 26 (while)` `Приклади: 7, 21, 26 (while)`
+
+---
+
+[Повернутися до змісту](00-Contents.md)
+
+

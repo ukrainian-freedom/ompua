@@ -1,61 +1,63 @@
 ---
-title: Panel States
-description: Information about byte size and its corresponding panel state bits.
+заголовок: Стани панелі
+description: Інформація про розмір байта та відповідні йому біти стану панелі.
 ---
 
-:::note
+:::примітка
 
-Panel states are used by natives such as [GetVehicleDamageStatus](../functions/GetVehicleDamageStatus) and [UpdateVehicleDamageStatus](../functions/UpdateVehicleDamageStatus).
+Стани панелей використовуються нативними функціями, такими як [GetVehicleDamageStatus](../functions/GetVehicleDamageStatus) та [UpdateVehicleDamageStatus](../functions/UpdateVehicleDamageStatus).
 
 :::
 
-## Which nibble stores what?
+## Яка поклевка що зберігає?
 
-- The **first nibble** stores the state of the **front-left** panel for a car or the **(left-)engine** for a plane.
-- The **second nibble** stores the state of the **front-right** panel for a car or the **(right-)engine** for a plane.
-- The **third nibble** stores the state of the **back-left** panel for a car or the **rudder (on the vertical stabilizer)** for a plane.
-- The **fourth nibble** stores the state of the **back-right** panel for a car or the **elevators (on the tail)** for a plane.
-- The **fifth nibble** stores the state of the **windshield** for a car or the **ailerons (on the wings)** for a plane.
-- The **sixth nibble** stores the state of the **front bumper** for a car.
-- The **seventh nibble** stores the state of the **back bumper** for a car.
+- Перший нібл** зберігає стан **передньої лівої** панелі для автомобіля або **(лівого)двигуна** для літака.
+- Другий зріз запам'ятовує стан **передньої правої** панелі для автомобіля або **(правого) двигуна** для літака.
+- Третій «кидок» запам'ятовує стан **задньої лівої панелі для автомобіля або **руля (на вертикальному стабілізаторі)** для літака.
+- Четвертий поштовх запам'ятовує стан **задньої правої** панелі для автомобіля або **ліфта (на хвості)** для літака.
+- П'ятий зріз** зберігає стан лобового скла для автомобіля або елеваторів (на крилах)** для літака.
+- Шостий зріз** зберігає стан **переднього бампера** для автомобіля.
+- Сьомий зріз** зберігає стан **заднього бампера** для автомобіля.
 
-Not every vehicle supports all of the mentioned panels. The degree of damage affects the handling of a plane quite a lot and the plane will produce black smoke from whatever part is damaged.
+Не кожен автомобіль підтримує всі згадані панелі. Ступінь пошкодження дуже сильно впливає на керованість літака, і літак буде випускати чорний дим з будь-якої пошкодженої частини.
 
-For most panels there are 4 states: **undamaged (value 0)**, **crushed (value 1)**, **hanging loose (value 2)** and **removed (value 3)**. The crushed and hanging loose states are quite buggy (when you go from a hanging loose state to a crushed state, the panel is hanging loose AND crushed instead of just crushed, but it is only crushed again when the vehicle is restreamed, ...). To fix this weird behaviour, just reset the damage for that panel first and then apply the needed state. In this way it is also possible to have a panel that is hanging loose when driving but is not physically crushed (to better see what this means, go directly from 0 to 2, instead of going from 0 to 1 to 2).
+Для більшості панелей існує 4 стани: **непошкоджена (значення 0)**, **роздроблена (значення 1)**, **висить вільно (значення 2)** і **знята (значення 3)**. Стани «розчавлений» і «висить вільно» є досить глючними (коли ви переходите зі стану «висить вільно» в стан «розчавлений», панель висить вільно і розчавлена, а не просто розчавлена, але вона знову розчавлюється тільки при перезавантаженні транспортного засобу, ...). Щоб виправити цю дивну поведінку, просто скиньте пошкодження для цієї панелі, а потім застосуйте потрібний стан. Таким чином можна також отримати панель, яка бовтається під час руху, але фізично не розтрощена (щоб краще зрозуміти, що це означає, перейдіть безпосередньо від 0 до 2, замість того, щоб переходити від 0 до 1 до 2).
 
-It seems that you can only read the value of the windshield. Setting it does update the value on the server, but it does not result in any physical change on the vehicle.
+Здається, що ви можете прочитати тільки значення лобового скла. Встановлення цього значення оновлює значення на сервері, але не призводить до жодних фізичних змін на транспортному засобі.
 
-Notice that the nibbles are counted from behind, so the first nibble is the rightmost nibble.
+Зверніть увагу, що покльовки рахуються ззаду, тому перша покльовка - це крайня права покльовка.
 
 ---
   
-## Example
+## Приклад
 
-The following code tells that for a car the front and back bumpers are removed:
+Наступний код повідомляє, що для автомобіля знято передній і задній бампери:
 
 `00000011 00110000 00000000 00000000`
 
-However, SA-MP returns a decimal number so you have to convert it to a binary number first to get a result like above. What SA-MP would return given the example above is this:
+Однак SA-MP повертає десяткове число, тому вам доведеться спочатку перетворити його у двійкове, щоб отримати результат, подібний до наведеного вище. У наведеному вище прикладі SA-MP поверне таке число:
 
 `53477376`
 
 ---
   
-## Example usage
+## Приклад використання
 
-To remove the front bumper of a car while keeping the other panels unchanged:
+Щоб зняти передній бампер автомобіля, залишивши інші панелі без змін:
 
 ```c
-new 
-	VEHICLE_PANEL_STATUS:panels,
-	VEHICLE_DOOR_STATUS:doors,
-	VEHICLE_LIGHT_STATUS:lights,
-	VEHICLE_TIRE_STATUS:tires;
+новий 
+	VEHICLE_PANEL_STATUS:панелі,
+	VEHICLE_DOOR_STATUS:двері,
+	VEHICLE_LIGHT_STATUS:фари,
+	VEHICLE_TIRE_STATUS:шини;
 
-GetVehicleDamageStatus(vehicleid, panels, doors, lights, tires);
-UpdateVehicleDamageStatus(vehicleid, (panels | VEHICLE_PANEL_STATUS:0b00000000001100000000000000000000), doors, lights, tires); // The '0b' part means that the following number is in binary. Just the same way that '0x' indicates a hexadecimal number.
+GetVehicleDamageStatus(vehicleid, панелі, двері, фари, шини);
+UpdateVehicleDamageStatus(vehicleid, (panels | VEHICLE_PANEL_STATUS:0b00000000001100000000000000000000), doors, lights, tires); // Частина '0b' означає, що наступне число є двійковим. Так само, як '0x' вказує на шістнадцяткове число.
 ```
 
-## See also
+## Дивіться також
 
-- [Vehicle Panel Status](../resources/vehicle-panel-status)
+- [Статус панелі автомобіля](../resources/vehicle-panel-status)
+
+

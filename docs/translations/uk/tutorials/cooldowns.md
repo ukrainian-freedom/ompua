@@ -1,77 +1,77 @@
 ---
-title: Cooldowns
-description: A tutorial for writing cooldowns for limiting user actions using tick counts and avoiding the use of timers.
+заголовок: Cooldowns
+description: Підручник з написання коулдаунів для обмеження дій користувача за допомогою підрахунку тиків та уникнення використання таймерів.
 ---
 
-This tutorial covers writing a commonly used gameplay mechanic in action games: cooldowns. A cooldown is a tool to limit the frequency at which a player can do something. This may be something like using an ability such as healing or writing chat messages. It allows you to slow the rate at which players do things either for gameplay balancing purposes or to prevent spam.
+Цей підручник охоплює написання часто використовуваної ігрової механіки в екшн-іграх: перезавантаження. Перезарядка - це інструмент для обмеження частоти, з якою гравець може щось робити. Це може бути щось на кшталт використання здібностей, таких як зцілення або написання повідомлень у чаті. Він дозволяє сповільнити швидкість, з якою гравці виконують певні дії або з метою збалансування ігрового процесу, або для запобігання спаму.
 
-First I'll example the _bad_ way of doing a cooldown by using `SetTimer` to update state.
+Спочатку я покажу приклад _поганого_ способу перезавантаження за допомогою `SetTimer` для оновлення стану.
 
-## Using Timers
+## Використання таймерів
 
-Say for example you have a specific action that can only be performed once every so many seconds, I see a lot of people (including Southclaws, many years ago) doing something like this:
+Скажімо, наприклад, у вас є певна дія, яка може бути виконана лише раз на багато секунд, я бачив, як багато людей (включаючи Southclaws, багато років тому) робили щось подібне:
 
 ```c
 static bool:IsPlayerAllowedToDoThing[MAX_PLAYERS];
 
 OnPlayerInteractWithServer(playerid)
-/* This can be any sort of input event a player makes such as:
- *  Entering a command
- *  Picking up a pickup
- *  Entering a checkpoint
- *  Pressing a button
- *  Entering an area
- *  Using a dialog
+/* Це може бути будь-яка подія введення, яку робить гравець, наприклад
+ * Введення команди
+ * Підбирання пікапа
+ * Вхід на контрольно-пропускний пункт
+ * Натискання кнопки
+ * Вхід в область
+ * Використання діалогового вікна
  */
 {
-    // This only works when the player is allowed to
+    // Це працює тільки тоді, коли гравцю дозволено
     if (IsPlayerAllowedToDoThing[playerid])
     {
-        // Do the thing the player requested
+        // Зробити те, що запросив гравець
         DoTheThingThePlayerRequested();
 
-        // Disallow the player
+        // Заборонити гравцю
         IsPlayerAllowedToDoThing[playerid] = false;
 
-        // Allow the player to do the thing again in 10 seconds
-        SetTimerEx("AllowPlayer", 10000, false, "d", playerid);
+        // Дозволити гравцю повторити дію через 10 секунд
+        SetTimerEx(«AllowPlayer», 10000, false, «d», playerid);
 
         return 1;
     }
     else
     {
-        SendClientMessage(playerid, -1, "You are not allowed to do that yet!");
+        SendClientMessage(playerid, -1, «Вам ще не дозволено це робити!»);
 
         return 0;
     }
 }
 
-// Called 10 seconds after the player does the thing
+// Викликається через 10 секунд після виконання дії гравцем
 public AllowPlayer(playerid)
 {
     IsPlayerAllowedToDoThing[playerid] = true;
-    SendClientMessage(playerid, -1, "You are allowed to do the thing again! :D");
+    SendClientMessage(playerid, -1, «Вам дозволено зробити це знову! :D»);
 }
 ```
 
-Now this is all well and good, it works, the player won't be able to do that thing again for 10 seconds after he uses it.
+Тепер це все добре, це працює, гравець не зможе зробити цю річ знову протягом 10 секунд після того, як він її використає.
 
-Take another example here, this is a stopwatch that measures how long it takes for a player to do a simple point to point race:
+Візьмемо інший приклад, це секундомір, який вимірює, скільки часу потрібно гравцеві, щоб зробити простий забіг від точки до точки:
 
 ```c
-static
+статичний
     StopWatchTimerID[MAX_PLAYERS],
     StopWatchTotalTime[MAX_PLAYERS];
 
 StartPlayerRace(playerid)
 {
-    // Calls a function every second
-    StopWatchTimerID[playerid] = SetTimerEx("StopWatch", 1000, true, "d", playerid);
+    // Викликає функцію щосекунди
+    StopWatchTimerID[playerid] = SetTimerEx(«StopWatch», 1000, true, «d», playerid);
 }
 
 public StopWatch(playerid)
 {
-    // Increment the seconds counter
+    // Збільшити лічильник секунд
     StopWatchTotalTime[playerid]++;
 }
 
@@ -79,20 +79,20 @@ OnPlayerFinishRace(playerid)
 {
     new str[128];
 
-    format(str, 128, "You took %d seconds to do that", StopWatchTotalTime[playerid]);
+    format(str, 128, «Ви витратили на це %d секунд», StopWatchTotalTime[playerid]);
     SendClientMessage(playerid, -1, str);
 
     KillTimer(StopWatchTimerID[playerid]);
 }
 ```
 
-These two examples are common and they may work fine. However, there is a much better way of achieving both of these outcomes, which is more way accurate and can give stopwatch timings down to the millisecond!
+Ці два приклади є поширеними і можуть чудово працювати. Однак, є набагато кращий спосіб досягти обох цих результатів, який є більш точним і може давати таймінг секундоміра з точністю до мілісекунди!
 
-## Using `GetTickCount()` and `gettime()`
+## Використання функцій `GetTickCount()` та `gettime()`
 
-`GetTickCount()` is a function that gives you the time in milliseconds since the server process was opened. `gettime()` returns the number of seconds since January 1st 1970, also known as a Unix Timestamp.
+`GetTickCount()` - це функція, яка повертає час у мілісекундах з моменту відкриття серверного процесу. `gettime()` повертає кількість секунд з 1 січня 1970 року, також відому як Unix Timestamp.
 
-If you call either of these functions at two different times, and subtract the first time from the second you suddenly have an interval between those two events in milliseconds or seconds respectively! Take a look at this example:
+Якщо ви викличете будь-яку з цих функцій у два різні моменти часу і віднімете перший час від другого, ви раптом отримаєте інтервал між цими двома подіями у мілісекундах або секундах відповідно! Погляньте на цей приклад:
 
 ### A Cooldown
 
@@ -102,24 +102,24 @@ static PlayerAllowedTick[MAX_PLAYERS];
 OnPlayerInteractWithServer(playerid)
 {
    if (GetTickCount() - PlayerAllowedTick[playerid] > 10000)
-   // This only works when the current tick minus the last tick is above 10000.
-   // In other words, it only works when the interval between the actions is over 10 seconds.
+   // Це працює тільки тоді, коли поточний тик мінус останній тик більше 10000.
+   // Іншими словами, це працює тільки тоді, коли інтервал між діями більше 10 секунд.
    {
        DoTheThingThePlayerRequested();
-       PlayerAllowedTick[playerid] = GetTickCount(); // Update the tick count with the latest time.
+       PlayerAllowedTick[playerid] = GetTickCount(); // Оновити лічильник тиків останнім часом.
 
        return 1;
    }
    else
    {
-       SendClientMessage(playerid, -1, "You are not allowed to do that yet!");
+       SendClientMessage(playerid, -1, «Вам ще не дозволено це робити!»);
 
        return 0;
    }
 }
 ```
 
-Or, alternatively the `gettime()` version:
+Або, як альтернатива, версія `gettime()`:
 
 ```c
 static PlayerAllowedSeconds[MAX_PLAYERS];
@@ -127,41 +127,41 @@ static PlayerAllowedSeconds[MAX_PLAYERS];
 OnPlayerInteractWithServer(playerid)
 {
    if (gettime() - PlayerAllowedSeconds[playerid] > 10)
-   // This only works when the current seconds minus the last seconds is above 10.
-   // In other words, it only works when the interval between the actions is over 10 seconds.
+   // Це працює тільки тоді, коли поточні секунди мінус останні секунди більше 10.
+   // Іншими словами, це працює тільки тоді, коли інтервал між діями більше 10 секунд.
    {
        DoTheThingThePlayerRequested();
-       PlayerAllowedSeconds[playerid] = gettime(); // Update the seconds count with the latest time.
+       PlayerAllowedSeconds[playerid] = gettime(); // Оновлюємо лічильник секунд останнім часом.
 
        return 1;
    }
    else
    {
-       SendClientMessage(playerid, -1, "You are not allowed to do that yet!");
+       SendClientMessage(playerid, -1, «Вам ще не дозволено це робити!»);
 
        return 0;
    }
 }
 ```
 
-There's a lot less code there, no need for a public function or a timer. If you really want to, you can put the remaining time in the error message:
+Тут набагато менше коду, немає необхідності в публічній функції або таймері. Якщо ви дійсно хочете, ви можете вивести час, що залишився, у повідомленні про помилку:
 
-(I'm using SendFormatMessage in this example)
+(У цьому прикладі я використовую SendFormatMessage)
 
 ```c
 SendFormatMessage(
     playerid,
     -1,
-    "You are not allowed to do that yet! You can again in %d ms",
+    «Вам ще не дозволено це робити! Ви зможете знову через %d мс»,
     10000 - (GetTickCount() - PlayerAllowedTick[playerid])
 );
 ```
 
-That's a very basic example, it would be better to convert that MS value into a string of `minutes:seconds.milliseconds` but I'll post that code at the end.
+Це дуже простий приклад, було б краще перетворити значення MS у рядок `хвилини:секунди.мілісекунди`, але я опублікую цей код наприкінці.
 
-### A Stopwatch
+### Секундомір
 
-Hopefully you can see how powerful this is to get intervals between events, let's look at another example
+Сподіваюся, ви бачите, наскільки це потужний засіб для отримання інтервалів між подіями, давайте розглянемо ще один приклад
 
 ```c
 static Stopwatch[MAX_PLAYERS];
@@ -173,71 +173,73 @@ StartPlayerRace(playerid)
 
 OnPlayerFinishRace(playerid)
 {
-    new
-        interval,
+    новий
+        інтервал,
         str[128];
 
-    interval = GetTickCount() - Stopwatch[playerid];
+    interval = GetTickCount() - Секундомір[playerid];
 
-    format(str, 128, "You took %d milliseconds to do that", interval);
+    format(str, 128, «Ви витратили на це %d мілісекунд», interval);
     SendClientMessage(playerid, -1, str);
 }
 ```
 
-In this example, the tick count is saved to the player variable when he starts the race. When he finishes it, the current tick (of when he finished) has that initial tick (The smaller value) subtracted from it and thus leaves us with the amount of milliseconds in between the start and the end of the race.
+У цьому прикладі кількість тиків зберігається у змінну player, коли гравець починає гонку. Коли він фінішує, від поточного тику віднімається початковий тик (менше значення) і, таким чином, ми отримуємо кількість мілісекунд між початком і кінцем забігу.
 
-#### Breakdown
+#### Розбиття
 
-Now lets break the code down a bit.
+Тепер давайте трохи розберемо код.
 
 ```c
-new Stopwatch[MAX_PLAYERS];
+new Секундомір[MAX_PLAYERS];
 ```
 
-This is a global variable, we need to use this so we can save the tick count and retrieve the value at another point in time (in other words, use it in another function, later on)
+Це глобальна змінна, нам потрібно використовувати її для того, щоб зберегти кількість тиків і отримати значення в інший момент часу (іншими словами, використовувати її в іншій функції, пізніше)
 
 ```c
 StartPlayerRace(playerid)
 {
-    Stopwatch[playerid] = GetTickCount();
+    Секундомір[playerid] = GetTickCount();
 }
 ```
 
-This is when the player starts the race, the tick count of now is recorded, if this happens is 1 minute after the server started, the value of that variable will be 60,000 because it is 60 seconds and each second has a thousand milliseconds.
+Це коли гравець починає гонку, записується поточний відлік часу, якщо це відбувається через 1 хвилину після запуску сервера, значення цієї змінної буде 60,000, тому що це 60 секунд, а кожна секунда має тисячу мілісекунд.
 
-Okay, we now have that player's variable set at 60,000, now he finishes the race 1 minute 40 seconds later:
+Отже, ми встановили змінну цього гравця на 60,000, тепер він закінчить гонку через 1 хвилину 40 секунд:
 
 ```c
 OnPlayerFinishRace(playerid)
 {
-    new
-        interval,
+    новий
+        інтервал,
         str[128];
 
-    interval = GetTickCount() - Stopwatch[playerid];
+    interval = GetTickCount() - Секундомір[playerid];
 
-    format(str, 128, "You took %d milliseconds to do that", interval);
+    format(str, 128, «Ви витратили на це %d мілісекунд», interval);
     SendClientMessage(playerid, -1, str);
 }
 ```
 
-Here is where the calculation of the interval happens, well, I say calculation, it's just subtracting two values!
+Тут відбувається розрахунок інтервалу, ну, я ж кажу розрахунок, це ж просто віднімання двох значень!
 
-GetTickCount() returns the current tick count, so it will be bigger than the initial tick count which means you subtract the initial tick count from the current tick count to get your interval between the two measures.
+GetTickCount() повертає поточний лічильник тиків, тому він буде більшим за початковий лічильник тиків, а це означає, що ви віднімаєте початковий лічильник тиків від поточного, щоб отримати інтервал між двома вимірами.
 
-So, as we said the player finishes the race 1 minute and 40 seconds later (100 seconds, or 100,000 milliseconds), GetTickCount will return 160,000. Subtract the initial value (Which is 60,000) from the new value (Which is 160,000) and you get 100,000 milliseconds, which is 1 minute 40 seconds, which is the time it took the player to do the race!
+Отже, як ми вже казали, гравець фінішує через 1 хвилину і 40 секунд (100 секунд, або 100 000 мілісекунд), GetTickCount поверне 160 000. Відніміть початкове значення (яке дорівнює 60,000) від нового значення (яке дорівнює 160,000) і ви отримаєте 100,000 мілісекунд, що дорівнює 1 хвилині 40 секундам, тобто часу, який знадобився гравцеві для проходження забігу!
 
-## Recap and Notes
+## Підсумки та примітки
 
-So! We learned that:
+Отже, ми все зрозуміли:
 
-- GetTickCount returns the amount of time in milliseconds since the computer system that the server is running on started.
-- And we can use that by calling it at two intervals, saving the first to a variable and comparing the two values can give you an accurate interval in milliseconds between those two events.
+- GetTickCount повертає кількість часу в мілісекундах з моменту запуску комп'ютерної системи, на якій працює сервер.
+- І ми можемо використовувати це, викликаючи її з двома інтервалами, зберігаючи перше значення у змінну і порівнюючи ці два значення, щоб отримати точний інтервал у мілісекундах між цими двома подіями.
 
-Last of all, you don't want to be telling your players time values in milliseconds! What if they take an hour to complete a race?
+Нарешті, ви ж не хочете повідомляти гравцям значення часу в мілісекундах! Що, якщо їм знадобиться година, щоб завершити гонку?
 
-It's best to use a function that takes the milliseconds and converts it to a readable format, for instance, the earlier example the player took 100,000 milliseconds to do the race, if you told the player he took that long, it would take longer to read that 100,000 and figure out what it means in human-readable time.
+Найкраще використовувати функцію, яка приймає мілісекунди і перетворює їх у читабельний формат, наприклад, у попередньому прикладі гравець витратив 100,000 мілісекунд на проходження забігу, якщо ви скажете гравцеві, що він витратив стільки часу, йому знадобиться більше часу, щоб прочитати ці 100,000 і зрозуміти, що вони означають у читабельному для людини часі.
 
-[This package](https://github.com/ScavengeSurvive/timeutil) contains a function to format milliseconds into a string.
+[Цей пакунок](https://github.com/ScavengeSurvive/timeutil) містить функцію для форматування мілісекунд у рядок.
 
-I hope this helped! I wrote it because I've helped a few people out recently who didn't know how to use `GetTickCount()` or `gettime()` as an alternative for timers or for getting intervals etc.
+Сподіваюся, це допомогло! Я написав його тому, що нещодавно допоміг кільком людям, які не знали, як використовувати `GetTickCount()` або `gettime()` як альтернативу для таймерів або для отримання інтервалів тощо.
+
+

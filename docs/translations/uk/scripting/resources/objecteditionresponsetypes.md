@@ -1,15 +1,17 @@
 ---
-title: Object Edition Response Types
+заголовок: Типи відповідей на редагування об'єкта
 ---
 
 :::info
 
-Here you can find all of the object edition response types used by [OnPlayerEditObject](../callbacks/OnPlayerEditObject).
+Тут ви можете знайти всі типи відповідей на редагування об'єктів, що використовуються [OnPlayerEditObject](../callbacks/OnPlayerEditObject).
 
 :::
 
-| Value | Definition           | Description                                                      |
+| Значення | Визначення | Опис
 |-------|----------------------|------------------------------------------------------------------|
-| 1     | EDIT_RESPONSE_CANCEL | The player cancelled any modifications by pressing ESC           |
-| 2     | EDIT_RESPONSE_FINAL  | The player considers the changes as final and pressed on Save    |
-| 3     | EDIT_RESPONSE_UPDATE | The player simply moved the object (edition did not stop at all) |
+| 1 | EDIT_RESPONSE_CANCEL | Гравець скасував будь-які зміни, натиснувши ESC
+| 2 | EDIT_RESPONSE_FINAL | Гравець вважає зміни остаточними і натиснув на кнопку Save
+| 3 | EDIT_RESPONSE_UPDATE | Гравець просто перемістив об'єкт (редагування взагалі не зупинилося)
+
+

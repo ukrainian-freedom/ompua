@@ -1,17 +1,17 @@
 ---
-title: "Binary"
-description: An in depth look at binary and bitwise operators.
+заголовок: «Binary»
+description: Поглиблений погляд на бінарні та порозрядні оператори.
 ---
 
 ## Credits
 
-This is from a Tutorial topic in SA-MP Forums. The author is **Kyosaur**.
+Це з теми Підручник у форумі SA-MP. Автор - **Kyosaur**.
 
-## What is binary?
+## Що таке двійкова система числення?
 
-Binary is a numeral system that uses two unique symbols to represent numbers. While the more common decimal system uses ten numerals (**base 10**), binary uses only 0 and 1. This may sound useless in every day life, but binary is essential when it comes to computers. Computers at their lowest level perform all of their calculations by manipulating the flow of electricity to indicate on and off states. This is exactly what binary is, just a ton of switches flipped on and off. This is a sort of alien concept to most people, so lets take a look at the decimal and binary system next to each other.
+Двійкова система числення - це система числення, яка використовує два унікальні символи для представлення чисел. У той час як більш поширена десяткова система числення використовує десять цифр (**основа 10**), двійкова система використовує тільки 0 і 1. Це може здатися марним у повсякденному житті, але двійкова система числення необхідна, коли мова йде про комп'ютери. Комп'ютери на найнижчому рівні виконують всі свої обчислення, маніпулюючи потоком електрики для позначення увімкненого та вимкненого стану. Це саме те, чим є бінарний код, просто тонна перемикачів, які вмикаються і вимикаються. Для більшості людей це дещо чуже поняття, тому давайте розглянемо десяткову та двійкову системи числення поруч.
 
-Decimal (base 10)
+Десяткова (основа 10)
 
 ```c
 0
@@ -30,7 +30,7 @@ Decimal (base 10)
 13
 ```
 
-Binary (Base 2)
+Двійкова система числення (база 2)
 
 ```c
 0 //0
@@ -49,66 +49,66 @@ Binary (Base 2)
 1101 //13
 ```
 
-Looking at both systems beside one another, you'll notice they behave exactly the same. Once you reach the last available number you have to move on to another place. These places in binary are referred to as bits (**b**inary dig**its**) and are simply powers of two; just as places in the decimal system are powers of 10. To prove this, lets take a look at the number 13 in standard notation.
+Поглянувши на обидві системи поруч, ви помітите, що вони поводяться абсолютно однаково. Як тільки ви досягаєте останнього доступного числа, ви повинні перейти на інше місце. Ці місця у двійковій системі числення називаються бітами (**b**inary dig**its**) і є просто степенями двійки; так само, як місця у десятковій системі числення є степенями 10. Щоб довести це, давайте подивимось на число 13 у стандартній системі числення.
 
-**NOTE:** '^' is power in these next few examples, not bitwise exclusive (which we'll cover later.)
+**У наступних прикладах символ «^» позначає степінь, а не побітове виключення (про яке ми поговоримо пізніше).
 
-Decimal (base 10)
+Десятковий (основа 10)
 
 ```c
 13
 
-//which equals
+//що дорівнює
 
 1 * (10^1) + 3 * (10^0)
 
-//which equals
+//що дорівнює
 
 10+3
 
-//which equals
+//що дорівнює
 
 13
 ```
 
-Binary (base 2)
+Двійковий (основа 2)
 
 ```c
 1101
 
-//which equals
+//що дорівнює
 
 1 * (2^3) + 1 * (2^2) + 0 * (2^1) + 1 * (2^0)
 
-//which equals
+//що дорівнює
 
 8+4+0+1
 
-//which equals
+//що дорівнює
 
 13
 ```
 
-We can see from the preceding example that if a bit is set to 0, we can ignore it and move on; after all, anything multiplied by 0 is going to be 0. The previous example was a little over complicated and was just me trying to being absolutely clear. When you're converting from binary, all you really have to worry about is adding up the powers of all the bits that are turned on.
+З попереднього прикладу видно, що якщо якийсь біт встановлено в 0, ми можемо ігнорувати його і рухатися далі; зрештою, все, що помножене на 0, буде 0. Попередній приклад був трохи складним, і я просто намагався бути абсолютно зрозумілим. Коли ви конвертуєте з двійкового типу, все, про що вам потрібно турбуватися, - це додати степені всіх увімкнених бітів.
 
-Here are 12 powers of 2 just off the top of my head:
+Ось 12 степенів 2, які я просто пригадав:
 
 ```c
 4096,2048,1024,512,256,128,64,32,16,8,4,2,1
 ```
 
-If you know nothing about working with powers, this probably makes no sense to you at all. A power is a number multiplied by itself x amount of times. With this information in mind, the preceding list of powers probably makes more sense; well with the exception of 1. You may be curious why 2 raised to the power of 0 gives a result of 1, all i can say to this is that it just does.
+Якщо ви нічого не знаєте про роботу зі степенями, то, ймовірно, це не має для вас жодного сенсу. Степінь - це число, помножене на себе х разів. З урахуванням цієї інформації, попередній список степенів, ймовірно, має більше сенсу; ну, за винятком 1. Вам може бути цікаво, чому 2, піднесене до степеня 0, дає результат 1, все, що я можу сказати на це, це те, що це просто так і є.
 
 ```c
 2^1 = 2, 2^3 = 4, 2^4 = 8
 ```
 
-We can see that when we move to the right, our previous value is multiplied by 2; so its safe to assume that when we move to the left our new value is just the previous number divided by 2. With this in mind you can see how we can end up with 2 to the zeroth power equaling 1. If this isn't satisfying enough, im sure you can find more proof on **\*\***. All that being said, lets take a look at one final example, and lets make it somewhat complicated!
+Ми бачимо, що коли ми рухаємось праворуч, наше попереднє значення множиться на 2; тому можна припустити, що коли ми рухаємось ліворуч, наше нове значення буде просто попереднім числом, поділеним на 2. З огляду на це, ви можете побачити, як ми можемо отримати 2 в нульовому степені, що дорівнює 1. Якщо цього недостатньо, я впевнений, що ви можете знайти більше доказів на **\*\***. Враховуючи вищесказане, давайте подивимось на останній приклад, і зробимо його дещо складнішим!
 
 ```c
 111011001011111000 //242424
 
-//Remember, ignore the bits that arent turned on.
+//Пам'ятайте, ігноруємо не увімкнені біти.
 
 1 * (2^17) = 131072
 
@@ -138,42 +138,42 @@ We can see that when we move to the right, our previous value is multiplied by 2
 242424
 ```
 
-Remember when converting: The first power is 0 so dont make the mistake as seeing the 18th place as 2^18. There are indeed 18 powers, but that is including the power of 0, so 17 is actually our highest power.
+Пам'ятайте при перетворенні: Перший степінь дорівнює 0, тому не робіть помилки, сприймаючи 18-те місце як 2^18. Насправді існує 18 степенів, але це включаючи степінь 0, тому 17 насправді є нашим найвищим степенем.
 
-### A deeper look at bits
+### Глибший погляд на біти
 
-Most programming languages allow different data types which range in the amount of bits that can be used to store information; however pawn is a typeless 32 bit language. This means that pawn will always have 32 bits available for storing information. So what happens when you have to much information? The answer to that question lies with signed and unsigned integers.
+Більшість мов програмування допускають різні типи даних, які відрізняються кількістю бітів, що можуть бути використані для зберігання інформації; проте pawn є безтиповою 32-бітною мовою. Це означає, що pawn завжди матиме 32 біти для зберігання інформації. Так що ж станеться, коли у вас буде занадто багато інформації? Відповідь на це питання лежить у площині цілих чисел зі знаком та без знаку.
 
-#### Signed integers
+#### Цілі зі знаком
 
-Have you ever noticed that when an integer in pawn gets to high it turns into a negative? This "wrapping" is due to you go OVER the maximum value in pawn which is:
+Ви коли-небудь помічали, що коли ціле число в пішаку досягає високого розряду, воно перетворюється на від'ємне? Це «загортання» відбувається через те, що ви перевищуєте максимальне значення у пішаку, а саме:
 
 ```c
-2^31 - 1 //Power, not bitwise exclusive. Also the -1 is because we count 0 (there ARE 2,147,483,648 values, but that is with 0, So technically 2,147,483,647 is the max).
+2^31 - 1 //Потужність, не є побітовою. Також -1 тому, що ми рахуємо 0 (існує 2,147,483,648 значень, але це з 0, тому технічно 2,147,483,647 є максимумом).
 
-//which equals
+//що дорівнює
 
 2,147,483,647
 
-//which in binary is
+//що в двійковій системі числення дорівнює
 
-1111111111111111111111111111111 //31 bits- all on
+1111111111111111111111111111111 //31 біт - всі увімкнені
 ```
 
-You might be wondering why THAT is the max value, and not 2^32-1 (4,294,967,295). This is where signed and unsigned integers come into play. Signed integers have the ability to store negative values, where unsigned integers do not. This might sound like im straying away from the question, but i assure you i am not. The reason the maximum integer isnt 2^32-1 is because the 32nd bit is used as a sort of toggle for negative and positive values. This is called the MSB (Most significant bit) if the MSB is turned on, the number will be negative; if its turned off, the number is positive. Pretty simple, right?
+Вам може бути цікаво, чому саме ЦЕ є максимальним значенням, а не 2^32-1 (4,294,967,295). Саме тут у гру вступають знакові та беззнакові цілі числа. Цілі зі знаком можуть зберігати від'ємні значення, а цілі без знаку - ні. Це може здатися, що я відхиляюся від теми, але запевняю вас, що це не так. Причина, по якій максимальне ціле число не дорівнює 2^32-1, полягає у тому, що 32-й біт використовується як своєрідний перемикач для від'ємних та додатних значень. Він називається MSB (Most significant bit): якщо MSB увімкнено, число буде від'ємним, якщо вимкнено - додатним. Досить просто, чи не так?
 
-Before i show a few negative values, i need to explain how negative values are represented in pawn. Pawn uses a system called 2's complement to represent negative values, which basically means you flip every single bit in your number and add 1 to the new number in order to make it negative.
+Перш ніж я покажу кілька від'ємних значень, я повинен пояснити, як від'ємні значення представлені в pawn. Для представлення від'ємних значень у Pawn використовується система, яка називається доповненням до 2, що означає, що ви перевертаєте кожен біт у вашому числі і додаєте 1 до нового числа, щоб зробити його від'ємним.
 
-Lets take a look at a few negative values while this idea is still in your head:
+Давайте подивимось на кілька від'ємних значень, поки ця ідея все ще у вас в голові:
 
 ```c
-11111111111111111111111111111111 //all 32 bits turned on
+11111111111111111111111111111111 //увімкнено всі 32 біти
 
-//equals
+//дорівнює
 
 -1
 
-//and
+//і
 
 11111111111111111111111111111110
 
@@ -181,7 +181,7 @@ Lets take a look at a few negative values while this idea is still in your head:
 
 -2
 
-//and finally
+//і нарешті
 
 10000000000000000000000000000000
 
@@ -190,44 +190,44 @@ Lets take a look at a few negative values while this idea is still in your head:
 -2147483648
 ```
 
-See, all negative numbers are simply the original positive number with all its bits flipped and increased by one. This is super clear with our last example, as the highest POSITIVE integer is 2147483647.
+Бачите, всі від'ємні числа - це просто початкове додатне число з усіма його бітами, перевернутими і збільшеними на одиницю. Це дуже добре видно з нашого останнього прикладу, оскільки найбільшим додатнім числом є 2147483647.
 
-From this we can see that the number range in pawn is actually:
+Звідси видно, що діапазон чисел у пішаку насправді:
 
 ```c
-&#8722;2^31 to +2^31 − 1
+&#8722;2^31 до +2^31 - 1
 ```
 
-#### Unsigned integers
+#### Цілі без знаку
 
-There are no such thing as unsigned integers in pawn, but im adding this just so its balanced. The only difference between a signed integer and an unsigned integer is that unsigned integers can not store negative values; Integers still wrap around, but they wrap back to 0, instead of a negative value.
+У пішаку не існує такого поняття як беззнакові числа, але я додаю це для збалансованості. Єдина відмінність між цілим зі знаком і цілим без знаку полягає в тому, що цілі без знаку не можуть зберігати від'ємні значення; цілі числа все ще згортаються, але вони згортаються назад до 0, а не до від'ємного значення.
 
-## Binary Operators
+## Бінарні оператори
 
-Binary operators allow you to manipulate individual bits of a bit pattern. Lets take a look at a list of available bitwise operators.
+Бінарні оператори дозволяють маніпулювати окремими бітами бітової моделі. Давайте розглянемо список доступних бінарних операторів.
 
-- Bitwise arithmetic shift: >>, and <<
-- Bitwise logical shift: >>>
-- Bitwise NOT (aka complement): ~
-- Bitwise AND: &
-- Bitwise OR: |
-- Bitwise XOR (aka exclusive-or): ^
+- Порозрядний арифметичний зсув: >> та <<
+- Побітове логічне зсув: >>>
+- Побітове НЕ (також відоме як доповнення): ~
+- Побітове І: &
+- Порозрядне АБО: |
+- Побітове XOR (також відоме як виключне або): ^
 
-### Bitwise AND
+### Побітове І
 
-**NOTE:** Not to be confused by the logical AND operator '&&'
+**ПРИМІТКА:** Не плутайте з оператором логічного І «&&».
 
-A binary AND simply takes the logical AND of the bits in each position of a number in binary form. This sounds a bit confusing, so lets take a look at it in action!
+Бінарне І просто приймає логічне І бітів у кожній позиції числа у двійковій формі. Це звучить трохи заплутано, тому давайте подивимось на нього в дії!
 
 ```c
 1100 //12
 &
 0100 //4
 =
-0100 //4 as they both have "100" in them (which is 4)
+0100 //4, оскільки обидва числа містять «100» (тобто 4)
 ```
 
-That was a little easy, lets take a look at a harder one:
+Це було трохи легко, давайте подивимось на більш складний приклад:
 
 ```c
 10111000 //184
@@ -237,13 +237,13 @@ That was a little easy, lets take a look at a harder one:
 00001000 //8
 ```
 
-Looking at the examples should give you a pretty good idea what this operator does. It compares two bit sets together, if both of them share a bit of 1, the result will have the same bit turned on. If they share no bits at all, then the result is 0.
+Поглянувши на приклади, ви зрозумієте, що робить цей оператор. Він порівнює два бітові набори разом, якщо обидва мають спільний біт 1, то в результаті буде увімкнено той самий біт. Якщо вони не мають спільних бітів, то результат дорівнює 0.
 
-### Bitwise OR
+### Побітове АБО
 
-**NOTE:** Not to be confused by the logical OR operator '||'
+**ПРИМІТКА:** Не плутайте з логічним оператором АБО '||'.
 
-Bitwise OR works almost exactly the same as bitwise AND. The only difference between the two is that bitwise OR only needs one of the two bit patterns to have a bit turned on in order for the result to have the same bit turned on. Lets take a look at a couple of examples!
+Побітове АБО працює майже так само, як і побітове І. Єдина відмінність між ними полягає в тому, що побітове АБО потребує, щоб один з двох бітових шаблонів був увімкнений для того, щоб результат був увімкнений з тим самим бітом. Давайте розглянемо декілька прикладів!
 
 ```c
 1100 //12
@@ -253,7 +253,7 @@ Bitwise OR works almost exactly the same as bitwise AND. The only difference bet
 1100 //12.
 ```
 
-Lets take a look at one more example.
+Розглянемо ще один приклад.
 
 ```c
 10111000 //184
@@ -263,11 +263,11 @@ Lets take a look at one more example.
 11111000 //248
 ```
 
-I think this is pretty self explanatory, if either of the numbers have a bit turned on the resulting number will also have that bit turned on.
+Я думаю, що це досить зрозуміло, якщо одне з чисел має увімкнений біт, то результуюче число також матиме увімкнений біт.
 
-### Bitwise XOR
+### Побітове XOR
 
-This operator is a little similar to the bitwise OR operator, but there is a bit of a difference. Lets look at the same example used in the bitwise OR section, and see if you can spot the difference.
+Цей оператор трохи схожий на побітове АБО, але є невелика різниця. Давайте подивимось на той самий приклад, що використовується у розділі побітове АБО, і подивимось, чи зможете ви помітити різницю.
 
 ```c
 1100 //12
@@ -277,7 +277,7 @@ This operator is a little similar to the bitwise OR operator, but there is a bit
 1000 //8.
 ```
 
-and finally:
+і нарешті:
 
 ```c
 10111000 //184
@@ -287,9 +287,9 @@ and finally:
 11110000 //240
 ```
 
-### Bitwise NOT
+### Побітове NOT
 
-This operator flips every bit in the bit pattern, turning all 1's to 0's and vise versa.
+Цей оператор перевертає кожен біт у бітовому шаблоні, перетворюючи всі 1 на 0 і навпаки.
 
 ```c
 ~0
@@ -302,29 +302,29 @@ This operator flips every bit in the bit pattern, turning all 1's to 0's and vis
 =
 11111111111111111111111111111011 //-5
 
-//and
+//і
 
-~1111111111111111111111111111111 //2147483647 (not to be confused with -1, which has 32 bits, not 31)
+~1111111111111111111111111111111 //2147483647 (не плутати з -1, який має 32 біти, а не 31)
 =
-10000000000000000000000000000000 //-2147483648 (32nd bit turned on)
+10000000000000000000000000000000 //-2147483648 (увімкнено 32-й біт)
 ```
 
-If you dont understand why the negative values are sort of "backwards" please read the section about signed integers.
+Якщо ви не розумієте, чому від'ємні значення «перевертаються», будь ласка, прочитайте розділ про знакові числа.
 
-### Bit Shifting
+### Зсув бітів
 
-Bit shifting does exactly what you would imagine it does; it shifts the bits in a number towards a certain direction. If you remember earlier in the article i mentioned that PAWN has a specific memory range (32 bits that can be used for storage). What happens when you shift a number past that range? The answer to this question lies in what shifting operator you are using, and what direction you are shifting in.
+Зсув бітів робить саме те, що ви можете собі уявити: він зсуває біти у числі у певному напрямку. Якщо ви пам'ятаєте, раніше у статті я згадував, що PAWN має певний діапазон пам'яті (32 біти, які можна використовувати для зберігання). Що відбувається, коли ви зсуваєте число за межі цього діапазону? Відповідь на це питання залежить від того, який оператор зсуву ви використовуєте і в якому напрямку ви зсуваєте.
 
-**NOTE:** In the following examples, all binary numbers will be written out in full (all 32 bits) to avoid any confusions.
+**ПРИМІТКА:** У наступних прикладах всі двійкові числа будуть виводитися повністю (всі 32 біти), щоб уникнути плутанини.
 
-#### Arithmetic shifts
+#### Арифметичні зсуви
 
-#### Right shift
+#### Зсув вправо
 
-All bits in a number are shifted x amount of times to the right when using this operator. Lets takes a quick look at a simple example.
+При використанні цього оператора всі біти в числі зсуваються на x кількість разів вправо. Давайте швидко розглянемо простий приклад.
 
 ```c
-00000000000000000000000000001000  //8
+00000000000000000000000000001000 //8
 >>
 2
 
@@ -333,7 +333,7 @@ All bits in a number are shifted x amount of times to the right when using this 
 00000000000000000000000000000010 //2
 ```
 
-You can see from the preceding example that every bit has moved to the right by two places, and two zeros were added on the left side as padding. These two zeros are actually the value of the MSB (Most significant bit) and are very important when it comes to signed integer shifting. The reason the MSB is used as padding is so we keep the sign of the number that is being shifted. Lets take a look at the same example, except lets make it negative.
+З попереднього прикладу видно, що кожен біт було зсунуто праворуч на дві позиції, а ліворуч було додано два нулі як проміжок. Ці два нулі насправді є значенням MSB (Most significant bit) і є дуже важливими, коли мова йде про зсув цілих чисел зі знаком. Причина використання MSB як проміжку полягає у тому, що ми зберігаємо знак числа, яке зсувається. Погляньмо на той самий приклад, тільки зробимо його від'ємним.
 
 ```c
 11111111111111111111111111111000 //-8
@@ -345,14 +345,14 @@ You can see from the preceding example that every bit has moved to the right by 
 11111111111111111111111111111110 //-2
 ```
 
-Clearly this behaves exactly the same as the previous example, except the left bits used for padding are ones; which proves that the padding of right arithmetic shift is the value of the MSB.
+Очевидно, що це поводиться так само, як і у попередньому прикладі, за винятком того, що ліві біти, які використовуються для зсуву, є одиницями; це доводить, що зсув праворуч дорівнює значенню MSB.
 
-#### Left shift
+#### Зсув вліво
 
-This is the exact opposite of the right arithmetic shifting operator. It shifts all the bits in a number to the left x amount of times. Lets look at an example.
+Це повна протилежність оператору правого арифметичного зсуву. Він зсуває всі біти числа вліво на x разів. Давайте розглянемо приклад.
 
 ```c
-00000000000000000000000000001000  //8
+00000000000000000000000000001000 //8
 <<
 2
 
@@ -361,7 +361,7 @@ This is the exact opposite of the right arithmetic shifting operator. It shifts 
 00000000000000000000000000100000 //32
 ```
 
-The only difference between the left and right arithmetic shift (besides the direction of the shift) would be the way it handles padding. With the right arithmetic shift, the padding is the value of the MSB (Most significant bit), but with the left arithmetic shift the value is just 0. This is because there is no relevant information like a number's sign to keep track of.
+Єдина відмінність між лівим і правим арифметичним зсувом (окрім напрямку зсуву) полягає у способі обробки проміжків. При правому арифметичному зсуві заповненням є значення MSB (молодшого значущого біта), а при лівому арифметичному зсуві - просто 0. Це пов'язано з тим, що немає відповідної інформації, наприклад, знаку числа, яку можна було б відстежувати.
 
 ```c
 11111111111111111111111111111000 //-8
@@ -373,16 +373,16 @@ The only difference between the left and right arithmetic shift (besides the dir
 11111111111111111111111111100000 //-32
 ```
 
-See? Even though the padding is always 0, the sign of the number is still kept. The only thing you really have to worry about is shifting to far. If you shift a positive number past the highest possible number, it will become negative and vise versa with negative values (you'll eventually hit 0).
+Бачите? Незважаючи на те, що пропуск завжди дорівнює 0, знак числа все одно зберігається. Єдине, про що вам варто потурбуватися - це зсув убік. Якщо ви зсунете додатне число за максимально можливе значення, воно стане від'ємним, і навпаки, з від'ємними значеннями (врешті-решт ви досягнете 0).
 
-#### Logical Shifts
+#### Логічні зсуви
 
-##### Right Shift
+##### Зсув вправо
 
-This is the converse to the arithmetic left shift. The best way to describe it would be a hybrid between the two arithmetic shifts. Lets take a look at it in action!
+Це зворотний до арифметичного зсуву вліво. Найкращий спосіб описати його - це гібрид між двома арифметичними зсувами. Давайте подивимось на нього в дії!
 
 ```c
-00000000000000000000000000001000  //8
+00000000000000000000000000001000 //8
 >>>
 2
 
@@ -391,7 +391,7 @@ This is the converse to the arithmetic left shift. The best way to describe it w
 00000000000000000000000000000010 //2
 ```
 
-The bits in the number 8 where shifted 2 times to the right. So how is this any different from the arithmetic right shift? The answer is the padding. With the arithmetic right shift, the padding is the value of the MSB, but with the logical right shift the padding is just 0 (just as it is with the arithmetic left shift). This means that it will not keep the number of the sign, and our result will always be positive. To prove this, lets shift a negative number!
+Біти у числі 8 було зсунуто на 2 рази праворуч. Чим це відрізняється від арифметичного зсуву вправо? Відповідь - заповнення. При арифметичному зсуві вправо зсув дорівнює значенню MSB, але при логічному зсуві вправо зсув дорівнює 0 (так само, як і при арифметичному зсуві вліво). Це означає, що він не буде зберігати номер знаку, і наш результат завжди буде додатнім. Щоб довести це, давайте зсунемо від'ємне число!
 
 ```c
 11111111111111111111111111111000 //-8
@@ -403,8 +403,10 @@ The bits in the number 8 where shifted 2 times to the right. So how is this any 
 00111111111111111111111111111110 //1073741822
 ```
 
-That proves that we wont get any negative values while using the logical right shift!
+Це доводить, що при використанні логічного зсуву вправо ми не отримаємо від'ємних значень!
 
-##### Left shift
+##### Зсув вліво
 
-There is no logical left shift, as it would do exactly the same as the arithmetic left shift. I just added this to avoid confusion of any sort, and also to keep the section balanced.
+Логічного зсуву вліво не існує, оскільки він робить те ж саме, що і арифметичний зсув вліво. Я просто додав його, щоб уникнути плутанини, а також для того, щоб зберегти збалансованість розділу.
+
+

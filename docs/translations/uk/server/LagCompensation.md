@@ -1,14 +1,16 @@
 ---
-title: "Lag Compensation"
-description: Lag compensation explanation.
+назва: «Компенсація затримок»
+description: Пояснення щодо компенсації затримки.
 ---
 
-Lag compensation for fired bullets is enabled by default on SA-MP servers.
+Компенсація затримки випущених куль увімкнена за замовчуванням на серверах SA-MP.
 
-It can be toggled using the `lagcompmode` server variable in [server.cfg](server.cfg) or `game.lag_compensation_mode` in [config.json](config.json).
+Її можна вимкнути за допомогою серверної змінної `lagcompmode` у [server.cfg](server.cfg) або `game.lag_compensation_mode` у [config.json](config.json).
 
-Setting it to 0 will disable lag compensation completely and players will have to lead their shots (fired ahead of targets).
+Встановлення значення 0 повністю вимкне компенсацію затримки, і гравці будуть змушені випереджати постріли (стріляти з випередженням цілей).
 
-Disabling Lag Compensation will prevent [OnPlayerWeaponShot](../scripting/callbacks/OnPlayerWeaponShot) from being called.
+Вимкнення компенсації затримки унеможливить виклик [OnPlayerWeaponShot](../scripting/callbacks/OnPlayerWeaponShot).
 
-This variable can only be set in [server.cfg](server.cfg) or [config.json](config.json).
+Цю змінну можна встановити лише у [server.cfg](server.cfg) або [config.json](config.json).
+
+

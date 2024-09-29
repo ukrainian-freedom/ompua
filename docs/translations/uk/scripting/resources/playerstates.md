@@ -1,25 +1,27 @@
 ---
-title: Player States
-description: A list of all the player states used by GetPlayerState function or OnPlayerStateChange callback.
-tags: ["player"]
-sidebar_label: Player States
+назва: Стани гравця
+description: Список усіх станів гравця, що використовуються функцією GetPlayerState або функцією зворотного виклику OnPlayerStateChange.
+теги: [«player»]
+sidebar_label: Стани гравця
 ---
 
-This page compiles the list of all the player states used by [GetPlayerState](../functions/GetPlayerState) function or [OnPlayerStateChange](../callbacks/OnPlayerStateChange) callback. Both pages contain examples on how to use the values below.
+На цій сторінці зібрано список усіх станів гравця, що використовуються функцією [GetPlayerState](../functions/GetPlayerState) або функцією [OnPlayerStateChange](../callbacks/OnPlayerStateChange) зворотного виклику. Обидві сторінки містять приклади використання наведених нижче значень.
 
-From a server developer standpoint having both "player states" and "special actions" may seem confusing. The main difference between the two is that the former is used for synchronization purposes (and there are packets associated with some of them), and is used for more "generic" actions. The "special actions" don't have any packets associated with them and cover more "specific" actions, and obviously have little to do with the current state of a player.
+З точки зору розробника сервера, наявність як «станів гравців», так і «спеціальних дій» може здатися заплутаною. Основна різниця між ними полягає в тому, що перші використовуються для синхронізації (і з деякими з них пов'язані пакети), а другі - для більш «загальних» дій. «Спеціальні дії» не мають жодних пакетів, пов'язаних з ними, і охоплюють більш “специфічні” дії, і, очевидно, мають мало спільного з поточним станом гравця.
 
-## States
+## Стани
 
-| ID  | Macro                                | Description                          |
+| Ідентифікатор | Макрос | Опис
 | --- | ------------------------------------ | ------------------------------------ |
-| 0   | PLAYER_STATE_NONE                    | The default player state which is used while initializing           |
-| 1   | PLAYER_STATE_ONFOOT                  | The player is on foot                    |
-| 2   | PLAYER_STATE_DRIVER                  | The player is driving a vehicle    |
-| 3   | PLAYER_STATE_PASSENGER               | The player is in a vehicle as a passenger     |
-| 4   | PLAYER_STATE_EXIT_VEHICLE            | The player is exiting a vehicle. It is primarily used internally               |
-| 5   | PLAYER_STATE_ENTER_VEHICLE_DRIVER    | The player is entering a vehicle as the driver. It is primarily used internally    |
-| 6   | PLAYER_STATE_ENTER_VEHICLE_PASSENGER | The player is entering a vehicle as the passenger. It is primarily used internally |
-| 7   | PLAYER_STATE_WASTED                  | The player is either dead or in class selection |
-| 8   | PLAYER_STATE_SPAWNED                 | The player is just spawned                    |
-| 9   | PLAYER_STATE_SPECTATING              | The player is in spectator mode                 |
+| 0 | PLAYER_STATE_NONE | Стан гравця за замовчуванням, який використовується під час ініціалізації
+| 1 | PLAYER_STATE_ONFOOT | Гравець рухається пішки
+| 2 | PLAYER_STATE_DRIVER | Гравець керує транспортним засобом
+| 3 | PLAYER_STATE_PASSENGER | Гравець перебуває в транспортному засобі як пасажир
+| 4 | PLAYER_STATE_EXIT_VEHICLE | Гравець виходить з транспортного засобу. В основному використовується всередині | ¦ ¦ ¦ ¦ ¦ ¦ ¦ ¦ ¦ ¦ ¦ ¦ ¦ ¦ ¦ ¦ ¦ ¦внутрішнього використання.
+| 5 | PLAYER_STATE_ENTER_VEHICLE_DRIVER | Гравець сідає в транспортний засіб як водій. Переважно використовується всередині гри | | 6 | PLAYER_STATE_COUNTRY_DIRECTOR
+| 6 | PLAYER_STATE_ENTER_VEHICLE_PASSENGER | Гравець сідає в транспортний засіб як пасажир. В основному використовується всередині | ¦ ¦ ¦ ¦ ¦ ¦ ¦ ¦ ¦ ¦ ¦ ¦ ¦ ¦ ¦ ¦ ¦ ¦ ¦внутрішнього використання.
+| 7 | PLAYER_STATE_WASTED | Гравець або мертвий, або перебуває на етапі вибору класу
+| 8 | PLAYER_STATE_SPAWNED | Гравця щойно створено
+| 9 | PLAYER_STATE_SPECTATING | Гравець перебуває в режимі глядача
+
+

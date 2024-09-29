@@ -1,134 +1,134 @@
 ---
-title: Textdraws
-description: As the name implies, a textdraw is text that is drawn on a player's screen.
+заголовок: Textdraws
+description: Як випливає з назви, textdraw - це текст, який малюється на екрані програвача.
 sidebar_label: Textdraws
 ---
 
-## What is a Textdraw?
+## Що таке текстовий малюнок?
 
-As the name implies, a textdraw is text that is drawn on a player's screen. Unlike [client messages](../functions/SendClientMessage) or [gametext](../functions/GameTextForPlayer) however, textdraws can be shown on a player's screen for an indefinite period of time. Textdraws can be simple text on the screen such as a website address, or complex scripted dynamic textdraws such as progress bars.
+Як випливає з назви, текстовий малюнок - це текст, який малюється на екрані гравця. На відміну від [client messages](../functions/SendClientMessage) або [gametext](../functions/GameTextForPlayer), текстовий малюнок може бути показаний на екрані гравця протягом невизначеного періоду часу. Це може бути простий текст на екрані, наприклад, адреса веб-сайту, або складний динамічний текст, що створюється за допомогою скриптів, наприклад, індикатори прогресу.
 
-This 'textdraw editor' tool can make designing textdraws much easier.
-
----
-  
-## Global Textdraws
-
-Global textdraws can be created, then shown to all players. There is a [limit](../resources/Limits) as to how many can be created, though. This means if you have a server with 500 players, creating more than 4 textdraws per-player is not possible. That's where **player**-textdraws come in. See further down. Here is a list of all the functions related to **global** textdraws:
-
-- [TextDrawCreate](../functions/TextDrawCreate): Create a textdraw.
-- [TextDrawDestroy](../functions/TextDrawDestroy): Destroy a textdraw.
-- [TextDrawColor](../functions/TextDrawColor): Set the color of the text in a textdraw.
-- [TextDrawBoxColor](../functions/TextDrawBoxColor): Set the color of the box in a textdraw.
-- [TextDrawBackgroundColor](../functions/TextDrawBackgroundColor): Set the background color of a textdraw.
-- [TextDrawAlignment](../functions/TextDrawAlignment): Set the alignment of a textdraw.
-- [TextDrawFont](../functions/TextDrawFont): Set the font of a textdraw.
-- [TextDrawLetterSize](../functions/TextDrawLetterSize): Set the letter size of the text in a textdraw.
-- [TextDrawTextSize](../functions/TextDrawTextSize): Set the size of a textdraw box.
-- [TextDrawSetOutline](../functions/TextDrawSetOutline): Choose whether the text has an outline.
-- [TextDrawSetShadow](../functions/TextDrawSetShadow): Toggle shadows on a textdraw.
-- [TextDrawSetProportional](../functions/TextDrawSetProportional): Scale the text spacing in a textdraw to a proportional ratio.
-- [TextDrawUseBox](../functions/TextDrawUseBox): Toggle if the textdraw has a box or not.
-- [TextDrawSetString](../functions/TextDrawSetString): Set the text in an existing textdraw.
-- [TextDrawShowForPlayer](../functions/TextDrawShowForPlayer): Show a textdraw for a certain player.
-- [TextDrawHideForPlayer](../functions/TextDrawHideForPlayer): Hide a textdraw for a certain player.
-- [TextDrawShowForAll](../functions/TextDrawShowForAll): Show a textdraw for all players.
-- [TextDrawHideForAll](../functions/TextDrawHideForAll): Hide a textdraw for all players.
-- [IsTextDrawVisibleForPlayer](../functions/IsTextDrawVisibleForPlayer): Checks if a textdraw is shown for the player.
-- [IsValidTextDraw](../functions/IsValidTextDraw): Checks if a textdraw is valid.
-- [TextDrawGetAlignment](../functions/TextDrawGetAlignment): Gets the text alignment of a textdraw.
-- [TextDrawGetBackgroundColour](../functions/TextDrawGetBackgroundColour): Gets the background colour of a textdraw.
-- [TextDrawGetBoxColour](../functions/TextDrawGetBoxColour): Gets the box colour of a textdraw.
-- [TextDrawGetColour](../functions/TextDrawGetColour): Gets the text colour of a textdraw.
-- [TextDrawGetFont](../functions/TextDrawGetFont): Gets the text font of a textdraw.
-- [TextDrawGetLetterSize](../functions/TextDrawGetLetterSize): Gets the width and height of the letters.
-- [TextDrawGetOutline](../functions/TextDrawGetOutline): Gets the thickness of a textdraw's text's outline.
-- [TextDrawGetPos](../functions/TextDrawGetPos): Gets the position of a textdraw.
-- [TextDrawGetPreviewModel](../functions/TextDrawGetPreviewModel): Gets the preview model of a 3D preview textdraw.
-- [TextDrawGetPreviewRot](../functions/TextDrawGetPreviewRot): Gets the rotation and zoom of a 3D model preview textdraw.
-- [TextDrawGetPreviewVehCol](../functions/TextDrawGetPreviewVehCol): Gets the preview vehicle colors of a 3D preview textdraw.
-- [TextDrawGetPreviewVehicleColours](../functions/TextDrawGetPreviewVehicleColours): Gets the preview vehicle colours of a 3D preview textdraw.
-- [TextDrawGetShadow](../functions/TextDrawGetShadow): Gets the size of a textdraw's text's shadow.
-- [TextDrawGetString](../functions/TextDrawGetString): Gets the text of a textdraw.
-- [TextDrawGetTextSize](../functions/TextDrawGetTextSize): Gets the X axis and Y axis of the textdraw.
-- [TextDrawIsBox](../functions/TextDrawIsBox): Checks if a textdraw is box.
-- [TextDrawIsProportional](../functions/TextDrawIsProportional): Checks if a textdraw is proportional.
-- [TextDrawIsSelectable](../functions/TextDrawIsSelectable): Checks if a textdraw is selectable.
-- [TextDrawSetPos](../functions/TextDrawSetPos): Sets the position of a textdraw.
-- [TextDrawSetStringForPlayer](../functions/TextDrawSetStringForPlayer): Changes the text on a textdraw for a specific player.
+Цей інструмент «редактор текстових зображень» може значно полегшити створення текстових зображень.
 
 ---
   
-## Player-textdraws
+## Глобальні текстові об'єкти
 
-Player-textdraws are only created for one specific player. Up to 256 textdraws can be created PER-PLAYER. That's 128,000 on a server with 500 players. A little more than 2048. Player-textdraws should be used for things that are not 'static'. Do not use them to display a website address for example, but for a vehicle health indicator.
+Можна створювати глобальні текстові розіграші, а потім показувати їх усім гравцям. Однак існує [обмеження](../ресурси/Обмеження) на їхню кількість, яку можна створити. Це означає, що якщо у вас сервер з 500 гравцями, створення більше 4 текстових малюнків на одного гравця неможливе. Ось тут і з'являються **player**-текстові малюнки. Дивіться далі. Ось список всіх функцій, пов'язаних з **global** textdraws:
 
-- [CreatePlayerTextDraw](../functions/CreatePlayerTextDraw): Create a player-textdraw.
-- [PlayerTextDrawDestroy](../functions/PlayerTextDrawDestroy): Destroy a player-textdraw.
-- [PlayerTextDrawColor](../functions/PlayerTextDrawColor): Set the color of the text in a player-textdraw.
-- [PlayerTextDrawBoxColor](../functions/PlayerTextDrawBoxColor): Set the color of a player-textdraw's box.
-- [PlayerTextDrawBackgroundColor](../functions/PlayerTextDrawBackgroundColor): Set the background color of a player-textdraw.
-- [PlayerTextDrawAlignment](../functions/PlayerTextDrawAlignment): Set the alignment of a player-textdraw.
-- [PlayerTextDrawFont](../functions/PlayerTextDrawFont): Set the font of a player-textdraw.
-- [PlayerTextDrawLetterSize](../functions/PlayerTextDrawLetterSize): Set the letter size of the text in a player-textdraw.
-- [PlayerTextDrawTextSize](../functions/PlayerTextDrawTextSize): Set the size of a player-textdraw box (or clickable area for [PlayerTextDrawSetSelectable](../functions/PlayerTextDrawSetSelectable)).
-- [PlayerTextDrawSetOutline](../functions/PlayerTextDrawSetOutline): Toggle the outline on a player-textdraw.
-- [PlayerTextDrawSetShadow](../functions/PlayerTextDrawSetShadow): Set the shadow on a player-textdraw.
-- [PlayerTextDrawSetProportional](../functions/PlayerTextDrawSetProportional): Scale the text spacing in a player-textdraw to a proportional ratio.
-- [PlayerTextDrawUseBox](../functions/PlayerTextDrawUseBox): Toggle the box on a player-textdraw.
-- [PlayerTextDrawSetString](../functions/PlayerTextDrawSetString): Set the text of a player-textdraw.
-- [PlayerTextDrawShow](../functions/PlayerTextDrawShow): Show a player-textdraw.
-- [PlayerTextDrawHide](../functions/PlayerTextDrawHide): Hide a player-textdraw.
-- [IsPlayerTextDrawVisible](../functions/IsPlayerTextDrawVisible): Checks if a player-textdraw is shown for the player.
-- [IsValidPlayerTextDraw](../functions/IsValidPlayerTextDraw): Checks if a player-textdraw is valid.
-- [PlayerTextDrawBackgroundColour](../functions/PlayerTextDrawBackgroundColour): Adjust the background colour of a player-textdraw.
-- [PlayerTextDrawBoxColour](../functions/PlayerTextDrawBoxColour): Sets the colour of a textdraw's box (PlayerTextDrawUseBox ).
-- [PlayerTextDrawColour](../functions/PlayerTextDrawColour): Sets the text colour of a player-textdraw.
-- [PlayerTextDrawGetAlignment](../functions/PlayerTextDrawGetAlignment): Gets the text alignment of a player-textdraw.
-- [PlayerTextDrawGetBackgroundColour](../functions/PlayerTextDrawGetBackgroundColour): Gets the background colour of a player-textdraw.
-- [PlayerTextDrawGetBoxColour](../functions/PlayerTextDrawGetBoxColour): Gets the box colour of a player-textdraw.
-- [PlayerTextDrawGetColour](../functions/PlayerTextDrawGetColour): Gets the text colour of a player-textdraw.
-- [PlayerTextDrawGetFont](../functions/PlayerTextDrawGetFont): Gets the text font of a player-textdraw.
-- [PlayerTextDrawGetLetterSize](../functions/PlayerTextDrawGetLetterSize): Gets the width and height of the letters.
-- [PlayerTextDrawGetOutline](../functions/PlayerTextDrawGetOutline): Get the outline size on a player-textdraw.
-- [PlayerTextDrawGetPos](../functions/PlayerTextDrawGetPos): Gets the position of a player-textdraw.
-- [PlayerTextDrawGetPreviewModel](../functions/PlayerTextDrawGetPreviewModel): Gets the preview model of a 3D preview player-textdraw.
-- [PlayerTextDrawGetPreviewRot](../functions/PlayerTextDrawGetPreviewRot): Gets the rotation and zoom of a 3D model preview player-textdraw.
-- [PlayerTextDrawGetPreviewVehicleColours](../functions/PlayerTextDrawGetPreviewVehicleColours): Gets the preview vehicle colors of a 3D preview player-textdraw.
-- [PlayerTextDrawGetShadow](../functions/PlayerTextDrawGetShadow): Get the shadow size on a player-textdraw.
-- [PlayerTextDrawGetString](../functions/PlayerTextDrawGetString): Gets the text of a player-textdraw.
-- [PlayerTextDrawGetTextSize](../functions/PlayerTextDrawGetTextSize): Gets the X axis and Y axis of the player-textdraw text size.
-- [PlayerTextDrawIsBox](../functions/PlayerTextDrawIsBox): Checks if a player-textdraw is box.
-- [PlayerTextDrawIsProportional](../functions/PlayerTextDrawIsProportional): Checks if a player-textdraw is proportional.
-- [PlayerTextDrawIsSelectable](../functions/PlayerTextDrawIsSelectable): Checks if a player-textdraw is selectable.
-- [PlayerTextDrawSetPos](../functions/PlayerTextDrawSetPos): Sets the position of a player-textdraw.
-- [PlayerTextDrawSetPreviewVehicleColours](../functions/PlayerTextDrawSetPreviewVehicleColours): Set the color of a vehicle in a player-textdraw model preview (if a vehicle is shown).
+- [TextDrawCreate](../functions/TextDrawCreate): Створити текстовий малюнок.
+- [TextDrawDestroy](../functions/TextDrawDestroy): Знищити текстовий малюнок.
+- [TextDrawColor](../functions/TextDrawColor): Встановити колір тексту у текстовому малюнку.
+- [TextDrawBoxColor](../functions/TextDrawBoxColor): Встановити колір поля у текстовому малюнку.
+- [TextDrawBackgroundColor](../functions/TextDrawBackgroundColor): Встановити колір фону текстового малюнка.
+- [TextDrawAlignment](../functions/TextDrawAlignment): Встановити вирівнювання текстового малюнка.
+- [TextDrawFont](../functions/TextDrawFont): Встановити шрифт текстового малюнка.
+- [TextDrawLetterSize](../functions/TextDrawLetterSize): Встановити розмір літер тексту у текстовому малюнку.
+- [TextDrawTextSize](../functions/TextDrawTextSize): Встановити розмір текстового поля для малювання тексту.
+- [TextDrawSetOutline](../functions/TextDrawSetOutline): Виберіть, чи буде текст мати контур.
+- [TextDrawSetShadow](../functions/TextDrawSetShadow): Перемикання тіней на намальованому тексті.
+- [TextDrawSetProportional](../functions/TextDrawSetProportional): Масштабує інтервали між текстами у текстовому малюнку до пропорційного співвідношення.
+- [TextDrawUseBox](../functions/TextDrawUseBox): Перемикає, чи має текстовий рисунок поле, чи ні.
+- [TextDrawSetString](../functions/TextDrawSetString): Встановити текст в існуючому текстовому малюнку.
+- [TextDrawShowForPlayer](../functions/TextDrawShowForPlayer): Показати текстовий малюнок для певного гравця.
+- [TextDrawHideForPlayer](../functions/TextDrawHideForPlayer): Приховати текстове малювання для певного гравця.
+- [TextDrawShowForAll](../functions/TextDrawShowForAll): Показати малювання тексту для всіх гравців.
+- [TextDrawHideForAll](../functions/TextDrawHideForAll): Приховати малювання тексту для всіх гравців.
+- [IsTextDrawVisibleForPlayer](../functions/IsTextDrawVisibleForPlayer): Перевіряє, чи показується текстовий малюнок для гравця.
+- [IsValidTextDraw](../functions/IsValidTextDraw): Перевіряє, чи допустиме малювання тексту.
+- [TextDrawGetAlignment](../functions/TextDrawGetAlignment): Отримує вирівнювання тексту текстового малювання.
+- [TextDrawGetBackgroundColour](../functions/TextDrawGetBackgroundColour): Отримує колір фону для текстового малювання.
+- [TextDrawGetBoxColour](../functions/TextDrawGetBoxColour): Отримує колір рамки текстового малювання.
+- [TextDrawGetColour](../functions/TextDrawGetColour): Отримує колір тексту текстового малюнка.
+- [TextDrawGetFont](../functions/TextDrawGetFont): Отримує шрифт тексту текстового малюнка.
+- [TextDrawGetLetterSize](../functions/TextDrawGetLetterSize): Отримує ширину та висоту літер.
+- [TextDrawGetOutline](../functions/TextDrawGetOutline): Отримує товщину контуру тексту, що малюється.
+- [TextDrawGetPos](../functions/TextDrawGetPos): Отримує позицію текстового малюнка.
+- [TextDrawGetPreviewModel](../functions/TextDrawGetPreviewModel): Отримує модель попереднього перегляду 3D-текстового малюнка.
+- [TextDrawGetPreviewRot](../functions/TextDrawGetPreviewRot): Отримує обертання та масштабування 3D-моделі попереднього перегляду textdraw.
+- [TextDrawGetPreviewVehCol](../functions/TextDrawGetPreviewVehCol): Отримує кольори транспортного засобу для попереднього перегляду 3D-зображування.
+- [TextDrawGetPreviewVehicleColours](../functions/TextDrawGetPreviewVehicleColours): Отримує кольори транспортного засобу попереднього перегляду 3D-зображуваного тексту.
+- [TextDrawGetShadow](../functions/TextDrawGetShadow): Отримує розмір тіні від тексту, що малюється.
+- [TextDrawGetString](../functions/TextDrawGetString): Отримує текст текстового малюнка.
+- [TextDrawGetTextSize](../functions/TextDrawGetTextSize): Отримує вісь X та вісь Y тексту, що малюється.
+- [TextDrawIsBox](../functions/TextDrawIsBox): Перевіряє, чи текстовий малюнок є полем.
+- [TextDrawIsProportional](../functions/TextDrawIsProportional): Перевіряє, чи текстовий малюнок є пропорційним.
+- [TextDrawIsSelectable](../functions/TextDrawIsSelectable): Перевіряє, чи текстовий малюнок є виокремлюваним.
+- [TextDrawSetPos](../functions/TextDrawSetPos): Встановлює позицію текстового малюнка.
+- [TextDrawSetStringForPlayer](../functions/TextDrawSetStringForPlayer): Змінює текст на текстовому малюнку для певного гравця.
 
 ---
   
-## Variable Declaration
+## Гравець-текстродроти
 
-When creating a textdraw, you should always decide if the textdraw you're going to create has to be global (eg. your website address, global annoucement) or if it's going to differ per player (eg. kills, deaths, score).
+Текстовки гравця створюються лише для одного конкретного гравця. На одного гравця може бути створено до 256 текстових повідомлень. Це 128,000 на сервері з 500 гравцями. Трохи більше, ніж 2048. Гравці-текстродроти повинні використовуватися для речей, які не є «статичними». Наприклад, не використовуйте їх для відображення адреси веб-сайту, а для індикатора стану автомобіля.
+
+- [CreatePlayerTextDraw](../functions/CreatePlayerTextDraw): Створити плеєр-текст-драйв.
+- [PlayerTextDrawDestroy](../functions/PlayerTextDrawDestroy): Знищити гравця-текстовика.
+- [PlayerTextDrawColor](../functions/PlayerTextDrawColor): Встановити колір тексту у плеєрі-текстовику.
+- [PlayerTextDrawBoxColor](../functions/PlayerTextDrawBoxColor): Задає колір вікна плеєра-текстовика.
+- [PlayerTextDrawBackgroundColor](../functions/PlayerTextDrawBackgroundColor): Встановити колір фону гравця-текстовика.
+- [PlayerTextDrawAlignment](../functions/PlayerTextDrawAlignment): Встановити вирівнювання плеєра-текстовика.
+- [PlayerTextDrawFont](../functions/PlayerTextDrawFont): Встановити шрифт плеєра-текстовика.
+- [PlayerTextDrawLetterSize](../functions/PlayerTextDrawLetterSize): Встановлення розміру літер тексту у плеєрі-текстовику.
+- [PlayerTextDrawTextSize](../functions/PlayerTextDrawTextSize): Встановити розмір вікна плеєра-текстовика (або області, на яку можна натиснути для [PlayerTextDrawSetSelectable](../functions/PlayerTextDrawSetSelectable)).
+- [PlayerTextDrawSetOutline](../functions/PlayerTextDrawSetOutline): Увімкнути контур на плеєрі, що малює текст.
+- [PlayerTextDrawSetShadow](../functions/PlayerTextDrawSetShadow): Встановити тінь на плеєрі-текстовику.
+- [PlayerTextDrawSetProportional](../functions/PlayerTextDrawSetProportional): Масштабує інтервал між текстами у плеєрі-текстовику до пропорційного співвідношення.
+- [PlayerTextDrawUseBox](../functions/PlayerTextDrawUseBox): Увімкнути прапорець на вікні програвача-текстовика.
+- [PlayerTextDrawSetString](../functions/PlayerTextDrawSetString): Встановити текст плеєра-текстовика.
+- [PlayerTextDrawShow](../functions/PlayerTextDrawShow): Показати гравця-текстовика.
+- [PlayerTextDrawHide](../functions/PlayerTextDrawHide): Приховати гравця-текстовика.
+- [IsPlayerTextDrawVisible](../functions/IsPlayerTextDrawVisible): Перевіряє, чи показано плеєр-текст для гравця.
+- [IsValidPlayerTextDraw](../functions/IsValidPlayerTextDraw): Перевіряє, чи дійсний гравець-текст, що виводиться для гравця.
+- [PlayerTextDrawBackgroundColour](../functions/PlayerTextDrawBackgroundColour): Налаштувати колір фону плеєра-тексту, що малюється.
+- [PlayerTextDrawBoxColour](../functions/PlayerTextDrawBoxColour): Встановлює колір вікна малювання тексту (PlayerTextDrawUseBox ).
+- [PlayerTextDrawColour](../functions/PlayerTextDrawColour): Встановлює колір тексту, який буде намальовано плеєром-текстовиком.
+- [PlayerTextDrawGetAlignment](../functions/PlayerTextDrawGetAlignment): Отримує вирівнювання тексту гравця-текстовика.
+- [PlayerTextDrawGetBackgroundColour](../functions/PlayerTextDrawGetBackgroundColour): Отримує колір тла гравця, що малює текст.
+- [PlayerTextDrawGetBoxColour](../functions/PlayerTextDrawGetBoxColour): Отримує колір поля гравця, що малює текст.
+- [PlayerTextDrawGetColour](../functions/PlayerTextDrawGetColour): Отримує колір тексту гравця-текстовика.
+- [PlayerTextDrawGetFont](../functions/PlayerTextDrawGetFont): Отримує шрифт тексту гравця-текстовика.
+- [PlayerTextDrawGetLetterSize](../functions/PlayerTextDrawGetLetterSize): Отримує ширину та висоту літер.
+- [PlayerTextDrawGetOutline](../functions/PlayerTextDrawGetOutline): Отримує розмір контуру на плеєрі-тексті.
+- [PlayerTextDrawGetPos](../functions/PlayerTextDrawGetPos): Отримує позицію гравця-текстовика.
+- [PlayerTextDrawGetPreviewModel](../functions/PlayerTextDrawGetPreviewModel): Отримує модель попереднього перегляду 3D-перегляду player-textdraw.
+- [PlayerTextDrawGetPreviewRot](../functions/PlayerTextDrawGetPreviewRot): Отримує обертання та масштабування попереднього перегляду 3D-моделі player-textdraw.
+- [PlayerTextDrawGetPreviewVehicleColours](../functions/PlayerTextDrawGetPreviewVehicleColours): Отримує кольори транспортного засобу для попереднього перегляду 3D-тексту гравця-зображувача.
+- [PlayerTextDrawGetShadow](../functions/PlayerTextDrawGetShadow): Отримати розмір тіні на плеєрі-текстовику.
+- [PlayerTextDrawGetString](../functions/PlayerTextDrawGetString): Отримує текст гравця-текстовика.
+- [PlayerTextDrawGetTextSize](../functions/PlayerTextDrawGetTextSize): Отримує розмір тексту за віссю X та віссю Y від гравця-текстовика.
+- [PlayerTextDrawIsBox](../functions/PlayerTextDrawIsBox): Перевіряє, чи є гравець-текст, що малює, полем.
+- [PlayerTextDrawIsProportional](../functions/PlayerTextDrawIsProportional): Перевіряє, чи гравець-текст є пропорційним.
+- [PlayerTextDrawIsSelectable](../functions/PlayerTextDrawIsSelectable): Перевіряє, чи гравець-текст є вибірковим.
+- [PlayerTextDrawSetPos](../functions/PlayerTextDrawSetPos): Встановлює позицію гравця-текстовика.
+- [PlayerTextDrawSetPreviewVehicleColours](../functions/PlayerTextDrawSetPreviewVehicleColours): Встановити колір транспортного засобу у попередньому перегляді моделі малювання тексту гравця (якщо транспортний засіб показано).
+
+---
+  
+## Оголошення змінних
+
+При створенні текстури, ви завжди повинні вирішити, чи буде створена вами текстура глобальною (наприклад, адреса вашого сайту, глобальне оголошення), чи вона буде відрізнятися для кожного гравця (наприклад, вбивства, смерті, рахунок).
 
 
-### Global Textdraw
+### Глобальний текстовий розіграш
 
-A global textdraw is the easiest to create and requires only one variable. This variable is needed to modify the textdraw and to show it to the players later on. The declaration for such a textdraw needs to be a global variable in most cases. The textdraw variable also needs to be prefixed with the _Text:_ tag and should be initialized with the value _Text:INVALID_TEXT_DRAW_. If you omit the initialization, the textdraw may conflict with others as you add more textdraws.
+Глобальний текстовий розіграш найпростіший у створенні і вимагає лише однієї змінної. Ця змінна необхідна для модифікації текстового розіграшу і подальшого показу його гравцям. У більшості випадків оголошення для такого текстовика має бути глобальною змінною. Змінна textdraw також повинна мати префікс _Text:_ і бути ініціалізована значенням _Text:INVALID_TEXT_DRAW_. Якщо ви не ініціалізуєте змінну textdraw, вона може конфліктувати з іншими змінними, коли ви додаватимете нові текстові малюнки.
 
 ```c
 new Text:gMyText = Text:INVALID_TEXT_DRAW;
 ```
 
 
-### Per-Player Textdraw
+### Текстовий малюнок для окремого гравця
 
-A per-player textdraw is exactly the same as a regular 'global' textdraw, but only creates the textdraw for a single player.
+Розіграш тексту для окремого гравця є таким самим, як і звичайний «глобальний» розіграш, але створює текст лише для одного гравця.
 
-This is useful for textdraws that are unique to each player, such as a 'stats' bar showing their kills or score.
+Це корисно для унікальних для кожного гравця текстових повідомлень, таких як «статистика», що показує їхні вбивства або рахунок.
 
-This can be used to avoid going over the global-textdraw limit, as you can create 256 textdraws per player. 
+Це може бути використано для того, щоб уникнути перевищення ліміту глобального текстового розіграшу, оскільки ви можете створити 256 текстових розіграшів для одного гравця. 
 
-They are also easier to manage, as they automatically destroy themselves when the player disconnects.
+Ними також легше керувати, оскільки вони автоматично знищуються, коли гравець відключається від мережі.
 
 ```c
 new PlayerText:gMyPlayerText = PlayerText:INVALID_TEXT_DRAW;
@@ -136,92 +136,92 @@ new PlayerText:gMyPlayerText = PlayerText:INVALID_TEXT_DRAW;
 
 :::info
 
-IMPORTANT NOTE: An array is still needed for the variable, as the ID of the textdraws may differ from player to player, as other players may have more or less textdraws created than the other.
+ВАЖЛИВА ЗАУВАГА: Для змінної все одно потрібен масив, оскільки ідентифікатор текстових малюнків може відрізнятися від гравця до гравця, оскільки інші гравці можуть створювати більше або менше текстових малюнків, ніж інші.
 
 :::
 
-The function names only differ slightly, with 'TextDraw' becoming 'PlayerTextDraw', with one exception: [CreatePlayerTextDraw](../functions/CreatePlayerTextDraw) ('TextDrawSetString' becomes 'PlayerTextDrawSetString').
+Назви функцій відрізняються лише незначно, 'TextDraw' стає 'PlayerTextDraw', за одним винятком: [CreatePlayerTextDraw](../functions/CreatePlayerTextDraw) ('TextDrawSetString' стає 'PlayerTextDrawSetString').
 
 ---
   
-## Creating the Textdraw
+## Створення Textdraw
 
 ![Image:320px-Textdraw_map.png](/images/textdraws/320px-Textdraw_map.png)
 
-Once you've declared a variable/array to store the ID of your textdraw(s) in, you can proceed to create the textdraw itself. For global textdraws that are always created, the code should be placed under [OnGameModeInit](../callbacks/OnGameModeInit). To create the textdraw, the function [TextDrawCreate](../functions/TextDrawCreate) must be used.
+Після того, як ви оголосили змінну/масив для зберігання ідентифікаторів ваших текстових рисунків, ви можете перейти до створення самих рисунків. Для глобальних textdraw'ів, які створюються завжди, код слід розмістити у розділі [OnGameModeInit](../callbacks/OnGameModeInit). Для створення текстури слід використовувати функцію [TextDrawCreate](../functions/TextDrawCreate).
 
-Note that this function merely creates the textdraw, other functions are used to modify it and to show it to the player(s).
+Зауважте, що ця функція лише створює текстовий малюнок, інші функції використовуються для його модифікації та показу гравцю(ам).
 
-**Parameters:**
+**Параметри:**
 
 TextDrawCreate(Float:x, Float:y, text[])
 
-| Name   | Description                                  |
+| Назва | Опис
 | ------ | -------------------------------------------- |
-| x      | X coordinate at which to create the textdraw |
-| y      | Y coordinate at which to create the textdraw |
-| text[] | The text in the textdraw.                    |
+| x | Координата X, в якій потрібно створити текстовий малюнок.
+| y | Координата по Y, в якій створюється текст, що малюється.
+| text[] | Текст у текстовому малюнку.                    |
 
-**Return Values:**
+**Значення, що повертаються:**
 
-The ID of the created textdraw
+Ідентифікатор створеного textdraw
 
-Let's proceed to create the textdraw:
+Перейдемо до створення textdraw:
 
 ```c
 public OnGameModeInit()
 {
-    gMyText = TextDrawCreate(320.0, 240.0, "Hello World!");
+    gMyText = TextDrawCreate(320.0, 240.0, «Hello World!»);
     return 1;
 }
 ```
 
-We have created a textdraw in the center of the screen that says "Hello World!".
+Ми створили текстовий рядок у центрі екрану, який говорить «Hello World!».
 
 ---
   
-## Setting the font
+## Встановлення шрифту
 
-There are 4 fonts available for textdraw text:
+Для тексту textdraw доступні 4 шрифти:
 
 ![Image:320px-Textdraw_map.png](/images/textdraws/Textdraw_font_styles.png)
 
-| ID  | Info                                                           | Tips                                                   |
+| Ідентифікатор | Інформація | Поради
 | --- | -------------------------------------------------------------- | ------------------------------------------------------ |
-| 0   | The _San Andreas_ Font.                                        | Use for header or titles, not a whole page.            |
-| 1   | Clear font that includes both upper and lower case characters. | Can be used for a lot of text.                         |
-| 2   | Clear font, but includes only capital letters.                 | Can be used in various instances.                      |
-| 3   | _GTA font_                                                     | Retains quality when enlarged. Useful for large texts. |
+| 0 | The _San Andreas_ Font.                                        | Використовуйте для заголовків, але не для всієї сторінки.            |
+| 1 | Чистий шрифт, що містить як великі, так і малі літери. | Може використовуватися для великої кількості тексту.                         |
+| 2 | Чистий шрифт, але містить лише великі літери.                 | Може використовуватися в різних випадках.                      |
+| 3 | _GTA шрифт_ | Зберігає якість при збільшенні. Корисний для великих текстів. |
 
-As of SA-MP 0.3d, a new font (id 4) can be set. This is used in combination with the [TextDrawCreate](../functions/TextDrawCreate) and [TextDrawTextSize](../functions/TextDrawTextSize) functions to show a texture 'sprite' on the player's screen. We'll cover this later.
+Починаючи з SA-MP 0.3d, можна встановити новий шрифт (ідентифікатор 4). Він використовується у поєднанні з функціями [TextDrawCreate](../functions/TextDrawCreate) та [TextDrawTextSize](../functions/TextDrawTextSize) для показу текстури «спрайту» на екрані гравця. Ми розглянемо це пізніше.
 
 ---
   
-## Showing the textdraw
+## Відображення textdraw
 
-For this example, the textdraw has been created globally under OnGameModeInit and will be shown to player when they join the server.
+У цьому прикладі textdraw було створено глобально під час OnGameModeInit і буде показано гравцеві, коли він приєднається до сервера.
 
-To show a textdraw for a single player, the function [TextDrawShowForPlayer](../functions/TextDrawShowForPlayer) is used.
+Для показу текстури для одного гравця використовується функція [TextDrawShowForPlayer](../functions/TextDrawShowForPlayer).
 
-**Parameters:**
+**Параметри:**
 
 TextDrawShowForPlayer(playerid, Text:text)
 
-| Name     | Description                                   |
+| Назва | Опис
 | -------- | --------------------------------------------- |
-| playerid | The ID of the player to show the textdraw for |
-| text     | The ID of the textdraw to show                |
+| playerid | Ідентифікатор гравця, для якого буде показано текстовий малюнок.
+| text | Ідентифікатор гравця, для якого потрібно показати текст.
 
-**Return Values:**
+**Значення, що повертаються:**
 
-This function does not return any specific values.
+Ця функція не повертає жодних конкретних значень.
 
-The playerid is passed through OnPlayerConnect, and the text-draw ID is stored in the 'gMyText' variable.
+Ідентифікатор гравця передається через OnPlayerConnect, а ідентифікатор тексту для малювання зберігається у змінній 'gMyText'.
 
 ```c
 public OnGameModeInit()
 {
-    gMyText = TextDrawCreate(320.0, 320.0, "Hello World!");
+    gMyText = TextDrawCreate(320.0, 320.0, «Hello World!»);
     return 1;
 }
 
@@ -234,7 +234,9 @@ public OnPlayerConnect(playerid)
 
 ---
   
-## Assorted Tips
+## Різноманітні поради
 
-- Try to use whole number when specifying positions, this ensures the best compatibility on different resolutions.
-- Fonts appear to look the best with an X to Y ratio of 1 to 4 (e.g. if x = 0.5 then y should be 2).
+- Намагайтеся використовувати цілі числа при вказівці позицій, це забезпечить найкращу сумісність на різних роздільних здатностях.
+- Найкраще шрифти виглядають при співвідношенні X до Y від 1 до 4 (наприклад, якщо x = 0.5, то y має бути 2).
+
+

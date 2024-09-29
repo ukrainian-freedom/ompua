@@ -1,61 +1,61 @@
 ---
-title: Tire States
-description: Information about byte size and its corresponding tire state bits.
+заголовок: Tire States
+description: Інформація про розмір байта та відповідні йому біти стану шини.
 ---
 
-:::note
+:::примітка
 
-Tire states are used by natives such as [GetVehicleDamageStatus](../functions/GetVehicleDamageStatus) and [UpdateVehicleDamageStatus](../functions/UpdateVehicleDamageStatus).
-
-:::
-
-:::note
-
-Even vehicles with more than 4 wheels (e.g. trucks) only have 4 tire states.
+Стани шин використовуються нативними функціями, такими як [GetVehicleDamageStatus](../functions/GetVehicleDamageStatus) та [UpdateVehicleDamageStatus](../functions/UpdateVehicleDamageStatus).
 
 :::
 
-## Which bit stores what?
+:::примітка
 
-The damage of all tires will be saved together in 1 nibble (which is 4 bits) for 4-wheeled vehicles and in 1 pair (which is 2 bits) for 2-wheeled vehicles. Each bit stores whether the corresponding tire is **popped (value 1)** or **not (value 0)**.
+Навіть транспортні засоби з більш ніж 4-ма колесами (наприклад, вантажівки) мають лише 4 стани шин.
 
-- The **first bit** stores the state of the **back-right** tire for a 4-wheeled vehicle or the **back** tire for a 2-wheeled vehicle.
-- The **second bit** stores the state of the **front-right** tire for a 4-wheeled vehicle or the **front** tire for a 2-wheeled vehicle.
-- The **third bit** stores the state of the **back-left** tire for a 4-wheeled vehicle.
-- The **fourth bit** stores the state of the **front-left** tire for a 4-wheeled vehicle.
+:::
 
-Notice that the bits are counted from behind, so the first bit is the rightmost bit.
+## Який біт що зберігає?
+
+Пошкодження всіх шин зберігаються разом в 1 погризку (це 4 біти) для 4-колісних транспортних засобів і в 1 парі (це 2 біти) для 2-колісних транспортних засобів. Кожен біт зберігає інформацію про те, чи відповідна шина є **спущеною (значення 1)** або **не спущеною (значення 0)**.
+
+- Перший біт** зберігає стан **заднього правого** колеса для 4-колісного транспортного засобу або **заднього лівого** колеса для 2-колісного транспортного засобу.
+- Другий біт** зберігає стан **передньої правої** шини для 4-колісного транспортного засобу або **передньої** шини для 2-колісного транспортного засобу.
+- Третій біт** зберігає стан **задньої лівої** шини для 4-колісного транспортного засобу.
+- Четвертий біт** зберігає стан **передньої лівої** шини для 4-колісного транспортного засобу.
+
+Зверніть увагу, що біти рахуються ззаду, тому перший біт є крайнім правим.
 
 ---
   
-## Example
+## Приклад
 
-The following code tells that for a 4-wheeled vehicle two tires are popped and two are not:
+Наступний код повідомляє, що у 4-колісного транспортного засобу дві шини пробито, а дві - ні:
 
 `0101`
 
-However, SA-MP returns a decimal number so you have to convert it to a binary number first to get a result like above. What SA-MP would return given the example above is this:
+Однак, SA-MP повертає десяткове число, тому вам доведеться спочатку перетворити його у двійкове, щоб отримати результат, як показано вище. У наведеному вище прикладі SA-MP поверне наступне число:
 
 `5`
 
 ---
   
-## Info table
+## Інформаційна таблиця
 
-Here is a visual representation of the tire states. Vehicle viewed from a top-down perspective, with the upper values being the front of the vehicle and the lower values the back of the vehicle.
+Ось візуальне представлення стану шин. Транспортний засіб розглядається з перспективи зверху вниз, де верхні значення - передня частина автомобіля, а нижні - задня частина.
 
-**Legend:**
+**Легенда:**
 
 ```
-o - inflated tire
-x - popped tire
+o - накачана шина
+x - шина, що лопнула
 ```
 
 ---
   
-### 4-wheeled vehicles
+### 4-х колісні транспортні засоби
 
-4 bits for 4-wheeled vehicles: (FL)(BL)(FR)(BR) (Front-Left, Back-Left, Front-Right and Back-Right).
+4 біти для чотириколісних транспортних засобів: (FL)(BL)(FR)(BR) (переднє ліве, заднє ліве, переднє праве та заднє праве).
 
 0: (0000)
 
@@ -185,13 +185,13 @@ x - popped tire
     x-x
 ```
 
-After 15 the values are repeated, so 16 is 0, 17 is 1 and so on.
+Після 15 значення повторюються, тому 16 - 0, 17 - 1 і так далі.
 
 ---
   
-### 2-wheeled vehicles (bikes)
+### 2-колісні транспортні засоби (велосипеди)
 
-2 bits for 2-wheeled vehicles: (F)(B) (Front and Back).
+2 біти для 2-колісних транспортних засобів: (F)(B) (Передній і задній).
 
 0: (00)
 
@@ -225,25 +225,27 @@ After 15 the values are repeated, so 16 is 0, 17 is 1 and so on.
     x
 ```
 
-After 3 the values are repeated, so 4 is 0, 5 is 1 and so on.
+Після 3 значення повторюються, тому 4 - це 0, 5 - 1 і так далі.
 
 ---
   
-## Example usage
+## Приклад використання
 
-To pop the back two tires of a 4-wheeled vehicle while keeping the front unchanged:
+Підірвати дві задні шини 4-колісного транспортного засобу, залишивши передні без змін:
 
 ```c
-new 
-	VEHICLE_PANEL_STATUS:panels,
-	VEHICLE_DOOR_STATUS:doors,
-	VEHICLE_LIGHT_STATUS:lights,
-	VEHICLE_TIRE_STATUS:tires;
+новий 
+	VEHICLE_PANEL_STATUS:панелі,
+	VEHICLE_DOOR_STATUS:двері,
+	VEHICLE_LIGHT_STATUS:фари,
+	VEHICLE_TIRE_STATUS:шини;
 
-GetVehicleDamageStatus(vehicleid, panels, doors, lights, tires);
-UpdateVehicleDamageStatus(vehicleid, panels, doors, lights, (tires | VEHICLE_TIRE_STATUS:0b0101)); // The '0b' part means that the following number is in binary. Just the same way that '0x' indicates a hexadecimal number.
+GetVehicleDamageStatus(vehicleid, панелі, двері, фари, шини);
+UpdateVehicleDamageStatus(vehicleid, panels, doors, lights, (tires | VEHICLE_TIRE_STATUS:0b0101)); // Частина '0b' означає, що наступне число є двійковим. Так само, як '0x' вказує на шістнадцяткове число.
 ```
 
-## See also
+## Дивіться також
 
-- [Vehicle Tire Status](../resources/vehicle-tire-status)
+- [Статус шин автомобіля](../resources/vehicle-tire-status)
+
+

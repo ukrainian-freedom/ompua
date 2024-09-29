@@ -1,18 +1,20 @@
 ---
-title: Spectate Types
-description: Spectate Types used by GetPlayerSpectateType.
+назва: Spectate Types
+description: Типи спектаклів, що використовуються методом GetPlayerSpectateType.
 tags: []
-sidebar_label: Spectate Types
+бічна_мітка: Спектральні типи
 ---
 
 :::info
 
-Spectate Types used by [GetPlayerSpectateType](../functions/GetPlayerSpectateType).
+Типи спектатів, що використовуються [GetPlayerSpectateType](../functions/GetPlayerSpectateType).
 
 :::
 
-| Type    | Value |
+| Тип | Значення |
 |---------|-------|
-| None    | 0     |
-| Vehicle | 1     |
-| Player  | 2     |
+| Ніхто | 0 | ¦ ¦ ¦ ¦ ¦ ¦ ¦ ¦ ¦ ¦ ¦ ¦ ¦ ¦ ¦ ¦ ¦0
+| Транспортний засіб 1
+| Гравець | 2
+
+

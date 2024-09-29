@@ -1,21 +1,21 @@
 ---
-title: "Keywords: Statements"
+title: "Ключові слова: Statements"
 ---
 
-## `assert`
+## "стверджувати
 
-Aborts execution with a runtime error if the expression evaluates to logically false. Seems to work only in the main() block. The assert statement should be used to indicate a logical(programmer's) error, never a run-time(user's) error.
+Перериває виконання з помилкою під час виконання, якщо вираз обчислюється як логічно хибний. Здається, працює тільки у блоці main(). Оператор assert слід використовувати для вказівки на логічну помилку (програміста), а не на помилку під час виконання (користувача).
 
 ```c
 main()
 {
-    assert (MAX_PLAYERS == GetMaxPlayers()); // ascertain that the definition of MAX_PLAYERS is equal to the actual number of server slots in use
+    assert (MAX_PLAYERS == GetMaxPlayers()); // перевірити, що визначення MAX_PLAYERS дорівнює фактичній кількості використовуваних серверних слотів
 }
 ```
 
-## `break`
+## "Брейк
 
-Breaks out of a loop instantly, only leaves the top level loop, not all current loops.
+Виривається з циклу миттєво, залишає тільки цикл верхнього рівня, а не всі поточні цикли.
 
 ```c
 for (new i = 0; i < 10; i++)
@@ -23,12 +23,12 @@ for (new i = 0; i < 10; i++)
     printf("%d", i);
     if (i == 5)
     {
-        break;
+        break
     }
 }
 ```
 
-Will produce:
+Буде зроблено:
 
 ```c
 0
@@ -39,7 +39,7 @@ Will produce:
 5
 ```
 
-While:
+Поки що:
 
 ```c
 for (new i = 0; i < 10; i++)
@@ -52,7 +52,7 @@ for (new i = 0; i < 10; i++)
 }
 ```
 
-Will produce:
+Буде зроблено:
 
 ```c
 0
@@ -62,56 +62,56 @@ Will produce:
 4
 ```
 
-As the loop is instantly exited neither loop gets to 10 and the second one ends before the number 5 is printed.
+Оскільки вихід з циклу відбувається миттєво, жоден з циклів не доходить до 10, і другий цикл завершується до того, як буде виведено число 5.
 
-## `case`
+## "Справа
 
-Handles a specific result in a switch statement. The result can be either a single number, a selection of numbers or a range of numbers:
+Обробляє певний результат в операторі switch. Результатом може бути як одне число, так і вибірка чисел або діапазон чисел:
 
 ```c
-new
+новий
     switchVar = 10;
 switch (switchVar)
 {
-    case 1:
+    case 1
     {
-        printf("switchVar is 1");
+        printf("switchVar дорівнює 1");
     }
     case 4:
     {
         printf("switchVar is 4");
     }
-    case 2, 3, 5:
+    case 2, 3, 5
     {
-        printf("switchVar is either 2, 3 or 5");
+        printf("switchVar дорівнює 2, 3 або 5");
     }
-    case 7 .. 11:
+    case 7 .. 11
     {
-        printf("switchVar is somewhere between 7 and 11 inclusive (7, 8, 9, 10 or 11)");
+        printf("switchVar знаходиться десь між 7 та 11 включно (7, 8, 9, 10 або 11)");
     }
     default:
     {
-        printf("switchVar is not 1, 2, 3, 4, 5, 7, 8, 9, 10 or 11");
+        printf("switchVar не дорівнює 1, 2, 3, 4, 5, 7, 8, 9, 10 або 11");
     }
 }
 ```
 
-## `continue`
+## Продовжуйте.
 
-Similar to break but just goes on to the next loop itteration. It is important to note that the point to which it jumps varies depending on which loop type you use.
+Схожа на break, але просто переходить до наступної ітерації циклу. Важливо зазначити, що точка, до якої відбувається перехід, залежить від того, який тип циклу ви використовуєте.
 
 ```c
 for (new i = 0; i < 10; i++)
 {
     if (i == 5)
     {
-        continue;
+        продовжити;
     }
     printf("%d", i);
 }
 ```
 
-Will produce:
+Буде зроблено:
 
 ```c
 0
@@ -125,34 +125,34 @@ Will produce:
 9
 ```
 
-A continue after the print will basically do nothing. In a for loop continue jumps to the third statement in the for statement (in this example the "i++;" bit), this is different to how it behaves in a while loop:
+Продовження після виводу на екран нічого не зробить. У циклі for continue переходить на третій оператор в операторі for (у цьому прикладі на біт "i++;"), це відрізняється від того, як він поводиться у циклі while:
 
 ```c
-new
+новий
     i = 0;
 while (i < 10)
 {
     if (i == 5)
     {
-        continue;
+        продовжити;
     }
     printf("%d", i);
     i++;
 }
 ```
 
-This will produce an infinate loop as continue will jump to AFTER the "i++;" and go back to the "while (i < 10)" part. At this time, "i" will still be 5 as "i++;" was never called, and so continue will be called again and "i" will be stuck at 5 forever.
+Це призведе до нескінченного циклу, оскільки continue перескочить на місце ПІСЛЯ "i++;" і повернеться до частини "while (i < 10)". У цей час "i" все ще буде дорівнювати 5, оскільки "i++;" ніколи не викликався, тому continue буде викликано знову, і "i" застрягне на рівні 5 назавжди.
 
-## `default`
+## "За замовчуванням
 
-default handles switch statement results which aren't handled explicitly by case statements. See the case example for an example.
+за замовчуванням обробляє результати операторів switch, які не обробляються явно операторами case. Зверніться до прикладу, наведеного у розділі case.
 
-## `do`
+## Зробіть це.
 
-do is a type of loop which can be used with while to produce a loop which will always be run at least once. Note the semi-colon after the while () in the following example:
+do - це тип циклу, який можна використовувати з while для створення циклу, який завжди виконуватиметься принаймні один раз. Зверніть увагу на крапку з комою після while () у наступному прикладі:
 
 ```c
-new
+новий
     i = 10;
 do
 {
@@ -162,16 +162,16 @@ do
 while (i < 10);
 ```
 
-"i" is clearly not less that 10 but this loop will produce:
+"i" явно не менше, ніж 10, але цей цикл дасть результат:
 
 ```c
 10
 ```
 
-anyway. The similar while loop:
+так чи інакше. Аналогічний цикл while:
 
 ```c
-new
+новий
     i = 10;
 while (i < 10)
 {
@@ -180,16 +180,16 @@ while (i < 10)
 }
 ```
 
-} Will not give any output as the condition instantly fails.
+} Не дасть жодного результату, оскільки умова миттєво зазнає невдачі.
 
-These are also useful for avoiding double checks:
+Вони також корисні для уникнення подвійних перевірок:
 
 ```c
-new
+новий
     checkVar = 10;
 if (checkVar == 10)
 {
-    new
+    новий
         i = 0;
     while (checkVar == 10)
     {
@@ -199,14 +199,14 @@ if (checkVar == 10)
 }
 ```
 
-This isn't obviously a major issue but you are checking checkVar twice in quick succession at the start of the loop, which is quite pointless, however the if is required as you need to do code if the condition is true but outside the loop (this is a fairly common situation). This can be improved by doing:
+Очевидно, що це не є серйозною проблемою, але ви перевіряєте checkVar двічі поспіль на початку циклу, що є досить безглуздим, однак if є необхідним, оскільки вам потрібно виконати код, якщо умова істинна, але за межами циклу (це досить поширена ситуація). Це можна виправити, виконавши такі дії:
 
 ```c
-new
+новий
     checkVar = 10;
 if (checkVar == 10)
 {
-    new
+    новий
         i = 0;
     do
     {
@@ -217,14 +217,14 @@ if (checkVar == 10)
 }
 ```
 
-In this instance the result will be exactly the same but crucially with one less pointless check.
+У цьому випадку результат буде точно таким же, але, що важливо, з однією менш безглуздою перевіркою.
 
-## `else`
+## "Інакше
 
-else is called when an if statement fails (assuming it is present):
+else викликається, коли інструкція if зазнає невдачі (за умови, що вона присутня):
 
 ```c
-new
+новий
     checkVar = 5;
 if (checkVar == 10)
 {
@@ -232,52 +232,52 @@ if (checkVar == 10)
 }
 else
 {
-    printf("The if statement failed so this will be displayed");
+    printf("Оператор if завершився невдало, тому буде виведено це");
 }
 ```
 
-else can also be combined with if:
+else також можна комбінувати з if:
 
 ```c
-new
+новий
     checkVar = 2;
 if (checkVar == 1)
 {
-    printf("This will not be called"):
+    printf("Ця функція не буде викликана"):
 }
 else if (checkVar == 2)
 {
-    printf("The first if failed so the second was checked and is true");
+    printf("Перший if не спрацював, тому було перевірено другий і він є істинним")
 }
 else
 {
-    printf("This will not be called as one of the ifs was true");
+    printf("Цей метод не буде викликано, оскільки один з if був істинним"); }
 }
 ```
 
-## `exit`
+## Виходьте.
 
-This exits the current program instantly.
+Це миттєвий вихід з поточної програми.
 
 ```c
 main()
 {
-    exit;
+    вихід;
     return 0;
 }
 ```
 
-## `for`
+## За те, що
 
-A for loop is a type of loop involving three stages, initialisation, comparison and update. These are each separated by a semicolon (Wink and can each be excluded by just setting a blank space. The most basic for loop is:
+Цикл for - це тип циклу, що складається з трьох етапів: ініціалізації, порівняння та оновлення. Кожна з них розділена крапкою з комою (Wink), і кожну з них можна виключити, просто поставивши пробіл. Найпростіший цикл for має такий вигляд:
 
 ```c
 for ( ; ; ) {}
 ```
 
-This has no initialisation, no comparison and no update and as a result will go forever (the comparison, being absent, defaults to true).
+Він не має ініціалізації, порівняння та оновлення і, як наслідок, буде виконуватися вічно (порівняння, оскільки воно відсутнє, за замовчуванням дорівнює true).
 
-One of the more common loops is:
+Один з найпоширеніших циклів:
 
 ```c
 for (new i = 0; i < MAX_PLAYERS; i++)
@@ -286,18 +286,18 @@ for (new i = 0; i < MAX_PLAYERS; i++)
 }
 ```
 
-The initialisation in this loop is:
+Ініціалізація у цьому циклі така:
 
 ```c
 new i = 0;
 ```
 
-The semicolon marks the end of the initialisation. This declares a new variable, called i, which can only be used with this loop. Next comparison is done. This compares i to MAX_PLAYERS (default 500 - see #define) and if it is less continues. Then the contents of the loop is run. Initially this will print "0". Finally the update is done "i++", this increases the value of i. Now a complete itteration is done, the loop loops, as its name implies, and goes back to the comparison stage (initialisation is only done once per call).
+Крапка з комою позначає кінець ініціалізації. Тут оголошується нова змінна з ім'ям i, яка може бути використана тільки у цьому циклі. Далі виконується наступне порівняння. Порівнюється i з MAX_PLAYERS (за замовчуванням 500 - див. #define), і якщо воно менше, то продовжується. Потім виконується вміст циклу. Спочатку буде виведено "0". Нарешті виконується оновлення "i++", що збільшує значення i. Тепер виконується повна ітерація, цикл зациклюється, як випливає з його назви, і повертається до етапу порівняння (ініціалізація виконується лише один раз за виклик).
 
-The result of this loop is all the numbers from 0 to 499 inclusive being printed out. The equivalent while loop (ignoring the effects of continue) would be:
+Результатом роботи цього циклу є виведення всіх чисел від 0 до 499 включно. Еквівалентом циклу while (ігноруючи вплив continue) буде наступний:
 
 ```c
-new
+новий
     i = 0;
 while (i < MAX_PLAYERS)
 {
@@ -306,7 +306,7 @@ while (i < MAX_PLAYERS)
 }
 ```
 
-The three stages can be made a lot more complex if required using commas for the first and last sections and standard comparisons for the middle section:
+Ці три етапи можна зробити набагато складнішими, якщо потрібно, використовуючи коми для першого та останнього розділів і стандартні порівняння для середнього розділу:
 
 ```c
 for (new i = 0, j = 200; i < MAX_PLAYERS && j > 10; i++, j -= 2)
@@ -315,9 +315,9 @@ for (new i = 0, j = 200; i < MAX_PLAYERS && j > 10; i++, j -= 2)
 }
 ```
 
-This will create two new variables and set them to 0 and 200, then loop while one is less than 200 and the other is greater than 10, increasing one each time and decreasing the other by two each time.
+Це створить дві нові змінні і встановить їх у значення 0 і 200, а потім зациклить, поки одна з них буде меншою за 200, а інша - більшою за 10, щоразу збільшуючи одну з них і зменшуючи іншу на два значення щоразу.
 
-As stated before the scope of variables is limited to the loop usually:
+Як зазначалося раніше, область видимості змінних зазвичай обмежується циклом:
 
 ```c
 for (new i = 0; i < MAX_PLAYERS; i++)
@@ -327,10 +327,10 @@ for (new i = 0; i < MAX_PLAYERS; i++)
 printf("%d", i);
 ```
 
-That will produce an error as "i" doesn't exist after the loop ends. However:
+Це призведе до помилки, оскільки "i" не існує після завершення циклу. Однак:
 
 ```c
-new
+новий
     i = 0;
 for ( ; i < MAX_PLAYERS; i++)
 {
@@ -339,10 +339,10 @@ for ( ; i < MAX_PLAYERS; i++)
 printf("%d", i);
 ```
 
-Is fine as "i" is not declared in the loop. You could also initialise "i" in the loop but not declare it there:
+Добре, оскільки "i" не оголошено у циклі. Ви також можете ініціалізувати "i" у циклі, але не оголошувати його там:
 
 ```c
-new
+новий
     i;
 for (i = 0; i < MAX_PLAYERS; i++)
 {
@@ -351,18 +351,18 @@ for (i = 0; i < MAX_PLAYERS; i++)
 printf("%d", i);
 ```
 
-## `goto`
+## "Вперед".
 
-goto and labels are generally discouraged in the coding community as what they do can usually be done better by restructuring your code properly. However basically a goto is a jump:
+goto та мітки зазвичай не рекомендуються у спільноті програмістів, оскільки те, що вони роблять, зазвичай можна зробити краще, реструктуризувавши код належним чином. Однак, по суті, goto - це стрибок:
 
 ```c
 goto my_label;
-printf("This will never be printed");
+printf("Це ніколи не буде надруковано");
 my_label:
-printf("This will be printed");
+printf("Це буде надруковано");
 ```
 
-The compiler however doesn't handle goto very well so that will not be optimised at all and things like:
+Однак компілятор не дуже добре обробляє goto, тому його не буде оптимізовано взагалі і тому подібне:
 
 ```c
 {
@@ -380,12 +380,12 @@ The compiler however doesn't handle goto very well so that will not be optimised
 }
 ```
 
-Will give a warning about inconsistent return types as it things the true branch doesn't return anything when it actually does, just in a very roundabout way. Also:
+Видаватиме попередження про неузгоджені типи повернення, оскільки вважає, що істинна гілка нічого не повертає, хоча насправді повертає, але у дуже обхідний спосіб. І ще:
 
 ```c
 MyFunction()
 {
-    new
+    новий
         i = 5;
     if (i == 5)
     {
@@ -397,21 +397,21 @@ MyFunction()
 }
 ```
 
-Will give an unreachable code warning despite the fact it actually is reachable.
+Видасть попередження про недоступність коду, незважаючи на те, що він насправді доступний.
 
-The basic syntax is:
+Основний синтаксис такий:
 
 ```c
-label:
+етикетка:
 
-goto label;
+"Go to label.
 ```
 
-The label should be on a line on it's own and ends in a colon, NOT a semicolon. Labels follow the same naming restrictions as variables and functions etc.
+Мітка повинна знаходитися в окремому рядку і закінчуватися двокрапкою, а не крапкою з комою. На мітки поширюються ті самі обмеження щодо іменування, що й на змінні, функції тощо.
 
-## `if`
+## "Якщо
 
-If is one of the most important operators. It determines wether something should be done or not and acts accordingly, it, along with goto, is the basis of almost all other control structures:
+If - один з найважливіших операторів. Він визначає, потрібно щось робити чи ні, і діє відповідно, він, разом з goto, є основою майже всіх інших керуючих структур:
 
 ```c
 for (new i = 0; i < 10; i++)
@@ -419,10 +419,10 @@ for (new i = 0; i < 10; i++)
 }
 ```
 
-Is equivalent to:
+еквівалентно:
 
 ```c
-new
+новий
     i = 0;
 for_loop:
 if (i < 10)
@@ -432,26 +432,26 @@ if (i < 10)
 }
 ```
 
-The conditions if can take are way too many for this post however some are listed below:
+Умов, які можна прийняти, занадто багато для цієї посади, але деякі з них перераховані нижче:
 
-Operator Explanation Example Result when a=1, b=0 Result when a=1, b=1 Result when a=0, b=1 Result when a=0, b=0 == Checks if one thing is equal to another if (a == b) false true false true != Checks if one thing is not the same as another if (a != b) true false true false < Checks if one thing is less than another if (a < b) false false true false > Checks if one thing is greater than another if (a > b) true false false false <= Checks if one thing is less than or equal to another if (a <= b) false true true true >= Checks if one thing is greater than or equal to another if (a >= b) true true false true && Checks if two things are true (not 0) if (a && b) false true false false || Checks if at least one of two things are true (not 0) if (a || b) true true true false ! Checks if something is false if (!(a == b)) true false true false
+Пояснення оператора Приклад Результат при a=1, b=0 Результат при a=1, b=1 Результат при a=0, b=1 Результат при a=0, b=0 == Перевіряє, чи дорівнює один предмет іншому if (a == b) false true false true != Перевіряє, чи не дорівнює один предмет іншому if (a != b) true false false false false < Перевіряє, чи один предмет менше іншого if (a < b) false false false false > Перевіряє, чи один предмет більше іншого if (a > b) true false false false false <= Перевіряє, чи один предмет менше або дорівнює іншому if (a <= b) false true true true >= Перевіряє, чи одне більше або дорівнює іншому if (a >= b) true true true true true && Перевіряє, чи дві речі істинні (не 0) if (a && b) false true false false false || Перевіряє, чи хоча б одна з двох речей істинна (не 0) if (a || b) true true true true false ! Перевіряє, чи є щось хибним if (!(a == b)) true false false false false
 
-Obviously with these you can build up complex conditionals:
+Очевидно, що за допомогою них ви можете створювати складні умови:
 
 ```c
 if (a == b && (c != d || f < g))
 ```
 
-That will be true if a is the same as b and either f is less than g or c is not the same as d (or both).
+Це буде вірно, якщо a дорівнює b і або f менше g, або c не дорівнює d (або і те, і інше).
 
-## `return`
+## "Повернись
 
-This breaks out a function and can return data to the calling function:
+Це розриває функцію і може повернути дані у функцію, що її викликає:
 
 ```c
 MyFunction()
 {
-    new
+    новий
         someVar = OtherFunction();
 }
 
@@ -461,14 +461,14 @@ OtherFunction()
 }
 ```
 
-someVar will now be 5.
+someVar тепер буде 5.
 
 ```c
 MyFunction()
 {
     if (SomeFunction())
     {
-        printf("Returned 1");
+        printf("Повернуто 1");
     }
 }
 
@@ -478,14 +478,14 @@ SomeFunction()
 }
 ```
 
-That will either return 1 or 0 to the calling function's if statement. 1 is true and 0 if false so the text will only be printed if 1 is returned. However:
+Це поверне або 1, або 0 в інструкцію if функції, що викликає функцію. 1 означає true, а 0 - false, тому текст буде надруковано лише у випадку повернення 1. Однак:
 
 ```c
 MyFunction()
 {
     if (SomeFunction())
     {
-        printf("Returned something between 1 and 10");
+        printf("Повернуто щось від 1 до 10");
     }
 }
 
@@ -495,9 +495,9 @@ SomeFunction()
 }
 ```
 
-That will return 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 or 10. Anything which is not 0 is true so the text will display if anything between 1 and 10 is returned.
+Вона поверне 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 або 10. Все, що не дорівнює 0, є істиною, тому текст буде показано, якщо буде повернуто щось від 1 до 10.
 
-You can also use return with strings:
+Ви також можете використовувати return з рядками:
 
 ```c
 MyFunction()
@@ -507,15 +507,15 @@ MyFunction()
 
 SomeFunction()
 {
-    new
+    новий
         str[10] = "Hello";
     return str;
 }
 ```
 
-Will print "Hello" (without the quotes).
+Виведе "Hello" (без лапок).
 
-You also don't have to return anything:
+Вам також не потрібно нічого повертати:
 
 ```c
 MyFunction()
@@ -529,14 +529,14 @@ SomeFunction()
 }
 ```
 
-However if you do this you must make sure the function's return is never used:
+Однак, якщо ви робите це, ви повинні переконатися, що повернення функції ніколи не використовується:
 
 ```c
 MyFunction()
 {
     if (SomeFunction())
     {
-        printf("Problem");
+        printf("Проблема");
     }
 }
 
@@ -546,7 +546,7 @@ SomeFunction()
 }
 ```
 
-Here SomeFunction is not returning anything however MyFunction is checking if the value returned from SomeFunction is true or not - it's neither as it just doesn't exist, so you will get a compiler error. No return is the default, so:
+Тут SomeFunction нічого не повертає, проте MyFunction перевіряє, чи значення, повернуте з SomeFunction, істинне чи ні - воно не істинне, оскільки його просто не існує, тому ви отримаєте помилку компілятора. За замовчуванням значення не повертається, тому
 
 ```c
 SomeFunction()
@@ -555,7 +555,7 @@ SomeFunction()
 }
 ```
 
-And:
+І:
 
 ```c
 SomeFunction()
@@ -563,9 +563,9 @@ SomeFunction()
 }
 ```
 
-Are the same.
+однакові.
 
-Finally, you can't mix return values:
+Нарешті, ви не можете змішувати значення, що повертаються:
 
 ```c
 MyFunction()
@@ -586,7 +586,7 @@ SomeFunction()
 }
 ```
 
-This will give an error because it doesn't know what to do.
+Це призведе до помилки, тому що він не знає, що робити.
 
 ```c
 SomeFunction()
@@ -598,32 +598,32 @@ SomeFunction()
 }
 ```
 
-Is also not allowed as the default return is nothing.
+Також не допускається, оскільки за замовчуванням повертається ніщо.
 
-## `sleep`
+## спати.
 
-sleep is a psudo-function which makes execution pause for a given number of milliseconds:
+sleep - це psudo-функція, яка призупиняє виконання на задану кількість мілісекунд:
 
 ```c
-printf("Time 0s");
+printf("Час 0s");
 sleep(1000);
-printf("Time 1s");
+printf("Час 1с");
 ```
 
-This only works in main(), not callbacks however as it's run in the PAWN thread.
+Це працює лише у main(), але не у зворотному виклику, оскільки він виконується у потоці PAWN.
 
-## `state`
+## "Держава".
 
-state is part of the PAWN state machine and autonoma system, see [this thread](https://forum.sa-mp.com/showthread.php?t=86850) for more information.
+state є частиною машини станів PAWN та автономної системи, див. [цю гілку](https://forum.sa-mp.com/showthread.php?t=86850) для отримання додаткової інформації.
 
-## `switch`
+## "Перемикач
 
-switch is basically a structured if/else if/else system:
+switch - це, по суті, структурована система if/else, якщо/інакше if/else:
 
 ```c
 switch (someVar)
 {
-    case 1:
+    case 1
     {
         printf("one");
     }
@@ -631,7 +631,7 @@ switch (someVar)
     {
         printf("two");
     }
-    case 3:
+    case 3
     {
         printf("three");
     }
@@ -642,7 +642,7 @@ switch (someVar)
 }
 ```
 
-Is just a slightly more efficient (and much cleaner) way of doing:
+Це просто трохи ефективніший (і набагато чистіший) спосіб роботи:
 
 ```c
 if (someVar == 1)
@@ -655,20 +655,20 @@ else if (someVar == 2)
 }
 else if (someVar == 3)
 {
-    printf("three");
+    printf("три");
 }
 else
 {
-    printf("other");
+    printf("інше");
 }
 ```
 
-## `while`
+## "поки
 
-while is a loop type similar to for and do..while. The basic operation is an if statement done which if true does some code and jumps back to the if. If it's false it goes to after the loop code - there is no else. Going back to the goto example:
+while - це тип циклу, подібний до for та do..while. Основною операцією є оператор if done, який, якщо він істинний, виконує деякий код і переходить назад до if. Якщо він хибний, він переходить до коду після циклу - більше нічого не виконується. Повернемося до прикладу з goto:
 
 ```c
-new
+новий
     i = 0;
 for_loop:
 if (i < 10)
@@ -678,10 +678,10 @@ if (i < 10)
 }
 ```
 
-This can also be written as:
+Це також можна записати як:
 
 ```c
-new
+новий
     i = 0;
 while (i < 10)
 {
@@ -689,4 +689,6 @@ while (i < 10)
 }
 ```
 
-See do and for more information.
+Дивіться тут і тут для отримання додаткової інформації.
+
+

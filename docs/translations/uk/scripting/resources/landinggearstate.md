@@ -1,15 +1,17 @@
 ---
-title: Vehicle Landing Gear States
-description: Vehicle Landing Gear States
+назва: Стани шасі транспортних засобів
+description: Стани шасі транспортного засобу
 ---
 
-:::note
+:::примітка
 
-Vehicle landing gear states used by [GetVehicleLandingGearState](../functions/GetVehicleLandingGearState) and [GetPlayerLandingGearState](../functions/GetPlayerLandingGearState) functions.
+Стани шасі транспортного засобу, що використовуються функціями [GetVehicleLandingGearState](../functions/GetVehicleLandingGearState) та [GetPlayerLandingGearState](../functions/GetPlayerLandingGearState).
 
 :::
 
-| Definition              | ID |
+| Визначення | ID |
 |-------------------------|----|
-| LANDING_GEAR_STATE_DOWN | 0  |
-| LANDING_GEAR_STATE_UP   | 1  |
+| СТАН_ШАСІ_ПОСАДКОВОГО_МАШИНИ_ВНИЗ 0
+| LANDING_GEAR_STATE_UP | 1 |
+
+

@@ -1,51 +1,53 @@
 ---
-title: Per-player variable system
-description: The per-player variable system (put short, PVar) is a new way of creating player variables in an efficient dynamically created method globally, meaning they can be used in server's gamemode and filterscripts at the same time.
+заголовок: Система змінних на гравця
+description: Система змінних гравця (скорочено PVar) - це новий спосіб створення змінних гравця ефективним динамічно створюваним методом у глобальному масштабі, що означає, що вони можуть бути використані в ігровому режимі сервера та скриптах фільтрів одночасно.
 ---
 
-The per-player variable system (put short, PVar) is a new way of creating player variables in an efficient dynamically created method globally, meaning they can be used in server's gamemode and filterscripts at the same time.
+Система змінних гравця (скорочено PVar) - це новий спосіб створення змінних гравця ефективним динамічно створюваним методом у глобальному масштабі, тобто їх можна використовувати в ігровому режимі сервера та скриптах фільтрів водночас.
 
-They are similar to [SVars](servervariablesystem), but are on a per-player basis. See the last 2 posts in this thread to read about the difference between pawn properties and PVars.
+Вони схожі на [SVars](servervariablesystem), але створюються для кожного гравця окремо. Дивіться останні 2 повідомлення в цій темі, щоб дізнатися про різницю між властивостями пішаків і PVars.
 
-## Advantages
+## Переваги
 
-The new system introduced in SA-MP 0.3a R5 server updated has several major advantages over creating an array sized MAX_PLAYERS.
+Нова система, представлена в оновленому сервері SA-MP 0.3a R5, має кілька основних переваг над створенням масиву розміром MAX_PLAYERS.
 
-- PVars can be shared/accessed across gamemode scripts and filterscripts, making it easier to modularize your code.
+- PVars можна використовувати спільно/доступно у скриптах режимів гри та скриптах фільтрів, що полегшує модулювання вашого коду.
 
-- PVars are automatically deleted when a player leaves the server (after OnPlayerDisconnect), meaning you don't have to manually reset variables for the next player who joins.
+- PVars автоматично видаляються, коли гравець залишає сервер (після OnPlayerDisconnect), що означає, що вам не потрібно вручну скидати змінні для наступного гравця, який приєднується.
 
-- No real need for complex enums/player info structures.
+- Немає реальної потреби у складних структурах зчислень/інформації про гравців.
 
-- Saves memory by not allocating pawn array elements for playerids which will probably never be used.
+- Заощаджує пам'ять, не виділяючи елементи масиву пішаків для ідентифікаторів гравців, які, ймовірно, ніколи не будуть використані.
 
-- You can easily enumerate and print/store the PVar list. This makes both debugging and player info storage easier.
+- Ви можете легко перерахувати і надрукувати/зберегти список PVar. Це полегшує як налагодження, так і зберігання інформації про гравців.
 
-- Even if a PVar hasn't been created, it still will return a default value of 0.
+- Навіть якщо PVar не було створено, він все одно поверне значення за замовчуванням 0.
 
-- PVars can hold very large strings using dynamically allocated memory.
+- PVar може зберігати дуже довгі рядки, використовуючи динамічно виділену пам'ять.
 
-- You can Set, Get, Create PVars ingame.
+- Ви можете встановлювати, отримувати та створювати PVars у грі.
 
-## Drawbacks
+## Недоліки
 
-- PVars are several times slower than regular variables. It is generally more favorable to trade in memory for speed, rather than the other way round.
+- PVars у кілька разів повільніші за звичайні змінні. Як правило, вигідніше обміняти пам'ять на швидкість, ніж навпаки.
 
-## Functions
+## Функції
 
-The functions for setting and retrieving the player variables are:
+Функції для встановлення та отримання змінних плеєра такі:
 
-- [SetPVarInt](../scripting/functions/SetPVarInt) Set an integer for a player variable.
-- [GetPVarInt](../scripting/functions/GetPVarInt) Get the previously set integer from a player variable.
-- [SetPVarString](../scripting/functions/SetPVarString) Set a string for a player variable.
-- [GetPVarString](../scripting/functions/GetPVarString) Get the previously set string from a player variable.
-- [SetPVarFloat](../scripting/functions/SetPVarFloat) Set a float for a player variable.
-- [GetPVarFloat](../scripting/functions/GetPVarFloat) Get the previously set float from a player variable.
-- [DeletePVar](../scripting/functions/DeletePVar) Delete a player variable.
+- [SetPVarInt](../scripting/functions/SetPVarInt) Встановити ціле число для змінної гравця.
+- [GetPVarInt](../scripting/functions/GetPVarInt) Отримати раніше встановлене ціле число зі змінної гравця.
+- [SetPVarString](../scripting/functions/SetPVarString) Встановити рядок для змінної гравця.
+- [GetPVarString](../scripting/functions/GetPVarString) Отримати раніше встановлений рядок зі змінної гравця.
+- [SetPVarFloat](../scripting/functions/SetPVarFloat) Задати змінній гравця значення з плаваючою комою.
+- [GetPVarFloat](../scripting/functions/GetPVarFloat) Отримати попередньо встановлене число з плаваючою комою зі змінної гравця.
+- [DeletePVar](../scripting/functions/DeletePVar) Видалити змінну гравця.
 
 ```c
-#define PLAYER_VARTYPE_NONE   (0)
-#define PLAYER_VARTYPE_INT    (1)
+#define PLAYER_VARTYPE_NONE (0)
+#define PLAYER_VARTYPE_INT (1)
 #define PLAYER_VARTYPE_STRING (2)
-#define PLAYER_VARTYPE_FLOAT  (3)
+#define PLAYER_VARTYPE_FLOAT (3)
 ```
+
+

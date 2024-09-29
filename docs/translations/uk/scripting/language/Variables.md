@@ -1,55 +1,55 @@
 ---
-title: "Basics: Variables"
-description: A beginner's guide to variables in Pawn
+назва: "Основи: Змінні"
+description: Посібник для початківців зі змінних у Pawn
 ---
 
-## Variables
+## Змінні
 
-One of the most important concepts in programming is the concept of ‘variables’. In programming, a variable is an entity that is changeable, but in terms of what ? In Pawn language a variable holds a ‘value’ at any time and that value-as the name suggests-is ‘variable’ or ‘changeable’.
+Одним з найважливіших понять у програмуванні є поняття "змінні". У програмуванні змінна - це об'єкт, який можна змінювати, але в якому сенсі? У мові Pawn змінна має "значення" в будь-який момент часу, і це значення, як випливає з назви, є "змінним" або "змінним".
 
-The reason why variables are so important is because they are basically small units of computer memory which can hold or ‘remember’ different values while the program is under execution (running), and that property turns out to be very useful in programming. For example, you want to keep track of the scores of 100 players in a game, you can do it easily by programming the computer to store (remember) and update those values. Later if you want to find the mean score of those players or want to create a leaderboard, those values from the variables can be easily accessed and used for that purpose.
+Причина, чому змінні так важливі, полягає в тому, що вони, по суті, є невеликими одиницями пам'яті комп'ютера, які можуть зберігати або "запам'ятовувати" різні значення під час виконання програми, і ця властивість виявляється дуже корисною в програмуванні. Наприклад, якщо ви хочете відстежувати результати 100 гравців у грі, ви можете легко це зробити, запрограмувавши комп'ютер зберігати (запам'ятовувати) та оновлювати ці значення. Пізніше, якщо ви захочете знайти середній бал цих гравців або створити таблицю лідерів, до цих значень змінних можна буде легко отримати доступ і використати їх для цієї мети.
 
-### Declaring Variables
+### Оголошення змінних
 
-Following is the syntax for variable declaration :
+Нижче наведено синтаксис оголошення змінної :
 
 ```c
-// Creating (more appropriately, 'declaring') a variable named 'myVariable
+// Створення (правильніше "оголошення") змінної з іменем 'myVariable
 
 new myVariable;
 
-// The 'new' keyword is used for declaring a variable
-// In the above line a variable is declared with the name 'myVariable'
-// Semi-colon is used in the end to close the declaration statement.
+// Для оголошення змінної використовується ключове слово new
+// У вищенаведеному рядку оголошено змінну з іменем myVariable
+// Крапка з комою використовується в кінці, щоб закрити оператор оголошення.
 ```
 
-The declaration syntax can be better understood by looking at some examples :
+Синтаксис оголошення можна краще зрозуміти, розглянувши деякі приклади :
 
 ```c
-new var;
-new ammo;
-new score;
-new vehicles;
-new topScore;
+новий вар;
+нові набої;
+новий рахунок;
+нові машини;
+новий topScore;
 ```
 
-Each of the above defined variable has a value by default, which is zero. There are different ways of assigning values to a variable. One method is directly assigning a value to the variable as it’s declared :
+Кожна з описаних вище змінних має значення за замовчуванням, яке дорівнює нулю. Існують різні способи присвоєння значень змінним. Одним з них є безпосереднє присвоєння значення змінній при її оголошенні :
 
 ```c
-new letters = 25;
+нові літери = 25;
 ```
 
-In the above example, a variable named ‘letters’ is being declared, with a value of 25. You will notice an equal sign which is a simple Assignment Operator that can be used for assigning values to variables. It evaluates the expression on its right and assigns the resultant value to the variable referenced on its left side. Other than assigning values directly at the declaration, you can also do it in later parts of the code :
+У наведеному вище прикладі оголошується змінна з іменем letters зі значенням 25. Ви помітите знак рівності, який є простим оператором присвоювання, що використовується для присвоювання значень змінним. Він обчислює вираз у правій частині і присвоює отримане значення змінній, на яку є посилання у лівій частині. Крім присвоювання значень безпосередньо при оголошенні, ви також можете робити це в подальших частинах коду :
 
 ```c
-new letters;
+нові літери;
 
-letters = 25;
+букв = 25;
 ```
 
-### Scopes
+### Сфери застосування
 
-Modifying a variable's value is possible only if the part of the code where you’re referencing the variable is within the scope of that variable. Scope of a variable depends upon the code block or position where that variable was declared. For example a variable being declared outside any block of code, usually in the beginning of the script, has a ‘Global’ scope and can be accessed from anywhere within the script:
+Зміна значення змінної можлива лише в тому випадку, якщо частина коду, де ви посилаєтесь на змінну, знаходиться в межах області видимості цієї змінної. Область видимості змінної залежить від блоку коду або позиції, де цю змінну було оголошено. Наприклад, змінна, оголошена поза будь-яким блоком коду, зазвичай на початку скрипта, має глобальну область видимості і може бути доступною з будь-якого місця в скрипті:
 
 ```c
 #include <open.mp>
@@ -60,7 +60,7 @@ public OnFilterScriptInit()
 {
     g_var = 10;
 
-    printf("The value is %i", g_var);
+    printf("Значення дорівнює %i", g_var);
 
     return 1;
 }
@@ -69,19 +69,19 @@ public OnPlayerConnect(playerid)
 {
     g_var = 100;
 
-    printf("The value is %i", g_var);
+    printf("Значення дорівнює %i", g_var);
 
     return 1;
 }
 
-// Output :
-// The value is 10
-// The value is 100
+// Вивести :
+// Значення 10
+// Значення 100
 
-// Note: The second output line is shown only when a player connects.
+// Зауваження: Другий рядок виводиться тільки тоді, коли підключається гравець.
 ```
 
-Other than ‘Global’ (scoped) variables, there are ‘local’ or ‘private’ variables that can be accessed only from inside the block of code where they were declared.
+Окрім "глобальних" (scoped) змінних, існують "локальні" або "приватні" (private) змінні, до яких можна отримати доступ лише зсередини блоку коду, в якому вони були оголошені.
 
 ```c
 #include <open.mp>
@@ -97,15 +97,15 @@ public OnFilterScriptInit()
 
 public OnPlayerConnect(playerid)
 {
-    localVar = 10; // This line will show an error upon compilation
+    localVar = 10; // Цей рядок видасть помилку при компіляції
 
     return 1;
 }
 ```
 
-If you try to compile the code above, the compiler will show an error which is reasonable as a local variable is being references in a completely different block of code. Note: If it is a nested code block then the variable can be accessed from there.
+Якщо ви спробуєте скомпілювати наведений вище код, компілятор видасть помилку, яка є цілком обґрунтованою, оскільки на локальну змінну посилаються в зовсім іншому блоці коду. Примітка: Якщо це вкладений блок коду, то доступ до змінної можна отримати звідти.
 
-One important thing to note is that you cannot declare variables with the same names if their scopes intercede. For example if you already have a variable named ‘score’ on a global scope, you cannot create another variable named ‘score’ on the global scope as well as a local one, and this is true for other way around as well (if you already have a local variable, avoid declaring a global variable with the same name).
+Важливо зазначити, що ви не можете оголошувати змінні з однаковими іменами, якщо їхні області видимості перетинаються. Наприклад, якщо у вас вже є змінна з іменем score у глобальній області видимості, ви не можете створити іншу змінну з іменем score як у глобальній, так і в локальній області видимості, і це справедливо у зворотному випадку (якщо у вас вже є локальна змінна, уникайте оголошення глобальної змінної з тим самим іменем).
 
 ```c
 #include <open.mp>
@@ -114,77 +114,77 @@ new g_score;
 
 public OnFilterScriptInit()
 {
-    new g_score = 5; // This line will show an error.
+    new g_score = 5; // У цьому рядку буде показано помилку.
     return 1;
 }
 ```
 
-### Naming Rules
+### Правила іменування
 
-Now that you know how to declare variables, you need to know the naming rules for declaring variable which are listed below :
+Тепер, коли ви знаєте, як оголошувати змінні, вам потрібно знати правила іменування для оголошення змінних, які наведено нижче:
 
-- All variable names must begin with a letter or an underscore (`_`)
-- After the first initial letter, variable names can contain letters and numbers but no spaces or special characters.
-- The variable names are case sensitive i.e Uppercase letters are distinct from the lowercase letters.
-- Using a reserved word (keyword) as a variable name will show an error.
+- Всі імена змінних повинні починатися з літери або символу підкреслення (`_`)
+- Після першої початкової літери імена змінних можуть містити літери та цифри, але не пробіли та спеціальні символи.
+- Імена змінних є чутливими до регістру, тобто великі літери відрізняються від малих.
+- Використання зарезервованого слова (ключового слова) як імені змінної призведе до помилки.
 
-#### Examples :
+#### Приклади :
 
 ```c
-new new; // Incorrect : Using a reserved word
-new _new; // Correct
+new new; // Неправильно: використання зарезервованого слова
+new _new; // Коректно
 
-new 10letters; // Incorrect : Name starting with a number
-new letters10; // Correct
-new letters_10; // Correct
+new 10letters; // Неправильно: Ім'я починається з цифри
+new letters10; // Коректно
+new letters_10; // Коректно
 
-new my name; // Incorrect : Space in the name
-new my_name; // Correct
+new my name; // Неправильно: пробіл в імені
+new my_name; // Коректно
 
-new !nternet; // Incorrect
-new Internet; // Correct
+new !nternet; // Неправильно
+new Internet; // Правильно
 ```
 
-### Storing different types of Data
+### Зберігання різних типів даних
 
-After that, now lets look at some examples of what types of data can be stored in variable and how :
+Після цього давайте розглянемо кілька прикладів того, які типи даних можна зберігати у змінній і як саме:
 
 ```c
 new letter = 'M';
 
 
-new value = 100;
+нове значення = 100;
 
 
 new decimalValue = 1.0;
-// Works, but will show a compiler warning
-// warning 213: tag mismatch
+// Працює, але видасть попередження компілятора
+// попередження 213: невідповідність тегів
 
 
 new engineOn = true;
-// Works, and will not show a compiler warning but using a Tag is suggested
+// Працює і не видає попередження компілятора, але рекомендується використовувати тег
 
 
-new sentence = "This is a sentence";
-// Will show an error.
-// error 006: must be assigned to an array
+new sentence = "Це речення";
+// Виведе помилку.
+// помилка 006: потрібно присвоювати масив
 ```
 
-A variable is capable of holding a character, integer value, boolean (true or false) and a float value (decimal value). The comments in the above code show that storing a string in a variable results into an error (as strings can be stored in _Arrays_ only). Other than that, assigning a float value to a variable will result in a compiler warning, which can be avoided by adding ‘tags’. Without proper tags, the script will show warnings upon compilation but will be executable. Tags tell the compiler about the type of data that is intended to be stored in the variable, which in turn informs us in the form of errors or warning if we make a program-breaking mistake in the code. Example of tags :
+Змінна може зберігати символ, ціле значення, логічне значення (true або false) та значення з плаваючою комою (десяткове значення). Коментарі у вищенаведеному коді показують, що зберігання рядка у змінній призводить до помилки (оскільки рядки можна зберігати лише у _масивах_). Крім того, присвоєння змінній значення з плаваючою комою призведе до попередження компілятора, якого можна уникнути, додавши "теги". Без належних тегів скрипт показуватиме попередження під час компіляції, але буде виконуваним. Теги повідомляють компілятору про тип даних, які передбачається зберігати у змінній, що, в свою чергу, інформує нас у вигляді помилок або попереджень, якщо ми робимо в коді помилку, що порушує роботу програми. Приклад тегів :
 
 ```c
-new decimalValue = 1.0; // Incorrect
-new bool:decimalValue = 1.0 // Incorrect
-new Float:decimalValue = 1.0; // Correct
+new decimalValue = 1.0; // Неправильно
+new bool:decimalValue = 1.0 // Неправильно
+new Float:decimalValue = 1.0; // Коректно
 
-new switchOn = 1.0; // Incorrect
-new switchOn = true; // Incorrect, doesn't show a warning
-new bool:switchOn = true; // Correct
+new switchOn = 1.0; // Неправильно
+new switchOn = true; // Неправильно, не виводить попередження
+new bool:switchOn = true; // Коректно
 ```
 
-Using correct tags is important to avoid any bugs or errors during program execution.
+Використання правильних тегів є важливим для уникнення помилок під час виконання програми.
 
-Pawn being a typeless language allows us to store different types of data in the same variable which can be useful in some cases and troublesome in others, but such usage of variables is not recommended.
+Pawn як безтипова мова дозволяє зберігати різні типи даних в одній змінній, що може бути корисно в одних випадках і проблематично в інших, але таке використання змінних не рекомендується.
 
 ```c
 #include <open.mp>
@@ -192,7 +192,7 @@ Pawn being a typeless language allows us to store different types of data in the
 public OnFilterScriptInit()
 {
 
-    new var;
+    новий вар;
 
     var = 'a';
     printf("%c", var);
@@ -204,14 +204,16 @@ public OnFilterScriptInit()
     printf("%f", var);
 
     var = true;
-    printf("%d", var); // prints a value 0 or 1
+    printf("%d", var); // виводить значення 0 або 1
 
     return 1;
 }
 
-// Output :
+// Вивести :
 a
 1
 1.000000
 1
 ```
+
+

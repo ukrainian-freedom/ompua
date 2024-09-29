@@ -1,16 +1,18 @@
 ---
-title: "Pvar Types"
+заголовок: «Pvar Types»
 ---
 
 :::info
 
-Types of player variables (also called pvar types) used in [Per-player variable system.](../../tutorials/perplayervariablesystem)
+Типи змінних гравця (також звані pvar-типами), що використовуються у [Системі змінних гравця](../../tutorials/perplayervariablesystem)
 
 :::
 
-| ID | Definition            |
+| Ідентифікатор | Визначення
 |----|-----------------------|
-| 0  | PLAYER_VARTYPE_NONE   |
-| 1  | PLAYER_VARTYPE_INT    |
-| 2  | PLAYER_VARTYPE_STRING |
-| 3  | PLAYER_VARTYPE_FLOAT  |
+| 0 | PLAYER_VARTYPE_NONE
+| 1 | PLAYER_VARTYPE_INT
+| 2 | PLAYER_VARTYPE_STRING
+| 3 | PLAYER_VARTYPE_FLOAT
+
+

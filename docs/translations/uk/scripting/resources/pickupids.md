@@ -1,124 +1,126 @@
 ---
-title: "Pickup IDs"
+заголовок: «Pickup IDs»
 ---
 
-:::note
+:::примітка
 
-ANY valid object model can be used for [CreatePickup](../functions/CreatePickup) and [CreatePlayerPickup](../functions/CreatePlayerPickup). This page just lists some common object models that are around the right size to be used as a pickup.
+Будь-яка допустима об'єктна модель може бути використана для [CreatePickup](../functions/CreatePickup) і [CreatePlayerPickup](../functions/CreatePlayerPickup). На цій сторінці лише перелічено деякі типові моделі об'єктів, які мають розмір, достатній для використання у якості пікапа.
 
 :::
 
-## Pickup model IDs
+## Ідентифікатори моделей пікапів
 
-| ID    | Icon                              | Description                        |
+| Ідентифікатор | Піктограма | Опис
 | ----- | --------------------------------- | ---------------------------------- |
-| 954   | ![](/images/pickups/pickup1.png)  | Horse shoe                         |
-| 1210  | ![](/images/pickups/pickup2.png)  | Briefcase                          |
-| 1212  | ![](/images/pickups/pickup3.png)  | Money                              |
-| 1213  | ![](/images/pickups/pickup4.png)  | Landmine                           |
-| 1239  | ![](/images/pickups/pickup5.png)  | Information                        |
-| 1240  | ![](/images/pickups/pickup6.png)  | Heart                              |
-| 1241  | ![](/images/pickups/pickup7.png)  | Pill                               |
-| 1242  | ![](/images/pickups/pickup8.png)  | Body armour                        |
-| 1247  | ![](/images/pickups/pickup9.png)  | Star                               |
-| 1248  | ![](/images/pickups/pickup10.png) | GTA III logo                       |
-| 1252  | ![](/images/pickups/pickup11.png) | Barrel explosion                   |
-| 1254  | ![](/images/pickups/pickup12.png) | Skull                              |
-| 1272  | ![](/images/pickups/pickup13.png) | House (blue)                       |
-| 1273  | ![](/images/pickups/pickup14.png) | House (green)                      |
-| 1274  | ![](/images/pickups/pickup15.png) | Dollar                             |
-| 1275  | ![](/images/pickups/pickup16.png) | Shirt                              |
-| 1276  | ![](/images/pickups/pickup17.png) | Tiki                               |
-| 1277  | ![](/images/pickups/pickup18.png) | Save disk                          |
-| 1279  | ![](/images/pickups/pickup19.png) | Craig package                      |
-| 1310  | ![](/images/pickups/pickup20.png) | Parachute                          |
-| 1313  | ![](/images/pickups/pickup21.png) | Double skull (kill frenzy rampage) |
-| 1314  | ![](/images/pickups/pickup22.png) | Two-player                         |
-| 1318  | ![](/images/pickups/pickup23.png) | Arrow                              |
-| 1550  | ![](/images/pickups/pickup24.png) | Money bag                          |
-| 1575  | ![](/images/pickups/pickup25.png) | Drug package (white)               |
-| 1576  | ![](/images/pickups/pickup26.png) | Drug package (orange)              |
-| 1577  | ![](/images/pickups/pickup27.png) | Drug package (yellow)              |
-| 1578  | ![](/images/pickups/pickup28.png) | Drug package (green)               |
-| 1579  | ![](/images/pickups/pickup29.png) | Drug package (blue)                |
-| 1580  | ![](/images/pickups/pickup30.png) | Drug package (red)                 |
-| 1581  | ![](/images/pickups/pickup31.png) | Keycard                            |
-| 1582  | ![](/images/pickups/pickup32.png) | Pizza box                          |
-| 1636  | ![](/images/pickups/pickup33.png) | RC bomb                            |
-| 1650  | ![](/images/pickups/pickup34.png) | Petrol can                         |
-| 1654  | ![](/images/pickups/pickup35.png) | Dynamite                           |
-| 2057  | ![](/images/pickups/pickup36.png) | Flame tins                         |
-| 2060  | ![](/images/pickups/pickup37.png) | Sandbag                            |
-| 2061  | ![](/images/pickups/pickup38.png) | Shells                             |
-| 2690  | ![](/images/pickups/pickup39.png) | Fire extinguisher                  |
-| 2710  | ![](/images/pickups/pickup40.png) | Hand watch                         |
-| 11736 | ![](/images/pickups/pickup41.png) | Medical satchel                    |
-| 11738 | ![](/images/pickups/pickup42.png) | Medical case                       |
-| 19130 | ![](/images/pickups/pickup43.png) | Arrow (type 1)                     |
-| 19131 | ![](/images/pickups/pickup44.png) | Arrow (type 2)                     |
-| 19132 | ![](/images/pickups/pickup45.png) | Arrow (type 3)                     |
-| 19133 | ![](/images/pickups/pickup46.png) | Arrow (type 4)                     |
-| 19134 | ![](/images/pickups/pickup47.png) | Arrow (type 5)                     |
-| 19135 | ![](/images/pickups/pickup48.png) | Exterior marker (animated)         |
-| 19197 | ![](/images/pickups/pickup49.png) | Exterior marker (yellow, big)      |
-| 19198 | ![](/images/pickups/pickup50.png) | Exterior marker (yellow, small)    |
-| 19320 | ![](/images/pickups/pickup51.png) | Pumpkin                            |
-| 19522 | ![](/images/pickups/pickup52.png) | House (red)                        |
-| 19523 | ![](/images/pickups/pickup53.png) | House (orange)                     |
-| 19524 | ![](/images/pickups/pickup54.png) | House (yellow)                     |
-| 19602 | ![](/images/pickups/pickup55.png) | Landmine (type 2)                  |
-| 19605 | ![](/images/pickups/pickup56.png) | Exterior marker (red)              |
-| 19606 | ![](/images/pickups/pickup57.png) | Exterior marker (green)            |
-| 19607 | ![](/images/pickups/pickup58.png) | Exterior marker (blue)             |
-| 19832 | ![](/images/pickups/pickup59.png) | Ammunation box                     |
+| 954 | ![](/images/pickups/pickup1.png) | Підкова для коня
+| 1210 | ![](/images/pickups/pickup2.png) | Портфель
+| 1212 | ![](/images/pickups/pickup3.png) | Гроші
+| 1213 | ![](/images/pickups/pickup4.png) | Протипіхотна міна
+| 1239 | ![](/images/pickups/pickup5.png) | Інформація
+| 1240 | ![](/images/pickups/pickup6.png) | Серце
+| 1241 | ![](/images/pickups/pickup7.png) | Пігулка
+| Бронежилет!
+1247 | ![](/images/pickups/pickup9.png) | Зірка | | 1248 | ![](/images/pickups/pickup9.png)
+| 1248 | ![](/images/pickups/pickup10.png) | Логотип GTA III
+| 1252 | ![](/images/pickups/pickup11.png) | Вибух бочки
+| 1254 | ![](/images/pickups/pickup12.png) | Череп
+| 1272 | ![](/images/pickups/pickup13.png) | Будинок (синій)
+1273 | ![](/images/pickups/pickup14.png) |Будинок (зелений) | ¦ 1274 | ![](/images/pickups/pickup14.png) |Череп (синій)
+| 1274 | ![](/images/pickups/pickup15.png) | Долар
+| 1275 | ![](/images/pickups/pickup16.png) | Сорочка
+| 1276 | ![](/images/pickups/pickup17.png) | Тікі
+| 1277 | ![](/images/pickups/pickup18.png) | Зберегти диск
+| 1279 | ![](/images/pickups/pickup19.png) | Пакунок Крейга
+| 1310 | ![](/images/pickups/pickup20.png) | Парашут
+1313 | ![](/images/pickups/pickup21.png) | Подвійний череп (вбити несамовиту лють) | ¦ 1314 | ![](/images/pickups/pickup21.png) | Пакунок Крейга
+| 1314 | ![](/images/pickups/pickup22.png) | Для двох гравців
+| 1318 | ![](/images/pickups/pickup23.png) | Стріла
+| 1550 | ![](/images/pickups/pickup24.png) | Мішок з грошима
+| 1575 | ![](/images/pickups/pickup25.png) | Пакунок з-під ліків (білий)
+| 1576 | ![](/images/pickups/pickup26.png) | Пакунок з наркотиками (помаранчевий)
+1577 | ![](/images/pickups/pickup27.png) | Пакунок з ліками (жовтий) | ¦ 1578 | ![](/images/pickups/pickup27.png) | Пакунок з ліками (червоний)
+1578 | ![](/images/pickups/pickup28.png) | Пакунок з ліками (зелений) | ¦ 1579 | ![](/images/pickups/pickup28.png) | Пакунок з ліками (жовтий)
+1579 | ![](/images/pickups/pickup29.png) | Пакунок з ліками (синій) | ¦ 1580 | ![](/images/pickups/pickup29.png) | Пакунок з ліками (зелений)
+1580 | ![](/images/pickups/pickup30.png) | Пакунок з ліками (червоний) | | 1581 | ![](/images/pickups/pickup30.png) | Пакунок з ліками (червоний)
+| 1581 | ![](/images/pickups/pickup31.png) | Картка-ключ
+| 1582 | ![](/images/pickups/pickup32.png) | Коробка з-під піци
+| 1636 | ![](/images/pickups/pickup33.png) |Рок-бомба
+| 1650 | ![](/images/pickups/pickup34.png) | Каністра з-під бензину
+| 1654 | ![](/images/pickups/pickup35.png) | Динаміт
+| 2057 | ![](/images/pickups/pickup36.png) | Бляшанки із запальною сумішшю
+| 2060 | ![](/images/pickups/pickup37.png) | Мішок з піском
+| 2061 | ![](/images/pickups/pickup38.png) | Снаряди
+| 2690 | ![](/images/pickups/pickup39.png) | Вогнегасник
+| 2710 | ![](/images/pickups/pickup40.png) | Годинник ручний
+11736 | ![](/images/pickups/pickup41.png) | Медичний ранець | | 11737 | ![](/images/pickups/pickup41.png) | Медична сумка
+11738 | ![](/images/pickups/pickup42.png) | Медичний кейс | | 11738 | ![](/images/pickups/pickup42.png) | Медичний кейс | | 11738
+| 19130 | ![](/images/pickups/pickup43.png) | Стріла (тип 1)
+| 19131 | ![](/images/pickups/pickup44.png) | Стрілка (тип 2)
+| 19132 | ![](/images/pickups/pickup45.png) | Стрілка (тип 3)
+| 19133 | ![](/images/pickups/pickup46.png) | Стрілка (тип 4)
+| 19134 | ![](/images/pickups/pickup47.png) | Стрілка (тип 5)
+| 19135 | ![](/images/pickups/pickup48.png) | Зовнішній маркер (анімований)
+| 19197 | ![](/images/pickups/pickup49.png) | Зовнішній маркер (жовтий, великий)
+| 19198 | ![](/images/pickups/pickup50.png) | Зовнішній маркер (жовтий, маленький)
+| 19320 | ![](/images/pickups/pickup51.png) | Гарбуз
+| 19522 | ![](/images/pickups/pickup52.png) | Будинок (червоний)
+| 19523 | ![](/images/pickups/pickup53.png) | Будинок (помаранчевий)
+| 19524 | ![](/images/pickups/pickup54.png) | Будинок (жовтий)
+| 19602 | ![](/images/pickups/pickup55.png) | Протипіхотна міна (тип 2)
+| 19605 | ![](/images/pickups/pickup56.png) | Зовнішній маркер (червоний)
+19606 | ![](/images/pickups/pickup57.png) | Зовнішній маркер (зелений) | | 19607 | ![](/images/pickups/pickup57.png) | Зовнішній маркер (зелений)
+| 19607 | ![](/images/pickups/pickup58.png) | Зовнішній маркер (синій)
+| 19832 | ![](/images/pickups/pickup59.png) | Ящик для боєприпасів
 
-## Weapon pickups
+## Пікап зброї
 
-| ID  | Description                  |
+| Ідентифікатор | Опис
 | --- | ---------------------------- |
-| 321 | Regular Dildo                |
-| 322 | White Dildo                  |
-| 323 | Vibrator                     |
-| 324 | Another Vibrator             |
-| 325 | Flowers                      |
-| 326 | Cane                         |
-| 330 | CJ's Phone                   |
-| 331 | Brass Knuckles               |
-| 333 | Golf Club                    |
-| 334 | Night Stick                  |
-| 335 | Combat Knife                 |
-| 336 | Baseball Bat                 |
-| 337 | Shovel                       |
-| 338 | Pool Cue                     |
-| 339 | Katana                       |
-| 341 | Chainsaw                     |
-| 342 | Frag Grenade                 |
-| 343 | Tear Gas Grenade             |
-| 344 | Molotov Cocktail             |
-| 346 | Colt 45 Pistol               |
-| 347 | Silenced Colt 45 Pistol      |
-| 348 | Desert Eagle                 |
-| 349 | Regular Shotgun              |
-| 350 | Sawn-Off Shotgun             |
-| 351 | SPAZ-12 Shotgun              |
-| 352 | Mac-10 (Or Micro-UZI)        |
-| 353 | MP5                          |
-| 354 | Hydra Flare                  |
-| 355 | AK47 Assault Rifle           |
-| 356 | M4 Assault Rifle             |
-| 357 | Country Rifle                |
-| 358 | Sniper Rifle                 |
-| 359 | Rocket Launcher              |
-| 360 | Heat Seeking Rocket Launcher |
-| 361 | Flamethrower                 |
-| 362 | Minigun                      |
-| 363 | Satchel Charges              |
-| 364 | Detonator                    |
-| 365 | Spray Paint Can              |
-| 366 | Fire Extinguisher            |
-| 367 | Camera                       |
-| 368 | Night Vision Goggles         |
-| 369 | Infra-Red Goggles            |
-| 370 | Jetpack                      |
-| 371 | Parachute                    |
-| 372 | Tec-9                        |
+| 321 | Звичайний фалоімітатор
+| 322 | Білий фалоімітатор
+| 323 | Вібратор
+| 324 | Інший вібратор.
+| 325 | Квіти.
+| 326 Палиця.
+| 330 | Телефон СиДжея.
+| 331 Кастет.
+| 333 Ключка для гольфу.
+| 334 | Нічний кийок
+| 335. Бойовий ніж.
+| 336 Бейсбольна бита.
+| 337 Лопата.
+| 338 | Більярдний кий
+| 339 | Катана
+| 341 | Бензопила
+| 342 | Осколкова граната
+| 343 | Граната зі сльозогінним газом
+| 344 | Коктейль Молотова
+| 346. Пістолет Кольт 45.
+| 347 | Безшумний пістолет Кольт 45.
+| 348 «Пустельний орел
+| 349. Звичайний дробовик.
+| 350. Обріз дробовика.
+| 351 | Дробовик СПАЗ-12
+| 352 | Mac-10 (або Micro-UZI)
+| 353 | MP5
+| 354 | Гідросигналізатор.
+| 355. Штурмова гвинтівка АК47.
+| 356 Штурмова гвинтівка M4
+| 357 - кантрі-гвинтівка
+| 358 Снайперська гвинтівка
+| 359 | Ракетна установка
+| 360 | Ракетна установка з тепловим наведенням
+| 361. Вогнемет.
+| 362 | Міні-пістолет
+| 363 | Ранцеві заряди
+| 364 | Детонатор
+| 365 | Балончик з фарбою
+| 366 | Вогнегасник
+| 367 | Фотоапарат
+| 368 | Окуляри нічного бачення
+| 369 | Інфрачервоні окуляри
+| 370 | Реактивний ранець
+| 371 | Парашут
+| 372 | Tec-9
+
+

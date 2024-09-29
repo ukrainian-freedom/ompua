@@ -1,47 +1,49 @@
 ---
-title: Server variable system
+заголовок: Система змінних сервера
 
-description: The server variable system (put short, SVar) is a new way of creating server variables in an efficient dynamically created method globally, meaning they can be used in server's gamemode and filterscripts at the same time.
+description: Система серверних змінних (скорочено SVar) - це новий спосіб створення серверних змінних ефективним динамічно створюваним методом у глобальному масштабі, що означає, що вони можуть бути використані в ігровому режимі сервера та скриптах фільтрів одночасно.
 ---
 
-The **server variable system** (put short, **SVar**) is a new way of creating global server variables efficient and dynamically, meaning that they can be used in server's gamemode and filterscripts at the same time.
+Система серверних змінних **SVar** (скорочено **SVar**) - це новий спосіб створення глобальних серверних змінних ефективним динамічним способом, що означає, що їх можна використовувати в ігровому режимі сервера та фільтрскриптах одночасно.
 
-They are similar to [PVars](perplayervariablesystem), but are not tied to a player ID.
+Вони схожі на [PVars](perplayervariablesystem), але не прив'язані до ідентифікатора гравця.
 
 :::warning
 
-This system was introduced in SA-MP 0.3.7 R2-1 and will not work in earlier versions!
+Цю систему було запроваджено у SA-MP 0.3.7 R2-1 і вона не працюватиме у попередніх версіях!
 
 :::
 
-:::note
+:::примітка
 
-The SVar system is the same as the PVars, although the variables created are server-wide, not attached to any player ID, and persist through gamemode changes.
+Система SVar подібна до PVar, хоча створені змінні є загальносерверними, не прив'язані до жодного ідентифікатора гравця і зберігаються при зміні ігрового режиму.
 
 :::
 
-## Advantages
+## Переваги
 
-- SVars can be shared/accessed across gamemode scripts and filterscripts.
+- SVars можна використовувати спільно/доступно у скриптах режимів гри та скриптах фільтрів.
 
-- You can easily enumerate and print/store the SVar list. This makes debugging easier.
+- Ви можете легко перерахувати та надрукувати/зберегти список SVar. Це полегшує налагодження.
 
-- Even if a SVar hasn't been created, it still will return a default value of 0.
+- Навіть якщо SVar не було створено, він все одно повертатиме значення за замовчуванням 0.
 
-- SVars can hold very large strings using dynamically allocated memory.
+- SVar може зберігати дуже довгі рядки, використовуючи динамічно виділену пам'ять.
 
-- You can Set, Get, Create SVars ingame.
+- Ви можете встановлювати, отримувати та створювати SVar у грі.
 
-## Drawbacks
+## Недоліки
 
-- SVars are several times slower than regular variables. It is generally more favorable to trade in memory for speed, rather than the other way round.
+- SVar-змінні в кілька разів повільніші за звичайні змінні. Як правило, вигідніше обміняти пам'ять на швидкість, ніж навпаки.
 
-## Related Functions
+## Споріднені функції
 
-- [SetSVarInt](../scripting/functions/SetSVarInt): set an integer for a server variable.
-- [GetSVarInt](../scripting/functions/GetSVarInt): get a player server as an integer.
-- [SetSVarString](../scripting/functions/SetSVarString): set a string for a server variable.
-- [GetSVarString](../scripting/functions/GetSVarString): get the previously set string from a server variable.
-- [SetSVarFloat](../scripting/functions/SetSVarFloat): set a float for a server variable.
-- [GetSVarFloat](../scripting/functions/GetSVarFloat): get the previously set float from a server variable
-- [DeleteSVar](../scripting/functions/DeleteSVar): delete a server variable.
+- [SetSVarInt](../scripting/functions/SetSVarInt): встановити ціле число для серверної змінної.
+- [GetSVarInt](../scripting/functions/GetSVarInt): отримати сервер гравця як ціле число.
+- [SetSVarString](../scripting/functions/SetSVarString): встановити рядок для серверної змінної.
+- [GetSVarString](../scripting/functions/GetSVarString): отримати раніше встановлений рядок зі змінної сервера.
+- [SetSVarFloat](../scripting/functions/SetSVarFloat): встановити значення з плаваючою комою для серверної змінної.
+- [GetSVarFloat](../scripting/functions/GetSVarFloat): отримати раніше встановлене значення з плаваючою комою з серверної змінної
+- [DeleteSVar](../scripting/functions/DeleteSVar): видалити серверну змінну.
+
+

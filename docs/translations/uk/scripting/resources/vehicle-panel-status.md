@@ -1,15 +1,17 @@
 ---
-title: Vehicle Panel Status
-description: Vehicle panel status definitions.
+заголовок: Статус панелі транспортного засобу
+description: Визначення статусу панелі транспортного засобу.
 ---
 
-:::note
+:::примітка
 
-These definitions are used by natives such as [GetVehicleDamageStatus](../functions/GetVehicleDamageStatus) and [UpdateVehicleDamageStatus](../functions/UpdateVehicleDamageStatus).
+Ці визначення використовуються нативними функціями, такими як [GetVehicleDamageStatus](../functions/GetVehicleDamageStatus) та [UpdateVehicleDamageStatus](../functions/UpdateVehicleDamageStatus).
 
 :::
 
-| Definition                   | Value |
+| Визначення | Значення
 | ---------------------------- | ----- |
-| UNKNOWN_VEHICLE_PANEL_STATUS | -1    |
-| VEHICLE_PANEL_STATUS_NONE    | 0     |
+| НЕВІДОМИЙ_СТАТУС_ПАНЕЛІ_ТРАНСПОРТНОГО_ЗАСОБУ -1
+| VEHICLE_PANEL_STATUS_NONE | 0
+
+

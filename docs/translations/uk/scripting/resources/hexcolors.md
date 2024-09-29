@@ -1,16 +1,16 @@
 ---
 title: Hex Colors
-description: This deals with the color representation in hexadecimal in SAMP.
+description: Це стосується представлення кольорів у шістнадцятковій системі числення у SAMP.
 sidebar_label: Hex Colors
 ---
 
-## What is hex?
+## Що таке шістнадцяткова система числення?
 
-The hexadecimal numeral system, or commonly known just as Hex, is a numeral system made up of 16 unique symbols (this is also known as base 16). You're probably wondering how this numeral system can have 16 symbols when our beloved decimal system (base 10) only has 10 symbols (0-9). Well the answer is quiet simple, let's take a look at both systems:
+Шістнадцяткова система числення, або просто Hex, - це система числення, що складається з 16 унікальних символів (також відома як основа 16). Вам, мабуть, цікаво, як ця система числення може мати 16 символів, коли наша улюблена десяткова система числення (основа 10) має лише 10 символів (0-9). Відповідь дуже проста, давайте подивимось на обидві системи:
 
 ---
   
-### Decimal (base 10)
+### Десяткова (основа 10)
 
 ```c
 01
@@ -26,7 +26,7 @@ The hexadecimal numeral system, or commonly known just as Hex, is a numeral syst
 
 ---
   
-### Hexadecimal (base 16)
+### Шістнадцяткове (основа 16)
 
 ```c
 01
@@ -46,13 +46,13 @@ E //14
 F //15
 ```
 
-Since there are no more available numbers, hex uses letters from the alphabet. Don't be scared by this, you can simply view them as place holders who's value is +1 of the previous number. This sounds very confusing and may even look pretty scary, but you will get used to it in no time at all.
+Оскільки більше немає доступних чисел, hex використовує літери з алфавіту. Не лякайтеся цього, ви можете просто розглядати їх як заповнювачі, значення яких дорівнює +1 до попереднього числа. Це звучить дуже заплутано і може навіть виглядати досить страшно, але ви швидко до цього звикнете.
 
-Now let's take a look a few bigger numbers.
+Тепер давайте подивимось на кілька більших чисел.
 
 ---
   
-### Decimal (base 10)
+### Десятковий (основа 10)
 
 ```c
 255
@@ -60,63 +60,63 @@ Now let's take a look a few bigger numbers.
 
 ---
   
-### Hexadecimal (base 16)
+### Шістнадцяткове (основа 16)
 
 ```c
 FF
 ```
 
-The number 255 is pretty understandable, but what is 'FF'? Let's take a look at both in their exponential notation.
+Число 255 досить зрозуміле, але що таке 'FF'? Давайте подивимось на обидва числа в їх експоненціальному записі.
 
 ---
   
-:::caution
+:::обережно
 
-**Note** | '^' is to the power of in this case, not the bitwise exclusive operator.
+**Примітка** | '^' у цьому випадку є степенем, а не побітовим виключним оператором.
 
 :::
 
-### Decimal (base 10)
+### Десятковий (основа 10)
 
 ```c
 2 * (10^2) + 5 * (10^1) + 5 * (10^0)
 
-//which equals
+//що дорівнює
 
 200+50+5
 
-//which equals
+//що дорівнює
 
 255
 ```
 
-Hex is exactly the same! The only difference is that it works with powers of 16 (Hence the base 10/16).
+Hex - це те саме! Єдина відмінність полягає в тому, що він працює з степенями 16 (звідси і основа 10/16).
 
 ---
   
-### Hexadecimal (base 16)
+### Шістнадцяткова система числення (основа 16)
 
 ```c
 F * (16^1) + F * (16^0)
 
-//which equals
+//що дорівнює
 
 15 * (16^1) + 15 * (16^0)
 
-//which equals
+//що дорівнює
 
 240+15
 ```
 
 ---
   
-## When and how to use hex.
+## Коли і як використовувати шістнадцяткові числа.
 
-There isn't really a sole use for hex, you can use it when ever you want; though it's mostly used for color defines (We'll take a look at this later). Some people use hex as a visual aid to make things look more clearly (Y_Less) for example:
+Насправді не існує єдиного застосування для гексів, ви можете використовувати його, коли захочете; хоча найчастіше він використовується для визначення кольору (ми розглянемо це пізніше). Дехто використовує гекс як візуальний засіб, щоб зробити речі більш зрозумілими (наприклад, Y_Less):
 
-:::caution
+:::обережно
 
-**Note** | This is a complicated example, don't worry if you don't understand it.
+**Примітка** | Це складний приклад, не хвилюйтеся, якщо ви його не зрозумієте.
 
 :::
 
@@ -124,45 +124,47 @@ There isn't really a sole use for hex, you can use it when ever you want; though
 var = b & 0x04
 ```
 
-That makes it very clear that I want the 4 high bits of the low byte of b, on the other hand:
+Тут дуже чітко показано, що я хочу отримати 4 старші біти молодшого байта b:
 
 ```c
 var = b & 4
 ```
 
-Isn't very friendly to the eyes at all.
+Зовсім не дуже приємно для очей.
 
-Notice how '04' has '0x' in front of it. This is a constant symbol in pawn that allows the use of hexadecimal (like 0b is for binary).
+Зверніть увагу, що перед '04' стоїть '0x'. Це константний символ у пішаку, який дозволяє використовувати шістнадцяткову систему числення (як 0b для двійкової).
 
 ---
   
-## Hex colors
+## Шістнадцяткові кольори
 
-Hex colors follow this format:
-
-```c
-RR - Two values for the red (Where FF is max, and 00 is the lowest).
-GG - Two values for the green (Where FF is max, and 00 is the lowest).
-BB - Two values for the blue (Where FF is max, and 00 is the lowest).
-AA - Two values for the transparency (Where FF is max, and 00 is the lowest).
-```
-
-Let's take a look at a few colors, starting with the basics and moving into the combinations.
+Шістнадцяткові кольори мають такий формат:
 
 ```c
-//basics
-
-0x00000000 - Black
-0xFF0000FF - Bright red.
-0x00FF00FF - Bright green.
-0x0000FFFF - Bright blue.
-0xFFFFFFFF - White
-
-//combinations
-
-0xFFFF00FF - Bright yellow
-0xFF00FFFF - Bright purple
-0x00FFFFFF - Bright cyan
+RR - Два значення для червоного кольору (де FF - максимальне, а 00 - мінімальне).
+GG - Два значення для зеленого кольору (де FF - максимальне, а 00 - мінімальне).
+BB - Два значення для синього (де FF - максимальне, а 00 - мінімальне).
+AA - Два значення для прозорості (де FF - максимальне, а 00 - мінімальне).
 ```
 
-These are just the basic colors/combination, if you're looking for other colors / are too lazy to convert, you are better using a converter like this one:
+Давайте розглянемо кілька кольорів, починаючи з основ і переходячи до комбінацій.
+
+```c
+//базові
+
+0x00000000 - чорний
+0xFF0000FF - яскраво-червоний.
+0x00FF00FF - Яскраво-зелений.
+0x0000FFFF - Яскраво-синій.
+0xFFFFFFFF - білий
+
+//комбінації
+
+0xFFFF00FF - Яскраво-жовтий
+0xFF00FFFF - яскраво-фіолетовий
+0x00FFFFFFFF - яскраво-блакитний
+```
+
+Це лише основні кольори/комбінації, якщо ви шукаєте інші кольори/лінуєтесь конвертувати, краще скористайтесь конвертером на кшталт цього:
+
+

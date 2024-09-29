@@ -1,24 +1,26 @@
 ---
-title: Starting IDs
-description: Everything like objects, players or vehicles use IDs. Some IDs start with 0, others start with 1.
-sidebar_label: Starting IDs
+заголовок: Стартові ідентифікатори
+description: Все, як об'єкти, гравці або транспортні засоби використовують ідентифікатори. Деякі ідентифікатори починаються з 0, інші - з 1.
+sidebar_label: Початкові ідентифікатори
 ---
 
-This page contains all of the starting IDs for numerous entities.  
-Everything like objects, players or vehicles use IDs. Some IDs start with 0, others start with 1.
+Ця сторінка містить усі початкові ідентифікатори для численних об'єктів.  
+Такі об'єкти, як об'єкти, гравці або транспортні засоби використовують ідентифікатори. Деякі ідентифікатори починаються з 0, інші - з 1.
 
-| Type                      | Starting ID |
+| Тип початкового ідентифікатора
 | ------------------------- | ----------- |
-| 3D Text Label             | 0           |
-| Actor                     | 0           |
-| File                      | 0           |
-| GangZone                  | 0           |
-| Object                    | 1           |
-| Pickup                    | 0           |
-| Player                    | 0           |
-| Player Class              | 0           |
-| TextDraw / PlayerTextDraw | 0           |
-| Timer                     | 1           |
-| Vehicle                   | 1           |
+| 3D-мітка з текстом 0
+| Актор 0
+| Файл 0
+| GangZone 0
+| Об'єкт 1
+| Пікап 0
+| Гравець 0
+| Клас плеєра 0.
+| TextDraw / PlayerTextDraw 0
+| Таймер 1
+| Vehicle / Транспортний засіб 1
 
-You see, vehicles and objects start using 1, not 0! So if you plan to use an array to hold all IDs you have to use the ID from CreateObject/CreateVehicle/... and subtract 1 to get the array element ID.
+Бачите, транспортні засоби та об'єкти починають використовувати 1, а не 0! Отже, якщо ви плануєте використовувати масив для зберігання всіх ідентифікаторів, вам потрібно використовувати ідентифікатор з CreateObject/CreateVehicle/... і відняти 1, щоб отримати ідентифікатор елемента масиву.
+
+

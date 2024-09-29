@@ -1,75 +1,75 @@
 ---
-title: "Scripting: Tags"
-description: A guide for Tags, a type-like feature of the Pawn language providing safety features for working with values of different intent.
+назва: "Сценарії: Теги"
+description: Посібник з тегів, типоподібної функції мови Pawn, що забезпечує безпеку при роботі зі значеннями з різним призначенням.
 ---
 
-## Introduction
+## Вступ
 
-A tag is a prefix to a variable which tells the compiler to treat the variable specially under certain circumstances. For example you can use tags to define where a variable can and can't be used, or a special way to add two variables together.
+Тег - це префікс до змінної, який вказує компілятору поводитися зі змінною по-особливому за певних обставин. Наприклад, ви можете використовувати теги, щоб визначити, де змінну можна використовувати, а де ні, або спеціальний спосіб додавання двох змінних разом.
 
-There are two types of tag - strong tags (starting with a capital letter) and weak tags (starting with a lower case letter), for the most part they're the same however under certain circumstances weak tags can be converted to tagless silently by the compiler, i.e. you won't get a warning, most of the time with weak tags, and all the time with strong tags, implicitly changing the tag will result in a warning to tell you data is likely being used wrong.
+Існує два типи тегів - сильні теги (починаються з великої літери) і слабкі теги (починаються з малої літери), здебільшого вони однакові, однак за певних обставин слабкі теги можуть бути перетворені компілятором на безтегові мовчки, тобто ви не отримаєте попередження, у більшості випадків зі слабкими тегами, і завжди зі сильними тегами, неявна зміна тегу призведе до попередження про те, що дані, ймовірно, використовуються неправильно.
 
-A very simple example is the following:
+Дуже простий приклад - наступний:
 
 ```c
-new
+новий
     File:myfile = fopen("file.txt", io_read);
 myFile += 4;
 ```
 
-The `fopen` function will return a value with a tag of type `File:`, there is no problem on that line as the return value is being stored to a variable also with a tag of `File:` (note the cases are the same too). However on the next line the value `4` is added to the file handle. `4` has no tag (it is actually tag type `_:` but variables, values and functions with no tag are automatically set to that and you don't need to worry about it normally) and myFile has a tag of `File:`, obviously nothing and something can't possibly be the same so the compiler will issue a warning, this is good as a handle to a file is meaningless in terms of it's actual value and so modifying it will merely destroy the handle and mean the file can't be closed as there is no longer a valid handle to pass and close the file with.
+Функція `fopen` поверне значення з тегом типу `File:`, у цьому рядку немає жодних проблем, оскільки значення, що повертається, зберігається у змінній, яка також має тег `File:` (зауважте, що регістри однакові). Однак у наступному рядку до дескриптора файлу додається значення `4`. `4` не має тегу (насправді це тег типу `_:`, але змінні, значення і функції без тегу автоматично встановлюються таким чином, і вам не потрібно про це турбуватися), а myFile має тег `File:`, очевидно, що ніщо і щось не можуть бути однаковими, тому компілятор видасть попередження, це добре, оскільки дескриптор файлу не має сенсу з точки зору його фактичного значення, і тому його модифікація просто знищить дескриптор, а це означає, що файл не може бути закритий, оскільки більше немає дійсного дескриптора, якому можна передати і закрити файл.
 
-### Strong tags
+### Сильні теги
 
-As mentioned above a strong tag is any tag starting with a capital letter. Examples of these in SA:MP include:
+Як згадувалося вище, сильний тег - це будь-який тег, що починається з великої літери. Приклади таких тегів у SA:MP включають
 
 ```c
-Float:
-File:
-Text:
+Поплавок:
+Файл:
+Текст:
 ```
 
-These cannot be mixed with other variable types and will always issue a warning when you try to do so:
+Їх не можна змішувати з іншими типами змінних, і при спробі це зробити буде видано попередження:
 
 ```c
-new
-    Float:myFloat,
+новий
+    Поплавок:myFloat,
     File:myFile,
     myBlank;
 
-myFile = fopen("file.txt", io_read); // File: = File:, no warning
+myFile = fopen("file.txt", io_read); // File: = File:, без попередження
 
-myFloat = myFile; // Float: = File:, "tag mismatch" warning
+myFloat = myFile; // Float: = File:, попередження "невідповідність тегів"
 
-myFloat = 4; // Float: = _: (none), "tag mismatch" warning
+myFloat = 4; // Float: = _: (none), попередження "невідповідність тегів"
 
-myBlank = myFloat; // _: (none) = Float:, "tag mismatch" warning
+myBlank = myFloat; // _: (none) = Float:, попередження "невідповідність тегів"
 ```
 
-### Weak tags
+### Слабкі теги
 
-A weak tag behaves mostly the same as a strong tag however the compiler will not issue a warning when the destination is tagless and the source is a weak tag. For example compare the following strong and weak tag codes, the first with the strong tag will give a warning, the second with the weak tag will not:
+Слабкий тег поводиться майже так само, як і сильний, однак компілятор не видасть попередження, якщо адресат не містить тегів, а джерело містить слабкий тег. Наприклад, порівняйте наступні коди сильних і слабких тегів, перший з них з сильним тегом видасть попередження, а другий з слабким тегом - ні:
 
 ```c
-new
-    Strong:myStrong,
-    weak:myWeak,
+новий
+    Сильний: мій Сильний,
+    Слабкий: мій Слабкий,
     myNone;
 
-myNone = myStrong; // Warning
-myNone = myWeak; // No warning
+myNone = myStrong; // Попередження
+myNone = myWeak; // Без попередження
 ```
 
-However the reverse is not true:
+Однак зворотне не відповідає дійсності:
 
 ```c
-myWeak = myNone; // Warning
+myWeak = myNone; // Попередження
 ```
 
-This is also true with functions, calling a function with a tagless parameter, passing a weak tagged variable will not give a warning:
+Це також стосується функцій, виклик функції з параметром без тегів, передача змінної зі слабкими тегами не призведе до попередження:
 
 ```c
-new
+новий
     weak:myWeak;
 MyFunction(myWeak);
 
@@ -81,7 +81,7 @@ MyFunction(myVar)
 }
 ```
 
-But calling a function with a tagged parameter (weak or strong), passing an untagged parameter will give a warning. Examples of weak tags in SA:MP are less well known as such though are often used and include:
+Але виклик функції з поміченим параметром (слабким або сильним), передача не поміченого параметра призведе до попередження. Приклади слабких тегів у SA:MP менш відомі як такі, хоча вони часто використовуються і включаються:
 
 ```c
 bool:
@@ -89,22 +89,22 @@ filemode:
 floatround_method:
 ```
 
-## Use
+## Використовуйте
 
-### Declaring
+### Заявляю.
 
-Declaring a variable with a tag is very simple, just write the tag, there's no need to define a tag in advance in any way however this is possible and does have it's uses as will become apparent later:
+Оголосити змінну за допомогою тегу дуже просто, просто напишіть тег, немає необхідності визначати тег заздалегідь будь-яким чином, однак це можливо і має свої переваги, як стане зрозуміло пізніше:
 
 ```c
-new
+новий
     Mytag:myVariable;
 ```
 
-Declaring a variable with one of the existing tags will allow you to use that variable with the functions and operators already written for that tag type.
+Оголошення змінної з одним з існуючих тегів дозволить вам використовувати цю змінну з функціями та операторами, вже написаними для цього типу тегів.
 
-### Functions
+### Функції
 
-Creating a function to take or return a tag is very simple, just prefix the relevant part with the desired tag type, for example:
+Створити функцію для отримання або повернення тегу дуже просто, просто додайте до відповідної частини потрібний тип тегу, наприклад, префікс:
 
 ```c
 Float:GetValue(File:fHnd, const name[])
@@ -113,13 +113,13 @@ Float:GetValue(File:fHnd, const name[])
 }
 ```
 
-That function takes the handle to a file and returns a float value (presumably a value read from the file and corresponding to the value name passed in `name[]`). This function would most likely use the `floatstr` function, which also returns a Float: (as you can tell by looking at the status bar of pawno when you click on the function in the right hand function list), after taking a string. The implementation of this function is not important but it will convert the string to an IEEE float value, which is then stored as a cell (it's actually strictly stored as an integer which just happens to have an identical bit pattern to the relevant IEEE number as PAWN is typeless, but that's what tags are partially there to combat).
+Ця функція отримує дескриптор файлу і повертає значення з плаваючою комою (ймовірно, значення, зчитане з файлу і відповідне до імені значення, переданого у `name[]`). Ця функція, найімовірніше, використовуватиме функцію `floatstr`, яка також повертає значення з плаваючою комою (як ви можете побачити у рядку стану pawno, якщо клацнути на ній у списку функцій праворуч) після отримання рядка. Реалізація цієї функції не є важливою, але вона перетворить рядок у значення з плаваючою комою IEEE, яке потім буде збережено як комірку (насправді воно зберігається як ціле число, яке просто має ідентичний бітовий шаблон з відповідним номером IEEE, оскільки PAWN є безтиповою, але саме з цим частково і борються мітки).
 
-### Operators
+### Оператори
 
-Operators such as `+`, `==`, `>` etc can be overloaded for different tags, i.e. doing `+` on two Float:s does something different to doing it on two non-tagged variables. This is especially useful in the case of float variables as as mentioned they are not really floats they are integers with a very specific bit pattern, if the operators were not overloaded the operations would simply be performed on the integers which would give gibberish if the answer were interpreted as a float again. For this reason the Float: tag has overloaded versions of most of the operators to call special functions to do the maths in the server instead of in pawn.
+Такі оператори, як `+`, `==`, `>` тощо, можна перевантажувати для різних тегів, тобто виконання `+` над двома змінними типу Float:s дещо відрізняється від виконання цієї операції над двома змінними без тегів. Це особливо корисно у випадку змінних з плаваючою комою, оскільки, як уже згадувалося, вони насправді не є плаваючими, а цілими числами з дуже специфічною бітовою структурою, і якщо оператори не перевантажувати, то операції просто виконувалися б над цілими числами, що призвело б до безладу, якби відповідь знову було інтерпретовано як плаваючу. З цієї причини тег Float: має перевантажені версії більшості операторів для виклику спеціальних функцій, які виконують обчислення на сервері, а не в пішаку.
 
-An operator is exactly like a normal function but instead of a function name you use "operator(**symbol**)" where (**symbol**) is the operator you want to overwrite. The valid operators are:
+Оператор схожий на звичайну функцію, але замість імені функції ви використовуєте "operator(**symbol**)", де (**symbol**) - це оператор, який ви хочете перезаписати. Допустимими операторами є
 
 ```c
 +
@@ -139,42 +139,44 @@ An operator is exactly like a normal function but instead of a function name you
 %
 ```
 
-Things like `\`, `*`, `=` etc are done automatically. Things like `&` etc can't be overloaded. You can also overload an operator multiple times with different combinations of tag. For example:
+Такі символи, як `\`, `*`, `=` і т.д. виконуються автоматично. Оператори типу `&` тощо не можна перевантажувати. Ви також можете перевантажити оператор декілька разів різними комбінаціями тегів. Наприклад:
 
 ```c
 stock Float:operator=(Mytag:oper)
 {
-    return float(_:oper);
+    повернути float(_:operator);
 }
 ```
 
-If you add that to your code and do:
+Якщо ви додасте це у свій код і зробите:
 
 ```c
-new
+новий
     Float:myFloat,
     Mytag:myTag;
 
 myFloat = myTag;
 ```
 
-You will no longer get a compiler warning as you would have before because the `=` operator for the case `Float: = Mytag:` is now handled so the compiler knows exactly what to do.
+Ви більше не отримаєте попередження компілятора, як раніше, оскільки оператор `=` для випадку `Float: = Mytag:` тепер обробляється так, що компілятор точно знає, що робити.
 
-### Overwriting
+### Перезапис
 
-In the overloading example above the functional line was:
+У прикладі з перевантаженням вище функціональна лінія була:
 
 ```c
 return float(_:oper);
 ```
 
-This is an example of tag overwriting, the `_:` in front of oper means the compiler basically ignores the fact that oper has a tag type of Mytag: and treats it as tag type `_:` (i.e. no tag type). The function `float()` tags a normal number so must be passed one. In that example it is assumed that `Mytag` stores an ordinary integer but overwriting must be dealt with very carefully, for example the following will give very odd results:
+Це приклад перезапису тегів, `_:` перед oper означає, що компілятор ігнорує той факт, що oper має тип тегу Mytag: і розглядає його як тег типу `_:` (тобто без типу тегу). Функція `float()` тегує звичайне число, тому їй потрібно передати одиницю. У цьому прикладі передбачається, що `Mytag` зберігає звичайне ціле число, але з перезаписом слід поводитися дуже обережно, наприклад, наступний приклад дасть дуже дивні результати:
 
 ```c
-new
+новий
     Float:f1,
     Float:f2 = 4.0;
 f1 = float(_:f2);
 ```
 
-Sense would dictate that `f1` would end up as `4.0`, however it won't. As mentioned f2 stores a representation of `4.0`, not just `4` as an integer would, this means the actual value of the variable as an integer is a very odd number. Thus if you tell the compiler to treat the variable as an integer it will simply take the bit pattern in the variable as the value, it won't convert the float to an integer, so you will get an almost random number (it's not actually random as there's a pattern to IEEE floating points but it will be nothing like `4.0`).
+Здавалося б, що `f1` в кінцевому підсумку має бути `4.0`, але цього не станеться. Як зазначалося, f2 зберігає представлення `4.0`, а не просто `4` як ціле число, це означає, що фактичне значення змінної як цілого числа є дуже непарним числом. Таким чином, якщо ви скажете компілятору обробляти змінну як ціле число, він просто візьме бітову структуру змінної як значення, він не перетворить число з плаваючою комою в ціле, тому ви отримаєте майже випадкове число (насправді воно не є випадковим, оскільки існує шаблон IEEE для чисел з плаваючою комою, але воно не буде схожим на число `4.0`).
+
+

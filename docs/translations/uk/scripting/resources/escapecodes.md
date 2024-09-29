@@ -1,31 +1,33 @@
 ---
-title: Escape Codes
-sidebar_label: Escape Codes
+заголовок: Ескейп-коди
+sidebar_label: Коди ескейпу
 ---
 
-When create a string you may find that some character may be impossible or extremely difficult to express in the source code of your script, this is where escape codes come in handy - these allow you to use the symbols and expressions that come under this category. Below is a list of escape codes for the PAWN language.
+При створенні рядка ви можете виявити, що якийсь символ неможливо або дуже складно виразити у вихідному коді вашого скрипта, саме тут у нагоді стають коди екранування - вони дозволяють використовувати символи і вирази, які відносяться до цієї категорії. Нижче наведено список екранних кодів для мови PAWN.
 
-| Escape Codes                                | Code         |
+| Екранні коди | Код
 | ------------------------------------------- | ------------ |
-| Audible beep (on server machine)            | \a (also \7) |
-| Backspace                                   | \b           |
-| Escape                                      | \e           |
-| Form feed                                   | \f           |
-| New line                                    | \n           |
-| Carriage return                             | \r           |
-| Horizontal tab                              | \t           |
-| Vertical tab                                | \v           |
-| Backslash (\)                               | \\           |
-| Single quote (')                            | \'           |
-| Double quote (")                            | \"           |
-| Percent sign                                | \%           |
-| Character code with decimal code "ddd".     | \ddd;        |
-| Character code with hexidecimal code "hhh". | \xhhh;       |
+| Звуковий сигнал (на серверній машині) | \a (також \7)
+| Backspace (пробіл) \b (також \7)
+| Пропуск | \e|.
+| Переведення форми | \f |.
+| Новий рядок.
+| Повернення каретки | \r |.
+| Горизонтальний табулятор \t \t
+| Вертикальна табуляція | \v |.
+| Зворотна коса риска (\) \ \\ | |Одна лапка (') \ \'
+| Одинарні лапки (')
+| Подвійні лапки (") | \»           |
+| Знак відсотка \% \% \
+| Код символу з десятковим кодом «ddd».     | «dddd»; «dddd
+| Шістнадцятковий код символу «hhh». \xhhh; \xhhh; \xhhh; \xhhh; \xhhh
 
-:::note
+:::примітка
 
-The semicolon after the nddd; and nxhhh; codes is optional. Its purpose is to give the escape sequence sequence an explicit termination symbol when it is used in a string constant.
+Крапка з комою після кодів nddd; і nxhhh; є необов'язковою. Її призначення полягає у тому, щоб надати послідовності екранування явний символ завершення, коли вона використовується у рядковій константі.
 
 :::
 
-Source: [pawn-lang.pdf (pg 99)](https://github.com/pawn-lang/compiler/raw/master/doc/pawn-lang.pdf)
+Джерело: [pawn-lang.pdf (стор. 99)](https://github.com/pawn-lang/compiler/raw/master/doc/pawn-lang.pdf)
+
+

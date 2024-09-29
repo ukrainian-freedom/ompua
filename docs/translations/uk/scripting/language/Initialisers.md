@@ -1,21 +1,21 @@
 ---
-title: "Keywords: Initialisers"
+title: "Ключові слова: Initialisers"
 ---
 
 ## `const`
 
 ```c
 new const
-    MY_CONSTANT[] =  {1, 2, 3};
+    MY_CONSTANT[] = {1, 2, 3};
 ```
 
-const is not widerly used however it declares a variable which can not be modified by code. There are a few uses for this - functions with const array parameters can sometimes be compiled more efficiently or you may want something like a define but which is an array. const is a modifier, it must go with new or another variable declarator. If you try modify a const variable the compiler will complain.
+const не є широко використовуваною, проте вона оголошує змінну, яку не можна змінювати у коді. Для цього є кілька застосувань - функції з параметрами масиву const іноді можуть бути скомпільовані більш ефективно, або вам може знадобитися щось на зразок define, але у вигляді масиву. const - це модифікатор, він повинен йти з new або іншим декларатором змінної. Якщо ви спробуєте модифікувати змінну const, компілятор поскаржиться.
 
 ## `enum`
 
-Enumerations are a very useful system for representing large groups of data and modifying constants quickly. There are a few main uses - replacing large sets of define statements, symbolically representing array slots (these are actually the same thing but they look different) and creating new tags.
+Зчислення є дуже корисною системою для представлення великих груп даних і швидкої модифікації констант. Існує кілька основних способів використання - заміна великих наборів інструкцій define, символічне представлення слотів масивів (це фактично одне і те ж, але виглядає по-різному) і створення нових тегів.
 
-By far the most common use is as array definitions:
+Найпоширеніше використання - це визначення масивів:
 
 ```c
 enum E_MY_ARRAY
@@ -30,24 +30,24 @@ new
 public OnPlayerConnect(playerid)
 {
     gPlayerData[playerid][E_MY_ARRAY_MONEY] = 0;
-    gPlayerData[playerid][E_MY_ARRAY_GUN] = 5;
+    gPlayerData[playerid][E_MY_ARRAY_GUN] = 5
 }
 ```
 
-That will create an array with two slots for every player. Into the one referenced by E_MY_ARRAY_MONEY it'll put 0 when a player connects and 5 into E_MY_ARRAY_GUN. Without an enum this would look like:
+Це створить масив з двома слотами для кожного гравця. У той, на який посилається E_MY_ARRAY_MONEY, буде записано 0, коли гравець підключиться, а в E_MY_ARRAY_GUN - 5. Без перечислення це виглядало б так:
 
 ```c
-new
+новий
     gPlayerData[MAX_PLAYERS][2];
 
 public OnPlayerConnect(playerid)
 {
     gPlayerData[playerid][0] = 0;
-    gPlayerData[playerid][1] = 5;
+    gPlayerData[playerid][1] = 5
 }
 ```
 
-And that is how the first compiles. This is OK, however it's less readable - what is slot 0 for and what is slot 1 for? And it's less flexible, what if you want to add another slot between 0 and 1, you have to rename all your 1s to 2s, add the new one and hope you didn't miss anything, wheras with an enum you would just do:
+І ось так компілюється перший файл. Це добре, але він менш читабельний - для чого потрібен слот 0 і для чого потрібен слот 1? І він менш гнучкий, якщо ви хочете додати ще один слот між 0 і 1, вам доведеться перейменувати всі ваші 1 на 2, додати новий слот і сподіватися, що ви нічого не пропустили, в той час як зі зчисленням ви можете це зробити просто:
 
 ```c
 enum E_MY_ARRAY
@@ -63,17 +63,17 @@ new
 public OnPlayerConnect(playerid)
 {
     gPlayerData[playerid][E_MY_ARRAY_MONEY] = 0;
-    gPlayerData[playerid][E_MY_ARRAY_AMMO] = 100;
+    gPlayerData[playerid][E_MY_ARRAY_AMMO] = 100
     gPlayerData[playerid][E_MY_ARRAY_GUN] = 5;
 }
 ```
 
-Recompile and everything will be updated for you.
+Перекомпілюйте і все оновиться для вас.
 
-So how does an enum know what values to give things? The full format of an enum is:
+Тож як перечислення знає, які значення надавати об'єктам? Повний формат перечислення виглядає наступним чином:
 
 ```c
-enum NAME (modifier)
+enum NAME (модифікатор)
 {
     NAME_ENTRY_1 = value,
     NAME_ENTRY_2 = value,
@@ -82,7 +82,7 @@ enum NAME (modifier)
 }
 ```
 
-However much of this is implied. By default, if you don't specify a modifier it becomes (+= 1), this means that every value in the enum is the last value in the enum + 1, so for:
+Однак багато чого з цього мається на увазі. За замовчуванням, якщо ви не вказуєте модифікатор, він стає (+= 1), це означає, що кожне значення у зчисленні є останнім значенням у зчисленні + 1, тому for:
 
 ```c
 enum E_EXAMPLE
@@ -93,7 +93,7 @@ enum E_EXAMPLE
 }
 ```
 
-The first value (E_EXAMPLE_0) is 0 (by default if no other value is specified), so the second value (E_EXAMPLE_1) is 1 (0 + 1) and the third value (E_EXAMPLE_2) is 2 (1 + 1). This makes the value of E_EXAMPLE 3 (2 + 1), the name of the enum is also the last value in the enum. If we change the modifier we get different values:
+Перше значення (E_EXAMPLE_0) дорівнює 0 (за замовчуванням, якщо не вказано інше значення), тому друге значення (E_EXAMPLE_1) дорівнює 1 (0 + 1), а третє значення (E_EXAMPLE_2) - 2 (1 + 1). Це робить значення E_EXAMPLE 3 (2 + 1), ім'я зчислення також є останнім значенням у зчисленні. Якщо ми змінимо модифікатор, то отримаємо інші значення:
 
 ```c
 enum E_EXAMPLE (+= 5)
@@ -104,14 +104,14 @@ enum E_EXAMPLE (+= 5)
 }
 ```
 
-In that example every value is the last value + 5 so, starting from 0 again, we get: E_EXAMPLE_0 = 0, E_EXAMPLE_1 = 5, E_EXAMPLE_2 = 10, E_EXAMPLE = 15. If you were to declare an array of:
+У цьому прикладі кожне значення дорівнює останньому значенню + 5, тому, знову починаючи з 0, ми отримуємо: E_EXAMPLE_0 = 0, E_EXAMPLE_1 = 5, E_EXAMPLE_2 = 10, E_EXAMPLE = 15. Якщо ви оголосите масив of:
 
 ```c
-new
+новий
     gEnumArray[E_EXAMPLE];
 ```
 
-You would get an array 15 cells big however you would only be able to access cells 0, 5 and 10 using the enum values (you could however still use normal numbers). Lets look at another example:
+Ви отримаєте масив розміром 15 клітинок, але ви зможете отримати доступ лише до клітинок 0, 5 і 10, використовуючи значення перечислення (ви також можете використовувати звичайні числа). Розглянемо інший приклад:
 
 ```c
 enum E_EXAMPLE (*= 2)
@@ -122,7 +122,7 @@ enum E_EXAMPLE (*= 2)
 }
 ```
 
-In this all the values are 0. Why? Well the first value by default is 0, then 0 _ 2 = 0, then 0 _ 2 = 0 and 0 \* 2 = 0. So how do we correct this? This is what custom values are for:
+У цьому рядку всі значення дорівнюють 0. Чому? Ну, перше значення за замовчуванням дорівнює 0, потім 0 _ 2 = 0, потім 0 _ 2 = 0 і 0 \* 2 = 0. Тож як нам це виправити? Для цього існують користувацькі значення:
 
 ```c
 enum E_EXAMPLE (*= 2)
@@ -133,7 +133,7 @@ enum E_EXAMPLE (*= 2)
 }
 ```
 
-That sets the first value to 1, so you end up with 1, 2, 4 and 8. Creating an array with that would give you an 8 cell array with named access to cells 1, 2 and 4. You can set whichever values you like and as many values as you like:
+Це встановить перше значення на 1, тож ви отримаєте 1, 2, 4 і 8. Якщо ви створите масив з цими значеннями, то отримаєте масив з 8 клітинок з іменованим доступом до клітинок 1, 2 і 4. Ви можете встановити будь-які значення, які вам подобаються, і стільки значень, скільки вам потрібно:
 
 ```c
 enum E_EXAMPLE (*= 2)
@@ -144,13 +144,13 @@ enum E_EXAMPLE (*= 2)
 }
 ```
 
-Gives:
+Дає:
 
 ```c
 0, 1, 2, 4
 ```
 
-While:
+Поки що:
 
 ```c
 enum E_EXAMPLE (*= 2)
@@ -161,15 +161,15 @@ enum E_EXAMPLE (*= 2)
 }
 ```
 
-Gives:
+Дає:
 
 ```c
 1, 1, 1, 2
 ```
 
-It's not advised to use anything but += 1 for arrays.
+Для масивів не рекомендується використовувати нічого, крім += 1.
 
-You can also use arrays in enums:
+Ви також можете використовувати масиви у переліках:
 
 ```c
 enum E_EXAMPLE
@@ -180,9 +180,9 @@ enum E_EXAMPLE
 }
 ```
 
-That would make E_EXAMPLE_0 = 0, E_EXAMPLE_1 = 10, E_EXAMPLE_2 = 11 and E_EXAMPLE = 12, contrary to the popular belief of 0, 1, 2 and 3.
+Тоді E_EXAMPLE_0 = 0, E_EXAMPLE_1 = 10, E_EXAMPLE_2 = 11 і E_EXAMPLE = 12, всупереч поширеній думці про 0, 1, 2 і 3.
 
-enums items can also have tags, so for out original example:
+елементи переліків також можуть мати теги, тому у нашому прикладі:
 
 ```c
 enum E_MY_ARRAY
@@ -199,15 +199,15 @@ new
 public OnPlayerConnect(playerid)
 {
     gPlayerData[playerid][E_MY_ARRAY_MONEY] = 0;
-    gPlayerData[playerid][E_MY_ARRAY_AMMO] = 100;
+    gPlayerData[playerid][E_MY_ARRAY_AMMO] = 100
     gPlayerData[playerid][E_MY_ARRAY_GUN] = 5;
     gPlayerData[playerid][E_MY_ARRAY_HEALTH] = 50.0;
 }
 ```
 
-That will not give a tag mismatch.
+Це не призведе до невідповідності тегів.
 
-Enums can also be used as tags themselves:
+Переліки також можна використовувати як теги:
 
 ```c
 enum E_MY_TAG (<<= 1)
@@ -219,23 +219,23 @@ enum E_MY_TAG (<<= 1)
     E_MY_TAG_VAL_4
 }
 
-new
+новий
     E_MY_TAG:gMyTagVar = E_MY_TAG_VAL_2 | E_MY_TAG_VAL_3;
 ```
 
-That will create a new variable and assign it the value 6 (4 | 2), and it will have a custom tag so doing:
+Це створить нову змінну і присвоїть їй значення 6 (4 | 2), і вона матиме спеціальний тег:
 
 ```c
 gMyTagVar = 7;
 ```
 
-Will generate a tag mismatch warning, although you can use tag overwrites to bypass it:
+Згенерує попередження про невідповідність тегів, хоча ви можете використати перезапис тегів, щоб обійти його:
 
 ```c
 gMyTagVar = E_MY_TAG:7;
 ```
 
-This can be very useful for flag data (i.e. one bit for some data), or even combined data:
+Це може бути дуже корисно для прапорцевих даних (тобто один біт для деяких даних) або навіть комбінованих даних:
 
 ```c
 enum E_MY_TAG (<<= 1)
@@ -248,24 +248,24 @@ enum E_MY_TAG (<<= 1)
     E_MY_TAG_VAL_4
 }
 
-new
+новий
     E_MY_TAG:gMyTagVar = E_MY_TAG_VAL_2 | E_MY_TAG_VAL_3 | (E_MY_TAG:7 & E_MY_TAG_MASK);
 ```
 
-Which will produce a value of 1543 (0x0607).
+Це дасть значення 1543 (0x0607).
 
-Finally, as stated originally, enums can be used to replace defines by ommitting the name:
+Нарешті, як було сказано спочатку, перелічення можна використовувати для заміни визначень, опускаючи їхні імена:
 
 ```c
-#define TEAM_NONE   0
-#define TEAM_COP    1
+#define TEAM_NONE 0
+#define TEAM_COP 1
 #define TEAM_ROBBER 2
-#define TEAM_CIV    3
-#define TEAM_CLERK  4
+#define TEAM_CIV 3
+#define TEAM_CLERK 4
 #define TEAM_DRIVER 5
 ```
 
-I'm sure many of you have seen loads of things like that to define teams. It's all well and good but it's very static. That can easilly be replaced by an enum to handle numeric assignments automatically:
+Я впевнений, що багато хто з вас бачив багато подібних речей для визначення команд. Це все добре, але це дуже статично. Це можна легко замінити переліком для автоматичної обробки числових присвоєнь:
 
 ```c
 enum
@@ -279,10 +279,10 @@ enum
 }
 ```
 
-Those all have the same values as they had before, and can be used in exactly the same way:
+Всі вони мають ті ж самі значення, що й раніше, і можуть бути використані в той же самий спосіб:
 
 ```c
-new
+новий
     gPlayerTeam[MAX_PLAYERS] = {TEAM_NONE, ...};
 
 public OnPlayerConnect(playerid)
@@ -299,7 +299,7 @@ public OnPlayerRequestSpawn(playerid)
 }
 ```
 
-While we're on the subject there is a much better way of defining teams based on this method:
+Якщо вже ми заговорили про це, то є набагато кращий спосіб визначення команд, заснований на цьому методі:
 
 ```c
 enum (<<= 1)
@@ -313,7 +313,7 @@ enum (<<= 1)
 }
 ```
 
-Now TEAM_COP is 1, TEAM_ROBBER is 2, TEAM_CIV is 4 etc, which in binary is 0b00000001, 0b00000010 and 0b00000100. This means that if a player's team is 3 then they are in both the cop team and the robber team. That may sound pointless but it does open up possibilities:
+Тепер TEAM_COP дорівнює 1, TEAM_ROBBER дорівнює 2, TEAM_CIV дорівнює 4 і т.д., що в двійковому вигляді дорівнює 0b00000001, 0b00000010 і 0b00000100. Це означає, що якщо команда гравця дорівнює 3, то він є і в команді копів, і в команді грабіжників. Це може звучати безглуздо, але це відкриває можливості:
 
 ```c
 enum (<<= 1)
@@ -328,31 +328,31 @@ enum (<<= 1)
 }
 ```
 
-Using that you can be in both a normal team and the admin team using only a single variable. Obviously a little code modification is required but that's easy:
+Використовуючи це, ви можете бути як у звичайній команді, так і в команді адміністратора, використовуючи лише одну змінну. Очевидно, що потрібна невелика модифікація коду, але це нескладно:
 
-To add a player to a team:
+Додати гравця до команди:
 
 ```c
 gPlayerTeam[playerid] |= TEAM_COP;
 ```
 
-To remove a player from a team:
+Видалити гравця з команди:
 
 ```c
 gPlayerTeam[playerid] &= ~TEAM_COP;
 ```
 
-To check if a player is in a team:
+Перевірити, чи є гравець у команді:
 
 ```c
 if (gPlayerTeam[playerid] & TEAM_COP)
 ```
 
-Very simple and very useful.
+Дуже просто і дуже корисно.
 
-## `forward`
+## Вперед.
 
-forward tells the compiler that a function is coming later. It is required for all public functions however can be used in other places. It's use is "forward" followed by the full name and parameters of the function you want to forward, followed by a semicolon:
+forward повідомляє компілятору, що функція буде виконана пізніше. Він є обов'язковим для всіх загальнодоступних функцій, проте може використовуватися і в інших місцях. Вона використовується за допомогою команди "forward", за якою слідує повна назва і параметри функції, яку ви хочете переслати, після чого ставиться крапка з комою:
 
 ```c
 forward MyPublicFunction(playerid, const string[]);
@@ -362,7 +362,7 @@ public MyPublicFunction(playerid, const string[])
 }
 ```
 
-As well as being required for all publics forward can be used to fix a rare warning when a function which returns a tag result (e.g. a float) is used before it's declared.
+Крім того, що forward є обов'язковим для всіх пабліків, його можна використовувати для виправлення рідкісного попередження, коли функція, яка повертає результат тегу (наприклад, float), використовується до того, як вона була оголошена.
 
 ```c
 main()
@@ -377,7 +377,7 @@ Float:MyFloatFunction()
 }
 ```
 
-This will give a reparse warning because the compiler doesn't know how to convert the return of the function to a float because it doesn't know if the function returns a normal number or a float. Clearly in this example it returns a float. This can either be solved by putting the function at a point in the code before it's used:
+Компілятор видасть попередження про помилку, оскільки він не знає, як перетворити результат функції у число з плаваючою комою, оскільки не знає, чи функція повертає звичайне число, чи число з плаваючою комою. Очевидно, що у цьому прикладі функція повертає число з плаваючою комою. Цю проблему можна вирішити, помістивши функцію в певну точку коду перед її використанням:
 
 ```c
 Float:MyFloatFunction()
@@ -392,7 +392,7 @@ main()
 }
 ```
 
-Or by forwarding the function so the compiler knows what to do:
+Або переадресувавши функцію, щоб компілятор знав, що робити:
 
 ```c
 forward Float:MyFloatFunction();
@@ -409,17 +409,17 @@ Float:MyFloatFunction()
 }
 ```
 
-Note the forward includes the return tag too.
+Зверніть увагу, що тег forward також включає в себе тег return.
 
-## `native`
+## "корінний
 
-A native function is one defined in the virtual machine (i.e. the thing which runs the script), not in the script itself. You can only define native functions if they're coded into SA:MP or a plugin, however you can create fake natives. Because the native functions from .inc files are detected by pawno and listed in the box on the right hand side of pawno it can be useful to use native to get your own custom functions listed there. A normal native declaration could look like:
+Нативна функція - це функція, визначена у віртуальній машині (тобто у тому, що запускає скрипт), а не у самому скрипті. Ви можете визначати нативні функції, лише якщо вони закодовані у SA:MP або плагіні, однак ви можете створювати фальшиві нативні функції. Оскільки нативні функції з файлів .inc визначаються pawno і відображаються у вікні праворуч від pawno, може бути корисно використовувати native для додавання туди ваших власних функцій. Звичайне оголошення native може мати такий вигляд:
 
 ```c
 native printf(const format[], {Float,_}:...);
 ```
 
-If you want your own functions to appear without being declared native you can do:
+Якщо ви хочете, щоб ваші власні функції відображалися без оголошення native, ви можете це зробити:
 
 ```c
 /*
@@ -427,93 +427,93 @@ native MyFunction(playerid);
 */
 ```
 
-PAWNO doesn't recognise comments like that so will add the function to the list but the compiler does recognise comments like that so will ignore the declaration.
+PAWNO не розпізнає такі коментарі, тому додасть функцію до списку, але компілятор розпізнає такі коментарі, тому проігнорує оголошення.
 
-The other interesting thing you can do with native is rename/overload functions:
+Інша цікава річ, яку можна зробити з native - це перейменування/перевантаження функцій:
 
 ```c
 native my_print(const string[]) = print;
 ```
 
-Now the function print doesn't actually exist. It is still in SA:MP, and the compiler knows it's real name thanks to the "= print" part, but if you try call it in PAWN you will get an error as you have renamed print internally to my_print. As print now doesn't exist you can define it just like any other function:
+Тепер функції print фактично не існує. Вона все ще є у SA:MP, і компілятор знає її справжнє ім'я завдяки частині "= print", але якщо ви спробуєте викликати її у PAWN, ви отримаєте помилку, оскільки ви перейменували print внутрішньо на my_print. Оскільки print тепер не існує, ви можете визначити її так само, як і будь-яку іншу функцію:
 
 ```c
 print(const string[])
 {
-    my_print("Someone called print()");
+    my_print("Хтось викликав print()");
     my_print(string);
 }
 ```
 
-Now whenever print() is used in a script your function will be called instead of the original and you can do what you like. In this case another message is printed first then the original message.
+Тепер щоразу, коли у скрипті використовується print(), ваша функція буде викликатися замість оригіналу, і ви можете робити все, що вам заманеться. У цьому випадку спочатку буде надруковано інше повідомлення, а потім оригінальне.
 
-## `new`
+## "новий
 
-This is the core of variables, one of the most important keywords about. new declares a new variable:
+Це ядро змінних, одне з найважливіших ключових слів about. new оголошує нову змінну:
 
 ```c
-new
+новий
     myVar = 5;
 ```
 
-That will create a variable, name it myVar and assign it the value of 5. By default all variables are 0 if nothing is specified:
+Це створить змінну, назве її myVar і присвоїть їй значення 5. За замовчуванням всі змінні дорівнюють 0, якщо нічого не вказано:
 
 ```c
-new
+новий
     myVar;
 
 printf("%d", myVar);
 ```
 
-Will give "0".
+Дасть "0".
 
-A variable's scope is where it can be used. Scope is restricted by braces (the curly brackets - {} ), any variable declared inside a set of braces can only be used within those braces.
+Область видимості змінної - це місце, де її можна використовувати. Область видимості обмежена фігурними дужками (фігурні дужки - {} ), будь-яка змінна, оголошена всередині набору дужок, може бути використана тільки в межах цих дужок.
 
 ```c
 if (a == 1)
 {
-    // Braces start the line above this one
-    new
+    // За дужками починається рядок вище цього
+    новий
         myVar = 5;
 
-    // This printf is in the same braces so can use myVar.
+    // Цей printf знаходиться у тих самих дужках, тому може використовувати myVar.
     printf("%d", myVar);
 
-    // This if statement is also within the braces, so it and everything in it can use myVar
+    // Цей оператор if також знаходиться в дужках, тому він і все, що в ньому, може використовувати myVar
     if (myVar == 1)
     {
         printf("%d", myVar);
     }
-    // The braces end the line below this
+    // Дужки завершують рядок нижче цього
 }
-// This is outside the braces so will give an error
+// Це знаходиться за дужками, тому дасть помилку
 printf("%d", myVar);
 ```
 
-The example above also shows why correct indentation is so important.
+Наведений вище приклад також показує, чому правильний відступ так важливий.
 
-If a global variable (i.e. one declared outside a function) is declared new, it can be used everywhere after the declaration:
+Якщо глобальну змінну (тобто змінну, оголошену поза функцією) оголошено новою, її можна використовувати всюди після оголошення:
 
 File1.pwn:
 
 ```c
 MyFunc1()
 {
-    // Error, gMyVar doesn't exist yet
+    // Помилка, gMyVar ще не існує
     printf("%d", gMyVar);
 }
 
-// gMyVar is declared here
+// Тут оголошується gMyVar
 new
     gMyVar = 10;
 
 MuFunc2()
 {
-    // Fine as gMyVar now exists
+    // Добре, оскільки gMyVar тепер існує
     printf("%d", gMyVar);
 }
 
-// Include another file here
+// Включіть сюди ще один файл
 #include "file2.pwn"
 ```
 
@@ -522,14 +522,14 @@ file2.pwn:
 ```c
 MyFunc3()
 {
-    // This is also fine as this file is included in the first file after the declaration and new is not file restricted
+    // Це також добре, оскільки цей файл включається в перший файл після оголошення, а new не є файловим обмеженням
     printf("%d", gMyVar);
 }
 ```
 
-## `operator`
+## "Оператор
 
-This allows you to overload operators for custom tags. For example:
+Це дозволяє перевантажувати оператори для кастомних тегів. Наприклад:
 
 ```c
 stock BigEndian:operator=(b)
@@ -545,27 +545,27 @@ main()
 }
 ```
 
-Normal pawn numbers are stored in what's called little endian. This operator allows you to define an assignment to convert a normal number to a big endian number. The difference between big endian and little endian is the byte order. 7 in little endian is stored as:
+Звичайні числа пішаків зберігаються у так званому малому ендіані. Цей оператор дозволяє визначити присвоєння для перетворення звичайного числа у число з великим ендіаном. Різниця між big endian і little endian полягає у порядку байт. 7 у малому ендіані зберігається як:
 
 ```c
 07 00 00 00
 ```
 
-7 in big endian is stored as:
+7 у великому ендіані зберігається як:
 
 ```c
 00 00 00 07
 ```
 
-Therefore if you print the contents of a big endian stored number it will try read it as a little endian number and get it backwards, thus printing the numer 0x07000000, aka 117440512, which is what you will get if you run this code.
+Тому, якщо ви виводите вміст збереженого числа з великим ендіанським кодом, програма спробує прочитати його як число з малим ендіанським кодом і отримати його у зворотному порядку, таким чином виводячи число 0x07000000, також відоме як 117440512, що і буде виведено, якщо ви виконаєте цей код.
 
-You can overload the following operators:
+Ви можете перевантажити наступні оператори:
 
 ```c
-+, -, *, /, %, ++, --, ==, !=, <, >, <=, >=, ! and =
++, -, *, /, %, ++, --, ==, !=, <, >, <=, >=, ! і =
 ```
 
-Also note that you can make them do whatever you like:
+Також зауважте, що ви можете змусити їх робити все, що вам заманеться:
 
 ```c
 stock BigEndian:operator+(BigEndian:a, BigEndian:b)
@@ -581,18 +581,18 @@ main()
     printf("%d", _:(a + b));
 ```
 
-Will simply give 42, nothing to do with addition.
+Просто дасть 42, нічого спільного з додаванням.
 
-## `public`
+## "громадськість
 
-public is used to make a function visible to the Virtual Machine, i.e. it allows the SA:MP server to call the function directly, instead of only allowing the function to be called from inside the PAWN script. You can also make variables public to read and write their values from the server, however this is never used in SA:MP (although you may be able to utilise it from a plugin, I've never tried) (you can also combine this with const to make a variable which can ONLY be modified from the server).
+public використовується для того, щоб зробити функцію видимою для віртуальної машини, тобто дозволяє серверу SA:MP викликати функцію безпосередньо, замість того, щоб дозволяти викликати функцію лише зсередини PAWN-скрипту. Ви також можете зробити змінні загальнодоступними, щоб читати і записувати їхні значення з сервера, однак це ніколи не використовується у SA:MP (хоча ви можете використовувати це у плагінах, я ніколи не пробував) (ви також можете комбінувати це з const, щоб створити змінну, яку можна змінювати ЛИШЕ з сервера).
 
-A public function has it's textual name stored in the amx file, unlike normal functions which only have their address stored for jumps, which is another drawback to decompilation. This is so that you can call the function by name from outside the script, it also allows you to call functions by name from inside the script by leaving and re-entering it. A native function call is almost the opposite of a public function call, it calls a function outside the script from inside the script as opposed to calling a function inside the script from outside the script. If you combine the two you get functions like SetTimer, SetTimerEx, CallRemoteFunction and CallLocalFunction which call functions by name, not address.
+Загальнодоступна функція має текстове ім'я, яке зберігається в amx-файлі, на відміну від звичайних функцій, які зберігають лише свою адресу для переходів, що є ще одним недоліком декомпіляції. Це робиться для того, щоб ви могли викликати функцію за іменем ззовні скрипта, а також для того, щоб ви могли викликати функції за іменем зсередини скрипта, виходячи з нього і входячи знову. Виклик власної функції майже протилежний виклику загальнодоступної функції, він викликає функцію за межами скрипта зсередини скрипта, на відміну від виклику функції всередині скрипта ззовні скрипта. Якщо об'єднати ці два способи, ви отримаєте такі функції, як SetTimer, SetTimerEx, CallRemoteFunction і CallLocalFunction, які викликають функції за іменем, а не за адресою.
 
-Calling a function by name:
+Виклик функції за іменем:
 
 ```c
-forward MyPublicFunc();
+переслати MyPublicFunc();
 
 main()
 {
@@ -605,11 +605,11 @@ public MyPublicFunc()
 }
 ```
 
-public functions prefixed by either "public" or "@" and, as mentioned in the forward section, all require forwarding:
+публічні функції з префіксом "public" або "@" і, як зазначено в розділі пересилання, всі вони потребують пересилання:
 
 ```c
 forward MyPublicFunc();
-forward @MyOtherPublicFunc(var);
+переслати @MyOtherPublicFunc(var);
 
 main()
 {
@@ -628,25 +628,25 @@ public MyPublicFunc()
 }
 ```
 
-Obviously that example introduced SetTimerEx to call "MyOtherPublicFunc" after 5 seconds and pass it the integer value 7 to print.
+Очевидно, що у цьому прикладі було введено SetTimerEx для виклику "MyOtherPublicFunc" через 5 секунд і передачі йому цілого значення 7 для друку.
 
-main, used in most of these examples, is similar to a public function in that it can be called from outside the script, however it is not a public function - it just has a special known address so the server knows where to jump to to run it.
+main, що використовується в більшості цих прикладів, схожа на загальнодоступну функцію тим, що її можна викликати ззовні скрипта, однак вона не є загальнодоступною функцією - вона просто має спеціальну відому адресу, щоб сервер знав, куди перейти, щоб її запустити.
 
-All SA:MP callbacks are public and called from outside the script automatically:
+Усі зворотні виклики SA:MP є публічними і викликаються ззовні скрипту автоматично:
 
 ```c
 public OnPlayerConnect(playerid)
 {
-    printf("%d connected", playerid);
+    printf("%d підключено", playerid);
 }
 ```
 
-When someone joins the server it will automatically look up this public function in all scripts (gamemode first then filterscripts) and if it finds it, calls it.
+Коли хтось приєднується до сервера, він автоматично шукає цю загальнодоступну функцію у всіх скриптах (спочатку в режимі гри, потім у скриптах фільтрів), і якщо знаходить її, викликає.
 
-If you want to call a public function from inside the script however you do not have to call it by name, public functions also behave as normal functions too:
+Якщо ви хочете викликати загальнодоступну функцію зсередини скрипта, але вам не обов'язково називати її по імені, загальнодоступні функції також поводяться як звичайні функції:
 
 ```c
-forward MyPublicFunc();
+переслати MyPublicFunc();
 
 main()
 {
@@ -659,32 +659,32 @@ public MyPublicFunc()
 }
 ```
 
-This is obviously much faster than using CallLocalFunction or another native.
+Очевидно, що це набагато швидше, ніж використання CallLocalFunction або іншої нативної функції.
 
-## `static`
+## "Статика
 
-A static variable is like a global new variable but with a more limited scope. When static is used globally the resulting created variables are limited to only the section in which they were created (see #section). So taking the earlier "new" example:
+Статична змінна схожа на глобальну нову змінну, але з більш обмеженою сферою застосування. Коли статична змінна використовується глобально, створені змінні обмежуються лише розділом, у якому їх було створено (див. #розділ). Отже, візьмемо попередній приклад з "new":
 
-**file1.pwn**
+**file1.pwn**.
 
 ```c
 MyFunc1()
 {
-    // Error, gMyVar doesn't exist yet
+    // Помилка, gMyVar ще не існує
     printf("%d", gMyVar);
 }
 
-// gMyVar is declared here
+// Тут оголошується gMyVar
 new
     gMyVar = 10;
 
 MuFunc2()
 {
-    // Fine as gMyVar now exists
+    // Добре, оскільки gMyVar тепер існує
     printf("%d", gMyVar);
 }
 
-// Include another file here
+// Включіть сюди ще один файл
 #include "file2.pwn"
 ```
 
@@ -693,33 +693,33 @@ file2.pwn
 ```c
 MyFunc3()
 {
-    // This is also fine as this file is included in the first file after the declaration and new is not file restricted
+    // Це також добре, оскільки цей файл включається в перший файл після оголошення, а new не є файловим обмеженням
     printf("%d", gMyVar);
 }
 ```
 
-And modifying it for static would give:
+А модифікація його для статичного режиму дасть:
 
 file1.pwn
 
 ```c
 MyFunc1()
 {
-    // Error, g_sMyVar doesn't exist yet
+    // Помилка, g_sMyVar ще не існує
     printf("%d", g_sMyVar);
 }
 
-// g_sMyVar is declared here
-static
+// Тут оголошується g_sMyVar
+статичний
     g_sMyVar = 10;
 
 MuFunc2()
 {
-    // Fine as _sgMyVar now exists
+    // Добре, оскільки _sgMyVar тепер існує
     printf("%d", g_sMyVar);
 }
 
-// Include another file here
+// Включіть сюди ще один файл
 #include "file2.pwn"
 ```
 
@@ -728,14 +728,14 @@ file2.pwn
 ```c
 MyFunc3()
 {
-    // Error, g_sMyVar is limited to only the file (or section) in which it was declared, this is a different file
+    // Помилка, g_sMyVar обмежена тільки тим файлом (або розділом), в якому вона була оголошена, а це інший файл
     printf("%d", g_sMyVar);
 }
 ```
 
-This means you can have two globals of the same name in different files.
+Це означає, що ви можете мати дві глобули з однаковими іменами в різних файлах.
 
-If you use static locally (i.e. in a function) then the variable, like local variables created with new, can only be used within the scope (based on braces - see the section on "new") in which it was declared. However unlike "new" variables "static" variables do not loose their value between calls.
+Якщо ви використовуєте static локально (тобто у функції), то змінна, як і локальні змінні, створені за допомогою new, може бути використана лише в межах області видимості (на основі фігурних дужок - див. розділ про new), в якій вона була оголошена. Однак, на відміну від "нових" змінних, "статичні" змінні не втрачають свого значення між викликами.
 
 ```c
 main()
@@ -756,7 +756,7 @@ MyFunc()
 }
 ```
 
-Every time the function is called i is reset to 0, so the resulting output will be:
+При кожному виклику функції i скидається в 0, тому результуючий вивід буде таким:
 
 ```c
 0
@@ -769,7 +769,7 @@ Every time the function is called i is reset to 0, so the resulting output will 
 1
 ```
 
-If we replace the "new" with "static" we get:
+Якщо ми замінимо "новий" на "статичний", то отримаємо:
 
 ```c
 main()
@@ -782,7 +782,7 @@ main()
 
 MyFunc()
 {
-    static
+    статичний
         i = 0;
     printf("%d", i);
     i++;
@@ -790,7 +790,7 @@ MyFunc()
 }
 ```
 
-And, as static locals keep their value between calls, the resulting output it:
+І, оскільки статичні локалі зберігають своє значення між викликами, результат виводить його:
 
 ```c
 0
@@ -803,7 +803,7 @@ And, as static locals keep their value between calls, the resulting output it:
 4
 ```
 
-The value given in the declaration (if one is given, like new, static variables default to 0) is the value assigned to the variable the first time the function is called. So if "static i = 5;" were used instead the result would be:
+Значення, вказане в оголошенні (якщо воно вказане, як у випадку з новими статичними змінними, за замовчуванням дорівнює 0), є значенням, яке присвоюється змінній при першому виклику функції. Отже, якщо замість цього використати "static i = 5;", результат буде таким:
 
 ```c
 5
@@ -816,25 +816,25 @@ The value given in the declaration (if one is given, like new, static variables 
 9
 ```
 
-Because of the way static variables are stored, they are in fact global variables, the compiler checks they are used in the correct place. As a result decompiled scripts cannot distinguish between normal globals, global statics and local statics and they are all given as normal globals.
+Через те, що статичні змінні зберігаються фактично як глобальні, компілятор перевіряє, чи використовуються вони в правильному місці. В результаті декомпільовані скрипти не можуть відрізнити звичайні глобали, глобальну статику від локальної, і всі вони видаються як звичайні глобали.
 
-You can also have static functions which can only be called from the file in which they are declared. This is useful for private style functions.
+Ви також можете мати статичні функції, які можна викликати лише з файлу, в якому вони оголошені. Це корисно для функцій приватного стилю.
 
-## `stock`
+## "Запас
 
-stock is used to declare variables and functions which may not be used but which you don't want to generate unused warnings for. With variables stock is like const in that it is a modifier, not a full declaration, so you could have:
+stock використовується для оголошення змінних і функцій, які можуть не використовуватися, але для яких ви не хочете генерувати попередження про невикористання. У випадку зі змінними stock схожий на const, оскільки є модифікатором, а не повним оголошенням, тому ви можете використовувати його:
 
 ```c
-new stock
-    gMayBeUsedVar;
+новий запас
+    можна використовувати;
 
-static stock
+статичний запас
     g_sMayBeUsedVar;
 ```
 
-If the variable or function is used the compiler will include it, if it is not used it will exclude it. This is different to using #pragma unused (symbol) as that will simply surpress (i.e. hide) the warning and include the information anyway, stock will entirely ignore the unused data.
+Якщо змінна або функція використовується, компілятор включить її, якщо не використовується - виключить. Це відрізняється від використання #pragma unused (символ), оскільки воно просто витіснить (тобто приховає) попередження і все одно включить інформацію, а сток повністю проігнорує невикористані дані.
 
-stock is most commonly used for custom libraries. If you write a library you provide a whole load of functions for other people to use but you've no idea if they'll use them or not. If your code gives loads of warnings for every function a person doesn't use people will complain (unless it's on purpose as they HAVE to use that function (e.g. for initialising variables). Having said that however, going from personal experience with YSI people will complain anyway.
+stock найчастіше використовується для користувацьких бібліотек. Якщо ви пишете бібліотеку, ви надаєте цілу низку функцій для використання іншими людьми, але ви не знаєте, чи будуть вони ними користуватися. Якщо ваш код видає безліч попереджень на кожну функцію, якою людина не користується, люди будуть скаржитися (якщо тільки це не зроблено навмисно, оскільки вони МАЮТЬ використовувати цю функцію (наприклад, для ініціалізації змінних). Однак, виходячи з особистого досвіду роботи з YSI, люди будуть скаржитися в будь-якому випадку.
 
 ```c
 main()
@@ -853,7 +853,7 @@ Func2()
 }
 ```
 
-Here Func2 is never called so the compiler will give a warning. This may be useful as you may have forgotten to call it, as is generally the case in a straight script, however if Func1 and Func2 are in a library the user may simply not need Func2 so you do:
+Тут Func2 ніколи не викликається, тому компілятор видасть попередження. Це може бути корисно, оскільки ви могли забути викликати цю функцію, як це зазвичай буває у прямому скрипті, але якщо Func1 і Func2 знаходяться у бібліотеці, користувачеві може просто не знадобитися Func2, тому ви її викликаєте:
 
 ```c
 main()
@@ -872,4 +872,6 @@ stock Func2()
 }
 ```
 
-And the function won't be compiled and the warning removed.
+І функція не буде скомпільована, а попередження видалено.
+
+

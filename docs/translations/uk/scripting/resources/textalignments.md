@@ -1,17 +1,19 @@
 ---
-title: Material Text Alignments
-description: A list of Material Text Alignments.
+заголовок: Вирівнювання тексту матеріалу
+description: Список вирівнювань тексту матеріалу.
 ---
 
 :::info
 
-There are two kinds of parameters for [SetObjectMaterialText](../functions/SetObjectMaterialText) - material text alignments and material text sizes. Text alignments are listed on this page.
+Існує два типи параметрів для [SetObjectMaterialText](../functions/SetObjectMaterialText) - вирівнювання тексту матеріалу та розміри тексту матеріалу. Вирівнювання тексту наведено на цій сторінці.
 
 :::
 
 
-| Value | Definition                       |
+| Значення | Визначення
 | ----- | -------------------------------- |
-| 0     | OBJECT_MATERIAL_TEXT_ALIGN_LEFT   |
-| 1     | OBJECT_MATERIAL_TEXT_ALIGN_CENTER |
-| 2     | OBJECT_MATERIAL_TEXT_ALIGN_RIGHT  |
+| 0 | OBJECT_MATERIAL_TEXT_ALIGN_LEFT
+| 1 | OBJECT_MATERIAL_TEXT_ALIGN_CENTER
+| 2 | OBJECT_MATERIAL_TEXT_ALIGN_RIGHT
+
+

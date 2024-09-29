@@ -1,9 +1,9 @@
 ---
-title: "Color Fix"
-descripion: A basic script to add more player colours.
+назва: «Color Fix»
+description: Базовий скрипт для додавання додаткових кольорів гравців.
 ---
 
-This tutorial is to be used with [GetPlayerColor](../scripting/functions/GetPlayerColor), if you do not use [SetPlayerColor](../scripting/functions/SetPlayerColor) in your script when players connect.
+Цей підручник слід використовувати з [GetPlayerColor](../scripting/functions/GetPlayerColor), якщо ви не використовуєте [SetPlayerColor](../scripting/functions/SetPlayerColor) у вашому скрипті під час підключення гравців.
 
 ```c
 new PlayerColors[] = {
@@ -20,17 +20,17 @@ new PlayerColors[] = {
 };
 ```
 
-First place that at the top of your script.
+Спочатку розмістіть це у верхній частині вашого скрипта.
 
-Next place this under the OnPlayerConnect callback:
+Далі розмістіть це під функцією зворотного виклику OnPlayerConnect:
 
 ```c
 SetPlayerColor(playerid, PlayerColors[playerid % sizeof PlayerColors]);
 ```
 
-Now [GetPlayerColor](../scripting/functions/GetPlayerColor) will work!
+Тепер [GetPlayerColor](../scripting/functions/GetPlayerColor) працюватиме!
 
-For new versions of SA-MP you can add this array:
+Для нових версій SA-MP ви можете додати цей масив:
 
 ```c
 new PlayerRainbowColors[511] = {
@@ -64,7 +64,7 @@ new PlayerRainbowColors[511] = {
     0x660000FF, 0x660022FF, 0x660044FF, 0x660066FF, 0x660088FF, 0x6600AAFF, 0x6600CCFF, 0x6600FFFF,
     0x662200FF, 0x662222FF, 0x662244FF, 0x662266FF, 0x662288FF, 0x6622AAFF, 0x6622CCFF, 0x6622EEFF,
     0x664400FF, 0x664422FF, 0x664444FF, 0x664466FF, 0x664488FF, 0x6644AAFF, 0x6644CCFF, 0x6644EEFF,
-    0x666600FF, 0x666622FF, 0x666644FF, 0x666666FF, 0x666688FF, 0x6666AAFF, 0x6666CCFF, 0x6666EEFF,
+    0x666600FF, 0x666622FF, 0x66644FF, 0x666666FF, 0x666688FF, 0x6666AAFF, 0x6666CCFF, 0x6666EEFF,
     0x668800FF, 0x668822FF, 0x668844FF, 0x668866FF, 0x668888FF, 0x6688AAFF, 0x6688CCFF, 0x6688EEFF,
     0x66AA00FF, 0x66AA22FF, 0x66AA44FF, 0x66AA66FF, 0x66AA88FF, 0x66AAAAFF, 0x66AACCFF, 0x66AAEEFF,
     0x66CC00FF, 0x66CC22FF, 0x66CC44FF, 0x66CC66FF, 0x66CC88FF, 0x66CCAAFF, 0x66CCCCFF, 0x66CCEEFF,
@@ -108,4 +108,6 @@ new PlayerRainbowColors[511] = {
 };
 ```
 
-Now there are no duplicated colors, the colors are distributed to the maximum number of slots, the step of color - 34, and the TAB of full server looks like a rainbow!
+Тепер немає повторюваних кольорів, кольори розподіляються на максимальну кількість слотів, крок кольору - 34, а TAB повного сервера виглядає як веселка!
+
+

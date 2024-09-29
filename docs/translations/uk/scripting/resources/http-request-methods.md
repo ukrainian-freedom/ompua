@@ -1,16 +1,18 @@
 ---
-title: HTTP Request Methods
-description: Types of HTTP request.
+title: Методи HTTP-запитів
+description: Типи HTTP-запитів.
 ---
 
 :::note
 
-These request methods are used by [HTTP](../functions/HTTP) function.
+Ці методи запиту використовуються функцією [HTTP](../functions/HTTP).
 
 :::
 
-| ID | Method    | Description                                                                                                                                                                                                                            |
+| Ідентифікатор | Метод | Опис
 |----|-----------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| 1  | HTTP_GET  | Sends a regular HTTP request.<br />GET request is used to read/retrieve data from a web server. GET returns an HTTP status code of **200 (OK)** if the data is successfully retrieved from the server.                                 |
-| 2  | HTTP_POST | Sends a HTTP request with POST data.<br />POST request is used to send data to the server. On successful creation, it returns an HTTP status code of **201**.                                                                          |
-| 3  | HTTP_HEAD | Sends a regular HTTP request, but ignores any response data - returning only the response code.<br />HEAD method is used to request the response headers for a specific resource without receiving the actual content of the resource. |
+| 1 | HTTP_GET | Відправляє звичайний HTTP-запит.<br />Запит GET використовується для читання/отримання даних з веб-сервера. GET повертає код статусу HTTP **200 (OK)**, якщо дані успішно отримано з сервера.                                 |
+| 2 | HTTP_POST | Надсилає HTTP-запит з POST-даними.<br />POST-запит використовується для надсилання даних на сервер. У разі успішного створення він повертає код статусу HTTP **201**.                                                                          |
+| 3 | HTTP_HEAD | Відправляє звичайний HTTP-запит, але ігнорує будь-які дані відповіді - повертає лише код відповіді.<br />Метод HEAD використовується для запиту заголовків відповіді для певного ресурсу без отримання фактичного вмісту ресурсу. |
+
+

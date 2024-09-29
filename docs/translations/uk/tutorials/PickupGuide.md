@@ -1,79 +1,81 @@
 ---
-title: Pickup Guide
+заголовок: Pickup Guide
 ---
 
-A short tutorial that describes how to use pickups.
+Короткий посібник, який описує, як використовувати пікапи.
 
-## Define the pickupid
+## Визначте пікап
 
-The first thing to be done when creating pickups is creating a place to store their ID. This will be done in a global variable so it can be set when you create the pickup and read when you pick up a pickup, calling a callback with the ID of the pickup you picked up. For this example we will use the name "gMyPickup".
+Перше, що потрібно зробити при створенні пікапа, це створити місце для зберігання його ідентифікатора. Це буде зроблено в глобальній змінній, щоб її можна було встановити при створенні пікапа і зчитувати, коли ви берете трубку, викликаючи зворотний дзвінок з ідентифікатором пікапа, якого ви взяли. Для цього прикладу ми використаємо ім'я «gMyPickup».
 
 ```c
 new gMyPickup;
 ```
 
-## Creating the pickup
+## Створення пікапа
 
-There are two ways to create pickups. [CreatePickup](../scripting/functions/CreatePickup) and [AddStaticPickup](../scripting/functions/AddStaticPickup). AddStaticPickup doesn't return an ID when it is created, can't be destroyed and can only be used under OnGameModeInit, so for this example we will use [CreatePickup](../scripting/functions/CreatePickup).
+Існує два способи створення пікапів. [CreatePickup](../scripting/functions/CreatePickup) та [AddStaticPickup](../scripting/functions/AddStaticPickup). AddStaticPickup не повертає ідентифікатор при створенні, не може бути знищений і може бути використаний лише під час OnGameModeInit, тому для цього прикладу ми будемо використовувати [CreatePickup](../scripting/functions/CreatePickup).
 
-**The syntax for [CreatePickup](../scripting/functions/CreatePickup) is:**
+**Синтаксис функції [CreatePickup](../scripting/functions/CreatePickup) наступний:** *Синтаксис функції [CreatePickup](../scripting/functions/CreatePickup)
 
-**Parameters:**
+**Параметри:**
 
-| model        | The model you'd like to use for the pickup.                                                               |
+| модель | Модель, яку ви хочете використовувати для пікапа.                                                               |
 | ------------ | --------------------------------------------------------------------------------------------------------- |
-| type         | The pickup spawn type, see further down this page.                                                        |
-| Float:X      | The X-coordinate for the pickup to show.                                                                  |
-| Float:Y      | The Y-coordinate for the pickup to show.                                                                  |
-| Float:Z      | The Z-coordinate for the pickup to show.                                                                  |
-| Virtualworld | The virtual world ID of the pickup. A value of -1 will cause the pickup to display in all virtual worlds. |
+| тип | Тип породження пікапа, див. далі на цій сторінці.                                                        |
+| Float:X - координата X, яку показуватиме пікап.                                                                  |
+| Float:Y | Координата Y для показу пікапа.                                                                  |
+| Float:Z | Координата по Z для показу пікапа.                                                                  |
+| Virtualworld - ідентифікатор віртуального світу пікапа. Значення -1 призведе до відображення пікапа в усіх віртуальних світах. |
 
-For this example we will create a cash pickup at Grove Street.
+У цьому прикладі ми створимо інкасаторську машину на Grove Street.
 
-Now we need to decide on a model to appear in the world, there are lots of models to choose from, some are listed on the external site [here](https://dev.prineside.com/en/gtasa_samp_model_id), here choose model number 1274 which is dollar sign.
+Тепер нам потрібно визначитися з моделлю, яка з'явиться у світі, є багато моделей на вибір, деякі з них перераховані на зовнішньому сайті [тут](https://dev.prineside.com/en/gtasa_samp_model_id), тут ми обираємо модель номер 1274, яка має знак долара.
 
-Finally we need a [Type](../scripting/resources/pickuptypes) for the pickup, on the same page with the pickup models is a list of pickup types describing what the various ones do. We want this pickup to disappear when you pick it up, so you can't pick it up repeatedly, but to reappear after a few minutes so you can pick it up again, type 2 does just this.
+Нарешті, нам потрібен [Type](../scripting/resources/pickuptypes) для пікапа, на тій же сторінці з моделями пікапів є список типів пікапів з описом того, що кожен з них робить. Ми хочемо, щоб пікап зникав, коли ви його піднімаєте, щоб ви не могли підняти його повторно, але з'являвся через кілька хвилин, щоб ви могли підняти його знову, тип 2 робить саме це.
 
-Pickups are most commonly created when the script starts, in [OnGameModeInit](../scripting/callbacks/OnGameModeInit) or [OnFilterScriptInit](../scripting/callbacks/OnFilterScriptInit) depending on the script type, however it can go in any function (for example you could create a weapon drop script which would use OnPlayerDeath to create weapon pickups).
+Найчастіше пікапи створюються під час запуску скрипту, в [OnGameModeInit](../scripting/callbacks/OnGameModeInit) або [OnFilterScriptInit](../scripting/callbacks/OnFilterScriptInit), залежно від типу скрипту, однак вони можуть бути в будь-якій функції (наприклад, ви можете створити скрипт скидання зброї, який буде використовувати OnPlayerDeath для створення пікапів зброї).
 
-So here is the code to create our pickup, and store the ID in 'gMyPickup':
+Отже, ось код для створення нашого пікапа і збереження ідентифікатора в 'gMyPickup':
 
 ```c
 gMyPickup = CreatePickup(1274, 2, 2491.7900, -1668.1653, 13.3438, -1);
 ```
 
-### Choosing what it does
+### Вибір дій пікапа
 
-When you pick up a pickup, [OnPlayerPickUpPickup](../scripting/callbacks/OnPlayerPickUpPickup) is called, passing playerid (the player that picked up a pickup) and pickupid (the ID of the pickup that was picked up).
+Коли ви підхоплюєте пікап, викликається [OnPlayerPickUpPickup](../scripting/callbacks/OnPlayerPickUpPickup), передаючи playerid (гравець, який підхопив пікап) та pickupid (ідентифікатор пікапа, який було підхоплено).
 
-Some pickup types are designed to work automatically, so there is no need to do anything under OnPlayerPickUpPickup. Check out the [Pickup Types](../scripting/resources/pickuptypes) page for more information.
+Деякі типи пікапів призначені для автоматичної роботи, тому не потрібно нічого робити в OnPlayerPickUpPickup. Перегляньте сторінку [Pickup Types](../scripting/resources/pickuptypes) для отримання додаткової інформації.
 
-When a player picks up our new pickup, we want to give them $100, to do this first we need to check that they have picked up our dollar pickup and not a different one. When we've done that, we can give them the $100:
+Коли гравець піднімає наш новий пікап, ми хочемо дати йому $100, для цього спочатку потрібно перевірити, що він підняв саме наш доларовий пікап, а не якийсь інший. Коли ми це зробимо, ми можемо дати йому $100:
 
 ```c
 public OnPlayerPickUpPickup(playerid, pickupid)
 {
-    // Check that the pickup ID of the pickup they picked up is gMyPickup
+    // Перевіряємо, чи ідентифікатор пікапа, який вони підібрали, дорівнює gMyPickup
     if(pickupid == gMyPickup)
     {
-        // Message the player
-        SendClientMessage(playerid, 0xFFFFFFFF, "You received $100!");
-        // Give the player the money
+        // Повідомляємо гравця
+        SendClientMessage(playerid, 0xFFFFFFFFFF, «Ви отримали $100!»);
+        // Віддати гравцю гроші
         GivePlayerMoney(playerid, 100);
     }
-    // if you need to add more pickups, simply do this:
-    else if (pickupid == (some other pickup))
+    // якщо вам потрібно додати більше пікапів, просто зробіть це:
+    else if (pickupid == (деяка інша пікапа))
     {
-        // Another pickup, do something else
+        // Ще один пікап, зробіть щось інше
     }
     return 1;
 }
 ```
 
-Congratulations, you now know how to create and handle pickups!
+Вітаємо, тепер ви знаєте, як створювати та обробляти пікапи!
 
-## Further Reading
+## Подальше читання
 
-You can use the [Streamer](https://github.com/samp-incognito/samp-streamer-plugin) plugin to create unlimited pickups with [CreateDynamicPickup](<https://github.com/samp-incognito/samp-streamer-plugin/wiki/Natives-(Pickups)>)
+Ви можете використовувати плагін [Streamer](https://github.com/samp-incognito/samp-streamer-plugin) для створення необмеженої кількості пікапів за допомогою [CreateDynamicPickup](<https://github.com/samp-incognito/samp-streamer-plugin/wiki/Natives-(Pickups)>)
 
-You can also create per-player pickup with [CreatePlayerPickup](../scripting/functions/CreatePlayerPickup).
+Ви також можете створити пікап для кожного гравця за допомогою [CreatePlayerPickup](../scripting/functions/CreatePlayerPickup).
+
+

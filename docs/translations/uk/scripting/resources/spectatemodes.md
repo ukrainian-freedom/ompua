@@ -1,18 +1,20 @@
 ---
-title: Spectate Modes
-description: Spectate Modes used by PlayerSpectatePlayer and PlayerSpectateVehicle functions.
-tags: []
-sidebar_label: Spectate Modes
+назва: Режими перегляду
+description: Режими перегляду, що використовуються функціями PlayerSpectatePlayer та PlayerSpectateVehicle.
+теги: []
+мітка_бічної_панелі: Режими перегляду
 ---
 
 :::info
 
-Spectate Modes used by [PlayerSpectatePlayer](../functions/PlayerSpectatePlayer) and [PlayerSpectateVehicle](../functions/PlayerSpectateVehicle) functions.
+Режими перегляду, що використовуються функціями [PlayerSpectatePlayer](../functions/PlayerSpectatePlayer) та [PlayerSpectateVehicle](../functions/PlayerSpectateVehicle).
 
 :::
 
-| Type                 | Effect                                                                                                                                                      |
+| Тип | Ефект |
 | -------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| SPECTATE_MODE_NORMAL | Normal spectate mode (third person point of view). Camera can not be changed                                                                               |
-| SPECTATE_MODE_FIXED  | Use [SetPlayerCameraPos](../functions/SetPlayerCameraPos) after this to position the player's camera, and it will track the player/vehicle set with [PlayerSpectatePlayer](../functions/PlayerSpectatePlayer)/[PlayerSpectateVehicle](../functions/PlayerSpectateVehicle) |
-| SPECTATE_MODE_SIDE   | The camera will be attached to the side of the player/vehicle (like when you're in first-person camera on a bike and you do a wheelie)                     |
+| SPECTATE_MODE_NORMAL | Звичайний режим видовища (точка зору від третьої особи). Камеру не можна змінити.
+| SPECTATE_MODE_FIXED | Використовуйте [SetPlayerCameraPos](../functions/SetPlayerCameraPos) після цього, щоб розташувати камеру гравця, і вона відстежуватиме гравця/транспортний засіб за допомогою [PlayerSpectatePlayer](../functions/PlayerSpectatePlayer)/[PlayerSpectateVehicle](./functions/PlayerSpectateVehicle)
+| SPECTATE_MODE_SIDE | Камера буде прикріплена збоку від гравця/транспортного засобу (наприклад, коли ви перебуваєте в камері від першої особи на велосипеді і робите wheelie)
+
+

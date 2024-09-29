@@ -1,18 +1,20 @@
 ---
-title: Record Types
-description: Record types used by StartRecordingPlayerData.
-tags: ["player"]
-sidebar_label: Record Types
+заголовок: Record Types
+description: Типи записів, які використовує StartRecordingPlayerData.
+tags: [«player»]
+мітка_бічної_панелі: Типи записів
 ---
 
 :::info
 
-Here you can find all of the record types which can be used by [StartRecordingPlayerData](../functions/StartRecordingPlayerData).
+Тут ви можете знайти всі типи записів, які можуть бути використані [StartRecordingPlayerData](../functions/StartRecordingPlayerData).
 
 :::
 
-| Value | Definition                   |
+| Значення | Визначення |
 | ----- | ---------------------------- |
-| 0     | PLAYER_RECORDING_TYPE_NONE   |
-| 1     | PLAYER_RECORDING_TYPE_DRIVER |
-| 2     | PLAYER_RECORDING_TYPE_ONFOOT |
+| 0 | ТИП_ЗАПИСУ_ПЛЕЄРА_ВІДСУТНІЙ
+| 1 | ТИП_ЗАПИСУ_ПРОГРАВАЧА_ДРАЙВЕР
+2 | PLAYER_RECORDING_TYPE_ONFOOT | | 2 | PLAYER_RECORDING_TYPE_ONFOOT
+
+

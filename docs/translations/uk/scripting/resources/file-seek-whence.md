@@ -1,16 +1,18 @@
 ---
-title: File Seek Whence
-description: File seek whence definitions. (fseek)
+назва: File Seek Whence
+description: Пошук файлів за визначенням звідки. (fseek)
 ---
 
-:::note
+:::примітка
 
-These definitions are used by [fseek](../functions/fseek).
+Ці визначення використовуються [fseek](../functions/fseek).
 
 :::
 
-| Definition   | Description                                                                                                           |
+| Визначення | Опис
 | ------------ | --------------------------------------------------------------------------------------------------------------------- |
-| seek_start   | Set the file position relative to the start of the file (the position parameter must be positive).                    |
-| seek_current | Set the file position relative to the current file position: the position parameter is added to the current position. |
-| seek_end     | Set the file position relative to the end of the file (parameter position must be zero or negative).                  |
+| seek_start | Встановити позицію файлу відносно початку файлу (параметр position має бути додатнім).                    |
+| seek_current | Встановити позицію файлу відносно поточної позиції файлу: параметр position додається до поточної позиції. |
+| seek_end | Встановити позицію файлу відносно кінця файлу (параметр position має бути нульовим або від'ємним).                  |
+
+

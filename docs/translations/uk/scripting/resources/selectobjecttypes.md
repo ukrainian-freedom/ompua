@@ -1,14 +1,16 @@
 ---
-title: Select Object Types
+заголовок: Вибрати типи об'єктів
 ---
 
 :::info
 
-Here you can find all of the select object types used by [OnPlayerSelectObject](../callbacks/OnPlayerSelectObject).
+Тут ви можете знайти всі типи об'єктів вибору, що використовуються [OnPlayerSelectObject](../callbacks/OnPlayerSelectObject).
 
 :::
 
-| Value | Definition                  |
+| Значення | Визначення |
 | ----- | --------------------------- |
-| 1     | SELECT_OBJECT_GLOBAL_OBJECT |
-| 2     | SELECT_OBJECT_PLAYER_OBJECT |
+| 1 | SELECT_OBJECT_GLOBAL_OBJECT
+| 2 | SELECT_OBJECT_PLAYER_OBJECT
+
+

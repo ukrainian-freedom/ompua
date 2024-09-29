@@ -1,40 +1,40 @@
-# The preprocessor
+# Препроцесор
 
 ---
 
-The first phase of compiling a pawn source file to the executable  
-P-code is “preprocessing”: a general purpose text filter that modifies/cleans up the text
-before it is fed into the parser. The preprocessing phase removes comments,
-strips out “conditionally compiled” blocks, processes the compiler directives
-and performs find-&-replace operations on the text of the source file. The
-compiler directives are summarized on page 117 and the text substitution
-(“find-&-replace”) is the topic of this chapter.
+Перший етап компіляції вихідного файлу пішака у виконуваний файл
+P-коду є "препроцесування": текстовий фільтр загального призначення, який змінює/очищає текст
+перед тим, як він потрапляє до синтаксичного аналізатора. На етапі препроцесування видаляються коментарі,
+вилучає "умовно скомпільовані" блоки, обробляє директиви компілятора
+і виконує операції пошуку та заміни в тексті вихідного файлу. Директиви компілятора
+директиви компілятора наведено на сторінці 117, а заміна тексту
+("знайти і замінити") є темою цієї глави.
 
-The preprocessor is a process that is invoked on all source lines immediately
-after they are read. No syntax checking is performed during the text substitu-
-tions. While the preprocessor allows powerful tricks in the pawn language, it
-is also easy to shoot yourself in the foot with it.
+Препроцесор - це процес, який викликається для всіх рядків вихідного коду одразу
+після їх прочитання. Під час підстановки тексту не виконується перевірка синтаксису
+під час підстановки тексту. Хоча препроцесор дозволяє використовувати потужні трюки в пішаковій мові, з ним
+з ним також легко вистрілити собі в ногу.
 
-In this chapter, I will refer to the C/C⁺⁺ language on several occasions because
-pawn’s preprocessor is similar to the one in C/C++. That said, the pawn
-preprocessor is incompatible with the C/C⁺⁺ preprocessor.
+У цій главі я буду посилатися на мову C/C⁺⁺ декілька разів, тому що
+препроцесор пішака подібний до препроцесора у C/C++. Тим не менш, препроцесор pawn
+несумісний з препроцесором C/C⁺⁺.
 
-The #define directive defines the preprocessor macros. Simple macros are:
+Директива #define визначає макроси препроцесора. Прості макроси:
 
 ```c
 
-#define maxsprites          25
-#define CopyRightString     "(c) Copyright 2004 by me"
+#define maxsprites 25
+#define CopyRightString "(c) Copyright 2004 by me"
 
 ```
 
-In the pawn script, you can then use them as you would use constants. For
-example:
+У скрипті пішака ви можете використовувати їх так само, як і константи. Наприклад
+наприклад:
 
 ```c
 
-#define maxsprites          25
-#define CopyRightString     "(c) Copyright 2004 by me"
+#define maxsprites 25
+#define CopyRightString "(c) Copyright 2004 by me"
 main()
 {
     print( Copyright )
@@ -43,7 +43,7 @@ main()
 
 ```
 
-By the way, for these simple macros there are equivalent pawn constructs:
+До речі, для цих простих макросів існують еквівалентні конструкції пішаків:
 
 ```c
 
@@ -53,16 +53,16 @@ stock const CopyRightString[] = "(c) Copyright 2004 by me"
 
 ```
 
-These constant declarations have the advantage of better error checking and
-the ability to create tagged constants. The syntax for a string  
-constant is an array variable that is declared both “const” and “stock”. The  
-const attribute prohibits any change to the string and the stock attribute makes
-the declaration “disappear” if it is never referred to.
+Перевагою таких оголошень констант є краща перевірка на помилки та
+можливість створювати константи з тегами. Синтаксис рядкової константи
+константа - це змінна масиву, яка оголошується як "const", так і "stock". Атрибут
+const забороняє будь-які зміни рядка, а атрибут stock змушує оголошення
+оголошення "зникає", якщо до нього ніколи не звертаються.
 
-Substitution macros can take up to 10 parameters. A typical use for parame-
-terized macros is to simulate tiny functions:
+Макроси підстановки можуть приймати до 10 параметрів. Типове використання параметризованих макросів - це моделювання крихітних функцій.
+теризованих макросів є моделювання крихітних функцій:
 
-Listing: the “min” macro
+Лістинг: макрос "min"
 
 ```c
 
@@ -70,12 +70,12 @@ Listing: the “min” macro
 
 ```
 
-If you know C/C⁺⁺, you will recognize the habit of enclosing each argument
-and the whole substitution expression in parentheses.
+Якщо ви знаєте C/C⁺⁺, ви впізнаєте звичку брати кожен аргумент
+і весь вираз підстановки у круглі дужки.
 
-If you use the above macro in a script in the following way:
+Якщо ви використовуєте вищевказаний макрос у скрипті, то він буде працювати наступним чином:
 
-Listing: bad usage of the “min” macro
+Виявлення помилки: неправильне використання макросу "min"
 
 ```c
 
@@ -84,7 +84,7 @@ new min = min(++a,b)
 
 ```
 
-the preprocessor translates it to:
+препроцесор перекладає його:
 
 ```c
 
@@ -93,14 +93,14 @@ new min = ((++a) < (b) ? (++a) : (b))
 
 ```
 
-which causes “a” to possibly be incremented twice. This is one of the traps
-that you can trip into when using substitution macros (this particular problem
-is well known to C/C++ programmers). Therefore, it may be a good idea to
-use a naming convention to distinguish macros from functions. In C/C⁺⁺ it is
-common practice to write preprocessor macros in all upper case.
+що призводить до того, що "a", можливо, буде збільшено вдвічі. Це одна з пасток.
+у яку ви можете потрапити при використанні макросів підстановки (ця проблема
+добре відома програмістам на C/C++). Тому, можливо, буде гарною ідеєю
+використовувати угоду про імена, щоб відрізняти макроси від функцій. У мові C/C⁺⁺ це
+загальноприйнятою практикою є написання макросів препроцесора у всіх регістрах верхнього регістру.
 
-To show why enclosing macro arguments in parentheses is a good idea, consider
-the macro:
+Щоб показати, чому варто брати аргументи макросу у круглі дужки, розглянемо приклад
+макрос:
 
 ```c
 
@@ -108,9 +108,9 @@ the macro:
 
 ```
 
-This macro divides the first argument by the second argument, but rounding
-upwards to the nearest integer (the divide operator, “/”, rounds downwards).
-If you use it as follows:
+Цей макрос ділить перший аргумент на другий, але з округленням
+в більшу сторону до найближчого цілого (оператор ділення, "/", округлює в меншу сторону).
+Якщо ви використовуєте його наступним чином:
 
 ```c
 
@@ -119,14 +119,14 @@ new b = ceil_div(8, a - 2)
 
 ```
 
-the second line expands to “new b = (8 + a - 2 - 1) / a - 2”,
-which, considering the precedence levels of the pawn operators, leads to “b”  
-being set to zero (if “a” is 5). What you would have expected from looking at the
-macro invocation is eight divided by three (“a - 2”), rounded upwards —
-hence, that “b” would be set to the value 3. Changing the macro to enclose
-each parameter in parentheses solves the problem. For similar reasons, it is
-also advised to enclose the complete replacement text in parentheses. Below
-is the ceil_div macro modified accordingly:
+другий рядок розширюється до "new b = (8 + a - 2 - 1) / a - 2",
+що, враховуючи рівні пріоритетів операторів пішаків, призводить до того, що "b"
+дорівнюватиме нулю (якщо "a" дорівнює 5). Те, що ви могли б очікувати, дивлячись на виклик макросу
+це вісім поділити на три ("a - 2"), округлити в більшу сторону -
+отже, "b" буде встановлено у значення 3. Зміна макросу на такий, що містить
+кожен параметр у дужки, вирішує проблему. З аналогічних причин також рекомендується
+також рекомендується брати повний текст заміни у круглі дужки. Нижче
+наведено макрос ceil_div, змінений відповідним чином:
 
 ```c
 
@@ -134,11 +134,11 @@ is the ceil_div macro modified accordingly:
 
 ```
 
-The pattern matching is subtler than matching strings that look like function
-calls. The pattern matches text literally, but accepts arbitrary text where the
-pattern specifies a parameter. You can create patterns like:
+Порівняння за шаблоном є більш тонким, ніж порівняння рядків, які виглядають як виклики функцій
+виклики функцій. Шаблон збігається з текстом буквально, але приймає довільний текст, якщо у шаблоні
+шаблон вказує параметр. Ви можете створювати шаблони на кшталт:
 
-Listing: macro that translates a syntax for array access to a function call
+Лістинг: макрос, що транслює синтаксис доступу до масиву у виклик функції
 
 ```c
 
@@ -146,51 +146,53 @@ Listing: macro that translates a syntax for array access to a function call
 
 ```
 
-When the expansion of a macro contains text that matches other macros, the
-expansion is performed at invocation time, not at definition time. Thus the code:
+Якщо розширення макросу містить текст, який збігається з іншими макросами, розширення
+виконується під час виклику, а не під час визначення. Таким чином, код:
 
 ```c
 
-#define a(%1)       (1+b(%1))
-#define b(%1)       (2\*(%1))
+#define a(%1) (1+b(%1))
+#define b(%1) (2\*(%1))
 new c = a(8)
 
 ```
 
-will evaluate to “new c = (1+(2\*(8)))”, even though the macro “b” was not
-defined at the time of the definition of “a”.
+обчислить "new c = (1+(2\*(8))", навіть якщо макрос "b" не було
+не було визначено на момент визначення макросу "a".
 
-The pattern matching is constrained to the following rules:
+Співставлення шаблонів обмежується наступними правилами:
 
-- There may be no space characters in the pattern. If you must match a space, you need to use the “\32;” escape sequence. The substitution text, on the other hand, may contain space characters. Due to the matching rules of the macro pattern (explained below), matching a space character is rarely needed.
+- У шаблоні може не бути пробілів. Якщо вам потрібно вставити пробіл, вам слід використати екрановану послідовність "\32;". З іншого боку, текст підстановки може містити пробіли. Завдяки правилам співставлення макрошаблону (описаним нижче), співставлення з пробілами рідко потрібне.
 
-- As evidenced in the preceding line, escape sequences may appear in the pattern (they are not very useful, though, except perhaps for matching a literal “%” character).
+- Як показано у попередньому рядку, у шаблоні можуть з'являтися екрановані послідовності (вони не дуже корисні, за винятком, можливо, співпадіння з буквеним символом "%").
 
-- The pattern may not end with a parameter; a pattern like “set:%1=%2” is illegal. If you wish to match with the end of a statement, you can add a semicolon at the end of the pattern. If semicolons are optional at the end of each statement, the semicolon will also match a newline in the source.
+- Шаблон не може закінчуватися параметром; шаблон на кшталт "set:%1=%2" є неприпустимим. Якщо ви хочете, щоб шаблон збігався з кінцем оператора, ви можете додати крапку з комою в кінці шаблону. Якщо крапка з комою в кінці кожного оператора не є обов'язковою, крапка з комою також буде збігатися з новим рядком у вихідному тексті.
 
-- The pattern must start with a letter, an underscore, or an “@” character The first part of the pattern that consists of alphanumeric characters (plus the “\_” and/“@”) is the “name” or the “prefix” of the macro. On the defined operator and the #undef directive, you specify the macro prefix.
+- Шаблон має починатися з літери, символу підкреслення або "@" Перша частина шаблону, що складається з буквено-цифрових символів (плюс символи "\_" і "@"), є "ім'ям" або "префіксом" макросу. За допомогою визначеного оператора та директиви #undef ви вказуєте префікс макросу.
 
-- When matching a pattern, the preprocessor ignores white space between nonalphanumeric symbols and white space between an alphanumeric symbol and a non-alphanumeric one, with one exception: between two identical symbols, white space is not ignored. Therefore: `the pattern abc(+-) matches “abc ( + - )” the pattern abc(--) matches “abc ( -- )”` but does not match `“abc(- -)”`
+- При порівнянні шаблону препроцесор ігнорує пробіли між неалфавітними символами і пробіли між алфавітним і неалфавітним символами, за одним винятком: між двома однаковими символами пробіли не ігноруються. Тому: `шаблон abc(+-) відповідає "abc ( + - )", шаблон abc(--) відповідає "abc ( -- )"`, але не відповідає `"abc(- -)"`.
 
-- There are up to 10 parameters, denoted with a “%” and a single digit (1 to 9 and 0). The order of the parameters in a pattern is not important.
+- Існує до 10 параметрів, які позначаються символом "%" і однією цифрою (від 1 до 9 і 0). Порядок параметрів у шаблоні не має значення.
 
-- The #define symbol is a parser directive. As with all parser directives, the pattern definition must fit on a single line. You can circumvent this with a “\” on the end of the line. The text to match must also fit on a single line.
+- Символ #define є директивою синтаксичного аналізатора. Як і у випадку з усіма директивами синтаксичного аналізатора, визначення шаблону має вміщуватися в одному рядку. Ви можете обійти цю вимогу за допомогою символу "\" у кінці рядка. Текст, якому потрібно знайти відповідність, також має вміщуватися в одному рядку.
 
-Note that in the presence of (parameterized) macros, lines of source code may
-not be what they appear: what looks like an array access may be “prepro
-cessed” to a function call, and vice versa.
+Зауважте, що за наявності (параметризованих) макросів рядки вихідного коду можуть
+не є тим, чим вони здаються: те, що виглядає як доступ до масиву, може виявитися "попереднім" до виклику функції.
+викликом функції, і навпаки.
 
-A host application that embeds the pawn parser may provide an option to let
-you check the result of text substitution through macros. If you are using the
-standard pawn toolset, you will find instructions of how to use the compiler
-and run-time in the companion booklet “The pawn booklet — Implementor’s Guide”.
-
----
-
-`Operator precedence: 110`
-
-`Directives: 117`
+Основна програма, яка вбудовує синтаксичний аналізатор пішаків, може надавати можливість
+перевіряти результат підстановки тексту за допомогою макросів. Якщо ви використовуєте
+стандартний набір інструментів pawn, ви знайдете настанови щодо використання компілятора
+та часу виконання у супровідному буклеті "The pawn booklet - Implementor's Guide".
 
 ---
 
-[Go Back to Contents](00-Contents.md)
+Пріоритет оператора: 110`
+
+Директиви: 117`
+
+---
+
+[Повернутися до змісту](00-Contents.md)
+
+

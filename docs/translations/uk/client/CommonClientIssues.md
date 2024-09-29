@@ -1,60 +1,62 @@
 ---
-title: Common Client Issues
+title: Загальні питання клієнта
 ---
 
-### I get the error "San Andreas cannot be found"
+### Я отримую помилку «San Andreas не може бути знайдено»
 
-San Andreas Multiplayer is **not** a stand-alone program! It adds multiplayer functionality to San Andreas, and thus you need GTA San Andreas for the PC - it also needs to be **EU/US v1.0**, other versions such as v2.0 or Steam and Direct2Drive versions will not work. [Click here to download a patch to downgrade your GTA: SA version to 1.0](http://grandtheftauto.filefront.com/file/GTA_SA_Downgrader_Patch;74661)
+San Andreas Multiplayer - це не окрема програма! Вона додає багатокористувацьку функціональність до San Andreas, і тому вам потрібна GTA San Andreas для ПК - вона також має бути **EU/US v1.0**, інші версії, такі як v2.0 або версії для Steam та Direct2Drive, не працюватимуть. [Натисніть тут, щоб завантажити патч для зниження версії GTA: SA до 1.0] (http://grandtheftauto.filefront.com/file/GTA_SA_Downgrader_Patch;74661)
 
-### I can not see any servers in SA:MP browser
+### Я не бачу жодного сервера у браузері SA:MP
 
-SA:MP browser does not work. Download the new [open.mp launcher](https://github.com/openmultiplayer/launcher/releases/latest).
-If you still cannot see any servers, you must allow open.mp access through your firewall. Unfortunately, due to the large amount of available firewall software, we can not offer further support on this - we suggest looking at the manufacturers website or trying a Google search. Also make sure you have the latest stable open.mp version!
+Браузер SA:MP не працює. Завантажте новий [open.mp launcher] (https://github.com/openmultiplayer/launcher/releases/latest).
+Якщо ви все одно не бачите жодного сервера, ви повинні дозволити доступ до open.mp через ваш брандмауер. На жаль, через велику кількість доступного програмного забезпечення для брандмауерів ми не можемо запропонувати подальшу підтримку в цьому питанні - радимо звернутися на сайт виробника або спробувати пошукати в Google. Також переконайтеся, що у вас найновіша стабільна версія open.mp!
 
-### Singleplayer loads instead of SA:MP
+### Завантажується одиночна гра замість SA:MP
 
-:::warning
+:::попередження
 
-You are not supposed to see the singleplayer options (new game, load game, etc) - SA:MP should load by itself and not present these options. If you see "new game", singleplayer has loaded, not San Andreas Multiplayer.
+Ви не повинні бачити опції одиночної гри (нова гра, завантажити гру і т.д.) - SA:MP має завантажуватися сама і не показувати ці опції. Якщо ви бачите «нова гра», це означає, що завантажилася одиночна гра, а не San Andreas Multiplayer.
 
 :::
 
-Singleplayer can load for 2 reasons; you have installed SA:MP to the wrong folder or you have the wrong version of San Andreas. If you have the wrong version you can downgrade your game using the GTA San Andreas downgrader. Click [here](http://grandtheftauto.filefront.com/file/GTA_SA_Downgrader_Patch;74661) to download it.
+Одиночна гра може завантажитися з двох причин: ви встановили SA:MP не до тієї теки або у вас не та версія San Andreas. Якщо у вас неправильна версія, ви можете понизити версію гри за допомогою GTA San Andreas downgrader. Натисніть [тут] (http://grandtheftauto.filefront.com/file/GTA_SA_Downgrader_Patch;74661), щоб завантажити його.
 
-Sometimes the single player menu will be shown, but SA:MP will in fact have loaded properly. To fix this you simply need to select an item on the menu, then hit the escape key to exit out of it. SA:MP will then proceed to load.
+Іноді буде показано меню одиночної гри, але SA:MP насправді завантажиться належним чином. Щоб виправити це, вам просто потрібно вибрати пункт меню, а потім натиснути клавішу escape, щоб вийти з нього. Після цього SA:MP продовжить завантаження.
 
-### I get "Unacceptable Nickname" when connecting to a server
+### Я отримую повідомлення «Неприйнятний нікнейм» при підключенні до сервера
 
-Ensure you are not using any disallowed characters in your name (use 0-9, a-z, \[\], (), \$, @, ., \_ and = only), and that your name is no longer than 20 characters. This also could be caused when a player is on a server with the same name as you (which can happen if you reconnect to a server quickkly after timing out or crashing). A Windows server running SA:MP with an uptime greater than 50 days can sometimes cause this bug.
+Переконайтеся, що ви не використовуєте жодних заборонених символів у своєму імені (використовуйте лише 0-9, a-z, \[\], (), \$, @, ., \_ та =), і що ваше ім'я не довше 20 символів. Це також може бути спричинено тим, що гравець знаходиться на сервері з таким самим іменем, як і ви (що може статися, якщо ви швидко перепідключилися до сервера після тайм-ауту або аварійного завершення гри). Іноді причиною цієї помилки може бути Windows-сервер, на якому запущено SA:MP і який працює понад 50 днів.
 
-### Screen sticks at "Connecting to IP:Port..."
+### Екран застрягає на «Підключення до IP:порту...»
 
-The server could be offline, or if you can't connect to any server, disable your firewall and see if it works. If it does, you will need to reconfigure your firwall. It could also be that you are running an outdated version of SA:MP - you can find new versions [here](https://sa-mp.mp/downloads/).
+Сервер може бути офлайн, або якщо ви не можете підключитися до жодного сервера, вимкніть брандмауер і перевірте, чи працює він. Якщо він працює, вам потрібно буде переналаштувати брандмауер. Також може бути, що ви використовуєте застарілу версію SA:MP - ви можете знайти нові версії [тут] (https://sa-mp.mp/downloads/).
 
-### I have a modified GTA: San Andreas and SA:MP won't load
+### У мене модифікована GTA: San Andreas і SA:MP не завантажується
 
-If it won't load then remove your mods.
+Якщо вона не завантажується, видаліть ваші модифікації.
 
-### When launching GTA with SA:MP it won't start
+### Під час запуску GTA з SA:MP вона не запускається
 
-Delete the gta_sa.set file from your userfiles folder and make sure you don't have any cheats/mods.
+Видаліть файл gta_sa.set з теки userfiles і переконайтеся, що у вас не встановлено жодних читів/модів.
 
-### The game crashes when a vehicle explodes
+### Гра вилітає, коли вибухає транспортний засіб
 
-If you have 2 monitors then there are 3 ways to solve this:
+Якщо у вас 2 монітори, то є 3 способи вирішити цю проблему:
 
-1. Disable your 2dr monitor when you play sa-mp. (Maybe not so smart if you like to have the monitor on.)
-2. Set your Visual FX quality to low. (Esc > Options > Display Setup > Advanced)
-3. Rename your GTA San Andreas folder (e.g. to "GTA San Andreas2") (This often works, however sometimes it may stop working again so you need to rename it to something else.)
+1. Вимкніть ваш 2dr монітор, коли ви граєте в sa-mp. (Можливо, це не дуже розумно, якщо вам подобається мати монітор увімкненим).
+2. Встановіть якість Visual FX на низький рівень. (Esc > Параметри > Налаштування дисплея > Додатково)
+3. Перейменуйте папку GTA San Andreas (наприклад, на «GTA San Andreas2») (Це часто допомагає, але іноді це може знову перестати працювати, тому вам потрібно перейменувати її на щось інше).
 
-### My mouse doesn't work after exiting the pause menu
+### Миша не працює після виходу з меню паузи
 
-If your mouse seems to be frozen ingame while it (partially) works in the pause menu, then you should disable the multicore option [sa-mp.cfg](ClientCommands#file-sa-mpcfg "Sa-mp.cfg") (set it to 0). Continuously tapping Escape until the mouse responds again may also work, but it is not as neat a solution.
+Якщо ваша миша застигла в грі, коли вона (частково) працює в меню паузи, вам слід вимкнути опцію багатоядерності [sa-mp.cfg](ClientCommands#file-sa-mpcfg «Sa-mp.cfg») (встановіть її на 0). Безперервне натискання клавіші Escape до тих пір, поки миша знову не відповість, також може спрацювати, але це не таке акуратне рішення.
 
-### The file dinput8.dll is missing
+### Відсутній файл dinput8.dll
 
-This is possibly arises when DirectX is not properly installed, try re-installing it - don't forget to restart your PC. If the problem still arises, just go at C:\\Windows\\System32 and copy paste the dinput.dll file to the root directory of your GTA San Andreas. That would solve it.
+Можливо, це виникає через неправильне встановлення DirectX, спробуйте перевстановити його - не забудьте перезавантажити комп'ютер. Якщо проблема все ще виникає, просто перейдіть за адресою C:\\Windows\\System32 і скопіюйте файл dinput.dll до кореневого каталогу вашої GTA San Andreas. Це вирішить проблему.
 
-### I cannot see other player's nametags!
+### Я не бачу бейджики інших гравців!
 
-Please be aware that some servers may have nametags globally disabled. Otherwise, this problem often occurs on computers with Intel HD integrated graphics processors (which aren't really meant for gaming, anyway). Unfortunately, the exact cause is unknown and there doesn't seem to be a universal fix available at present time either. A long term fix would be to install a dedicated graphics card in your computer, if this is possible and if your budget allows it.
+Зверніть увагу, що на деяких серверах бейджики можуть бути глобально вимкнені. В іншому випадку ця проблема часто виникає на комп'ютерах з інтегрованими графічними процесорами Intel HD (які не призначені для ігор). На жаль, точна причина невідома, і, схоже, наразі не існує універсального рішення. Довгостроковим рішенням буде встановлення спеціальної відеокарти у вашому комп'ютері, якщо це можливо і якщо ваш бюджет дозволяє це зробити.
+
+

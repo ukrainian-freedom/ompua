@@ -1,116 +1,116 @@
 ---
-title: Door States
-description: Information about byte size and its corresponding door state bits.
+заголовок: Дверні стани
+description: Інформація про розмір байта та відповідні йому біти станів дверей.
 ---
 
-:::note
+:::примітка
 
-Door states are used by natives such as [GetVehicleDamageStatus](../functions/GetVehicleDamageStatus) and [UpdateVehicleDamageStatus](../functions/UpdateVehicleDamageStatus).
+Стани дверей використовуються нативними функціями, такими як [GetVehicleDamageStatus](../functions/GetVehicleDamageStatus) та [UpdateVehicleDamageStatus](../functions/UpdateVehicleDamageStatus).
 
 :::
 
-:::note
+:::примітка
 
-The states of the 2 back doors can not be handled by [GetVehicleDamageStatus](../functions/GetVehicleDamageStatus) and [UpdateVehicleDamageStatus](../functions/UpdateVehicleDamageStatus).
+Стани 2 задніх дверей не можуть бути оброблені функціями [GetVehicleDamageStatus](../functions/GetVehicleDamageStatus) та [UpdateVehicleDamageStatus](../functions/UpdateVehicleDamageStatus).
 
 :::
 
-## Which bit stores what?
+## Який біт що зберігає?
 
-The damage of each door (note that the hood and the trunk are also doors) will be saved in 1 byte (which is 8 bits). You can only change the state of one bit for every door at each time, so you have to call the function twice if you want to the door to be damaged and opened at the same time.
+Пошкодження кожної двері (зауважте, що капот і багажник також є дверима) буде збережено в 1 байт (тобто 8 біт). Ви можете змінювати стан лише одного біта для кожної двері в кожен момент часу, тому вам доведеться викликати функцію двічі, якщо ви хочете, щоб двері були пошкоджені та відчинені одночасно.
 
-- The **first bit** stores whether the door is **opened (value 1)** or **not (value 0)**. The door will still lock (and change the first bit to 0) if open, it's just open.
-- The **second bit** stores whether the door is **damaged (value 1)** or **not (value 0)**. If you want a damaged door to turn normal you have to remove and re-attach it undamaged.
-- The **third bit** stores whether the door is **removed (value 1)** or **not (value 0)**.
-- The rest of the bits are empty.
+- Перший біт** зберігає, чи двері відчинено (значення 1)** або не відчинено (значення 0)**. Якщо двері відчинено, вони все одно заблокуються (і змінять перший біт на 0), якщо їх просто відчинено.
+- Другий біт** зберігає, чи є двері **пошкодженими (значення 1)** або **непошкодженими (значення 0)**. Якщо ви хочете, щоб пошкоджені двері повернулися до нормального стану, вам потрібно зняти і знову прикріпити їх неушкодженими.
+- Третій біт** зберігає, чи двері **вилучено (значення 1)** або **не вилучено (значення 0)**.
+- Решта бітів порожні.
 
-It seems like there is no bit which stores if the door will lock or not.
+Здається, що немає біта, який зберігає, зачиняться двері чи ні.
 
-Notice that the bits are counted from behind, so the first bit is the rightmost bit.
-
----
-  
-## Which byte stores what?
-
-- The **first byte** stores the state of the **hood**.
-- The **second byte** stores the state of the **trunk**.
-- The **third byte** stores the state of the **drivers' door**.
-- The **fourth byte** stores the state of the **co-drivers' door**.
-
-Notice that the bytes are counted from behind, so the first byte is the rightmost byte.
+Зверніть увагу, що біти рахуються ззаду, тому перший біт є крайнім правим.
 
 ---
   
-## Example
+## Який байт що зберігає?
 
-The following code tells that the hood is removed, the front left door is damaged, the front right door is opened and the trunk is damaged and opened:
+- У **першому байті** зберігається стан **власність**.
+- У **другому байті** зберігається стан **стовбура**.
+- Третій байт** зберігає стан **дверцят водія**.
+- Четвертий байт зберігає стан дверей другого водія.
+
+Зверніть увагу, що байти рахуються ззаду, тому перший байт є крайнім правим.
+
+---
+  
+## Приклад
+
+Наступний код повідомляє, що капот знято, передні ліві двері пошкоджено, передні праві двері відчинено, а багажник пошкоджено та відчинено:
 
 `00000001 00000010 00000011 00000100`
 
-However, SA-MP returns a decimal number so you have to convert it to a binary number first to get a result like above. What SA-MP would return given the example above is this:
+Однак SA-MP повертає десяткове число, тому вам доведеться спочатку перетворити його у двійкове, щоб отримати результат, як показано вище. У наведеному вище прикладі SA-MP поверне наступне число:
 
 `16909060`
 
 ---
   
-## Info table
+## Інформаційна таблиця
 
-**Legend:**
-
-```
-Static        Doors                    Hood / Trunk
-
-° - Light      | - healthy, closed     -- - healthy, closed
-              -- - healthy, opened     [] - healthy, opened
-               § - damaged, closed     ~~ - damaged, closed
-              ww - damaged, opened     {} - damaged, opened
-                 - missing                - missing
-```
-
-**First byte (hood):**
+**Легенда:**
 
 ```
-0 (000)   1 (001)   2 (010)   3 (011)   4 (100)   5 (101)   6 (110)   7 (111)
-  °--°      °[]°      °~~°      °{}°      °  °      °  °      °  °      °  °
-  |  |      |  |      |  |      |  |      |  |      |  |      |  |      |  |
-  °--°      °--°      °--°      °--°      °--°      °--°      °--°      °--°
+Статичні двері Капот / багажник
+
+° - легкі | - здорові, зачинені -- - здорові, зачинені
+              -- - здорові, відчинені [] - здорові, відчинені
+               § - пошкоджені, закриті ~~ - пошкоджені, закриті
+              ww - пошкоджені, відкриті {} - пошкоджені, відкриті
+                 - missing - відсутній
 ```
 
-**Second byte (trunk):**
+**Перший байт (шапка):**
 
 ```
-0 (000)   1 (001)   2 (010)   3 (011)   4 (100)   5 (101)   6 (110)   7 (111)
-  °--°      °--°      °--°      °--°      °--°      °--°      °--°      °--°
-  |  |      |  |      |  |      |  |      |  |      |  |      |  |      |  |
-  °--°      °[]°      °--°      °{}°      °  °      °  °      °  °      °  °
+0 (000) 1 (001) 2 (010) 3 (011) 4 (100) 5 (101) 6 (110) 7 (111)
+  °--° °[]° °~~° °{}° ° ° ° ° ° ° ° °
+  | | | | | | | | | | | | | | | |
+  °--° °--° °--° °--° °--° °--° °--° °--°
 ```
 
-**Third byte (drivers' door):**
+**Другий байт (магістраль):**
 
 ```
-0 (000)   1 (001)   2 (010)   3 (011)   4 (100)   5 (101)   6 (110)   7 (111)
-  °--°      °--°      °--°      °--°      °--°      °--°      °--°      °--°
-  |  |     --  |      §  |     ww  |         |         |         |         |
-  °--°      °--°      °--°      °--°      °--°      °--°      °--°      °--°
+0 (000) 1 (001) 2 (010) 3 (011) 4 (100) 5 (101) 6 (110) 7 (111)
+  °--° °--° °--° °--° °--° °--° °--° °--°
+  | | | | | | | | | | | | | | | |
+  °--° °[]° °--° °{}° ° ° ° ° ° ° ° °
 ```
 
-**Fourth byte (co-drivers' door):**
+**Третій байт (водійські двері):**
 
 ```
-0 (000)   1 (001)   2 (010)   3 (011)   4 (100)   5 (101)   6 (110)   7 (111)
-  °--°      °--°      °--°      °--°      °--°      °--°      °--°      °--°
-  |  |      |  --     |  §      |  ww     |         |         |         |
-  °--°      °--°      °--°      °--°      °--°      °--°      °--°      °--°
+0 (000) 1 (001) 2 (010) 3 (011) 4 (100) 5 (101) 6 (110) 7 (111)
+  °--° °--° °--° °--° °--° °--° °--° °--°
+  | Я не хочу, щоб ви знали, що я тут.
+  °--° °--° °--° °--° °--° °--° °--° °--°
+```
+
+**Четвертий байт (двері другого водія):**
+
+```
+0 (000) 1 (001) 2 (010) 3 (011) 4 (100) 5 (101) 6 (110) 7 (111)
+  °--° °--° °--° °--° °--° °--° °--° °--°
+  | Я не хочу, щоб ви знали, що я тут.
+  °--° °--° °--° °--° °--° °--° °--° °--°
 ```
 
 ---
   
-## Wrapper
+## Обгортка
 
-Useful little snippet to avoid working with the bits and bytes too much.
+Корисний невеличкий фрагмент, щоб уникнути надмірної роботи з бітами та байтами.
 
 ```c
-enum Door
+enum Двері
 {
     DOOR_HOOD,
     DOOR_TRUNK,
@@ -133,30 +133,32 @@ stock GetDoorState(doorStates, Door:door, DoorState:doorState)
 
 ---
   
-## Example usage
+## Приклад використання
 
 ```c
-new 
-	VEHICLE_PANEL_STATUS:panels,
-	VEHICLE_DOOR_STATUS:doors,
-	VEHICLE_LIGHT_STATUS:lights,
-	VEHICLE_TIRE_STATUS:tires;
+новий 
+	VEHICLE_PANEL_STATUS:панелі,
+	VEHICLE_DOOR_STATUS:двері,
+	VEHICLE_LIGHT_STATUS:фари,
+	VEHICLE_TIRE_STATUS:шини;
 
 GetVehicleDamageStatus(vehicleid, panels, doors, lights, tires);
 
-// Single state
+// Одиничний стан
 if (GetDoorState(_:doors, DOOR_DRIVER, IS_DAMAGED))
 {
-    SendClientMessage(playerid, -1, "The drivers' door of your vehicle is damaged!");
+    SendClientMessage(playerid, -1, «Водійські двері вашого автомобіля пошкоджено!»);
 }
 
-// Combined state
+// Комбінований стан
 if (GetDoorState(_:doors, DOOR_HOOD, IS_OPENED | IS_DAMAGED))
 {
-    SendClientMessage(playerid, -1, "The hood of your vehicle is both opened and damaged!");
+    SendClientMessage(playerid, -1, «Капот вашого транспортного засобу відкрито та пошкоджено!»)
 }
 ```
 
-## See also
+## Дивіться також
 
-- [Vehicle Door Status](../resources/vehicle-door-status)
+- [Статус дверей автомобіля](../resources/vehicle-door-status)
+
+

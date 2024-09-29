@@ -1,16 +1,18 @@
 ---
-title: Angle Modes
-description: SI unit constants for measuring angles.
+назва: Кутові режими
+description: Константи одиниці СІ для вимірювання кутів.
 ---
 
-:::note
+:::примітка
 
-These angle modes are used by [floatsin](../functions/floatsin), [floatcos](../functions/floatcos), and [floattan](../functions/floattan).
+Ці кутові режими використовуються командами [floatsin](../functions/floatsin), [floatcos](../functions/floatcos) та [floattan](../functions/floattan).
 
 :::
 
-|  Mode   | Description |
+| Режим | Опис
 | ------- | ----------- |
-| radian  | The angle will be in radians. |
-| degrees | The angle will be in degrees. |
-| grades  | The angle will be in grades.  |
+| radian | Кут буде в радіанах. |
+| градуси | Кут буде вказано в градусах. |
+| градуси - кут буде в градусах.  |
+
+

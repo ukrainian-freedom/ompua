@@ -1,21 +1,23 @@
 ---
-title: Glossary
-description: Glossary of terms
+назва: Глосарій
+description: Глосарій термінів
 tags: []
-sidebar_label: Glossary
+sidebar_label: Глосарій
 ---
 
-| Word                                              | Meaning                                                                                                 |
+| Слово | Значення |
 |---------------------------------------------------|---------------------------------------------------------------------------------------------------------|
-| PAWN                                              | The scripting language used to make SA:MP scripts                                                       |
-| Gamemodes                                         | The main script that runs on a server                                                                   |
-| Filterscripts                                     | Scripts that run alongside gamemodes                                                                    |
-| Plugins                                           | Extra functions/capabilites added through a .dll (Windows) or .so (Linux) file                          |
-| Include                                           | Pieces of script placed in .inc files to be included in Filterscripts/Gamemodes using `#include <name>` |
-| Pawno                                             | The script editor most people use for PAWN                                                              |
-| [Qawno](https://github.com/openmultiplayer/qawno) | The script editor most people use for PAWN                                                              |
-| Pawncc                                            | The compiler that compiles .pwn to .amx                                                                 |
-| Masterlist                                        | The server SA:MP stores its data on such as the Internet list                                           |
-| Deathmatch                                        | A contest where players try to kill each other to win                                                   |
-| Roleplay                                          | A gamemode type where players acting like in real life                                                  |
-| Reallife                                          | A gamemode type which is based on real life but players do not need to act like in real life            |
+| PAWN | Мова сценаріїв, що використовується для створення скриптів SA:MP.
+| Gamemodes - основний скрипт, який запускається на сервері.
+| Фільтри-скрипти - скрипти, які запускаються паралельно з ігровими режимами.
+| Плагіни | Додаткові функції/можливості, додані за допомогою .dll (Windows) або .so (Linux) файлів
+| Включити | Фрагменти скриптів, розміщені у .inc-файлах, які потрібно включити до Filterscripts/Gamemodes за допомогою `#include <name>` |.
+| Pawno | Редактор скриптів, який більшість людей використовує для PAWN
+| [Qawno](https://github.com/openmultiplayer/qawno) | Редактор скриптів, який більшість людей використовує для PAWN
+| Pawncc | Компілятор, який компілює .pwn у .amx
+| Masterlist | Сервер SA:MP зберігає свої дані на таких ресурсах, як інтернет-списки.
+| Deathmatch - змагання, де гравці намагаються вбити один одного, щоб перемогти.
+| Рольова гра - тип ігрового режиму, де гравці діють, як у реальному житті.
+| Реаліті - тип ігрового режиму, який базується на реальному житті, але гравцям не потрібно діяти так, як у реальному житті.
+
+

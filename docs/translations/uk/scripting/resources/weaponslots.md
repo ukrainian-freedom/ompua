@@ -1,27 +1,29 @@
 ---
-title: Weapon Slots
-description: Weapon Slots used by GetWeaponSlot and GetPlayerWeaponData.
+назва: Слоти для зброї
+description: Слоти зброї, що використовуються методами GetWeaponSlot та GetPlayerWeaponData.
 ---
 
 :::info
 
-Weapon Slots used by [GetWeaponSlot](../functions/GetWeaponSlot) and [GetPlayerWeaponData](../functions/GetPlayerWeaponData).
+Слоти зброї, що використовуються [GetWeaponSlot](../functions/GetWeaponSlot) та [GetPlayerWeaponData](../functions/GetPlayerWeaponData).
 
 :::
 
-| Definition                | Value |
+| Визначення | Значення |
 |---------------------------|-------|
-| WEAPON_SLOT_UNKNOWN       | -1    |
-| WEAPON_SLOT_UNARMED       | 0     |
-| WEAPON_SLOT_MELEE         | 1     |
-| WEAPON_SLOT_PISTOL        | 2     |
-| WEAPON_SLOT_SHOTGUN       | 3     |
-| WEAPON_SLOT_MACHINE_GUN   | 4     |
-| WEAPON_SLOT_ASSAULT_RIFLE | 5     |
-| WEAPON_SLOT_LONG_RIFLE    | 6     |
-| WEAPON_SLOT_ARTILLERY     | 7     |
-| WEAPON_SLOT_EXPLOSIVES    | 8     |
-| WEAPON_SLOT_EQUIPMENT     | 9     |
-| WEAPON_SLOT_GIFT          | 10    |
-| WEAPON_SLOT_GADGET        | 11    |
-| WEAPON_SLOT_DETONATOR     | 12    |
+| ЗБРОЯ_СЛОТ_НЕВІДОМА -1
+| ЗБРОЯ_СЛОТ_НЕОЗБРОЄНА | 0
+| ЗБРОЯ_СЛОТ_БЛИЗЬКОГО БОЮ - 1
+| ЗБРОЯ_СЛОТ_ПІСТОЛЕТ 2
+| ЗБРОЯ_СЛОТ_ДРОБОВИК 3
+| ЗБРОЯ_СЛОТ_КУЛЕМЕТ_4
+| ШТУРМОВА ГВИНТІВКА 5.
+| СЛОТ ДЛЯ ДОВГОСТВОЛЬНОЇ ГВИНТІВКИ 6.
+| ЗБРОЯ_СЛОТ_АРТИЛЕРІЯ 7
+| ЗБРОЯ_СЛОТ_ВИБУХІВКА 8
+| СЛОТ_ЗБРОЇ_ОБЛАДНАННЯ 9
+| СЛОТ_ЗБРОЇ_ПОДАРУНОК 10
+| СЛОТ_ЗБРОЇ_ГАДЖЕТ 11
+WEAPON_SLOT_DETONATOR | 12 | | WEAPON_SLOT_DETONATOR
+
+

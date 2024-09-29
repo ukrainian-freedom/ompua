@@ -1,21 +1,21 @@
-# Assorted tips
+# Асорті чайових
 
 ---
 
-### • Working with characters and strings
+### - Робота з символами та рядками
 
-Strings can be in packed or in unpacked format. In the packed format, each
-cell will typically hold four characters (in common implementations, a cell is
-32-bit and a character is 8 bit). In this configuration, the first character
-in a “pack” of four is the highest byte of a cell and the fourth character is in the
-lowest byte of each cell.
+Рядки можуть бути в упакованому або неупакованому форматі. У упакованому форматі кожна
+комірка зазвичай містить чотири символи (у звичайних реалізаціях комірка має
+32-бітною, а символ - 8-бітним). У цій конфігурації перший символ
+у "пачці" з чотирьох символів є старшим байтом комірки, а четвертий символ знаходиться у
+молодшому байті кожної комірки.
 
-A string must be stored in an array. For an unpacked string, the array must
-be large enough to hold all characters in the string plus a terminating zero
-cell. That is, in the example below, the variable ustring is defined as having five
-cells, which is just enough to contain the string with which it is initialized:
+Рядок повинен зберігатись у масиві. Для нерозпакованого рядка масив повинен бути
+бути достатньо великим, щоб вмістити усі символи рядка плюс завершальну нульову комірку
+нульову комірку. Тобто, у наведеному нижче прикладі змінна ustring визначається як така, що має п'ять
+комірок, що якраз достатньо для зберігання рядка, яким її ініціалізовано:
 
-Listing: unpacked string
+Лістинг: розпакований рядок
 
 ```c
 
@@ -23,13 +23,13 @@ new ustring[5] = "test"
 
 ```
 
-In a packed string, each cell contains several characters and the string
-ends with a zero character. The char operator helps with declaring the array size
-to contain the required number of characters . The example below will allocate
-enough cells to hold five packed characters. In a typical implementation, there
-will be two cells in the array.
+У упакованому рядку кожна комірка містить декілька символів, а рядок
+закінчується нульовим символом. Оператор char допомагає оголосити розмір масиву
+щоб він містив потрібну кількість символів. У прикладі нижче буде виділено
+достатньо комірок для розміщення п'яти упакованих символів. У типовій реалізації, у масиві
+буде дві комірки в масиві.
 
-Listing: packed string
+Лістинг: упакований рядок
 
 ```c
 
@@ -37,19 +37,19 @@ new pstring[5 char] = !"test"
 
 ```
 
-In other words, the char operators divides its left operand by the number of
-bytes that fit in a cell and rounds upwards. Again, in a typical implementation,
-this means dividing by four and rounding upwards.
+Іншими словами, оператор char ділить свій лівий операнд на кількість
+байт, що вміщується у комірці, і округлює у більшу сторону. Знову ж таки, у типовій реалізації
+це означає ділення на чотири і округлення у більшу сторону.
 
-You can design routines that work on strings in both packed and unpacked for-
-mats. To find out whether a string is packed or unpacked, look at the first
-cell of a string. If its value is either negative or higher than the maximum possible
-value of an unpacked character, the string is a packed string. Otherwise it
-is an unpacked string.
+Ви можете створювати підпрограми, які працюють з рядками як в упакованих, так і в неупакованих матах
+килимках. Щоб дізнатися, чи є рядок упакованим або неупакованим, подивіться на першу
+комірку рядка. Якщо її значення від'ємне або перевищує максимально можливе
+значення непакованого символу, то рядок є упакованим. У протилежному випадку
+це нерозпакований рядок.
 
-The code snippet below returns true if the input string is packed and false otherwise:
+Фрагмент коду нижче повертає true, якщо вхідний рядок упаковано, і false у протилежному випадку:
 
-Listing: ispacked function
+Лістинг: упакована функція
 
 ```c
 
@@ -58,17 +58,17 @@ bool: ispacked(string[])
 
 ```
 
-An unpacked string ends with a full zero cell. The end of a packed string is
-marked with only a zero character. Since there may be up to four characters
-in a 32-bit cell, this zero character may occur at any of the four positions in
-the “pack”. The { } operator extracts a character from a cell in an
-array. Basically, one uses the cell index operator (“[ ]”) for unpacked strings and
-the character index operator (“{ }”) to work on packed strings.
+Неупакований рядок закінчується повною нульовою коміркою. Кінець упакованого рядка
+позначається лише нульовим символом. Оскільки у 32-бітній комірці може бути до чотирьох символів
+у 32-бітній комірці, цей нульовий символ може знаходитись у будь-якій з чотирьох позицій у
+"пакунку". Оператор { } витягує символ з комірки в масиві
+масиву. В основному, для розпакованих рядків використовується оператор індексу комірки ("[ ]"), а для нерозпакованих
+оператор індексу символів ("{ }") для роботи з упакованими рядками.
 
-For example, a routine that returns the length in characters of any  
-string (packed or unpacked) is:
+Наприклад, процедура, яка повертає довжину в символах будь-якого
+рядка (упакованого або неупакованого):
 
-Listing: my strlen function
+Лістинг: моя функція strlen
 
 ```c
 
@@ -76,24 +76,24 @@ my_strlen(string[])
 {
     new len = 0
     if (ispacked(string))
-        while (string{len} != EOS)              /* get character from pack */
+        while (string{len} != EOS) /* отримуємо символ з пакету */
             ++len
     else
-        while (string[len] != EOS)              /* get cell */
+        while (string[len] != EOS) /* отримуємо комірку */
             ++len
     return len
 }
 
 ```
 
-If you make functions to work exclusively on either packed or unpacked strings,
-it is a good idea to add an assertion to enforce this condition:
+Якщо ви створюєте функції, які працюють виключно з упакованими або неупакованими рядками,
+варто додати твердження для забезпечення виконання цієї умови:
 
-Listing: strupper function
+Лістинг: функція стриптизу
 
 ```c
 
-strupper(string[])
+stripper(string[])
 {
     assert ispacked(string)
 
@@ -103,250 +103,250 @@ strupper(string[])
 
 ```
 
-Although, in preceding paragraphs we have assumed that a cell is 32  
-bits wide and a character is 8 bits, this should not be relied upon. The
-size of a cell is implementation defined; the maximum and minimum values are  
-in the predefined constants cellmax and cellmin. There are similar predefined
-constants for characters. One may safely assume, however, that both the size
-of a character in bytes and the size of a cell in bytes are powers of two.
+Хоча у попередніх параграфах ми припускали, що комірка має ширину 32
+біт, а символ має довжину 8 біт, на це не слід покладатися. Розмір комірки
+розмір комірки визначається реалізацією; максимальне та мінімальне значення
+у визначених константах cellmax та cellmin. Існують аналогічні визначені константи
+константи для символів. Можна з упевненістю припустити, що як розмір символу у байтах, так і розмір
+символу у байтах і розмір комірки у байтах є степенями двійки.
 
-The char operator allows you to determine how many packed characters fit in
-a cell. For example:
+Оператор char дозволяє визначити, скільки упакованих символів поміститься в
+комірці. Наприклад:
 
 ```c
 
-#if     4 char == 1
-    /* code that assumes 4 packed characters per cell */
+#if 4 char == 1
+    /* код, який передбачає 4 упаковані символи в комірці */
 #elseif 4 char == 2
-    /* code that assumes 2 packed characters per cell */
+    /* код, який передбачає 2 упаковані символи в комірці */
 #elseif 4 char == 4
-    /* code that assumes 1 packed character per cell */
+    /* код, який передбачає 1 упакований символ в комірці */
 #else
-    #assert 0 /* unsupported cell/character size */
+    #assert 0 /* непідтримуваний розмір комірки/символу */
 #endif
 
 ```
 
-### • Internationalization
+### - Інтернаціоналізація
 
-Programming examples in this manual have used the English language for
-all output (prompts, messages, . . . ), and a Latin character set. This
-is not necessarily so; one can, for example, modify the first “hello world” program on page 5 to:
+У прикладах програмування у цьому посібнику використовується англійська мова для
+виведення (підказки, повідомлення, ... ), а також латинський набір символів. Це
+не є обов'язковим; ви можете, наприклад, змінити першу програму "hello world" на сторінці 5 на:
 
-Listing: “hello world” in Greek
+Список: "привіт світу" грецькою мовою
 
 ```c
 
 main()
-    printf "˙  ˙\n"
+    printf " ˙ ˙\n"
 
 ```
 
-PAWN has basic support for non-Latin alphabets, but it only accepts non-Latin
-characters in strings and character constants. The PAWN language
-requires that all keywords and symbols (names of functions, variables, tags and other
-elements) be encoded in the ascii character set.
+PAWN має базову підтримку нелатинських алфавітів, але вона приймає лише нелатинські
+символи лише у рядках та символьних константах. Мова PAWN
+вимагає, щоб усі ключові слова і символи (назви функцій, змінних, тегів та інших
+елементи) повинні бути закодовані у наборі символів ascii.
 
-For languages whose required character set is relatively small, a common solu-
-tion is to use an 8-bit extended ascii character set (the ascii character set is
-7-bit, holding 128 characters). The upper 128 codes of the extended set con-
+Для мов, для яких необхідний набір символів відносно невеликий, поширеним рішенням є використання розширеного набору символів ascii.
+є використання 8-бітового розширеного набору символів ascii (набір символів ascii є
+7-бітовий, містить 128 символів). Верхні 128 кодів розширеного набору містять
 
-tain glyphs specific for the language. For Western European languages, a well
-known character set is “Latin-1”, which is standardized as ISO 8859-1 —the
-same set also goes by the name “codepage 1252”, at least for Microsoft Win-
-dows.∗ Codepages have been defined for many languages; for example, ISO
-8859-2 (“Latin-2”) has glyphs used in Central and Eastern Europe, and ISO
-8859-7 contains the Greek alphabet in the upper half of the extended ascii set.
+зберігають специфічні для мови гліфи. Для західноєвропейських мов добре відомим набором символів є
+відомим набором символів є "Латиниця-1", який стандартизовано як ISO 8859-1 - той самий набір також має назву "кодова сторінка 1252".
+той самий набір також відомий під назвою "кодова сторінка 1252", принаймні для Microsoft Win
+dows.∗ Кодові сторінки були визначені для багатьох мов; наприклад, ISO
+8859-2 ("Латиниця-2") містить гліфи, що використовуються у Центральній та Східній Європі, а ISO
+8859-7 містить грецький алфавіт у верхній половині розширеного набору ascii.
 
-Unfortunately, codepage selection can by confusing, as vendors of operating
-systems typically created their own codepages irrespective of what  
-already existed. As a result, for most character sets there exist multiple incompatible codepages
-
----
-
-###### ∗ Codepage 1252 is not exactly the same as Latin-1; Microsoft extended the standardized set to include glyphs at code positions that Latin-1 marks as “reserved”.
+На жаль, вибір кодової сторінки може заплутати, оскільки виробники операційних
+систем зазвичай створюють власні кодові сторінки незалежно від того, що
+що вже існувало. Як наслідок, для більшості наборів символів існує декілька несумісних кодових сторінок
 
 ---
 
-For example, codepage 1253 for Microsoft Windows also encodes
-the Greek alphabet, but it is incompatible with ISO 8859-7. When writing
-texts in Greek, it now becomes important to check what encoding is  
-used, because many Microsoft Windows applications support both.
-
-When the character set for a language exceeds 256 glyphs, a codepage does
-not suffice. Traditionally, the codepage technique was extended by reserving
-special “shift” codes in the base character set that switch to a new set of
-glyphs. The next character then indicates the specific glyph. In effect, the glyph is
-now identified by a 2-byte index. On the other hand, some characters (especially
-the 7-bit ascii set) can still be indicated by a single byte. The  
-“Shift-JIS” standard, for the Japanese character set, is an example for the variable length encoding.
-
-Codepages become problematic when interchanging documents or data with
-people in regions that use a different codepage, or when using different
-languages in the same document. Codepages that use “shift” characters compli-
-cate the matter further, because text processing must now take into account
-that a character may take either one or two bytes. Scanning through a string
-from right to left may even become impossible, as a byte may either indicate a
-glyph from the base set (“unshifted”) or it may be a glyph from a shifted set
--in the latter case the preceding byte indicates the shift set, but the meaning
-of the preceding character depends on the character before that.
-
-The ISO/IEC 10646 “Universal Character Set” (UCS) standard has the ambi-
-tious goal to eventually include all characters used in all the written
-languages in the world, using a 31-bit character set. This solves both of the problems
-related to codepages and “shifted” character sets. However, the ISO/IEC body
-could not produce a standard in time, and therefore a consortium of mainly
-American software manufacturers started working in parallel on a simplified
-16-bit character set called “Unicode”. The rationale behind Unicode was that
-
-it would encode abstract characters, not glyphs, and that therefore 65,536 would
-be sufficient.† In practice, though, Unicode does encode glyphs and not long
-after it appeared, it became apparent that 65,536 code points would not be
-enough. To counter this, later Unicode versions were extended with multiple
-“planes” and special codes that select a plane. The combination of a  
-plane selector and the code pointer inside that plane is called a “surrogate pair”.
+###### ∗ Кодова сторінка 1252 не зовсім збігається з Латиницею-1; Microsoft розширила стандартний набір, включивши до нього гліфи в позиціях коду, які в Латиниці-1 позначено як "зарезервовані".
 
 ---
 
-###### † If Unicode encodes characters, an “Unicode font” is a contradictio in terminis —because a font encodes glyphs.
+Наприклад, кодова сторінка 1253 для Microsoft Windows також кодує
+грецький алфавіт, але він несумісний з ISO 8859-7. Під час написання
+текстів грецькою мовою, важливо перевірити, яке кодування використовується
+використовується, оскільки багато програм для Microsoft Windows підтримують обидва кодування.
+
+Якщо набір символів мови перевищує 256 гліфів, кодова сторінка
+недостатньо. Традиційно техніку кодових сторінок розширювали за рахунок резервування
+спеціальних "зсувних" кодів у базовому наборі символів, які переходять до нового набору
+гліфів. Наступний символ вказує на конкретний гліф. По суті, гліф
+тепер ідентифікується 2-байтовим індексом. З іншого боку, деякі символи (особливо
+7-бітовий набір ascii) все ще можна позначити одним байтом. Стандарт
+Стандарт "Shift-JIS" для японського набору символів є прикладом кодування змінної довжини.
+
+Кодові сторінки стають проблематичними під час обміну документами або даними з
+людьми в регіонах, які використовують інші кодові сторінки, або при використанні різних
+мови в одному документі. Кодові сторінки, які використовують символи "зсуву", ще більше усувають цю проблему, тому що тепер при обробці тексту необхідно враховувати
+ще більше покращують ситуацію, оскільки обробка тексту тепер повинна враховувати
+що символ може займати як один, так і два байти. Сканування рядка справа наліво
+справа наліво може навіть стати неможливим, оскільки байт може позначати або
+гліф з базового набору ("незсунутий"), або гліф зі зсунутого набору
+-у останньому випадку попередній байт вказує на зсувну множину, але значення попереднього символу
+попереднього символу залежить від символу, що стоїть перед ним.
+
+Стандарт ISO/IEC 10646 "Універсальний набір символів" (UCS) має амбітну мету
+амбітну мету - врешті-решт включити всі символи, що використовуються у всіх письмових мовах світу.
+мовами світу, використовуючи 31-бітний набір символів. Це вирішує обидві проблеми
+пов'язані з кодовими сторінками та "зсунутими" наборами символів. Однак, організація ISO/IEC
+не зміг створити стандарт вчасно, і тому консорціум переважно американських
+американських виробників програмного забезпечення почав паралельно працювати над спрощеною
+16-бітним набором символів під назвою "Юнікод". Обґрунтуванням Юнікоду було те, що
+
+він кодував би абстрактні символи, а не гліфи, і тому 65 536 було б достатньо.
+На практиці, однак, Юнікод кодує гліфи, і невдовзі після
+після його появи стало очевидно, що 65 536 кодових точок буде недостатньо
+недостатньо. Щоб протистояти цьому, пізніші версії Юнікоду були розширені кількома
+"площинами" і спеціальними кодами, які вибирають площину. Поєднання
+площини та вказівника коду всередині цієї площини називається "сурогатною парою".
 
 ---
 
-The first 65,536 code points are in the “Basic Multilingual Plane” (BMP) and
-characters in this set do not need a plane selector.
+###### † Якщо Юнікод кодує символи, то "шрифт Юнікоду" є протиріччям in terminis - оскільки шрифт кодує гліфи.
 
-Essentially, the introduction of surrogate pairs in the Unicode  
-standard is equivalent to the shift codes of earlier character sets —and it carries some of
-the problems that Unicode was intended to solve. The UCS-4 encoding by
-ISO/IEC 10646 does not have/need surrogate pairs.
+---
 
-Support for Unicode/UCS-4 in (host) applications and operating systems has
-emerged in two different ways: either the internal representation of characters
-is multi-byte (typically 16-bit, or 2-byte), or the application stores strings
-internally in UTF-8 format, and these strings are converted to the proper glyphs
-only when displaying or printing them. Recent versions of Microsoft Windows
-use Unicode internally; The Plan-9 operating system pioneered the UTF-8 en-
-coding approach, which is now widely used in Unix/Linux. The  
-advantage of UTF-8 encoding as an internal representation is that it is physically an 8-
-bit encoding, and therefore compatible with nearly all existing databases, file
-formats and libraries. This circumvents the need for double entry-points for
-functions that take string parameters —as is the case in Microsoft Windows,
-where many functions exist in an “A”nsi and a “W”ide version. A disadvantage of UTF-8
-is that it is a variable length encoding, and many in-memory
-string operations are therefore clumsy (and inefficient). That said, with the
-appearance of surrogate pairs, Unicode has now also become a variable length
-encoding.
+Перші 65 536 кодових точок знаходяться у "Базовій багатомовній площині" (BMP) і
+символи у цьому наборі не потребують перемикача площини.
 
-The PAWN language requires that its keywords and symbols names are in ascii,
-and it allows non-ascii characters in strings. There are five ways that a host
-application could support non-ascii characters in strings and character
-literals:
+По суті, введення сурогатних пар у стандарті Unicode
+еквівалентно зсувним кодам більш ранніх наборів символів - і це несе в собі деякі з
+проблем, які Юнікод мав на меті вирішити. Кодування UCS-4 за стандартом
+ISO/IEC 10646 не має/потребує сурогатних пар.
 
-1 Support codepages: in this strategy the entire complexity of choosing the
-correct glyphs and fonts is delegated to the host application. The codepage
-support is based on codepage mapping files with a file format of the “cross
-mapping tables” distributed by the Unicode consortium.
+Підтримка Unicode/UCS-4 у (хост) програмах та операційних системах
+з'явилася двома різними способами: або внутрішнє представлення символів
+є багатобайтовим (зазвичай 16-бітним або 2-байтовим), або програма зберігає рядки
+у форматі UTF-8, і ці рядки перетворюються у відповідні гліфи
+лише під час відображення або друку. Останні версії Microsoft Windows
+використовують Unicode всередині; операційна система Plan-9 стала першопрохідцем у кодуванні UTF-8, який зараз широко використовується у всьому світі.
+кодування UTF-8, який зараз широко використовується у Unix/Linux. Перевага
+перевагою кодування UTF-8 як внутрішнього представлення є те, що це фізично 8-бітне кодування
+8-бітним кодуванням, а отже, сумісним майже з усіма існуючими базами даних, файловими форматами і бібліотеками.
+форматами і бібліотеками. Це дозволяє уникнути необхідності у подвійних точках входу для
+функцій, які приймають рядкові параметри - як у випадку з Microsoft Windows,
+де багато функцій існує у версії "A "nsi та "W "ide. Недоліком UTF-8 є те, що
+є те, що це кодування змінної довжини, і багато операцій з рядками у пам'яті
+тому багато операцій з рядками у пам'яті є незграбними (і неефективними). Тим не менш, з появою
+появою сурогатних пар, Юнікод також став кодуванням змінної довжини
+кодуванням змінної довжини.
 
-2 Support Unicode or UCS-4 and let the PAWN compiler convert scripts that
-were written using a codepage to “wide” characters: for this strategy, you
-need to set #pragma codepage or use the equivalent compiler option. The
-compiler will only correctly translate characters in unpacked strings.
+Мова PAWN вимагає, щоб назви ключових слів та символів були у кодуванні ascii,
+і допускає використання у рядках символів не у кодуванні ascii. Існує п'ять способів, якими хост-додаток
+може підтримувати не-ascii символи у рядках та символьних
+символів у рядках і літералах:
 
-3 Support Unicode or UCS-4 and let the PAWN compiler convert scripts encoded
-in UTF-8 to “wide” characters: when the source file for the PAWN
-compiler is in UTF-8 encoding, the compiler expands characters to Unicode/UCS-4 in unpacked strings.
+1 Підтримка кодових сторінок: у цій стратегії вся складність вибору
+правильних гліфів і шрифтів делегується хост-додатку. Підтримка кодових сторінок
+базується на файлах зіставлення кодових сторінок у форматі "перехресних таблиць зіставлення", що поширюються
+таблиць відображення", що розповсюджуються консорціумом Unicode.
 
-4 Support UTF-8 encoding internally (in the host application) and write the
-source file in UTF-8 too: all strings should now be packed strings to avoid
-the compiler to convert them.
+2 Підтримуйте Unicode або UCS-4 і дозвольте компілятору PAWN конвертувати скрипти, які
+були написані з використанням кодової сторінки, у "широкі" символи: для цієї стратегії вам потрібно
+потрібно задати #pragma кодову сторінку або скористатися еквівалентною опцією компілятора. Компілятор
+компілятор буде коректно перекладати символи лише у нерозпакованих рядках.
 
-For most internationalization strategies, as you can see, the host application
-needs to support Unicode or UCS-4. As a side note, the PAWN compiler does not
-generate Unicode surrogate pairs. If characters outside the BMP are needed
+3 Підтримувати Unicode або UCS-4 і дозволити компілятору PAWN конвертувати скрипти, закодовані
+у кодуванні UTF-8 у "широкі" символи: коли вихідний файл для компілятора PAWN
+у кодуванні UTF-8, компілятор розширює символи до Unicode/UCS-4 у розпакованих рядках.
 
-and the host application (or operating system) does not support the full UCS-4
-encoding, the host application must split the 32-bit character cell provided
-by the PAWN compiler into a surrogate pair.
+4 Підтримуйте кодування UTF-8 внутрішньо (у хост-додатку) і запишіть вихідний файл
+вихідний файл у кодуванні UTF-8: тепер усі рядки мають бути упакованими рядками, щоб компілятор не
+компілятору конвертувати їх.
 
-The PAWN compiler accepts a source file as an UTF-8 encoded text file —see
-page 168. When the source file is in UTF-8 encoding, “wide” characters in
-an unpacked string are stored as multi-byte Unicode/UCS-4 characters; wide
-characters in a packed string remain in UTF-8 encoding. To write  
-source files in UTF-8 encoding, you need, of course, a (programmer’s) editor  
-that supports UTF-8. Codepage translation does not apply for files that  
-are in UTF-8 encoding.
+Для більшості стратегій інтернаціоналізації, як ви можете бачити, хост-додаток
+має підтримувати Unicode або UCS-4. Зауважимо, що компілятор PAWN не
+генерує сурогатні пари Unicode. Якщо потрібні символи за межами BMP
 
-For an occasional Unicode character in a literal string, an alternative is that
-you use an escape sequence. As Unicode character tables
-are usually documented with hexadecimal glyph indices, the xhhh; sequence is probably the  
-more convenient specification of a random Unicode character. For example,  
-the escape sequence “\x2209” stands for the “6∈” character.
+і хост-додаток (або операційна система) не підтримує повне кодування UCS-4
+кодування, хост-програма повинна розділити 32-бітну комірку символів, надану
+компілятором PAWN на сурогатну пару.
 
-There is a lot more to internationalization than just basic support for extended
-character sets, such as formatting date & time fields, reading order
-(left-to-right or right-to-left) and locale-driven translation of system messages. The
-PAWN toolkit delegates these issues to the host application.
+Компілятор PAWN приймає вихідний файл як текстовий файл у кодуванні UTF-8 - див.
+сторінку 168. Якщо вихідний файл у кодуванні UTF-8, "широкі" символи у
+розпакованому рядку зберігаються у вигляді багатобайтових символів Unicode/UCS-4; широкі
+символи в упакованому рядку залишаються у кодуванні UTF-8. Щоб записати
+вихідних файлів у кодуванні UTF-8, вам, звісно, потрібен редактор (програмістський)
+який підтримує UTF-8. Переклад кодової сторінки не застосовується до файлів, які
+мають кодування UTF-8.
 
-### • Working with tags
+Для символів Unicode, що зустрічаються у буквеному рядку, альтернативою може бути
+використання екранованої послідовності. Оскільки таблиці символів Unicode
+зазвичай документуються з шістнадцятковими індексами гліфів, послідовність xhhh;, ймовірно, є
+зручнішим способом задання довільного символу Unicode. Наприклад,
+ескейп-послідовність "\x2209" означає символ "6∈".
 
-The tag name system was invented to add a “usage checking” mechanism to PAWN.
-A tag denotes a “purpose” of a value or variable, and the PAWN compiler
-issues a diagnostic message when the tag of an expression does not match the
-required tag for the context of the expression.
+Інтернаціоналізація - це набагато більше, ніж просто базова підтримка розширених
+розширених наборів символів, як-от форматування полів дати і часу, порядок читання
+(зліва направо або справа наліво) та локалізований переклад системних повідомлень. Інструментарій
+PAWN делегує ці питання хостовій програмі.
 
-Many modern computer languages offer variable types, where a type specifies
-the memory layout and the purpose of the variable. The programming language
+### - Робота з тегами
 
-then checks the type equivalence; the pascal language is very strict at checking
-type equality, whereas the C programming language is more forgiving. The
-PAWN language does not have types: all variables have the size and the layout
-of a cell, although bit representations in the cell may depend on the purpose
-of the variable. In summary:
+Система імен тегів була винайдена для того, щоб додати до PAWN механізм "перевірки використання".
+Тег позначає "призначення" значення або змінної, і компілятор PAWN
+видає діагностичне повідомлення, коли тег виразу не збігається з тегом
+необхідному тегу для контексту виразу.
 
-- a type specifies the memory layout and the range of variables and function results
+Багато сучасних комп'ютерних мов пропонують типи змінних, де тип визначає
+розташування пам'яті та призначення змінної. Мова програмування
 
-- a tagname labels the purpose of variables, constants and function results
+потім перевіряє еквівалентність типів; мова паскаль дуже сувора у перевірці
+рівності типів, тоді як мова програмування C є більш поблажливою. У мові
+PAWN не має типів: усі змінні мають розмір і розташування
+комірки, хоча представлення бітів у комірці може залежати від призначення
+змінної. Підводячи підсумок:
 
-Tags in PAWN are mostly optional. A program that was “fortified” with tag
-names on the variable and constant declarations will function identically when
-all tag names are removed. One exception is formed by user-defined operators:
-the PAWN compiler uses the tags of the operands to choose between any user-
-defined operators and the standard operator.
+- тип визначає розміщення пам'яті та діапазон змінних і результатів функцій
 
-The snippet below declares three variables and does three assignments, two of
-which give a “tag mismatch” diagnostic message:
+- tagname позначає призначення змінних, констант і результатів функцій
 
-Listing: comparing apples to oranges
+Теги в PAWN здебільшого необов'язкові. Програма, яка була "укріплена" тегом
+в оголошеннях змінних і констант, працюватиме однаково, коли
+прибрати всі імена тегів. Виняток становлять визначені користувачем оператори:
+компілятор PAWN використовує теги операндів для вибору між будь-якими визначеними користувачем операторами
+визначеними користувачем операторами та стандартним оператором.
+
+У фрагменті нижче оголошено три змінні та виконано три присвоєння, два з яких
+з яких видають діагностичне повідомлення "невідповідність тегів":
+
+Лістинг: порівнюємо яблука з апельсинами
 
 ```c
 
-new apple:elstar                /* variable "elstar" with tag "apple" */
-new orange:valencia             /* variable "valencia" with tag "orange" */
-new x                           /* untagged variable "x" */
+new apple:elstar /* змінна "elstar" з тегом "apple" */
+new orange:valencia /* змінна "valencia" з тегом "orange" */
+new x /* змінна "x" без тегу */
 
-elstar = valencia               /* tag mismatch */
-elstar = x                      /* tag mismatch */
-x = valencia                    /* ok */
+elstar = valencia /* невідповідність тегу */
+elstar = x /* невідповідність тегу */
+x = valencia /* ok */
 
 ```
 
-The first assignment causes a “tag mismatch” diagnostic as it assigns an “or-
-ange” tagged variable to a variable with an “apple” tag. The second assignment
-puts the untagged value of x into a tagged variable, which causes again a di-
-agnostic. When the untagged variable is on the left hand of the assignment
-operator, as in the third assignment, there is no warning or error message. As
-variable x is untagged, it can accept a value of any weak tag.
+Перше присвоєння викликає діагностику "невідповідності тегів", оскільки воно присвоює змінній з тегом "or-
+ange" змінній зі змінною з тегом "apple". Друге присвоювання
+поміщає значення x без тегів у змінну з тегами, що знову ж таки призводить до ди
+агностику. Коли немічена змінна знаходиться у лівій частині оператора присвоювання
+як у третьому привласненні, не видається жодних попереджень або повідомлень про помилки. Оскільки
+змінна x є неміченою, вона може приймати значення будь-якої слабкої мітки.
 
-The same mechanism applies to passing variables or expressions to functions
-as function operands —see page 78 for an example. In short, when a function
-expects a particular tag name on an argument, you must pass an expression/
-variable with a matching tag to that function; but if the function expects an
-untagged argument, you may pass in arguments with any weak tag.
+Той самий механізм застосовується до передачі змінних або виразів у функції
+як операнди функції - приклад наведено на сторінці 78. Коротше кажучи, коли функція
+очікує певну назву тегу в якості аргументу, ви повинні передати вираз/
+змінну з відповідною міткою до цієї функції; але якщо функція очікує на аргумент без мітки
+аргумент без тегів, ви можете передавати аргументи з будь-якими слабкими тегами.
 
-On occasion, it is necessary to temporarily change the tag of an expression.
-For example, with the declarations of the previous code snippet, if you would
-wish to compare apples with oranges (recent research indicates that comparing
-apples to oranges is not as absurd than popular belief holds), you could use:
+Іноді необхідно тимчасово змінити тег виразу.
+Наприклад, з оголошеннями попереднього фрагмента коду, якщо ви
+хочете порівняти яблука з апельсинами (нещодавні дослідження показують, що порівняння
+яблука з апельсинами не є настільки абсурдним, як прийнято вважати), ви можете скористатися:
 
 ```c
 
@@ -355,60 +355,60 @@ if (apple:valencia < elstar)
 
 ```
 
-The test expression of the if statement (between parentheses) compares the
-variable valencia to the variable elstar. To avoid a “tag mismatch” diagnos-
-tic, it puts a tag override apple: on valencia —after that, the expressions
-on the left and the right hands of the > operator have the same tag
-name: “apple:”. The second line, the assignment of elstar to valencia, overrides
-the tag name of elstar or orange: before the assignment. In an assignment,
-you cannot override the tag name of the destination; i.e., the left hand of
-the = operator. It is an error to write “apple:valencia = elstar”. In the as-
-signment, valencia is an “lvalue” and you cannot override the tag name of an
+Тестовий вираз інструкції if (у дужках) порівнює змінну
+змінну valencia зі змінною elstar. Щоб уникнути діагнозу "невідповідність тегів"
+"невідповідності тегів", він ставить перевизначення тегу apple: на valencia -після цього, вирази в лівій руці оператора
+у лівій та правій частинах оператора > мають однаковий тег
+ім'я: "apple:". Другий рядок, призначення elstar для valencia, перевизначає
+ім'я тегу elstar або orange: перед присвоєнням. У призначенні
+ви не можете перевизначити ім'я тегу призначення, тобто ліву частину оператора
+оператора =. Помилково писати "apple:valencia = elstar". В інструкції as-
+valencia є "l-значенням", і ви не можете перевизначити ім'я тегу l-значення
 lvalue.
 
-As shown earlier, when the left hand of an assignment holds an
-untagged variable, the expression on the right hand may have any weak tag name. When
-used as an lvalue, an untagged variable is compatible with all weak tag names.
-Or rather, a weak tag is silently dropped when it is assigned to an untagged
-variable or when it is passed to a function that expects an untagged argument.
-When a tag name indicates the bit pattern of a cell, silently dropping a weak
-tag can hide errors. For example, the snippet below has an error that is not
-immediately obvious:
+Як було показано раніше, якщо у лівій частині присвоювання міститься змінна
+нерозмічена змінна, вираз у правій частині може мати будь-яке ім'я слабкої мітки. Коли
+використовується як l-значення, немаркована змінна сумісна з усіма іменами слабких тегів.
+Точніше, слабкий тег ігнорується, коли його присвоюється нерозміченій змінній або коли вона передається
+змінній або коли вона передається у функцію, яка очікує на немічений аргумент.
+Якщо ім'я тегу вказує на бітову структуру комірки, пропущення слабкого тегу
+може приховати помилки. Наприклад, у фрагменті нижче є помилка, яка не є
+одразу не помітна:
 
-Listing: bad way of using tags
+Лістинг: поганий спосіб використання тегів
 
 ```c
 
 #pragma rational float
 
-new limit = -5.0
-new value = -1.0
+новий ліміт = -5.0
+нове значення = -1.0
 
 if (value < limit)
-    printf("Value %f below limit %f\n", value, limit)
+    printf("Значення %f нижче межі %f\n", value, limit)
 else
-    printf("Value above limit\n")
+    printf("Значення вище межі\n")
 
 ```
 
-Through the “#pragma rational”, all rational numbers receive the “float”
-tag name and these numbers are encoded in the 4-byte IEEE 754 format. The
-snippet declares two variables, limit and value, both of which are untagged
-(this is the error). Although the literal values -5.0 and -1.0 are implicitly
-tagged with float:, this weak tag is silently dropped when the values  
-get assigned to the untagged symbols limit and value. Now, the if statement
-compares value to limit as integers, using the built-in standard < operator
-(a user-defined operator would be more appropriate to compare two IEEE 754
-encoded values). When run, this code snippet tells us that “Value -1.000000
-below limit -5.000000” —which is incorrect, of course.
+Через "#pragma rational" всі раціональні числа отримують тег "float"
+і ці числа кодуються у 4-байтовому форматі IEEE 754. Фрагмент
+оголошує дві змінні, limit і value, обидві з яких не мають тегів
+(це і є помилка). Хоча літеральні значення -5.0 і -1.0 неявно
+неявно позначені тегом float:, цей слабкий тег не помічається, коли значення
+присвоюються нерозміченим символам limit і value. Тепер, інструкція if
+порівнює value з limit як цілі числа, використовуючи вбудований стандартний оператор <
+(для порівняння двох значень у кодуванні IEEE 754 краще використовувати оператор, визначений користувачем).
+значень у кодуванні IEEE 754). При виконанні цей фрагмент коду повідомляє нам, що "Значення -1.000000
+нижче межі -5.000000" - що, звісно, невірно.
 
-To avoid such subtle errors to go undetected, one should use strong tags. A
-strong tag is merely a tag name that starts with an upper case letter, such
-as Float: instead of float:. A strong tag is never automatically “dropped”,
-but it may still be explicitly overridden. Below is a modified code snippet
-with the proposed adaptations:
+Щоб такі тонкі помилки не залишилися непоміченими, слід використовувати сильні теги. A
+сильний тег - це просто назва тегу, яка починається з великої літери, наприклад
+наприклад, Float: замість float:. Сильна мітка ніколи не "відкидається" автоматично,
+але його все ще можна явно перевизначити. Нижче наведено змінений фрагмент коду
+із запропонованими адаптаціями:
 
-Listing: strong tags are safer
+Лістинг: сильні теги безпечніші
 
 ```c
 
@@ -418,29 +418,29 @@ new Float:limit = -5.0
 new Float:value = -1.0
 
 if (value < limit)
-    printf("Value %f below limit %f\n", _:value, _:limit)
-else
-    printf("Value above limit\n")
+    printf("Значення %f нижче межі %f\n", _:value, _:limit)
+інакше
+    printf("Значення вище межі\n")
 
 ```
 
-Forgetting the Float: tag name in the declaration of the variables  
-limit or value immediately gives a “tag mismatch” diagnostic, because the literal
-values -5.0 and -1.0 now have a strong tag name.
+Забуття імені тегу Float: в оголошенні змінних
+limit або value негайно призводить до діагностики "невідповідності тегів", оскільки літерал
+значення -5.0 і -1.0 тепер мають сильне ім'я тегу.
 
-printf is a general purpose function that can print strings and values in
-various formats. To be general purpose, printf accepts arguments with any weak tag
-name, be it apple:’s, orange:’s, or something else. The printf
-function does this by accepting untagged arguments —weak tags are dropped when an
-untagged argument is expected. Strong tags, however, are never dropped, and
-in the above snippet (which uses the original definition of printf), I
-needed to put an empty tag override, “\_:”, before the variables value and limit in
-the first printf call.
+printf - це функція загального призначення, яка може друкувати рядки та значення у
+різних форматах. Щоб бути універсальною, printf приймає аргументи з будь-яким слабким тегом
+name, наприклад, apple:, orange: або будь-яким іншим. Функція printf
+приймає аргументи без тегів - слабкі теги відкидаються, коли очікується аргумент
+якщо очікується аргумент без тегів. Однак, сильні мітки ніколи не відкидаються, і
+у вищенаведеному фрагменті (який використовує оригінальне визначення printf), мені
+потрібно було замінити порожній тег "\_:" перед змінними value і limit у
+першого виклику printf.
 
-There is an alternative to untagging expressions with strong tag names in gen-
-eral purpose functions: adjust the definition of the function to accept both
-all weak tags and a selective set of strong tag names. The PAWN language supports
-multiple tag names for every function arguments. The original definition of printf (from the file console.inc) is:
+Існує альтернатива вилученню тегів у виразах із сильними іменами тегів у функціях загального призначення
+функціях загального призначення: скоригуйте визначення функції так, щоб вона приймала як
+всі слабкі мітки, так і вибірковий набір сильних імен міток. Мова PAWN підтримує
+декілька імен тегів для кожного аргументу функції. Початкове визначення функції printf (з файлу console.inc) має такий вигляд:
 
 ```c
 
@@ -448,14 +448,14 @@ native printf(const format[], ...);
 
 ```
 
-By adding both a Float: tag and an empty tag in front of the ellipsis (“...”),
-printf will accept arguments with the Float: tag name, arguments without
-a tag name and arguments that have a weak tag name. To specify plural tag
-names, enclose all tag names without their final colon between braces with a
-comma separating the tag names (see the example below). It is necessary to
-add the empty tag specification to the list of tag names, because printf would
-otherwise only accept arguments with a Float: tag name. Below is the new
-definition of the function printf:
+Додавши як тег Float:, так і порожній тег перед еліпсом ("..."),
+printf прийматиме аргументи з назвою тегу Float:, аргументи без
+і аргументи, які мають слабку назву тегу. Щоб вказати множину імен тегів
+візьміть усі назви тегів без останньої двокрапки між дужками і комою, що розділяє назви тегів
+з комою, що розділяє імена тегів (див. приклад нижче). Для цього необхідно
+додати порожню специфікацію тегу до списку назв тегів, оскільки printf
+прийматиме лише аргументи з назвою тегу типу Float:. Нижче наведено нове
+визначення функції printf:
 
 ```c
 
@@ -463,50 +463,50 @@ native printf(const format[], {Float, \_}: ...);
 
 ```
 
-Plural tags allow you to write a single function that accepts cells with a pre-
-cisely specified subset of tags (strong and/or weak). While a function argument
-may accept being passed actual arguments with diverse tags, a variable can
-only have a single tag —and a formal function argument is a local variable in
-the body of the function. In the presence of plural tags, the formal function
-argument takes on the tag that is listed first.
+Множинні теги дозволяють написати одну функцію, яка приймає комірки з попередньо визначеною підмножиною тегів.
+чітко визначеною підмножиною тегів (сильних та/або слабких). Хоча аргумент функції
+може приймати фактичні аргументи з різними тегами, змінна може
+може мати лише один тег - і формальний аргумент функції є локальною змінною у
+у тілі функції. За наявності множинних тегів формальний аргумент функції
+аргумент формальної функції отримує тег, який вказано першим.
 
-On occasion, you may want to check which tag an actual function argument
-had, when the argument accepts plural tags. Checking the tag of the formal
-argument (in the body of the function) is of no avail, because it will always
-have the first tag in the tag list in the declaration of the function argument.
-You can check the tag of the actual argument by adding an extra argument
-to the function, and set its default value to be the “tagof” of the argument
-in question. Similar to the sizeof operator, the tagof operator has a special
-meaning when it is applied in a default value of
-a function argument: the expression is evaluated at the point of the function call,
-instead of at the function definition.
-This means that the “default value” of the function argument is
-the actual tag of the parameter passed to the function.
+Іноді вам може знадобитися перевірити, який тег має фактичний аргумент функції
+якщо аргумент приймає множинні теги. Перевірка тегу формального
+аргументу (у тілі функції) не має сенсу, оскільки він завжди матиме перший тег у списку тегів
+матиме перший тег у списку тегів в оголошенні аргументу функції.
+Ви можете перевірити тег фактичного аргументу, додавши до функції додатковий аргумент
+до функції і встановити його значення за замовчуванням як "tagof" відповідного аргументу
+про який йде мова. Подібно до оператора sizeof, оператор tagof має особливе
+значення, коли він застосовується у значенні за замовчуванням
+аргументу функції: вираз обчислюється у точці виклику функції,
+а не у місці визначення функції.
+Це означає, що "значенням за замовчуванням" аргументу функції є
+фактичний тег параметра, переданого у функцію.
 
-Inside the body of the function, you can compare the tag to known tags by,
-again, using the tagof operator.
+У тілі функції ви можете порівняти тег з відомими тегами за,
+знову ж таки, за допомогою оператора tagof.
 
-### • Concatenating lines
+### - Об'єднання рядків
 
-PAWN is a free format language, but the parser directives must be on a single line.
-Strings may not run over several lines either. When this is inconvenient,
-you can use a backslash character (“\”) at the end of a line to “glue” that
-line with the next line.
+PAWN - мова вільного формату, але директиви синтаксичного аналізатора повинні бути в одному рядку.
+Рядки також не можуть займати більше одного рядка. Якщо це незручно,
+ви можете використати символ зворотної косої риски ("\") у кінці рядка, щоб "склеїти" цей
+рядок з наступним рядком.
 
-For example:
+Наприклад:
 
 ```c
 
-#define             max_path max_drivename + max_directorystring + \
+#define max_path max_drivename + max_directorystring + \
                     max_filename + max_extension
 
 ```
 
-You also use the concatenation character to cut long literal strings over
-multiple lines. Note that the “\” eats up all trailing white space that comes after it
-and leading white space on the next line. The example below prints “Hello
-world” with one space between the two words (because there is a space between
-”Hello” and the backslash):
+Ви також можете використовувати символ конкатенації, щоб розрізати довгі літерні рядки на
+декілька рядків. Зауважте, що символ "\" поглинає усі пропуски після нього
+і пробіли перед ним на наступному рядку. У наведеному нижче прикладі надруковано "Hello
+world" з одним пропуском між двома словами (оскільки між
+"Hello" і зворотною косою рискою):
 
 ```c
 
@@ -515,28 +515,28 @@ print("Hello \
 
 ```
 
-### • A program that generates its own source code
+### - програма, яка генерує власний вихідний код
 
-An odd, slightly academic, criterion to quantify the “expressiveness” of a pro-
-gramming language is size of the smallest program that, upon execution, re-
-generates its own source code. The rationale behind this criterion  
-is that the shorter the self-generating program, the more flexible and expressive the
-language must be. Programs of this kind have been created for many program-
-ming languages —sometimes surprisingly small, as for languages that have a
-built-in reflective capabilities.
+Дивним, дещо академічним критерієм для кількісної оцінки "виразності" мови програмування є розмір найменшої програми, яка
+мови програмування є розмір найменшої програми, яка після виконання повторно генерує власний вихідний код.
+генерує власний вихідний код. Обґрунтування цього критерію
+полягає в тому, що чим коротша самогенеруюча програма, тим гнучкішою та виразнішою має бути
+мова повинна бути гнучкішою та виразнішою. Програми такого типу були створені для багатьох мов програмування - іноді несподівано
+мов програмування - іноді напрочуд малих, як для мов, що мають вбудовані рефлексивні можливості.
+вбудовані рефлексивні можливості.
 
-Self-generating programs are called “quines”, in honour of the  
-philosopher Willard Van Orman Quine who wrote self-creating phrases in natural language.
-The work of Van Orman Quine became well known through the books “G¨odel,
-Escher, Bach” and “Metamagical Themas” by Douglas Hofstadter.
+Самогенеруючі програми називаються "квінами", на честь філософа Вілларда Ван Ормана Куайна.
+філософа Вілларда Ван Ормана Куайна, який писав фрази природною мовою, що самостворюються.
+Роботи Ван Ормана Куайна стали широко відомими завдяки книгам "G¨odel,
+Ешер, Бах" та "Метамагічні теми" Дугласа Гофстедтера.
 
-The PAWN quine is in the example below; it is modelled after the famous “C”
-quine (of which many variations exist). At 77 characters, it is amongst the
-smallest versions for the class of imperative programming languages, and the
-size can be reduced to 73 characters by removing four “space” characters that
-were left in for readability.
+У прикладі нижче наведено квін PAWN; він змодельований за зразком відомого квіну "C"
+quine (яких існує безліч варіацій). Маючи 77 символів, вона є однією з
+найменших версій для класу імперативних мов програмування, і
+розмір можна зменшити до 73 символів, видаливши чотири символи "пробілу", які
+які були залишені для зручності читання.
 
-Listing: quine.p
+Лістинг: quine.p
 
 ```c
 
@@ -546,28 +546,30 @@ Listing: quine.p
 
 ---
 
-`See the separate application note for proposed native functions that operate on both packed and unpacked strings`
+`Дивіться окрему примітку щодо запропонованих власних функцій, які працюють як з упакованими, так і з неупакованими рядками`
 
-`EOS: predefined constant to mark the End Of String; it has the value ’\0’`
+`EOS: попередньо визначена константа для позначення кінця рядка; має значення '\0'`.
 
-`Predefined constants: 102`
+`Заздалегідь визначені константи: 102`
 
-`Packed & unpacked strings: 99`
+`Упаковані та розпаковані рядки: 99`
 
-`Escape sequence: 99`
+Послідовність втечі: 99`
 
-`Tag names: 68`
+`Імена тегів: 68
 
-`User-defined operators: 86`
+`Користувацькі оператори: 86`
 
-`More tag name rules: 68`
+`Більше назв тегів рулить: 68`
 
-`lvalue (definition of ~): 104`
+`lvalue (визначення ~): 104`
 
-`Directives: 77`
+Директиви: 77`
 
-`Directives: 117`
+Директиви: 117`
 
 ---
 
-[Go Back to Contents](00-Contents.md)
+[Повернутися до змісту](00-Contents.md)
+
+

@@ -1,41 +1,42 @@
 ---
-title: Weather IDs
+заголовок: Ідентифікатори погоди
 ---
 
-A list of weather IDs used by [SetWeather](../functions/SetWeather) and [SetPlayerWeather](../functions/SetPlayerWeather) functions.
+Список ідентифікаторів погоди, що використовуються функціями [SetWeather](../functions/SetWeather) та [SetPlayerWeather](../functions/SetPlayerWeather).
 
-| ID |     Name     | Type |   Description (in singleplayer)    |
+| Ідентифікатор | Назва | Тип | Опис (в одиночній грі)
 | -- | ------------ | ---- | ---------------------------------- |
-| 0 | EXTRASUNNY_LA | Blue skies | Los Santos specific weather |
-| 1 | SUNNY_LA | Blue skies | Los Santos specific weather |
-| 2 | EXTRASUNNY_SMOG_LA | Blue skies | Los Santos specific weather |
-| 3 | SUNNY_SMOG_LA | Blue skies | Los Santos specific weather |
-| 4 | CLOUDY_LA | Blue skies | Los Santos specific weather |
-| 5 | SUNNY_SF | Blue skies | San Fierro specific weather |
-| 6 | EXTRASUNNY_SF | Blue skies | San Fierro specific weather |
-| 7 | CLOUDY_SF | Blue skies | San Fierro specific weather |
-| 8 | RAINY_SF | Stormy | San Fierro specific weather |
-| 9 | FOGGY_SF | Cloudy and foggy | San Fierro specific weather |
-| 10 | SUNNY_VEGAS | Clear blue sky | Las Venturas specific weather |
-| 11 | EXTRASUNNY_VEGAS | Heat waves | Las Venturas specific weather |
-| 12 | CLOUDY_VEGAS | Dull, colourless | Las Venturas specific weather |
-| 13 | EXTRASUNNY_COUNTRYSIDE | Dull, colourless | Countryside specific weather |
-| 14 | SUNNY_COUNTRYSIDE | Dull, colourless | Countryside specific weather |
-| 15 | CLOUDY_COUNTRYSIDE | Dull, colourless | Countryside specific weather |
-| 16 | RAINY_COUNTRYSIDE | Dull, cloudy, rainy | Countryside specific weather |
-| 17 | EXTRASUNNY_DESERT | Heat waves | Bone County specific weather |
-| 18 | SUNNY_DESERT | Heat waves | Bone County specific weather |
-| 19 | SANDSTORM_DESERT | Sandstorm | Bone County specific weather |
-| 20 | UNDERWATER | Greenish, foggy | Used internally when camera is underwater |
-| 21 | EXTRACOLOURS_1 | Very dark, gradiented skyline, purple | Weather used in interiors |
-| 22 | EXTRACOLOURS_2 | Very dark, gradiented skyline, purple | Weather used in interiors |
+| 0 | EXTRASUNNY_LA | Блакитне небо | Специфічна погода в Лос-Сантосі
+1 | SUNNY_LA | Блакитне небо | Особлива погода в Лос-Сантосі | ¦ 1 | SUNNY_LA | Блакитне небо | Особлива погода в Лос-Сантосі
+| 2 | EXTRASUNNY_SMOG_LA | Блакитне небо | Особлива погода в Лос-Сантосі | ¦ ¦ ¦ ¦ ¦ ¦ ¦ ¦ ¦ ¦ ¦ ¦ ¦ ¦ ¦ ¦------------------------------------------------------------------------------------------------¦ ¦ 2.
+3 | SUNNY_SMOG_LA | Блакитне небо | Особлива погода в Лос-Сантосі | ¦ 3 | SUNNY_SMOG_LA | Блакитне небо | Особлива погода в Лос-Сантосі
+| 4 | CLOUDY_LA | Блакитне небо | Особлива погода в Лос-Сантосі
+| 5 | SUNNY_SF | Блакитне небо - погода в Сан-Фієро.
+| 6 | EXTRASUNNY_SF | Блакитне небо | погода в Сан-Фієро.
+| 7 | CLOUDY_SF | Блакитне небо | Особлива погода у Сан-Фієро
+| 8 | RAINY_SF | Дощова погода в Сан-Фієро.
+| 9 | FOGGY_SF | Хмарно і туманно | погода в Сан-Фієро
+| 10 | SUNNY_VEGAS | Ясне блакитне небо | погода в Лас-Вентурасі
+| 11 | EXTRASUNNY_VEGAS | Спекотна погода в Лас-Вентурасі
+| 12 | CLOUDY_VEGAS | Похмура, безбарвна погода | Погода в Лас-Вентурасі
+| 13 | EXTRASUNNY_COUNTRYSIDE | Похмура, безбарвна | Специфічна погода в сільській місцевості
+| 14 | SUNNY_COUNTRYSIDE | Тьмяна, безбарвна погода в сільській місцевості
+| 15 | CLOUDY_COUNTRYSIDE | Похмура, безбарвна погода в сільській місцевості
+| 16 | RAINY_COUNTRYSIDE | Тьмяний, хмарний, дощовий | Специфічна погода в сільській місцевості
+| 17 | EXTRASUNNY_DESERT | Спекотні хвилі | Специфічна погода в окрузі Боун
+| 18 | SUNNY_DESERT ¦Сонна пустеля ¦Спекотні хвилі ¦Специфічна погода в окрузі Боун.
+| 19 | SANDSTORM_DESERT | Піщана буря | Особлива погода в окрузі Боун
+| 20 | UNDERWATER | Зеленуватий, туманний | Використовується всередині, коли камера знаходиться під водою
+| 21 | EXTRACOLOURS_1 | Дуже темний, градієнтний горизонт, фіолетовий | Погода, що використовується в інтер'єрах
+22 | EXTRACOLOURS_2 | Дуже темний, градієнтний горизонт, фіолетовий | Погода, що використовується в інтер'єрах | ¦ 22 | EXTRACOLOURS_3 | Дуже темний, градієнтний горизонт, фіолетовий
 
-There are 23 different weather IDs (0-22), the last two of which being the extra colour weather types. However, the game does not feature any range checking for weather IDs and thus you can use weather IDs upto 255. Values higher than 255 or lower than 0 are turned into remainder of the division by 256 (for example, weather ID 300 is the same as ID 44, because 300 % 256 = 44). Weather IDs 0-22 works correctly but other IDs result undefined behavior: strange effects such as pink sky and flashing textures during certain times.
+Існує 23 різні ідентифікатори погоди (0-22), останні два з яких є додатковими кольоровими типами погоди. Однак у грі не передбачено перевірки діапазону для ідентифікаторів погоди, тому ви можете використовувати ідентифікатори погоди до 255. Значення, більші за 255 або менші за 0, перетворюються на залишок від ділення на 256 (наприклад, ідентифікатор погоди 300 дорівнює ідентифікатору 44, тому що 300 % 256 = 44). Ідентифікатори погоди 0-22 працюють коректно, але інші ідентифікатори призводять до невизначеної поведінки: дивних ефектів, таких як рожеве небо та миготіння текстур у певні моменти часу.
 
-:::note
+:::примітка
 
-- Some weathers appear very different at certain times. You can see [here](http://hotmist.ddo.jp/id/weather.html) what different weather types look like at different times.
+- Деякі погодні умови виглядають дуже по-різному у певний час. Ви можете побачити [тут](http://hotmist.ddo.jp/id/weather.html), як виглядають різні типи погоди у різний час.
 
-- [GTA San Andreas weather gallery](https://dev.prineside.com/en/gtasa_weather_id/) explains the situation with weather IDs better than any words. You can also use it if you wish to view weathers at certain times and look for problematic weather that cause strange effects
+- [Галерея погоди GTA San Andreas](https://dev.prineside.com/en/gtasa_weather_id/) пояснює ситуацію з погодними ідентифікаторами краще за будь-які слова. Ви також можете використовувати її, якщо хочете переглянути погоду в певний час і шукати проблемні погодні умови, які викликають дивні ефекти
 
 :::
+

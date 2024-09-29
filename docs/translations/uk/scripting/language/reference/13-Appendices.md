@@ -1,480 +1,480 @@
-# APPENDICES
+# ДОДАТКИ
 
 ---
 
-## Error and warning messages
+## Повідомлення про помилки та попередження
 
 ---
 
-When the compiler finds an error in a file, it outputs a message giving, in this order:
+Коли компілятор знаходить помилку у файлі, він виводить повідомлення у такому порядку:
 
-- the name of the file
+- ім'я файлу
 
-- the line number were the compiler detected the error between parentheses, directly behind the filename
+- номер рядка, в якому компілятор виявив помилку між круглими дужками, безпосередньо за назвою файлу
 
-- the error class (“error”, “fatal error” or “warning”)
+- клас помилки ("помилка", "фатальна помилка" або "попередження")
 
-- an error number
+- номер помилки
 
-- a descriptive error message
+- описове повідомлення про помилку
 
-For example:
+Наприклад:
 
     demo.p(3) : error 001: expected token: ";", but found "{"
 
-Note: the line number given by the compiler may specify a position behind the
-actual error, since the compiler cannot always establish an error before having
-analyzed the complete expression.
+Зауваження: номер рядка, вказаний компілятором, може вказувати на позицію за фактичною помилкою
+фактичної помилки, оскільки компілятор не завжди може виявити помилку, не проаналізувавши
+проаналізувавши весь вираз.
 
-After termination, the return code of the compiler is:
+Після завершення роботи компілятор повертає код:
 
-    0   no errors —there may be warnings, though
-    1   errors found
-    2   reserved
-    3   aborted by user
+    0 помилок немає - але можуть бути попередження
+    1 знайдено помилок
+    2 зарезервовано
+    3 перервано користувачем
 
-These return codes may be checked within batch processors (such as the “make” utility).
+Ці коди повернення можна перевірити за допомогою пакетних процесорів (наприклад, утиліти make).
 
-### • Error categories
+### - Категорії помилок
 
-Errors are separated into three classes:
+Помилки поділяються на три класи:
 
-| Type         | Description                                                                                                                                 |
+| Тип | Опис |
 | ------------ | ------------------------------------------------------------------------------------------------------------------------------------------- |
-| Errors       | Describe situations where the compiler is unable to generate appropriate code. Errors messages are numbered from 1 to 99.                   |
-| Fatal errors | Fatal errors describe errors from which the compiler cannot recover. Parsing is aborted. Fatal error messages are numbered from 100 to 199. |
-| Warnings     | Warnings are displayed for unintended compiler assumptions and common mistakes. Warning messages are numbered from 200 to 299.              |
+| Помилки | Описують ситуації, коли компілятор не може згенерувати відповідний код. Повідомлення про помилки нумеруються від 1 до 99.                   |
+| Фатальні помилки | Фатальні помилки описують помилки, після яких компілятор не може відновитися. Синтаксичний аналіз переривається. Повідомлення про фатальні помилки нумеруються від 100 до 199. |
+| Попередження | Попередження відображаються для непередбачуваних припущень компілятора та поширених помилок. Попередження пронумеровано від 200 до 299.              |
 
-### • Errors
+### - Помилки
 
-| Number | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                       |
+| Номер |Опис |Опис
 | ------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| 001    | **expected token:** _token_, **but found** _token_                                                                                                                                                                                                                                                                                                                                                                                                                |
-|        | A required token is omitted.                                                                                                                                                                                                                                                                                                                                                                                                                                      |
-| 002    | **only a single statement (or expression) can follow each “case”**                                                                                                                                                                                                                                                                                                                                                                                                |
-|        | Every case in a switch statement can hold exactly one statement. To put multiple statements in a case, enclose these statements between braces (which creates a combound statement).                                                                                                                                                                                                                                                                              |
-| 003    | **declaration of a local variable must appear in a compound block**                                                                                                                                                                                                                                                                                                                                                                                               |
-|        | The declaration of a local variable must appear between braces (“{. . . }”) at the active scope level.                                                                                                                                                                                                                                                                                                                                                            |
-|        | When the parser flags this error, a variable declaration appears as the only statement of a function or the only statement below an if, else, for, while or do statement. Note that, since local variables are accessible only from (or below) the scope that their declaration appears in, having a variable declaration as the only statement at any scope is useless.                                                                                          |
-| 004    | **function** _name_ **is not implemented**                                                                                                                                                                                                                                                                                                                                                                                                                        |
-|        | There is no implementation for the designated function. The function may have been “forwardly” declared —or prototyped— but the full function definition including a statement, or statement block, is missing.                                                                                                                                                                                                                                                   |
-| 005    | **function may not have arguments**                                                                                                                                                                                                                                                                                                                                                                                                                               |
-|        | The function main() is the program entry point. It may not have arguments.                                                                                                                                                                                                                                                                                                                                                                                        |
-| 006    | **must be assigned to an array**                                                                                                                                                                                                                                                                                                                                                                                                                                  |
-|        | String literals or arrays must be assigned to an array. This error message may also indicate a missing index (or indices) at the array on the right side of the “=” sign.                                                                                                                                                                                                                                                                                         |
-| 007    | **operator cannot be redefined**                                                                                                                                                                                                                                                                                                                                                                                                                                  |
-|        | Only a select set of operators may be redefined, this operator is not one of them. See page 86 for details.                                                                                                                                                                                                                                                                                                                                                       |
-| 008    | **must be a constant expression; assumed zero**                                                                                                                                                                                                                                                                                                                                                                                                                   |
-|        | The size of arrays and the parameters of most directives must be constant values.                                                                                                                                                                                                                                                                                                                                                                                 |
-| 009    | **invalid array size (negative or zero)**                                                                                                                                                                                                                                                                                                                                                                                                                         |
-|        | The number of elements of an array must always be 1 or more.                                                                                                                                                                                                                                                                                                                                                                                                      |
-| 010    | **illegal function or declaration**                                                                                                                                                                                                                                                                                                                                                                                                                               |
-|        | The compiler expects a declaration of a global variable or of a function at the current location, but it cannot interpret it as such.                                                                                                                                                                                                                                                                                                                             |
-| 011    | **invalid outside functions**                                                                                                                                                                                                                                                                                                                                                                                                                                     |
-|        | The instruction or statement is invalid at a global level. Local labels and (compound) statements are only valid if used within functions.                                                                                                                                                                                                                                                                                                                        |
-| 012    | **invalid function call, not a valid address**                                                                                                                                                                                                                                                                                                                                                                                                                    |
-|        | The symbol is not a function.                                                                                                                                                                                                                                                                                                                                                                                                                                     |
-| 013    | **no entry point (no public functions)**                                                                                                                                                                                                                                                                                                                                                                                                                          |
-|        | The file does not contain a main function or any public function. The compiled file thereby does not have a starting point for the execution.                                                                                                                                                                                                                                                                                                                     |
-| 014    | **invalid statement; not in switch**                                                                                                                                                                                                                                                                                                                                                                                                                              |
-|        | The statements case and default are only valid inside a switch statement.                                                                                                                                                                                                                                                                                                                                                                                         |
-| 015    | **“default” must be the last clause in switch statement**                                                                                                                                                                                                                                                                                                                                                                                                         |
-|        | pawn requires the default clause to be the last clause in a switch statement.                                                                                                                                                                                                                                                                                                                                                                                     |
-| 016    | **multiple defaults in “switch”**                                                                                                                                                                                                                                                                                                                                                                                                                                 |
-|        | Each switch statement may only have one default clause.                                                                                                                                                                                                                                                                                                                                                                                                           |
-| 017    | **undefined symbol** _symbol_                                                                                                                                                                                                                                                                                                                                                                                                                                     |
-|        | The symbol (variable, constant or function) is not declared.                                                                                                                                                                                                                                                                                                                                                                                                      |
-| 018    | **initialization data exceeds declared size**                                                                                                                                                                                                                                                                                                                                                                                                                     |
-|        | Initialization: 65 An array with an explicit size is initialized, but the number of initiallers exceeds the number of elements specified. For example, in “arr[3]={1,2,3,4};” the array is specified to have three elements, but there are four initiallers.                                                                                                                                                                                                      |
-| 019    | **not a label:** _name_                                                                                                                                                                                                                                                                                                                                                                                                                                           |
-|        | A goto statement branches to a symbol that is not a label.                                                                                                                                                                                                                                                                                                                                                                                                        |
-| 020    | **invalid symbol name**                                                                                                                                                                                                                                                                                                                                                                                                                                           |
-|        | A symbol may start with a letter, an underscore or an “at” sign (“@”) and may be followed by a series of letters, digits, underscore characters and “@” characters.                                                                                                                                                                                                                                                                                               |
-| 021    | **symbol already defined:** _identifier_                                                                                                                                                                                                                                                                                                                                                                                                                          |
-|        | The symbol was already defined at the current level.                                                                                                                                                                                                                                                                                                                                                                                                              |
-| 022    | **must be lvalue (non-constant)**                                                                                                                                                                                                                                                                                                                                                                                                                                 |
-|        | The symbol that is altered (incremented, decremented, assigned a value, etc.) must be a variable that can be modified (this kind of variable is called an lvalue). Functions, string literals, arrays and constants are no lvalues. Variables declared with the “const” attribute are no lvalues either.                                                                                                                                                          |
-| 023    | **array assignment must be simple assignment**                                                                                                                                                                                                                                                                                                                                                                                                                    |
-|        | When assigning one array to another, you cannot combine an arithmetic operation with the assignment (e.g., you cannot use the “+=” operator).                                                                                                                                                                                                                                                                                                                     |
-| 024    | **“break” or “continue” is out of context**                                                                                                                                                                                                                                                                                                                                                                                                                       |
-|        | The statements break and continue are only valid inside the context of a loop (a do, for or while statement). Unlike the languages C/C⁺⁺ and Java, break does not jump out of a switch statement.                                                                                                                                                                                                                                                                 |
-| 025    | **function heading differs from prototype**                                                                                                                                                                                                                                                                                                                                                                                                                       |
-|        | The number of arguments given at a previous declaration of the function does not match the number of arguments given at the current declaration.                                                                                                                                                                                                                                                                                                                  |
-| 026    | **no matching “#if...”**                                                                                                                                                                                                                                                                                                                                                                                                                                          |
-|        | The directive #else or #endif was encountered, but no matching #if directive was found.                                                                                                                                                                                                                                                                                                                                                                           |
-| 027    | **invalid character constant**                                                                                                                                                                                                                                                                                                                                                                                                                                    |
-|        | One likely cause for this error is the occurrence of an unknown escape sequence, like “\x”. Putting multiple characters between single quotes, as in ’abc’ also issues this error message. A third cause for this error is a situation where a character constant was expected, but none (or a non-character expression) were provided.                                                                                                                           |
-| 028    | **invalid subscript (not an array or too many subscripts):** _identifier_                                                                                                                                                                                                                                                                                                                                                                                         |
-|        | The subscript operators “[” and “]” are only valid with arrays. The number of square bracket pairs may not exceed the number of dimensions of the array.                                                                                                                                                                                                                                                                                                          |
-| 029    | **invalid expression, assumed zero**                                                                                                                                                                                                                                                                                                                                                                                                                              |
-|        | The compiler could not interpret the expression.                                                                                                                                                                                                                                                                                                                                                                                                                  |
-| 030    | **compound statement not closed at the end of file**                                                                                                                                                                                                                                                                                                                                                                                                              |
-|        | An unexpected end of file occurred. One or more compound statements are still unfinished (i.e. the closing brace “ ” has not been found).                                                                                                                                                                                                                                                                                                                         |
-| 031    | **unknown directive**                                                                                                                                                                                                                                                                                                                                                                                                                                             |
-|        | The character “#” appears first at a line, but no valid directive was specified.                                                                                                                                                                                                                                                                                                                                                                                  |
-| 032    | **array index out of bounds**                                                                                                                                                                                                                                                                                                                                                                                                                                     |
-|        | The array index is larger than the highest valid entry of the array.                                                                                                                                                                                                                                                                                                                                                                                              |
-| 033    | **array must be indexed** (**variable** _name_)                                                                                                                                                                                                                                                                                                                                                                                                                   |
-|        | An array as a whole cannot be used in a expression; you must indicate an element of the array between square brackets.                                                                                                                                                                                                                                                                                                                                            |
-| 034    | **argument does not have a default value** (**argument** _index_)                                                                                                                                                                                                                                                                                                                                                                                                 |
-|        | You can only use the argument placeholder when the function definition specifies a default value for the argument.                                                                                                                                                                                                                                                                                                                                                |
-| 035    | **argument type mismatch** (**argument** _index_)                                                                                                                                                                                                                                                                                                                                                                                                                 |
-|        | The argument that you pass is different from the argument that the function expects, and the compiler cannot convert the passed-in argument to the required type. For example, you cannot pass the literal value “1” as an argument when the function expects an array or a reference.                                                                                                                                                                            |
-| 036    | **empty statement**                                                                                                                                                                                                                                                                                                                                                                                                                                               |
-|        | The line contains a semicolon that is not preceded by an expression. pawn does not support a semicolon as an empty statement, use an empty compound block instead.                                                                                                                                                                                                                                                                                                |
-| 037    | **invalid string (possibly non-terminated string)**                                                                                                                                                                                                                                                                                                                                                                                                               |
-|        | A string was not well-formed; for example, the final quote that ends a string is missing, or the filename for the #include directive was not enclosed in double quotes or angle brackets.                                                                                                                                                                                                                                                                         |
-| 038    | **extra characters on line**                                                                                                                                                                                                                                                                                                                                                                                                                                      |
-|        | There were trailing characters on a line that contained a directive (a directive starts with a # symbol, see page 117).                                                                                                                                                                                                                                                                                                                                           |
-| 039    | **constant symbol has no size**                                                                                                                                                                                                                                                                                                                                                                                                                                   |
-|        | A variable has a size (measured in a number of cells), a constant has no size. That is, you cannot use a (symbolic) constant with the sizeof operator, for example.                                                                                                                                                                                                                                                                                               |
-| 040    | **duplicate “case” label** (**value** _value_)                                                                                                                                                                                                                                                                                                                                                                                                                    |
-|        | A preceding “case label” in the list of the switch statement evaluates to the same value.                                                                                                                                                                                                                                                                                                                                                                         |
-| 041    | **invalid ellipsis, array size is not known**                                                                                                                                                                                                                                                                                                                                                                                                                     |
-|        | You used a syntax like “arr[] = { 1, ... };”, which is invalid, because the compiler cannot deduce the size of the array from the declaration.                                                                                                                                                                                                                                                                                                                    |
-| 042    | **invalid combination of class specifiers**                                                                                                                                                                                                                                                                                                                                                                                                                       |
-|        | A function or variable is denoted as both “public” and “native”, which is unsupported. Other compinations may also be unsupported; for example, a function cannot be both “public” and “stock” (a variable may be declared both “public” and “stock”).                                                                                                                                                                                                            |
-| 043    | **character constant exceeds range for packed string**                                                                                                                                                                                                                                                                                                                                                                                                            |
-|        | Usually an attempt to store a Unicode character in a packed string where a packed character is 8-bits.                                                                                                                                                                                                                                                                                                                                                            |
-| 044    | **mixing named and positional parameters**                                                                                                                                                                                                                                                                                                                                                                                                                        |
-|        | You must either use named parameters or positional parameters for all parameters of the function.                                                                                                                                                                                                                                                                                                                                                                 |
-| 045    | **too many function arguments**                                                                                                                                                                                                                                                                                                                                                                                                                                   |
-|        | The maximum number of function arguments is currently limited to 64.                                                                                                                                                                                                                                                                                                                                                                                              |
-| 046    | **unknown array size** (**variable** _name_)                                                                                                                                                                                                                                                                                                                                                                                                                      |
-|        | For array assignment, the size of both arrays must be explicitly defined, also if they are passed as function arguments.                                                                                                                                                                                                                                                                                                                                          |
-| 047    | **array sizes do not match, or destination array is too small**                                                                                                                                                                                                                                                                                                                                                                                                   |
-|        | For array assignment, the arrays on the left and the right side of the assignment operator must have the same number of dimensions. In addition:                                                                                                                                                                                                                                                                                                                  |
-|        | - for multi-dimensional arrays, both arrays must have the same size;                                                                                                                                                                                                                                                                                                                                                                                              |
-|        | - for single arrays with a single dimension, the array on the left side of the assignment operator must have a size that is equal or bigger than the one on the right side.                                                                                                                                                                                                                                                                                       |
-|        | When passing arrays to a function argument, these rules also hold for the array that is passed to the function (in the function call) versus the array declared in the function definition.                                                                                                                                                                                                                                                                       |
-|        | When a function returns an array, all return statements must specify an array with the same size and dimensions.                                                                                                                                                                                                                                                                                                                                                  |
-| 048    | **array dimensions do not match**                                                                                                                                                                                                                                                                                                                                                                                                                                 |
-|        | For an array assignment, the dimensions of the arrays on both sides of the “=” sign must match; when passing arrays to a function argument, the arrays passed to the function (in the function call) must match with the definition of the function arguments.                                                                                                                                                                                                    |
-|        | When a function returns an array, all return statements must specify an array with the same size and dimensions.                                                                                                                                                                                                                                                                                                                                                  |
-| 049    | **invalid line continuation**                                                                                                                                                                                                                                                                                                                                                                                                                                     |
-|        | A line continuation character (a backslash at the end of a line) is at an invalid position, for example at the end of a file or in a single line comment.                                                                                                                                                                                                                                                                                                         |
-| 050    | **invalid range**                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
-|        | A numeric range with the syntax “n1 .. n2”, where n1 and n2 are numeric constants, is invalid. Either one of the values in not a valid number, or n1 is not smaller than n2.                                                                                                                                                                                                                                                                                      |
-| 051    | **invalid subscript, use “[ ]” operators on major dimensions**                                                                                                                                                                                                                                                                                                                                                                                                    |
-|        | You can use the “array character index” operator (braces: “{ }” only for the last dimension. For other dimensions, you must use the cell index operator (square brackets: “[ ]”).                                                                                                                                                                                                                                                                                 |
-| 052    | **multi-dimensional arrays must be fully initialized**                                                                                                                                                                                                                                                                                                                                                                                                            |
-|        | If an array with more than one dimension is initialized at its declaration, then there must be equally many literal vectors/subarrays at the right of the equal sign (“=”) as specified for the major dimension(s) of the array.                                                                                                                                                                                                                                  |
-| 053    | **exceeding maximum number of dimensions**                                                                                                                                                                                                                                                                                                                                                                                                                        |
-|        | The current implementation of the pawn compiler only supports arrays with one or two dimensions.                                                                                                                                                                                                                                                                                                                                                                  |
-| 054    | **unmatched closing brace**                                                                                                                                                                                                                                                                                                                                                                                                                                       |
-|        | A closing brace (“}”) was found without matching opening brace (“{”).                                                                                                                                                                                                                                                                                                                                                                                             |
-| 055    | **start of function body without function header**                                                                                                                                                                                                                                                                                                                                                                                                                |
-|        | An opening brace (“{”) was found outside the scope of a function. This may be caused by a semicolon at the end of a preceding function header.                                                                                                                                                                                                                                                                                                                    |
-| 056    | **local variables and function arguments cannot be public**                                                                                                                                                                                                                                                                                                                                                                                                       |
-|        | A local variable or a function argument starts with the character “@”, which is invalid.                                                                                                                                                                                                                                                                                                                                                                          |
-| 057    | **Unfinished expression before compiler directive**                                                                                                                                                                                                                                                                                                                                                                                                               |
-|        | Compiler directives may only occur between statements, not inside a statement. This error typically occurs when an expression statement is split over multiple lines and a compiler directive appears between the start and the end of the expression. This is not supported.                                                                                                                                                                                     |
-| 058    | **duplicate argument; same argument is passed twice**                                                                                                                                                                                                                                                                                                                                                                                                             |
-|        | In the function call, the same argument appears twice, possibly through a mixture of named and positional parameters.                                                                                                                                                                                                                                                                                                                                             |
-| 059    | **function argument may not have a default value** (**variable** _name_)                                                                                                                                                                                                                                                                                                                                                                                          |
-|        | All arguments of public functions must be passed explicitly. Public functions are typically called from the host application, who has no knowledge of the default parameter values. Arguments of user defined operators are implied from the expression and cannot be inferred from the default value of an argument.                                                                                                                                             |
-| 060    | **multiple “#else” directives between “#if . . . #endif**                                                                                                                                                                                                                                                                                                                                                                                                         |
-|        | Two or more #else directives appear in the body between the matching #if and #endif.                                                                                                                                                                                                                                                                                                                                                                              |
-| 061    | **“#elseif” directive follows an “#else” directive**                                                                                                                                                                                                                                                                                                                                                                                                              |
-|        | All #elseif directives must appear before the #else directive. This error may also indicate that an #endif directive for a higher level is missing.                                                                                                                                                                                                                                                                                                               |
-| 062    | **number of operands does not fit the operator**                                                                                                                                                                                                                                                                                                                                                                                                                  |
-|        | When redefining an operator, the number of operands that the operator has (1 for unary operators and 2 for binary operators) must be equal to the number of arguments of the operator function.                                                                                                                                                                                                                                                                   |
-| 063    | **operator requires that the function result has a “bool” tag**                                                                                                                                                                                                                                                                                                                                                                                                   |
-|        | Logical and relational operators are defined as having a result that is either true (1) or false (0) and having a “bool” tag. A user defined operator should adhere to this definition.                                                                                                                                                                                                                                                                           |
-| 064    | **cannot change predefined operators**                                                                                                                                                                                                                                                                                                                                                                                                                            |
-|        | One cannot define operators to work on untagged values, for example, because pawn already defines this operation.                                                                                                                                                                                                                                                                                                                                                 |
-| 065    | **function argument may only have a single tag** (**argument** _number_)                                                                                                                                                                                                                                                                                                                                                                                          |
-|        | In a user defined operator, a function argument may not have multiple tags.                                                                                                                                                                                                                                                                                                                                                                                       |
-| 066    | **function argument may not be a reference argument or an array** (**argument** _number_)                                                                                                                                                                                                                                                                                                                                                                         |
-|        | In a user defined operator, all arguments must be cells (non-arrays) that are passed “by value”.                                                                                                                                                                                                                                                                                                                                                                  |
-| 067    | **variable cannot be both a reference and an array** (**variable** _name_)                                                                                                                                                                                                                                                                                                                                                                                        |
-|        | A function argument may be denoted as a “reference” or as an array, but not as both.                                                                                                                                                                                                                                                                                                                                                                              |
-| 068    | **invalid rational number precision in #pragma**                                                                                                                                                                                                                                                                                                                                                                                                                  |
-|        | The precision was negative or too high. For floating point rational numbers, the precision specification should be omitted.                                                                                                                                                                                                                                                                                                                                       |
-| 069    | **rational number format already defined**                                                                                                                                                                                                                                                                                                                                                                                                                        |
-|        | This #pragma conflicts with an earlier #pragma that specified a different format.                                                                                                                                                                                                                                                                                                                                                                                 |
-| 070    | **rational number support was not enabled**                                                                                                                                                                                                                                                                                                                                                                                                                       |
-|        | A rational literal number was encountered, but the format for rational numbers was not specified.                                                                                                                                                                                                                                                                                                                                                                 |
-| 071    | u**ser-defined operator must be declared before use** (**function** _name_)                                                                                                                                                                                                                                                                                                                                                                                       |
-|        | Like a variable, a user-defined operator must be declared before its first use. This message indicates that prior to the declaration of the user-defined operator, an instance where the operator was used on operands with the same tags occurred. This may either indicate that the program tries to make mixed use of the default operator and a user-defined operator (which is unsupported), or that the user-defined operator must be “forwardly declared”. |
-| 072    | **“sizeof ” operator is invalid on “function” symbols**                                                                                                                                                                                                                                                                                                                                                                                                           |
-|        | You used something like “sizeof MyCounter” where the symbol “MyCounter” is not a variable, but a function. You cannot request the size of a function.                                                                                                                                                                                                                                                                                                             |
-| 073    | **function argument must be an array** (**argument** _name_)                                                                                                                                                                                                                                                                                                                                                                                                      |
-|        | The function argument is a constant or a simple variable, but the function requires that you pass an array.                                                                                                                                                                                                                                                                                                                                                       |
-| 074    | **#define pattern must start with an alphabetic character**                                                                                                                                                                                                                                                                                                                                                                                                       |
-|        | Any pattern for the #define directive must start with a letter, an underscore (“\_”) or an “@”-character. The pattern is the first word that follows the #define keyword.                                                                                                                                                                                                                                                                                         |
-| 075    | **input line too long (after substitutions)**                                                                                                                                                                                                                                                                                                                                                                                                                     |
-|        | Either the source file contains a very long line, or text substitutions make a line that was initially of acceptable length grow beyond its bounds. This may be caused by a text substitution that causes recursive substitution (the pattern matching a portion of the replacement text, so that this part of the replacement text is also matched and replaced, and so forth).                                                                                  |
-| 076    | **syntax error in the expression, or invalid** _function call_                                                                                                                                                                                                                                                                                                                                                                                                    |
-|        | The expression statement was not recognized as a valid statement (so it is a “syntax error”). From the part of the string that was parsed, it looks as if the source line contains a function call in a “procedure call” syntax (omitting the parentheses), but the function result is used —assigned to a variable, passed as a parameter, used in an expession. . .                                                                                             |
-| 077    | **malformed UTF-8 encoding, or corrupted file: filename**                                                                                                                                                                                                                                                                                                                                                                                                         |
-|        | The file starts with an UTF-8 signature, but it contains encodings that are invalid UTF-8. If the source file was created by an editor or converter that supports UTF-8, the UTF-8 support is non-conforming.                                                                                                                                                                                                                                                     |
-| 078    | **function uses both “return” and “return ¡value¿”**                                                                                                                                                                                                                                                                                                                                                                                                              |
-|        | The function returns both with and without a return value. The function should be consistent in always returning with a function result, or in never returning a function result.                                                                                                                                                                                                                                                                                 |
-| 079    | **inconsistent return types (array & non-array)**                                                                                                                                                                                                                                                                                                                                                                                                                 |
-|        | The function returns both values and arrays, which is not allowed. If a function returns an array, all return statements must specify an array (of the same size and dimensions).                                                                                                                                                                                                                                                                                 |
-| 080    | **unknown symbol, or not a constant symbol** (**symbol** _name_)                                                                                                                                                                                                                                                                                                                                                                                                  |
-|        | Where a constant value was expected, an unknown symbol or a non-constant symbol (variable) was found.                                                                                                                                                                                                                                                                                                                                                             |
-| 081    | **cannot take a tag as a default value for an indexed array parameter** (**symbol** _name_)                                                                                                                                                                                                                                                                                                                                                                       |
-|        | The tagof operator was used on an array parameter where the array also had an index. This is unsupported.                                                                                                                                                                                                                                                                                                                                                         |
-| 082    | **user-defined operators and native functions may not havestates**                                                                                                                                                                                                                                                                                                                                                                                                |
-|        | Only standard and public functions may have states.                                                                                                                                                                                                                                                                                                                                                                                                               |
-| 083    | **a function or variable may only belong to a single automaton** (**symbol** _name_)                                                                                                                                                                                                                                                                                                                                                                              |
-|        | There are multiple automatons in the state declaration for the indicated function or variable, which is not supported. In the case of a function: all instances of the function must belong to the same automaton. In the case of a variable: it is allowed to have several variables with the same name belonging to different automatons, but only in separate declarations —these are distinct variables.                                                      |
-| 084    | **state conflict: one of the states is already assigned to another implementation** (**symbol** _name_)                                                                                                                                                                                                                                                                                                                                                           |
-|        | The specified state appears in the state specifier of two implementations of the same function.                                                                                                                                                                                                                                                                                                                                                                   |
-| 085    | **no states are defined for symbol name**                                                                                                                                                                                                                                                                                                                                                                                                                         |
-|        | When this error occurs on a function, this function has a fall-back implementation, but no other states. If the error refers to a variable, this variable does not have a list of states between the < and > characters. Use a state-less function ir variable instead.                                                                                                                                                                                           |
-| 086    | **unknown automaton name**                                                                                                                                                                                                                                                                                                                                                                                                                                        |
-|        | The “state” statement refers to an unknown automaton.                                                                                                                                                                                                                                                                                                                                                                                                             |
-| 087    | **unknown state name for automaton name**                                                                                                                                                                                                                                                                                                                                                                                                                         |
-|        | The “state” statement refers to an unknown state (for the specified automaton).                                                                                                                                                                                                                                                                                                                                                                                   |
-| 088    | **public variables and local variables may not have states** (**symbol** _name_)                                                                                                                                                                                                                                                                                                                                                                                  |
-|        | Only standard (global) variables may have a list of states (and an automaton) at the end of a declaration.                                                                                                                                                                                                                                                                                                                                                        |
-| 089    | **state variables may not be initialized** (**symbol** _name_)                                                                                                                                                                                                                                                                                                                                                                                                    |
-|        | Variables with a state list attached may not have initializers. State variables should always be explicitly initialized, as their initial value is indeterminate.                                                                                                                                                                                                                                                                                                 |
-| 090    | **public functions may not return arrays** (**symbol** _name_)                                                                                                                                                                                                                                                                                                                                                                                                    |
-|        | A public function may not return an array. Returning arrays is allowed only for normal functions.                                                                                                                                                                                                                                                                                                                                                                 |
+| 001 | **очікуваний токен:** _token_, **але знайдено** _token_
+| Пропущено необхідний токен.                                                                                                                                                                                                                                                                                                                                                                                                                                      |
+| 002 | **Тільки один оператор (або вираз) може слідувати за кожним "case "**.
+| Кожний case в операторі switch може містити лише один вираз. Щоб помістити кілька операторів у регістр, візьміть ці оператори у фігурні дужки (це створить складений оператор).                                                                                                                                                                                                                                                                              |
+| Оголошення локальної змінної повинно міститися у складеному блоці**| | Оголошення локальної змінної повинно міститися у складеному блоці.
+| Оголошення локальної змінної має міститися між фігурними дужками ("{. . . }") на рівні активної області видимості.                                                                                                                                                                                                                                                                                                                                                            |
+| Коли синтаксичний аналізатор відзначає цю помилку, оголошення змінної з'являється як єдиний оператор функції або єдиний оператор, що стоїть нижче операторів if, else, for, while або do. Зауважте, що оскільки локальні змінні доступні лише з області видимості (або нижче), в якій з'являється їх оголошення, використання оголошення змінної як єдиного оператора в будь-якій області видимості не має сенсу.                                                                                          |
+| 004 | **функція** _ім'я_ **не реалізована**
+| Не існує реалізації для вказаної функції. Можливо, функцію було оголошено "заздалегідь" - або створено прототип - але повне визначення функції, включно з оператором або блоком операторів, відсутнє.                                                                                                                                                                                                                                                   |
+| Функція може не мати аргументів*******************************************************************.
+| Функція main() є точкою входу у програму. Вона може не мати аргументів.                                                                                                                                                                                                                                                                                                                                                                                        |
+006 | **має бути присвоєний масиву** | | _Додаткове значення повинно бути присвоєне масиву_*| _Додаткове значення повинно бути присвоєне рядку
+| Рядкові літерали або масиви слід присвоювати масиву. Це повідомлення про помилку може також вказувати на відсутність індексу (або індексів) у масиві праворуч від знака "=".                                                                                                                                                                                                                                                                                         |
+| 007 | **оператор не може бути перевизначений** | _Оператор не може бути перевизначений__ _Оператор не може бути перевизначений_*
+| | | Тільки вибраний набір операторів можна перевизначити, цей оператор не належить до них. Докладні відомості наведено на сторінці 86.                                                                                                                                                                                                                                                                                                                                                       |
+008 | **повинен бути константним виразом; за замовчуванням дорівнює нулю** | | | Розмір масивів не може бути визначений.
+| Розмір масивів і параметри більшості директив мають бути сталими значеннями.                                                                                                                                                                                                                                                                                                                                                                                 |
+009 | **недопустимий розмір масиву (від'ємний або нульовий)** | | | Кількість елементів масиву
+| Кількість елементів масиву завжди має бути 1 або більше.                                                                                                                                                                                                                                                                                                                                                                                                      |
+| 010 | **незаконна функція або оголошення**
+| Компілятор очікує оголошення глобальної змінної або функції у поточному місці, але не може інтерпретувати його як таке.                                                                                                                                                                                                                                                                                                                             |
+011 | **Недійсні зовнішні функції** | | ¦ ¦ ¦ ¦
+| Інструкція або оператор є недійсними на глобальному рівні. Локальні мітки та (складені) оператори є дійсними, тільки якщо вони використовуються всередині функцій.                                                                                                                                                                                                                                                                                                                        |
+012 | **Недійсний виклик функції, невірна адреса** | | | Символ не є функцією.
+| Символ не є функцією.                                                                                                                                                                                                                                                                                                                                                                                                                                     |
+013 | **відсутня точка входу (немає загальнодоступних функцій)** | | ¦.
+| Файл не містить головної функції або будь-якої загальнодоступної функції. Отже, скомпільований файл не має точки входу для виконання.                                                                                                                                                                                                                                                                                                                     |
+014 | **Недійсний оператор; не у switch** | | ¦ ¦ ¦ ¦ ¦ ¦
+| Оператори case та default є дійсними лише всередині оператора switch.                                                                                                                                                                                                                                                                                                                                                                                         |
+| 015 | **"за замовчуванням" має бути останнім оператором в операторі switch** | ¦ ¦ ¦
+| Пішак вимагає, щоб оператор default був останнім в операторі switch.                                                                                                                                                                                                                                                                                                                                                                                     |
+| 016 | **кілька значень за замовчуванням в операторі switch**
+| Кожен оператор switch може мати тільки один параметр за замовчуванням.                                                                                                                                                                                                                                                                                                                                                                                                           |
+| 017 ¦Невизначений символ** _символ_ _символ_ ¦ ¦ ¦ ¦
+| Символ (змінна, константа або функція) не оголошено.                                                                                                                                                                                                                                                                                                                                                                                                      |
+| 018 | **Дані ініціалізації перевищують оголошений розмір**
+| Ініціалізація: 65 Ініціалізовано масив з явним розміром, але кількість ініціалізаторів перевищує кількість вказаних елементів. Наприклад, у "arr[3]={1,2,3,4};" вказано, що масив має три елементи, але ініціалізаторів чотири.                                                                                                                                                                                                      |
+| 019 | **не мітка:** _ім'я_|.
+| Оператор goto розгалужується на символ, який не є міткою.                                                                                                                                                                                                                                                                                                                                                                                                        |
+| 020 | **неправильна назва символу**
+| | | Символ може починатися з літери, символу підкреслення або знака "at" ("@") і може супроводжуватися послідовністю літер, цифр, символів підкреслення та "@".                                                                                                                                                                                                                                                                                               |
+021 | **символ вже визначено:** _ідентифікатор_ | | | символ вже визначено
+| Символ вже визначено на поточному рівні.                                                                                                                                                                                                                                                                                                                                                                                                              |
+| 022 | **повинно бути значенням l (не константа)** | ¦ ¦ ¦ ¦ ¦ ¦ ¦ ¦ ¦ ¦ ¦ ¦ ¦
+| Символ, який змінюється (інкрементується, декрементується, присвоюється значення тощо), має бути змінною, яку можна модифікувати (такий тип змінної називається l-значенням). Функції, рядкові літерали, масиви та константи не є l-значеннями. Змінні, оголошені з атрибутом const, також не є l-значеннями.                                                                                                                                                          |
+Присвоєння масиву повинно бути простим присвоєнням**| 023 | **присвоєння масиву повинно бути простим присвоєнням** | _Присвоєння масиву
+| При присвоюванні одного масиву іншому не можна поєднувати арифметичну операцію з присвоюванням (наприклад, не можна використовувати оператор "+=").                                                                                                                                                                                                                                                                                                                     |
+| 024 | **"break" або "continue" вирвані з контексту**
+| Оператори break та continue діють лише у контексті циклу (інструкції do, for або while). На відміну від мов C/C⁺⁺ та Java, break не вистрибує з оператора switch.                                                                                                                                                                                                                                                                 |
+| 025 | **заголовок функції відрізняється від прототипу**
+| Кількість аргументів у попередньому оголошенні функції не збігається з кількістю аргументів у поточному оголошенні.                                                                                                                                                                                                                                                                                                                  |
+| 026 | **Не співпадає "#if... "** | ¦ ¦Директива #else не співпадає з директивою #if....
+| Зустрілася директива #else або #endif, але не знайдено відповідної директиви #if.                                                                                                                                                                                                                                                                                                                                                                           |
+| 027 | **Неприпустима символьна константа**
+| | | Однією з імовірних причин цієї помилки є поява невідомої екранованої послідовності, наприклад, "\x". Вставлення декількох символів між одинарними лапками, як у випадку з "abc", також призводить до цієї помилки. Третьою причиною цієї помилки є ситуація, коли очікується введення символьної константи, але її не було надано (або було надано несимвольний вираз).                                                                                                                           |
+| 028 | **Недійсний підрядковий оператор (не масив або занадто багато підрядкових операторів):** _ідентифікатор_|.
+| | | Оператори підстановки "[" і "]" допустимі лише для масивів. Кількість пар квадратних дужок не може перевищувати кількість вимірів масиву.                                                                                                                                                                                                                                                                                                          |
+| 029 | **Неправильний вираз, прийнятий за нуль**
+| Компілятор не зміг інтерпретувати вираз.                                                                                                                                                                                                                                                                                                                                                                                                                  |
+| 030 Складений оператор не закривається в кінці файлу.
+| Стався несподіваний кінець файлу. Один або декілька складених операторів не завершено (наприклад, не знайдено закриваючу дужку " ").                                                                                                                                                                                                                                                                                                                         |
+| 031 | **невідома директива**
+| | Символ "#" з'являється першим у рядку, але не було вказано жодної дійсної директиви.                                                                                                                                                                                                                                                                                                                                                                                  |
+032 | **індекс масиву виходить за межі** | | | Індекс масиву виходить за межі
+| Індекс масиву більший за найвищий допустимий елемент масиву.                                                                                                                                                                                                                                                                                                                                                                                              |
+| 033 | **масив має бути проіндексовано** (**змінна** _ім'я_)
+| Масив як єдине ціле не можна використовувати у виразі; ви повинні вказати елемент масиву у квадратних дужках.                                                                                                                                                                                                                                                                                                                                            |
+| 034 | **аргумент не має значення за замовчуванням** (**аргумент** _індекс_)
+| Заповнювач аргументу можна використовувати лише тоді, коли у визначенні функції вказано значення за замовчуванням для аргументу.                                                                                                                                                                                                                                                                                                                                                |
+035 | **невідповідність типу аргументу** (**аргумент** _індекс_) | | ¦ ¦ (**аргумент** _індекс_) | ¦ ¦ (**аргумент** _індекс_)
+| Аргумент, який ви передаєте, відрізняється від аргументу, який очікує функція, і компілятор не може перетворити переданий аргумент до потрібного типу. Наприклад, ви не можете передати як аргумент буквальне значення "1", якщо функція очікує масив або посилання.                                                                                                                                                                            |
+| 036 | **порожній оператор**
+| Рядок містить крапку з комою, якій не передує вираз. pawn не підтримує крапку з комою як порожній оператор, використовуйте замість неї порожній складений блок.                                                                                                                                                                                                                                                                                                |
+| 037 | **неправильний рядок (можливо, нетермінований рядок)** | ¦ ¦ ¦ ¦ ¦ ¦ ¦ ¦ ¦ ¦
+| Рядок було неправильно сформовано; наприклад, відсутня остання лапка, якою закінчується рядок, або ім'я файлу для директиви #include не було взято у подвійні лапки або кутові дужки.                                                                                                                                                                                                                                                                         |
+038 | | **Додаткові символи у рядку** | ¦ ¦ ¦ ¦ ¦ ¦ ¦
+| У рядку, який містить директиву, є додаткові символи (директива починається з символу #, див. сторінку 117).                                                                                                                                                                                                                                                                                                                                           |
+039 | **константний символ не має розміру** | | | Змінна не має розміру
+| Змінна має розмір (вимірюється в кількості клітинок), константа не має розміру. Тобто ви не можете використовувати (символьну) константу з оператором sizeof, наприклад.
+| 040 | **дублююча мітка case** (**значення** _значення_)
+| Попередня "case-мітка" у списку оператора switch обчислюється до того самого значення.                                                                                                                                                                                                                                                                                                                                                                         |
+| 041 | **Неприпустиме багатокрапка, розмір масиву невідомий** | ¦ ¦.
+| Ви використали синтаксис на кшталт "arr[] = { 1, ... };", що є неправильним, оскільки компілятор не може визначити розмір масиву з оголошення.                                                                                                                                                                                                                                                                                                                    |
+| 042 | **Неприпустима комбінація специфікаторів класу** | ¦ ¦ ¦ ¦
+| Функція або змінна позначається одночасно як "public" і "native", що не підтримується. Інші комбінації також можуть бути непідтримуваними; наприклад, функція не може бути одночасно "public" і "stock" (змінна може бути оголошена як "public" і "stock").                                                                                                                                                                                                            |
+| 043 | **Символьна константа виходить за межі діапазону для упакованого рядка** | ¦ ¦.
+| Зазвичай спроба зберегти символ Unicode у запакованому рядку, де запакований символ має довжину 8 біт.                                                                                                                                                                                                                                                                                                                                                            |
+| змішування іменованих та позиційних параметрів
+| Ви повинні використовувати або іменовані параметри, або позиційні параметри для всіх параметрів функції.                                                                                                                                                                                                                                                                                                                                                                 |
+| 045 | |Занадто багато аргументів функції
+| Максимальна кількість аргументів функції наразі обмежена до 64.                                                                                                                                                                                                                                                                                                                                                                                              |
+| 046 | **Невідомий розмір масиву** (**змінна** _ім'я_)
+| Для присвоювання масивів розмір обох масивів має бути визначено явно, навіть якщо вони передаються як аргументи функції.                                                                                                                                                                                                                                                                                                                                          |
+047 | **Розміри масивів не збігаються, або масив-приймач є замалим** | | ¦.
+| Для присвоювання масивів, масиви у лівій та правій частині оператора присвоювання повинні мати однакову кількість вимірів. Крім того:                                                                                                                                                                                                                                                                                                                  |
+| | | - для багатовимірних масивів обидва масиви повинні мати однаковий розмір; | | | - для одиночних масивів
+| для одиночних масивів з одним виміром масив у лівій частині оператора присвоювання повинен мати розмір, що дорівнює або більший за розмір масиву у правій частині.                                                                                                                                                                                                                                                                                       |
+| При передачі масивів в якості аргументу функції ці правила також діють для масиву, що передається у функцію (у виклику функції), а не для масиву, оголошеного в описі функції.                                                                                                                                                                                                                                                                       |
+| Коли функція повертає масив, у всіх операторах повернення має бути вказано масив з однаковим розміром і розмірністю.                                                                                                                                                                                                                                                                                                                                                  |
+| 048 | **розміри масивів не збігаються**
+| Для присвоювання масиву розміри масивів по обидва боки від знаку "=" повинні співпадати; при передачі масивів в якості аргументу функції, масиви, що передаються у функцію (у виклику функції), повинні співпадати з визначенням аргументів функції.                                                                                                                                                                                                    |
+| Якщо функція повертає масив, то у всіх операторах повернення повинен бути вказаний масив з однаковим розміром та розмірністю.                                                                                                                                                                                                                                                                                                                                                  |
+| 049 | **Неприпустиме продовження рядка**
+| Символ продовження рядка (зворотна коса риска в кінці рядка) знаходиться у неприпустимій позиції, наприклад, у кінці файлу або в однорядковому коментарі.                                                                                                                                                                                                                                                                                                         |
+| 050 | **недопустимий діапазон**
+| Числовий діапазон із синтаксисом "n1 .. n2", де n1 і n2 є числовими константами, є неприпустимим. Або одне із значень не є дійсним числом, або n1 не менше за n2.                                                                                                                                                                                                                                                                                      |
+| 051 | **неправильний підрядковий індекс, використовуйте оператори "[ ]" на великих розмірностях** | | ¦ ¦ ¦ ¦ ¦ ¦ ¦ ¦ ¦ ¦
+| | | Можна використовувати оператор "індекс символу масиву" (дужки: "{ }" тільки для останнього виміру. Для інших розмірностей слід використовувати оператор індексу комірки (квадратні дужки: "[ ]").
+| Багатовимірні масиви мають бути повністю ініціалізовані_**_.
+| Якщо масив з більш ніж одним виміром ініціалізується при його оголошенні, то праворуч від знаку рівності ("=") повинно бути стільки ж літеральних векторів/підмасивів, скільки вказано для головного(их) виміру(ів) масиву.                                                                                                                                                                                                                                  |
+| 053 | **перевищення максимальної кількості вимірів**
+| Поточна реалізація пішакового компілятора підтримує масиви лише з одним або двома вимірами.                                                                                                                                                                                                                                                                                                                                                                  |
+054 | **Невідповідна закриваюча дужка** | | _Невідповідна закриваюча дужка__
+| Знайдено закриваючу дужку ("}") без відповідної відкриваючої дужки ("{").                                                                                                                                                                                                                                                                                                                                                                                             |
+| Початок тіла функції без заголовка функції.
+| Знайдено відкриваючу дужку ("{") за межами області видимості функції. Це може бути спричинено крапкою з комою в кінці заголовка попередньої функції.                                                                                                                                                                                                                                                                                                                    |
+056 | **Локальні змінні та аргументи функції не можуть бути загальнодоступними** | |.
+| Локальна змінна або аргумент функції починається з символу "@", який є неприпустимим.                                                                                                                                                                                                                                                                                                                                                                          |
+| 057 | **Незакінчений вираз перед директивою компілятора**
+| Директиви компілятора можуть зустрічатися тільки між операторами, але не всередині оператора. Ця помилка зазвичай виникає, коли вираз розбивається на декілька рядків і між початком і кінцем виразу з'являється директива компілятора. Це не підтримується.                                                                                                                                                                                     |
+| 058 | **Дублікат аргументу; той самий аргумент передається двічі** | ¦ ¦.
+| У виклику функції той самий аргумент з'являється двічі, можливо, через поєднання іменованих і позиційних параметрів.                                                                                                                                                                                                                                                                                                                                             |
+| 059 | **Аргумент функції може не мати значення за замовчуванням** (**змінна** _ім'я_)
+| Всі аргументи загальнодоступних функцій повинні передаватися явно. Загальнодоступні функції зазвичай викликаються з головної програми, яка не знає значень параметрів за замовчуванням. Аргументи визначених користувачем операторів маються на увазі з виразу і не можуть бути виведені зі значення аргументу за замовчуванням.
+| 060 | **кілька директив "#else" між "#if . . . #endif** |
+| Дві або більше директив #else з'являються у тілі між відповідними #if та #endif.                                                                                                                                                                                                                                                                                                                                                                              |
+| 061 | **Директива #elseif слідує за директивою #else**
+| Усі директиви #elseif мають стояти перед директивою #else. Ця помилка також може вказувати на те, що відсутня директива #endif для вищого рівня.                                                                                                                                                                                                                                                                                                               |
+| 062 | **кількість операндів не вміщується в оператор** | ¦ ¦.
+| При перевизначенні оператора кількість операндів, які має оператор (1 для унарних операторів і 2 для бінарних), має дорівнювати кількості аргументів операторної функції.                                                                                                                                                                                                                                                                   |
+| 063 | **оператор вимагає, щоб результат функції мав тег "bool "** | | _Оператор вимагає, щоб результат функції мав тег "bool".
+| Логічні та реляційні оператори визначаються як такі, що мають результат, який є або істинним (1), або хибним (0) і має тег "bool". Оператор, визначений користувачем, повинен відповідати цьому визначенню.                                                                                                                                                                                                                                                                           |
+064 | **не можна змінювати попередньо визначені оператори** | **не можна змінювати попередньо визначені оператори** | | не можна змінювати попередньо визначені оператори_*
+| Наприклад, не можна визначати оператори для роботи над значеннями без тегів, оскільки pawn вже визначає цю операцію.                                                                                                                                                                                                                                                                                                                                                 |
+| 065 | **Аргумент функції може мати лише одну мітку** (**аргумент** _число_)
+| У визначеному користувачем операторі аргумент функції не може мати декілька тегів.                                                                                                                                                                                                                                                                                                                                                                                       |
+066 | **Аргумент функції не може бути аргументом-посиланням або масивом** (**аргумент** _число_) | | ¦ ¦Аргумент функції не може бути аргументом-посиланням або масивом** (**аргумент** _число_)
+| У визначеному користувачем операторі всі аргументи мають бути комірками (не масивами), які передаються "за значенням".                                                                                                                                                                                                                                                                                                                                                                  |
+Змінна не може бути одночасно посиланням і масивом**(**змінна** _ім'я_) | | | Змінна не може бути одночасно посиланням і масивом**(**змінна** _ім'я_)
+| Аргумент функції може бути позначений як "посилання" або як масив, але не як і те, і інше.                                                                                                                                                                                                                                                                                                                                                                              |
+068 | **Неправильна точність раціональних чисел у #pragma** | | _Введено від'ємну або від'ємну точність раціональних чисел.
+| Вказано від'ємну або надто високу точність. Для раціональних чисел з плаваючою комою специфікацію точності слід опустити.                                                                                                                                                                                                                                                                                                                                       |
+| 069 | **формат раціонального числа вже визначено**
+| Ця #прагма конфліктує з попередньою #прагмою, яка визначила інший формат.                                                                                                                                                                                                                                                                                                                                                                                 |
+| 070 | **Підтримку раціональних чисел не ввімкнено**
+| Виявлено раціональне буквене число, але формат для раціональних чисел не було визначено.                                                                                                                                                                                                                                                                                                                                                                 |
+071 | u**Оператор, визначений користувачем, має бути оголошений перед використанням** (**функція** _ім'я_) | | ¦ ¦ (**функція** _ім'я_)
+| Як і змінну, визначений користувачем оператор має бути оголошено перед його першим використанням. Це повідомлення вказує на те, що перед оголошенням визначеного користувачем оператора стався випадок, коли цей оператор було використано з операндами з однаковими тегами. Це може свідчити або про те, що програма намагається змішано використовувати оператор за замовчуванням і визначений користувачем (що не підтримується), або про те, що визначений користувачем оператор має бути "оголошений заздалегідь". |
+| 072 | **Оператор "sizeof" є неприпустимим для символів "function" ** **Оператор "sizeof" є неприпустимим для символів "function
+| Ви використали щось на зразок "sizeof MyCounter", де символ "MyCounter" є не змінною, а функцією. Не можна запитувати розмір функції.                                                                                                                                                                                                                                                                                                             |
+| 073 | **Аргумент функції має бути масивом** (**аргумент** _ім'я_)
+| Аргумент функції є константою або простою змінною, але функція вимагає, щоб ви передали масив.                                                                                                                                                                                                                                                                                                                                                       |
+074 | **#define шаблон повинен починатися з літерного символу** | | | Шаблон #define повинен починатися з літерного символу
+| Будь-який шаблон для директиви #define повинен починатися з літери, символу підкреслення ("\_") або "@"-символу. Шаблон - це перше слово, яке слідує за ключовим словом #define.                                                                                                                                                                                                                                                                                         |
+| 075 | **занадто довгий рядок вводу (після підстановок)** | | ¦.
+| Або вихідний файл містить дуже довгий рядок, або текстові заміни призводять до того, що рядок, який спочатку мав прийнятну довжину, виходить за її межі. Це може бути спричинено текстовою заміною, яка спричиняє рекурсивну заміну (шаблон збігається з частиною тексту заміни, тож ця частина тексту заміни також збігається і замінюється, і так далі).                                                                                  |
+| 076 | **синтаксична помилка у виразі або недійсний** виклик функції
+| Оператор виразу не було розпізнано як допустимий оператор (тому це "синтаксична помилка"). З тієї частини рядка, яка була розібрана, виглядає так, ніби у вихідному рядку міститься виклик функції у синтаксисі "виклик процедури" (без дужок), але результат функції використовується - присвоюється змінній, передається як параметр, використовується в експресії. . .                                                                                             |
+| 077 | **неправильне кодування UTF-8 або пошкоджений файл: ім'я файлу** | ¦ ¦ ¦ ¦ ¦ ¦
+| Файл починається з підпису у кодуванні UTF-8, але містить кодування, які не відповідають UTF-8. Якщо вихідний файл було створено за допомогою редактора або конвертера, який підтримує кодування UTF-8, підтримка UTF-8 є невідповідною.                                                                                                                                                                                                                                                     |
+Функція використовує як "return", так і "return ¡value¿"** | | Функція використовує як "return", так і "return ¡value¿"** | ¦ Функція використовує як "return", так і "return".
+| Функція повертає як із значенням, що повертається, так і без нього. Функція має бути послідовною і завжди повертатися з результатом функції або ніколи не повертати результат функції.                                                                                                                                                                                                                                                                                 |
+079 | **Неузгоджені типи повернення (масив та не-масив)** | | ¦ ¦(масив та не-масив)| | ¦ ¦(масив та не-масив)
+| Функція повертає як значення, так і масиви, що є неприпустимим. Якщо функція повертає масив, то всі оператори повернення повинні вказувати масив (однакового розміру та розмірностей).
+| 080 | **невідомий символ, або не константний символ** (**символ** _ім'я_)
+| Там, де очікувалося константне значення, знайдено невідомий символ або непостійний символ (змінну).                                                                                                                                                                                                                                                                                                                                                             |
+081 | **неможливо прийняти тег як значення за замовчуванням для параметра індексованого масиву** (**символ** _ім'я_) | | ¦ ¦(**символ** _ім'я_)
+| Оператор tagof було застосовано до параметра масиву, який також має індекс. Це не підтримується.                                                                                                                                                                                                                                                                                                                                                         |
+| 082 | **Оператори, визначені користувачем, та власні функції не можуть мати станів**
+| Тільки стандартні та загальнодоступні функції можуть мати стани.                                                                                                                                                                                                                                                                                                                                                                                                               |
+| 083 | Функція або змінна може належати лише одному автомату_* (**символ** _ім'я_)
+| Наявність декількох автоматів у декларації стану для вказаної функції або змінної не підтримується. У випадку функції: всі екземпляри функції повинні належати до одного автомата. У випадку змінної: допускається наявність декількох змінних з однаковим іменем, що належать різним автоматам, але тільки в окремих деклараціях - це різні змінні.                                                      |
+| 084 | **конфлікт станів: один зі станів вже присвоєно іншій реалізації** (**символ** _ім'я_).
+| Вказаний стан з'являється у специфікаторі стану двох реалізацій тієї самої функції.                                                                                                                                                                                                                                                                                                                                                                   |
+085 | **для імені символу не визначено жодного стану** | | | (**символ** _ім'я_)
+| Коли ця помилка виникає у функції, ця функція має резервну реалізацію, але не має інших станів. Якщо помилка стосується змінної, ця змінна не має списку станів між символами < і >. Замість неї використовуйте функцію без станів і змінну ir.                                                                                                                                                                                           |
+| 086 | **невідома назва автомата** | ¦ ¦ ¦ ¦ ¦ ¦ ¦
+| Оператор "стан" посилається на невідомий автомат.                                                                                                                                                                                                                                                                                                                                                                                                             |
+| 087 | **Невідома назва стану для назви автомата**
+| Оператор "стан" посилається на невідомий стан (для вказаного автомата).                                                                                                                                                                                                                                                                                                                                                                                   |
+| 088 | | Загальнодоступні та локальні змінні можуть не мати станів**(**символ** _ім'я_)
+| Тільки стандартні (глобальні) змінні можуть мати список станів (і автомат) в кінці оголошення.                                                                                                                                                                                                                                                                                                                                                        |
+089 | Змінні зі списком станів не можна ініціалізувати** (**символ** _ім'я_) | | | Змінні зі списком станів можна не ініціалізувати.
+| Змінні зі списком станів можуть не мати ініціалізаторів. Змінні стану завжди слід явно ініціалізувати, оскільки їхнє початкове значення є невизначеним.                                                                                                                                                                                                                                                                                                 |
+090 | | **загальнодоступні функції не можуть повертати масиви** (**символ** _ім'я_) | ¦ ¦ ¦(**символ** _ім'я_)
+| | | Загальнодоступна функція не може повертати масив. Повернення масивів дозволено лише для звичайних функцій.                                                                                                                                                                                                                                                                                                                                                                 |
 
-### • Fatal Errors
+### - Фатальні помилки
 
-| Number | Description                                                                                                                                                                                                                                                                                                                           |
+| Номер |Опис |Опис
 | ------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| 100    | **cannot read from file:** _filename_                                                                                                                                                                                                                                                                                                 |
-|        | The compiler cannot find the specified file or does not have access to it.                                                                                                                                                                                                                                                            |
-| 101    | **cannot write to file:** _filename_                                                                                                                                                                                                                                                                                                  |
-|        | The compiler cannot write to the specified output file, probably caused by insufficient disk space or restricted access rights (the file could be read-only, for example).                                                                                                                                                            |
-| 102    | **table overflow:** _table name_                                                                                                                                                                                                                                                                                                      |
-|        | An internal table in the pawn parser is too small to hold the required data. Some tables are dynamically growable, which means that there was insufficient memory to resize the table. The “table name” is one of the following:                                                                                                      |
-|        | “staging buffer”: the staging buffer holds the code generated for an expression before it is passed to the peephole optimizer. The staging buffer grows dynamically, so an overflow of the staging buffer basically is an “out of memory” error.                                                                                      |
-|        | “loop table”: the loop table is a stack used with nested do, for, and while statements. The table allows nesting of these statements up to 24 levels.                                                                                                                                                                                 |
-|        | “literal table”: this table keeps the literal constants (numbers, strings) that are used in expressions and as initiallers for arrays. The literal table grows dynamically, so an overflow of the literal table basically is an “out of memory” error.                                                                                |
-|        | “compiler stack”: the compiler uses a stack to store temporary information it needs while parsing. An overflow of this stack is probably caused by deeply nested (or recursive) file inclusion. The compiler stack grows dynamically, so an overflow of the compiler stack basically is an “out of memory” error.                     |
-|        | “option table”: in case that there are more options on the command line or in the response file than the compiler can cope with.                                                                                                                                                                                                      |
-| 103    | **insufficient memory**                                                                                                                                                                                                                                                                                                               |
-|        | General “out of memory” error.                                                                                                                                                                                                                                                                                                        |
-| 104    | **invalid assembler instruction symbol**                                                                                                                                                                                                                                                                                              |
-|        | An invalid opcode in an #emit directive.                                                                                                                                                                                                                                                                                              |
-| 105    | **numeric overflow, exceeding capacity**                                                                                                                                                                                                                                                                                              |
-|        | A numeric constant, notably a dimension of an array, is too large for the compiler to handle. For example, when compiled as a 16-bit application, the compiler cannot handle arrays with more than 32767 elements.                                                                                                                    |
-| 106    | **compiled script exceeds the maximum memory size** (_number_ **bytes**)                                                                                                                                                                                                                                                              |
-|        | The memory size for the abstract machine that is needed to run the script exceeds the value set with #pragma amxlimit. This means that the script is too large to be supported by the host. You might try reducing the script’s memory requirements by:                                                                               |
-|        | - setting a smaller stack/heap area —see #pragma dynamic at page 121;                                                                                                                                                                                                                                                                 |
-|        | - using packed strings instead of unpacked strings —see pages 99 and 137;                                                                                                                                                                                                                                                             |
-|        | - putting repeated code in separate functions;                                                                                                                                                                                                                                                                                        |
-|        | - putting repeated data (strings) in global variables;                                                                                                                                                                                                                                                                                |
-|        | - trying to find more compact algorithms to perform the same task.                                                                                                                                                                                                                                                                    |
-| 107    | **too many error/warning messages on one line**                                                                                                                                                                                                                                                                                       |
-|        | A single line that causes several error/warning messages is often an indication that the pawn parser is unable to “recover” from an earlier error. In this situation, the parser is unlikely to make any sense of the source code that follows —producing only (more) inappropriate error messages. Therefore, compilation is halted. |
-| 108    | **codepage mapping file not found**                                                                                                                                                                                                                                                                                                   |
-|        | The file for the codepage translation that was specified with the -c compiler option or the #pragma codepage directive could not be loaded.                                                                                                                                                                                           |
-| 109    | **invalid path:** _path name_                                                                                                                                                                                                                                                                                                         |
-|        | A path, for example for include files or codepage files, is invalid.                                                                                                                                                                                                                                                                  |
-| 110    | **assertion failed:** _expression_                                                                                                                                                                                                                                                                                                    |
-|        | Compile-time assertion failed.                                                                                                                                                                                                                                                                                                        |
-| 111    | **user error:** _message_                                                                                                                                                                                                                                                                                                             |
-|        | The parser fell on an #error directive.                                                                                                                                                                                                                                                                                               |
+| 100 | **неможливо прочитати з файлу:** _ім'я_ файлу
+| Компілятор не може знайти вказаний файл або не має до нього доступу.                                                                                                                                                                                                                                                            |
+101 | **не вдається записати до файлу:** _ім'я_файлу_ | | ¦ ¦Компілятор не може знайти вказаний файл і не має до нього доступу.
+| Компілятор не може записати до вказаного вихідного файлу, ймовірно, через брак місця на диску або обмежені права доступу (наприклад, файл може бути доступним лише для читання).                                                                                                                                                            |
+| 102 | **переповнення таблиці:** _ім'я_таблиці
+| Внутрішня таблиця у синтаксичному аналізаторі замала для зберігання необхідних даних. Деякі таблиці є динамічно зростаючими, що означає, що для зміни розміру таблиці не вистачило пам'яті. "Ім'я таблиці" має один з наступних значень:                                                                                                      |
+| | "буфер очікування": у буфері очікування зберігається код, згенерований для виразу, перш ніж його буде передано оптимізатору вічка. Буфер обробки збільшується динамічно, тому переповнення буфера обробки в основному є помилкою "нестачі пам'яті".                                                                                      |
+| "таблиця циклів": таблиця циклів - це стек, який використовується з вкладеними операторами do, for та while. Таблиця дозволяє вкладати ці оператори до 24 рівнів.                                                                                                                                                                                 |
+| "таблиця літералів": у цій таблиці зберігаються літеральні константи (числа, рядки), які використовуються у виразах і як ініціалізатори для масивів. Таблиця літералів росте динамічно, тому переповнення таблиці літералів в основному є помилкою "за межами пам'яті".                                                                                |
+| "стек компілятора": компілятор використовує стек для зберігання тимчасової інформації, необхідної йому під час синтаксичного аналізу. Переповнення цього стеку, ймовірно, спричинене глибоко вкладеним (або рекурсивним) включенням файлів. Стек компілятора зростає динамічно, тому переповнення стека компілятора, в основному, є помилкою "нестачі пам'яті".                     |
+| "Таблиця опцій": у випадку, якщо у командному рядку або у файлі-відповіді є більше опцій, ніж може обробити компілятор.                                                                                                                                                                                                      |
+| Недостатньо пам'яті*******************************************************.
+| Загальна помилка "не вистачає пам'яті".                                                                                                                                                                                                                                                                                                        |
+104 | **Неправильний символ інструкції асемблера** | **Неправильний символ інструкції асемблера** | **Неправильний код операції.
+| Неправильний операційний код у директиві #emit.                                                                                                                                                                                                                                                                                              |
+| 105 Числове переповнення, переповнення пам'яті.
+| Числова константа, зокрема розмірність масиву, занадто велика для компілятора. Наприклад, при компіляції 16-бітної програми компілятор не може обробляти масиви з більш ніж 32767 елементами.                                                                                                                    |
+| 106 | **Скомпільований скрипт перевищує максимальний розмір пам'яті** (_кількість_ **байт**)
+| Розмір пам'яті для абстрактної машини, необхідний для виконання скрипта, перевищує значення, встановлене за допомогою #pragma amxlimit. Це означає, що скрипт занадто великий для підтримки хостом. Ви можете спробувати зменшити вимоги до пам'яті скрипта за допомогою                                                                               |
+| | | - встановлення меншої області стеку/купки - див. розділ #pragma dynamic на сторінці 121; | | - використання упакованих рядків
+| використання запакованих рядків замість розпакованих - див. сторінки 99 і 137; | | - використання повторюваних рядків
+винесення коду, що повторюється, в окремі функції; | | | - винесення коду, що повторюється, в окремі функції
+винесення даних (рядків), що повторюються, у глобальні змінні; | | | - намагання знайти більш компактні способи винесення даних, що повторюються, у глобальні змінні
+| намагання знайти більш компактні алгоритми для виконання тієї самої задачі.                                                                                                                                                                                                                                                                    |
+| Занадто багато повідомлень про помилки/попередження в одному рядку
+| Один рядок, який викликає декілька повідомлень про помилки/попереджень, часто є ознакою того, що синтаксичний аналізатор не може "оговтатися" від попередньої помилки. У такій ситуації синтаксичний аналізатор навряд чи зможе розібратися з наступним вихідним кодом, видаючи лише (ще більше) невідповідних повідомлень про помилки. Тому компіляцію буде зупинено. |
+| 108 | **файл зіставлення кодових сторінок не знайдено**
+| Не вдалося завантажити файл перекладу кодових сторінок, який було вказано за допомогою опції компілятора -c або директиви #pragma codepage.                                                                                                                                                                                           |
+Невірний шлях:** _ім'я_ шляху_ | 109 | **неправильний шлях:** _ім'я_ шляху_ | ¦ ¦ ¦ ¦ ¦ ¦ ¦ ¦ ¦ ¦ ¦ ¦
+| Невірно вказано шлях, наприклад, до файлів включення або файлів кодових сторінок.                                                                                                                                                                                                                                                                  |
+| 110 | **не вдалося виконати перевірку:** _вираз_.
+| Не вдалося виконати перевірку під час компіляції.                                                                                                                                                                                                                                                                                                        |
+111 | | Помилка користувача:| _повідомлення_ | ¦ ¦Падіння синтаксичного аналізатора.
+| Синтаксичний аналізатор потрапив на директиву #error.                                                                                                                                                                                                                                                                                               |
 
-### • Warnings
+### Попередження
 
-| Number | Description                                                                                                                                                                                                                                                                                                                                                                                                    |
+| Номер |Опис |Опис
 | ------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| 200    | **symbol is truncated to** _number_ **characters**                                                                                                                                                                                                                                                                                                                                                             |
-|        | The symbol is longer than the maximum symbol length. The maximum length of a symbol depends on wether the symbol is native, public or neither. Truncation may cause different symbol names to become equal, which may cause error 021 or warning 219.                                                                                                                                                          |
-| 201    | **redefinition of constant/macro** (**symbol** _name_)                                                                                                                                                                                                                                                                                                                                                         |
-|        | The symbol was previously defined to a different value, or the text substitution macro that starts with the prefix name was redefined with a different substitution text.                                                                                                                                                                                                                                      |
-| 202    | **number of arguments does not match definition**                                                                                                                                                                                                                                                                                                                                                              |
-|        | At a function call, the number of arguments passed to the function (actual arguments) differs from the number of formal arguments declared in the function heading. To declare functions with variable argument lists, use an ellipsis (...) behind the last known argument in the function heading; for example: print(formatstring,...); (see page 80).                                                      |
-| 203    | **symbol is never used:** _identifier_                                                                                                                                                                                                                                                                                                                                                                         |
-|        | A symbol is defined but never used. Public functions are excluded from the symbol usage check (since these may be called from the outside).                                                                                                                                                                                                                                                                    |
-| 204    | **symbol is assigned a value that is never used:** _identifier_                                                                                                                                                                                                                                                                                                                                                |
-|        | A value is assigned to a symbol, but the contents of the symbol are never accessed.                                                                                                                                                                                                                                                                                                                            |
-| 205    | **redundant code: constant expression is zero**                                                                                                                                                                                                                                                                                                                                                                |
-|        | Where a conditional expression was expected, a constant expression with the value zero was found, e.g. “while (0)” or “if (0)”.                                                                                                                                                                                                                                                                                |
-|        | The the conditional code below the test is never executed, and it is therefore redundant.                                                                                                                                                                                                                                                                                                                      |
-| 206    | **redundant test: constant expression is non-zero**                                                                                                                                                                                                                                                                                                                                                            |
-|        | Where a conditional expression was expected, a constant expression with a non-zero value was found, e.g. if (1). The test is redundant, because the conditional code is always executed.                                                                                                                                                                                                                       |
-| 207    | **unknown “#pragma”**                                                                                                                                                                                                                                                                                                                                                                                          |
-|        | The compiler ignores the pragma. The #pragma directives may change between compilers of different vendors and between different versions of a compiler of the same version.                                                                                                                                                                                                                                    |
-| 208    | **function with tag result used before definition, forcing reparse**                                                                                                                                                                                                                                                                                                                                           |
-|        | When a function is “used” (invoked) before being declared, and that function returns a value with a tag name, the parser must make an extra pass over the source code, because the presence of the tag name may change the interpretation of operators (in the presence of user-defined operators). You can speed up the parsing/compilation process by declaring the relevant functions before using them.    |
-| 209    | **function should return a value**                                                                                                                                                                                                                                                                                                                                                                             |
-|        | The function does not have a return statement, or it does not have an expression behind the return statement, but the function’s result is used in a expression.                                                                                                                                                                                                                                               |
-| 210    | **possible use of symbol before initialization:** _identifier_                                                                                                                                                                                                                                                                                                                                                 |
-|        | A local (uninitialized) variable appears to be read before a value is assigned to it. The compiler cannot determine the actual order of reading from and storing into variables and bases its assumption of the execution order on the physical appearance order of statements an expressions in the source file.                                                                                              |
-| 211    | **possibly unintended assignment**                                                                                                                                                                                                                                                                                                                                                                             |
-|        | Where a conditional expression was expected, the assignment operator (=) was found instead of the equality operator (==). As this is a frequent mistake, the compiler issues a warning. To avoid this message, put parentheses around the expression, e.g. if ( (a=2) ).                                                                                                                                       |
-| 212    | **possibly unintended bitwise operation**                                                                                                                                                                                                                                                                                                                                                                      |
-|        | Where a conditional expression was expected, a bitwise operator (& or \|) was found instead of a Boolean operator (&& or \|\|). In situations where a bitwise operation seems unlikely, the compiler issues this warning. To avoid this message, put parentheses around the expression.                                                                                                                        |
-| 213    | **tag mismatch**                                                                                                                                                                                                                                                                                                                                                                                               |
-|        | A tag mismatch occurs when:                                                                                                                                                                                                                                                                                                                                                                                    |
-|        | - assigning to a tagged variable a value that is untagged or that has a different tag                                                                                                                                                                                                                                                                                                                          |
-|        | - the expressions on either side of a binary operator have different tags                                                                                                                                                                                                                                                                                                                                      |
-|        | - in a function call, passing an argument that is untagged or that has a different tag than what the function argument was defined with                                                                                                                                                                                                                                                                        |
-|        | - indexing an array which requires a tagged index with no tag or a wrong tag name                                                                                                                                                                                                                                                                                                                              |
-| 214    | **possibly a “const” array argument was intended:** _identifier_                                                                                                                                                                                                                                                                                                                                               |
-|        | Arrays are always passed by reference. If a function does not modify the array argument, however, the compiler can sometimes generate more compact and quicker code if the array argument is specifically marked as “const”.                                                                                                                                                                                   |
-| 215    | **expression has no effect**                                                                                                                                                                                                                                                                                                                                                                                   |
-|        | The result of the expression is apparently not stored in a variable or used in a test. The expression or expression statement is therefore redundant.                                                                                                                                                                                                                                                          |
-| 216    | **nested comment**                                                                                                                                                                                                                                                                                                                                                                                             |
-|        | PAWN does not support nested comments.                                                                                                                                                                                                                                                                                                                                                                         |
-| 217    | **loose indentation**                                                                                                                                                                                                                                                                                                                                                                                          |
-|        | Statements at the same logical level do not start in the same column; that is, the indents of the statements are different. Although pawn is a free format language, loose indentation frequently hides a logical error in the control flow.                                                                                                                                                                   |
-|        | The compiler can also incorrectly assume loose indentation if the tab size with which you indented the source code differs from the assumed size, see #pragma tabsize on page 122 or the compiler option -t on page 169.                                                                                                                                                                                       |
-| 218    | **old style prototypes used with optional semicolon**                                                                                                                                                                                                                                                                                                                                                          |
-|        | When using “optional semicolons”, it is preferred to explicitly declare forward functions with the forward keyword than using terminating semicolon.                                                                                                                                                                                                                                                           |
-| 219    | **local variable identifier shadows a symbol at a preceding level**                                                                                                                                                                                                                                                                                                                                            |
-|        | A local variable has the same name as a global variable, a function, a function argument, or a local variable at a lower precedence level. This is called “shadowing”, as the new local variable makes the previously defined function or variable inaccessible.                                                                                                                                               |
-|        | Note: if there are also error messages further on in the script about missing variables (with these same names) or brace level problems, it could well be that the shadowing warnings are due to these syntactical and sematical errors. Fix the errors first before looking at the shadowing warnings.                                                                                                        |
-| 220    | **expression with tag override must appear between parentheses**                                                                                                                                                                                                                                                                                                                                               |
-|        | In a case statement and in expressions in the conditional operator (“ ? : ”), any expression that has a tag override should be enclosed between parentheses, to avoid the colon to be misinterpreted as a separator of the case statement or as part of the conditional operator.                                                                                                                              |
-| 221    | **label name identifier shadows tag name**                                                                                                                                                                                                                                                                                                                                                                     |
-|        | A code label (for the goto instruction) has the same name as a previously defined tag. This may indicate a faultily applied tag override; a typical case is an attempt to apply a tag override on the variable on the left of the = operator in an assignment statement.                                                                                                                                       |
-| 222    | **number of digits exceeds rational number precision**                                                                                                                                                                                                                                                                                                                                                         |
-|        | A literal rational number has more decimals in its fractional part than the precision of a rational number supports. The remaining decimals are ignored.                                                                                                                                                                                                                                                       |
-| 223    | **redundant “sizeof ”: argument size is always 1** (**symbol** _name_)                                                                                                                                                                                                                                                                                                                                         |
-|        | A function argument has a as its default value the size of another argument of the same function. The “sizeof” default value is only useful when the size of the referred argument is unspecified in the declaration of the function; i.e., if the referred argument is an array.                                                                                                                              |
-| 224    | **indeterminate array size in “sizeof ” expression** (**symbol** _name_)                                                                                                                                                                                                                                                                                                                                       |
-|        | The operand of the sizeof operator is an array with an unspecified size. That is, the size of the variable cannot be determined at compile time. If used in an “if” instruction, consider a conditionally compiled section, replacing if by #if.                                                                                                                                                               |
-| 225    | **unreachable code**                                                                                                                                                                                                                                                                                                                                                                                           |
-|        | The indicated code will never run, because an instruction before (above) it causes a jump out of the function, out of a loop or elsewhere. Look for return, break, continue and goto instructions above the indicated line.                                                                                                                                                                                    |
-| 226    | **a variable is assigned to itself** (**symbol** _name_)                                                                                                                                                                                                                                                                                                                                                       |
-|        | There is a statement like “x = x” in the code. The parser checks for self assignments after performing any text and constant substitutions, so the left and right sides of an assignment may appear to be different at first sight. For example, if the symbol “TWO” is a constant with the value 2, then “var[TWO] = var[2]” is also a self-assignment.                                                       |
-|        | Self-assignments are, of course, redundant, and they may hide an error (assignment to the wrong variable, error in declaring constants).                                                                                                                                                                                                                                                                       |
-|        | Note that the pawn parser is limited to performing “static checks” only. In this case it means that it can only compare array assignments for self-assignment with constant array indices.                                                                                                                                                                                                                     |
-| 227    | **more initiallers than enum fields**                                                                                                                                                                                                                                                                                                                                                                          |
-|        | An array whose size is declared with an enum symbol contains more values/fields as initiallers than the enumeration defines.                                                                                                                                                                                                                                                                                   |
-| 228    | **length of initialler exceeds size of the enum field**                                                                                                                                                                                                                                                                                                                                                        |
-|        | An array whose size is declared with an enum symbol, and the relevant enumeration field has a size. The initialler in the array contains more values than the size of the enumeration field allows.                                                                                                                                                                                                            |
-| 229    | **index tag mismatch** (**symbol** _name_)                                                                                                                                                                                                                                                                                                                                                                     |
-|        | When indexing an array, the expression used as the index has a different tag than what the one in the declaration of the array. See pages 29 and 68 for an explanation and examples.                                                                                                                                                                                                                           |
-| 230    | **no implementation for state** _name_ **in function** _name_ **, no fall-back**                                                                                                                                                                                                                                                                                                                               |
-|        | A function is lacking an implementation for the indicated state. The compiler cannot (statically) check whether the function will ever be called in that state, and therefore it issues this warning. When the function would be called for the state for which no implementation exists, the abstract machine aborts with a run time error.                                                                   |
-|        | See page 83 on how to specify a fall-back function, and page 44 for a description and an example.                                                                                                                                                                                                                                                                                                              |
-| 231    | **state specification on forward declaration is ignored**                                                                                                                                                                                                                                                                                                                                                      |
-|        | A state specification is redundant on forward declarations. The function signature must be equal for all states. Only the implementations of the function are state-specific.                                                                                                                                                                                                                                  |
-| 232    | **compaction buffer overflow**                                                                                                                                                                                                                                                                                                                                                                                 |
-|        | Compact encoding may in some particular cases result in files that would actually be bigger than the non-compact encoding. The abstract machine cannot handle this, as it unpacks the P-code “in place”. When the compiler deticts this situation, it re-builds the file with compact encoding switched off. To avoid this warning, force building the file with plain (“non-compact”) encoding —see page 120. |
-| 233    | **state variable name shadows a global variable**                                                                                                                                                                                                                                                                                                                                                              |
-|        | The state variable has the same name as a global variable (without state specifiers). This means that the global variable is inaccessible for a function with one of the same states as those of the variable.                                                                                                                                                                                                 |
-| 234    | **function is depricated** (**symbol** _name_)                                                                                                                                                                                                                                                                                                                                                                 |
-|        | The script uses a function which as marked as “depricated”. The host application can mark (native) functions as depricated when better alternatives for the function are available or if the function may not be supported in future versions of the host application.                                                                                                                                         |
-| 235    | **call to undeclared public function** (**symbol** _name_)                                                                                                                                                                                                                                                                                                                                                     |
-|        | The script defines a public function, but no forward declaration of this function is present. Possibly the function name was written incorrectly. The requirement for forward declarations of public functions guards against a common error.                                                                                                                                                                  |
-| 236    | **unknown parameter in substitution (incorrect #define pattern)**                                                                                                                                                                                                                                                                                                                                              |
-|        | A #define pattern contains a parameter in the replacement (e.g. “%1”, but one in the match pattern. See page 93 for the preprocessor syntax.                                                                                                                                                                                                                                                                   |
+200 | **символ урізано до** _кількість_ **символів** | | символ урізано до**_кількість_ **символів** | | символ урізано до
+| Символ довший за максимальну довжину символу. Максимальна довжина символу залежить від того, чи є символ власним, загальнодоступним або ні тим, ні іншим. Усічення може призвести до того, що різні назви символів стануть однаковими, що може спричинити помилку 021 або попередження 219.                                                                                                                                                          |
+| 201 |** перевизначення константи/макросу**(**символ** _ім'я_)
+| Символ раніше було визначено з іншим значенням, або макрос підстановки тексту, який починається з імені префікса, було перевизначено з іншим текстом підстановки.                                                                                                                                                                                                                                      |
+202 | **Кількість аргументів не відповідає визначенню** | | | При виклику функції
+| Під час виклику функції кількість переданих у функцію аргументів (фактичних аргументів) відрізняється від кількості формальних аргументів, оголошених у заголовку функції. Для оголошення функцій зі змінними списками аргументів використовуйте еліпсис (...) за останнім відомим аргументом у заголовку функції, наприклад: print(formatstring,...); (див. стор. 80).                                                      |
+| 203 | **символ ніколи не використовується:** _ідентифікатор_ | | | символ визначено, але він ніколи не використовується.
+| Символ визначено, але він ніколи не використовується. Загальнодоступні функції виключено з перевірки використання символів (оскільки їх можна викликати ззовні).                                                                                                                                                                                                                                                                    |
+204 | | Символу присвоюється значення, яке ніколи не використовується:** _ідентифікатор_ | | | Символу присвоюється значення, яке ніколи не використовується.
+| Символу присвоюється значення, але доступ до вмісту символу ніколи не здійснюється.                                                                                                                                                                                                                                                                                                                            |
+| 205 | **надлишковий код: константний вираз дорівнює нулю**
+| Там, де очікувався умовний вираз, знайдено константний вираз зі значенням нуль, наприклад, "while (0)" або "if (0)".                                                                                                                                                                                                                                                                                |
+| Умовний код під тестом ніколи не виконується, тому він є надлишковим.                                                                                                                                                                                                                                                                                                                      |
+| 206 | **Надлишковий тест: константний вираз не дорівнює нулю**
+| Там, де очікується умовний вираз, знайдено константний вираз з ненульовим значенням, наприклад, якщо (1). Тест є надлишковим, оскільки умовний код завжди виконується.                                                                                                                                                                                                                       |
+207 | | **невідомий "#pragma "** | ¦ ¦ ¦ ¦ ¦ ¦ ¦ ¦ ¦ ¦ ¦ ¦
+| Компілятор ігнорує прагму. Директиви #pragma можуть змінюватися між компіляторами різних виробників та між різними версіями компілятора однієї версії.                                                                                                                                                                                                                                    |
+208 | **Функція з тегом result використовується перед визначенням, примушуючи до виправлення** | _Функція з тегом result використовується перед визначенням, примушуючи до виправлення_*| _Функція
+| Якщо функція "використовується" (викликається) до її оголошення, і ця функція повертає значення з іменем тегу, синтаксичний аналізатор повинен зробити додатковий прохід по вихідному коду, оскільки наявність імені тегу може змінити інтерпретацію операторів (за наявності операторів, визначених користувачем). Ви можете прискорити процес синтаксичного аналізу/компіляції, оголошуючи відповідні функції перед їх використанням.    |
+209 | **функція повинна повертати значення** | | Функція повинна повертати значення
+| Функція не має оператора повернення або не має виразу за оператором повернення, але результат функції використовується у виразі.                                                                                                                                                                                                                                               |
+210 | | **можливе використання символу перед ініціалізацією:** _ідентифікатор_ | ¦ ¦ ¦ ¦
+| Здається, що локальна (неініціалізована) змінна зчитується до того, як їй присвоюється значення. Компілятор не може визначити дійсний порядок читання зі змінних та запису до них і базує своє припущення про порядок виконання на фізичному порядку розташування операторів та виразів у вихідному файлі.                                                                                              |
+| 211 | **можливе ненавмисне присвоювання**
+| Там, де очікувався умовний вираз, було знайдено оператор присвоювання (=) замість оператора рівності (==). Оскільки це поширена помилка, компілятор видає попередження. Щоб уникнути цього повідомлення, візьміть вираз у круглі дужки, наприклад, if ( (a=2) ).                                                                                                                                       |
+| 212 | **можливо, непередбачувана побітова операція** |.
+| Там, де очікувався умовний вираз, замість булевого оператора (& або \|) було знайдено побітову операцію (&& або \|\|). У ситуаціях, коли побітова операція здається малоймовірною, компілятор видає це попередження. Щоб уникнути цього повідомлення, візьміть вираз у круглі дужки.                                                                                                                        |
+| 213 | **невідповідність тегів** | ¦ ¦ ¦ ¦ ¦ ¦ ¦ ¦ ¦ ¦
+| Невідповідність тегів виникає, коли:                                                                                                                                                                                                                                                                                                                                                                                    |
+присвоєння змінній з тегом значення, яке не є тегом або має інший тег | | | - присвоєння змінній з тегом значення, яке не є тегом
+| вирази по обидві сторони бінарного оператора мають різні теги
+| | | - у виклику функції передача аргументу, що не має тегу або має інший тег, ніж той, з яким аргумент функції був визначений | | | - індексація масиву, що не має тегу, або має інший тег
+індексування масиву, який потребує індексу з міткою, без мітки або з неправильним ім'ям мітки | | | - індексування масиву, який потребує індексу без мітки або з неправильною міткою
+214 | **можливо, мався на увазі аргумент масиву типу "const":** _ідентифікатор_ | | - індексація масиву без тегу або з неправильним іменем тегу.
+| Масиви завжди передаються за посиланням. Однак, якщо функція не змінює аргумент масиву, компілятор іноді може згенерувати компактніший і швидший код, якщо аргумент масиву спеціально позначити як "const".                                                                                                                                                                                   |
+| 215 | **вираз не має ефекту** | **вираз не має ефекту**
+| Результат виразу, очевидно, не зберігається у змінній і не використовується у тесті. Тому вираз або інструкція виразу є надлишковою.                                                                                                                                                                                                                                                          |
+| 216 | **вкладений коментар**
+| PAWN не підтримує вкладені коментарі.                                                                                                                                                                                                                                                                                                                                                                         |
+| 217 вільний відступ
+| Оператори на одному логічному рівні не починаються в одному стовпчику, тобто відступи операторів різні. Хоча pawn є мовою вільного формату, вільний відступ часто приховує логічну помилку у потоці керування.                                                                                                                                                                   |
+| | | Компілятор також може помилково припустити вільний відступ, якщо розмір табуляції, за допомогою якого ви робили відступи у вихідному коді, відрізняється від передбачуваного розміру, див. розділ #pragma tabsize на сторінці 122 або параметр компілятора -t на сторінці 169.                                                                                                                                                                                       |
+| 218 | **Прототипи старого стилю використовуються з необов'язковою крапкою з комою** | **Прототипи старого стилю використовуються з необов'язковою крапкою з комою**
+| При використанні "необов'язкової крапки з комою" бажано явно оголошувати прямі функції за допомогою ключового слова forward, а не використовувати завершальну крапку з комою.                                                                                                                                                                                                                                                           |
+219 | **Ідентифікатор локальної змінної затінює символ на попередньому рівні** | | _Ідентифікатор локальної змінної затінює символ на попередньому рівні__ | _Ідентифікатор локальної змінної
+| Локальна змінна має те саме ім'я, що й глобальна змінна, функція, аргумент функції або локальна змінна на нижчому рівні пріоритету. Це називається "затіненням", оскільки нова локальна змінна робить попередньо визначену функцію або змінну недоступною.                                                                                                                                               |
+| Примітка: якщо далі у скрипті також з'являються повідомлення про помилки щодо відсутніх змінних (з такими самими іменами) або проблем на рівні фігурних дужок, цілком можливо, що попередження про затінення пов'язані з цими синтаксичними та семантичними помилками. Виправте помилки перед тим, як звертати увагу на попередження про затінення.                                                                                                        |
+220 | | **вираз із перевизначенням тегів має міститися у круглих дужках** |.
+| У операторі case та у виразах в умовному операторі (" ? : ") будь-який вираз, що має перевизначення тегу, слід брати у круглі дужки, щоб двокрапка не була неправильно інтерпретована як роздільник оператора case або як частина умовного оператора.                                                                                                                              |
+221 | | **ім'я мітки ідентифікатор тіні ім'я мітки** | | _ім'я мітки__ _ім'я мітки_*
+| Кодова мітка (для інструкції goto) має ту саму назву, що й попередньо визначена мітка. Це може свідчити про помилкове перевизначення мітки; типовим випадком є спроба застосувати перевизначення мітки до змінної ліворуч від оператора = в операторі присвоювання.                                                                                                                                       |
+| 222 | **кількість цифр перевищує точність раціонального числа** | **кількість цифр перевищує точність раціонального числа
+| Буквальне раціональне число має у дробовій частині більше десяткових знаків, ніж підтримує точність раціонального числа. Решта десяткових знаків ігнорується.                                                                                                                                                                                                                                                       |
+| 223 | **надлишковий "sizeof ": розмір аргументу завжди дорівнює 1** (**символ** _ім'я_)
+| | | Аргумент функції має значення за замовчуванням, рівне розміру іншого аргументу тієї самої функції. Значення за замовчуванням "sizeof" корисне лише тоді, коли розмір аргументу, на який посилається функція, не вказано в оголошенні функції; тобто, якщо аргумент, на який посилається функція, є масивом.                                                                                                                              |
+| 224 | **невизначений розмір масиву у виразі sizeof** (**символ** _ім'я_)
+| Операндом оператора sizeof є масив з невизначеним розміром. Тобто, розмір змінної не може бути визначений під час компіляції. Якщо використовується в інструкції if, розглянемо умовно скомпільовану секцію, замінивши if на #if.                                                                                                                                                               |
+| 225 | **недосяжний код** | ¦ ¦ ¦ ¦ ¦ ¦ ¦ ¦
+| Вказаний код ніколи не буде виконаний, тому що інструкція, яка стоїть перед ним (вище), спричиняє вихід з функції, з циклу або деінде. Шукайте інструкції return, break, continue та goto вище вказаного рядка.                                                                                                                                                                                    |
+| 226 | **змінна присвоюється сама собі** (**символ** _ім'я_)
+| У коді зустрічається інструкція на кшталт "x = x". Синтаксичний аналізатор перевіряє присвоєння після виконання будь-яких текстових і константних підстановок, тому ліва і права частини присвоєння на перший погляд можуть відрізнятися. Наприклад, якщо символ "TWO" є константою зі значенням 2, то "var[TWO] = var[2]" також є самоприсвоєнням.                                                       |
+| Звичайно, самоприсвоєння є надлишковим і може приховувати помилку (присвоєння не тій змінній, помилка в оголошенні констант).                                                                                                                                                                                                                                                                       |
+| Зауважте, що синтаксичний аналізатор пішаків обмежений виконанням лише "статичних перевірок". У даному випадку це означає, що він може порівнювати тільки присвоєння масивів для самоприсвоєння з константними індексами масивів.                                                                                                                                                                                                                     |
+| більше ініціалізаторів, ніж зчислювальних полів*****.
+| Масив, розмір якого оголошено зі зчисленням, містить більше значень/полів як ініціалізаторів, ніж визначено у зчисленні.                                                                                                                                                                                                                                                                                   |
+228 | **Довжина ініціалізатора перевищує розмір поля перечислення** | | ¦Довжина ініціалізатора перевищує розмір поля перечислення
+| Масив, розмір якого оголошено за допомогою символу enum, а відповідне поле перечислення має розмір. Ініціалізатор у масиві містить більше значень, ніж дозволяє розмір поля перечислення.                                                                                                                                                                                                            |
+| 229 | **Невідповідність тегу індексації** (**символ** _ім'я_)
+| Під час індексування масиву вираз, що використовується як індекс, має іншу мітку, ніж та, що вказана в оголошенні масиву. Пояснення та приклади див. на стор. 29 і 68.                                                                                                                                                                                                                           |
+| 230 | **не реалізовано стан** _ім'я_ **у функції** _ім'я_ **, не передбачено резервного коду** | ¦ ¦ ¦ ¦ ¦ ¦ ¦ ¦ ¦
+| Функція не має реалізації для вказаного стану. Компілятор не може (статично) перевірити, чи функцію буде викликано у цьому стані, і тому видає це попередження. Коли функцію буде викликано у стані, для якого не існує реалізації, абстрактна машина завершить роботу з помилкою під час виконання.                                                                   |
+| Про те, як вказати функцію відкату, дивіться на сторінці 83, а опис і приклад - на сторінці 44.                                                                                                                                                                                                                                                                                                              |
+231 | **Специфікацію стану при прямому оголошенні ігнорується** | | _Специфікацію стану при прямому оголошенні ігнорується_.
+| Специфікація стану є надлишковою у прямих оголошеннях. Сигнатура функції повинна бути однаковою для всіх станів. Тільки реалізації функції є специфічними для стану.                                                                                                                                                                                                                                  |
+| Переповнення буферу стиснення****
+| У деяких випадках компактне кодування може призвести до створення файлів, розмір яких буде більшим за розмір файлів у некомпактному кодуванні. Абстрактна машина не може впоратися з цим, оскільки вона розпаковує P-код "на місці". Коли компілятор виявляє таку ситуацію, він перезбирає файл з вимкненим компактним кодуванням. Щоб уникнути цього попередження, примусово збирайте файл у звичайному ("некомпактному") кодуванні - див. сторінку 120. |
+| Ім'я змінної стану затуляє собою глобальну змінну****.
+| Змінна стану має таку саму назву, як і глобальна змінна (без специфікаторів стану). Це означає, що глобальна змінна недоступна для функції з одним із тих самих станів, що й змінна.                                                                                                                                                                                                 |
+234 | **функція позбавлена значення** (**символ** _ім'я_) | ¦ 234 | **функція позбавлена значення** (**символ** _ім'я_) | ¦ 234
+| У скрипті використовується функція, яку позначено як "depricated". Основна програма може позначати (власні) функції як збіднені, якщо для них доступні кращі альтернативи або якщо функція може не підтримуватися у майбутніх версіях основної програми.                                                                                                                                         |
+| 235 | **виклик неоголошеної загальнодоступної функції** (**символ** _ім'я_)
+| У скрипті визначено загальнодоступну функцію, але немає прямого оголошення цієї функції. Можливо, ім'я функції записано невірно. Вимога прямого оголошення загальнодоступних функцій захищає від поширеної помилки.                                                                                                                                                                  |
+Невідомий параметр у підстановці (неправильний #define шаблон)** | 236 | **Невідомий параметр у підстановці (неправильний #define шаблон)** | ¦.
+| Шаблон #define містить параметр у заміні (наприклад, "%1"), але не містить параметра у шаблоні збігу. Синтаксис препроцесора описано на сторінці 93.
 
 ---
 
-`Pitfalls: 134`
+Пастки: 134`
 
-`Compound statement: 112`
+Складений вираз: 112`
 
-`Compound statement: 112`
+Складений вираз: 112`
 
-`Forward declaration: 82`
+`Передоплата за декларацію: 82
 
-`Symbol name syntax: 97`
+`Синтаксис імен символів: 97`
 
-`Escape sequence: 99`
+Послідовність втечі: 99`
 
-`Empty compound block: 112`
+`Порожній складений блок: 112`
 
-`Single line comment: 97`
+`Однорядковий коментар: 97`.
 
-`Named versus positional parameters: 74`
+`Іменовані проти позиційних параметрів: 74`
 
-`#pragma rational: 121`
+`#pragma rational: 121``.
 
-`Forward declaration: 82`
+`Передоплата за декларацію: 82
 
-`State specifiers: 83`
+`Специфікатори стану: 83`.
 
-`Fall-back: 83`
+`Відхилення: 83
 
-`See also #pragma`
+Дивіться також #pragma
 
-`amxlimit on page 119`
+`amxlimit на сторінці 119`
 
-`#pragma codepage: 120`
+`#pragma кодова сторінка: 120`
 
-`#assert directive: 117`
+`#assert directive: 117` `#assert directive: 117`
 
-`#error directive: 117`
+`#директива помилки: 117``.
 
-`User-defined operators: 86`
+`Користувацькі оператори: 86`
 
-`Forward declaration: 82`
+`Передоплата за декларацію: 82
 
-`Tags are discussed on page 68`
+`Теги обговорюються на сторінці 68
 
-`#if . . . #else . . . #endif: 117`
+Якщо... #else ... #endif: 117`
 
-`State specifiers: 83`
-
----
-
-## The compiler
+`Специфікатори стану: 83`
 
 ---
 
-Many applications that embed the PAWN scripting language use the stand-
-alone compiler that comes with the PAWN toolkit. The PAWN compiler is a
-command-line utility, meaning that you must run it from a “console window”,
-a terminal/shell, or a “DOS box” (depending on how your operating system calls it).
+## Компілятор
 
-### • Usage
+---
 
-Assuming that the command-line PAWN compiler is called “_pawncc_” (Unix/
-Linux) or “_pawncc.exe_” (DOS/Windows), the command line syntax is:
+Багато програм, які вбудовують мову сценаріїв PAWN, використовують окремий компілятор
+компілятор, який постачається з набором інструментів PAWN. Компілятор PAWN є утилітою
+утилітою командного рядка, що означає, що ви маєте запускати його з "вікна консолі",
+терміналу/оболонки або "вікна DOS" (залежно від того, як це називається у вашій операційній системі).
 
-    pawncc <filename> [more filenames...] [options]
+### - Використання
 
-The input file name is any legal filename. If no extension is given, “_.pawn_”
-or “.p” is assumed. The compiler creates an output file with, by default, the
-same name as the input file and the extension “.amx”.
+Припускаючи, що компілятор командного рядка PAWN називається "_pawncc_" (Unix/
+Linux) або "_pawncc.exe_" (DOS/Windows), синтаксис командного рядка буде таким:
 
-After switching to the directory with the sample programs, the command:
+    pawncc <ім'я файлу> [інші імена файлів...] [опції]
 
-    pawncc hello
+Ім'я вхідного файлу може бути довільним. Якщо розширення не вказано, вважається, що "_.pawn_"
+або ".p". Компілятор створює вихідний файл, який за замовчуванням має
+з таким самим ім'ям, як і вхідний файл, і розширенням ".amx".
 
-should compile the very first “hello world” example (page 5). Should, because
-the command implies that:
+Після переходу до каталогу зі зразками програм виконується команда:
 
-- the operating system can locate the “_pawncc_” program —you may need to add it to the search path;
+    pawncc привіт
 
-- the PAWN compiler is able to determine its own location in the file system so that it can locate the include files —a few operating systems do not support this and require that you use the -i option (see below).
+має скомпілювати найперший приклад "hello world" (сторінка 5). Слід, тому що
+команда передбачає це:
 
-### • Input file
+- операційна система може знайти програму "_pawncc_" - можливо, вам доведеться додати її до шляху пошуку;
 
-The input file for the PAWN compiler, the “source code” file for the  
-script/program, must be a plain text file. All reserved words and all symbol names
-(names for variables, functions, symbolic constants, tags, . . . ) must  
-use the ascii character set. Literal strings, i.e text between quotes, may be in
-extended ascii, such as one of the sets standardized in the ISO 8859 norm —ISO 8859-1
-is the well known “Latin 1” set.
+- компілятор PAWN може визначити власне розташування у файловій системі, щоб мати змогу знайти файли, що включаються - деякі операційні системи не підтримують цю можливість і вимагають використання опції -i (див. нижче).
 
-The PAWN compiler also supports UTF-8 encoded text files, which are practical
-in an environment based on Unicode or UCS-4. The PAWN compiler only
-recognizes UTF-8 encoded characters inside unpacked strings and character
-constants. The compiler interprets the syntax rules for UTF-8 files  
-strictly; non-conforming UTF-8 files are not recognized. The input file may have, but
-does not require, a “Byte Order Mark” signature; the compiler
-recognizes the UTF-8 format based on the file’s content.
+### - Вхідний файл
 
-### • Options
+Вхідним файлом для компілятора PAWN, файлом "вихідного коду" для
+скрипту/програми, має бути звичайним текстовим файлом. Усі зарезервовані слова і всі імена символів
+(імена змінних, функцій, символічних констант, тегів, ... ) повинні
+використовувати набір символів ascii. Літеральні рядки, тобто текст між лапками, можуть бути у
+розширеній кодуванні ascii, як, наприклад, один із наборів, стандартизованих у стандарті ISO 8859 - ISO 8859-1
+добре відомий набір "Latin 1".
 
-Options start with a dash (“-”) or, on Microsoft Windows and DOS, with a
-forward slash (“/”). In other words, all platforms accept an option written
-as “-a” (see below for the purpose of this option) and the  
-DOS/Windows platforms accept “/a” as an alternative way to write “-a”.
+Компілятор PAWN також підтримує текстові файли у кодуванні UTF-8, які зручно використовувати
+у середовищі, що базується на Unicode або UCS-4. Компілятор PAWN лише
+розпізнає символи у кодуванні UTF-8 всередині нерозпакованих рядків і символьних
+константи. Компілятор інтерпретує правила синтаксису для файлів у кодуванні UTF-8
+строго; файли, що не відповідають правилам UTF-8, не розпізнаються. Вхідний файл може мати, але
+не вимагається, підпис "Знак порядку байт"; компілятор
+розпізнає формат UTF-8 на основі вмісту файлу.
 
-All options should be separated by at least one space.
+### - Опції
 
-Many options accept a value —which is sometimes mandatory. A value may be
-separated from the option letter by a colon or an equal sign (a “:” and a “=”
-respectively), or the value may be glued to the option letter. Three equivalent
-options to set the debug level to two are thus:
+Параметри починаються з тире ("-") або, у Microsoft Windows і DOS, з
+прямої похилої риски ("/"). Іншими словами, всі платформи приймають опцію, записану у вигляді
+у вигляді "-a" (див. нижче призначення цього параметра), а платформи
+DOS/Windows приймають "/a" як альтернативу "-a".
+
+Всі варіанти повинні бути відокремлені принаймні одним пробілом.
+
+Багато варіантів приймають значення, яке іноді є обов'язковим. Значення може бути
+відокремлене від літери опції двокрапкою або знаком рівності (a ":" і a "="
+відповідно), або значення може бути приклеєне до літери опції. Три еквівалентні варіанти
+для встановлення рівня налагодження, рівного двом, є три еквівалентні варіанти:
 
 - -d2
 
@@ -482,386 +482,386 @@ options to set the debug level to two are thus:
 
 - -d=2
 
-The options are:
+Варіанти такі:
 
-| Option     | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
+| Опція | Опис |
 | ---------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| -a         | Assembler: generate a text file with the pseudo-assembler code for the PAWN abstract machine, instead of binary code.                                                                                                                                                                                                                                                                                                                                                            |
-| -C+/-      | Compact encoding of the binary file, which reduces the size a the output file typically to less than half the original size. Use -C+ to enable it and -C- to revert to “plain” encoding. The option -C (without + or − suffix) toggles the current setting.                                                                                                                                                                                                                      |
-| -cname     | Codepage: set the codepage for translating the source file from extended ascii to Unicode/UCS-4. The default is no translation. The name parameter can specify a full path to a “mapping file” or just the identifier of the codepage —in the latter case, the compiler prefixes the identifier with the letters “cp”, appends the extension “.txt” and loads the mapping file from a system directory.                                                                          |
-| -Dpath     | Directory: the “active” directory, where the compiler should search for its input files and store its output files.                                                                                                                                                                                                                                                                                                                                                              |
-|            | This option is not supported on every platform. To verify whether the PAWN compiler supports this option, run the compiler without any option or filename on the command line. The compiler will then list its usage syntax and all available options in alphabetical order. If the -D switch is absent, the option is not available.                                                                                                                                            |
-| -dlevel    | Debug level: 0 = none, 1 = bounds checking and assertions only, 2 = full symbolic information, 3 = full symbolic information and optimizations disabled (same as the combination -d2 and -O0).                                                                                                                                                                                                                                                                                   |
-|            | When the debug level is 2 or 3, the PAWN compiler also prints the estimated number of stack/heap space required for the program.                                                                                                                                                                                                                                                                                                                                                 |
-| -efilename | Error file: set the name of the file into which the compiler must write any warning and error messages; when set, there is no output to the screen.                                                                                                                                                                                                                                                                                                                              |
-| -Hvalue    | “HWND” (Microsoft Windows version only): the compiler can optionally post a message to the specified window handle upon completion of the P-code generation. Host applications that invoke the PAWN compiler can wait for the arrival of this message or signal the user of the completion of the compile.                                                                                                                                                                       |
-|            | The message number that is sent to the window is created with the Microsoft Windows SDK function RegisterWindowMessage using the name “PawnNotify”. The wParam of the message holds the compiler return code: 0 = success, 1 = warnings, 2 = errors (plus possibly warnings), 3 = compilation aborted by the user.                                                                                                                                                               |
-| -ipathname | Include path: set the path where the compiler can find the include files. This option may appear multiple times at the command line, to allow you to set several include paths.                                                                                                                                                                                                                                                                                                  |
-| -l         | Listing: perform only the file reading and preprocessing steps; for example, to verify the effect of the text substitution macros and the conditionally compiled/skipped sections.                                                                                                                                                                                                                                                                                               |
-| -Olevel    | Optimization level: 0 = no optimizations; 1 = JIT compatible optimizations only (JIT = “Just In Time” compiler, a high performance abstract machine); 2 = full optimizations.                                                                                                                                                                                                                                                                                                    |
-| -ofilename | Output file: set the name and path of the binary output file.                                                                                                                                                                                                                                                                                                                                                                                                                    |
-| -pfilename | Prefix file: the name of the “prefix file”, this is a file that is parsed before the input file (as a kind of implicit “include file”). If used, this option overrides the default include file “default.inc”. The -p option on its own (without a filename) disables the processing of any implicit include file.                                                                                                                                                               |
-| -rfilename | Report: enable the creation of the report and optionally set the filename to which the extracted documentation and a crossreference report will be written.                                                                                                                                                                                                                                                                                                                      |
-|            | The report is in “XML” format. The filename parameter is optional; if not specified, the report file has the same name as the input file with the extension “.XML”.                                                                                                                                                                                                                                                                                                              |
-| -Svalue    | Stack size: the size of the stack and the heap in cells.                                                                                                                                                                                                                                                                                                                                                                                                                         |
-| -svalue    | Skip count: the number of lines to skip in the input file before starting to compile; for example, to skip a “header” in the source file which is not in a valid PAWN syntax.                                                                                                                                                                                                                                                                                                    |
-| -tvalue    | tab size: the number of space characters to use for a tab character. When set to zero (i.e. option -t0) the compiler will no longer issue warning 217 (loose indentation).                                                                                                                                                                                                                                                                                                       |
-| -vvalue    | Verbose: display imformational messages during the compilation. The value can be 0 (zero) for “quiet” compile, 1 (one) for the normal output and 2 for a code/data/stack usage report.                                                                                                                                                                                                                                                                                           |
-| -wvalue+/- | Warning control: the warning number following the “-w” is enabled or disabled, depending on whether a “+” or a “-” follows the number. When a “+” or “-” is absent, the warning status is toggled. For example, -w225- disables the warning for “unreachable code”, -w225+ enables it and -w225 toggles between enabled/disabled.                                                                                                                                                |
-|            | Only warnings can be disabled (errors and fatal errors cannot be disabled). By default, all warnings are enabled.                                                                                                                                                                                                                                                                                                                                                                |
-| -Xvalue    | Limit for the abstract machine: the maximum memory requirements that a compiled script may have, in bytes. This value is is useful for (embedded) environments where the maximum size of a script is bound to a hard upper limit. If there is no setting for the amount of RAM for the data and stack, this refers to the total memory requirements; if the amount of RAM is explicitly set, this value only goves the amount of memory needed for the code and the static data. |
-| -XDvalue   | RAM limit for the abstract machine: the maximum memory requirements for data and stack that a compiled script may have, in bytes. This value is is useful for (embedded) environments where the maximum data size of a script is bound to a hard upper limit. Especially in the case where the PAWN script runs from ROM, the sizes for the code and data sections need both to be set.                                                                                          |
-| -\         | Control characters start with “\” (for the sake of similarity with C, C++ and Java)                                                                                                                                                                                                                                                                                                                                                                                              |
-| -^         | Control characters start with “ˆ” (for compatibility with earlier versions of pawn).                                                                                                                                                                                                                                                                                                                                                                                             |
-| -;+/-      | With -;+ every statement is required to end with a semicolon; with -;-, semicolons are optional to end a statement if the statement is the last on the line. The option -; (without + or − suffix) toggles the current setting.                                                                                                                                                                                                                                                  |
-| sym=value  | define constant “sym” with the given (numeric) value, the value is optional;                                                                                                                                                                                                                                                                                                                                                                                                     |
-| @filename  | read (more) options from the specified “response file”.                                                                                                                                                                                                                                                                                                                                                                                                                          |
+| -a | Асемблер: згенерувати текстовий файл з псевдоасемблерним кодом для абстрактної машини PAWN замість двійкового коду.                                                                                                                                                                                                                                                                                                                                                            |
+| -C+/- | Компактне кодування двійкового файлу, яке зменшує розмір вихідного файлу, як правило, до половини початкового розміру. Використовуйте -C+, щоб увімкнути його, і -C-, щоб повернутися до "звичайного" кодування. Параметр -C (без суфікса + або -) перемикає поточний параметр.                                                                                                                                                                                                                      |
+| -cname | Кодова сторінка: встановити кодову сторінку для перекладу вихідного файлу з розширеної кодування ascii у Unicode/UCS-4. За замовчуванням переклад не виконується. Параметр name може вказувати повний шлях до "файлу зіставлення" або лише ідентифікатор кодової сторінки - у останньому випадку компілятор додає до ідентифікатора літери "cp", розширення ".txt" і завантажує файл зіставлення із системного каталогу.                                                                          |
+| -Dpath | Каталог: "активний" каталог, у якому компілятор має шукати свої вхідні файли та зберігати вихідні файли.                                                                                                                                                                                                                                                                                                                                                              |
+| Цей параметр підтримується не на всіх платформах. Щоб перевірити, чи підтримує компілятор PAWN цей параметр, запустіть компілятор без жодного параметра або імені файлу у командному рядку. Після цього компілятор покаже синтаксис використання і всі доступні опції в алфавітному порядку. Якщо ключ -D відсутній, опція буде недоступна.                                                                                                                                            |
+| -dlevel | Рівень налагодження: 0 = немає, 1 = лише перевірка меж і тверджень, 2 = повна символьна інформація, 3 = повна символьна інформація і вимкнені оптимізації (так само як комбінація -d2 і -O0).                                                                                                                                                                                                                                                                                   |
+| Якщо рівень налагодження дорівнює 2 або 3, компілятор PAWN також виводить приблизну кількість місця у стеку/купці, необхідну для програми.                                                                                                                                                                                                                                                                                                                                                 |
+| -efilename | Файл помилок: задати назву файлу, до якого компілятор має записувати всі попередження та повідомлення про помилки; якщо встановлено, виведення на екран не відбувається.                                                                                                                                                                                                                                                                                                                              |
+| -Hvalue | "HWND" (лише для версії для Microsoft Windows): компілятор може за бажанням надсилати повідомлення до вказаного дескриптора вікна після завершення генерації P-коду. Хост-програми, які викликають компілятор PAWN, можуть чекати на надходження цього повідомлення або сигналізувати користувачеві про завершення компіляції.                                                                                                                                                                       |
+| Номер повідомлення, яке надсилається у вікно, створюється за допомогою функції Microsoft Windows SDK RegisterWindowMessage з іменем "PawnNotify". Параметр wParam повідомлення містить код повернення компілятора: 0 = успіх, 1 = попередження, 2 = помилки (плюс, можливо, попередження), 3 = компіляцію перервано користувачем.                                                                                                                                                               |
+| -ipathname | Шлях включення: задати шлях, де компілятор може знайти файли включення. Цей параметр може з'являтися у командному рядку декілька разів, щоб ви могли вказати декілька шляхів до включення.                                                                                                                                                                                                                                                                                                  |
+| -l | Лістинг: виконати лише читання та попередню обробку файлів; наприклад, для перевірки дії макросів підстановки тексту та умовно скомпільованих/пропущених розділів.                                                                                                                                                                                                                                                                                               |
+| -Olevel | Рівень оптимізації: 0 = жодних оптимізацій; 1 = лише JIT-сумісні оптимізації (JIT = "Just In Time" компілятор, високопродуктивна абстрактна машина); 2 = повна оптимізація.                                                                                                                                                                                                                                                                                                    |
+| -filename | Вихідний файл: задати ім'я та шлях до двійкового вихідного файлу.                                                                                                                                                                                                                                                                                                                                                                                                                    |
+| -pfilename | Префіксний файл: ім'я "префіксного файлу", це файл, який розбирається перед вхідним файлом (як різновид неявного "include file"). Якщо використовується, цей параметр замінює стандартний файл включення "default.inc". Опція -p сама по собі (без імені файлу) вимикає обробку будь-якого неявного включаємого файлу.                                                                                                                                                               |
+| -rfilename | Звіт: увімкнути створення звіту і за бажанням задати ім'я файлу, до якого буде записано витягнуту документацію і звіт з перехресними посиланнями.                                                                                                                                                                                                                                                                                                                      |
+| Звіт створюється у форматі "XML". Параметр filename є необов'язковим; якщо його не вказано, файл звіту матиме те саме ім'я, що й вхідний файл з розширенням ".XML".                                                                                                                                                                                                                                                                                                              |
+| -Svalue | Розмір стеку: розмір стеку та купи у комірках.                                                                                                                                                                                                                                                                                                                                                                                                                         |
+| -svalue | Кількість пропущених рядків: кількість рядків, які слід пропустити у вхідному файлі перед початком компіляції; наприклад, пропустити "заголовок" у вихідному файлі, який не відповідає допустимому синтаксису PAWN.                                                                                                                                                                                                                                                                                                    |
+| -tvalue | розмір табуляції: кількість пробілів для символу табуляції. Якщо значення параметра дорівнює нулю (наприклад, опція -t0), компілятор не видаватиме попередження 217 (нещільні відступи).                                                                                                                                                                                                                                                                                                       |
+| -vvalue | Докладно: показувати інформаційні повідомлення під час компіляції. Значення може бути 0 (нуль) для "тихої" компіляції, 1 (одиниця) для звичайного виводу і 2 для звіту про використання коду/даних/стеку.                                                                                                                                                                                                                                                                                           |
+| -wvalue+/- | Керування попередженнями: номер попередження після "-w" увімкнено або вимкнено, залежно від того, "+" чи "-" стоїть після цього номера. Якщо "+" або "-" відсутній, статус попередження перемикається. Наприклад, -w225- вимикає попередження про "недоступний код", -w225+ вмикає його, а -w225 перемикає між увімкненим/вимкненим станом.                                                                                                                                                |
+| | | Можна вимкнути лише попередження (помилки та фатальні помилки не можна вимкнути). За замовчуванням усі попередження увімкнено.                                                                                                                                                                                                                                                                                                                                                                |
+| -Xvalue | Обмеження для абстрактної машини: максимальні вимоги до пам'яті, які може мати скомпільований скрипт, у байтах. Це значення є корисним для (вбудованих) середовищ, де максимальний розмір скрипта обмежено жорсткою верхньою межею. Якщо не вказано обсяг оперативної пам'яті для даних і стека, це значення стосується загальних вимог до пам'яті; якщо обсяг оперативної пам'яті вказано явно, це значення визначає лише обсяг пам'яті, необхідний для коду і статичних даних. |
+| -XDvalue | Ліміт оперативної пам'яті для абстрактної машини: максимальні вимоги до пам'яті для даних і стеку, які може мати скомпільований скрипт, у байтах. Це значення є корисним для (вбудованих) середовищ, де максимальний розмір даних скрипта обмежено жорсткою верхньою межею. Особливо у випадку, коли PAWN-скрипт запускається з ПЗП, потрібно встановити обидва розміри - і для коду, і для даних.                                                                                          |
+| -\ | Керуючі символи починаються з "\" (для подібності до C, C++ та Java) | -^ | Керуючі символи починаються з "\
+| -^ | Керуючі символи починаються з "ˆ" (для сумісності з попередніми версіями pawn).                                                                                                                                                                                                                                                                                                                                                                                             |
+| -;+/- | З -;+ кожен оператор повинен закінчуватися крапкою з комою; з -;- крапка з комою необов'язкова, якщо оператор є останнім у рядку. Опція -; (без суфікса + або -) перемикає поточний параметр.                                                                                                                                                                                                                                                  |
+| sym=value | визначити константу "sym" із заданим (числовим) значенням, значення не є обов'язковим; |.
+| @filename | прочитати (більше) параметрів із вказаного "файлу-відповіді".                                                                                                                                                                                                                                                                                                                                                                                                                          |
 
-### • Response file
+### - Файл відповіді
 
-To support operating systems with a limited command line length (e.g., Mi-
-crosoft DOS), the PAWN compiler supports “response files”. A response
-file is a text file that contains the options that you would otherwise put at the
-command line. With the command:
+Для підтримки операційних систем з обмеженою довжиною командного рядка (наприклад, Mi-
+crosoft DOS), компілятор PAWN підтримує "файли-відповіді". Файл-відповідь
+це текстовий файл, який містить опції, які ви могли б вказати у командному рядку
+командного рядка. За допомогою команди
 
     pawncc @opts.txt prog.pawn
 
-the PAWN compiler compiles the file “prog.pawn” using the options that are
-listed in the response file “opts.txt”.
+компілятор PAWN компілює файл "prog.pawn", використовуючи опції, які
+перераховані у файлі-відповіді "opts.txt".
 
-### • Configuration file
+### - Файл конфігурації
 
-On platforms that support it (currently Microsoft DOS, Microsoft Windows
-and Linux), the compiler reads the options in a “configuration file” on startup.
+На платформах, які його підтримують (наразі це Microsoft DOS, Microsoft Windows
+і Linux), компілятор зчитує параметри з "конфігураційного файлу" під час запуску.
 
-The configuration file must have the name “pawn.cfg” and it must reside in
-the same directory as the compiler executable program.
+Конфігураційний файл повинен мати назву "pawn.cfg" і знаходитись у
+у тому ж каталозі, що і виконувана програма компілятора.
 
-In a sense, the configuration file is an implicit response file. Options
-specified on the command line may overrule those in the configuration file.
-
----
-
-`Packed/unpacked strings: 99`
-
-`Character constants: 99`
-
-`#pragma dynamic: 121`
-
-`Warnings: 161`
-
-`See also #pragma amxlimit on page 119`
-
-`See also #pragma amxram on page 120`
+У певному сенсі, файл конфігурації є неявним файлом відповіді. Параметри
+вказані у командному рядку, можуть замінити ті, що вказані у конфігураційному файлі.
 
 ---
 
-## Rationale
+`Упаковані/розпаковані рядки: 99`
+
+`Символьні константи: 99`.
+
+`#pragma dynamic: 121` `#pragma dynamic: 121``.
+
+Попередження: 161`
+
+Дивіться також #pragma amxlimit на сторінці 119
+
+`Дивіться також #pragma amxram на сторінці 120`.
 
 ---
 
-_The first issue in the presentation of a new computer language should be: why
-a new language at all?_
-
-Indeed, I did look at several existing languages before I designed  
-my own. Many little languages were aimed at scripting the command shell (TCL, Perl,
-Python). Other languages were not designed as extension languages, and put
-the burden to embedding solely on the host application.
-
-As I initially attempted to use Java as an extension language (rather than build
-my own, as I have done now), the differences between PAWN and Java are illus-
-trative for the almost reciprocal design goals of both languages. For example,
-
-Java promotes distributed computing where “packages” reside on diverse ma-
-chines, PAWN is designed so that the compiled applets can be easily stored in
-a compound file together with other data. Java is furthermore designed to be
-architecture neutral and application independent, inversely PAWN is designed
-to be tightly coupled with an application; native functions are a taboo to some
-extent in Java (at least, it is considered “impure”), whereas native functions
-are “the reason to be” for PAWN. From the viewpoint of PAWN, the intended
-use of Java is upside down: native functions are seen as an auxiliary library
-that the application —in Java— uses; in PAWN, native functions are part of
-“the application” and the PAWN program itself is a set of auxiliary functions
-that the application uses.
-
-**A language for scripting applications:** PAWN is targeted as an exten-
-sion language, meant to write application-specific macros or subprograms with.
-PAWN is not the appropriate language for implementing business applications
-or operating systems in. PAWN is designed to be easily integrated with, and
-embedded in, other systems/applications.
-
-As an extension language, PAWN programs typically manipulate objects of
-the host application. In an animation system, PAWN scripts deal with sprites,
-events and time intervals; in a communication application, PAWN scripts handle
-packets and connections. I assume that the host application will make
-(a subset of) its resources and functionality available via functions, handles,
-magic cookies. . . in a similar way that a contemporary operating system
-provides an interface to processes written in C/C++ —e.g., the Win32 API (“handles
-everywhere”) or GNU/Linux’ “glibc”. To that end, PAWN has a simple and
-efficient interface to the “native” functions of the host application. A PAWN
-script manipulates data objects in the host application through function calls,
-but it cannot access the data of the host application directly.
-
-The first and foremost criterions for the PAWN language were execution speed
-and reliability. Reliability in the sense that a PAWN program should not be
-able to crash the application or tool in which it is embedded —at least, not
-easily. Although this limits the capabilities of the language significantly,
-the advantages are twofold:
-
-- the application vendor can rest assured that its application will not crash due to user additions or macros,
-
-- the user is free to experiment with the language with no (or little) risk of damaging the application files.
-
-**Speed is essential:** PAWN programs would probably run in an abstract ma-
-chine, and abstract machines are notoriously slow. I had to make a language
-that has low overhead and a language for which a fast abstract machine can be
-written. Speed should also be reliable, in the sense that a PAWN script should
-not slow down over time or have an occasional performance hiccup. Conse-
-quently, PAWN excludes any required “background process”, such as garbage
-collection, and the core of the abstract machine does not implicitly
-allocate any system or application resources while it runs. That is, PAWN does
-not allocate memory or open files, not without the help of a native function that
-the script calls explicitly.
-
-As Dennis Ritchie said, by intent the C language confines itself to facilities
-that can be mapped relatively efficiently and directly to machine instructions. The
-same is true for PAWN, and this is also a partial explication why PAWN looks
-so much like C. Even though PAWN runs on an abstract machine, the goal is to
-keep that abstract machine small and quick. PAWN is used in tiny embedded
-systems with ram sizes of 32 kiB or less, as well as in high-performance games
-that need every processor cycle for their graphics engine and game-play.  
-In both environments, a heavy-weight scripting support is difficult to swallow.
-
-A brief analysis showed that the instruction decoding logic for an abstract ma-
-chine would quickly become the bottleneck in the performance of the abstract
-machine. To keep the decoding simple, each opcode should have the  
-same size (excluding operands), and the opcode should fully specify the instruction
-(including the addressing methods, size of the operands, etc.). That meant
-that for each operation on a variable, the abstract machine needed a separate
-opcode for every combination of variable type, storage class and access method
-(direct, or dereferenced). For even three types (int, char and unsigned int),
-two storage classes (global and local) and three access methods (direct, indi-
-rect or indexed), a total of 18 opcodes (3*2*3) are needed to simply fetch the
-value of a variable.
-
-At the same time, to keep the abstract machine small and manageable, I set the
-goal at approximately 100 instructions.∗ With 18 opcodes to load a variable
-in a register, 18 more to store a register into a variable, another 18 to get
-the address of a variable, etc. . . I was quickly exceeding my self-imposed limit
-of a hundred opcodes.
-
-The languages bob and rexx inspired me to design a typeless language. This
-saved me a lot of opcodes. At the same time, the language could no longer be
-called a “subset of C”. I was changing the language. Why, then, not go a foot
-further in changing the language? This is where a few more design guidelines came into play:
-
-- give the programmer a general purpose tool, not a special purpose solution
-
-- avoid error prone language constructs; promote error checking
-
-- be pragmatic
-
-**A general purpose tool:** PAWN is targeted as an extension language, with-
-out specifying exactly what it will extent. Typically, the application or  
-the tool that uses PAWN for its extension language will provide many, optimized
-routines or commands to operate on its native objects, be it text, database
-records or animated sprites. The extension language exists to permit the user
-to do what the application developer forgot, or decided not to include. Rather
-than providing a comprehensive library of functions to sort data, match reg-
-ular expressions, or draw cubic B´ezier splines, PAWN should supply a (general
-purpose) means to use, extend and combine the specific (“native”) functions
-that an application provides.
-
-PAWN lacks a comprehensive standard library. By intent, PAWN also lacks fea-
-tures like pointers, dynamic memory allocation, direct access to the operating
-system or to the hardware, that are needed to remain competitive in the field of
-general purpose application or system programming. You cannot build linked
-lists or dynamic tree data structures in PAWN, and neither can you access any
-memory beyond the boundaries of the abstract machine. That is not to say
-that a PAWN program can never use dynamic, sorted symbol tables, or change
-a parameter in the operating system; it can do that, but it needs  
-to do so by calling a “native” function that an application provides to the abstract machine.
+## Обґрунтування
 
 ---
 
-###### ∗ 136 Opcodes are defined at this writing, plus 20 “macro” opcodes. To exploit performance gains by forcing proper alignment of memory words (essential on ARM microprocessors), the current abstract machine uses 32-bit opcodes. There is no technical limit on the number of opcodes, but in the interest of a small footprint, the number of opcodes should be restricted.
+Першим питанням у презентації нової комп'ютерної мови має бути: навіщо
+нова мова взагалі?
+
+Дійсно, я вивчив кілька існуючих мов, перш ніж розробити свою власну.
+свою власну. Багато маленьких мов були призначені для написання сценаріїв командної оболонки (TCL, Perl,
+Python). Інші мови не були розроблені як мови розширення, і покладали
+тягар вбудовування виключно на хост-додаток.
+
+Оскільки я спочатку намагався використовувати Java як мову розширення (а не створювати власну мову, як зараз), різниця між PAWN і Java є ілюзорною.
+(а не створювати свою власну, як я роблю зараз), відмінності між PAWN та Java є ілюзорними, оскільки обидві мови мають майже однакові цілі
+ілюзорні, оскільки цілі розробки обох мов майже збігаються. Наприклад,
+
+Java сприяє розподіленим обчисленням, де "пакети" знаходяться на різних носіях.
+PAWN розроблено так, щоб скомпільовані аплети можна було легко зберігати у
+складеному файлі разом з іншими даними. Крім того, Java розроблена таким чином, щоб бути
+архітектурно нейтральною та незалежною від додатків, і навпаки, PAWN розроблена так, щоб
+бути тісно пов'язаним з додатком; власні функції є табу в деякій мірі в Java (принаймні, принаймні, в
+певною мірою табу в Java (принаймні, це вважається "нечистим"), в той час як власні функції
+є "причиною для існування" для PAWN. З точки зору PAWN, цільове
+використання Java перевернуте з ніг на голову: нативні функції розглядаються як допоміжна бібліотека
+яку використовує додаток - на Java; в PAWN нативні функції є частиною
+"програми", а сама програма PAWN є набором допоміжних функцій
+які використовує програма.
+
+**Мова для написання сценаріїв додатків:** PAWN розроблено як розширену мову, призначену для написання макросів і програм.
+мова розширення, призначена для написання специфічних макросів або підпрограм для додатків.
+PAWN не є відповідною мовою для реалізації бізнес-додатків
+або операційних систем. PAWN розроблено так, щоб її можна було легко інтегрувати з іншими системами та
+вбудовуватися в інші системи/додатки.
+
+Як мова розширення, програми PAWN зазвичай маніпулюють об'єктами
+основної програми. В анімаційних системах PAWN-скрипти мають справу зі спрайтами,
+подіями та часовими інтервалами; у комунікаційних програмах PAWN-скрипти обробляють
+пакетами та з'єднаннями. Я припускаю, що хост-додаток надасть
+(підмножину) своїх ресурсів і функціональних можливостей за допомогою функцій, дескрипторів,
+чарівних файлів cookie. . . подібно до того, як сучасна операційна система
+надає інтерфейс до процесів, написаних на C/C++ - наприклад, Win32 API ("дескриптори
+всюди") або "glibc" GNU/Linux. З цією метою PAWN має простий та
+ефективний інтерфейс до "рідних" функцій хостової програми. СКРИПТ PAWN
+маніпулює об'єктами даних у хост-програмі за допомогою викликів функцій,
+але він не може отримати доступ до даних основної програми безпосередньо.
+
+Першими і головними критеріями для мови PAWN були швидкість виконання
+та надійність. Надійність у тому сенсі, що програма на PAWN не повинна
+викликати аварійне завершення роботи програми або інструменту, в який вона вбудована - принаймні, не
+легко. Хоча це значно обмежує можливості мови,
+переваги є подвійними:
+
+- розробник програми може бути впевнений, що його програма не вийде з ладу через користувацькі доповнення або макроси,
+
+- користувач може вільно експериментувати з мовою без ризику (або з незначним ризиком) пошкодження файлів програми.
+
+**Швидкість має велике значення:** Програми PAWN, ймовірно, працюватимуть на абстрактній машині, а абстрактні машини, як відомо, працюють повільно.
+а абстрактні машини, як відомо, повільні. Я повинен був створити мову
+з низькими накладними витратами і мову, для якої можна було б написати швидку абстрактну машину.
+написати швидку абстрактну машину. Швидкість також повинна бути надійною, в тому сенсі, що PAWN-скрипт не повинен
+не повинен сповільнюватися з часом або мати випадкові збої у роботі. Отже, PAWN виключає
+Отже, PAWN виключає будь-який необхідний "фоновий процес", такий як збір сміття, і ядро абстрактної машини
+збір сміття, а ядро абстрактної машини не виділяє неявно
+ядро абстрактної машини не виділяє системні ресурси або ресурси додатків під час роботи. Тобто, PAWN не
+не виділяє пам'ять і не відкриває файли без допомоги власної функції, яку
+яку скрипт викликає явно.
+
+Як сказав Денніс Рітчі, за задумом, мова C обмежується засобами
+які можна відносно ефективно і безпосередньо відобразити у машинні інструкції. Те ж саме
+те саме стосується і PAWN, і це також є частковим поясненням того, чому PAWN виглядає
+так схожий на C. Хоча PAWN працює на абстрактній машині, мета полягає у тому, щоб
+зробити цю абстрактну машину маленькою і швидкою. PAWN використовується у крихітних вбудованих
+системах з розміром оперативної пам'яті 32 кілобайти або менше, а також у високопродуктивних іграх
+яким потрібен кожен процесорний цикл для графічного рушія та ігрового процесу.  
+В обох середовищах важка підтримка сценаріїв є складною для сприйняття.
+
+Короткий аналіз показав, що логіка декодування інструкцій для абстрактної машини
+швидко стане вузьким місцем у продуктивності абстрактної машини.
+машини. Щоб спростити декодування, кожен опкод повинен мати однаковий розмір (за винятком операндів)
+однаковий розмір (за винятком операндів), і опкод повинен повністю визначати інструкцію
+(включаючи методи адресації, розмір операндів і т.д.). Це означає
+що для кожної операції над змінною абстрактній машині потрібен окремий
+опкод для кожної комбінації типу змінної, класу зберігання та методу доступу
+(прямого чи розіменованого). Навіть для трьох типів (int, char та unsigned int),
+двох класів зберігання (глобальний і локальний) і трьох методів доступу (прямий, індексований
+прямий або індексований), загалом потрібно 18 опкодів (3*2*3), щоб просто отримати
+значення змінної.
+
+У той же час, щоб абстрактна машина була невеликою і керованою, я поставив собі за мету
+приблизно 100 інструкцій.∗ З 18 опкодами для завантаження змінної
+в регістр, ще 18, щоб зберегти регістр у змінну, ще 18, щоб отримати
+адресу змінної і т.д. і т.п. Я швидко перевищив встановлений мною ліміт
+у сто опкодів.
+
+Мови bob та rexx надихнули мене на створення безтипологічної мови. Це
+врятувало мене від великої кількості опкодів. В той же час, мову більше не можна було
+називати "підмножиною C". Я змінював мову. Чому ж тоді не піти на крок
+далі у зміні мови? Тут у гру вступили ще кілька рекомендацій щодо дизайну:
+
+- дати програмісту інструмент загального призначення, а не спеціальне рішення
+
+- уникати помилкових мовних конструкцій; сприяти перевірці помилок
+
+- бути прагматичними
+
+**Інструмент загального призначення:** PAWN розроблено як мову розширення, без
+не визначено, що саме вона буде розширювати. Зазвичай, програма або
+інструмент, який використовує PAWN як мову розширення, надасть багато оптимізованих
+процедур або команд для роботи з власними об'єктами, будь то текст, база даних
+записів або анімованих спрайтів. Мова розширень існує для того, щоб дозволити користувачеві
+робити те, що розробник програми забув або вирішив не включати. Замість того, щоб
+Замість того, щоб надавати вичерпну бібліотеку функцій для сортування даних, зіставлення регулярних виразів або малювання
+регулярних виразів або побудови кубічних сплайнів Б'єзьє, PAWN має надавати засоби (загального призначення) для використання
+призначення) засоби для використання, розширення та комбінування специфічних ("рідних") функцій
+які надає програма.
+
+PAWN не має повної стандартної бібліотеки. За задумом, у PAWN також відсутні такі функції, як вказівники, динамічний розподіл пам'яті
+таких як вказівники, динамічне виділення пам'яті, прямий доступ до операційної системи або апаратного забезпечення, які необхідні для того, щоб конкурувати з іншими програмами.
+системи або до апаратного забезпечення, які необхідні для того, щоб залишатися конкурентоспроможними у сфері
+загального призначення або системного програмування. Ви не можете створювати зв'язані
+списки або динамічні деревоподібні структури даних у PAWN, а також ви не можете отримати доступ до будь-якої
+пам'яті за межами абстрактної машини. Це не означає, що
+що програма на PAWN не може використовувати динамічні, відсортовані таблиці символів або змінювати
+параметр у операційній системі; вона може це робити, але їй потрібно
+робити це за допомогою виклику "власної" функції, яку програма надає абстрактній машині.
 
 ---
 
-In other words, if an application chooses to implement the well known peek and
-poke functions (from BASIC) in the abstract machine, a PAWN program can
-access any byte in memory, insofar the operating system permits this. Likewise,
-an application can provide native functions that insert, delete or search
-symbols in a table and allows several operations on them. The proposed core functions
-getproperty and setproperty are an example of native functions that build
-a linked list in the background.
-
-**Promote error checking:** As you may have noticed, one of the foremost
-design criterions of the C language, “trust the programmer”, is absent from
-my list of design criterions. Users of script languages may not be experienced
-programmers; and even if they are, PAWN will probably not be their primary
-language. Most PAWN programmers will keep learning the language as they
-go, and will even after years not have become experts. Enough reason, hence,
-to replace error prone elements from the C language (pointers) with  
-saver, albeit less general, constructs (references).† References are copied from C++.
-They are nothing else than pointers in disguise, but they are  
-restricted in various, mostly useful, ways. Turn to a C⁺⁺ book to find more justification for references.
-
-I find it sad that many, even modern, programming languages have so  
-little built-in, or easy to use, support for confirming that programs do  
-as the programmer intended. I am not referring to theoretical correctness (which is
-too costly to achieve for anything bigger than toy programs), but  
-practical, easy to use, verification mechanisms as a help to the programmer.
-PAWN provides both compile time and execution time assertions to use for preconditions, postconditions and invariants.
-
-The typing mechanism that most programming languages use is also an auto-
-matic “catcher” of a whole class of bugs. By virtue of being a typeless
-language, PAWN lacked these error checking abilities. This was clearly a weakness, and I
-created the “tag” mechanism as an equivalent for verifying function parameter
-passing, array indexing and other operations.
+###### ∗ На момент написання статті визначено 136 опкодів, плюс 20 "макро" опкодів. Для використання приросту продуктивності за рахунок примусового вирівнювання слів пам'яті (необхідного для мікропроцесорів ARM), поточна абстрактна машина використовує 32-розрядні опкоди. Технічних обмежень на кількість опкодів не існує, але в інтересах малої займаної площі, кількість опкодів слід обмежити
 
 ---
 
-###### † You should see this remark in the context of my earlier assertion that many “PAWN” programmers will be novice programmers. In my (teaching) experience, novice programmers make many pointer errors, as opposed to experienced C/C++ programmers
+Іншими словами, якщо програма вирішує реалізувати добре відомі функції peek і
+poke (з мови BASIC) в абстрактній машині, програма PAWN може
+отримати доступ до будь-якого байту в пам'яті, якщо це дозволяє операційна система. Аналогічно,
+програма може надавати власні функції, які вставляють, видаляють або шукають
+символів у таблиці і дозволяє виконувати над ними декілька операцій. Запропоновані основні функції
+getproperty і setproperty є прикладом власних функцій, які створюють
+зв'язаний список у фоновому режимі.
+
+**Сприяти перевірці помилок:** Як ви могли помітити, один з головних
+критерій проєктування мови C, "довіряти програмісту", відсутній у
+у моєму списку критеріїв проєктування. Користувачі скриптових мов можуть не бути досвідченими
+програмістами; і навіть якщо це так, PAWN, ймовірно, не буде їхньою основною
+мовою. Більшість PAWN-програмістів продовжуватимуть вивчати мову в процесі роботи, і навіть через багато років
+Більшість програмістів PAWN продовжуватимуть вивчати мову на ходу, і навіть через роки не стануть експертами. Отже, є достатньо підстав
+щоб замінити елементи мови C, схильні до помилок (вказівники), на
+економнішими, хоча і менш загальними, конструкціями (посиланнями).† Посилання скопійовано з C++.
+Вони є нічим іншим, як замаскованими вказівниками, але вони
+обмежені різними, здебільшого корисними, способами. Зверніться до книги з C⁺⁺, щоб знайти більше обґрунтувань для посилань.
+
+Я вважаю сумним, що багато, навіть сучасних, мов програмування мають так мало
+мало вбудованої або простої у використанні підтримки для підтвердження того, що програми роблять
+що програми працюють так, як задумав програміст. Я не маю на увазі теоретичну коректність (яка
+надто дорого досягти для чогось більшого, ніж іграшкові програми), але
+а про практичні, прості у використанні механізми перевірки на допомогу програмісту.
+PAWN надає твердження про час компіляції та час виконання, які можна використовувати для передумов, постумов та інваріантів.
+
+Механізм типізації, який використовується у більшості мов програмування, також є автоматичним "ловцем" цілого класу помилок.
+автоматичним "ловцем" цілого класу помилок. В силу того, що це безтипова мова
+PAWN не мала таких можливостей перевірки помилок. Це було очевидним недоліком, і я
+створив механізм "тегів" як еквівалент для перевірки передачі параметрів функцій, індексації масивів та інших помилок.
+передачі параметрів функції, індексації масивів та інших операцій.
 
 ---
 
-The quality of the tools: the compiler and the abstract machine, also have a
-great impact on the robustness of code —whatever the language. Although
-this is only very loosely related to the design of the language, I set out to
-build the tools such that they promote error checking. The warning system of PAWN
-goes a step beyond simply reporting where the parser fails to  
-interpret the data according to the language grammar. At several occasions, the compiler
-runs checks that are completely unrelated to generating code and that are im-
-plemented specifically to catch possible errors. Likewise, the “debugger hook”
-is designed right into the abstract machine, it is not an add-on implemented
-as an after-thought.
-
-Be pragmatic: The object-oriented programming paradigm has not entirely
-lived up to its promise, in my opinion. On the one hand, OOP solves many
-tasks in an easier or cleaner way, due to the added abstraction layer. On the
-other hand, contemporary object-oriented languages leave you struggling with
-the language as much as with the task at hand. Object-oriented languages are
-attractive mainly because of the comprehensive class libraries that they come
-with —but leaning on a standard library goes against one of the design goal
-for PAWN. Object-oriented programming is not a solution for a  
-non-expert programmer with little patience for artificial complexity. The criterion
-“be pragmatic” is a reminder to seek solutions, not elegancy.
-
-### • Practical design criterions
-
-The fact that PAWN looks so much like C cannot be a coincidence, and it isn’t.
-PAWN started as a C dialect and stayed that way, because C has a proven track
-record. The changes from C were mostly born out of necessity after rubbing
-out the features of C that I did not want in a scripting language: no pointers
-and no “typing” system.
-
-PAWN, being a typeless language, needed a different means to declare variables.
-In the course of modifying this, I also dropped the C requirement  
-that all variables should be declared at the top of a compound statement. PAWN is a
-little more like C⁺⁺ in this respect.
-
-C language functions can pass “output values” via pointer arguments. The
-standard function scanf, for example, stores the values or strings that it reads
-from the console into its arguments. You can design a function in C so that
-it optionally returns a value through a pointer argument; if the caller of the
-function does not care for the return value, it passes NULL as the pointer
-value. The standard function strtol is an example of a function that does this. This
-technique frequently saves you from declaring and passing dummy variables.
-PAWN replaces pointers with references, but references cannot be NULL. Thus,
-PAWN needed a different technique to “drop” the values that a function returns
-via references. Its solution is the use of an “argument placeholder”
-that is written as an underscore character (“ ”); Prolog programmers will recognize
-it as a similar feature in that language. The argument placeholder  
-reserves a temporary anonymous data object (a “cell” or an array of cells)  
-that is automatically destroyed after the function call.
-
-The temporary cell for the argument placeholder should still have a value, be-
-cause the function may see a reference parameters as input/output. Therefore,
-a function must specify for each passed-by-reference argument what value it
-will have upon entry when the caller passes the placeholder instead of an ac-
-tual argument. By extension, I also added default values for arguments that
-are “passed-by-value”. The feature to optionally remove all arguments with
-default values from the right was copied from C++.
-
-When speaking of BCPL and B, Dennis Ritchie said that C was invented in part
-to provide a plausible way of dealing with character strings when one begins
-with a word-oriented language. PAWN provides two options for working with
-strings, packed and unpacked strings. In an unpacked string, every character
-
-fits in a cell. The overhead for a typical 32-bit implementation is large: one
-character would take four bytes. Packed strings store up to four characters
-in one cell, at the cost of being significantly more difficult  
-to handle if you could only access full cells. Modern BCPL implementations provide two array
-indexing methods: one to get a word from an array and one to get a character
-from an array. PAWN copies this concept, although the syntax differs from that
-of BCPL. The packed string feature also led to the new operator char.
-
-Unicode applications often have to deal with two characters sets:  
-8-bit for legacy file formats and standardized transfer formats (like many of the Internet
-protocols) and the 16-bit Unicode character set (or the 31-bit UCS-4 character
-set). Although the PAWN compiler has an option that makes characters 16-bit
-(so only two characters fit in a 32-bit cell), it is usually more
-convenient to store single-byte character strings in packed strings and multi-byte strings in
-unpacked strings. This turns a weakness in PAWN —the need to distinguish
-packed strings from unpacked strings— into a strength: PAWN can make that
-
-distinction quite easily. And instead of needing two implementations for every
-function that deals with strings (an ascii version and a Unicode version —look
-at the Win32 API, or even the standard C library), PAWN enables functions to
-handle both packed and unpacked strings with ease.
-
-Notwithstanding the above mentioned changes, plus those in the chapter “Pit-
-falls: differences from C” (page 134), I have tried to keep PAWN close to C. A
-final point, which is unrelated to language design, but important nonetheless,
-is the license: PAWN is distributed under a liberal license allowing you to use
-and/or adapt the code with a minimum of restrictions —see appendix D.
+###### † Ви повинні розглядати це зауваження у контексті мого попереднього твердження про те, що багато програмістів "PAWN" будуть програмістами-початківцями. З мого (викладацького) досвіду, програмісти-початківці роблять багато помилок з вказівниками, на відміну від досвідчених програмістів C/C++
 
 ---
 
-`Support for Unicode string literals: 139`
+Якість інструментів: компілятора та абстрактної машини, також має
+великий вплив на надійність коду - незалежно від мови. Хоча
+це дуже слабо пов'язано з дизайном мови, я поставив собі за мету
+побудувати інструменти таким чином, щоб вони сприяли перевірці помилок. Система попереджень у PAWN
+виходить за рамки простого повідомлення про те, що синтаксичному аналізатору не вдається
+інтерпретувати дані відповідно до граматики мови. У деяких випадках компілятор
+виконує перевірки, які абсолютно не пов'язані з генерацією коду і які реалізовано спеціально для виявлення можливих помилок.
+які реалізовано спеціально для виявлення можливих помилок. Аналогічно, "гачок відладчика"
+розроблений прямо в абстрактній машині, він не є надбудовою, реалізованою
+як додаткове доповнення.
+
+Будьте прагматичними: Об'єктно-орієнтована парадигма програмування не зовсім
+об'єктно-орієнтована парадигма програмування, на мою думку, не зовсім виправдала покладені на неї сподівання. З одного боку, ООП вирішує багато
+завдань більш простим і чистим способом, завдяки додатковому рівню абстракції. З іншого боку, сучасне об'єктно-орієнтоване програмування
+іншого боку, сучасні об'єктно-орієнтовані мови змушують вас боротися з
+мовою, а не із завданням, що стоїть перед вами. Об'єктно-орієнтовані мови є
+привабливі головним чином завдяки широким бібліотекам класів, з якими вони поставляються
+але використання стандартних бібліотек суперечить одній з цілей проєктування
+PAWN. Об'єктно-орієнтоване програмування не є рішенням для
+програміста, який не має достатньо терпіння для штучного ускладнення. Критерій
+"бути прагматичним" - це нагадування шукати рішення, а не елегантність.
+
+### - Практичні критерії дизайну
+
+Той факт, що PAWN так схожий на C, не може бути збігом, і це не так.
+PAWN почалася як діалект C і залишилася ним, тому що C має перевірену репутацію
+репутацію. Зміни від C здебільшого народилися з необхідності після того, як я викреслив
+особливостей C, які я не хотів бачити у мові сценаріїв: відсутність вказівників
+і ніякої системи "набору".
+
+PAWN, як безтипова мова, потребувала інших засобів для оголошення змінних.
+Під час модифікації я також відмовився від вимоги мови C
+що всі змінні мають бути оголошені на початку складеного оператора. PAWN - це
+трохи більше схожа на C⁺⁺ у цьому відношенні.
+
+Функції мови C можуть передавати "вихідні значення" через аргументи-покажчики. Стандартна функція
+стандартна функція scanf, наприклад, зберігає значення або рядки, які вона зчитує
+з консолі у свої аргументи. Ви можете спроєктувати функцію у C таким чином, щоб
+необов'язково повертала значення через аргумент-покажчик; якщо користувачеві, який викликає функцію
+не цікавить значення, що повертається, він передає NULL як значення вказівника
+значення. Стандартна функція strtol є прикладом такої функції. Цей прийом
+часто рятує вас від оголошення та передачі фіктивних змінних.
+PAWN замінює вказівники посиланнями, але посилання не можуть бути NULL. Таким чином,
+PAWN потребує іншої техніки для "скидання" значень, які повертає функція
+через посилання. Рішенням цієї проблеми є використання "заповнювача аргументів"
+який записується у вигляді символу підкреслення (" "); програмісти на Пролозі розпізнають
+це як аналогічну функцію у цій мові. Заповнювач аргументу
+резервує тимчасовий анонімний об'єкт даних ("комірку" або масив комірок)
+який автоматично знищується після виклику функції.
+
+Тимчасова комірка для заповнювача аргументу все одно повинна мати значення be-
+оскільки функція може сприймати параметри посилання як вхідні/вихідні дані. Тому
+функція повинна вказувати для кожного переданого за посиланням аргументу, яке значення він
+матиме на вході, коли користувач передасть заповнювач замість фактичного аргументу.
+замість фактичного аргументу. Крім того, я також додав значення за замовчуванням для аргументів, які
+є "переданим значенням". Можливість за бажанням вилучати всі аргументи зі значеннями за замовчуванням
+значеннями за замовчуванням справа була скопійована з C++.
+
+Говорячи про BCPL і B, Денніс Річі сказав, що C був винайдений частково
+щоб забезпечити правдоподібний спосіб роботи з рядками символів, коли хтось починає
+зі словесно-орієнтованої мови. PAWN надає два варіанти роботи з рядками
+рядками, упаковані та неупаковані рядки. У розпакованому рядку кожен символ
+
+поміщається у комірку. Накладні витрати для типової 32-бітної реалізації великі: один
+символ займає чотири байти. Упаковані рядки зберігають до чотирьох символів
+в одній комірці, що значно ускладнює роботу з ними.
+обробляти, якщо б ви мали доступ лише до повних комірок. Сучасні реалізації BCPL надають два методи індексування масивів
+індексації масивів: один для отримання слова з масиву і один для отримання символу
+з масиву. PAWN копіює цю концепцію, хоча синтаксис відрізняється від
+від синтаксису BCPL. Функція упакованого рядка також призвела до появи нового оператора char.
+
+Програми Unicode часто мають справу з двома наборами символів:
+8-бітним для застарілих форматів файлів і стандартизованих форматів передачі (як і багато протоколів Інтернету) і 16-бітним набором символів
+протоколів) і 16-бітним набором символів Unicode (або 31-бітним набором символів UCS-4).
+набір символів UCS-4). Хоча компілятор PAWN має опцію, яка робить символи 16-бітними
+(таким чином, у 32-бітну комірку поміщається лише два символи), зазвичай зручніше зберігати однобайтові символи
+зручніше зберігати однобайтові рядки символів у запакованих рядках, а багатобайтові рядки у
+у розпакованих рядках. Це перетворюється на слабке місце PAWN - необхідність розрізняти
+упаковані рядки від неупакованих - на сильну сторону: PAWN може зробити це
+
+розрізняти досить легко. І замість того, щоб створювати дві реалізації для кожної
+функції, яка має справу з рядками (версію ascii та версію Unicode - подивіться
+на API Win32 або навіть стандартну бібліотеку C), PAWN дозволяє функціям
+легко обробляти як запаковані, так і розпаковані рядки.
+
+Незважаючи на вищезгадані зміни, а також зміни, описані в розділі "Підводні камені: відмінності від С" (стор. 134), я намагався зробити PAWN близьким до С.
+falls: відмінності від C" (сторінка 134), я намагався зберегти PAWN близькою до C. А
+Останній пункт, який не пов'язаний з дизайном мови, але все ж таки важливий,
+це ліцензія: PAWN розповсюджується під ліберальною ліцензією, яка дозволяє вам використовувати
+та/або адаптувати код з мінімальними обмеженнями - див. додаток D.
 
 ---
 
-## License
+`Підтримка рядкових літералів Unicode: 139
 
 ---
 
-The software toolkit “PAWN” (the compiler, the abstract machine and  
-the documentation) are copyright c 1997–2006 by ITB CompuPhase. The Intel
-assembler implementation of the abstract machine and the just-in-time com-
-piler (specifically the files amxexec.asm, amxjitr.asm and amxjits.asm)
-are copyright c 1998-2003 Marc Peter. The file amxjitsn.asm is translated
-from amxjits.asm and is partially c 2004 G.W.M. Vissers. The file amxex-
-ecn.asm is translated from amxexec.asm and is partially c 2004–2005 ITB CompuPhase.
-
-PAWN is distributed under the “zLib/libpng” license, which is reproduced be-
-low:
+## Ліцензія
 
 ---
 
-This software is provided “as-is”, without any express or implied warranty. In
-no event will the authors be held liable for any damages arising from the use
-of this software.
+Програмний інструментарій "PAWN" (компілятор, абстрактна машина та
+документація) захищені авторським правом з 1997-2006 ITB CompuPhase. Реалізація абстрактної машини на Intel
+асемблерна реалізація абстрактної машини та компілятор just-in-time
+piler (зокрема, файли amxexec.asm, amxjitr.asm та amxjits.asm)
+захищені авторським правом c 1998-2003 Марк Пітер. Файл amxjitsn.asm перекладено
+з amxjits.asm і частково з 2004 G.W.M. Vissers. Файл amxex-
+ecn.asm перекладено з amxexec.asm і частково c 2004-2005 ITB CompuPhase.
 
-Permission is granted to anyone to use this software for any purpose, including
-commercial applications, and to alter it and redistribute it freely, subject
-to the following restrictions:
-
-1 The origin of this software must not be misrepresented; you must not claim
-that you wrote the original software. If you use this software in a product,
-an acknowledgment in the product documentation would be appreciated
-but is not required.
-
-2 Altered source versions must be plainly marked as such, and must not be
-misrepresented as being the original software.
-
-3 This notice may not be removed or altered from any source distribution.
+PAWN розповсюджується за ліцензією "zLib/libpng", яка відтворюється без
+низький:
 
 ---
 
-The zLib/libpng license has been approved by the “Open Source Initiative” organization.
+Це програмне забезпечення надається "як є", без будь-яких явних або неявних гарантій. В жодному разі
+жодному разі автори не несуть відповідальності за будь-які збитки, що виникли внаслідок використання
+цього програмного забезпечення.
+
+Дозвіл надається будь-кому для використання цього програмного забезпечення з будь-якою метою, включаючи
+комерційних цілях, а також змінювати його та вільно розповсюджувати, за умови дотримання
+наступних обмежень:
+
+1 Походження цього програмного забезпечення не повинно бути спотворено; ви не повинні стверджувати
+що ви написали оригінальне програмне забезпечення. Якщо ви використовуєте це програмне забезпечення у своєму продукті,
+ми будемо вдячні, якщо ви зазначите це у документації до продукту.
+але не є обов'язковим.
+
+2 Змінені версії вихідного коду повинні бути чітко позначені як такі, і не повинні
+не можна видавати за оригінальне програмне забезпечення.
+
+3 Це повідомлення не може бути видалене або змінене з будь-якого джерела розповсюдження.
 
 ---
 
-[Go Back to Contents](00-Contents.md)
+Ліцензію zLib/libpng схвалено організацією "Open Source Initiative".
+
+---
+
+[Повернутися до змісту](00-Contents.md)

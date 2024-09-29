@@ -1,72 +1,74 @@
 ---
-title: Limits
-description: A list of all limitations imposed by the game/server.
-tags: []
+заголовок: Ліміти
+description: Список усіх обмежень, що накладаються грою/сервером.
+теги: []
 ---
 
-## In-game Entities
+## Внутрішньоігрові сутності
 
-| Type                                                          | Limit (0.3.7)   |
+| Тип | Обмеження (0.3.7)
 | ------------------------------------------------------------- | --------------- |
-| Players                                                       | 1000            |
-| Vehicles<sup>(4)(6)</sup>                                     | 2000            |
-| Vehicle Models<sup>(1)</sup>                                  | Unlimited       |
-| Objects<sup>(4)(6)</sup>                                      | 1000            |
-| Virtual Worlds                                                | 2,147,483,647   |
-| Interiors                                                     | 256             |
-| Classes                                                       | 320             |
-| Map Icons<sup>(4)</sup>                                       | 100             |
-| Race Checkpoints<sup>(4)</sup>                                | 1               |
-| Checkpoints<sup>(4)</sup>                                     | 1               |
-| Pickups<sup>(4)</sup>                                         | 4096            |
-| Global 3D Labels<sup>(4)</sup>                                | 1024            |
-| Per-player 3D Text Labels<sup>(4)</sup>                       | 1024            |
-| Chat Bubble String                                            | 144 characters  |
-| [SetObjectMaterialText](../functions/SetObjectMaterialText), [SetPlayerObjectMaterialText](../functions/SetPlayerObjectMaterialText) Text length | 2048 characters |
-| Gangzones                                                     | 1024            |
-| Menus                                                         | 128             |
-| Attached player objects                                       | 10              |
-| Player Variables                                              | 800             |
-| Actors (since 0.3.7)<sup>(4)(5)</sup>                         | 1000            |
-| Explosions                                                    | 10              |
+| Гравці: 1000
+| Транспортні засоби(4)(6)</sup> | 2000
+| Моделі транспортних засобів<sup>(1)</sup> | Необмежено
+| Об'єкти(4)(6)</sup> | 1000
+| Віртуальні світи 2,147,483,647
+| Інтер'єрів 256
+| Класів 320
+| Піктограми мап(4)(4)</sup> | 100
+| Контрольні пункти перегонів(4) | 1
+| Контрольно-пропускні пункти(4)</sup> | 1
+| Пікапи(4)</sup> | 4096
+| Глобальні 3D-мітки(4)</sup> | 1024
+| Текстові 3D-мітки на гравця(4) | 1024 | 1024
+| Рядок бульбашок у чаті, 144 символи.
+| [SetObjectMaterialText](../functions/SetObjectMaterialText), [SetPlayerObjectMaterialText](../functions/SetPlayerObjectMaterialText) Довжина тексту | 2048 символів
+| Бандитських зон 1024
+| Меню 128
+| Приєднані об'єкти гравця 10
+| Змінні гравця - 800
+| Актори (з 0.3.7)<sup>(4)(5)</sup> | 1000
+| Вибухи | 10
 
-## Server Properties
+## Властивості сервера
 
-| Type                        | Limit (0.3.7)         |
+| Тип | Обмеження (0.3.7)
 | --------------------------- | --------------------- |
-| Gamemodes                   | 16                    |
-| Filterscripts               | 16                    |
-| Text Input (Chat/Commands)  | 128 cells (512 bytes) |
-| Text Output                 | 144 cells (576 bytes) |
-| Name Length ([SetPlayerName](../functions/SetPlayerName)) | 24 characters         |
+| Режими гри 16
+| Фільтри-скрипти 16
+| Введення тексту (чат/команди) - 128 комірок (512 байт)
+| Текстовий вивід - 144 комірки (576 байт)
+| Довжина імені ([SetPlayerName](../functions/SetPlayerName)) | 24 символи
 
-## Textdraws
+## Виведення тексту
 
-| Type                                            | Limit (0.3.7)   |
+| Тип | Обмеження (0.3.7)
 | ----------------------------------------------- | --------------- |
-| String Length<sup>(2)</sup>                     | 1024 characters |
-| Shown In A Single Client's Screen<sup>(3)</sup> | 2048 + 256      |
-| Shown In A Single Client's Screen (sprites)     | 100             |
-| Created Serverwise (Global)                     | 2048            |
-| Created Serverwise (Per-Player)                 | 256             |
+| Довжина рядка <sup>(2)</sup> | 1024 символи
+| Shown In A Single Client's Screen<sup>(3)</sup> | 2048 + 256
+| Показано на екрані окремого клієнта (спрайтів) - 100
+| Створено на сервері (глобально) | 2048
+| Створено на сервері (для кожного гравця) | 256
 
-## Dialogs
+## Діалоги
 
-| Type                                                         | Limit (0.3.7) |
+| Тип | Обмеження (0.3.7)
 | ------------------------------------------------------------ | ------------- |
-| Dialog IDs                                                   | 32768         |
-| Info (Main text)                                             | 4096          |
-| Caption                                                      | 64            |
-| Input Text Box (DIALOG_STYLE_INPUT/PASSWORD)                 | 128           |
-| Tab List Columns (DIALOG_STYLE_TABLIST(\_HEADERS))           | 4             |
-| Tab List Column Characters (DIALOG_STYLE_TABLIST(\_HEADERS)) | 128           |
-| Tab List Row Characters (DIALOG_STYLE_TABLIST(\_HEADERS))    | 256           |
+| Ідентифікатори діалогів | 32768
+| Інформація (основний текст) 4096
+| Підпис ¦ 64 ¦ ¦ ¦ ¦ ¦ ¦ ¦ ¦ ¦ ¦ ¦ ¦ ¦
+Текстове поле для введення (DIALOG_STYLE_INPUT/PASSWORD) | 128 | | Стовпчики списку вкладок (DIALOG_STYLE_INPUT/PASSWORD) | 128
+| Стовпці списку вкладок (DIALOG_STYLE_TABLIST(\_HEADERS))           | 4 |
+| Символи стовпців списку вкладок (DIALOG_STYLE_TABLIST(\_HEADERS)) | 128 |
+| Символи рядка списку табуляції (DIALOG_STYLE_TABLIST(\_HEADERS))    | 256 |
 
-**Notes:**
+**Примітки:**
 
-1. Although the vehicle model limit in 0.3 is unlimited, if you use a large amount of vehicle models then it will affect client performance.
-2. Although the textdraw string limit is 1024 characters, if colour codes (e.g. ~r~) are used beyond the 255th character it may crash the client.
-3. It is possible to show all Textdraws at the same time for one player, however this is not recommended.
-4. To circumvent these limits, it is possible to use a [streamer](https://github.com/samp-incognito/samp-streamer-plugin). Streamers work by only creating the entities etc. that are close to players.
-5. Due to client limitations only up to 51 actors may actually be shown at a time.
-6. Vehicle IDs start at ID 1 and thus range from 1 to 1999, even if MAX_VEHICLES is 2000. Objects and player objects also start at ID 1.
+1. Хоча ліміт моделей транспортних засобів у 0.3 необмежений, якщо ви використовуєте велику кількість моделей транспортних засобів, це вплине на продуктивність клієнта.
+2. Хоча обмеження на довжину рядка для введення тексту становить 1024 символи, використання кольорових кодів (наприклад, ~r~) після 255-го символу може призвести до аварійного завершення роботи клієнта.
+3. Для одного гравця можна показувати всі Textdraw'и одночасно, однак це не рекомендується.
+4. Щоб обійти ці обмеження, можна використовувати [стример] (https://github.com/samp-incognito/samp-streamer-plugin). Стрімери працюють, створюючи тільки ті сутності і т.д., які знаходяться поруч з гравцями.
+5. Через обмеження клієнта одночасно може бути показано не більше 51 актора.
+6. Ідентифікатори транспортних засобів починаються з ID 1 і, таким чином, варіюються від 1 до 1999, навіть якщо MAX_VEHICLES дорівнює 2000. Ідентифікатори об'єктів та гравців також починаються з ID 1.
+
+

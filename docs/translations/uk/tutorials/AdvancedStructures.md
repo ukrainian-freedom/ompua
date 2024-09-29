@@ -1,20 +1,20 @@
 ---
-title: "Advanced Structures"
+title: «Advanced Structures»
 ---
 
-## Array manipulation
+## Маніпуляції з масивами
 
-### Finding an empty slot properly
+### Правильний пошук порожнього слоту
 
-This example shows how to find an empty slot in an array using standard coding practices.
+У цьому прикладі показано, як знайти порожній слот у масиві, використовуючи стандартні практики кодування.
 
 ```c
-new
+новий
     gMyArray[10];
 
 stock FindEmptySlot()
 {
-    new
+    новий
         i = 0;
     while (i < sizeof (gMyArray) && gMyArray[i])
     {
@@ -25,12 +25,12 @@ stock FindEmptySlot()
 }
 ```
 
-This basic example assumes an array slot is empty if its value is 0. The loop loops through all values in the array (could also be done with a constant) as long as the values are not 0. When it reaches one which is 0 the while condition will fail and the loop ends without using a break as is common practice but discouraged in situations like this. This function also returns -1 if a free slot is not found, which would need to be checked at the other end. More commonly you would use the found id straight away:
+У цьому базовому прикладі передбачається, що слот масиву порожній, якщо його значення дорівнює 0. Цикл перебирає всі значення у масиві (можна також використовувати константу) до тих пір, поки вони не стануть рівними 0. Коли досягається значення, рівне 0, умова while не виконується, і цикл завершується без використання переривання, що є загальноприйнятою практикою, але не рекомендується у подібних ситуаціях. Ця функція також повертає -1, якщо вільний слот не знайдено, що необхідно перевірити на іншому кінці циклу. Зазвичай ви використовуєте знайдений ідентифікатор одразу:
 
 ```c
 MyFunction()
 {
-    new
+    новий
         i = 0;
     while (i < sizeof (gMyArray) && gMyArray[i])
     {
@@ -38,283 +38,285 @@ MyFunction()
     }
     if (i == sizeof (gMyArray))
     {
-        printf("No free slot found");
+        printf(«Вільного слоту не знайдено»);
         return 0;
     }
-    printf("Slot %d is empty", i);
-    // Use the found slot in your code for whatever
+    printf(«Слот %d порожній», i);
+    // Використовуйте знайдений слот у своєму коді для чого завгодно
     return 1;
 }
 ```
 
-Obviously you would replace the "gMyArray[i]" expression with your own indication of a slot in use.
+Очевидно, що ви маєте замінити вираз «gMyArray[i]» на свій власний вираз, що вказує на слот, який використовується.
 
-### List
+### Список
 
-#### Introduction
+#### Вступ
 
-Lists are a very useful type of structure, they're basically an array where the next piece or relevant data is pointed to by the last piece.
+Списки є дуже корисним типом структури, це, по суті, масив, де на наступний елемент або відповідні дані вказує попередній елемент.
 
-Example:
+Приклад:
 
-Say you have the following array:
+Скажімо, у вас є наступний масив:
 
 ```c
 3, 1, 64, 2, 4, 786, 2, 9
 ```
 
-If you wanted to sort the array you would end up with:
+Якщо ви захочете відсортувати масив, ви отримаєте наступне:
 
 ```c
 1, 2, 2, 3, 4, 9, 64, 786
 ```
 
-If however you wanted to leave the data in the original order but still know the numbers in order for some reason (it's just an example), you have a problem, how are you meant to have numbers in two orders at once? This would be a good use of lists. To construct a list from this data you would need to make the array into a 2d array, where the second dimension was 2 cells big, the first dimension containing the original number, the other containing the index of the next largest number. You would also need a separate variable to hold the index of the lowest number, so your new array would look like:
+Якщо ж ви хочете залишити дані у початковому порядку, але з якихось причин все ще знаєте порядок чисел (це лише приклад), то у вас виникне проблема: як ви збираєтесь зберігати числа у двох порядках одночасно? Для цього добре підійдуть списки. Щоб створити список з цих даних, вам потрібно перетворити масив на двовимірний масив, де другий вимір був би розміром у 2 клітинки, перший вимір містив би початкове число, а другий - індекс наступного за величиною числа. Вам також знадобиться окрема змінна для зберігання індексу найменшого числа, і ваш новий масив матиме такий вигляд:
 
 ```c
 start = 1
 3, 1, 64, 2, 4, 786, 2, 9
-4, 3, 5,  6, 7, -1,  0, 2
+4, 3, 5, 6, 7, -1, 0, 2
 ```
 
-The next index associated with 786 is -1, this is an invalid array index and indicates the end of the list, i.e. there are no more numbers. The two 2's could obviously be either way round, the first one in the array is the first on in the list too as it's the more likely one to be encountered first.
+Наступний індекс, пов'язаний з 786, дорівнює -1, це невірний індекс масиву і вказує на кінець списку, тобто більше немає чисел. Очевидно, що ці дві 2 можуть бути і навпаки, перше число у масиві також буде першим у списку, оскільки воно з більшою ймовірністю зустрінеться першим.
 
-The other advantage of this method of sorting the numbers is adding more numbers is a lot faster. If you wanted to add another number 3 to the sorted array you would need to first shift at least 4 numbers one slot to the right to make space, not terrible here but very slow in larger arrays. With the list version you could just append the 3 to the end of the array and modify a single value in the list;
+Іншою перевагою цього методу сортування чисел є те, що додавання нових чисел відбувається набагато швидше. Якщо ви хочете додати ще одне число 3 до відсортованого масиву, вам потрібно буде спочатку зсунути принаймні 4 числа на один слот праворуч, щоб звільнити місце, що не так вже й страшно, але дуже повільно у великих масивах. У версії зі списком ви можете просто додати 3 у кінець масиву і змінити одне значення у списку;
 
 ```c
 start = 1
 3, 1, 64, 2, 4, 786, 2, 9, 3
-8, 3, 5,  6, 7, -1,  0, 2, 4
-^ modify this value        ^ next highest slot
+8, 3, 5, 6, 7, -1, 0, 2, 4
+^ змінити це значення ^ наступний за старшинством слот
 ```
 
-None of the other numbers have moved so none of the other indexes need updating, just make the next lowest number point to the new number and make the new number point the number the next lowest used to be pointing to. Removing a value is even easier:
+Жодне з інших чисел не перемістилося, тому жоден з інших індексів не потребує оновлення, просто зробіть так, щоб наступне найнижче число вказувало на нове число, а нове число вказувало на число, на яке раніше вказувало наступне найнижче число. Видалити значення ще простіше:
 
 ```c
 start = 1
 3, 1, 64, X, 4, 786, 2, 9, 3
-8, 6, 5,  6, 7, -1,  0, 2, 4
-   ^ Changed to jump over the removed value
+8, 6, 5, 6, 7, -1, 0, 2, 4
+   ^ Змінено для переходу через вилучене значення
 ```
 
-Here the first 2 has been removed and the number which pointed to that number (the 1) has been updated to point to the number the removed number was pointing to. In this example neither the removed number's pointer nor number have been removed, but you cannot possibly get to that slot following the list so it doesn't matter, it is effectively removed.
+Тут перші 2 було видалено, а число, яке вказувало на це число (1), було оновлено на число, на яке вказувало видалене число. У цьому прикладі не було вилучено ні покажчик вилученого числа, ні саме число, але ви не зможете дістатися до цього слоту за списком, тому це не має значення, його фактично вилучено.
 
-#### Types
+#### Типи
 
-The lists in the examples above were just basic single lists, you can also have double lists where every value points to the next value and the last value, these tend to have a pointer to the end of the list too to go backwards (e.g. to get the numbers in descending order):
+Списки у наведених вище прикладах були простими одинарними списками, ви також можете використовувати подвійні списки, де кожне значення вказує на наступне і останнє значення, такі списки, як правило, також мають вказівник на кінець списку, щоб повернутися назад (наприклад, щоб отримати числа у порядку спадання):
 
 ```c
 start = 1
 end = 5
-value: 3, 1,  64, 2, 4, 786, 2, 9, 3
-next:  8, 3,  5,  6, 7, -1,  0, 2, 4
-last:  6, -1, 7,  1, 8, 2,   3, 4, 0
+значення: 3, 1, 64, 2, 4, 786, 2, 9, 3
+наступний:  8, 3, 5, 6, 7, -1, 0, 2, 4
+last: 6, -1, 7, 1, 8, 2, 3, 4, 0
 ```
 
-You have to be careful with these, especially when you have more than one of any value, that the last pointer points to the number who's next pointer goes straight back again, e.g this is wrong:
+Ви повинні бути обережними з ними, особливо коли у вас більше одного будь-якого значення, щоб останній вказівник вказував на число, на яке наступний вказівник повертається назад, наприклад, це неправильно:
 
 ```c
-2,  3, 3
-1,  2, -1
+2, 3, 3
+1, 2, -1
 -1, 2, 0
 ```
 
-The 2's next pointer points to the 3 in slot one, but that 3's last pointer doesn't go back to the two, both lists are in order on their own (as the two threes can be either way round) but together they are wrong, the correct version would be:
+Наступний вказівник 2 вказує на 3 у першому слоті, але останній вказівник 3 не повертається до двох, обидва списки впорядковані самі по собі (оскільки дві трійки можуть бути в обох напрямках), але разом вони неправильні, правильним варіантом був би такий:
 
 ```c
-2,  3, 3
-1,  2, -1
+2, 3, 3
+1, 2, -1
 -1, 0, 2
 ```
 
-Both of those lists start and end on the end two numbers, the back list in the wrong example started on the middle number.
+Обидва ці списки починаються і закінчуються на двох крайніх числах, зворотний список у неправильному прикладі починається з середнього числа.
 
-The other type of list is the looping one where the last value points back to the first. The obvious advantage to this is that you can get to any value from any other value without knowing in advance whether the target is before or after the start point, you just need to be careful not to get into an infinite loop as there's no explicit -1 end point. These lists do still have start points. You can also do double looping lists where you have a next and last list, both of which loop round:
+Іншим типом списку є зациклений список, у якому останнє значення вказує на перше. Очевидною перевагою є те, що ви можете дістатися до будь-якого значення з будь-якого іншого значення, не знаючи заздалегідь, чи знаходиться ціль до або після початкової точки, вам просто потрібно бути обережним, щоб не потрапити в нескінченний цикл, оскільки немає явної кінцевої точки -1. Ці списки все ще мають початкові точки. Ви також можете створювати подвійні циклічні списки, коли у вас є наступний і попередній список, обидва з яких циклічно повторюються:
 
 ```c
 start = 1
-end = 5
-3, 1,  64, 2, 4, 786, 2, 9, 3
-8, 3,  5,  6, 7, 1,   0, 2, 4
-6, 5,  7,  1, 8, 2,   3, 4, 0
+кінець = 5
+3, 1, 64, 2, 4, 786, 2, 9, 3
+8, 3, 5, 6, 7, 1, 0, 2, 4
+6, 5, 7, 1, 8, 2, 3, 4, 0
 ```
 
-#### Mixed lists
+#### Змішані списки
 
-Mixed lists are arrays containing multiple lists at once. An example could be an array of values, sorted by a list, with another list linking all unused slots so you know where you can add a new value. Example (X means unused (free) slot):
+Змішані списки - це масиви, що містять декілька списків одночасно. Прикладом може бути масив значень, відсортованих за списком, з іншим списком, який пов'язує всі невикористані слоти, щоб ви знали, куди можна додати нове значення. Приклад (X означає невикористаний (вільний) слот):
 
 ```c
 sortedStart = 3
 unusedStart = 1
-value: 34, X, X, 6, 34, 46, X,  54, 23, 25, X,  75, X, 45
-sort:  4,        8, 13, 7,      11, 9,  0,      -1,    5
-free:      2, 6,            10,             12,     -1
+значення: 34, X, X, 6, 34, 46, X, 54, 23, 25, X, 75, X, 45
+sort: 4, 8, 13, 7, 11, 9, 0, -1, 5
+вільно:      2, 6, 10, 12, -1
 ```
 
-Obviously the two lists never interact so both can use the same slot for their next value:
+Очевидно, що ці два списки ніколи не взаємодіють, тому обидва можуть використовувати той самий слот для наступного значення:
 
 ```c
 sortedStart = 3
 unusedStart = 1
-value: 34, X, X, 6, 34, 46, X,  54, 23, 25, X,  75, X,  45
-next:  4,  2, 6, 8, 13, 7,  10, 11, 9,  0,  12, -1, -1, 5
+значення: 34, X, X, 6, 34, 46, X, 54, 23, 25, X, 75, X, 45
+наступний:  4, 2, 6, 8, 13, 7, 10, 11, 9, 0, 12, -1, -1, 5
 ```
 
-#### Code
+#### Код
 
-Before you start the code you need to decide what sort of list is best suited for your application, this is entirely based on application can't easily be covered here. All these examples are mixed lists, one list for the required values, one for unused slots.
+Перш ніж ви почнете писати код, вам потрібно вирішити, який тип списку найкраще підходить для вашої програми, це повністю залежить від програми і не може бути легко висвітлено тут. Всі ці приклади є змішаними списками, один список для необхідних значень, інший для невикористаних слотів.
 
-This example shows how to write code for a list sorted numerically ascending.
+У цьому прикладі показано, як написати код для списку, відсортованого за зростанням.
 
 ```c
 #define NUMBER_OF_VALUES (10)
 
 enum E_DATA_LIST
 {
-    E_DATA_LIST_VALUE,
+    E_DATA_LIST_VALUE
     E_DATA_LIST_NEXT
 }
 
-new
-    gListData[NUMBER_OF_VALUES][E_DATA_LIST],
+новий
+    gListData[КІЛЬКІСТЬ_ЗНАЧЕНЬ][E_DATA_LIST],
     gUnusedStart = 0,
-    gListStart = -1; // Starts off with no list
+    gListStart = -1; // Початок без списку
 
-// This function initializes the list
+// Ця функція ініціалізує список
 List_Setup()
 {
-    new
+    новий
         i,
-        size = NUMBER_OF_VALUES;
+        size = КІЛЬКІСТЬ_ЗНАЧЕНЬ;
     size--;
     for (i = 0; i < size; i++)
     {
-        // To start with all slots are unused
+        // На початку всі слоти не зайняті
         gListData[i][E_DATA_LIST_NEXT] = i + 1;
     }
-    // End the list
+    // Кінець списку
     gListData[size][E_DATA_LIST_NEXT] = -1;
 }
 
-// This function adds a value to the list (using basic sorting)
+// Ця функція додає значення до списку (з використанням базового сортування)
 List_Add(value)
 {
-    // Check if there are free slots in the array
+    // Перевірити, чи є вільні слоти в масиві
     if (gUnusedStart == -1) return -1;
     new
-        pointer = gListStart,
+        покажчик = gListStart,
         last = -1,
         slot = gUnusedStart;
-    // Add the value to the array
+    // Додати значення в масив
     gListData[slot][E_DATA_LIST_VALUE] = value;
-    // Update the empty list
+    // Оновити пустий список
     gUnusedStart = gListData[slot][E_DATA_LIST_NEXT];
-    // Loop through the list till we get to bigger/same size number
+    // Перебираємо список, доки не дійдемо до більшого/такого ж розміру числа
     while (pointer != -1 && gListData[pointer][E_DATA_LIST_VALUE] < value)
     {
-        // Save the position of the last value
+        // Зберегти позицію останнього значення
         last = pointer;
-        // Move on to the next slot
+        // Перехід на наступний слот
         pointer = gListData[pointer][E_DATA_LIST_NEXT];
     }
-    // If we got here we ran out of values or reached a larger one
-    // Check if we checked any numbers
+    // Якщо ми дійшли до цього місця, то у нас закінчились значення або ми досягли більшого значення
+    // Перевіряємо, чи перевірили якісь числа
     if (last == -1)
     {
-        // The first number was bigger or there is no list
-        // Either way add the new value to the start of the list
+        // Перше число було більшим або списку немає
+        // У будь-якому випадку додаємо нове значення на початок списку
         gListData[slot][E_DATA_LIST_NEXT] = gListStart;
         gListStart = slot;
     }
     else
     {
-        // Place the new value in the list
-        gListData[slot][E_DATA_LIST_NEXT] = pointer;
+        // Помістити нове значення в список
+        gListData[slot][E_DATA_LIST_NEXT] = покажчик;
         gListData[last][E_DATA_LIST_NEXT] = slot;
     }
-    return slot;
+    повернути slot;
 }
 
-// This function removes a value from a given slot in the array (returned by List_Add)
+// Ця функція видаляє значення з заданого слоту в масиві (повертається функцією List_Add)
 List_Remove(slot)
 {
-    // Is this a valid slot
+    // Чи це коректний слот
     if (slot < 0 || slot >= NUMBER_OF_VALUES) return 0;
-    // First find the slot before
+    // Спочатку знайти слот перед
     new
-        pointer = gListStart,
+        покажчик = gListStart,
         last = -1;
     while (pointer != -1 && pointer != slot)
     {
         last = pointer;
         pointer = gListData[pointer][E_DATA_LIST_NEXT];
     }
-    // Did we find the slot in the list
+    // Чи знайшли ми слот у списку
     if (pointer == -1) return 0;
     if (last == -1)
     {
-        // The value is the first in the list
-        // Skip over this slot in the list
+        // Значення є першим у списку
+        // Пропустити цей слот у списку
         gListStart = gListData[slot][E_DATA_LIST_NEXT];
     }
     else
     {
-        // The value is in the list
-        // Skip over this slot in the list
+        // Значення знаходиться в списку
+        // Пропустити цей слот у списку
         gListData[last][E_DATA_LIST_NEXT] = gListData[slot][E_DATA_LIST_NEXT];
     }
-    // Add this slot to the unused list
-    // The unused list isn't in any order so this doesn't matter
+    // Додати цей слот до списку невикористаних
+    // Невикористаний список не впорядкований, тому це не має значення
     gListData[slot][E_DATA_LIST_NEXT] = gUnusedStart;
     gUnusedStart = slot;
     return 1;
 }
 ```
 
-### Binary Trees
+### Бінарні дерева
 
-#### Introduction
+#### Вступ
 
-Binary trees are a very fast method of searching for data in an array by using a very special list system. The most well known binary tree is probably the 20 questions game, with just 20 yes/no questions you can have over 1048576 items. A binary tree, as its name implies, is a type of tree, similar to a family tree, where every item has 0, 1 or 2 children. They are not used for ordering data like a list but sorting data for very efficient searching. Basically you start with an item somewhere near the middle of the ordered list of objects (e.g. the middle number in a sorted array) and compare that to the value you want to find. If it's the same you've found your item, if it's greater you move to the item to the right (not immediately to the right, the item to the right of the middle item would be the item at the three quarter mark), if it's less you move left, then repeat the process.
+Бінарні дерева - це дуже швидкий метод пошуку даних у масиві за допомогою спеціальної системи списків. Найбільш відомим бінарним деревом є, мабуть, гра «20 запитань», в якій за допомогою 20 запитань з варіантами відповідей «так/ні» можна отримати понад 1048576 елементів. Бінарне дерево, як випливає з його назви, є типом дерева, схожим на генеалогічне дерево, де кожен елемент має 0, 1 або 2 нащадків. Вони використовуються не для впорядкування даних, як список, а для сортування даних для дуже ефективного пошуку. По суті, ви починаєте з елемента десь посередині впорядкованого списку об'єктів (наприклад, з середнього числа у відсортованому масиві) і порівнюєте його зі значенням, яке ви хочете знайти. Якщо вони збігаються, ви знайшли потрібний об'єкт, якщо вони більші, ви переходите до об'єкта праворуч (не відразу праворуч, об'єктом праворуч від середнього об'єкта буде об'єкт на позначці три чверті), якщо вони менші, ви переходите ліворуч, і повторюєте процес.
 
-**Example**
+**Приклад**
 
 ```c
 1 2 5 6 7 9 12 14 17 19 23 25 28 33 38
 ```
 
-You have the preceding ordered array and you want to find what slot the number 7 is in (if it's in at all), in this example it's probably more efficient to just loop straight through the array to find it but that's not the point, that method increases in time linearly with the size of the array, a binary search time increases linearly as the array increases exponentially in size. I.e. an array 128 big will take twice as long to search straight through as an array 64 big, but a binary search 128 big will only take one check more than a binary search 64 big, not a lot at all.
+У вас є попередньо впорядкований масив, і ви хочете знайти в якому слоті знаходиться число 7 (якщо воно взагалі там є), у цьому прикладі, ймовірно, ефективніше було б просто пройтись по масиву, щоб знайти його, але справа не в цьому, цей метод збільшує час лінійно зі збільшенням розміру масиву, час двійкового пошуку збільшується лінійно зі збільшенням масиву в геометричній прогресії. Тобто прямий пошук у масиві 128 big займе вдвічі більше часу, ніж у масиві 64 big, але бінарний пошук у масиві 128 big займе лише на одну перевірку більше, ніж бінарний пошук у масиві 64 big, що зовсім небагато.
 
-If we construct a binary tree from the data above we get: ![Binarytree](https://sampwiki.blast.hk/wiki/Image:Binarytree.GIF)
+Якщо ми побудуємо бінарне дерево з наведених вище даних, то отримаємо ![Бінарне дерево](https://sampwiki.blast.hk/wiki/Image:Binarytree.GIF)
 
-If you read left to right, ignoring the vertical aspect you can see that the numbers are in order. Now we can try to find the 7.
+Якщо читати зліва направо, ігноруючи вертикальний аспект, то можна побачити, що числа впорядковані. Тепер ми можемо спробувати знайти 7.
 
-The start number is 14, 7 is less than 14 so we go to the slot pointed to by the left branch of 14. This brings us to 6, 7 is bigger than 6 so we go right to 9, then left again to 7. This method took 4 comparisons to find the number (including the final check to confirm that we are on 7), using a straight search would have taken 5.
+Початкове число 14, 7 менше за 14, тому ми переходимо до гнізда, на яке вказує ліва гілка 14. Це приводить нас до 6, 7 більше 6, тому ми йдемо праворуч до 9, а потім знову ліворуч до 7. Цей метод потребує 4 порівнянь для знаходження числа (включаючи остаточну перевірку, щоб підтвердити, що ми знаходимося на 7), при прямому переборі знадобилося б 5.
 
-Lets say there is no 7, we would end up with this binary tree: ![Binarytree-7-less](https://sampwiki.blast.hk/wiki/Image:Binarytree-7-less.GIF)
+Припустимо, що 7 не існує, ми отримаємо таке бінарне дерево: ![Binarytree-7-less](https://sampwiki.blast.hk/wiki/Image:Binarytree-7-less.GIF)
 
-This, unlike the example above, has a single child number (the 9), as well as 2 and 0 child numbers. You only get a perfect tree when there are (2^n)-1 numbers (0, 1, 3, 7, 15, 31 ...), any other numbers will give a not quite full tree. In this case when we get to the 9, where the 7 will be, we'll find there is no left branch, meaning the 7 doesn't exist (it cannot possibly be anywhere else in the tree, think about it), so we return -1 for invalid slot.
+На відміну від наведеного вище прикладу, воно має єдиний дочірній номер (9), а також 2 і 0 дочірні номери. Ви отримаєте повне дерево лише тоді, коли в ньому буде (2^n)-1 число (0, 1, 3, 7, 15, 31 ...), будь-які інші числа дадуть не зовсім повне дерево. У цьому випадку, коли ми дійдемо до 9, де має бути 7, ми побачимо, що лівої гілки немає, тобто 7 не існує (вона не може бути ніде більше в дереві, подумайте про це), тому ми повертаємо -1 за невірний слот.
 
-#### Balanced and unbalanced
+#### Збалансовані та незбалансовані
 
-The trees in the examples above are called balanced binary trees, this means as near as possible all the branches are the same length (obviously in the second there aren't enough numbers for this to be the case but it's as near as possible). Constructing balanced trees is not easy, the generally accepted method of constructing almost balanced trees is putting the numbers in in a random order, this may mean you end up with something like this: ![Binarytree-uneven](https://sampwiki.blast.hk/wiki/Image:Binarytree-uneven.GIF)
+Дерева у наведених вище прикладах називаються збалансованими бінарними деревами, це означає, що всі гілки мають однакову довжину (очевидно, що у другому прикладі для цього не вистачає чисел, але це максимально наближено). Побудова збалансованих дерев є непростим завданням, загальноприйнятим методом побудови майже збалансованих дерев є розміщення чисел у випадковому порядку, це може означати, що ви отримаєте щось на кшталт цього: ![Binarytree-uneven](https://sampwiki.blast.hk/wiki/Image:Binarytree-uneven.GIF)
 
-Obviously this tree is still valid but the right side is much larger than the left, however finding 25 still only takes 7 comparisons in this compared to 12 in the straight list. Also, as long as you start with a fairly middle number the random insertion method should produce a fairly balanced tree. The worst possible thing you can do is put the numbers in in order as then there will be no left branches at all (or right branches if done the other way), however even in this worst case the binary tree will take no longer to search than the straight list.
+Очевидно, що це дерево все ще працює, але права частина набагато більша за ліву, однак для знаходження 25 потрібно лише 7 порівнянь у цьому дереві порівняно з 12 у прямому списку. Крім того, якщо ви починаєте з досить середнього числа, метод випадкової вставки повинен створити досить збалансоване дерево. Найгірше, що ви можете зробити, це вставити числа по порядку, оскільки тоді взагалі не буде лівих гілок (або правих, якщо зробити навпаки), однак навіть у цьому найгіршому випадку пошук за бінарним деревом займе не більше часу, ніж за прямим списком.
 
-**Modification**
+**Модифікація**
 
-#### Addition
+#### Додавання
 
-Adding a value to a binary tree is relatively easy, you just follow the tree through, using the value you want to add as a reference untill you reach an empty branch and add the number there. E.g. if you wanted to add the number 15 to our original balanced tree it would end up on the left branch of the 17. If we wanted to add the number 8 to the second balanced tree (the one without the 7) it would end up in the 7's old slot on the left of the 9.
+Додавання значення до бінарного дерева є відносно простим: ви просто рухаєтесь по дереву, використовуючи значення, яке ви хочете додати, як посилання, доки не дійдете до порожньої гілки і не додасте число туди. Наприклад, якщо ви хочете додати число 15 до нашого початкового збалансованого дерева, воно опиниться на лівій гілці 17. Якщо ми захочемо додати число 8 до другого збалансованого дерева (без 7), воно опиниться у старому гнізді 7 зліва від 9.
 
-#### Deletion
+#### Видалення
 
-Deleting a number from a binary tree can be hard or it can be easy. If the number is at the end of a branch (e.g. 1, 5, 7, 12 etc in the original tree) you simply remove them. If a number only has one child (e.g. the 9 in the second example) you simply move that child (e.g. the 12) up into their position (so 6's children would be 2 and 12 in the new second example with 9 removed). Deletion only gets interesting when a node has two children. There are at least four ways of doing this:
+Видалення числа з бінарного дерева може бути як складним, так і простим. Якщо число знаходиться в кінці гілки (наприклад, 1, 5, 7, 12 і т.д. у вихідному дереві), ви просто видаляєте його. Якщо число має лише одного нащадка (наприклад, 9 у другому прикладі), ви просто переміщуєте цього нащадка (наприклад, 12) на його місце (таким чином, нащадками числа 6 будуть 2 і 12 у новому другому прикладі з видаленим числом 9). Видалення стає цікавим лише тоді, коли вузол має двох нащадків. Існує принаймні чотири способи зробити це:
 
-The first method is the simplest computationally. Basically you choose one of the branches (left or right, assume right for this explanation) and replace the node you've removed with the first node of that branch (i.e. the right child of the node you've removed). You then go left through the new branch till you reach the end and place the left branch there. E.g. if you removed the 14 from the original exampe you would end up with 25 taking its place at the top of the tree and 6 attached to the left branch of 17. This method is fast but ends up with very unbalanced trees very quickly.
+Перший спосіб є найпростішим з точки зору обчислень. Ви вибираєте одну з гілок (ліву або праву, для цього пояснення припустимо праву) і замінюєте вузол, який ви видаляєте, першим вузлом цієї гілки (тобто правим нащадком видаленого вузла). Потім ви рухаєтеся ліворуч по новій гілці до кінця і розміщуєте там ліву гілку. Наприклад, якщо ви видалили 14 з початкового прикладу, ви отримаєте 25 на вершині дерева і 6 на лівій гілці 17. Цей метод швидкий, але дуже швидко призводить до того, що дерева стають дуже незбалансованими.
 
-The second method is to get all the numbers which are children of the node you just removed and rebuild a new binary tree from them, then put the top of that tree into the node you've just removed. This keeps the tree fairly well balanced but is obviously slower.
+Другий спосіб полягає у тому, щоб отримати всі числа, які є нащадками вузла, який ви щойно видалили, і побудувати з них нове бінарне дерево, а потім помістити вершину цього дерева у вузол, який ви щойно видалили. Цей спосіб зберігає дерево досить добре збалансованим, але, очевидно, є повільнішим.
 
-The third method is to combine the two methods above and rebuild the tree inline, this is more complex to code but keeps the tree balanced and is faster than the second method (though no-where near as fast as the first).
+Третій метод полягає в тому, щоб об'єднати два вищеописані методи і перебудувати дерево в лінію, він складніший для кодування, але зберігає дерево збалансованим і працює швидше, ніж другий метод (хоча і близько не так швидко, як перший).
 
-The final menthod listed here is to simply set a flag on a value saying it's not used any more, this is even faster than the first method and maintains the structure but means you can't re-use slots unless you can find a value to replace it with later.
+Останній метод, описаний тут, полягає в тому, щоб просто встановити прапорець на значенні, який означає, що воно більше не використовується, це ще швидше, ніж перший метод, і зберігає структуру, але означає, що ви не можете повторно використовувати слоти, якщо не знайдете значення, яким можна замінити його пізніше.
+
+

@@ -1,21 +1,23 @@
 ---
 title: opcodes
-description: SendClientCheck action IDs
-tags: []
+description: SendClientCheck ідентифікатори дій
+теги: []
 sidebar_label: opcodes
 ---
 
-:::note
+:::примітка
 
-This page contains all of the action/opcode IDs used by [SendClientCheck](../functions/SendClientCheck).
+Ця сторінка містить усі ідентифікатори дій/опкодів, що використовуються [SendClientCheck](../functions/SendClientCheck).
 
 :::
 
-| opcode                                            | Purpose                                                                                                 |
+| opcode | Purpose |
 |---------------------------------------------------|---------------------------------------------------------------------------------------------------------|
-| 72                                                | The uptime of player's computer                                                                         |
-| 71                                                | The checksum of given model's ColModel (data in CColModel class)                                        |
-| 70                                                | The checksum of given model's CModelInfo (data in CModelInfo class)                                     |
-| 2                                                 | Returns 32 flags of entity in CPhysical (if player is in vehicle, it sends data related to vehicle, if player is on foot, well.. it's player)|
-| 5                                                 | This one makes checksum of size bytes from arg + offset address (GTA memory) and returns it into response argument, and arg should be within GTA memory boundaries|
-| 69                                                | this one makes checksum of size bytes from arg + offset address (SAMP memory) and returns it into response argument, and arg should be within GTA memory boundaries (0x0 - 0xC3500)|
+| 72 | Час роботи комп'ютера гравця
+| 71 | Контрольна сума ColModel даної моделі (дані у класі CColModel)
+| 70 | Контрольна сума CModelInfo даної моделі (дані в класі CModelInfo)
+2 | Повертає 32 прапори сутності в CPhysical (якщо гравець у транспортному засобі, то надсилає дані, пов'язані з транспортним засобом, якщо гравець пішки, ну... це гравець)| ¦ 5 | Цей повертає дані про гравця в CPhysical (дані в класі CPhysical).
+| 5 | Ця функція обчислює контрольну суму байт розміру з аргументу + адреса зміщення (пам'ять GTA) і повертає її у аргумент відповіді, причому аргумент повинен знаходитися у межах пам'яті GTA|.
+| 69 | Ця функція обчислює контрольну суму байт розміру з аргументу + адреса зсуву (пам'ять SAMP) і повертає її в аргумент відповіді, причому аргумент повинен знаходитися в межах пам'яті GTA (0x0 - 0xC3500)|.
+
+

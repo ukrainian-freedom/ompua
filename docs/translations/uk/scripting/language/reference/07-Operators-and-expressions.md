@@ -1,238 +1,240 @@
-# Operators and expressions
+# Оператори та вирази
 
 ---
 
-### • Notational conventions
+### - Умовні позначення
 
-The operation of some operators depends on the specific kinds of operands.
-Therefore, operands are notated thus:
+Робота деяких операторів залежить від конкретного типу операндів.
+Тому операнди позначаються таким чином:
 
-| Operators | Usage                                                                   |
+| Оператори | Використання |
 | --------- | ----------------------------------------------------------------------- |
-| e         | any expression;                                                         |
-| v         | any expression to which a value can be assigned (“lvalue” expressions); |
-| a         | an array;                                                               |
-| f         | a function;                                                             |
-| s         | a symbol —which is a variable, a constant or a function.                |
+| e | будь-який вираз; | | v | будь-який вираз
+| v | будь-який вираз, якому можна присвоїти значення (вирази типу "lvalue")
+| a - масив; f - функція
+| f - функція; s - символ, якому можна присвоїти значення
+| s - символ, який є змінною, константою або функцією.                |
 
-### • Expressions
+### - Вирази
 
-An expression consists of one or more operands with an operator. The operand
-can be a variable, a constant or another expression. An expression followed by
-a semicolon is a statement.
+Вираз складається з одного або декількох операндів з оператором. Операнд
+може бути змінною, константою або іншим виразом. Вираз, після якого стоїть крапка з комою
+крапка з комою є оператором.
 
-Listing: examples of expressions
+Лістинг: приклади виразів
 
 ```c
 
 v++
 f(a1, a2)
-v = (ia1 * ia2) / ia3
+v = (a1 * a2) / a3
 
 ```
 
-### • Arithmetic
+### Арифметика
 
-| Sign   | Description                                                                                                                                                                                                 |
+| Підпис, опис.
 | ------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| +      | e1 + e2                                                                                                                                                                                                     |
-|        | Results in the addition of e1 and e2                                                                                                                                                                        |
-| -      | e1 - e2                                                                                                                                                                                                     |
-|        | Results in sthe subtraction of e1 and e2                                                                                                                                                                    |
-|        | -e                                                                                                                                                                                                          |
-|        | Results in the arithmetic negation of a (two’s complement).                                                                                                                                                 |
-| \*     | e1 \* e2                                                                                                                                                                                                    |
-|        | Results in the multiplication of e1 and e2.                                                                                                                                                                 |
-| /      | e1 / e2                                                                                                                                                                                                     |
-|        | Results in the division of e1 by e2. The result is truncated to the nearest integral value that is less than or equal to the quotient. Both negative and positive values are rounded down, i.e. towards −∞. |
-| %      | e1 % e2                                                                                                                                                                                                     |
-|        | Results in the modulus (remainder of the division) of e1 by e2. The modulus is always a positive value.                                                                                                     |
-| ++     | v++                                                                                                                                                                                                         |
-|        | increments v by 1; the result if the expression is the value of v before it is incremented.                                                                                                                 |
-|        | ++v                                                                                                                                                                                                         |
-|        | increments v by 1; the result if the expression is the value of v after it is incremented.                                                                                                                  |
-| --     | v--                                                                                                                                                                                                         |
-|        | decrements v by 1; the result if the expression is the value of v before it is decremented.                                                                                                                 |
-|        | --v                                                                                                                                                                                                         |
-|        | decrements v by 1; the result if the expression is the value of v after it is decremented.                                                                                                                  |
-| Notes: | The unary + is not defined in pawn                                                                                                                                                                          |
-|        | The operators ++ and -- modify the operand. The operand must be an lvalue.                                                                                                                                  |
+| e1 + e2 + e1 + e2
+| призводить до додавання e1 та e2.
+- e1 - e2
+| призводить до віднімання e1 і e2.
+| | -e |
+| призводить до арифметичного заперечення a (доповнення до двійки).                                                                                                                                                 |
+| e1 \* e2 \* e1
+| Дає множення e1 та e2.                                                                                                                                                                 |
+| e1 / e2
+| Виконує ділення e1 на e2. Результат округляється до найближчого інтегрального значення, яке менше або дорівнює частці. Як від'ємні, так і додатні значення округлюються вниз, тобто до -∞. |
+| % | e1 % e2 |
+| Виводить модуль (остачу від ділення) e1 на e2. Модуль завжди є додатною величиною.                                                                                                     |
+| ++ | v++ |
+| Збільшує v на 1; результат, якщо вираз є значенням v до його збільшення.                                                                                                                 |
+| | ++v |
+| збільшує v на 1; результат, якщо вираз є значенням v після його збільшення.                                                                                                                  |
+| -- | v-- |
+| зменшує v на 1; результат, якщо вираз є значенням v до його зменшення.                                                                                                                 |
+| | --v |
+| зменшує v на 1; результат, якщо вираз є значенням v після декрементації.                                                                                                                  |
+| Примітки: | Унарний + не визначений у пішаку.
+| Оператори ++ та -- модифікують операнд. Операнд має бути значенням типу l.                                                                                                                                  |
 
-### • Bit manipulation
+### - Маніпуляції з бітами
 
-| Sign | Description                                                                                                                                                           |
+| Підпис, опис.
 | ---- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --- | --- |
-| ~    | ~e                                                                                                                                                                    |
-|      | results in the one’s complement of e.                                                                                                                                 |
-| >>   | e1 >> e2                                                                                                                                                              |
-|      | results in the arithmetic shift to the right of e1 by e2 bits. The shift operation is signed: the leftmost bit of e1 is copied to vacant bits in the result.          |
-| >>>  | e1 >>> e2                                                                                                                                                             |
-|      | results in the logical shift to the right of e1 by e2 bits. The shift operation is unsigned: the vacant bits of the result are filled with zeros.                     |
-| <<   | e1 << e2                                                                                                                                                              |
-|      | results in the value of e1 shifted to the left by e2 bits; the rightmost bits are set to zero. There is no distinction between an arithmetic and a logical left shift |
-| &    | eq & e2                                                                                                                                                               |
-|      | results in the bitwise logical “and” of e1 and e2.                                                                                                                    |
-|      |                                                                                                                                                                       | e1  | e2  |
-|      | results in the bitwise logical “or” of e1 and e2.                                                                                                                     |
-| ^    | e1 ^ e2                                                                                                                                                               |
-|      | results in the bitwise “exclusive or” of e1 and e2.                                                                                                                   |
+| ~ | ~e |
+| призводить до доповнення одиниці до e.
+| e1 >> e2 >> e1 >> e2
+| | призводить до арифметичного зсуву праворуч від e1 на e2 біти. Операція зсуву є знаковою: крайній лівий біт e1 копіюється у вільні біти результату.          |
+| >>> | e1 >>> e2 |
+| | призводить до логічного зсуву праворуч від e1 на e2 бітів. Операція зсуву є беззнаковою: вільні біти результату заповнюються нулями.                     |
+| << | e1 << e2 |
+| | призводить до зсуву значення e1 вліво на e2 біти; крайні праві біти встановлюються у нуль. Не існує різниці між арифметичним та логічним зсувом вліво | & | & | & | & | & | & | & | & | & | & | & | & | & | & | & | &
+| & | eq & e2 |
+| | призводить до порозрядного логічного "і" для e1 та e2.                                                                                                                    |
+e1 | e2 | e1 | e2 | e1 | e2 | e1 | e2
+| дає порозрядне логічне "або" для e1 та e2.                                                                                                                     |
+| e1 ^ e2 ^ e1 ^ e2
+| дає побітове "виключне або" для e1 та e2.                                                                                                                   |
 
-### • Assignment
+### - Призначення
 
-The result of an assignment expression is the value of the left operand after the assignment. The left operand may not be tagged.
+Результатом виразу присвоювання є значення лівого операнда після присвоювання. Лівий операнд може не мати мітки.
 
-| Sign | Description                                                                                                                                                                                       |
+| Підпис, опис.
 | ---- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --- | --- |
-| =    | v = e                                                                                                                                                                                             |
-|      | assigns the value of e to variable v.                                                                                                                                                             |
-|      | If “v” is an array, it must have an explicit size and “e” must be an array of the same size; “e” may be a string or a literal array.                                                              |
-| Note | the following operators combine an assignment with an arithmetic or a bitwise operation; the result of the expression is the value of the left operand after the arithmetic or bitwise operation. |
-| +=   | v += e                                                                                                                                                                                            |
-|      | increments v with a.                                                                                                                                                                              |
-| -=   | v -= e                                                                                                                                                                                            |
-|      | decrements v with e                                                                                                                                                                               |
-| \*=  | v \*= e                                                                                                                                                                                           |
-|      | multiplies v with e                                                                                                                                                                               |
-| /=   | v /= e                                                                                                                                                                                            |
-|      | divides v by e.                                                                                                                                                                                   |
-| %=   | v %= e                                                                                                                                                                                            |
-|      | assigns the remainder of the division of v by e to v.                                                                                                                                             |
-| >>=  | v >>= e                                                                                                                                                                                           |
-|      | shifts v arithmetically to the right by e bits.                                                                                                                                                   |
-| >>>= | v >>>= e                                                                                                                                                                                          |
-|      | shifts v logically to the right by e bits.                                                                                                                                                        |
-| <<=  | v <<= e                                                                                                                                                                                           |
-|      | shifts v to the left by e bits.                                                                                                                                                                   |
-| &=   | v &= e                                                                                                                                                                                            |
-|      | applies a bitwise “and” to v and e and assigns the result to v.                                                                                                                                   |
-|      | =                                                                                                                                                                                                 | v   | = e |
-|      | applies a bitwise “or” to v and e and assigns the result to v.                                                                                                                                    |
-| ^=   | v ^= e                                                                                                                                                                                            |
-|      | applies a bitwise “exclusive or” to v and e and assigns the                                                                                                                                       |
-|      | result to v.                                                                                                                                                                                      |
+| = | v = e
+| Присвоює змінній v значення e.
+| Якщо "v" є масивом, він повинен мати явний розмір і "e" повинен бути масивом того ж розміру; "e" може бути рядком або буквеним масивом.                                                              |
+| Зауважте, що наступні оператори поєднують присвоювання з арифметичною або побітовою операцією; результатом виразу є значення лівого операнда після арифметичної або побітової операції. |
+| += | v += e |
+| збільшує v на a.                                                                                                                                                                              |
+| -= | v -= e | | -= v -= e | | -= v -= e | | -= v -= e
+| зменшує v на e.
+| v \*= v \*= e
+| множить v на e.
+| v /= v /= e
+| ділить v на e.
+| %= v %= e
+| привласнює v остачу від ділення v на e.
+| v >>= v >>= e
+| зсуває v арифметично вправо на e бітів.                                                                                                                                                   |
+| >>>= | v >>>= e | | | зсуває v логічно вправо на e біт.
+| зсуває v логічно вправо на e бітів.                                                                                                                                                        |
+| <<= | v <<= e
+| зсуває v вліво на e бітів.                                                                                                                                                                   |
+| &= v &= e
+| застосовує побітове "і" до v та e і присвоює результат до v.
+| v = v = e
+| застосовує побітове "або" до v та e і присвоює результат v.
+| ^= | v ^= e
+| застосовує побітове "виключне або" до v та e і присвоює результат до v.
+| і присвоює результат v.
 
-### • Relational
+### - реляційний
 
-A logical “false” is represented by an integer value of 0; a logical “true” is represented by any value other than 0. Value results of relational expressions are either 0 or 1, and their tag is set to “bool:”.
+Логічне "неправда" представляється цілим значенням 0; логічне "істина" представляється будь-яким значенням, відмінним від 0. Значеннями результатів реляційних виразів є або 0, або 1, а їхній тег має значення "bool:".
 
-| Sign  | Description                                                                                                                                                                      |
+| Підпис, опис.
 | ----- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| ==    | e1 == e2                                                                                                                                                                         |
-|       | results in a logical “true” if e1 is equal to e2.                                                                                                                                |
-| !=    | e1 != e2                                                                                                                                                                         |
-|       | results in a logical “true” if e1 differs from e2.                                                                                                                               |
-| Note: | the following operators may be “chained”, as in the expression “e1 <= e2 <= e3”, with the semantics that the result is “1” if all individual comparisons hold and “0” otherwise. |
-| <     | e1 < e2                                                                                                                                                                          |
-|       | results in a logical “true” if e1 is smaller than e2.                                                                                                                            |
-| <=    | e1 <= e2                                                                                                                                                                         |
-|       | results in a logical “true” if e1 is smaller than or equal to e2.                                                                                                                |
-| >     | e1 > e2                                                                                                                                                                          |
-|       | results in a logical “true” if e1 is greater than e2.                                                                                                                            |
-| >=    | e1 >= e2                                                                                                                                                                         |
-|       | results in a logical “true” if e1 is greater than or equal to e2.                                                                                                                |
+| e1 == e2 == e1 == e2
+| повертає логічне значення "істина", якщо e1 дорівнює e2.                                                                                                                                |
+| e1 == e2 == e1 == e2
+| дає логічне значення "істина", якщо e1 відрізняється від e2.                                                                                                                               |
+| Примітка: наступні оператори можуть бути "зчеплені", як у виразі "e1 <= e2 <= e3", з семантикою, що результат дорівнює "1", якщо всі окремі порівняння справджуються, і "0" у протилежному випадку. |
+| e1 <= e2 <= e3
+| Результат - логічна "істина", якщо e1 менше за e2.                                                                                                                            |
+| e1 <= e2 <= e1 <= e2
+| дає логічне значення "істина", якщо e1 менше або дорівнює e2.                                                                                                                |
+| e1 > e2 > e1 > e2
+| дає логічне значення "істина", якщо e1 більше за e2.                                                                                                                            |
+| e1 >= e2 >= e1 >= e2
+| дає логічне значення "істина", якщо e1 більше або дорівнює e2.                                                                                                                |
 
-### • Boolean
+### - булевий
 
-A logical “false” is represented by an integer value of 0; a logical “true” is represented by any value other than 0. Value results of Boolean expressions are either 0 or 1, and their tag is set to “bool”.
+Логічне "неправда" представляється цілим значенням 0; логічне "істина" представляється будь-яким значенням, відмінним від 0. Значеннями результатів булевих виразів є або 0, або 1, а їхній тег має значення "bool".
 
-| Sign | Description                                                                                                                                    |
+| Підпис. Опис.
 | ---- | ---------------------------------------------------------------------------------------------------------------------------------------------- | --- | --- | --- | --- |
-| !    | !e                                                                                                                                             |
-|      | results to a logical “true” if e was logically “false”.                                                                                        |
-|      |                                                                                                                                                |     | e1  |     | e2  |
-|      | results to a logical “true” if either e1 or e2 (or both) are logically “true”. The expression e2 is only evaluated if e1 is logically “false”. |
-| &&   | e1 && e2                                                                                                                                       |
-|      | results to a logical “true” if both e1 and e2 are logically “true”.                                                                            |
-|      | The expression e2 is only evaluated if e1 is logically “true”.                                                                                 |
+| !    | !e |
+| Якщо e було логічною "істиною", то e буде логічною "брехнею".                                                                                        |
+| e1 - e2 - e3 - e4 - e5 - e6 - e7 - e8 - e9 - e9
+| | | призводить до логічної "істини", якщо e1 або e2 (або обидва) є логічно "істинними". Вираз e2 обчислюється тільки якщо e1 є логічно "хибним". |
+| && | e1 && e2 |
+| | призводить до логічної "істини", якщо і e1, і e2 є логічно "істинними".                                                                            |
+| Вираз e2 обчислюється тільки якщо e1 є логічно "істинним".                                                                                 |
 
-### • Miscellaneous
+### - Різне
 
-| Sign    | Description                                                                                                                                                                                                                                                                                                                                                                 |
+| Підпис, опис.
 | ------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| []      | a[e]                                                                                                                                                                                                                                                                                                                                                                        |
-|         | array index: results to cell e from array a.                                                                                                                                                                                                                                                                                                                                |
+| a[e].
+| Індекс масиву: результати в комірку e з масиву a.
 | {}      | a{e}                                                                                                                                                                                                                                                                                                                                                                        |
-|         | array index: results to character e from “packed” array a.                                                                                                                                                                                                                                                                                                                  |
-| ()      | f(e1,e2,...eN)                                                                                                                                                                                                                                                                                                                                                              |
-|         | results to the value returned by the function f. The function is called with the arguments e1, e2, . . . eN. The order of evaluation of the arguments is undefined (an implementation may choose to evaluate function arguments in reversed order).                                                                                                                         |
-| ? :     | e1 ? e2 : e3                                                                                                                                                                                                                                                                                                                                                                |
-|         | results in either e2 or e3, depending on the value of e1. The conditional expression is a compound expression with a two part operator, “?” and “:”. Expression e2 is evaluated if e1 is logically “true”, e3 is evaluated if e1 is logically “false”.                                                                                                                      |
-| :       | tagname: e                                                                                                                                                                                                                                                                                                                                                                  |
-|         | tag override; the value of the expression e does not change, but its tag changes. See page 68 for more information.                                                                                                                                                                                                                                                         |
-| ,       | e1, e2                                                                                                                                                                                                                                                                                                                                                                      |
-|         | results in e2, e1 is evaluated before e2. If used in function argument lists or a conditional expression, the comma expression must be surrounded by parentheses.                                                                                                                                                                                                           |
-| defined | defined s                                                                                                                                                                                                                                                                                                                                                                   |
-|         | results in the value 1 if the symbol is defined. The symbol may be a constant (page 98), or a global or local variable.                                                                                                                                                                                                                                                     |
-|         | The tag of this expression is bool:.                                                                                                                                                                                                                                                                                                                                        |
-| sizeof  | sizeof s                                                                                                                                                                                                                                                                                                                                                                    |
-|         | results in the size in “elements” of the specified variable. For simple variables and for arrays with a single dimension, an element is a cell. For multi-dimensional arrays, the result is the number of array elements in that dimension —append [] to the array name to indicate a lower/more minor dimension. If the size of a variable is unknown, the result is zero. |
-|         | When used in a default value for a function argument, the expression is evaluation at the point of the function call, instead of in the function definition.                                                                                                                                                                                                                |
-| state   | state s                                                                                                                                                                                                                                                                                                                                                                     |
-|         | where “s” is the name of a state that is optionally prefixed with the automaton name, this operator results in the value 1 if the automatons is in the indicated state and in 0 otherwise.                                                                                                                                                                                  |
-|         | The tag of this expression is bool:.                                                                                                                                                                                                                                                                                                                                        |
-| tagof   | tagof s                                                                                                                                                                                                                                                                                                                                                                     |
-|         | results in the a unique number that represents the tag of the variable, the constant, the function result or the tag label.                                                                                                                                                                                                                                                 |
-|         | When used in a default value for a function argument, the expression is evaluation at the point of the function call, instead of in the function definition.                                                                                                                                                                                                                |
-| char    | e char                                                                                                                                                                                                                                                                                                                                                                      |
-|         | results the number of cells that are needed to hold a packed array of e characters.                                                                                                                                                                                                                                                                                         |
+| індекс масиву: результати до символу e з "упакованого" масиву a.
+| f(e1,e2,...eN)
+| призводить до значення, що повертається функцією f. Функція викликається з аргументами e1, e2, ... eN. Порядок обчислення аргументів не визначений (реалізація може обчислювати аргументи функції у зворотному порядку).                                                                                                                         |
+| ? :     | e1 ? e2 : e3 |
+| | призводить до e2 або e3, залежно від значення e1. Умовний вираз є складеним виразом з оператором, що складається з двох частин, "?" і ":". Вираз e2 обчислюється, якщо e1 логічно "істинний", e3 обчислюється, якщо e1 логічно "хибний".                                                                                                                      |
+| :       | tagname: e | .
+| перевизначення тегу; значення виразу e не змінюється, але змінюється його тег. Докладнішу інформацію наведено на сторінці 68.                                                                                                                                                                                                                                                         |
+| , | e1, e2
+| | призводить до e2, e1 обчислюється перед e2. Якщо використовується у списках аргументів функції або умовному виразі, вираз з комою слід брати в круглі дужки.                                                                                                                                                                                                           |
+| визначено | визначено s | визначено s
+| | повертає значення 1, якщо символ визначено. Символ може бути константою (сторінка 98), глобальною або локальною змінною.                                                                                                                                                                                                                                                     |
+| Тегом цього виразу є bool:.                                                                                                                                                                                                                                                                                                                                        |
+| sizeof | sizeof s
+| повертає розмір в "елементах" вказаної змінної. Для простих змінних і масивів з одним виміром елементом є комірка. Для багатовимірних масивів результатом є кількість елементів масиву у цьому вимірі - додайте [] до назви масиву, щоб вказати менший/більш дрібний вимір. Якщо розмір змінної невідомий, результатом буде нуль. |
+| При використанні у значенні за замовчуванням для аргументу функції вираз обчислюється у точці виклику функції, а не у визначенні функції.                                                                                                                                                                                                                |
+| state | стан | стан s
+| де "s" - ім'я стану, яке необов'язково додається до імені автомата, цей оператор повертає значення 1, якщо автомат перебуває у вказаному стані, і 0 у протилежному випадку.                                                                                                                                                                                  |
+| Тег цього виразу має вигляд bool:.                                                                                                                                                                                                                                                                                                                                        |
+| tagof | tagof s | tagof s
+| повертає унікальне число, яке представляє тег змінної, константи, результату функції або мітки тегу.                                                                                                                                                                                                                                                 |
+| При використанні у значенні за замовчуванням для аргументу функції вираз обчислюється у точці виклику функції, а не у визначенні функції.                                                                                                                                                                                                                |
+| char | e char
+| повертає кількість комірок, необхідних для зберігання упакованого масиву з e символів.                                                                                                                                                                                                                                                                                         |
 
-### • Operator precedence
+### - Пріоритет оператора
 
-The table beneath groups operators with equal precedence, starting with the
-operator group with the highest precedence at the top of the table.
+У таблиці нижче згруповано оператори з однаковим пріоритетом, починаючи з групи операторів
+з найвищим пріоритетом у верхній частині таблиці.
 
-If the expression evaluation order is not explicitly established by parentheses,
-it is determined by the association rules. For example: a*b/c is
-equivalent with (a*b)/c because of the left-to-right association, and a=b=c is equivalent with a=(b=c).
+Якщо порядок обчислення виразу явно не задано дужками,
+він визначається правилами об'єднання. Наприклад: a*b/c є
+еквівалентно (a*b)/c через асоціацію зліва направо, а a=b=c еквівалентно a=(b=c).
 
-| Sign                               | Description                                  |               |
+| Підпис, опис.
 | ---------------------------------- | -------------------------------------------- | ------------- | ------------- | ------------- |
-| ()                                 | function call                                | left-to-right |
-| []                                 | array index (cell)                           |               |
-| {}                                 | array index (character)                      |               |
-| !                                  | logical not                                  | right-to-left |
-| ~                                  | one's complement                             |               |
-| -                                  | two's complement                             |               |
-| ++                                 | increment                                    |               |
-| --                                 | decrement                                    |               |
-| :                                  | tag override                                 |               |
-| char                               | convert number of packed characters to cells |               |
-| defined                            | symbol definition status                     |               |
-| sizeof                             | symbol size in "elements"                    |               |
-| state                              | automaton/state condition                    |               |
-| tagof                              | unique number for the tag                    |               |
-| \*                                 | multiplication                               | left-to-right |
-| /                                  | division                                     |               |
-| %                                  | modulus                                      |               |
-| +                                  | addition                                     | left-to-right |
-| -                                  | subtraction                                  |               |
-| >>                                 | shift right                                  | left-to-right |
-| >>>                                | logical shift right                          |               |
-| <<                                 | shift left                                   |               |
-| &                                  | bitwise and                                  | left-to-right |
-| ^                                  | bitwise exclusive or                         | left-to-right |
-|                                    |                                              | bitwise or    | left-to-right |
-| <                                  | smaller than                                 | left-to-right |
-| <=                                 | smaller than or eaqual to                    |               |
-| >                                  | greater than                                 |               |
-| >=                                 | greater than or eaqual to                    |               |
-| ==                                 | equality                                     | left-to-right |
-| !=                                 | inequality                                   |               |
-| &&                                 | logical and                                  | left-to-right |
-|                                    |                                              |               | logical or    | left-to-right |
-| ? :                                | conditional                                  | right-to-left |
-| =                                  | assignment                                   | right-to-left |
-| \*= /= %= += -= >>= >>>= <<= &= ^= | =                                            |               |               |
-| ,                                  | comma                                        | left-to-right |
+| () виклик функції зліва направо
+| [] | індекс масиву (комірка)
+| {}                                 | індекс масиву (символ)
+| !                                  | логічно не справа наліво
+| доповнення до одиниці
+- доповнення до двох
+++ інкремент
+--- зменшення
+| :                                  | перевизначення тегу
+| char | перетворити кількість упакованих символів у комірки
+| defined - статус визначення символу
+| sizeof | розмір символу в "елементах"
+| state | стан автомата/стану
+| tagof | унікальний номер для тегу
+| множення зліва направо
+| ділення зліва направо
+| відсоток по модулю
++ додавання зліва направо
+- віднімання
+| зсув вправо зліва направо
+| Логічний зсув вправо.
+| зсув вліво.
+| порозрядний і зліва направо.
+| побітовий виключний або зліва направо.
+| побітно або зліва направо.
+| менше, ніж зліва направо.
+| менше або дорівнює
+| більше або дорівнює
+| більше або дорівнює
+| рівність зліва направо
+| нерівність зліва направо.
+| логічна і зліва направо.
+| логічна або зліва направо.
+| ? :                                | Умовна нерівність справа наліво
+= присвоєння справа наліво
+
+| кома зліва направо
 
 ---
 
-`Tag names: 68`
+`Імена тегів: 68
 
-`Example: 77`
+Приклад: 77
 
-`See also page 114 for state specifiers`
+`Див. також сторінку 114 щодо специфікаторів стану`.
 
 ---
 
-[Go Back to Contents](00-Contents.md)
+[Повернутися до змісту](00-Contents.md)
+
+

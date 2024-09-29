@@ -1,36 +1,36 @@
-# Functions
+# Функції
 
 ---
 
-A function declaration specifies the name of the function and, between paren-
-theses, its formal parameters. A function may also return a value. A function
-declaration must appear on a global level (i.e. outside any other functions) and
-is globally accessible.
+В оголошенні функції вказується ім'я функції та, між парентезами, її формальні параметри.
+тезами, її формальні параметри. Функція може також повертати значення. Оголошення функції
+має бути оголошена на глобальному рівні (тобто поза будь-якими іншими функціями) і
+бути доступним на глобальному рівні.
 
-If a semicolon follows the function declaration (rather than a statement), the
-declaration denotes a forward declaration of the function.
+Якщо після оголошення функції стоїть крапка з комою (а не інструкція), то оголошення
+означає пряме оголошення функції.
 
-The return statement sets the function result. For example, function sum (see below)
-has as its result the value of both its arguments added together. The
-return expression is optional for a function, but one cannot use the value of
-a function that does not return a value.
+Оператор return повертає результат функції. Наприклад, функція sum (див. нижче)
+повертає значення обох аргументів, доданих разом. Вираз
+не є обов'язковим для функції, але не можна використовувати значення функції
+функції, яка не повертає значення.
 
-Listing: sum function
+Лістинг: функція суми
 
 ```c
 
 sum(a, b)
-return a + b
+повернути a + b
 
 ```
 
-Arguments of a function are (implicitly declared) local variables for that function.
-The function call determines the values of the arguments.
+Аргументами функції є (неявно оголошені) локальні змінні для цієї функції.
+Виклик функції визначає значення аргументів.
 
-Another example of a complete definition of the function leapyear
-(which returns true for a leap year and false for a non-leap year):
+Інший приклад повного визначення функції leapyear
+(яка повертає true для високосного року і false для невисокосного):
 
-Listing: leapyear function
+Лістинг: функція високосного року
 
 ```c
 
@@ -39,20 +39,20 @@ return y % 4 == 0 && y % 100 != 0 || y % 400 == 0
 
 ```
 
-The logical and arithmetic operators used in the leapyear example are covered
-on pages 108 and 104 respectively.
+Логічні та арифметичні оператори, використані в прикладі з високосним роком, описані
+на сторінках 108 та 104 відповідно.
 
-Usually a function contains local variable declarations and consists of a com-
-pound statement. In the following example, note the assert statement to
-guard against negative values for the exponent.
+Зазвичай функція містить оголошення локальних змінних і складається з оператора ком
+фунта інструкції. У наступному прикладі зверніть увагу на інструкцію assert для
+для захисту від від'ємних значень експоненти.
 
-Listing: power function (raise to a power)
+Лістинг: функція степеня (піднесення до степеня)
 
 ```c
 
 power(x, y)
 {
-    /* returns x raised to the power of y */
+    /* повертає x, піднесений до степеня y */
     assert y >= 0
     new r = 1
     for (new i = 0; i < y; i++)
@@ -62,37 +62,37 @@ power(x, y)
 
 ```
 
-A function may contain multiple return statements —one usually does this
-to quickly exit a function on a parameter error or when it turns  
-out that the function has nothing to do. If a function returns an array,  
-all return statements must specify an array with the same size and the same dimensions.
+Функція може містити декілька операторів повернення - зазвичай це робиться так
+для швидкого виходу з функції при помилці параметра або коли з'ясовується, що функція
+що функція не має чого робити. Якщо функція повертає масив,
+всі оператори повернення повинні вказувати масив з однаковим розміром і однаковими розмірностями.
 
 ---
 
-`The preferred way to declare forward functions is at page 82`
+`Переважний спосіб оголошення прямих функцій наведено на сторінці 82`
 
-`“assert” statement: 112`
+твердження "стверджую": 112`
 
 ---
 
-• Function arguments (call-by-value versus call-by-reference)
+- Аргументи функції (виклик за значенням проти виклику за посиланням)
 
-The “faculty” function in the next program has one parameter which it uses
-in a loop to calculate the faculty of that number. What deserves attention is
-that the function modifies its argument.
+Функція "факультет" у наступній програмі має один параметр, який вона використовує
+у циклі для обчислення факультету цього числа. Що заслуговує на увагу, так це те.
+що функція змінює свій аргумент.
 
-Listing: faculty.p
+Посилання: faculty.p
 
 ```c
 
-/* Calculation of the faculty of a value */
+/* Обчислення факторіалу значення */ ** Обчислення факторіалу значення */
 
 main()
 {
-    print "Enter a value: "
+    print "Введіть значення: "
     new v = getvalue()
     new f = faculty(v)
-    printf "The faculty of %d is %d\n", v, f
+    printf "Факультет %d - це %d\n", v, f
 }
 
 faculty(n)
@@ -101,27 +101,27 @@ faculty(n)
 
     new result = 1
     while (n > 0)
-        result *= n--
+        result *= n--> result *= n--> result *= n--> result *= n--> result *= n--
 
-    return result
+    повернути результат
 }
 
 ```
 
-Whatever (positive) value that “n” had at the entry of the while
-loop in function faculty, “n” will be zero at the end of the loop. In the case of the
-faculty function, the parameter is passed “by value”, so the change of “n”
-is local to the faculty function. In other words, function main passes “v” as
-input to function faculty, but upon return of faculty, “v” still has the same
-value as before the function call.
+Яким би (додатним) не було значення "n" на вході в цикл while
+у функції faculty, в кінці циклу "n" буде дорівнювати нулю. У випадку з функцією
+faculty параметр передається "за значенням", тому зміна "n"
+є локальною для функції факультету. Іншими словами, функція main передає "v" як
+на вхід функції faculty, але після повернення функції faculty, "v" все ще має те саме
+значення, яке було до виклику функції.
 
-Arguments that occupy a single cell can be passed by value or by reference.
-The default is “pass by value”. To create a function argument that is passed
-by reference, prefix the argument name with the character &.
+Аргументи, що займають одну комірку, можна передавати за значенням або за посиланням.
+За замовчуванням використовується "передача за значенням". Щоб створити аргумент функції, який передається
+за посиланням, додайте до імені аргументу символ &.
 
-Example:
+Приклад:
 
-Listing: swap function
+Лістинг: функція заміни
 
 ```c
 
@@ -134,13 +134,13 @@ swap(&a, &b)
 
 ```
 
-To pass an array to a function, append a pair of brackets to the  
-argument name. You may optionally indicate the size of the array; doing so improves
-error checking of the parser.
+Щоб передати масив у функцію, додайте пару дужок до імені
+до імені аргументу. За бажанням ви можете вказати розмір масиву; це покращує
+перевірку помилок синтаксичного аналізатора.
 
-Example:
+Приклад:
 
-Listing: addvector function
+Лістинг: адикторна функція
 
 ```c
 
@@ -152,19 +152,19 @@ addvector(a[], const b[], size)
 
 ```
 
-Arrays are always passed by reference. As a side note, array b in the above
-example does not change in the body of the function. The function argument
-has been declared as const to make this explicit. In addition to improving
-error checking, it also allows the pawn parser to generate more efficient code.
+Масиви завжди передаються за посиланням. Зауважимо, що масив b у вищенаведеному прикладі
+не змінюється в тілі функції. Аргумент функції
+оголошено як const, щоб зробити це явним. На додаток до покращення перевірки помилок
+перевірки помилок, це також дозволяє синтаксичному аналізатору генерувати більш ефективний код.
 
-To pass an array of literals to a function, use the same syntax as for  
-array initiallers: a literal string or the series of array indices enclosed in braces
-(see page 99; the ellipsis for progressive initiallers cannot be used). Literal
-arrays can only have a single dimension.
+Щоб передати у функцію масив літералів, використовуйте той самий синтаксис, що і для
+ініціалізаторів масиву: рядок літералів або послідовність індексів масиву, взятих у фігурні дужки
+(див. сторінку 99; еліпсис для прогресивних ініціалізаторів не можна використовувати). Літеральні
+масиви можуть мати лише один вимір.
 
-The following snippet calls addvector to add five to every element of the array “vect”:
+Наступний фрагмент викликає addvector для додавання п'яти до кожного елементу масиву "vect":
 
-Listing: addvector usage
+Лістинг: використання адвектора
 
 ```c
 
@@ -172,37 +172,37 @@ new vect[3] = { 1, 2, 3 }
 
 addvector(vect, {5, 5, 5}, 3)
 
-/* vect[] now holds the values 6, 7 and 8 */
+/* vect[] тепер має значення 6, 7 та 8 */.
 
 ```
 
-The invocation of function printf with the string "Hello world\n" in the first
-ubiquitous program is another example of passing a literal array to a function.
+Виклик функції printf з рядком "Hello world\n" у першій
+є ще одним прикладом передачі літерального масиву у функцію.
 
 ---
 
-`Another example is function JulianToDate at page 13`
+`Інший приклад - функція JulianToDate на сторінці 13`.
 
-`Constant variables: 64`
+`Константні змінні: 64`
 
-`“Hello world” program: 5`
+Програма "Hello world": 5`
 
 ---
 
-### • Calling functions
+### - Виклик функцій
 
-When inserting a function name with its parameters in a statement or  
-expression, the function will get executed in that statement/expression.  
-The statement that refers to the function is the “caller” and the function itself,
-at that point, is the “callee”: the one being called.
+Якщо вставити ім'я функції з її параметрами у оператор або вираз
+функція буде виконана у цьому операторі/виразі.  
+Оператор, який посилається на функцію, є "викликаючим", а сама функція - "викликається",
+у цей момент є "отримувачем", тобто тією, яку викликають.
 
-The standard syntax for calling a function is to write the  
-function’s name, followed by a list with all explicitly passed parameters between parentheses.
-If no parameters are passed, or if the function does not have any, the pair of
-parentheses behind the function name are still present. For example, to try
-out the power function, the following program calls it thus:
+Стандартний синтаксис виклику функції полягає у написанні імені функції
+з наступним переліком усіх параметрів, що явно передаються, у круглих дужках.
+Якщо не передано жодного параметра або якщо функція не має жодного параметра, пара дужок
+дужок за назвою функції все одно залишаються присутніми. Наприклад, щоб випробувати функцію power
+функцію power, наступна програма викликає її таким чином:
 
-Listing: example program for the power function
+Лістинг: приклад програми для функції потужності
 
 ```c
 
@@ -213,74 +213,74 @@ main()
     new power = getvalue()
 
     new result = power(base, power)
-    printf "%d raised to the power %d is %d", base, power, result
+    printf "%d піднесений до степеня %d дорівнює %d", base, power, result
 }
 
 ```
 
-A function may optionally return a value. The sum, leapyear and power
-functions all return a value, but the swap function does not. Even if a
-function returns a value, the caller may ignore it.
+Функція може за бажанням повертати значення. Функції sum, leapear та power
+повертають значення, а функція swap - ні. Навіть якщо функція
+повертає значення, користувач може проігнорувати його.
 
-For the situation that the caller ignores the function’s return value, there is
-an alternative syntax to call the function, which is also illustrated
-by the preceding example program calls the power function. The parentheses around
-all function arguments are optional if the caller does not use the return value.
+Для ситуації, коли викликаюча сторона ігнорує значення, що повертається функцією, існує
+альтернативний синтаксис виклику функції, який також проілюстровано
+У попередньому прикладі програма викликає функцію power. Дужки навколо
+всі аргументи функції є необов'язковими, якщо користувач не використовує значення, що повертається.
 
-In the last statement, the example program reads
+В останньому операторі прикладу програми читається
 
-`printf "%d raised to the power %d is %d", base, power, result`
+`printf "%d піднесено до степеня %d дорівнює %d", основа, степінь, результат
 
-rather than
+замість того, щоб
 
-`printf("%d raised to the power %d is %d", base, power, result)`
+`printf("%d піднесено до степеня %d дорівнює %d", основа, степінь, результат)`
 
-which does the same thing.
+який робить те саме.
 
-The syntax without parentheses around the parameter list is called the “pro-
-cedure call” syntax. You can use it only if:
+Синтаксис без круглих дужок навколо списку параметрів називається синтаксисом "виклику про
+виклик процедури". Ви можете використовувати його тільки якщо:
 
-- the caller does not assign the function’s result to a variable and does not use it in an expression, or as the “test expression” of an if statement for example;
+- викликач не присвоює результат функції змінній і не використовує його у виразі або як "тестовий вираз", наприклад, в інструкції if;
 
-- the first parameter does not start with an opening paranthesis;
+- перший параметр не починається з відкриваючого парантезу;
 
-- the first parameter is on the same line as the function name, unless you use named parameters (see the next section).
+- перший параметр знаходиться у тому ж рядку, що й назва функції, якщо тільки ви не використовуєте іменовані параметри (див. наступний розділ).
 
-As you may observe, the procedure call syntax applies to cases where a function
-call behaves rather as a statement, like in the calls to print and printf in the
-preceding example. The syntax is aimed at making such statements appear less
-cryptic and friendlier to read, but not that the use of the syntax is optional.
+Як ви можете помітити, синтаксис виклику процедури застосовується у випадках, коли виклик функції
+поводиться скоріше як оператор, як у викликах print та printf у попередньому прикладі
+попередньому прикладі. Синтаксис спрямовано на те, щоб зробити такі оператори менш
+менш зашифрованими і зручнішими для читання, але це не означає, що використання синтаксису є необов'язковим.
 
-As a side note, all parentheses in the example program presented in this section
-are required: the return values of the calls to getvalue are stored  
-in two variables, and therefore an empty pair of parentheses must follow the function
-name. Function getvalue has optional parameters, but none are passed in this example program.
-
----
-
-`Function power: 70`
-
-`Functions sum & leapyear: 70`
-
-`Function swap: 71`
+Зауважимо, що усі дужки у прикладі програми, наведеному у цьому розділі
+є обов'язковими: значення, що повертаються при виклику getvalue, зберігаються
+у двох змінних, а тому після функції має стояти порожня пара круглих дужок
+ім'я. Функція getvalue має необов'язкові параметри, але у цьому прикладі жоден з них не передається.
 
 ---
 
-### • Named parameters versus positional parameters
+`Функціональна потужність: 70`
 
-In the previous examples, the order of parameters of a function call was im-
-portant, because each parameter is copied to the function argument with the
-same sequential position. For example, with the function weekday (which
-uses Zeller’s congruence algorithm) defined as below, you would call  
-weekday(12,31,1999) to get the week day of the last day of the preceding century.
+`Функції сума та високосний рік: 70`
 
-Listing: weekday function
+Заміна функцій: 71`
+
+---
+
+### - Іменовані параметри проти позиційних параметрів
+
+У попередніх прикладах порядок параметрів виклику функції був важливим, оскільки
+важливим, оскільки кожен параметр копіюється до аргументу функції з тією самою послідовною позицією
+з однаковою послідовною позицією. Наприклад, у функції weekday (яка
+використовує алгоритм конгруентності Целлера), визначену як показано нижче, ви повинні викликати
+weekday(12,31,1999), щоб отримати день тижня останнього дня попереднього століття.
+
+Лістинг: робота в будні дні
 
 ```c
 
-weekday(month, day, year)
+weekday(місяць, день, рік)
 {
-    /* returns the day of the week: 0=Saturday, 1=Sunday, etc. */
+    /* повертає день тижня: 0=субота, 1=неділя і т.д. */
     if (month <= 2)
         month += 12, --year
     new j = year % 100
@@ -290,15 +290,15 @@ weekday(month, day, year)
 
 ```
 
-Date formats vary according to culture and nation. While the format month/
-day/year is common in the United States of America, European  
-countries often use the day/month/year format, and technical publications sometimes
-standardize on the year/month/day format (ISO/IEC 8824). In other words,
-no order of arguments in the weekday function is “logical” or “conventional”.
-That being the case, the alternative way to pass parameters to a function is
-to use “named parameters”, as in the next examples (the three function calls are equivalent):
+Формати дат варіюються залежно від культури та нації. У той час як формат місяць/
+день/рік поширений у Сполучених Штатах Америки, в європейських
+країни часто використовують формат день/місяць/рік, а технічні публікації іноді
+стандартизуються у форматі рік/місяць/день (ISO/IEC 8824). Іншими словами
+жоден порядок аргументів у функції дня тижня не є "логічним" або "загальноприйнятим".
+З огляду на це, альтернативним способом передачі параметрів у функцію є
+використовувати "іменовані параметри", як у наступних прикладах (три виклики функції є еквівалентними):
 
-Listing: weekday usage —positional parameters
+Лістинг: використання в будні дні - позиційні параметри
 
 ```c
 
@@ -310,31 +310,31 @@ new wkday3 = weekday( .year = 1999, .month = 12, .day = 31)
 
 ```
 
-With named parameters, a period (“.”) precedes the name of the  
-function argument. The function argument can be set to any expression that is valid
-for the argument. The equal sign (“=”) does in the case of a named
-parameter not indicate an assignment; rather it links the expression that follows the
-equal sign to one of the function arguments.
+З іменованими параметрами перед іменем аргументу функції ставиться крапка (".").
+аргументу функції. Аргументом функції може бути будь-який вираз, який є допустимим
+для аргументу. Знак рівності ("=") у випадку іменованого параметра
+параметра не вказує на присвоєння, а зв'язує вираз, який слідує після знаку рівності
+до одного з аргументів функції.
 
-One may mix positional parameters and named parameters in a function call
-with the restriction that all positional parameters must precede any named
-parameters.
+У виклику функції можна змішувати позиційні та іменовані параметри
+з обмеженням, що всі позиційні параметри повинні передувати будь-яким іменованим
+параметрам.
 
-### • Default values of function arguments
+### - Значення аргументів функції за замовчуванням
 
-A function argument may have a default value. The default value for a function
-argument must be a constant. To specify a default value, append the equal
-sign (“=”) and the value to the argument name.
+Аргумент функції може мати значення за замовчуванням. Значення за замовчуванням для аргументу функції
+має бути константою. Щоб вказати значення за замовчуванням, додайте до імені аргументу знак рівності
+("=") і значення до імені аргументу.
 
-When the function call specifies an argument placeholder instead of a valid ar-
-gument, the default value applies. The argument placeholder is the underscore
-character (“\_”). The argument placeholder is only valid for function arguments
-that have a default value.
+Якщо у виклику функції замість дійсного аргументу вказано заповнювач
+застосовується значення за замовчуванням. Заповнювачем аргументу є символ підкреслення
+("\_"). Заповнювач аргументу дійсний лише для аргументів функції
+які мають значення за замовчуванням.
 
-The rightmost argument placeholders may simply be stripped from the function
-argument list. For example, if function increment is defined as:
+Крайні праві заповнювачі аргументів можна просто вилучити зі списку аргументів функції
+зі списку аргументів функції. Наприклад, якщо інкремент функції визначено як:
 
-Listing: increment function —default values
+Лістинг: функція інкременту - значення за замовчуванням
 
 ```c
 
@@ -342,9 +342,9 @@ increment(&value, incr=1) value += incr
 
 ```
 
-the following function calls are all equivalent:
+наступні виклики функцій є еквівалентними:
 
-Listing: increment usage
+Лістинг: використання інкременту
 
 ```c
 
@@ -354,27 +354,27 @@ increment(a, 1)
 
 ```
 
-Default argument values for passed-by-reference arguments are useful to make
-the input argument optional. For example, if the function divmod is designed
-to return both the quotient and the remainder of a division operation through
-its arguments, default values make these arguments optional:
+Значення аргументів за замовчуванням для аргументів, що передаються за посиланням, корисно зробити
+вхідний аргумент необов'язковим. Наприклад, якщо функція divmod призначена
+для повернення як частки, так і залишку від ділення через
+аргументи, значення за замовчуванням роблять ці аргументи необов'язковими:
 
-Listing: divmod function —default values for reference parameters
+Лістинг: функція divmod - значення за замовчуванням для опорних параметрів
 
 ```c
 
 divmod(a, b, &quotient=0, &remainder=0)
 {
     quotient = a / b
-    remainder = a % b
+    остача = a % b
 }
 
 ```
 
-With the preceding definition of function divmod, the following function calls
-are now all valid:
+З попереднім визначенням функції divmod, наступні виклики функції
+тепер є дійсними:
 
-Listing: divmod usage
+Лістинг: використання divmod
 
 ```c
 
@@ -388,26 +388,26 @@ divmod 10, 3, p, q
 
 ```
 
-Default arguments for array arguments are often convenient to set a default
-string or prompt to a function that receives a string argument. For example:
+Аргументи за замовчуванням для аргументів-масивів часто зручно задавати за замовчуванням
+рядок або підказку для функції, яка отримує рядковий аргумент. Наприклад:
 
-Listing: print error function
+Лістинг: функція друку помилок
 
 ```c
 
-print_error(const message[], const title[] = "Error: ")
+print_error(const message[], const title[] = "Помилка: ")
 {
-    print title
-    print message
-    print "\n"
+    вивести заголовок
+    вивести повідомлення
+    вивести "\n"
 }
 
 ```
 
-The next example adds the fields of one array to another array, and by default
-increments the first three elements of the destination array by one:
+Наступний приклад додає поля одного масиву до іншого масиву і за замовчуванням
+збільшує перші три елементи масиву-приймача на одиницю:
 
-Listing: addvector function, revised
+Лістинг: адикторна функція, переглянута
 
 ```c
 
@@ -421,49 +421,49 @@ addvector(a[], const b[] = {1, 1, 1}, size = 3)
 
 ---
 
-`Public functions do not support default argument values; see page 83`
+`Зовнішні функції не підтримують значення аргументів за замовчуванням; див. сторінку 83`
 
 ---
 
-### • sizeof operator & default function arguments
+### - оператор sizeof та аргументи функції за замовчуванням
 
-A default value of a function argument must be a constant, and its value is
-determined at the point of the function’s declaration. Using the  
-“sizeof” operator to set the default value of a function argument is a special case: the
-calculation of the value of the sizeof expression is delayed to the point of the
-function call and it takes the size of the actual argument rather than that of
-the formal argument. When the function is used several times in a program,
-with different arguments, the outcome of the “sizeof” expression is potentially
-different at every call —which means that the “default value” of the function
-argument may change.
+Значення аргументу функції за замовчуванням має бути константою, і його значення
+визначається в місці оголошення функції. Використання оператора
+"sizeof" для встановлення значення аргументу функції за замовчуванням є окремим випадком: обчислення значення виразу
+обчислення значення виразу sizeof відкладається до моменту виклику функції
+функції і приймає розмір фактичного аргументу, а не формального.
+формального аргументу. Коли функція використовується у програмі декілька разів,
+з різними аргументами, результат виразу sizeof потенційно може бути
+може бути різним при кожному виклику - а це означає, що "значення за замовчуванням" аргументу функції
+може змінитися.
 
-Below is an example program that draws ten random numbers in the range of
-0–51 without duplicates. An example for an application for drawing random
-numbers without duplicates is in card games —those ten numbers could repre-
-sent the cards for two “hands” in a poker game. The virtues of the algorithm
-used in this program, invented by Robert W. Floyd, are that it is efficient and
-unbiased —provided that the pseudo-random number generator is unbiased as well.
+Нижче наведено приклад програми, яка генерує десять випадкових чисел у діапазоні
+0-51 без повторень. Прикладом застосування програми для генерування випадкових чисел без
+випадкових чисел без дублікатів є карткові ігри - ці десять чисел можуть замінити дві "руки" у грі в покер.
+ють карти для двох "рук" у грі в покер. Переваги алгоритму
+алгоритму, винайденого Робертом В. Флойдом, полягає в тому, що він є ефективним і
+неупереджений - за умови, що генератор псевдовипадкових чисел також є неупередженим.
 
-Listing: randlist.p
+Лістинг: randlist.p
 
 ```c
 
 main()
 {
-    new HandOfCards[10]
+    new HandOfCards[10] </ new HandOfCards
     FillRandom(HandOfCards, 52)
 
-    print "A draw of 10 numbers from a range of 0 to 51 \
-        (inclusive) without duplicates:\n"
+    вивести "Жеребкування 10 чисел з діапазону від 0 до 51 \n
+        (включно) без повторів:\n"
     for (new i = 0; i < sizeof HandOfCards; i++)
         printf "%d ", HandOfCards[i]
 }
 
 FillRandom(Series[], Range, Number = sizeof Series)
 {
-    assert Range >= Number          /* cannot select 50 values
-                                     * without duplicates in the
-                                     * range 0..40, for example */
+    assert Range >= Number /* не можна вибрати 50 значень
+                                     * без повторень в діапазоні
+                                     * наприклад, в діапазоні 0..40 */
     new Index = 0
     for (new Seq = Range - Number; Seq < Range; Seq++)
     {
@@ -484,60 +484,60 @@ InSeries(Series[], Value, Top = sizeof Series)
 {
     for (new i = 0; i < Top; i++)
         if (Series[i] == Value)
-            return i
+            повернути i
     return -1
 }
 
 ```
 
-Function main declares the array HandOfCards with a size of ten cells and then
-calls function FillRandom with the purpose that it draws ten positive random
-numbers below 52. Observe, however, that the only two parameters that main
-passes into the call to FillRandom are the array HandsOfCards, where  
-the random numbers should be stored, and the upper bound “52”. The number of
-random numbers to draw (“10”) is passed implicitly to FillRandom.
+У функції main оголошується масив HandOfCards розміром десять комірок, а потім
+викликає функцію FillRandom, яка виводить десять додатних випадкових
+випадкових чисел, менших за 52. Зверніть увагу, що єдині два параметри, які main
+передаються у виклик FillRandom, є масив HandsOfCards, в якому
+де повинні зберігатися випадкові числа, і верхня межа "52". Кількість
+випадкових чисел для малювання ("10") передається до FillRandom неявно.
 
-The definition of function FillRandom below main specifies for its third param-
-eter “Number = sizeof Series”, where “Series” refers to the first parameter
-of the function. Due to the special case of a “sizeof default value”, the
-default value of the Number argument is not the size of the formal argument Series,
-but that of the actual argument at the point of the function call: HandOfCards.
+У визначенні функції FillRandom, наведеному нижче, для її третього параметра вказано: "Number" - це перший параметр, а "Series" - це другий параметр.
+"Number = sizeof Series", де "Series" посилається на перший параметр
+функції. Через особливий випадок "sizeof значення за замовчуванням", значення за замовчуванням
+значенням за замовчуванням аргументу Number є не розмір формального аргументу Series,
+а розмір фактичного аргументу в момент виклику функції: HandOfCards.
 
-Note that inside function FillRandom, asking the “sizeof” the function ar-
-gument Series would (still) evaluate in zero, because the Series array  
-is declared with unspecified length (see page 109 for the behaviour of sizeof).
-Using sizeof as a default value for a function argument is a specific case. If
-the formal parameter Series were declared with an explicit size, as in
-Series[10], it would be redundant to add a Number argument with the array
-size of the actual argument, because the parser would then enforce that both
-formal and actual arguments have the size and dimensions.
-
----
-
-`“sizeof ” operator 109`
-
-`“random” is a proposed core function, see page 124`
-
-`Array declarations: 64`
-
-`Tag names: 68`
+Зверніть увагу, що всередині функції FillRandom, запитуючи "sizeof" функції ар-гумент Series, ми все одно отримаємо нульове значення.
+gument Series (як і раніше) отримає нульове значення, оскільки масив Series
+оголошено з невизначеною довжиною (див. поведінку sizeof на сторінці 109).
+Використання sizeof як значення за замовчуванням для аргументу функції є особливим випадком. Якщо
+формальний параметр Series було оголошено з явним розміром, як у
+Series[10], було б зайвим додавати аргумент Number з масивом
+розмір фактичного аргументу, оскільки синтаксичний аналізатор буде змушений переконатися, що обидва аргументи
+формальний і фактичний аргументи мають однаковий розмір і розмірність.
 
 ---
 
-### • Arguments with tag names
+`"sizeof " оператор 109`
 
-A tag optionally precedes a function argument. Using tags improves  
-the compile-time error checking of the script and it
-serves as “implicit documenta-
-tion” of the function. For example, a function that computes the square root
+`"random" - це запропонована основна функція, див. сторінку 124`.
 
-of an input value in fixed point precision may require that the input parameter
-is a fixed point value and that the result is fixed point as well. The function
-below uses the fixed point extension module, and an approximation algorithm
-known as “bisection” to calculate the square root. Note the use of tag overrides
-on numeric literals and expression results.
+`Декларації масивів: 64`
 
-Listing: sqroot function —strong tags
+`Імена тегів: 68
+
+---
+
+### - Аргументи з іменами тегів
+
+Тег необов'язково ставиться перед аргументом функції. Використання тегів покращує
+перевірку помилок під час компіляції скрипта, а також
+слугує "неявним документуванням" функції.
+"неявним документуванням" функції. Наприклад, функція, яка обчислює квадратний корінь
+
+вхідного значення з точністю до фіксованої крапки може вимагати, щоб вхідний параметр
+є значенням з фіксованою комою, і щоб результат також був з фіксованою комою. Функція
+нижче використовує модуль розширення з фіксованою точкою і алгоритм наближення
+відомий як "бісекція" для обчислення квадратного кореня. Зверніть увагу на перевизначення тегів
+для числових літералів і результатів виразів.
+
+Лістинг: функція sqroot - сильні теги
 
 ```c
 
@@ -558,31 +558,31 @@ Fixed: sqroot(Fixed: value)
 
 ```
 
-With the above definition, the pawn parser issues a diagnostic if one calls the
-sqroot function with a parameter with a tag different from “Fixed:”, or when
-it tries to store the function result in a variable with a “non-Fixed:” tag.
+З вищенаведеним визначенням, парсер пішаків видає діагностику, якщо викликати функцію
+sqroot з параметром з тегом, відмінним від "Fixed:", або коли
+намагається зберегти результат функції у змінній з тегом "non-Fixed:".
 
-The bisection algorithm is related to binary search, in the sense that it
-continuously halves the interval in which the result must lie. A “successive substi-
-tution” algorithm like Newton-Raphson, that takes the slope of the function’s
-curve into account, achieves precise results more quickly, but at the cost that
-a stopping criterion is more difficult to state. State of the art algorithms
-for computing square roots combine bisection and Newton-Raphson algorithms.
+Алгоритм бісекції пов'язаний з бінарним пошуком в тому сенсі, що він
+безперервно зменшує вдвічі інтервал, в якому повинен знаходитись результат. Алгоритм "послідовної заміни", такий як алгоритм Ньютона-Раффа
+алгоритм "послідовної підстановки", такий як Ньютона-Рафсона, який враховує нахил кривої функції
+враховує нахил кривої функції, досягає точних результатів швидше, але ціною того, що критерій зупинки
+критерій зупинки складніше сформулювати. Сучасні алгоритми
+для обчислення квадратних коренів поєднують алгоритми бісекції та Ньютона-Рафсона.
 
-In the case of an array, the array indices can be tagged as well. For example,
-a function that creates the intersection of two rectangles may be written as:
+У випадку масиву, індекси масиву також можуть бути позначені тегами. Наприклад
+функція, яка створює перетин двох прямокутників, може бути записана так:
 
-Listing: intersection function
+Лістинг: функція перетину
 
 ```c
 
 intersection(dest[rectangle], const src1[rectangle], const src2[rectangle])
 {
-    if (src1[right] > src2[left] && src1[left] < src2[right]
+    if (src1[right] > src2[left] && src1[left] < src2[right])
     && src1[bottom] > src2[top] && src1[top] < src2[bottom])
     {
-        \* there is an intersection, calculate it using the "min" and
-         *"max" functions from the "core" library, see page 124. */
+        \* є перетин, обчислити його з допомогою функцій "min" та
+         *функціями "max" з бібліотеки "core", див. сторінку 124. */
 
         dest[left] = max(src1[left], src2[left])
         dest[right] = min(src1[right], src2[right])
@@ -592,8 +592,8 @@ intersection(dest[rectangle], const src1[rectangle], const src2[rectangle])
     }
     else
     {
-        /* "src1" and "src2" do not intersect */
-        dest = { 0, 0, 0, 0 }
+        /* "src1" та "src2" не перетинаються */
+        dest = { 0, 0, 0, 0, 0 }
         return false
     }
 }
@@ -602,39 +602,39 @@ intersection(dest[rectangle], const src1[rectangle], const src2[rectangle])
 
 ---
 
-`Fixed point arithmetic: 90; see also the application note “Fixed Point Support Library”`
+`Арифметика з фіксованою комою: 90; див. також примітку до програми "Бібліотека підтримки арифметики з фіксованою комою"`.
 
-`For the “rectangle” tag, see page 68`
+`Щодо тегу "rectangle" див. сторінку 68`.
 
 ---
 
-### • Variable arguments
+### - Змінні аргументи
 
-A function that takes a variable number of arguments, uses the “ellipsis” oper-
-ator (“...”) in the function header to denote the position of the first variable
-argument. The function can access the arguments with the predefined func-
-tions numargs, getarg and setarg (see page 124).
+Функція, яка отримує змінну кількість аргументів, використовує оператор "еліпсис" ("...") у заголовку функції для позначення позиції першої змінної.
+ator ("...") у заголовку функції для позначення позиції першої змінної
+аргументу. Функція може звертатися до аргументів з наперед визначеними функціями-номерами
+numargs, getarg і setarg (див. сторінку 124).
 
-Function sum returns the summation of all of its parameters.
-It uses a variable length parameter list.
+Функція sum повертає суму всіх її параметрів.
+Вона використовує список параметрів змінної довжини.
 
-Listing: sum function, revised
+Лістинг: функція суми, переглянута
 
 ```c
 
 sum(...)
 {
-    new result = 0
+    новий результат = 0
     for (new i = 0; i < numargs(); ++i)
         result += getarg(i)
-    return result
+    повернути результат
 }
 
 ```
 
-This function could be used in:
+Ця функція може бути використана в:
 
-Listing: sum function usage
+Лістинг: використання функції sum
 
 ```c
 
@@ -642,72 +642,72 @@ new v = sum(1, 2, 3, 4, 5)
 
 ```
 
-A tag may precede the ellipsis to enforce that all subsequent parameters have the same tag, but otherwise there is no error
-checking with a variable argument list and this feature should therefore be used with caution.
+Перед еліпсом може стояти мітка, яка гарантує, що всі наступні параметри мають однакові мітки, але у протилежному випадку помилки не буде
+перевірка зі змінним списком аргументів, тому цю функцію слід використовувати з обережністю.
 
-The functions getarg and setarg assume that the argument is passed “by
-reference”. When using getarg on normal function parameters (instead of
-variable arguments) one should be cautious of this, as neither the compiler nor
-the abstract machine can check this. Actual parameters that are passed
-as part of a “variable argument list” are always passed by reference.
-
----
-
-`Tag names: 68`
+Функції getarg і setarg припускають, що аргумент передається "за
+посиланням". При використанні getarg на звичайних параметрах функції (замість
+аргументів-змінних) слід бути обережним, оскільки ні компілятор, ні
+абстрактна машина не можуть це перевірити. Реальні параметри, які передаються
+як частина "списку аргументів-змінних", завжди передаються за посиланням.
 
 ---
 
-### • Coercion rules
+`Імена тегів: 68
 
-If the function argument, as per the function definition (or its declaration),
-is a “value parameter”, the caller can pass as a parameter to the function:
+---
 
-- a value, which is passed by value;
+### - Правила примусу
 
-- a reference, whose dereferenced value is passed;
+Якщо аргумент функції, згідно з визначенням функції (або її оголошенням),
+є "параметром-значенням", користувач може передати його як параметр функції:
 
-- an (indexed) array element, which is a value.
+- значення, яке передається за значенням;
 
-If the function argument is a reference, the caller can pass to the function:
+- посилання, значення якого передається;
 
-- a value, whose address is passed;
+- (індексований) елемент масиву, який є значенням.
 
-- a reference, which is passed by value because it has the type that the function expects;
+Якщо аргумент функції є посиланням, викликаюча сторона може перейти до функції:
 
-- an (indexed) array element, which is a value.
+- значення, адреса якого передається;
 
-If the function argument is an array, the caller can pass to the function:
+- посилання, яке передається за значенням, оскільки воно має тип, який очікує функція;
 
-- an array with the same dimensions, whose starting address is passed;
+- (індексований) елемент масиву, який є значенням.
 
-- an (indexed) array element, in which case the address of the element is passed.
+Якщо аргумент функції є масивом, користувач може передати його у функцію:
 
-### • Recursion
+- масив з тими самими розмірами, початкова адреса якого передається;
 
-A faculty example function earlier in this chapter used a simple loop. An
-example function that calculated a number from the Fibonacci series also used
-a loop and an extra variable to do the trick. These two functions are the most
-popular routines to illustrate recursive functions, so by implementing  
-these as iterative procedures, you might be inclined to think that pawn does not support recursion.
+- (індексований) елемент масиву, у цьому випадку передається адреса елемента.
 
-Well, pawn does support recursion, but the calculation of faculties and of Fi-
-bonacci numbers happen to be good examples of when not to use recursion.
-Faculty is easier to understand with a loop than it is with recursion.  
-Solving Fibonacci numbers by recursion indeed simplifies the problem, but at the
-cost of being extremely inefficient: the recursive Fibonacci calculates the same
-values over and over again.
+### - Рекурсія
 
-The program below is an implementation of the famous “Towers of Hanoi” game in a recursive function:
+У прикладі функції факультету, наведеному раніше у цій главі, використовувався простий цикл. Приклад функції
+функція, яка обчислювала число з ряду Фібоначчі, також використовувала
+цикл і додаткову змінну, щоб виконати трюк. Ці дві функції є найбільш
+популярними процедурами для ілюстрації рекурсивних функцій, тому, реалізувавши їх як
+їх як ітераційні процедури, ви можете подумати, що pawn не підтримує рекурсію.
 
-Listing: hanoi.p
+Так, пішак підтримує рекурсію, але обчислення факторіалів та чисел Fі
+чисел Боначчі є гарними прикладами того, коли не варто використовувати рекурсію.
+Обчислення факторіалу легше зрозуміти за допомогою циклу, ніж за допомогою рекурсії.  
+Розв'язування чисел Фібоначчі за допомогою рекурсії дійсно спрощує проблему, але ціною
+ціною надзвичайної неефективності: рекурсивний Фібоначчі обчислює одні й ті ж
+значення знову і знову.
+
+Наведена нижче програма є реалізацією відомої гри "Вежі Ханоя" у рекурсивній функції:
+
+Посилання: hanoi.p
 
 ```c
 
-/* The Towers of Hanoi, a game solved through recursion */
+/* Вежі Ханоя, гра, розв'язана за допомогою рекурсії*/.
 
 main()
 {
-    print "How many disks: "
+    print "Скільки дисків: "
     new disks = getvalue()
     move 1, 3, 2, disks
 }
@@ -715,185 +715,185 @@ main()
 move(from, to, spare, numdisks)
 {
     if (numdisks > 1)
-        move from, spare, to, numdisks-1
-    printf "Move disk from pillar %d to pillar %d\n", from, to
+        перемістити з, spare, на, numdisks-1
+    printf "Перемістити диск зі стовпчика %d на стовпчик %d\n", from, to
     if (numdisks > 1)
-        move spare, to, from, numdisks-1
+        перемістити spare, to, from, numdisks-1
 }
 
 ```
 
 ---
 
-`“faculty”: 71`
+"факультет": 71`
 
-`“fibonacci”: 11`
+"Фібоначчі": 11`
 
-`There exists an intriguing iterative solution to the Towers of Hanoi.`
-
----
-
-### • Forward declarations
-
-For standard functions, the current “reference implementation” of the pawn
-compiler does not require functions to be declared before their first use.∗  
-Userdefined operators are special functions, and unlike standard functions  
-theymust be declared before use. In many cases it is convenient to put the
-implementation of a user-defined operator in an include file, so that the implementation and declaration precedes any
-call/invocation. Sometimes, it may however be required (or convenient) to declare a user- defined operator first
-and implement it elsewhere. A particular use of this technique is to implement
-“forbidden” user-defined operators.
-
-To create a forward declaration, precede the function name and its parame-
-ter list with the keyword forward. For compatibility with early versions of
-pawn, and for similarity with C/C⁺⁺, an alternative way to forwardly declare
-a function is by typing the function header and terminating it with a semicolon
-(which follows the closing parenthesis of the parameter list).
-
-The full definition of the function, with a non-empty body, is
-implemented elsewhere in the source file (except for forbidden user-defined operators).
-
-State classifiers are ignored on forward declarations.
+"Існує інтригуюче ітеративне рішення для веж Ханоя".
 
 ---
 
-###### ∗ Other implementations of the Pawn language (if they exist) may use “single pass” parsers, requiring functions to be defined before use.
+### - Форвардні декларації
+
+Для стандартних функцій поточна "еталонна реалізація" компілятора pawn
+не вимагає оголошення функцій перед їх першим використанням.∗
+Визначені користувачем оператори є спеціальними функціями, і на відміну від стандартних функцій
+вони повинні бути оголошені перед використанням. У багатьох випадках зручно помістити
+реалізацію визначеного користувачем оператора у включаємому файлі, щоб його реалізація та оголошення передували будь-якому
+виклику/виклику. Однак іноді може бути необхідним (або зручним) спочатку оголосити визначений користувачем оператор
+а потім реалізувати його в іншому місці. Особливо часто ця техніка використовується для реалізації
+"заборонених" операторів користувача.
+
+Щоб створити оголошення forward, додайте перед назвою функції та списком її параметрів слово forward
+теру ключовим словом forward. Для сумісності з ранніми версіями
+pawn, а також для схожості з C/C⁺⁺, альтернативним способом прямого оголошення
+функції є введення заголовка функції і завершення його крапкою з комою
+(яка слідує за закриваючою круглою дужкою зі списком параметрів).
+
+Повний опис функції з непорожнім тілом
+реалізовано деінде у вихідному файлі (за винятком заборонених користувацьких операторів).
+
+Державні класифікатори ігноруються у форвардних деклараціях.
 
 ---
 
-`Forbidden userdefined operators: 92`
+###### ∗ Інші реалізації мови Pawn (якщо вони існують) можуть використовувати синтаксичні аналізатори "за один прохід", які вимагають визначення функцій перед використанням.
 
 ---
 
-### • State classifiers
+`Заборонені користувацькі оператори: 92`
 
-All functions except native functions may optionally have a state attribute.
-This consists of a list of state (and automata) names between angle brackets
-behind the function header. The names are separated by commas. When the
-state is part of a non-default automaton, the name of the automaton and a
-colon separator must precede the state; for example, “parser:slash” stands
-for the state slash of the automaton parser.
+---
 
-If a function has states, there must be several “implementations” of the function in the source code.
-All functions must have the same function header (excluding the state classifier list).
+### - Державні класифікатори
 
-As a special syntax, when there are no names between the angle brackets, the
-function is linked to all states that are not attributed to other
-implementations of the function. The function that handles “all states not handled elsewhere”
-is the so-called fall-back function.
+Усі функції, окрім власних функцій, можуть за бажанням мати атрибут стану.
+Він складається зі списку назв станів (і автоматів), укладених у кутові дужки
+за заголовком функції. Назви розділено комами. Якщо атрибут
+стан є частиною автомата не за замовчуванням, назва автомата і двокрапка
+і двокрапка повинні передувати стану; наприклад, "parser:slash" означає
+означає стан слеш синтаксичного аналізатора автомата.
 
-### • Public functions, function main
+Якщо функція має стани, у вихідному коді має бути декілька "реалізацій" функції.
+Усі функції повинні мати однаковий заголовок функції (за винятком списку класифікатора станів).
 
-A stand-alone program must have the function main. This function is  
-the starting point of the program. The function main may not have arguments.
+Як спеціальний синтаксис, коли між кутовими дужками немає імен, функція
+зв'язується з усіма станами, які не приписані іншим
+реалізаціям функції. Функція, яка обробляє "всі стани, які не обробляються в інших місцях"
+є так званою резервною функцією.
 
-A function library need not to have a main function, but it must have it either
-a main function, or at least one public function. Function main is the primary
-entry point into the compiled program; the public functions are  
-alternative entry points to the program. The virtual machine can start execution with
-one of the public functions. A function library may have a main function to
-perform one-time initialization at startup.
+### - Публічні функції, функція main
 
-To make a function public, prefix the function name with the keyword public.
-For example, a text editor may call the public function “onkey” for every key
-that the user typed in, so that the user can change (or reject) keystrokes. The
-onkey function below would replace every “~” character (code 126 in the ISO
-Latin-1 character set) by the “hard space” code in the ANSI character table:
+Автономна програма повинна мати функцію main. Ця функція є
+початковою точкою програми. Функція main може не мати аргументів.
 
-Listing: onkey function
+Бібліотека функцій не обов'язково повинна мати головну функцію, але вона повинна мати або
+головну функцію, або принаймні одну загальнодоступну функцію. Головна функція є основною
+точкою входу у скомпільовану програму; загальнодоступні функції є
+альтернативні точки входу до програми. Віртуальна машина може почати виконання з
+однієї із загальнодоступних функцій. Бібліотека функцій може мати головну функцію для
+виконувати одноразову ініціалізацію під час запуску.
+
+Щоб зробити функцію загальнодоступною, додайте до її назви ключове слово public.
+Наприклад, текстовий редактор може викликати загальнодоступну функцію "onkey" для кожної клавіші
+яку ввів користувач, щоб користувач міг змінювати (або відхиляти) натискання клавіш. Функція
+onkey, наведена нижче, замінить кожен символ "~" (код 126 у наборі символів ISO
+Latin-1) на код "пробіл" у таблиці символів ANSI:
+
+Лістинг: функція клавіші
 
 ```c
 
-public onkey(keycode)
+public onkey(код ключа)
 {
-    if (key==’~’)
-        return 160 /* replace ~ by hard space (code 160 in Latin-1) */
+    if (key=='~')
+        return 160 /* замінити ~ на пробіл (код 160 латиницею-1) */
     else
-        return key /* leave other keys unaltered */
+        повернути ключ /* інші ключі залишити без змін */
 }
 
 ```
 
 ---
 
-`Example: 40`
+Приклад: 40`
 
 ---
 
-Functions whose name starts with the “@” symbol are also public. So
-an alternative way to write the public function onkey function is:
+Функції, назва яких починається з символу "@", також є загальнодоступними. Отже
+альтернативний спосіб написання загальнодоступної функції - функція onkey:
 
-Listing: @onkey function
+Лістинг: Функція @onkey
 
 ```c
 
-@onkey(keycode)
-    return key==’~’ ? 160 : key
+@onkey(код ключа)
+    return key=='~' ? 160 : key
 
 ```
 
-The “@” character, when used, becomes part of the function name; that is, in
-the last example, the function is called “@onkey”. The host application decides
-on the names of the public functions that a script may implement.
+Символ "@" при використанні стає частиною імені функції, тобто в
+останньому прикладі функція називається "@onkey". Хост-додаток вирішує
+імена загальнодоступних функцій, які може реалізувати скрипт.
 
-Arguments of a public function may not have default values. A public func-
-tion interfaces the host application to the pawn script. Hence, the arguments
-passed to the public function originate from the host application, and the host
-application cannot know what “default values” the script writer plugged for
-function arguments —which is why the pawn parser flags the use of default
-values for arguments of public functions as an error. The issue of default
-values in public function arguments only pops up in the case that you wish to call public functions from the script itself.
+Аргументи публічної функції можуть не мати значень за замовчуванням. Загальнодоступна функція
+з'єднує хост-додаток зі скриптом пішака. Отже, аргументи
+передані у загальнодоступну функцію, походять з хост-додатку, і хост-додаток не може знати, які "значення за замовчуванням
+програма не може знати, які "значення за замовчуванням" встановив автор сценарію для
+аргументи функції - саме тому парсер пішаків позначає використання значень за замовчуванням
+для аргументів загальнодоступних функцій як помилку. Проблема значень за замовчуванням
+в аргументах загальнодоступних функцій виникає лише у випадку, якщо ви хочете викликати загальнодоступні функції з самого скрипта.
 
-### • Static functions
+### - Статичні функції
 
-When the function name is prefixed with the keyword static, the scope of the
-function is restricted to the file that the function resides in.
+Якщо до імені функції додано ключове слово static, область видимості функції
+обмежується файлом, у якому знаходиться функція.
 
-The static attribute can be combined with the “stock” attribute.
+Атрибут static можна комбінувати з атрибутом "запас".
 
-### • Stock functions
+### - Біржові функції
 
-A “stock” function is a function that the pawn parser must “plug into” the
-program when it is used, and that it may simply “remove” from the program
-(without warning) when it is not used. Stock functions allow a compiler or
-interpreter to optimize the memory footprint and the file size of a (compiled)
-pawn program: any stock function that is not referred to, is completely skipped
-—as if it were lacking from the source file.
+"Запасна" функція - це функція, яку синтаксичний аналізатор повинен "підключити" до
+програму, коли вона використовується, і яку він може просто "вилучити" з програми
+(без попередження), коли вона не використовується. Запасні функції дозволяють компілятору або
+інтерпретатору оптимізувати використання пам'яті та розмір файлу (скомпільованої)
+програма-пішак: будь-яка стокова функція, на яку не посилаються, повністю пропускається
+-так, ніби вона відсутня у вихідному файлі.
 
-A typical use of stock functions, hence, is in the creation of a set of
-“library” functions. A collection of general purpose functions, all marked as “stock” may
-be put in a separate include file, which is then included in any pawn  
-script. Only the library functions that are actually used get “linked” in.
+Отже, типове використання фондових функцій полягає у створенні набору
+"бібліотечних" функцій. Набір функцій загального призначення, позначених як "запаси", можна
+можна помістити в окремий include-файл, який потім буде включено до будь-якого пішакового
+скрипт. Тільки ті бібліотечні функції, які дійсно використовуються, будуть "підключені".
 
-To declare a stock function, prefix the function name with the keyword stock.
-Public functions and native functions cannot be declared “stock”.
+Щоб оголосити стокову функцію, додайте до імені функції ключове слово stock.
+Загальнодоступні та власні функції не можуть бути оголошені як stock.
 
-When a stock function calls other functions, it is usually a good practice to
-declare those other functions as “stock” too —with the exception of  
-native functions. Similarly, any global variables that are used by a stock
-function should in most cases also be defined “stock”. The removal of unused (stock)
-functions can cause a chain reaction in which other functions and global vari-
-ables are not longer accessed either. Those functions are then removed as well,
-thereby continuing the chain reaction until only the functions that are used,
-directly or indirectly, remain.
-
----
-
-`Default values of function arguments: 75`
-
-`Public variables can be declared “stock”`
-
-`Stock variables: 63`
+Коли функція-стокс викликає інші функції, зазвичай, гарною практикою є
+оголошувати ці інші функції також як "стокові" - за винятком
+власних функцій. Аналогічно, будь-які глобальні змінні, які використовуються стоковою функцією
+функцією, у більшості випадків також слід визначати як "запаси". Видалення невикористовуваних (запасних) функцій
+функції може спричинити ланцюгову реакцію, за якої інші функції та глобальні змінні
+до інших функцій та глобальних змінних також більше не буде доступу. Ці функції також будуть видалені,
+таким чином продовжуючи ланцюгову реакцію до тих пір, поки не залишаться тільки ті функції, які використовуються,
+прямо чи опосередковано, не залишаться лише функції, які використовуються.
 
 ---
 
-### • Native functions
+`Значення аргументів функції за замовчуванням: 75`
 
-A pawn program can call application-specific functions through a “native function”.
-The native function must be declared in the pawn program by means
-of a function prototype. The function name must be preceded by the keyword native.
+`Змінні загального доступу можуть бути оголошені як "stock"`
 
-Examples:
+`Змінні в запасі: 63`
+
+---
+
+### - Нативні функції
+
+Програма-пішак може викликати специфічні для програми функції через "власну функцію".
+Нативна функція повинна бути оголошена у програмі-пішаку за допомогою
+прототипу функції. Назві функції має передувати ключове слово native.
+
+Приклади:
 
 ```c
 
@@ -905,11 +905,11 @@ native openfile(const name[])
 
 ```
 
-The names “getparam”, “multiply_matrix” and “openfile” are the internal
-names of the native functions; these are the names by which the  
-functions are known in the pawn program. Optionally, you may also set an external
-name for the native function, which is the name of the function as the “host application” knows it.
-To do so, affix an equal sign to the function prototype followed by the external name. For example:
+Імена "getparam", "multiply_matrix" та "openfile" є внутрішніми
+іменами власних функцій; це імена, під якими функції відомі
+функції відомі у програмі-пішаку. За бажанням, ви також можете задати зовнішнє
+зовнішнє ім'я для нативної функції, тобто ім'я, під яким функція відома у "хост-програмі".
+Для цього перед прототипом функції слід поставити знак рівності, а потім зовнішнє ім'я. Наприклад:
 
 ```c
 
@@ -919,9 +919,9 @@ native multiply_matrix(a[], b[], size) = mtx_mul
 
 ```
 
-When a native function returns an array, the dimensions and size of the ar-
-ray must be explicitly declared. The array specification occurs between  
-the function name and the parameter list. For example:
+Коли нативна функція повертає масив, розміри та розмір масиву ar-
+променя повинні бути оголошені явно. Специфікація масиву міститься між
+назвою функції та списком параметрів. Наприклад:
 
 ```c
 
@@ -930,37 +930,37 @@ native intersect[rect](src1[rect], src2[rect])
 
 ```
 
-Unless specified explicitly, the external name is equal to the internal name of
-a native function. One typical use for explicit external names is to set a
-symbolic name for a user-defined operator that is implemented as a native function.
+Якщо не вказано явно, зовнішнє ім'я дорівнює внутрішньому імені
+власної функції. Одним з типових випадків використання явних зовнішніх імен є встановлення символічного імені
+символічного імені для визначеного користувачем оператора, який реалізовано як власну функцію.
 
-See the “Implementor’s Guide” for implementing native functions in C/C++(on the “host application” side).
+Див. "Посібник реалізатора" для реалізації нативних функцій у C/C++ (на стороні "хост-додатку").
 
-Native functions may not have state specifiers.
-
----
-
-`An example of a native user-defined operator is on page 89`
+Нативні функції можуть не мати специфікаторів стану.
 
 ---
 
-### • User-defined operators
+`Приклад власного визначеного користувачем оператора наведено на сторінці 89`
 
-The only data type of pawn is a “cell”, typically a 32-bit number or bit
-pattern.
+---
 
-Tags: 68 The meaning of a value in a cell depends on the particular application —it need
-not always be a signed integer value. pawn allows to attach a “meaning” to a cell with its “tag” mechanism.
+### - Оператори, визначені користувачем
 
-Based on tags, pawn also allows you to redefine operators for cells  
-with a specific purpose. The example below defines a tag “ones” and an  
-operator to add two “ones” values together (the example also implements  
-operators for subtraction and negation). The example was inspired by the checksum
-algorithm of several protocols in the TCP/IP protocol suite: it simulates one’s
-complement arithmetic by adding the carry bit of an arithmetic overflow back
-to the least significant bit of the value.
+Єдиним типом даних пішака є "комірка", як правило, 32-бітне число або бітовий
+шаблон.
 
-Listing: ones.p
+Мітки: 68 Значення значення у комірці залежить від конкретного застосування - це не завжди має бути
+pawn дозволяє прикріпити "значення" до комірки за допомогою механізму "тегів".
+
+На основі тегів pawn також дозволяє перевизначати оператори для комірок
+з певною метою. У прикладі нижче визначено тег "ones" та оператор
+для додавання двох значень "одиниць" (у прикладі також реалізовано оператори
+оператори віднімання та заперечення). Приклад був натхненний алгоритмом контрольної суми
+декількох протоколів з набору протоколів TCP/IP: він імітує арифметику доповнення
+арифметику доповнення, додаючи біт переносу арифметичного переповнення назад
+до найменшого значущого біта значення.
+
+Лістинг: ones.p
 
 ```c
 
@@ -970,13 +970,13 @@ forward ones: operator-(ones: a)
 
 main()
 {
-    new ones: chksum = ones: 0xffffffff
-    print "Input values in hexadecimal, zero to exit\n"
+    new ones: chksum = ones: 0xffffffffffff
+    print "Вхідні значення у шістнадцятковому форматі, нуль для виходу\n"
 
-    new ones: value
+    нові: значення
     do
     {
-        print ">> "
+        вивести ">> "
         value = ones: getvalue(.base=16)
         chksum = chksum + value
         printf "Checksum = %x\n", chksum
@@ -986,118 +986,118 @@ main()
 
 stock ones: operator+(ones: a, ones: b)
 {
-    const ones: mask = ones: 0xffff                 /* word mask */
-    const ones: shift = ones: 16                    /* word shift */
+    const ones: mask = ones: 0xffff /* маска слова */
+    const ones: shift = ones: 16 /* зсув слова */
 
-    /* add low words and high words separately */
+    /* додавання малих та великих слів окремо*/
     new ones: r1 = (a & mask) + (b & mask)
-    new ones: r2 = (a >>> shift) + (b >>> shift)
+    нові: r2 = (a >>> shift) + (b >>> shift)
 
-    new ones: carry
-    restart:                                        /* code label (goto target) */
+    нові: перенести
+    перезапустити:                                        /* кодова мітка (перехід до цілі) */ ** код мітки (перехід до цілі)
 
-    \* add carry of the new low word to the high word, then
-    * strip it from the low word */
+    \* додаємо перенесення нового молодшого слова до старшого слова, а потім
+    * вилучити його з молодшого слова */
 
     carry = (r1 >>> shift)
     r2 += carry
     r1 &= mask
 
-    \* add the carry from the new high word back to the low
-    * word, then strip it from the high word */
+    \* додати перенос з нового старшого слова назад до молодшого
+    *, а потім вилучити його з старшого слова */
 
     carry = (r2 >>> shift)
     r1 += carry
     r2 &= mask
 
-    \* a carry from the high word injected back into the low
-    * word may cause the new low to overflow, so restart in that case */
+    \* перенесення з старшого слова назад у молодший розряд
+    * може призвести до переповнення нового молодшого слова, тому у цьому випадку перезапустіть програму */
 
     if (carry)
-        goto restart
+        goto перезапуск
     return (r2 << shift) | r1
 }
 
 stock ones: operator-(ones: a)
-    return (a == ones: 0xffffffff) ? a : ~a
+    return (a == ones: 0xffffffffff) ? a : ~a
 
 stock ones: operator-(ones: a, ones: b)
-    return a + -b
+    повернути a + -b
 
 ```
 
-The notable line in the example is the line “chksum = chksum + value” in
-the loop in function main. Since both the variables chksum and value have
-the tag ones, the “+” operator refers to the user-defined operator  
-(instead of the default “+” operator). User-defined operators are merely a notational
-convenience. The same effect is achieved by calling functions explicitly.
+У прикладі помітним рядком є рядок "chksum = chksum + value" у
+у циклі функції main. Оскільки обидві змінні chksum і value мають
+тегами, оператор "+" посилається на визначений користувачем оператор
+(замість стандартного оператора "+"). Користувацькі оператори є лише нотацією
+зручність. Той самий ефект досягається при явному виклику функцій.
 
-The definition of an operator is similar to the definition of a function, with
-the difference that the name of the operator is composed by the keyword “opera-
-tor” and the character of the operator itself. In the above example, both the
-unary “-” and the binary “-” operators are redefined. An operator function
-for a binary operator must have two arguments, one for an unary  
-operator must have one argument. Note that the binary “-” operator adds the two val-
-ues together after inverting the sign of the second operand. The subtraction
+Означення оператора подібне до означення функції, з тією лише різницею, що
+тією різницею, що назва оператора складається з ключового слова "opera-" і символу самого оператора.
+tor" і символу самого оператора. У наведеному вище прикладі як унарний "-", так і бінарний
+унарний "-" і бінарний "-" оператори перевизначено. Операторна функція
+для бінарного оператора повинна мати два аргументи, для унарного
+повинна мати один аргумент. Зауважте, що бінарний оператор "-" додає два значення
+значення після інвертування знаку другого операнда. Віднімання
 
-operator thereby refers to both the user-defined “negation” (unary “-”) and addition operators.
+Таким чином, оператор відноситься як до визначеного користувачем "заперечення" (унарний "-"), так і до операторів додавання.
 
-A redefined operator must adhere to the following restrictions:
+Перевизначений оператор повинен дотримуватися наступних обмежень:
 
-- A user-defined operator must be declared before use (this is in contrast to “normal” functions): either put the implementation of the user-defined operator above the functions that use it, or add a forward declaration near the top of the file.
+- Визначений користувачем оператор має бути оголошений перед використанням (на відміну від "звичайних" функцій): або розмістіть реалізацію визначеного користувачем оператора над функціями, які його використовують, або додайте пряме оголошення у верхній частині файлу.
 
-- Only the following operators may be redefined: +, -, \*, /, %, ++, --, ==, !=, <, > , <=, >=, ! and =. That is, the sets of arithmetic and relational operators can be overloaded, but the bitwise operators and the logical operators cannot. The = and ! operators are a special case.
+- Тільки наступні оператори можуть бути перевизначені: +, -, \*, /, %, ++, --, ==, !=, <, > , <=, >=, ! і =. Тобто, набори арифметичних і реляційних операторів можна перевантажувати, але порозрядні і логічні оператори - ні. Оператори = та ! є особливим випадком.
 
-- You cannot invent new operators; you cannot define operator “#” for example.
+- Ви не можете вигадувати нові оператори; ви не можете визначити оператор "#", наприклад.
 
-- The precedence level and associativity of the operators, as well as their “arity” remain as defined. You cannot make an unary “+” operator, for example.
+- Рівень пріоритету та асоціативність операторів, а також їхня "арність" залишаються визначеними. Наприклад, ви не можете створити унарний оператор "+".
 
-- The return tag of the relational operators and of the “!” operator must be “bool:”.
+- Тег повернення реляційних операторів та оператора "!" має бути "bool:".
 
-- The return tag of the arithmetic operators is at your choosing, but you cannot redefine an operator that is identical to another operator except for its return tag. For example, you cannot make both `alpha: operator+(alpha: a, alpha: b)` and `beta: operator+(alpha: a, alpha: b)` (The assignment operator is an exception to this rule.)
+- Тег повернення арифметичних операторів ви можете вибрати самостійно, але ви не можете перевизначити оператор, який є ідентичним іншому оператору, за винятком його тегу повернення. Наприклад, ви не можете створити як `alpha: operator+(alpha: a, alpha: b)`, так і `beta: operator+(alpha: a, alpha: b)` (Оператор присвоювання є винятком з цього правила).
 
-- PAWN already defines operators to work on untagged cells, you cannot redefine the operators with only arguments without tags.
+- PAWN вже визначає оператори для роботи з комірками без тегів, ви не можете перевизначити оператори з аргументами без тегів.
 
-- The arguments of the operator function must be non-arrays passed by value. You cannot make an operator work on arrays.
+- Аргументами операторної функції повинні бути не масиви, що передаються за значенням. Не можна змусити оператор працювати над масивами.
 
-In the example given above, both arguments of the binary operators have the
-same tag. This is not required; you may, for example, define a  
-binary “+” operator that adds an integer value to a “ones:” number.
+У наведеному вище прикладі обидва аргументи бінарних операторів мають однаковий тег
+однакову мітку. Це не є обов'язковим; ви можете, наприклад, визначити
+бінарний оператор "+", який додає ціле значення до числа типу "одиниці:".
 
-Au fond, the operation of the pawn parser is to look up the tag(s)
-of the operand(s) that the operator works on and to look up whether a user-defined
-operator exists for the combination of the operator and the tag(s). However,
-the parser recognizes special situations and provides the following features:
+По суті, робота синтаксичного аналізатора пішаків полягає у пошуку тегу(ів)
+операндів, з якими працює оператор, і перевірити, чи існує визначений користувачем оператор
+оператор для комбінації оператора і тегу(ів). Однак
+синтаксичний аналізатор розпізнає особливі ситуації і надає наступні можливості:
 
-The parser recognizes operators like “+=” as a sequence of “+” and  
-“=” and it will call a user-defined operator “+” if available and/or a user-defined
-operator “=”. In the example program, the line “chksum = chksum + value”
-might have been abbreviated to “chksum += value”.
+Синтаксичний аналізатор розпізнає оператори типу "+=" як послідовність "+" і
+"=" і викликає визначений користувачем оператор "+", якщо він доступний, та/або визначений користувачем оператор
+оператор "=". У прикладі програми рядок "chksum = chksum + value"
+можна було б скоротити до "chksum += value".
 
-The parser recognizes commutative operators (“+”, “\*”, “==”, and “!=”)
-and it will swap the operands of a commutative operator if that produces
-a fit with a user-defined operator. For example, there is usually no need to implement both
+Синтаксичний аналізатор розпізнає комутативні оператори ("+", "\*", "==" та "!=")
+і поміняє місцями операнди комутативних операторів, якщо це призведе до
+відповідність з оператором, визначеним користувачем. Наприклад, зазвичай немає необхідності застосовувати обидва оператори
 
 `ones:operator+(ones:a, b)`
 
-and
+і
 
 `ones:operator+(a, ones:b)`
 
-(implementing both functions is valid, and it is useful in case the user-defined
-operator should not be commutative).
+(реалізація обох функцій є допустимою і корисною у випадку, якщо визначений користувачем оператор
+не повинен бути комутативним).
 
-- Prefix and postfix operators are handled automatically. You only need to define one user operator for the “++” and “--” operators for a tag.
+- Префіксні та постфіксні оператори обробляються автоматично. Вам потрібно визначити лише один користувацький оператор для операторів "++" і "--" для тегу.
 
-- The parser calls the “!” operator implicitly in case of a test without explicit comparison. For example, in the statement “if (var) ...” when “var” has tag “ones:”, the user-defined operator “!” will be called for var. The “!” operator thus doubles as a “test for zero” operator. (In one’s complement arithmetic, both the “all-ones” and the “all-zeros” bit patterns represent zero.)
+- Синтаксичний аналізатор викликає оператор "!" неявно у випадку тесту без явного порівняння. Наприклад, в операторі "if (var) ...", коли var має тег "ones:", для var буде викликано визначений користувачем оператор "!". Таким чином, оператор "!" подвоюється як оператор "перевірки на нуль". (У доповняльній арифметиці як "всі одиниці", так і "всі нулі" представляють нуль).
 
-- The user-defined assignment operator is implicitly called for a function argument that is passed “by value” when the tag names of the formal and the actual arguments match the tag names of the left and right hand sides of the operator. In other words, the pawn parser simulates that “pass by value” happens through assignment. The user-defined operator is not called for function arguments that are passed “by reference”.
+- Користувацький оператор присвоювання неявно викликається для аргументу функції, який передається "за значенням", коли імена тегів формального і фактичного аргументів збігаються з іменами тегів лівої і правої частин оператора. Іншими словами, синтаксичний аналізатор пішаків імітує, що "передача за значенням" відбувається через присвоювання. Визначений користувачем оператор не викликається для аргументів функції, які передаються "за посиланням".
 
-- If you wish to forbid an operation, you can “forward declare” the operator without ever defining it (see page 82). This will flag an error when the user-defined operator is invoked. For example, to forbid the “%” operator (remainder after division) on floating point values, you can add the line: `forward Float: operator%(Float: a, Float: b)`
+- Якщо ви хочете заборонити операцію, ви можете "передати оголошення" оператора, не визначаючи його (див. сторінку 82). Це призведе до виникнення помилки під час виклику визначеного користувачем оператора. Наприклад, щоб заборонити оператор "%" (залишок після ділення) над значеннями з плаваючою комою, ви можете додати рядок: `forward Float: operator%(Float: a, Float: b)`.
 
-User-defined operators can optionally be declared “stock” or “native”. In the case of a native operator function, the definition should include an external name. For example (when, on the host’s side, the native function is called float_add):
+Оператори, визначені користувачем, можуть бути оголошені "стандартними" або "власними". У випадку власної операторної функції, визначення повинно містити зовнішнє ім'я. Наприклад (коли на стороні хоста власна функція називається float_add):
 
-Listing: native operator+ function
+Лістинг: нативний оператор+функція
 
 ```c
 
@@ -1105,88 +1105,88 @@ native Float: operator+(Float: val, Float: val) = float_add
 
 ```
 
-The user-defined assignment operator is a special case, because it is an
-operator that has a side effect. Although the operator has the appearance of a binary
-operator, its “expression result” is the value at the right hand —the assignment
-operator would be a “null”-operator if it weren’t for its side-effect. In pawn
-a user-defined assignment operator is declared as:
+Оператор присвоювання, визначений користувачем, є особливим випадком, оскільки це оператор
+який має побічний ефект. Хоча оператор має вигляд бінарного оператора
+його "результатом виразу" є значення у правій частині - оператор присвоювання
+був би "нульовим" оператором, якби не його побічний ефект. У програмі pawn
+користувацький оператор присвоювання оголошується як:
 
-Listing: operator= function
+Лістинг: operator= function
 
 ```c
 
 ones: operator=(a)
 
-return ones: ( (a >= 0) ? a : ~(-a) )
+повернути одиниці: ( (a >= 0) ? a : ~(-a) )
 
 ```
 
-The user-defined “=” operator looks like a unary operator in this
-definition, but it is a special case nevertheless. In contrast to the other
-operators, the tag of the return value for the user-defined operator is important: the pawn
-parser uses the tags of the argument and the return value to find a matching user-defined operator.
+Визначений користувачем оператор "=" виглядає як унарний оператор у цьому визначенні
+але він є окремим випадком. На відміну від інших операторів
+операторів, тег значення, що повертається, для визначеного користувачем оператора є важливим: парсер pawn
+використовує теги аргументу і значення, що повертається, щоб знайти відповідний користувацький оператор.
 
-The example function above is a typical application for a user-defined assign-
-ment operator: to automatically coerce/convert an untagged value to a tagged
-value, and to optionally change the memory representation of the value in the
-process. Specifically, the statement “new ones:A = -5” causes the user-defined
-operator to run, and for the constant -5 the operator will return “~(- -5)”, or ~5, or −6.∗
-
----
-
-`Tags: 68`
-
-`Forward declaration: 82`
-
-`“Call by value” versus “call by reference”: 71`
-
-`Native functions: 85`
-
-`Rational literals: 98`
-
-`#pragma rational: 121`
+Наведений вище приклад функції є типовим застосуванням визначеного користувачем оператора присвоювання
+для автоматичного примусового приведення/перетворення неміченого значення у мічене значення
+значення, а також за бажанням змінити представлення значення у пам'яті під час
+у процесі роботи. Зокрема, інструкція "new ones:A = -5" викликає виконання визначеного користувачем оператора
+і для константи -5 оператор поверне "~(- -5)", або ~5, або -6.∗
 
 ---
 
-### • Floating point and fixed point arithmetic
+Мітки: 68`
 
-pawn only has intrinsic support for integer arithmetic (the -domain: “whole
-numbers”, both positive and negative). Support for floating point arithmetic
-or fixed point arithmetic must be implemented through (native) functions.
-User operators, then, allow a more natural notation of expressions with fixed or floating point numbers.
+`Передоплата за декларацію: 82
 
-The pawn parser has support for literal values with a fractional part, which it
-calls “rational numbers”. Support for rational literals must be enabled explic-
-itly with a #pragma. The #pragma indicates how the rational numbers must
-be stored —floating point or fixed point. For fixed point rational values, the
-#pragma also specifies the precision in decimals. Two examples for the #pragma are:
+"Виклик за значенням" проти "виклику за посиланням": 71`
+
+Власні функції: 85`
+
+`Раціональні літерали: 98`.
+
+`#pragma rational: 121``.
+
+---
+
+### - Арифметика з плаваючою та фіксованою комою
+
+pawn має лише внутрішню підтримку цілочисельної арифметики (домен -domain: "цілі
+числа", як додатні, так і від'ємні). Підтримка арифметики з плаваючою комою
+або арифметики з фіксованою комою має бути реалізована за допомогою (власних) функцій.
+Тоді користувацькі оператори дозволять більш природно записувати вирази з числами з фіксованою або плаваючою комою.
+
+Парсер пішаків має підтримку буквених значень з дробовою частиною, які він
+називає "раціональними числами". Підтримка раціональних літералів повинна бути включена явно
+явно за допомогою #pragma. Прагма # вказує на спосіб зберігання раціональних чисел
+зберігати раціональні числа - з плаваючою або фіксованою комою. Для раціональних значень з фіксованою комою
+#pragma також вказує точність у десяткових знаках. Два приклади для #pragma
 
 ```c
 
-#pragma rational Float /* floating point format */
-#pragma rational Fixed(3) /* fixed point, with 3 decimals */
+#pragma rational Float /* формат з плаваючою комою */
+#pragma rational Fixed(3) /* фіксована кома, з 3 знаками після коми */
 
 ```
 
 ---
 
-###### ∗ Modern CPUs use two’s complement integer arithmetic. For positive values, the bitwise representation of a value is the same in one’s complement and two’s complement, but the representations differ for negative values. For instance, the same bit pattern that means -5 in one’s complement stands for -6 in two’s complement.
+###### ∗ Сучасні процесори використовують цілочисельну арифметику з двома доповненнями. Для додатних значень побітове представлення значення однакове як в одному, так і в двох доповненнях, але для від'ємних значень представлення відрізняються. Наприклад, той самий набір бітів, що означає -5 у першому доповненні, означає -6 у другому доповненні.
 
 ---
 
-Since a fixed point value must still fit in a cell, the number of decimals
-has a direct influence of the range of a fixed point value. For a fixed point value
-with 3 decimals, the range would be −2, 147, 482 . . . + 2, 147, 482.
+Оскільки значення з фіксованою крапкою все одно має поміститися в комірці, кількість знаків після коми
+безпосередньо впливає на діапазон значення з фіксованою комою. Для значення з фіксованою точкою
+з 3 десятковими знаками діапазон буде -2, 147, 482 ... + 2, 147, 482.
 
-The format for a rational number may only be specified once for the entire
-pawn program. In an implementation one typically chooses either  
-floating point support or fixed point support. As stated above, for the actual imple-
-mentation of the floating point or fixed point arithmetic, pawn requires the
-help of (native) functions and user-defined operators. A good place to put
-the #pragma for rational number support would be in the include file that  
-also defines the functions and operators.
+Формат раціонального числа може бути задано лише один раз для всієї
+пішакової програми. У реалізації зазвичай вибирають або
+підтримку плаваючої або фіксованої точки. Як зазначалося вище, для фактичної реалізації арифметики з плаваючою або фіксованою ко
+арифметики з плаваючою або фіксованою комою, pawn потребує
+допомоги (власних) функцій та визначених користувачем операторів. Хорошим місцем для розміщення
+#pragma для підтримки раціональних чисел буде у файлі include, який
+також визначає функції та оператори.
 
-The include file † for fixed point arithmetic contains definitions like:
+Файл include † для арифметики з фіксованою комою містить визначення на кшталт:
 
 ```c
 
@@ -1195,34 +1195,34 @@ native Fixed: operator/(Fixed: val1, Fixed: val2) = fdiv
 
 ```
 
-The user-defined operators for multiplication and division of two fixed
-point numbers are aliased directly to the native functions fmul and fdiv. The host
-application must, then, provide these native functions.
+Користувацькі оператори множення та ділення двох чисел з фіксованою комою
+чисел з фіксованою комою є псевдонімами безпосередньо до власних функцій fmul та fdiv. Отже, хост-програма
+програма повинна надавати ці власні функції.
 
-Another native user-defined operator is convenient to transform an integer to
-fixed point automatically, if it is assigned to a variable tagged as “Fixed:”:
+Інший власний користувацький оператор зручний для автоматичного перетворення цілого числа до
+фіксовану крапку автоматично, якщо вона присвоєна змінній, позначеній як "Fixed:":
 
 ```c
 
-native Fixed: operator=(oper) = fixed
+native Виправлено: operator=(oper) = fixed
 
 ```
 
-With this definition, you can say “new Fixed: fract = 3” and the value
-will be transformed to 3.000 when it is stored in variable fract. As explained
-in the section on user-defined operators, the assignment operator also runs for
-function arguments that are passed by value. In the expression “new Fixed:
-root = sqroot(16)” (see the implementation of function sqroot on page 79),
-the user-defined assignment operator is called on the argument 16.
+З таким визначенням ви можете написати "new Fixed: fract = 3" і значення
+буде перетворено на 3.000, коли його буде збережено у змінній fract. Як пояснюється
+у розділі про визначені користувачем оператори, оператор присвоювання також виконується для
+аргументів функції, які передаються за значенням. У виразі "new Fixed:
+root = sqroot(16)" (див. реалізацію функції sqroot на сторінці 79),
+для аргументу 16 викликається користувацький оператор присвоювання.
 
-For adding two fixed point values together, the default “+” operator is suffi-
-cient, and the same goes for subtraction. Adding a normal (integer) number
-to a fixed point number is different: the normal value must be scaled before
-adding it. Hence, the include file implements operators for that purpose too:
+Для додавання двох значень з фіксованою комою достатньо стандартного оператора "+".
+і те саме стосується віднімання. Додавання звичайного (цілого) числа
+до числа з фіксованою комою відбувається інакше: звичайне значення потрібно масштабувати перед
+додаванням нормальне значення потрібно масштабувати. Отже, у файлі include реалізовано оператори і для цієї мети:
 
-###### † See the application note “Fixed Point Support Library” for where to obtain the include file.
+###### † Див. примітку до програми "Бібліотека підтримки фіксованих точок", щоб дізнатися, де отримати файл include.
 
-Listing: additive operators, commutative and non-commutative
+Лістинг: адитивні оператори, комутативні та некомутативні
 
 ```c
 
@@ -1237,13 +1237,13 @@ stock Fixed: operator-(val1, Fixed: val2)
 
 ```
 
-The “+” operator is commutative, so one implementation handles both cases.
-For the “-” operator, both cases must be implemented separately.
+Оператор "+" є комутативним, тому одна реалізація обробляє обидва випадки.
+Для оператора "-" обидва випадки мають бути реалізовані окремо.
 
-Finally, the include file forbids the use of the modulus operator (“%”) on fixed
-point values: the modulus is only applicable to integer values:
+Нарешті, у файлі include заборонено використання оператора модуля ("%") для значень з фіксованою
+з фіксованою комою: модуль можна застосовувати лише до цілих чисел:
 
-Listing: forbidden operators on fixed point values
+Лістинг: заборонені оператори над значеннями з фіксованою комою
 
 ```c
 
@@ -1253,73 +1253,73 @@ forward Fixed: operator%(val1, Fixed: val2)
 
 ```
 
-Because of the presence of the (forward) declaration of the operator, the pawn
-parser will attempt to use the user-defined operator rather than the default
-“%” operator. By not implementing the operator, the parser will subsequently issue an error message.
-`User-defined operators: 86`
+Через наявність (переднього) оголошення оператора, пішак
+намагатиметься використати визначений користувачем оператор, а не оператор за замовчуванням
+"%". Якщо оператор не буде застосовано, синтаксичний аналізатор видасть повідомлення про помилку.
+`Означені користувачем оператори: 86`
 
 ---
-### • Call by Value and Call by Reference
-In Pawn, function arguments can be passed in two ways: by value and by reference.
-#### Call by value
-In this method, the value of the variable is passed to the function. A copy of the variable is created and the function operates on the copy, not the original variable. Any changes made to the variable inside the function do not affect the original variable.
+### - Виклик за значенням та виклик за посиланням
+У Pawn аргументи функції можна передавати двома способами: за значенням та за посиланням.
+#### Виклик за значенням
+У цьому способі у функцію передається значення змінної. Створюється копія змінної, і функція працює з копією, а не з оригінальною змінною. Будь-які зміни, внесені до змінної всередині функції, не впливають на оригінальну змінну.
 
 ```c
 swap(a, b){
 	new c = a;
-	a = b;
+	a = b
 	b = c;
 }
 
 main(){
 	new x = 10, y = 20;
-	printf("The value of x is %d and value of y is %d, before calling 'swap'.", x, y);
+	printf("Значення x дорівнює %d, а значення y дорівнює %d, до виклику 'swap'.", x, y);
 	swap(x, y);
-	printf("The value of x is %d and value of y is %d, after calling 'swap'.", x, y);
+	printf("Значення x дорівнює %d і значення y дорівнює %d, після виклику swap.", x, y);
 }
 ```
-Output
+Вивести
 ```
-The value of x is 10 and value of y is 20, before calling 'swap'.
-The value of x is 10 and value of y is 20, after calling 'swap'.
+Значення x дорівнює 10, а значення y дорівнює 20, до виклику функції swap.
+Значення x дорівнює 10, а значення y дорівнює 20, після виклику функції swap.
 ```
 
-#### Call by reference
-In this method, the address of the variable is passed to the function. The function operates on the original variable and any changes made to the variable inside the function are reflected in the original variable.
+#### Виклик за посиланням
+У цьому методі у функцію передається адреса змінної. Функція оперує з вихідною змінною, і будь-які зміни, внесені до змінної всередині функції, відображаються у вихідній змінній.
 ```c
 swap(&a, &b){
-	new c = a;
-	a = b;
+	new c = a
+	a = b
 	b = c;
 }
 
 main(){
 	new x = 10, y = 20;
-	printf("The value of x is %d and value of y is %d, before calling 'swap'.", x, y);
+	printf("Значення x дорівнює %d, а значення y дорівнює %d, до виклику 'swap'.", x, y);
 	swap(x, y);
-	printf("The value of x is %d and value of y is %d, after calling 'swap'.", x, y);
+	printf("Значення x дорівнює %d і значення y дорівнює %d, після виклику swap.", x, y);
 }
 ```
-Output
+Вивести
 ```
-The value of x is 10 and value of y is 20, before calling 'swap'.
-The value of x is 20 and value of y is 10, after calling 'swap'.
+Значення x дорівнює 10, а значення y дорівнює 20, до виклику swap.
+Значення x дорівнює 20, а значення y дорівнює 10, після виклику функції swap.
 ```
 
-### • Recursion / Function Recursion
-Recursion in programming refers to the process of a function calling itself in order to solve a problem. It's a fundamental concept used to solve problems that can be broken down into smaller instances of the same problem. Recursion consists of two main components: base cases and recursive cases.
-##### Base Case: 
-Every recursive function should have one or more base cases. A base case is a condition under which the function stops calling itself and returns a result directly. Without base cases, the recursion would continue indefinitely, causing a stack overflow. Read Stack/Heap section to know more about it.
-##### Recursive Case:
-The recursive case is where the function calls itself to solve a smaller instance of the problem. Each recursive call should bring the problem closer to a base case.
-#### Example
+### - Рекурсія / Рекурсія функцій
+Рекурсія в програмуванні означає процес виклику функції самої себе для вирішення проблеми. Це фундаментальна концепція, яка використовується для вирішення проблем, які можна розбити на менші екземпляри однієї і тієї ж проблеми. Рекурсія складається з двох основних компонентів: базових випадків і рекурсивних випадків.
+##### Базовий випадок:
+Кожна рекурсивна функція повинна мати один або декілька базових випадків. Базовий випадок - це умова, за якої функція перестає викликати сама себе і повертає результат безпосередньо. Без базових випадків рекурсія буде продовжуватися нескінченно, що призведе до переповнення стеку. Щоб дізнатися більше про це, прочитайте розділ Стек/Веревина.
+##### Рекурсивний випадок:
+Рекурсивний випадок - це коли функція викликає сама себе для розв'язання меншого екземпляру задачі. Кожен рекурсивний виклик повинен наближати задачу до базового варіанту.
+#### Приклад
 ```c
 stock factorial(n) {
-    // Base case: factorial of 0 is 1
-    if (n == 0) {
+    // Базовий випадок: факторіал від 0 дорівнює 1
+    if (n == 0) { // Базовий випадок: факторіал від 0 дорівнює 1.
         return 1;
     }
-    // Recursive case: n! = n * (n - 1)!
+    // Рекурсивний випадок: n! = n * (n - 1)!
     else {
         return n * factorial(n - 1);
     }
@@ -1327,48 +1327,50 @@ stock factorial(n) {
 main() {
     new num = 3;
     new result = factorial(num);
-    printf("Factorial of %d is %d", num, result); // Output: Factorial of 3 is 6
+    printf("Факторіал від %d дорівнює %d", num, result); // Вивести: Факторіал від 3 дорівнює 6
 }
 ```
-#### Demonstrate the Output
+#### Продемонструвати виведення
 ```
-main() \\ main function from where execution of program starts
-new num = 3; \\ creates a num variable
-new result = factorial(num); \\ create a result variable and calls the factorial() with passing value of num, factorial(5)
-factorial(3) \\ factorial initiate
-   if(3 == 0) \\ checks the condition which is false
-   else{ 3 * factorial(3-1) } \\ 3 * and calls the factorial(2)
-      factorial(2) \\ factorial initiate again
-         if(2 == 0) \\ checks the condition which is false
-         else{ 2 * factorial(2-1) } \\ 3 * 2 * and calls the factorial(1)
-            factorial(1) \\ factorial initiate again
-            if(1 == 0) \\ checks the condition which is false
-            else{ 1 * factorial(1-1) } \\ 3 * 2 * 1 and calls the factorial(0)
- 	       factorial(0) \\ factorial initiate again
-               if(0 == 0) return 1 \\ checks the conition which is true and return 1
-		\\ at the final call 3 * 2 * 1 * 1 
+main() \\ головна функція, з якої починається виконання програми
+new num = 3; \\ створюється змінна num
+new result = factorial(num); \\ створюємо змінну result та викликаємо функцію factorial() з передачею значення num, factorial(5)
+factorial(3) \\ ініціюємо факторіал
+   if(3 == 0) \\ перевіряємо умову, яка є хибною
+   else{ 3 * factorial(3-1) } \\ 3 * і викликає факторіал(2)
+      factorial(2) \\ знову ініціюємо факторіал
+         if(2 == 0) \\ перевіряє умову, яка є хибною
+         else{ 2 * factorial(2-1) } \\ 3 * 2 * і викликає factorial(1)
+            factorial(1) \\ знову ініціюємо факторіал
+            if(1 == 0) \\ перевіряє умову, яка є хибною
+            else{ 1 * factorial(1-1) } \\ 3 * 2 * 1 і викликає factorial(0)
+ 	       factorial(0) \\ знову ініціює факторіал
+               if(0 == 0) return 1 \\ перевіряє умову, яка є істинною і повертає 1
+		\\ при останньому виклику 3 * 2 * 1 * 1
 ```
-### Stack Memory
-The stack is a region of memory used for storing local variables, function call information, and control flow data. It operates in a Last-In-First-Out (LIFO) manner, which means that the last item pushed onto the stack is the first one to be popped off.
-#### Example (Stack Overflow)
+### Стекова пам'ять
+Стек - це область пам'яті, яка використовується для зберігання локальних змінних, інформації про виклики функцій та даних потоку керування. Він працює за принципом LIFO (Last-In-First-Out), що означає, що останній елемент, який потрапив до стеку, буде першим з нього витягнутий.
+#### Приклад (переповнення стеку)
 ```c
-#pragma dynamic 35 // (35 * 4 bytes, a cell size) #pragma dynamic [cells] helps to modify the size of stack, read docs/scripting/language/Directives to know more about #pragma
+#pragma dynamic 35 // (35 * 4 байти, розмір комірки) #pragma dynamic [cells] допомагає змінювати розмір стеку, читайте docs/scripting/language/Directives, щоб дізнатися більше про #pragma
 main(){
 	grow_stack(1);
 }
-grow_stacK(n){ // recursive function
+grow_stacK(n){ // рекурсивна функція
 	printf("N: %d", n);
 	grow_stacK(n+1);
 }
 ```
-#### Output
+#### Виведення
 ```
 N: 1
 N: 2
 N: 3
 .. .
-Stack/heap collision (insufficient stack size)
+Зіткнення стеку і купи (недостатній розмір стеку)
 ```
-![Stack](https://i.imgur.com/ZaIVUkJ.png)
+![Стек](https://i.imgur.com/ZaIVUkJ.png)
 
-[Go Back to Contents](00-Contents.md)
+[Повернутися до змісту](00-Contents.md)
+
+

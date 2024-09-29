@@ -1,333 +1,335 @@
-# General syntax
+# Загальний синтаксис
 
 ---
 
-**Format**
+**Формат**
 
-    Identifiers, numbers and tokens are separated by spaces, tabs, carriage
-    returns and “form feeds”. Series of one or more of these separators are
-    called white space.
+    Ідентифікатори, числа і токени відокремлюються пробілами, табуляцією, поверненням каретки
+    повернення каретки та "переведенням рядка". Послідовність з одного або декількох таких роздільників
+    називаються пробілами.
 
-**Optional semicolons**
+**Необов'язкові крапки з комою
 
-    Semicolons (to end a statement) are optional if they occur at the end
-    of a line. Semicolons are required to separate multiple statements on
-    a single line. An expression may still wrap over multiple lines, but
-    postfix operators (++, -- and char) must appear on the same line as their operand.
+    Крапка з комою (для завершення твердження) є необов'язковою, якщо вона стоїть в кінці
+    рядка. Крапка з комою потрібна, щоб відокремити декілька операторів на
+    одному рядку. Вираз все одно може займати декілька рядків, але
+    постфіксні оператори (++, -- і char) повинні знаходитися у тому ж рядку, що й їхній операнд.
 
-**Comments**
+**Коментарі**
 
-    Text between the tokens /_ and _/ (both tokens may be at the same
-    line or at different lines) and text behind // (up to the end of the line)
-    is a programming comment. The parser treats a comment as white
-    space. Comments may not be nested.
+    Текст між символами /_ та _/ (обидва символи можуть знаходитись на одному
+    рядку або в різних рядках) і текст за // (до кінця рядка)
+    є програмним коментарем. Синтаксичний аналізатор розглядає коментар як пробіл
+    пробіл. Коментарі не можуть бути вкладеними.
 
-    A comment that starts with “/\*_ ” (two stars and white-space behind
-    the second star) and ends with “_/” is a documentation comment.
-    A comment that starts with “/// ” (three slashes and white-space
-    behind the third slash) is also a documentation comment. The parser
-    may treat documentation comments in a special way; for example, it
-    may construct on-line help from it.
+    Коментар, який починається з "/\*_ " (дві зірочки і пробіл за
+    другою зірочкою) і закінчується символом "_/", є коментарем до документації.
+    Коментар, який починається з "/// " (три скісні риски і пробіл
+    за третьою скісною рискою) також є коментарем для документації. Синтаксичний аналізатор
+    може поводитися з коментарями документації особливим чином; наприклад, він
+    може побудувати з них онлайнову довідку.
 
-**Identifiers**
+**Ідентифікатори**
 
-    Names of variables, functions and constants. Identifiers consist of the
-    characters a. . . z, A. . . Z, 0. . . 9, _ or @; the first character may not be
-    a digit. The characters @ and _ by themselves are not valid identifiers,
+    Імена змінних, функцій та констант. Ідентифікатори складаються з
+    символів a. . . z, A. . . Z, 0. . . 9, _ або @; перший символ може не бути
+    цифрою. Символи @ та _ самі по собі не є допустимими ідентифікаторами,
 
-    i.e. “_Up” is a valid identifier, but “_” is not.
+    Тобто, "_Up" є допустимим ідентифікатором, а "_" - ні.
 
-    pawn is case sensitive.
+    pawn чутливий до регістру.
 
-    A parser may truncate an identifier after a maximum length. The
-    number of significant characters is implementation defined, but should
-    be at least 16 characters.
+    Синтаксичний аналізатор може обрізати ідентифікатор після максимальної довжини. Кількість значущих символів
+    кількість значущих символів визначається реалізацією, але має бути
+    бути не менше 16 символів.
 
-**Reserved words (keywords)**
+**Заслужені слова (ключові слова)**.
 
-| Statements | Operators | Directives  | Other    |
+| Заяви | Оператори | Директиви | Інше
 | ---------- | --------- | ----------- | -------- |
-| assert     | char      | #assert     | const    |
-| break      | defined   | #define     | enum     |
-| case       | sizeof    | #else       | forward  |
-| continue   | state     | #elseif     | native   |
-| default    | tagof     | #emit       | new      |
-| do         |           | #endif      | operator |
-| else       |           | #endinput   | public   |
-| exit       |           | #endscript  | static   |
-| for        |           | #error      | stock    |
-| goto       |           | #file       |          |
-| if         |           | #if         |          |
-| return     |           | #include    |          |
-| sleep      |           | #line       |          |
-| state      |           | #pragma     |          |
-| switch     |           | #section    |          |
-| while      |           | #tryinclude |          |
-|            |           | #undef      |          |
+assert | char | #assert | const | #assert | const
+| break | defined | #define | enum
+| case | sizeof | #else | forward | #else
+| continue | state | #elseif | native | #else
+| default | tagof | #emit | new
+| do | | #endif | оператор
+else | | #endinput | public | #endinput | #endinput | #endinput | #endinput | #endinput
+| exit | #endscript | static | #endscript | static
+for | #error | stock | #error | stock | #error | #error | #error | #error | #error | #error | #error | #error
+| goto #file
+| if | | #if | | #if
+| return #include #include
+| sleep #line #line
+| state | | #pragma | #pragma
+| switch #section # #section # #section # #section # #section #
+| while #tryinclude
+#undef #undef
 
-Next to reserved words, pawn also has several predefined constants,
-you cannot use the symbol names of the predefined constants for vari-
-able or function names.
+Окрім зарезервованих слів, у pawn також є декілька наперед визначених констант,
+ви не можете використовувати символьні імена попередньо визначених констант для імен змінних або функцій.
+для імен змінних або функцій.
 
-**Constants (literals)**
+**Константи (літерали)**
 
-**Integer numeric constants**
-. **binary**
-0b followed by a series of the digits 0 and 1.
-. **decimal**
-a series of digits between 0 and 9.
-. **hexadecimal**
-0x followed by a series of digits between 0 and 9 and the letters a to f.
+**Цілочисельні числові константи
+. **двійкові** .
+0b, за яким слідує послідовність цифр 0 та 1.
+. **десяткова система числення
+послідовність цифр від 0 до 9.
+. **шістнадцяткове**
+0x, за яким слідує серія цифр від 0 до 9 та літери від a до f.
 
-    In all number radices, an underscore may be used to sepa-
-    rate groups of (hexa-)decimal digits. Underscore characters
-    between the digits are ignored.
+    У всіх числових системах числення можна використовувати підкреслення для розділення груп (шістнадцяткових) десяткових цифр.
+    групи (гекса-)десяткових цифр. Символи підкреслення
+    між цифрами ігноруються.
 
-**Rational number constants**
+**Раціональні числові константи**
 
-A rational number is a number with a fractional part. A ra-
-tional number starts with one or more digits, contains a dec-
-imal point and has at least one digit following the decimal
-point. For example, “12.0” and “0.75” are valid rational num-
-bers. Optionally, an exponent may be appended to the rational
-number; the exponent notation is the letter “e” (lower case)
-followed by a signed integer numeric constant. For example,
-“3.12e4” is a valid rational number with an exponent.
+Раціональне число - це число з дробовою частиною. Раціональне число починається з однієї цифри, містить дробову частину і
+раціональне число починається з однієї або декількох цифр, містить десяткову крапку і має одну цифру після
+десяткову крапку і має принаймні одну цифру після десяткової крапки.
+крапкою і має принаймні одну цифру після коми. Наприклад, "12.0" і "0.75" є дійсними раціональними числами.
+раціональними числами. За бажанням до раціонального числа може додаватися показник степеня
+до раціонального числа можна додати показник степеня; позначення показника степеня - це буква "e" (у нижньому регістрі)
+за якою слідує ціла числова константа зі знаком. Наприклад,
+"3.12e4" - дійсне раціональне число з показником степеня.
 
-Support for rational numbers must be enabled with #pragma
-rational directive. Depending on the options set with this
-directive, the rational number represents a floating point or a
-fixed point number.
+Підтримка раціональних чисел повинна бути включена за допомогою директиви #pragma
+rational. Залежно від параметрів, заданих цією директивою
+директивою, раціональне число представляє собою число з плаваючою комою або
+число з фіксованою комою.
 
-**Character constants**
+**Символьні константи**
 
-A single ASCII character surrounded by single quotes is a char-
-acter constant (for example: ’a’, ’7’, ’\$’). Character con-
-stants are assumed to be numeric constants.
+Один символ ASCII, взятий в одинарні лапки, є константою char-
+константою актора (наприклад: 'a', '7', '\$'). Символьні константи вважаються числовими константами.
+вважаються числовими константами.
 
-| Escape sequences |     |                                            |
+| Командний рядок.
 | ---------------- | --- | ------------------------------------------ |
-| ’\a’             |     | Audible alarm (beep)                       |
-| ’\b’             |     | Backspace                                  |
-| ’\e’             |     | Escape                                     |
-| ’\f’             |     | Formfeed                                   |
-| ’\n’             |     | Newline                                    |
-| ’\r’             |     | Carriage Return                            |
-| ’\t’             |     | Horizontal tab                             |
-| ’\v’             |     | Vertical tab                               |
-| ’\\’             | \   | the escape character                       |
-| ’\’’             | ’   | single quote                               |
-| ’\"’             | "   | double quote                               |
-| ’\%              | %   | percent sign                               |
-| ’\ddd;’          |     | character code with decimal code “ddd”     |
-| ’\xhhh;’         |     | character code with hexadecimal code “hhh” |
+| '\a' | | Звуковий сигнал (біп) |
+| '\b' | Пробіл.
+| '\e' - пробіл.
+| '\f' | | Формування стрічки.
+| '\n' | | Новий рядок.
+| '\r' | | Повернення каретки.
+| '\t' | | Горизонтальний табулятор
+| '\v' | | Вертикальна табуляція
+| '\\' - символ пробілу.
+| '\''             | Одинарні лапки.
+| '\"'             | Подвійні лапки.
+| '\%' % % % знак відсотка
+| '\ddd;' | | код символу з десятковим кодом "ddd"
+'\xhhh;' | | код символу з шістнадцятковим кодом "hhh" | ''\xhhh;'' | | код символу з шістнадцятковим кодом "hhh" | ''
 
-The semicolon after the ddd; and xhhh; codes is optional.
-Its purpose is to give the escape sequence sequence an explicit
-termination symbol when it is used in a string constant.
+Крапка з комою після кодів ddd; та xhhh; є необов'язковою.
+Її призначення полягає у тому, щоб надати послідовності екранування явний символ завершення
+символ завершення, коли вона використовується у рядковій константі.
 
-The backslash (“\”) is the default “escape” character. You can
-set a different escape character with the #pragma ctrlchar
-directive (page 120).
+Зворотна коса риска ("\") є типовим символом екранування. Ви можете
+встановити інший символ екранування за допомогою директиви #pragma ctrlchar
+(сторінка 120).
 
-**String constants**
+**Рядкові константи**
 
-String constants are assumed to be arrays with a size that is
-sufficient to hold all characters plus a terminating ’\0’.
-Each string is stored at a unique position in memory; there is no
-elimination of duplicate strings.
+Вважається, що рядкові константи є масивами з розміром, достатнім для
+достатнім для зберігання усіх символів плюс завершальний символ '\0'.
+Кожен рядок зберігається в унікальній позиції у пам'яті; немає ніякого
+вилучення дублікатів рядків.
 
-An unpacked string is a series of zero or more ASCII characters
-surrounded by double quotes. Each array element contains a
-single character. An unpacked string can hold characters in a
-multi-byte character set, such as Unicode or UCS-4.
+Розпакований рядок - це послідовність з нуля або більше ASCII-символів
+оточених подвійними лапками. Кожен елемент масиву містить
+один символ. Розпакований рядок може містити символи у
+багатобайтових кодувань, таких як Unicode або UCS-4.
 
-**unpacked string constant:**
+**розпакована рядкова константа:**
 
-    "the quick brown fox..."
+    "прудка коричнева лисиця..."
 
-A packed string literal follows the syntax for an unpacked
-string, but a “!” precedes the first double quote.
+Упакований рядковий літерал повторює синтаксис розпакованого рядка
+але перед першою подвійною лапкою ставиться "!".
 
-**packed string constant:**
+**упакована рядкова константа:**
 
-    !"...packed and sacked the lazy dog"
+    !"...спакував і вигнав ледачого пса".
 
-In the case of a packed string, the parser packs as many char-
-acters in a cell as will fit. A character is not addressable as a
-single unit, instead each element of the array contains multiple
-characters. The first character in a “pack” occupies the highest
-bits of the array element. In environments that store memory
-words with the high byte at the lower address (Big Endian,
-or Motorola format), the individual characters are stored in
-the memory cells in the same order as they are in the string.
-A packed string ends with a zero character and the string is
-padded (with zero bytes) to a multiple of cells.
+У випадку упакованого рядка синтаксичний аналізатор упаковує стільки символів char-
+у комірку стільки, скільки поміститься. Символ не адресується як
+як окрема одиниця, натомість кожен елемент масиву містить декілька
+символів. Перший символ у "пачці" займає старший
+біт елемента масиву. У середовищах, які зберігають пам'ять
+слова зі старшим байтом за молодшою адресою (Big Endian,
+або формат Motorola), окремі символи зберігаються у
+комірках пам'яті у тому ж порядку, у якому вони розташовані у рядку.
+Упакований рядок закінчується нульовим символом, і рядок є
+доповнюється (нульовими байтами) до кратного числа комірок.
 
-A packed string can only hold characters from a single-byte
-character set, such as ascii or one of the extended ascii sets
-from the ISO 8859 norm.
+Упакований рядок може містити лише символи з однобайтового набору
+набору символів, наприклад, ascii або одного з розширених наборів ascii
+відповідно до стандарту ISO 8859.
 
-Escape sequences may be used within strings. See the section
-on character constants (page 99) for a list of escape sequences.
+У рядках можна використовувати екрановані послідовності. Перелік символьних послідовностей див. у розділі
+про символьні константи (сторінка 99) для отримання списку екранованих послідовностей.
 
-There is an alternative syntax for “plain strings”. In a plain
-string, every character is taken as-is and escape sequences
-are not recognized. Plain strings are convenient to store file/
-resource names, especially in the case where the escape charac-
-ter is also used as a special character by the operating system
-or host application.
+Існує альтернативний синтаксис для "звичайних рядків". У простому рядку
+рядку кожен символ сприймається як є, а екрановані послідовності
+не розпізнаються. Прості рядки зручні для зберігання назв файлів/ресурсів, особливо у випадку, коли
+ресурсів, особливо у випадку, коли ескейп-символ також використовується як спеціальний символ.
+також використовується як спеціальний символ операційною системою
+або хост-додатком.
 
-The syntax for a plain string is the escape character followed by
-the string in double quotes. The backslash (“\”) is the default
+Синтаксис простого рядка складається з символу екранування, за яким слідує
+рядок у подвійних лапках. За замовчуванням використовується зворотний слеш ("\")
 
-“escape” character. You cannot enter escape sequences in a
-plain string: all characters will be taken literally.
+"escape" символ. Ви не можете вводити екрановані послідовності у
+звичайним рядком: усі символи буде сприйнято буквально.
 
-**plain string constant:**
+**проста рядкова константа:**
 
-    \"C:\all my work\novel.rtf"
+    \"C:\всі мої роботи\роман.rtf"
 
-In the above example, the occurrences of “\a” and “\n” do
-not indicate escape sequences, but rather the literal character
-pairs “\” and “a”, and “\” and “n”.
+У наведеному вище прикладі символи "\a" і "\n"
+не вказують на екрановані послідовності, а лише на буквені символи
+пари "\" і "a" та "\" і "n".
 
-A packed plain string has both the “!” and the escape character
-prefixing the opening double quote. Both strings below are
+Упакований звичайний рядок має як символ "!", так і символ екранування
+перед початковими подвійними лапками. Обидва рядки нижче мають вигляд
 
-**packed plain strings:**
+**упаковані прості рядки:**
 
     !\"C:\all my work\novel.rtf"
 
-    \!"C:\all my work\novel.rtf"
+    \! "C:\всі мої роботи\роман.rtf"
 
-**Array constants**
+**Константи масиву**
 
-A series of numeric constants between braces is an array con-
-stant. Array constants can be used to initialize array variables
-with (see page 65) and they can be passed as function argu-
-ments (see page 71).
+Ряд числових констант між фігурними дужками - це масив констант
+константою масиву. Константи масиву можна використовувати для ініціалізації змінних масиву
+з (див. стор. 65), а також їх можна передавати як аргументи функції (див. стор. 71).
+аргументами функцій (див. сторінку 71).
 
-**Symbolic constants**
+**Символічні константи
 
-A source file declares symbolic constants with the const and the enum
-instructions. The const keyword declares a single constant and the
-enum defines a list of —usually— sequential constants sharing the same tag name.
+У вихідному файлі оголошуються символічні константи за допомогою інструкцій const та enum
+інструкціями const та enum. Ключове слово const оголошує одну константу, а
+enum визначає список - зазвичай - послідовних констант, що мають однакове ім'я тегу.
 
-**const** _identifier = constant expression_
+**const** _ідентифікатор = константний вираз_
 
-Creates a symbolic constant with the value of the constant
-expression on the right hand of the assignment operator. The
-constant can be used at any place where a literal number is
-valid (for example: in expressions, in array declarations and in
-directives like “#if” and “#assert”).
+Створює символічну константу зі значенням константи
+у правій частині оператора присвоювання. Константа
+можна використовувати в будь-якому місці, де допустимим є буквене число
+допустимим (наприклад: у виразах, в оголошеннях масивів і в
+директивах типу "#if" і "#assert").
 
-**enum** _name (increment) { constant list }_
+**enum** _name (інкремент) { константний список }_
 
-The enum instruction creates a series of constants with incre-
-menting values. The constant list is a series of identifiers sep-
-arated by commas. Unless overruled, the first constant of an
-enum list has the value 0 and every subsequent constant has
-the value of its predecessor plus 1.
+Інструкція enum створює серію констант зі зростаючими значеннями.
+зростаючими значеннями. Список констант - це послідовність ідентифікаторів, розділених комами.
+ників, відокремлених комами. Якщо не перевизначено, перша константа списку
+списку має значення 0, а кожна наступна константа має
+значення попередньої плюс 1.
 
-Both the value of a constant and the increment value can be
-set by appending the value to the constant’s identifier. To set
-a value, use
+Як значення константи, так і значення приросту можна
+шляхом додавання значення до ідентифікатора константи. Щоб задати значення
+значення, використовуйте
 
-name = value
+ім'я = значення
 
-in the constant list. To set the increment, use:
+у списку констант. Щоб задати інкремент, використовуйте
 
-name [ increment ]
+ім'я [ приріст ]
 
-The increment value is reset to 1 after every constant symbol
-declaration in the constant list.
+Значення приросту скидається до 1 після кожного оголошення константного символу
+у списку констант.
 
-If both an increment and a value should be set for a constant,
-the increment (“[. . . ]” notation) should precede the value (“=”
-notation.
+Якщо для константи потрібно задати як приріст, так і значення,
+то інкремент (позначення "[. . . ]") повинен передувати значенню (позначення "="
+).
 
-The symbols in the constant list may have an explicit tag,
-which should precede the symbol name.
+Символи у списку констант можуть мати явний тег,
+який повинен передувати імені символу.
 
-The name token that follows the enum keyword is optional. If it
-is included, and if the symbol names does not have an explicit
-tag, this name is used as the tag name for every symbol in the
-constant list. In addition, the enum command creates an extra
-constant with name for the constant name and the tag name.
-The value of the last constant is the value of the last symbol in
-the constant list plus the increment value of that last constant.
+Токен імені, який слідує за ключовим словом enum, є необов'язковим. Якщо вона
+включено, і якщо імена символів не мають явного тегу
+це ім'я використовується як ім'я тегу для кожного символу у списку
+списку констант. Крім того, команда enum створює додаткову константу
+константу з іменем name для імені константи та імені тегу.
+Значення останньої константи дорівнює значенню останнього символу у
+списку констант плюс значення приросту цієї останньої константи.
 
-The increment token that follows the optional name token is
-also optional. If included, it specifies a different post-increment
-rule. By default, an enum increments the value of every succe-
-sive constant with 1, but you may specify a different rule with
-the syntax “(operator constant)”, where operator must be +=,
+Токен інкременту, який слідує за необов'язковим токеном імені, є
+також є необов'язковою. Якщо її включено, вона визначає інше правило пост-інкременту
+правило після інкременту. За замовчуванням, перерахування збільшує значення кожної успішної константи на 1.
+значення кожної вдалої константи на 1, але ви можете вказати інше правило за допомогою синтаксису "(операторна константа)
+синтаксисом "(операторна константа)", де оператором має бути +=,
 
-\*= or <<=. The += operator creates an additive increment, the
+\*= або <<=. Оператор += створює адитивний приріст, оператор
 
-\*= and <<= create a multiplicative increment. The constant
-may be a literal value or a symbolic constant. The increment
-rule must be enclosed in parentheses. If no increment rule is
-specified, the parenthese may be omitted as well.
+\*= та <<= створюють мультиплікативний приріст. Константа
+може бути буквальним значенням або символьною константою. Правило інкременту
+слід брати у круглі дужки. Якщо правило приросту не вказано
+не вказано, дужки також можна опустити.
 
-A symbolic constant that is defined locally, is valid throughout the
-block. A local symbolic constant may not have the same name as
-a variable (local or global), a function, or another constant (local or
-global).
+Символічна константа, визначена локально, є дійсною у всьому блоці
+блоку. Локальна символьна константа не може мати таке саме ім'я як
+змінна (локальна або глобальна), функція або інша константа (локальна або
+глобальною).
 
-**Predefined constants**
+**Наперед визначені константи
 
-| Name     | Description                                                                                                                                                                                                                                                      |
+| Ім'я та опис
 | -------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| cellbits | The size of a cell in bits; usually 32.                                                                                                                                                                                                                          |
-| cellmax  | The largest valid positive value that a cell can hold; usually 2147483647.                                                                                                                                                                                       |
-| cellmin  | The largest valid negative value that a cell can hold; usually -2147483648.                                                                                                                                                                                      |
-| charbits | The size of a packed character in bits; usually 8.                                                                                                                                                                                                               |
-| charmax  | The largest valid packed character value; usually a packed character is 8-bit and the maximum valid value is thus 255.                                                                                                                                           |
-| charmin  | The smallest valid character value, for both packed and unpacked values; currently set to zero (0).                                                                                                                                                              |
-| debug    | The debug level: 2 if the parser creates full symbolic information plus run-time bounds checking, 1 if the parser generates run-time checking only (assertions and array bounds checks), and 0 (zero) if all debug support and run-time checking was turned off. |
-| false    | 0 (this constant is tagged as bool:)                                                                                                                                                                                                                             |
-| \_\_Pawn | The version number of the pawn compiler in Binary Coded Decimals (BCD) —that is, for version 2.8.1 the constant is “0x281”.                                                                                                                                      |
-| true     | 1 (this constant is tagged as bool:)                                                                                                                                                                                                                             |
-| ucharmax | The largest unpacked character value, its value depends on the size of a cell. A typical use for this constant is in checking whether a string is packed or unpacked, see page 137.                                                                              |
+| Розмір комірки в бітах, зазвичай 32.                                                                                                                                                                                                                          |
+| cellmax | Найбільше допустиме додатне значення, яке може містити комірка; зазвичай 2147483647.                                                                                                                                                                                       |
+| cellmin | Найбільше допустиме від'ємне значення, яке може містити комірка; зазвичай -2147483648.                                                                                                                                                                                      |
+| charbits | Розмір упакованого символу у бітах; зазвичай 8.                                                                                                                                                                                                               |
+| charmax | Найбільше допустиме значення упакованого символу; зазвичай упакований символ є 8-бітним, тому максимальне допустиме значення дорівнює 255.                                                                                                                                           |
+| charmin | Найменше допустиме значення символу, як для упакованих, так і для неупакованих значень; наразі дорівнює нулю (0).                                                                                                                                                              |
+| debug | Рівень налагодження: 2, якщо синтаксичний аналізатор створює повну символьну інформацію плюс перевірку меж під час виконання, 1, якщо синтаксичний аналізатор генерує лише перевірку під час виконання (перевірку тверджень і перевірку меж масивів), і 0 (нуль), якщо всю підтримку налагодження і перевірку під час виконання вимкнено. |
+| false | 0 (ця константа позначена як bool:)
+| \_\_Pawn | Номер версії компілятора пішака у двійково-десятковій системі числення (BCD) - тобто для версії 2.8.1 ця константа дорівнює "0x281".                                                                                                                                      |
+| true | 1 (ця константа позначена як bool:) | (ця константа позначена як bool:)
+| ucharmax | Найбільше значення розпакованого символу, його значення залежить від розміру комірки. Типовим застосуванням цієї константи є перевірка того, чи є рядок запакованим або розпакованим, див. сторінку 137.                                                                              |
 
-**Tag names**
+**Імена тегів
 
-A tag consists of an identifier followed by a colon. There may be no white space between the identifier and the colon.
+Тег складається з ідентифікатора, за яким слідує двокрапка. Між ідентифікатором та двокрапкою може не бути пробілів.
 
-**Predefined tag names**
+**Заздалегідь визначені імена тегів**
 
-| Name   | Description                                                                                 |
+| Ім'я та опис
 | ------ | ------------------------------------------------------------------------------------------- |
-| bool:  | For “true/false” flags. The predefined constants true and false have this tag.              |
-| Fixed: | Rational numbers typically have this tag when fixed point support is enabled (page 121).    |
-| Float: | Rational numbers typically have this tag when floating point support is enabled (page 121). |
+| bool:  | Для прапорів "true/false". Цей тег мають наперед визначені константи true та false.              |
+| Fixed: | Раціональні числа зазвичай мають цю мітку, якщо увімкнено підтримку фіксованої крапки (сторінка 121).    |
+| З плаваючою комою: | Раціональні числа зазвичай мають цей тег, якщо увімкнено підтримку плаваючої крапки (сторінка 121). |
 
 ---
 
-`Optional semicolons: 122`
+Необов'язкові крапки з комою: 122`
 
-`Predefined constants: 102`
+`Заздалегідь визначені константи: 102`
 
-`Rational numbers are also called “real numbers” or “floating point numbers”`
+Раціональні числа також називають "дійсними числами" або "числами з плаваючою комою"
 
-`#pragma rational: 121`
+`#pragma rational: 121``.
 
-`The syntaxes for packed literal strings and unpacked literal strings can be swapped with the “#pragma pack” directive, see page 121`
+Синтаксис упакованих та неупакованих літеральних рядків можна поміняти місцями за допомогою директиви "#pragma pack", див. сторінку 121
 
-`Examples: 21, 26`
+Приклади: 21, 26`
 
-`Examples: 9, 21`
+Приклади: 9, 21`
 
-`Identifiers: 97`
+`Ідентифікатори: 97`.
 
-`See page 68 for examples of the “enum” constant declarations`
+`Приклади оголошення констант "enum" дивіться на сторінці 68`.
 
-`See page 26 for an example of a custom increment rule`
+`Дивіться приклад користувацького правила приросту на сторінці 26`.
 
-`Identifiers: 97`
+`Ідентифікатори: 97`.
 
 ---
 
-[Go Back to Contents](00-Contents.md)
+[Повернутися до змісту](00-Contents.md)
+
+

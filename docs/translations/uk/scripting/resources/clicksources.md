@@ -1,15 +1,17 @@
 ---
-title: Click Sources
+заголовок: Click Sources
 
 description: Click Sources
 ---
 
 :::info
 
-Below is a list of click sources used by [OnPlayerClickPlayer](../callbacks/OnPlayerClickPlayer). As of right now, only one click source type exists.
+Нижче наведено список джерел кліків, які використовуються [OnPlayerClickPlayer](../callbacks/OnPlayerClickPlayer). Станом на зараз існує лише один тип джерела кліків.
 
 :::
 
-| Value | Constant symbol         |
+| Значення | Постійний символ
 | ----- | ----------------------- |
-| 0     | CLICK_SOURCE_SCOREBOARD |
+| 0 | CLICK_SOURCE_SCOREBOARD
+
+

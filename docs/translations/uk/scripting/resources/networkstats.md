@@ -1,31 +1,33 @@
 ---
 title: Network Stats
-description: Information seen when holding down F5 when connected to a server.
+description: Інформація, яка відображається при натисканні клавіші F5 при підключенні до сервера.
 tags: []
 ---
 
-| Data                                                     | **Description**                                                                      |
+| Дані | **Опис** | ¦ ¦ ¦ ¦ ¦ ¦ ¦ ¦ ¦ ¦ ¦ ¦ ¦
 | -------------------------------------------------------- | ------------------------------------------------------------------------------------ |
-| Download Rate                                            | The rate at which data is being downloaded from the server.                          |
-| Upload Rate                                              | The rate at which data is being uploaded to the server.                              |
-| Vehicles                                                 | The number of vehicles that are streamed in for the client.                          |
-| Vehicle Models                                           | The number of different vehicle models that are streamed in for the client.          |
-| Vehicle Models Loaded                                    | The number of (pre-)loaded vehicle models.                                           |
-| RWObjects                                                | Number of rendered objects.                                                          |
-| PedSlotsUsed                                             | Number of ped slots used (NPCs/players use a 'ped' slot).                            |
-| ObjectSlotsUsed                                          | Object slots used.                                                                   |
-| OnFoot Send Rate                                         | The rate (in MS) at which on-foot data is being synced. Can be set in server.cfg.    |
-| Streaming Mem (Memory) Used (Also shows total allowance) | The amount of streaming memory being used, and total available.                      |
-| Messages in Send buffer                                  | The number of network messages waiting to be sent.                                   |
-| Messages sent                                            | The number of network messages sent.                                                 |
-| Btyes sent                                               | The amount of data (in bytes) sent.                                                  |
-| Acks sent                                                | The number of acks sent (acknowledge receipt of a packet).                           |
-| Acks in send buffer                                      | Number of acks waiting to be sent (acknowledge receipt of a packet).                 |
-| Messages waiting for ack                                 | Number of messages that are waiting to be acknowledged as received.                  |
-| Messages resent                                          | Number of messages resent after a lack of acknowledge. Client is trying to reconnect after 109 messages resent.|
-| Bytes resent                                             | The amount of data resent (in bytes).                                                |
-| Packetloss                                               | The percentage of packets that were sent but never received by the other end (lost). |
-| Messages received                                        | The number of network messages received from the server.                             |
-| Bytes received                                           | The amount of data received (in bytes).                                              |
-| Acks received                                            | Number of acks received (acknowledge receipt of a packet).                           |
-| Duplicate acks received                                  | Number of duplicate (already received) acks received.                                |
+| Швидкість завантаження | Швидкість, з якою дані завантажуються з сервера.                          |
+| Швидкість завантаження | Швидкість, з якою дані завантажуються на сервер.                              |
+| Транспортні засоби | Кількість транспортних засобів, які передаються клієнту в потоковому режимі.                          |
+| Моделі транспортних засобів | Кількість різних моделей транспортних засобів, які передаються клієнту.          |
+| Моделі транспортних засобів завантажено | Кількість (попередньо) завантажених моделей транспортних засобів.                                           |
+| RWObjects | Кількість відрендерених об'єктів.                                                          |
+| PedSlotsUsed | Кількість використаних слотів для пішоходів (NPC/гравці використовують слот «ped»).                            |
+| ObjectSlotsUsed | Використані слоти для об'єктів.                                                                   |
+| OnFoot Send Rate | Швидкість (у MS), з якою синхронізуються дані, що передаються пішки. Можна встановити у файлі server.cfg.    |
+| Streaming Mem (Memory) Used (Also shows total allowance) | Обсяг потокової пам'яті, що використовується, і загальний обсяг доступної пам'яті.                      |
+| Messages in Send buffer (Повідомлення у буфері надсилання) | Кількість мережевих повідомлень, які очікують на надсилання.                                   |
+| Надіслано повідомлень | Кількість надісланих мережевих повідомлень.                                                 |
+| Надіслано байт | Кількість надісланих даних (у байтах).                                                  |
+| Acks sent | Кількість надісланих квитанцій (підтверджень отримання пакета).                           |
+| Acks in send buffer | Кількість квитанцій, що очікують на відправлення (підтвердження отримання пакета).                 |
+| Messages waiting for ack | Кількість повідомлень, які очікують на підтвердження отримання.                  |
+| Messages resent | Кількість повідомлень, які було надіслано повторно після відсутності підтвердження. Клієнт намагається відновити з'єднання після відправлення 109 повідомлень.
+| Відправлено байт | Кількість відправлених даних (у байтах).                                                |
+| Втрата пакетів | Відсоток пакетів, які було надіслано, але не отримано на іншому кінці (втрачено). |
+| Отримано повідомлень | Кількість мережевих повідомлень, отриманих від сервера.                             |
+| Отримані байти | Кількість отриманих даних (у байтах).                                              |
+| Отримано квитанцій | Кількість отриманих квитанцій (підтверджень отримання пакета).                           |
+| Duplicate acks received | Кількість отриманих дублікатів (вже отриманих) квитанцій.                                |
+
+

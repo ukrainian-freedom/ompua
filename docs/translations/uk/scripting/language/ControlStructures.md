@@ -1,189 +1,189 @@
 ---
-title: "Control Structures"
-description: An overview of control structures in the Pawn language
+назва: "Структури управління"
+description: Огляд керуючих структур у мові Pawn
 ---
 
-## Conditionals
+## Умовні позначення
 
-### if
+### Якщо
 
-An if statement checks if something is true and does something if it is.
+Оператор if перевіряє, чи є щось істинним, і виконує певні дії, якщо це так.
 
 ```c
-new
+новий
     a = 5;
 if (a == 5)
 {
-    print("a is 5");
+    print("a дорівнює 5");
 }
 ```
 
-The code within the brackets after the "if" is called the condition, there are a number of different things you can test for (see operators).
+Код у дужках після "if" називається умовою, і ви можете перевіряти різні речі (див. оператори).
 
-In the example above both "a" and 5 are symbols, functions can also be symbols:
+У наведеному вище прикладі і "a", і 5 є символами, функції також можуть бути символами:
 
 ```c
 if (SomeFunction() == 5)
 {
-    print("SomeFunction() is 5");
+    print("SomeFunction() дорівнює 5");
 }
 ```
 
-That will test the return value of SomeFunction (see below) against 5.
+Це перевірить значення, що повертається функцією SomeFunction (див. нижче), на 5.
 
-You can also combine checks to check multiple things:
+Ви також можете комбінувати перевірки, щоб перевірити кілька речей:
 
 ```c
-new
+новий
     a = 5,
     b = 3;
 if (a == 5 && b != 3)
 {
-    print("Won't be printed");
+    print("Не буде виведено");
 }
 ```
 
-That example checks that a is equal to 5 AND b is not equal to 3, however b is 3 so the check fails.
+У цьому прикладі перевіряється, що a дорівнює 5, а b не дорівнює 3, але b дорівнює 3, тому перевірка не спрацьовує.
 
 ```c
-new
+новий
     a = 5,
     b = 3;
 if (a == 5 || b != 3)
 {
-    print("Will be printed");
+    print("Буде виведено");
 }
 ```
 
-That examples checks that a is equal to 5 OR b is not equal to 3, b equals 3 so that part fails\* however a is 5 so that part is true, we are using || (or) so only one part needs to be true (if both are true the statement is still true, this is slightly different to the linguistic meaning of "or" meaning only one or the other), so the if statement is true.
+У цьому прикладі перевіряється, що a дорівнює 5 АБО b не дорівнює 3, b дорівнює 3, так що частина помилкова\* однак a дорівнює 5, так що частина істинна, ми використовуємо || (або), тому тільки одна частина повинна бути істинною (якщо обидві частини істинні, твердження все одно істинне, це трохи відрізняється від лінгвістичного значення "або", що означає тільки одне або інше), так що оператор if істинний.
 
-Also it is possible to chain the comparisons together without the explicit AND-ing of two different comparisons.
+Також можна об'єднати порівняння в ланцюжок без явного І-об'єднання двох різних порівнянь.
 
 ```c
-new
+новий
     idx = 3;
 
 if (0 < idx < 5)
 {
-    print("idx is greater than 0 and less than 5!");
+    print("idx більше 0 і менше 5!")
 }
 ```
 
-### Operators
+### Оператори
 
-The following are symbols you can use in comparisons and their explanations. Some have been used in examples already.
+Нижче наведені символи, які ви можете використовувати в порівняннях та їх поясненнях. Деякі з них вже використовувалися в прикладах.
 
-| Operator     | Meaning                                                           | Usage                                                        |
+| Оператор. Значення. Використання.
 | ------------ | ----------------------------------------------------------------- | ------------------------------------------------------------ |
-| ==           | Left is equal to Right                                            | if (Left == Right)                                           |
-| !=           | Left is not equal to Right                                        | if (Left != Right)                                           |
-| >            | Left is greater than Right                                        | if (Left > Right)                                            |
-| >=           | Left is greater than or equal to Right                            | if (Left >= Right)                                           |
-| <            | Left is less than Right                                           | if (Left < Right)                                            |
-| <=           | Left is less than or equal to Right                               | if (Left <= Right)                                           |
-| &&           | and                                                               | if (Left && Right)                                           |
-| &#124;&#124; | or                                                                | if (Left &#124;&#124; Right)                                 |
-| !            | not                                                               | if (!Variable)                                               |
-|              | nor                                                               | if (!(Left &#124;&#124; Right))                              |
-|              | nand                                                              | if (!(Left && Right))                                        |
-|              | exclusive or (xor, eor) - only one or the other is true, not both | if (!(Left && Right) && (Left &#124;&#124;Right))            |
-|              | not exclusive or (nxor, neor) - both or neither are true          | if ((Left && Right) &#124;&#124; !(Left &#124;&#124; Right)) |
+| if (Left == Right) == Лівий дорівнює правому if (Left == Right) == Лівий дорівнює правому
+| Лівий не дорівнює правому if (Лівий != Правий)
+| > | Лівий більший за правий | if (Left > Right) | ¦ ¦ == | Лівий більший за правий | if (Left > Right)
+| >= | Лівий більший або рівний правому | if (Left >= Right) | ¦ ¦ ¦Лівий більший або рівний правому | if (Left >= Right) | ¦ ¦ ¦Ліва
+| < | Лівий менший за правий | if (Left < Right) | ¦ <= | Лівий менший за правий | if (Left < Right)
+| <= | Лівий менше або дорівнює правому | if (Лівий <= Правий) | | && | та | if (Лівий <= Правий)
 
-### Brackets
+або | if (Left &#124;&#124; Right) | або | if (Left &#124;&#124; Right) | !
+| !            | не if (!Змінна)
+| ні if (!(Left &#124;&#124; Right))                              |
+| ні та ні if (!(Left && Right))                                        |
+| виключне або (xor, eor) - істинно тільки одне або інше, а не обидва | if (!(Left && Right) && (Left &#124;&#124;Right))            |
+| не виключне або (nxor, neor) - істинно або одне, або інше | if ((Left && Right) &#124;&#124; !(Left &#124;&#124; Right)) |
 
-The other main aspect of if statements is brackets, these control the order things are done in:
+### Дужки
+
+Інший важливий аспект інструкцій if - це дужки, вони керують порядком виконання дій:
 
 ```c
-new
+новий
     a = 3,
     b = 3,
     c = 1;
 if (a == 5 && b == 3 || c == 1)
 {
-    print("Will this be called?");
+    print("Чи буде це викликано?");
 }
 ```
 
-There are two ways of looking at the above statement:
+Існує два способи поглянути на наведене вище твердження:
 
 ```c
 if ((a == 5 && b == 3) || c == 1)
 ```
 
-And:
+І:
 
 ```c
 if (a == 5 && (b == 3 || c == 1))
 ```
 
-The first version will check if a is 5 and b is 3, if that is false (i.e. one or both of them are not their respective values) it will check if c is 1. (a == 5 && b == 3) is false as you should know from above, so you replace that group with FALSE:
+Перша версія перевіряє, чи a дорівнює 5 і b дорівнює 3, якщо це не так (тобто одне або обидва значення не є відповідними), вона перевіряє, чи c дорівнює 1. (a == 5 && b == 3) є хибним, як ви повинні знати з вищесказаного, тому ви замінюєте цю групу на FALSE:
 
 ```c
 if (FALSE || c == 1)
 ```
 
-We know FALSE cannot be true (as it is not true by definition), however c is 1 so that half is true and, as we're using an OR in between the whole statement is true.
+Ми знаємо, що FALSE не може бути істинним (оскільки воно не є істинним за визначенням), однак c дорівнює 1, тому половина істинна, а оскільки ми використовуємо АБО між ними, то все твердження є істинним.
 
-The second version checks if a is 5, if it is it checks if either b is 3 or c is 1. The game will do the a == 5 part first but for clarity we'll do it backwards. (b == 3 || c == 1) is true, both halves are true, although only one needs to be, so going into our if statement we have:
+У другій версії перевіряється, чи дорівнює a 5, і якщо так, то перевіряється, чи b дорівнює 3 або c дорівнює 1. Гра спочатку виконає частину a == 5, але для наочності ми зробимо це у зворотному порядку. (b == 3 || c == 1) істинно, обидві половини істинні, хоча повинна бути тільки одна, тому переходимо до нашого оператора if:
 
 ```c
 if (a == 5 && TRUE)
 ```
 
-(a == 5) is false, because a is 3, so we have:
+(a == 5) хибна, оскільки a дорівнює 3, тому маємо:
 
 ```c
 if (FALSE && TRUE)
 ```
 
-Obviously FALSE is false so that statement cannot be true, so the check will fail.
+Очевидно, що FALSE є хибним, тому твердження не може бути істинним, тому перевірка не спрацює.
 
-This little example shows how using brackets can change the outcome of a check, without brackets the compiler will be the first of the two versions demonstrated but that cannot always be guaranteed so you should always use brackets, even if just to clarify what is going on to other people.
+Цей невеликий приклад показує, як використання дужок може змінити результат перевірки, без дужок компілятор отримає першу з двох продемонстрованих версій, але це не завжди можна гарантувати, тому ви завжди повинні використовувати дужки, навіть якщо ви просто пояснюєте, що відбувається, іншим людям.
 
-- (b != 3) in the OR example doesn't actually fail as it's never called, the compiler orders the code using a thing called short-circuiting, as the first part is already true there's no point checking the second part as it won't affect the final outcome, but if it did check it it would fail.
+- (b != 3) у прикладі АБО насправді не зазнає невдачі, оскільки вона ніколи не викликається, компілятор впорядковує код, використовуючи таку річ, як замикання, оскільки перша частина вже істинна, немає сенсу перевіряти другу частину, оскільки вона не вплине на кінцевий результат, але якби він перевірив її, то зазнав би невдачі.
 
-### else
+### Інакше
 
-else basically does something if an if check fails:
+else в основному виконує щось, якщо перевірка if не спрацьовує:
 
 ```c
-new
+новий
     a = 5;
 if (a == 3) // False
 {
-    print("Won't be called");
+    print("Не буде викликано");
 }
 else
 {
-    print("Will be called as the check failed");
+    print("Буде викликано, оскільки перевірка не пройшла")
 }
 ```
 
 ### else if
 
-An else if is a check which occurs if the first if check fails to check something else:
+Інший if - це перевірка, яка відбувається, якщо перша перевірка if не змогла перевірити щось інше:
 
 ```c
-new
+новий
     a = 5;
 if (a == 1)
 {
-    print("Will be called if a is 1");
+    print("Буде викликано, якщо a дорівнює 1");
 }
 else if (a == 5)
 {
-    print("Will be called if a is 5");
+    print("Буде викликано, якщо a дорівнює 5");
 }
 else
 {
-    print("All other numbers");
+    print("Усі інші числа");
 }
 ```
 
-You can have an many of these as you like (you can only have one if and one else in a group of checks):
+Ви можете мати стільки чеків, скільки хочете (ви можете мати тільки один якщо і ще один в групі чеків):
 
 ```c
-new
+новий
     a = 4;
 if (a == 1)
 {
@@ -207,30 +207,30 @@ else
 }
 ```
 
-else ifs will only check the value as it was when the ifs start, so you can't do:
+else ifs перевірить значення лише таким, яким воно було на момент запуску ifs, що ви не можете зробити:
 
 ```c
-new
+новий
     a = 5;
 if (a == 5)
 {
-    // Will be called
+    // Буде викликано
     a = 4;
 }
 else if (a == 4)
 {
-    // Won't be called because the first check didn't fail, even though a is now 4
+    // Не буде викликано, тому що перша перевірка не завершилась невдачею, хоча a тепер 4
 }
 ```
 
-To get round this you would simply make the else if an if.
+Щоб обійти цю проблему, ви можете просто додати else if до if.
 
 ### ?:
 
-'?' and ':' together are called a triadic operator, they basically act as an if statement inside another statement:
+'?' і ':' разом називаються тріадичним оператором, вони діють як оператор if всередині іншого оператора:
 
 ```c
-new
+новий
     a,
     b = 3;
 if (b == 3)
@@ -243,19 +243,19 @@ else
 }
 ```
 
-That's a simple example to assign a variable based on another variable, however it can be made much shorter:
+Це простий приклад присвоювання змінної на основі іншої змінної, але його можна зробити набагато коротшим:
 
 ```c
-new
+новий
     a,
     b = 3;
 a = (b == 3) ? (5) : (7);
 ```
 
-The part before the '?' is the conditional, this is exactly the same as a normal conditional. The part between the '?' and the ':' is the value to return if the condition is true, the other part is the value to return if the condition is false. You can stack them up the same as else ifs too:
+Частина перед символом '?' - це умова, вона точно така ж, як і звичайна умова. Частина між '?' і ':' - це значення, яке повертається, якщо умова істинна, інша частина - це значення, яке повертається, якщо умова хибна. Ви можете складати їх так само, як і інші if:
 
 ```c
-new
+новий
     a,
     b = 3;
 if (b == 1)
@@ -276,19 +276,19 @@ else
 }
 ```
 
-Can be written as:
+Можна записати як:
 
 ```c
-new
+новий
     a,
     b = 3;
 a = (b == 1) ? (2) : ((b == 2) ? (3) : ((b == 3) ? (4) : (5)));
 ```
 
-This is actually more similar to doing:
+Насправді, це більше схоже на роботу:
 
 ```c
-new
+новий
     a,
     b = 3;
 if (b == 1)
@@ -315,108 +315,108 @@ else
 }
 ```
 
-But they're equivalent (in this example anyway).
+Але вони еквівалентні (принаймні, в цьому прикладі).
 
-## Loops
+## Петлі
 
-### While
+### Поки
 
-"while" loops do something while the condition specified is true. A condition is exactly the same format as the condition in an if statement, it is just checked repeatedly and the code done if it is true every time it is checked:
+Цикли "while" виконують щось, доки вказана умова є істинною. Умова має такий самий формат, як і умова в операторі if, просто вона перевіряється багаторазово, і код виконується, якщо вона істинна, кожного разу, коли вона перевіряється:
 
 ```c
-new
+новий
     a = 9;
 while (a < 10)
 {
-    // Code in the loop
+    // Код у циклі
     a++;
 }
-// Code after the loop
+// Код після циклу
 ```
 
-That code will check if 'a' is less than 10. If it is, the code inside the braces (a++;) will be executed, thus incrementing 'a'. When the closing brace is reached, code execution jumps back to the check and does it again, this time the check will fail as 'a' is 10 and execution will jump to after the loop. If 'a' started out as 8, the code would be run twice etc.
+Цей код перевірить, чи 'a' менше 10. Якщо так, то буде виконано код всередині дужок (a++;), який збільшить 'a'. Коли буде досягнуто закриваючу дужку, виконання коду повернеться до перевірки і виконає її знову, цього разу перевірка не вдасться, оскільки 'a' дорівнює 10, і виконання коду перейде на наступний крок після циклу. Якби 'a' починалося з 8, код було б виконано двічі і т.д.
 
 ### for()
 
-A "for" loop is essentially a compressed "while" loop. A "for" statement has three sections; initialization, condition and finalization. As a "for" loop, the "while" example above would be written:
+Цикл for - це, по суті, стислий цикл while. Оператор "for" складається з трьох частин: ініціалізації, умови та завершення. У вигляді циклу "for" можна записати наведений вище приклад з циклом "while":
 
 ```c
 for (new a = 9; a < 10; a++)
 {
-    // Code in the loop
+    // Код у циклі
 }
-// Code after the loop
+// Код після циклу
 ```
 
-That's a simple code to loop through all players:
+Це простий код для циклічного перебору всіх гравців:
 
 ```c
 for(new i,a = GetMaxPlayers(); i < a; i++)
 {
         if (IsPlayerConnected(i))
         {
-                 //do something
+                 //зробити щось
         }
 }
 ```
 
-Any of the conditions can be omitted simply by putting no code in them:
+Будь-яку з умов можна опустити, просто не вводячи в неї код:
 
 ```c
-new
+новий
     a = 9;
 for ( ; a < 10; )
 {
-    // Code in the loop
+    // Код у циклі
     a++;
 }
-// Code after the loop
+// Код після циклу
 ```
 
-This example makes it a little easier to show how a "for" loop matches up to a "while" loop. There are two very slight differences between the two "for" loops given. The first is that the second example declares 'a' outside the "for" loop, this means it can be used outside the "for" loop, in the first example 'a's scope (the section of code for which a variable exists) is only inside the loop. The second difference is that the a++ in the second example is actually done slightly before the a++ in the first example, 99% of the time this doesn't make any difference, the only time it matters is when you're using 'continue' (see below), 'continue' will call the a++ in the first example, but will skip it in the second example.
+Цей приклад трохи полегшує демонстрацію того, як цикл for співвідноситься з циклом while. Існує дві дуже незначні відмінності між двома наведеними циклами "for". Перша полягає в тому, що в другому прикладі змінна 'a' оголошена за межами циклу, це означає, що її можна використовувати за межами циклу, а в першому прикладі область видимості змінної 'a' (ділянка коду, для якої існує змінна) знаходиться тільки всередині циклу. Друга відмінність полягає в тому, що a++ у другому прикладі насправді виконується трохи раніше, ніж a++ у першому прикладі, у 99% випадків це не має ніякого значення, єдиний випадок, коли це має значення - це коли ви використовуєте continue (див. нижче), continue викликає a++ у першому прикладі, але пропускає його у другому прикладі.
 
-### do-while
+### Доки.
 
-A do-while loop is a while loop where the condition comes after the code inside the loop instead of before. This means that the code inside will always be executed at least once because it is done before the check is done:
+Цикл do-while - це цикл, в якому умова з'являється після коду всередині циклу, а не перед ним. Це означає, що код всередині циклу завжди буде виконаний принаймні один раз, оскільки він виконується до того, як буде виконана перевірка:
 
 ```c
-new
+новий
     a = 10;
 do
 {
-    // Code inside the loop
+    // Код всередині циклу
     a++;
 }
-while (a < 10); // Note the semi-colon
-// Code after the loop
+while (a < 10); // Звернути увагу на крапку з комою
+// Код після циклу
 ```
 
-If that was a standard while loop a would not be incremented as the (a < 10) check is false, but here it's incremented before the check. If a started as 9 the loop would also only be done once, 8 - twice etc.
+Якби це був стандартний цикл while, a не збільшувався б, оскільки перевірка (a < 10) є хибною, але тут він збільшується перед перевіркою. Якби a починалося з 9, цикл також був би виконаний лише один раз, 8 - двічі і т.д.
 
 ### if-goto
 
-This is essentially what the loops above compile to, the use of goto is generally discouraged however it's interesting to see exactly what a loop is doing:
+Це, по суті, те, до чого компілюються наведені вище цикли, використання goto зазвичай не рекомендується, проте цікаво побачити, що саме робить цикл:
 
 ```c
-new
+новий
     a = 9;
 
 loop_start:
 if (a < 10)
 {
-    // Code in the loop
+    // Код у циклі
     a++;
     goto loop_start;
 }
-// Code after the loop
+// Код після циклу
 ```
 
 ### OBOE
 
-OBOE stands for Off By One Error. This is a very common mistake where a loop runs for one too many or two few times. E.g:
+OBOE розшифровується як Off By One Error. Це дуже поширена помилка, коли цикл виконується на один або два рази більше, ніж потрібно. Наприклад
 
 ```c
-new
+новий
     a = 0,
     b[10];
 while (a <= sizeof (b))
@@ -425,66 +425,66 @@ while (a <= sizeof (b))
 }
 ```
 
-This very simple example demonstrates one of the most common OBOEs, at first glance people may think this will loop through all the contents of b and set them to 0, however this loop will actually run 11 times and try access b[10], which doesn't exist (it would be the 11th slot in b starting from 0), thus can cause all sorts of problems. This is known as an Out Of Bounds (OOB) error.
+Цей дуже простий приклад демонструє одну з найпоширеніших помилок OBOE, на перший погляд може здатися, що цикл перегляне весь вміст b і встановить його в 0, проте насправді він виконається 11 разів і спробує отримати доступ до b[10], якого не існує (це буде 11-й слот у b, починаючи з 0), що може спричинити різноманітні проблеми. Це називається помилкою виходу за межі (Out Of Bounds, OOB).
 
-You have to be especially careful of OBOEs when using do-while loops as they ALWAYS run at least once.
+Ви повинні бути особливо обережними з OBOE при використанні циклів, оскільки вони ЗАВЖДИ виконуються принаймні один раз.
 
-## Switch
+## Перемикач
 
-### switch
+### Перемикач
 
-A switch statement is basically a structured if/else if/else system (similar to how for is a structured while). The easiest way to explain it is with an example:
+Оператор switch - це, по суті, структурована система if/else (подібно до того, як for є структурованою системою while). Найпростіший спосіб пояснити це на прикладі:
 
 ```c
-new
+новий
     a = 5;
 switch (a)
 {
-    case 1:
+    case 1
     {
-        // Won't be called
+        // Не буде викликано
     }
     case 2:
     {
-        // Won't be called
+        // Не буде викликано
     }
-    case 5:
+    case 5: { // Не буде викликано }
     {
-        // Will be called
+        // Буде викликано
     }
     default:
     {
-        // Won't be called
+        // Не буде викликано
     }
 }
 ```
 
-This is functionally equivalent to:
+Це функціонально еквівалентно:
 
 ```c
-new
+новий
     a = 5;
 if (a == 1)
 {
-    // Won't be called
+    // Не буде викликано
 }
 else if (a == 2)
 {
-    // Won't be called
+    // Не буде викликано
 }
 else if (a == 5)
 {
-    // Will called
+    // Буде викликано
 }
 else
 {
-    // Won't be called
+    // Не буде викликано
 }
 ```
 
-However it is slightly clearer to see what is going on.
+Однак тепер стало трохи зрозуміліше, що відбувається.
 
-An important thing to note here is the different ways in which ifs and switches are processed:
+Важливо звернути увагу на різні способи обробки if та switch:
 
 ```c
 switch (SomeFunction())
@@ -495,7 +495,7 @@ switch (SomeFunction())
 }
 ```
 
-That will call SomeFunction() ONCE and compare it's result 3 times.
+Це викличе SomeFunction() ОДИН раз і порівняє його результат 3 рази.
 
 ```c
 if (SomeFunction() == 1) {}
@@ -503,50 +503,50 @@ else if (SomeFunction() == 2) {}
 else if (SomeFunction() == 3) {}
 ```
 
-That will call SomeFunction() three times, which is very inefficient, a switch is more like doing:
+Це призведе до виклику SomeFunction() тричі, що дуже неефективно, краще використовувати switch:
 
 ```c
-new
+новий
     result = SomeFunction();
 if (result == 1) {}
 else if (result == 2) {}
 else if (result == 3) {}
 ```
 
-For those of you who know C the PAWN switch is slightly different, the individual conditions are NOT fall-through and are bound by braces so there's no need for break statements.
+Для тих з вас, хто знає C, перемикач PAWN дещо відрізняється: окремі умови НЕ є прохідними і обмежуються дужками, тому немає необхідності в операторах break.
 
-### case
+### Справа в тому, що
 
-case statements (the "case X:" parts of the switch statement) can have other options besides a single number. You can compare a value to a list of numbers (replacing fall-through in C) or even a range of values:
+оператори case (частини оператора switch, що містять "case X:") можуть мати інші варіанти, окрім одного числа. Ви можете порівнювати значення зі списком чисел (замінюючи пропуск у C) або навіть з діапазоном значень:
 
 ```c
-case 1, 2, 3, 4:
+випадок 1, 2, 3, 4:
 ```
 
-This case will trigger if the symbol being tested is 1, 2, 3, or 4, it's the same as doing:
+Цей випадок спрацьовує, якщо символ, що перевіряється, дорівнює 1, 2, 3 або 4, це те ж саме, що робити:
 
 ```c
 if (bla == 1 || bla == 2 || bla == 3 || bla == 4)
 ```
 
-but far more concise. Numbers in lists do not have to be consecutive, in fact if they are it's better to do:
+але набагато лаконічніше. Номери в списках не обов'язково повинні йти підряд, насправді, якщо вони йдуть підряд, це краще:
 
 ```c
-case 1 .. 4:
+справа 1 .. 4:
 ```
 
-This case will do exactly the same as above but by checking a range instead of a list, it is the same as doing:
+У цьому випадку буде виконано те саме, що й у попередньому випадку, але замість списку буде перевірено діапазон:
 
 ```c
 if (bla >= 1 && bla <= 4)
 ```
 
 ```c
-new
+новий
     a = 4;
 switch (a)
 {
-    case 1 .. 3:
+    case 1 .. 3
     {
     }
     case 5, 8, 11:
@@ -561,44 +561,44 @@ switch (a)
 }
 ```
 
-### default
+### за замовчуванням
 
-This is the equivalent to else in if statements, it does something if all the other case statements failed.
+Це еквівалент else в операторах if, він робить щось, якщо всі інші оператори case не спрацювали.
 
-## Single line statements
+## Однорядкові оператори
 
-### goto
+### Я йду.
 
-goto is essentially a jump, it goes to a label without question (i.e. there's no condition to need to be true). You can see an example above in the if-goto loop.
+goto - це, по суті, перехід, він переходить до мітки без запитань (тобто немає жодної умови, яка повинна бути істинною). Ви можете побачити приклад вище у циклі if-goto.
 
 ```c
 goto my_label;
 
-// This section will be jumped over
+// Цей розділ буде перескочено
 
-my_label: // Labels end in a colon and are on their own line
+my_label: // Мітки закінчуються двокрапкою і знаходяться в окремому рядку
 
-// This section will be processed as normal
+// Цей розділ буде оброблено як звичайно
 ```
 
-The use of gotos is widely discouraged due to their effect on program flow.
+Використання gotos не рекомендується через їхній вплив на потік програми.
 
-### break
+### Перерва.
 
-break breaks out of a loop, ending it prematurely:
+перерва виривається з циклу, передчасно завершуючи його:
 
 ```c
 for (new a = 0; a < 10; a++)
 {
-    if (a == 5) break;
+    if (a == 5) break
 }
 ```
 
-This loop will go 6 times but code after the break will only be executed 5 times.
+Цей цикл буде виконано 6 разів, але код після перерви буде виконано лише 5 разів.
 
-### continue
+### Продовжуйте.
 
-continue basically skips a loop iteration
+continue в основному пропускає ітерацію циклу
 
 ```c
 for (new a = 0; a < 3; a++)
@@ -608,16 +608,16 @@ for (new a = 0; a < 3; a++)
 }
 ```
 
-That will give the output of:
+Це дасть на виході
 
 ```c
 a = 0 a = 2
 ```
 
-The continue basically jumps to the closing brace of the loop, as hinted at above you have to be careful when using continue with some loops:
+Продовження в основному переходить до закриваючої дужки циклу, як було сказано вище, ви повинні бути обережними, використовуючи продовження з деякими циклами:
 
 ```c
-new
+новий
     a = 0;
 while (a < 3)
 {
@@ -627,11 +627,11 @@ while (a < 3)
 }
 ```
 
-This looks very similar to the other example however this time the continue will skip the a++; line, so the loop will get stuck in an infinite loop as a will always be 1.
+Це дуже схоже на інший приклад, але цього разу continue пропустить рядок a++;, тому цикл застрягне у нескінченному циклі, оскільки a завжди буде дорівнювати 1.
 
-### return
+### Повернись.
 
-return stops a function and goes back to the point in code which called the function in the first place:
+return зупиняє функцію і повертається до місця в коді, з якого вона була викликана:
 
 ```c
 main()
@@ -651,13 +651,13 @@ MyFunction(num)
 }
 ```
 
-That code will give an output of:
+Цей код дасть на виході
 
 1 3
 
-Because the print("2"); line will never be reached.
+Тому що рядок print("2"); ніколи не буде досягнутий.
 
-You can also use return to return a value:
+Ви також можете використовувати return для повернення значення:
 
 ```c
 main()
@@ -680,17 +680,17 @@ MyFunction(num)
 }
 ```
 
-That code will give the same output as above, however note that an additional return has been added to the end of the function. The end of a function has a return implied at it, however this return has no value, you cannot return a value and not return a value from the same function so we must explicitly return a value.
+Цей код дасть той самий результат, що й наведений вище, однак зверніть увагу, що в кінці функції було додано додаткове повернення. Кінець функції передбачає повернення, однак це повернення не має значення, ви не можете повернути значення і не повернути значення з тієї самої функції, тому ми повинні явно повернути значення.
 
-The symbol you return can be a number, a variable or even another function (in which case the other function will be called, it will return a value (it MUST return a value if you use it as a return value) and that value will be returned from the first function.
+Символ, який ви повертаєте, може бути числом, змінною або навіть іншою функцією (у цьому випадку інша функція буде викликана, вона поверне значення (вона ПОВИННА повернути значення, якщо ви використовуєте її як значення, що повертається), і це значення буде повернуто з першої функції.
 
-You can also store return values for later use:
+Ви також можете зберігати значення повернення для подальшого використання:
 
 ```c
 main()
 {
     print("1");
-    new
+    новий
         ret = MyFunction(1);
     if (ret == 27)
     {
@@ -708,3 +708,5 @@ MyFunction(num)
     return 0;
 }
 ```
+
+

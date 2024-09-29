@@ -1,37 +1,39 @@
 ---
-title: Camera Modes
+назва: Режими камери
 ---
 
-## Description
+## Опис
 
-The following camera modes are used by [GetPlayerCameraMode](../functions/GetPlayerCameraMode).
+Наступні режими камери використовуються [GetPlayerCameraMode](../functions/GetPlayerCameraMode).
 
-:::note
+:::примітка
 
-There might still be more usable IDs hidden away in the game and some IDs are used for more than one situation.
+У грі може бути приховано більше корисних ідентифікаторів, а деякі ідентифікатори використовуються для більш ніж однієї ситуації.
 
 :::
 
-## List of available camera modes
+## Список доступних режимів камери
 
-| ID  | Definition | Name from game files   | Description                                                                                                                    |
+| Ідентифікатор | Визначення | Назва з файлів гри | Опис
 | --- | --------- | ---------------------- | ------------------------------------------------------------------------------------------------------------------------------ |
-| 3   | CAM_MODE_BEHINDCAR  | MODE_BEHINDCAR       | Train/tram camera                                                                                                              |
-| 4   | CAM_MODE_FOLLOWPED  | MODE_FOLLOWPED      | Follow ped (normal behind player camera), several variable distances                                                           |
-| 7   | CAM_MODE_SNIPER     | MODE_SNIPER       | Sniper aiming (sniper scope)                                                                                                   |
-| 8   | CAM_MODE_ROCKETLAUNCHER | MODE_ROCKETLAUNCHER    | Rocket Launcher aiming (rocket launcher scope)                                                                                 |
-| 15  | CAM_MODE_FIXED      | MODE_FIXED       | Fixed camera (non-moving) - used for garages, chase camera, entering buildings, buying food etc                                |
-| 16  | CAM_MODE_1STPERSON  | MODE_1STPERSON       | Vehicle front camera, bike side camera                                                                                         |
-| 18  | CAM_MODE_CAM_ON_A_STRING | MODE_CAM_ON_A_STRING   | Normal car (+ skimmer + helicopter + airplane), several variable distances                                                     |
-| 22  | CAM_MODE_BEHINDBOAT | MODE_BEHINDBOAT       | Normal boat camera                                                                                                             |
-| 46  | CAM_MODE_CAMERA     | MODE_CAMERA       | Weapon aiming (weapon scope)                                                                                                   |
-| 51  | CAM_MODE_ROCKETLAUNCHER_HS | MODE_ROCKETLAUNCHER_HS | Heat-seeking Rocket Launcher aiming                                                                                            |
-| 53  | CAM_MODE_AIMWEAPON  | MODE_AIMWEAPON       | Aiming any other weapon                                                                                                        |
-| 55  | CAM_MODE_AIMWEAPON_FROMCAR | MODE_AIMWEAPON_FROMCAR | Vehicle passenger aiming camera (drive by as a player)                                                                         |
-| 56  | CAM_MODE_DW_HELI_CHASE | MODE_DW_HELI_CHASE    | Chase camera: helicopter/bird view                                                                                             |
-| 57  | - | MODE_DW_CAM_MAN        | Chase camera: ground camera, zooms in quite quickly and pan to the vehicle                                                     |
-| 58  | - | MODE_DW_BIRDY          | Chase camera: horizontal flyby past vehicle                                                                                    |
-| 59  | - | MODE_DW_PLANE_SPOTTER  | Chase camera (for air vehicles only): ground camera, looking up to the air vehicle                                             |
-| 62  | - | MODE_DW_PLANECAM1      | Chase camera (for air vehicles only): vertical flyby past air vehicle                                                          |
-| 63  | - | MODE_DW_PLANECAM2      | Chase camera (for air vehicles only): horizontal flyby past air vehicle (similar to 58 and 62)                                 |
-| 64  | - | MODE_DW_PLANECAM3      | Chase camera (for air vehicles only): camera focused on pilot, similar to pressing LOOK_BEHIND key on foot, but in air vehicle |
+| 3 | CAM_MODE_BEHINDCAR | MODE_BEHINDCAR | Камера поїзда/трамвая
+| 4 | CAM_MODE_FOLLOWPED | MODE_FOLLOWPED | Стеження за пішоходом (зазвичай за камерою плеєра), кілька змінних відстаней
+| 7 | CAM_MODE_SNIPER | MODE_SNIPER | Снайперське прицілювання (снайперський приціл)
+| 8 | CAM_MODE_ROCKETLAUNCHER | MODE_ROCKETLAUNCHER | Прицілювання з ракетниці (приціл ракетниці)
+| 15 | CAM_MODE_FIXED | MODE_FIXED | Фіксована камера (нерухома) - використовується для гаражів, камери погоні, входу в будівлі, купівлі їжі тощо
+| 16 | CAM_MODE_1STPERSON | MODE_1STPERSON | Передня камера автомобіля, бокова камера велосипеда
+| 18 | CAM_MODE_CAM_ON_A_STRING | MODE_CAM_ON_A_STRING | Звичайний автомобіль (+ скімер + вертоліт + літак), кілька змінних відстаней
+| 22 | CAM_MODE_BEHINDBOAT | MODE_BEHINDBOAT | Звичайна камера з човна
+| 46 | CAM_MODE_CAMERA | MODE_CAMERA | Наведення зброї (приціл зброї)
+51 | CAM_MODE_ROCKETLAUNCHER_HS | MODE_ROCKETLAUNCHER_HS | Наведення тепловізійної ракетної установки | ¦ 51 | CAM_MODE_ROCKETLAUNCHER_HS | Наведення тепловізійної ракетної установки ¦ ¦ 51
+| CAM_MODE_AIMWEAPON ¦ MODE_AIMWEAPON ¦ Прицілювання будь-якої іншої зброї ¦ ¦ 53 ¦ CAM_MODE_AIMWEAPON ¦ MODE_AIMWEAPON ¦ Прицілювання будь-якої іншої зброї
+| 55 | CAM_MODE_AIMWEAPON_FROMCAR | MODE_AIMWEAPON_FROMCAR | Камера прицілювання пасажира автомобіля (проїжджати як гравець)
+CAM_MODE_DW_HELI_CHASE | MODE_DW_HELI_CHASE | Камера переслідування: вид з гелікоптера/птаха | ¦ 56 | - ¦ CAM_MODE_DW_HELI_CHASE | CAM_MODE_DW_HELI_CHASE
+| 57 | - | MODE_DW_CAM_MAN | Камера переслідування: наземна камера, швидко збільшує масштаб і панорамує на транспортний засіб
+| 58 | - | MODE_DW_BIRDY | Камера переслідування: горизонтальне пролітання повз транспортний засіб
+| 59 | - | MODE_DW_PLANE_SPOTTER | Камера переслідування (лише для літальних апаратів): наземна камера, що дивиться вгору на літальний апарат
+| 62 | - | MODE_DW_PLANECAM1 | Камера переслідування (лише для літальних апаратів): вертикальний проліт повз літальний апарат
+| 63 | - | MODE_DW_PLANECAM2 | Камера переслідування (лише для літальних апаратів): горизонтальний проліт повз літальний апарат (подібно до 58 і 62)
+| 64 | - | MODE_DW_PLANECAM3 | Камера переслідування (тільки для літальних апаратів): камера сфокусована на пілоті, подібно до натискання клавіші LOOK_BEHIND пішки, але в літальному апараті
+
+

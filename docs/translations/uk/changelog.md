@@ -1,45 +1,45 @@
 ---
-title: Changelog
-description: open.mp development progress and changelog.
+назва: Журнал змін
+description: хід розробки open.mp та журнал змін.
 ---
 
-## **[v1.3.1.2748](https://github.com/openmultiplayer/open.mp/releases/tag/v1.3.1.2748) (Latest)**
+## **[v1.3.1.2748](https://github.com/openmultiplayer/open.mp/releases/tag/v1.3.1.2748) (Остання)**
 
-A new version of open.mp server is finally out, there has been a lot of fixes, bunch of performance improvements, and a few additions.
+Нарешті вийшла нова версія сервера open.mp, у якій було виправлено багато помилок, покращено продуктивність та зроблено декілька доповнень.
 
-Our launcher also now received a new update which you can get by simply opening your launcher and updating it through the update dialog. For changelog please read it from here: https://github.com/openmultiplayer/launcher/releases/tag/v1.4.0
+Наш лаунчер також отримав нове оновлення, яке ви можете отримати, просто відкривши лаунчер і оновивши його через діалогове вікно оновлення. Список змін можна прочитати тут: <https://github.com/openmultiplayer/launcher/releases/tag/v1.4.0>.
 
-### Server
+### Сервер
 
-**Added:**
+**Добавлено:**
 
-- Add server logo config variable to [config.json](server/config.json), allowing servers to set a logo to be shown in our launcher and discord status.
-- Add more data validity checks for dialog responses.
-- Add validity checks for menu rows.
-- Add human readable HTTP errors.
-- New definition for general SA-MP API compatibility. (`#define SAMP_COMPAT`)
-- New definition to silence legacy scripting api warnings. (`#define LEGACY_SCRIPTING_API`)
+- Додано змінну конфігурації логотипу сервера до [config.json](server/config.json), що дозволяє серверам встановлювати логотип, який буде показано у нашому лаунчері та статусі розбіжностей.
+- Додано більше перевірок валідності даних для відповідей у діалогах.
+- Додайте перевірку валідності для рядків меню.
+- Додано HTTP помилки, які можна прочитати людиною.
+- Нове визначення для загальної сумісності з SA-MP API. (`#визначити SAMP_COMPAT`)
+- Нове визначення для вимкнення попереджень застарілого скриптового API. (`#define LEGACY_SCRIPTING_API`)
 
-**Changes:**
+**Зміни:**
 
-- Remove unnecessary OnPlayerConnect and OnPlayerDisconnect when a side script (filterscript) is (un)loaded. Instead introduced [OnScriptLoadPlayer](scripting/callbacks/OnScriptLoadPlayer) and [OnScriptUnloadPlayer](scripting/callbacks/OnScriptUnloadPlayer) callbacks.
-- Remove bunch of pawn native deprecation from runtime warnings.
-- Check CDN URL validity.
-- Stop spectator sync being broadcasted.
-- Default values for health and armour.
-- Improve performance for responding to Scores And Pings RPC. (scoreboard)
-- Change invalid weapon slot to `-1`
+- Видалено непотрібні OnPlayerConnect та OnPlayerDisconnect, коли сторонній скрипт (фільтр-скрипт) не завантажено. Натомість введено виклики [OnScriptLoadPlayer](scripting/callbacks/OnScriptLoadPlayer) та [OnScriptUnloadPlayer](scripting/callbacks/OnScriptUnloadPlayer).
+- Вилучено купу власних застарівань пішаків з попереджень під час виконання.
+- Перевірте валідність URL-адреси CDN.
+- Зупинено трансляцію синхронізації глядачів.
+- Значення за замовчуванням для здоров'я та броні.
+- Покращено продуктивність відповіді на RPC Scores And Pings. (табло)
+- Змінено недійсний слот для зброї на `-1`.
 
-**Fixes:**
+**Виправлення:**
 
-- Fix the infamous RakNet crash we've been dealing with since the beginning, affecting a few servers.
-- Fix string not shown in rare cases of using format.
-- Fix the problem with crashdetect not being able to find file name and line number when more than one script was loaded.
-- Fix a lot of RakNet crashes and safer internal memory management.
-- Fix several connection issues and proper internal player pool cleanups.
-- Fix [GetGameText](scripting/functions/GetGameText) function giving incorrect/corrupt values.
-- Fix open.mp windows version not loading when user's windows is set to a language with non-ascii names.
-- Fix callback headings in `qawno/filterscript.new` and `qawno/gamemode.new` files.
+- Виправлено сумнозвісний збій RakNet, з яким ми мали справу з самого початку, що впливав на декілька серверів.
+- Виправлено рядок, який не відображався у рідкісних випадках використання формату.
+- Виправлено проблему, коли crashdetect не міг знайти ім'я файлу та номер рядка, коли було завантажено більше ніж один скрипт.
+- Виправлено багато аварійних завершень RakNet та безпечніше керування внутрішньою пам'яттю.
+- Виправлено декілька проблем зі з'єднанням та належним чином очищено внутрішній пул плеєрів.
+- Виправлено функцію [GetGameText](scripting/functions/GetGameText), яка повертала неправильні/пошкоджені значення.
+- Виправлено помилку, через яку версія open.mp не завантажувалася, коли у вікнах користувача встановлено мову з неascii назвами.
+- Виправлено заголовки зворотних викликів у файлах `qawno/filterscript.new` та `qawno/gamemode.new`.
 
 <br />
 
@@ -48,29 +48,29 @@ Our launcher also now received a new update which you can get by simply opening 
 ## [v1.2.0.2670](https://github.com/openmultiplayer/open.mp/releases/tag/v1.2.0.2670)
 
 <details>
-<summary>Click here to expand</summary>
+<summary>Натисніть тут, щоб розгорнути</summary>
 
-We encourage every open.mp server to update to this version. There has been not only noticeable performance improvements, but also **critical security fixes**.
+Ми рекомендуємо всім серверам open.mp оновитися до цієї версії. Відбулося не тільки помітне покращення продуктивності, але й **критичні виправлення безпеки**.
 
-### Server
+### Сервер
 
-**Added:**
+**Добавлено:**
 
-- New config variables to set banners and discord invite link to be shown in [open.mp launcher](https://github.com/openmultiplayer/launcher/releases/latest).
-- New config variable for join messages. (`logging.log_connection_messages`)
-- New config variable for animation validation. (`game.validate_animations`)
-- New definition to allow mixed spelling functions in your code. (`#define MIXED_SPELLINGS`)
+- Нові конфігураційні змінні для встановлення банерів та посилання на запрошення до розбрату, які будуть показані у [open.mp launcher](https://github.com/openmultiplayer/launcher/releases/latest).
+- Нова конфігураційна змінна для повідомлень про приєднання. (`logging.log_connection_messages`)
+- Нова конфігураційна змінна для перевірки анімації. (`game.validate_animations`)
+- Нове визначення, що дозволяє використовувати функції зі змішаним написанням у вашому коді. (`#визначити MIXED_SPELLINGS`)
 
-**Fixes:**
+**Виправлення:**
 
-- A few security fixes.
-- Announcer system now uses IPv4 by default, instead of using IPv6 when it's available.
-- Fix `Get(Player)ObjectMaterial(Text)` returning colours in the wrong format and modelid.
-- Fix `Get(Player)Gravity` returning integer instead of float.
-- Validate damage reasons (weapons) in various places.
-- Synchronize bans so multiple players are banned at once if needed.
+- Декілька виправлень безпеки.
+- Система анонсування тепер використовує IPv4 за замовчуванням, замість IPv6, коли він доступний.
+- Виправлено `Get(Player)ObjectMaterial(Text)`, який повертав кольори у неправильному форматі та modelid.
+- Виправлено `Get(Player)Gravity`, яка повертала ціле число замість плаваючого.
+- Перевірено причини пошкоджень (зброя) у різних місцях.
+- Синхронізовано бани так, щоб за необхідності можна було забанити одразу кількох гравців.
 
-</details>
+</details> </details
 
 <br />
 
@@ -79,30 +79,30 @@ We encourage every open.mp server to update to this version. There has been not 
 ## [v1.1.0.2612](https://github.com/openmultiplayer/open.mp/releases/tag/v1.1.0.2612)
 
 <details>
-<summary>Click here to expand</summary>
+<summary>Натисніть тут, щоб розгорнути</summary>
 
-open.mp is now out of RC phase, and we are happy to announce we are finally stable enough to go down the consistent development road. with v1.1.0.2612, we fixed a lot of bugs and issues, and resolved so many behavior differences. so make sure you update to latest builds and run your server smoothly.
+open.mp вийшов з фази RC, і ми раді повідомити, що ми нарешті достатньо стабільні, щоб продовжити послідовну розробку. у v1.1.0.2612 ми виправили багато помилок і проблем, а також усунули багато відмінностей у поведінці. тож переконайтеся, що ви оновилися до останніх збірок і зможете безперебійно запускати свій сервер.
 
-open.mp launcher is finally out, you can now reliably browse servers, select a server you want to play on, and join it!
-Bringing a lot of new features into it, you're going to have a much better experience compared to old experience you always had to have with samp launcher.
-It can be found at https://github.com/openmultiplayer/launcher/releases
+нарешті вийшов open.mp лаунчер, тепер ви можете надійно переглядати сервери, обирати сервер, на якому хочете грати, і приєднуватися до нього!
+Завдяки багатьом новим функціям ви отримаєте набагато кращий досвід у порівнянні зі старим запуском samp, який вам завжди доводилося мати.
+Його можна знайти за адресою <https://github.com/openmultiplayer/launcher/releases>
 
-### Server
+### Сервер
 
-**Added:**
+**Додано:**
 
-- x64 version of omp-server.
-- Add `.so` to plugin names automatically.
+- x64 версія omp-сервера.
+- Автоматично додає `.so` до назв плагінів.
 
-**Changes:**
+**Зміни:**
 
-- Return `estimatedTime` in `Move(Player)Object` functions.
+- Додано повернення `estimatedTime` у функціях `Move(Player)Object`.
 
-**Fixes:**
+**Виправлення:**
 
-- Fixed `GetVehicleLastDriver` returning 0 when invalid `vehicleid` is passed.
+- Виправлено помилку, коли функція `GetVehicleLastDriver` повертала 0, якщо передано невірний `vehicleid`.
 
-</details>
+</details> </details
 
 <br />
 
@@ -111,24 +111,24 @@ It can be found at https://github.com/openmultiplayer/launcher/releases
 ## [RC2](https://github.com/openmultiplayer/open.mp/releases/tag/v1-RC2)
 
 <details>
-<summary>Click here to expand</summary>
+<summary>Натисніть тут для розгортання</summary>
 
-Release Candidate 2 (RC2) of the open.mp server.
+Кандидат на випуск 2 (RC2) сервера open.mp.
 
-### Server
+### Сервер
 
-**New functions:**
+**Нові функції:**
 
 - [GetPlayerMarkerForPlayer](scripting/functions/GetPlayerMarkerForPlayer)
 
-**Deprecated functions:**
+**Застарілі функції:** [GetPlayerDDTextLink
 
 - GetPlayer3DTextLabelVirtualW
 - SetPlayer3DTextLabelDrawDist
 - GetPlayer3DTextLabelDrawDist
-- SendClientMessagef
+- Надіслати клієнтське повідомленняf
 - GameTextForPlayerf
-- SendPlayerMessageToPlayerf
+- Надіслати повідомлення гравця до гравцяf
 - SendClientMessageToAllf
 - GameTextForAllf
 - SendPlayerMessageToAllf
@@ -172,17 +172,17 @@ Release Candidate 2 (RC2) of the open.mp server.
 - GetPlayerObjectTarget
 - GetPlayerDialog
 - fmkdir
-- dcreate
+- створити
 - GetVehicleTower
 - ChangeVehicleColor
 
-**Fixes:**
+**Виправлення:**
 
-- Fix `.so` being required on Linux legacy plugins.
-- Attached objects are correctly shown to other players.
-- Fix a crash when loading invalid pawn memory.
+- Виправлено вимогу введення `.so` у застарілих плагінах Linux.
+- Приєднані об'єкти коректно показуються іншим гравцям.
+- Виправлено виліт при завантаженні невірної пам'яті для пішаків.
 
-</details>
+</details> </details
 
 <br />
 
@@ -191,34 +191,34 @@ Release Candidate 2 (RC2) of the open.mp server.
 ## [RC1](https://github.com/openmultiplayer/open.mp/releases/tag/v1-RC1)
 
 <details>
-<summary>Click here to expand</summary>
+<summary>Натисніть тут для розгортання</summary>
 
-[Release Candidate 1 (RC1)](https://www.open.mp/blog/release-candidate-1) of the open.mp server! We're now out of beta. 
+[Release Candidate 1 (RC1)](https://www.open.mp/blog/release-candidate-1) сервера open.mp! Ми вийшли з бета-версії.
 
-### Server
+### Сервер
 
-**Added:**
+**Добавлено:**
 
-- Added `{Float,_}:...` to `AddMenuItem`, `Create3DTextLabel`, `CreateMenu`, `CreatePlayer3DTextLabel`, `CreatePlayerTextDraw`, `GameTextForAll`, `GameTextForPlayer`, `PlayerTextDrawSetString`, `SendClientMessage`, `SendClientMessageToAll`, `SendRconCommand`, `SetMenuColumnHeader`, `SetObjectMaterialText`, `SetPlayerObjectMaterialText`, `SetPVarString`, `SetSVarString`, `ShowPlayerDialog`, `TextDrawCreate`, `TextDrawSetString`, `Update3DTextLabelText`, `UpdatePlayer3DTextLabelText` functions. They all format now.
+- Додано `{Float,_}:...` до `AddMenuItem`, `Create3DTextLabel`, `CreateMenu`, `CreatePlayer3DTextLabel`, `CreatePlayerTextDraw`, `GameTextForAll`, `GameTextForPlayer`, `PlayerTextDrawSetString`, `SendClientMessage`, `SendClientMessageToAll`, `SendRconCommand`, `SetMenuColumnHeader`, `SetObjectMaterialText`, `SetPlayerObjectMaterialText`, `SetPVarString`, `SetSVarString`, `ShowPlayerDialog`, `TextDrawCreate`, `TextDrawSetString`, `Update3DTextLabelText`, `UpdatePlayer3DTextLabelText` функції. Тепер вони всі форматуються.
 
-**Fixes:**
+**Виправлення
 
-- Memory reduction.
+- Зменшення використання пам'яті.
 
-</details>
+</details> </details
 
 <br />
 
 <hr />
 
-## [Beta v0.0.11.2331](https://github.com/openmultiplayer/open.mp/releases/tag/v0.0.11.2331)
+## [Бета-версія v0.0.11.2331](https://github.com/openmultiplayer/open.mp/releases/tag/v0.0.11.2331)
 
 <details>
-<summary>Click here to expand</summary>
+<summary>Натисніть тут для розгортання</summary>
 
-### Server
+### Сервер
 
-**New functions:**
+**Нові функції:**
 
 - [TogglePlayerWidescreen](scripting/functions/TogglePlayerWidescreen)
 - [IsPlayerWidescreenToggled](scripting/functions/IsPlayerWidescreenToggled)
@@ -457,8 +457,9 @@ Release Candidate 2 (RC2) of the open.mp server.
 - [EnableAllAnimations](scripting/functions/EnableAllAnimations)
 - [GetWeather](scripting/functions/GetWeather)
 
-**New callbacks:**
+**Нові функції зворотного виклику:
 
+- [OnPlayerEnterGangZone](scripting/callbacks/OnPlayerEnterGangZone)
 - [OnPlayerEnterGangZone](scripting/callbacks/OnPlayerEnterGangZone)
 - [OnPlayerLeaveGangZone](scripting/callbacks/OnPlayerLeaveGangZone)
 - [OnPlayerClickGangZone](scripting/callbacks/OnPlayerClickGangZone)

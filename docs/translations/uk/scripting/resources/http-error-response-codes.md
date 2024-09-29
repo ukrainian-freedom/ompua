@@ -1,67 +1,69 @@
 ---
-title: HTTP Error Response Codes
-description: HTTP error response codes.
+title: Коди реакції на помилки HTTP
+description: Коди відповіді на помилки HTTP.
 ---
 
 :::note
 
-These codes compliment ordinary [HTTP](../functions/HTTP) response codes returned in 'response_code'
+Ці коди доповнюють звичайні коди відповіді [HTTP](../functions/HTTP), що повертаються в 'response_code'
 
 :::
 
-| Code | Error                         | Description                                                                                                                                                                                                                  |
+| Код | Помилка | Опис
 |------|-------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| 1    | HTTP_ERROR_BAD_HOST           | Indicates that the URL used in an HTTP request is invalid or cannot be resolved by the DNS server.                                                                                                                           |
-| 2    | HTTP_ERROR_NO_SOCKET          | Indicates that there was a failure in establishing a network socket connection when making an HTTP request.                                                                                                                  |
-| 3    | HTTP_ERROR_CANT_CONNECT       | Indicates that the client is unable to establish a connection to the server when making an HTTP request. This error can occur due to various reasons, including network connectivity issues or unavailability of the server. |
-| 4    | HTTP_ERROR_CANT_WRITE         | Indicates that there was a failure in writing data during an HTTP request. This error can occur for various reasons related to the client, server, or network.                                                               |
-| 5    | HTTP_ERROR_CONTENT_TOO_BIG    | Indicates that the size of the content being sent in the HTTP request exceeds the maximum limit allowed by the server or the server's configuration.                                                                         |
-| 6    | HTTP_ERROR_MALFORMED_RESPONSE | Indicates that the HTTP response received from the server is in an unexpected or invalid format. This error suggests that the response does not comply with the HTTP protocol standards.                                     |
+| 1 | HTTP_ERROR_BAD_HOST | Вказує на те, що URL-адреса, яка використовується у HTTP-запиті, є недійсною або не може бути визначена DNS-сервером.                                                                                                                           |
+| 2 | HTTP_ERROR_NO_SOCKET | Вказує на те, що під час виконання HTTP-запиту не вдалося встановити з'єднання з мережевим сокетом.                                                                                                                  |
+| 3 | HTTP_ERROR_CANT_CONNECT | Вказує на те, що клієнт не зміг встановити з'єднання з сервером при виконанні HTTP-запиту. Ця помилка може виникати з різних причин, зокрема через проблеми з підключенням до мережі або недоступність сервера. |
+| 4 | HTTP_ERROR_CANT_WRITE | Вказує на те, що під час виконання HTTP-запиту стався збій під час запису даних. Ця помилка може виникнути з різних причин, пов'язаних із клієнтом, сервером або мережею.                                                               |
+| 5 | HTTP_ERROR_CONTENT_TOO_BIG | Вказує на те, що розмір вмісту, який надсилається в HTTP-запиті, перевищує максимальну межу, дозволену сервером або його конфігурацією.                                                                         |
+| 6 | HTTP_ERROR_MALFORMED_RESPONSE | Вказує на те, що HTTP-відповідь, отримана від сервера, має неочікуваний або недійсний формат. Ця помилка свідчить про те, що відповідь не відповідає стандартам протоколу HTTP.                                     |
 
-## Some Common HTTP Error Response Codes
+## Деякі поширені коди відповідей на помилки HTTP
 
-### 1xx Informational
+### 1xx Інформаційний
 
-| Code |                     |
+| Код
 |------|---------------------|
-| 100  | Continue            |
-| 101  | Switching Protocols |
-| 102  | Processing          |
+| 100 | Продовжити
+| 101 Перемикання протоколів
+| 102 Обробка.
 
-### 2xx Success
+### Успіх.
 
-| Code |                 |
+| Код
 |------|-----------------|
-| 200  | OK              |
-| 201  | Created         |
-| 204  | No Content      |
-| 206  | Partial Content |
+| 200. ГАРАЗД.
+| 201 Створено
+| 204 | Відсутній вміст
+| 206 | Частковий вміст
 
-### 3xx Redirection
+### 3xx Перенаправлення
 
-| Code |                    |
+| Код
 |------|--------------------|
-| 301  | Moved Permanently  |
-| 302  | Found              |
-| 304  | Not Modified       |
-| 307  | Temporary Redirect |
+| 301 | Переміщено назавжди
+| 302 | Знайдено
+| 304 | Не змінено
+| 307 Тимчасова переадресація.
 
-### 4xx Client Errors
+### Помилки клієнта 4хх
 
-| Code |                    |
+| Код
 |------|--------------------|
-| 400  | Bad Request        |
-| 401  | Unauthorized       |
-| 403  | Forbidden          |
-| 404  | Not Found          |
-| 405  | Method Not Allowed |
-| 429  | Too Many Requests  |
+| 400 Неправильний запит.
+| 401 | Несанкціонований
+| 403 | Заборонено
+| 404 | Не знайдено
+| 405 | Метод не дозволений
+| 429 Забагато запитів.
 
-### 5xx Server Errors
+### Помилки сервера 5хх.
 
-| Code |                       |
+| Код
 |------|-----------------------|
-| 500  | Internal Server Error |
-| 502  | Bad Gateway           |
-| 503  | Service Unavailable   |
-| 504  | Gateway Timeout       |
+| 500 Внутрішня помилка сервера.
+| 502 Пошкоджений шлюз.
+| 503 | Послуга недоступна
+| 504 ¦Тайм-аут шлюзу.
+
+

@@ -1,38 +1,40 @@
 ---
-title: "Pickup Types"
+Назва: «Pickup Types»
 ---
 
-### Available Pickup Types
+### Доступні типи пікапів
 
-:::note
+:::примітка
 
-These pickup types are used by [CreatePickup](../functions/CreatePickup) and [CreatePlayerPickup](../functions/CreatePlayerPickup).
-
-:::
-
-:::note
-
-Most other IDs are either undocumented or are similar to type 1 (but do not use them just because they seem similar to ID 1, they might have side-effects like ID 18 and 20).
+Ці типи пікапів використовуються методами [CreatePickup](../functions/CreatePickup) та [CreatePlayerPickup](../functions/CreatePlayerPickup).
 
 :::
 
-| ID  | Description                                                                                                                                                                              |
+:::примітка
+
+Більшість інших ідентифікаторів або недокументовані, або схожі на тип 1 (але не використовуйте їх лише тому, що вони схожі на ідентифікатор 1, вони можуть мати побічні ефекти, подібні до ідентифікаторів 18 і 20).
+
+:::
+
+| Ідентифікатор | Опис
 | --- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| 0   | It has no special attributes and cannot be picked up. It also does not trigger [OnPlayerPickUpPickup](../callbacks/OnPlayerPickUpPickup) or [OnPlayerPickUpPlayerPickup](../callbacks/OnPlayerPickUpPlayerPickup), and is not removed when closing the server                                |
-| 1   | Exists always. Disables pickup scripts such as horseshoes and oysters to allow for scripted actions ONLY. Will trigger [OnPlayerPickUpPickup](../callbacks/OnPlayerPickUpPickup) or [OnPlayerPickUpPlayerPickup](../callbacks/OnPlayerPickUpPlayerPickup) every few seconds. This is likely a SA-MP bug                           |
-| 2   | Disappears after pickup, respawns after 30 seconds if the player is at a distance of at least 15 meters (used for money pickups)                                                                                 |
-| 3   | Disappears after pickup, respawns after death                                                                                                                                           |
-| 4   | Disappears after 20 seconds. Respawns after death                                                                                                                                 |
-| 5   | Disappears after 120 seconds. Respawns after death                                                                                                                                 |
-| 8   | Disappears after pickup, but has no effect (used for money pickups)                                                                                                                                              |
-| 9   | Explodes on contact with any ground vehicle in 10 seconds after creation (used for land mines)                                                                                                                                              |
-| 10  | Explodes on contact with any ground vehicle (used for land mines)                                                                                                                                      |
-| 11  | Explodes on contact with any vessel in 10 seconds after creation (used for nautical/sea mines)                                                                                                                                              |
-| 12  | Explodes on contact with any vessel (used for nautical/sea mines)                                                                                                                                              |
-| 13  | Invisible. Triggers checkpoint sound when picked up with a vehicle, but doesn't trigger OnPlayerPickUpPickup (floating pickup)                                                                            |
-| 14  | Disappears after pickup, can only be picked up with a vehicle. Triggers checkpoint sound (floating pickup)                                                                                                |
-| 15  | Same as type 2, however the pickup will respawn after 12 minutes. If the model ID is a bribe, it will respawn after just 5 minutes.                                                                                                                                                                          |
-| 18  | Similar to type 1. Pressing Tab (KEY_ACTION) makes it disappear but the key press doesn't trigger OnPlayerPickUpPickup (used for properties)                                                                  |
-| 19  | Disappears after pickup, but doesn't respawn. Makes "cash pickup" sound if picked up                                                                                                    |
-| 20  | Similar to type 1. Disappears when you take a picture of it with the Camera weapon, which triggers "Snapshot # out of 0" message. Taking a picture doesn't trigger OnPlayerPickUpPickup (used for snapshot locations) |
-| 22  | Same as type 3 (used for missions)                                                                                                                                                                          |
+| 0 | Він не має спеціальних атрибутів і не може бути підібраний. Він також не викликає [OnPlayerPickUpPickup](../callbacks/OnPlayerPickUpPickup) або [OnPlayerPickUpPlayerPickup](../callbacks/OnPlayerPickUpPlayerPickup) і не видаляється при закритті сервера |.
+| 1 | Існує завжди. Вимикає скрипти пікапу, такі як підкови та устриці, щоб дозволити ТІЛЬКИ скриптові дії. Спрацьовуватиме [OnPlayerPickUpPickup](../callbacks/OnPlayerPickUpPickup) або [OnPlayerPickUpPlayerPickup](../callbacks/OnPlayerPickUpPlayerPickup) кожні кілька секунд. Це, ймовірно, вада SA-MP
+| 2 | Зникає після підбирання, з'являється через 30 секунд, якщо гравець перебуває на відстані не менше 15 метрів (використовується для підбирання грошей)
+| 3 | Зникає після підбору, з'являється після смерті
+| 4 | Зникає через 20 секунд. З'являється після смерті
+| 5 Зникає через 120 секунд. З'являється після смерті.
+| 8 | Зникає після підбору, але не має ефекту (використовується для підбору грошей)
+| 9 | Вибухає при контакті з будь-яким наземним транспортним засобом через 10 секунд після створення (використовується для наземних мін)
+| 10 | Вибухає при контакті з будь-яким наземним транспортним засобом (використовується для наземних мін)
+| 11 | Вибухає при контакті з будь-яким судном через 10 секунд після створення (використовується для морських/морських мін)
+| 12 | Вибухає при контакті з будь-яким судном (використовується для морських мін)
+| 13 | Невидима. Спрацьовує звук контрольної точки, коли її підбирає транспортний засіб, але не спрацьовує OnPlayerPickUpPickup (плаваючий пікап) | | 14 | Зникає після того, як її піднімає гравець
+| 14 | Зникає після підбирання, може бути підібраний лише транспортним засобом. Спрацьовує звук контрольної точки (плаваючий пікап) | | 15
+| 15 | Те саме, що й тип 2, але пікап з'явиться знову через 12 хвилин. Якщо ідентифікатор моделі є хабарем, він з'явиться через 5 хвилин.                                                                                                                                                                          |
+| 18 | Подібно до типу 1. Натискання клавіші Tab (KEY_ACTION) змушує його зникнути, але натискання клавіші не викликає OnPlayerPickUpPickup (використовується для властивостей) |.
+| 19 | Зникає після збирання, але не перезапускається. Видає звук «cash pickup», якщо його підібрано | | 20 | Подібно до типу «cash pickup».
+| 20 | Подібно до типу 1. Зникає, коли ви фотографуєте його за допомогою зброї «Камера», що викликає повідомлення «Знімок № з 0». Фотографування не спричиняє спрацьовування OnPlayerPickUpPickup (використовується для локацій, з яких робиться знімок) | | 21 | Знімок з'являється, коли гравець піднімає зброю.
+| 22 | Те саме, що й тип 3 (використовується для місій)
+
+

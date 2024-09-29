@@ -1,32 +1,34 @@
 ---
-title: Explosion Lists
+назва: Explosion Lists
 ---
 
 :::info
 
-A list of explosion types can be found in the table below. They can be used by [CreateExplosion](../functions/CreateExplosion) and with [CreateExplosionForPlayer](../functions/CreateExplosionForPlayer).
+Список типів вибухів можна знайти у таблиці нижче. Їх можна використовувати за допомогою [CreateExplosion](../functions/CreateExplosion) та [CreateExplosionForPlayer](../functions/CreateExplosionForPlayer).
 
 :::
 
 ---
 
-| Type | Visible | Splits | Creates Fire | Physical Blast | Audible Sound | Special                                                                                                  | Range      |
+| Тип | Видимий | Розколюється | Створює вогонь | Фізичний вибух | Звуковий звук | Спеціальний | Діапазон
 | ---- | ------- | ------ | ------------ | -------------- | ------------- | -------------------------------------------------------------------------------------------------------- | ---------- |
-| 0    | Yes     | --     | --           | Yes            | Yes           | Normal                                                                                                   | Large      |
-| 1    | Yes     | --     | Yes          | --             | Yes           | Normal                                                                                                   | Normal     |
-| 2    | Yes     | --     | Yes          | Yes            | Yes           | Normal                                                                                                   | Large      |
-| 3    | Yes     | --     | Sometimes?   | Yes            | Yes           | Normal                                                                                                   | Large      |
-| 4    | Yes     | Yes    | --           | Yes            | --            | Unusual explosion, produces just special blast burn FX effects and blasts things away, NO SOUND EFFECTS. | Normal     |
-| 5    | Yes     | Yes    | --           | Yes            | --            | Unusual explosion, produces just special blast burn FX effects and blasts things away, NO SOUND EFFECTS. | Normal     |
-| 6    | Yes     | --     | --           | Yes            | Yes           | Additional reddish explosion after-glow                                                                  | Very Large |
-| 7    | Yes     | --     | --           | Yes            | Yes           | Additional reddish explosion after-glow                                                                  | Huge       |
-| 8    | --      | --     | --           | Yes            | Yes           | Invisible                                                                                                | Normal     |
-| 9    | --      | --     | Yes          | Yes            | Yes           | Creates fires at ground level, otherwise explosion is heard but invisible.                               | Normal     |
-| 10   | Yes     | --     | --           | Yes            | Yes           | Normal                                                                                                   | Large      |
-| 11   | Yes     | --     | --           | Yes            | Yes           | Normal                                                                                                   | Small      |
-| 12   | Yes     | --     | --           | Yes            | Yes           | Really Small                                                                                             | Very Small |
-| 13   | --      | --     | --           | --             | --            | Produces no special effects other than black burn effects on the ground, does no damage either.          | Large      |
+| 0 - Так - Так - Так - Так - Так - Нормальний - Великий - Великий - Великий - Великий - Великий - Великий - Великий - Великий - Великий - Великий - Великий - Великий - Великий - Великий - Великий - Великий -
+| 1 Так, так, так, так, так, нормальний, нормальний, нормальний.
+| 2 Так, так, так, так, так, так, так, так, так, так, так, так, так, так, так, так, так, так, так, так, так, так, так, так
+| 3 Так Так Так Іноді?   | Так. Так. Так. Нормальний. Великий.
+4 | Так | Так | Так | -- | Так | -- | Незвичайний вибух, створює особливі ефекти вибухової хвилі і розносить все навколо, БЕЗ ЗВУКОВИХ ЕФЕКТІВ. | Нормальний.
+| 5 | Так ¦ Так ¦ Так ¦-- | Так ¦-- | Так ¦-- | Незвичайний вибух, створює особливі ефекти вибухового опіку та розносить усе на друзки, БЕЗ ЗВУКОВИХ ЕФЕКТІВ. | Нормальний.
+| 6 Так Так Так Так Так Так Додаткове червонувате світіння після вибуху Дуже велике
+| 7 - Так - Так - Так - Так - Так - Додаткове червонувате світіння після вибуху - Величезне - Величезне -
+| 8 --- --- --- --- --- --- Так --- --- --- --- Невидимий --- --- --- --- --- --- --- --- --- --- --- ---
+| 9 | -- -- -- -- | Так | Так | Так | Так | Створює пожежі на рівні землі, в іншому випадку вибух чути, але невидимий.                               | Нормально.
+| 10 - Так - Так - Так - Так - Так - Так - Нормальний - Великий - Великий - Великий - Великий - Великий - Великий - Великий - Великий - Великий - Великий - Великий - Великий - Великий - Великий - Великий
+| 11 - Так - Так - Так - Так - Так - Нормальний - Малий
+| 12. Так. Дуже маленький. Дуже маленький.
+| 13 -- -- -- -- -- -- -- -- -- -- -- -- Не створює жодних спецефектів, окрім ефекту чорного опіку на землі, також не завдає шкоди.          | Великий
 
 ---
 
-[Here's a visual showcase of all these types](http://weedarr.wikidot.com/explosion)
+[Ось наочна демонстрація всіх цих типів] (http://weedarr.wikidot.com/explosion)
+
+

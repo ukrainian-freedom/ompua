@@ -1,216 +1,216 @@
 ---
-title: Sound IDs
-description: A list of sound IDs used by PlayerPlaySound.
+назва: Sound IDs
+description: Список ідентифікаторів звуків, які використовує PlayerPlaySound.
 ---
 
-Here you can find all of the sound IDs used by [PlayerPlaySound](../functions/PlayerPlaySound) function.
+Тут ви можете знайти усі звукові ідентифікатори, що використовуються функцією [PlayerPlaySound](../functions/PlayerPlaySound).
 
-For [crime report sound IDs](../functions/PlayCrimeReportForPlayer) check [here](crimelist).
+Ідентифікатори звукових повідомлень про злочини](../functions/PlayCrimeReportForPlayer) дивіться [тут](crimelist).
 
-:::note
+:::примітка
 
-You have to use sound ID **0** to stop the sound ID that is currently playing.
-
-:::
-
-:::caution Since **0.3.7-R2**:
-
-- Sound ID **1** can be used to disable the [interior 0 (default)](../functions/SetPlayerInterior) ambience track (wind noise). _Hint: it can help to create more realistically fake interiors._
-- Sound ID **0** can be used additionally to return the game's normal outdoor ambience track.
+Щоб зупинити звуковий ідентифікатор, який зараз відтворюється, ви повинні використовувати звуковий ідентифікатор **0**.
 
 :::
 
-## 0.3.7-R2 sounds (found by Vince and BigETI)
+:::попередження Починаючи з **0.3.7-R2**:
+
+- Ідентифікатор звуку **1** можна використовувати для вимкнення звукової доріжки [interior 0 (за замовчуванням)](../functions/SetPlayerInterior) оточення (шум вітру). Підказка: це може допомогти створити більш реалістичні імітації інтер'єрів.
+- Звуковий ідентифікатор **0** може бути використано додатково для повернення звичайної звукової доріжки зовнішнього оточення гри.
+
+:::
+
+## 0.3.7-R2 звуки (знайдено Вінсом та BigETI)
 
 ```
-2 - 59 police radio
-66 - 134 radio adverts
-135 - 136 Ventilation
-137 Ammu-Nation interior
-138 Area 51 interior
-139 awards ceremony music
-140 Disco (Rock)
-141 Let's Get Ready to Bumble (Bee Bee Gone) music
-142 same as 1185
-143 Marco's Bistro music
-144 Diner music
-145 same as 1097
-146 casino music
-147 Disco (Electro)
-148 Plane interior humming
-149 same as 1183
-150 same as 1068
-151 Fan
-152 Bar (outside?)
-153 same as 1062
-154 Ventilation
-155, 156 plane interior humming
-157 Disco (Hip-Hop)
-158 Ventilation
-159 - 160 Horse race
-161 same as 1187
-162 Disco (Hip-Hop)
-163 Ventilation
-164, 165 aircraft carrier lift
-166 Riot
-167 Rain
-168 Plane interior
-169 Stunt race
-170 Strip club
-171 Disco (Rock): Guns N' Roses - Welcome To The Jungle
-172 Some dark theme
-173 Conveyor belt?
-174 Water
-175 Disco
-176 SA intro music
-177 - 179 Disco
-179 Lowrider challenge
-180 Lowrider challenge
-181 Lowrider challenge
-182 mission passed theme / property bought
-183 Mission passed
-184 Voice line
-185 - 314 Playback FM
+2 - 59 поліцейське радіо
+66 - 134 радіореклама
+135 - 136 Вентиляція
+137 Інтер'єр Ammu-Nation
+138 Інтер'єр Зони 51
+139 музика церемонії нагородження
+140 Дискотека (рок)
+141 музика Let's Get Ready to Bumble (Bee Bee Gone)
+142 те саме, що й 1185
+143 Музика з бістро Марко
+144 Музика з закусочної
+145 те саме, що й 1097
+146 музика казино
+147 Дискотека (електро)
+148 Гудіння в салоні літака
+149 те саме, що 1183
+150 те саме, що 1068
+151 Вентилятор
+152 Бар (зовні?)
+153 те саме, що й у 1062
+154 Вентиляція
+155, 156 Гудіння в салоні літака
+157 Дискотека (хіп-хоп)
+158 Вентиляція
+159 - 160 Кінські перегони
+161 те саме, що й 1187
+162 Дискотека (хіп-хоп)
+163 Вентиляція
+164, 165 Ліфт авіаносця
+166 Бунт
+167 Дощ
+168 Салон літака
+169 Каскадерські перегони
+170 Стриптиз-клуб
+171 Дискотека (рок): Guns N' Roses - Welcome To The Jungle
+172 Якась похмура тема
+173 Конвеєрна стрічка?
+174 Вода
+175 Дискотека
+176 Вступна музика SA
+177 - 179 Дискотека
+179 Виклик лоурайдера
+180 Лоурайдер челендж
+181 Завдання для гонщиків
+182 місія пройдена тема / придбано майно
+183 Місія виконана
+184 Голосова лінія
+185 - 314 Відтворення FM
 315 - 469 K-ROSE
 470 - 625 K-DST (534 Rod Stewart - Young hearts be free tonight)
-626 - 668 Voice samples
-669 girlfriend date failed music (''fuck you I won't do what you tell me'')
-670 girlfriend date success music
-671 - 766 Voice lines (743 - Big Smoke's order)
+626 - 668 Голосові семпли
+669 музика для побачення з дівчиною, що провалилося (''пішов ти, я не буду робити те, що ти мені кажеш'')
+670 музика успіху побачення з дівчиною
+671 - 766 Голосові лінії (743 - замовлення Big Smoke)
 767 - 945 Bounce FM
 946 - 999 SF-UR
 ```
 
 ---
   
-:::note
+:::примітка
 
-These Sound IDs below only work since version 0.3d!
+Наведені нижче ідентифікатори звуків працюють лише з версією 0.3d!
 
 :::
 
-You can find all available Sound IDs in the file located within your GTA San Andreas folder, at `/data/AudioEvents.txt`
+Усі доступні звукові ідентифікатори можна знайти у файлі, розташованому у вашій теці GTA San Andreas, за адресою `/data/AudioEvents.txt`.
 
-#### Special Sound IDs
+#### Спеціальні звукові ідентифікатори
 
-- 1000 - Disable helicopter sounds.
-- 1001 - Enable helicopter sounds. (handy to fix heli sound bug)
+- 1000 - Вимкнути звуки гелікоптера.
+- 1001 - Увімкнути звуки гелікоптера. (корисно для виправлення помилки зі звуком гелікоптера)
 
-## 0.3d Sound IDs (found by WackoX)
+## 0.3d звукові ідентифікатори (знайдено WackoX)
 
-#### Police Radio
-
-```
-2200 - "Black"
-2201 - "Blue"
-2202 - "Brown"
-2203 - "Copper"
-2204 - "Custom"
-2205 - "Customized"
-2206 - "Dark"
-2207 - "Gold"
-2208 - "Green"
-2209 - "Grey"
-2210 - "Light"
-2211 - "Pink"
-2212 - "Red"
-2213 - "Silver"
-2214 - "White"
-
-2400 - "Central"
-2401 - "East"
-2402 - "North"
-2403 - "South"
-2404 - "West"
-
-2600 - "Head to a 10-"
-2601 - "In a"
-2602 - "In water"
-2603 - "On a"
-2604 - "On foot"
-2605 - "Respond to a 10-"
-2606 - "Suspect in water"
-2607 - "Suspect last seen"
-2608 - "We got a 10-"
-
-2800 - "17 in"
-2801 - "21 in"
-2802 - "24 in"
-2803 - "28 in"
-2804 - "34 in"
-2805 - "37 in"
-2806 - "7 in"
-2807 - "71 in"
-2808 - "81 in"
-2809 - "90 in"
-2810 - "91 in"
-2811-2813: a 10/attempt???
-
-3000 - "2 Door"
-3001 - "4 Door"
-3002 - "Ambulance"
-3003 - "Artic Cab"
-3004 - "Beach Buggy"
-3005 - "Bike"
-3006 - "Boat"
-3007 - "Buggy"
-3008 - "Bulldozer"
-3009 - "Bus"
-3010 - "Camper Van"
-3011 - "Coach"
-3012 - "Combine Harvester"
-3013 - "Compact"
-3014 - "Convertible"
-3015 - "Coupe"
-3016 - "Cruiser"
-3017 - "Firetruck"
-3018 - "Forklift"
-3019 - "Freight Train"
-3020 - "Garbage Truck"
-3021 - "Gas Tanker"
-3022 - "Golf Car"
-3023 - "Go Kart"
-3024 - "Hearse"
-3025 - "Helicopter"
-3026 - "Hovercraft"
-3027 - "Icecream Van"
-3028 - "Jeep"
-3029 - "Lawn Mower"
-3030 - "Limo"
-3031 - "Lowrider"
-3032 - "Moped"
-3033 - "Motorbike"
-3034 - "Offroad"
-3035 - "People Carrier"
-3036 - "Pickup"
-3037 - "Plane"
-3038 - "Police Car"
-3039 - "Police Van"
-3040 - "Quad Bike"
-3041 - "Rubber Dinghy"
-3042 - "Sand Buggy"
-3043 - "Sea Plane"
-3044 - "Snowcat"
-3045 - "Speedboat"
-3046 - "Sport"
-3047 - "Sports Car"
-3048 - "Sports Bike"
-3049 - "Station Wagon"
-3050 - "SUV"
-3051 - "Tank"
-3052 - "Taxi"
-3053 - "Tractor"
-3054 - "Train"
-3055 - "Tram"
-3056 - "Truck"
-3057 - "Van"
-```
-
-#### Casino Sounds
+#### Поліцейське радіо
 
 ```
-4200 - Bandit wheel start
-4201 - Falling coints
+2200 - «Чорний»
+2201 - «Синій»
+2202 - «Коричневий»
+2203 - «Мідний»
+2204 - «На замовлення»
+2205 - «Індивідуальний»
+2206 - «Темний»
+2207 - «Золотий»
+2208 - «Зелений»
+2209 - «Сірий»
+2210 - «Світлий»
+2211 - «Рожевий»
+2212 - «Червоний»
+2213 - «Срібний»
+2214 - «Білий»
+
+2400 - «Центральний»
+2401 - «Східний»
+2402 - «Північ»
+2403 - «Південь»
+2404 - «Захід»
+
+2600 - «На десятку».
+2601 - «В»
+2602 - «У воду»
+2603 - «На а»
+2604 - «Пішки»
+2605 - «Відповідайте на 10-»
+2606 - «Підозрюваний у воді»
+2607 - «Підозрюваного бачили востаннє»
+2608 - «У нас є 10-»
+
+2800 - «17 дюймів»
+2801 - «21 дюйм»
+2802 - «24 дюйма»
+2803 - 28 дюймів.
+2804 - 34 дюйма
+2805 - 37 дюймів
+2806 - 7 дюймів
+2807 - 71 дюйм
+2808 - 81 дюйм
+2809 - 90 дюймів
+2810 - «91 дюйм»
+2811-2813: 10/спроба???
+
+3000 - «2 Двері»
+3001 - «4 двері»
+3002 - «Швидка допомога»
+3003 - «Artic Cab»
+3004 - «Пляжний баггі»
+3005 - «Велосипед»
+3006 - «Човен»
+3007 - «Баггі»
+3008 - «Бульдозер»
+3009 - «Автобус»
+3010 - «Фургон на колесах»
+3011 - «Тренер»
+3012 - «Комбайн»
+3013 - «Компакт»
+3014 - «Кабріолет»
+3015 - «Купе»
+3016 - «Крейсер»
+3017 - «Пожежна машина»
+3018 - «Навантажувач»
+3019 - «Вантажний потяг»
+3020 - «Сміттєвоз»
+3021 - «Бензовоз»
+3022 - «Гольф-кар»
+3023 - «Картинг»
+3024 - «Катафалк»
+3025 - «Гелікоптер»
+3026 - «Судно на повітряній подушці»
+3027 - «Фургон з морозивом»
+3028 - «Джип»
+3029 - «Газонокосарка»
+3030 - «Лімузин»
+3031 - «Лоурайдер»
+3032 - «Мопед»
+3033 - «Мотоцикл»
+3034 - «Позашляховик»
+3035 - «Мікроавтобус»
+3036 - «Пікап»
+3037 - «Літак»
+3038 - «Поліцейська машина»
+3039 - «Поліцейський фургон»
+3040 - «Квадроцикл»
+3041 - «Гумовий човен»
+3042 - «Піщаний баггі»
+3043 - «Морський літак»
+3044 - «Снігохід»
+3045 - «Швидкісний катер»
+3046 - «Спорт»
+3047 - «Спортивний автомобіль»
+3048 - «Спортивний велосипед»
+3049 - «Універсал»
+3050 - «ПОЗАШЛЯХОВИК»
+3051 - «Танк»
+3052 - «Таксі»
+3053 - «Трактор»
+3054 - «Поїзд»
+3055 - «Трамвай»
+3056 - «Вантажівка»
+3057 - «Фургон»
+```
+
+#### Звуки казино
+
+```
+4200 - Запуск колеса бандита
+4201 - Падіння монет
 4202 - Blip
 4203 - Blip
 ```
@@ -218,417 +218,419 @@ You can find all available Sound IDs in the file located within your GTA San And
 #### Gym Guy
 
 ```
-4800 - "Yo' you wanna learn some new moves?"
-4801 - "Suit youself homes, but the streets are mean dude."
-4802 - "Man you're an embarrassment, get yourselves some muscles first."
-4803 - "Hey you wanna go around with me?"
-4804 - "Yo' pay attention and you might learn something."
-4805 - "Yo' charge in and batter yo opponent!"
-4806 - "Make sure yo' opponent is down and out!"
-4807 - "Never give your opponent time to recover."
+4800 - «Хочеш навчитися нових рухів?»
+4801 - «Вдома як хочеш, а на вулиці злий чувак».
+4802 - «Чувак, ти соромишся, спочатку накачай собі м'язи».
+4803 - «Ей, хочеш піти зі мною?»
+4804 - «Слухай уважно, може чогось навчишся».
+4805 - «Вийди в атаку і побий свого супротивника!»
+4806 - «Переконайся, що твій суперник упав і вибився з сил!»
+4807 - «Ніколи не давай супернику часу на відновлення».
 ```
 
 #### Game Souds
 
 ```
-5200 - Continuous buzz.
-5201 - Bling
-5202 - Bumblebee video game take damage
-5203 - Bumblebee video game game over
-5204 - Bumblebee video game firing sound
-5205 - Bumblebee video game beep
-5206 - Bumblebee video game death
+5200 - Безперервний гул.
+5201 - Брязкіт
+5202 - Відеогра Bumblebee отримує пошкодження
+5203 - Відеогра «Джміль» завершена
+5204 - Звук пострілу відеоігри Bumblebee
+5205 - Звуковий сигнал відеоігри «Джміль
+5206 - Смерть відеоігри Bumblebee
 ```
 
-#### Casino Woman
+#### Казино «Жінка
 
 ```
-5400 - "Place your bets!"
-5401 - "Place your bets ladies and gentlemen."
-5402 - "An offer of credit has been made sir."
-5403 - "The house is prepared to offer you credit sir."
-5404 - "The house recognises sir's credit rating."
-5405 - "Sir doesn't have sufficient money to back another bet."
-5406 - "Sorry sir you do not have enough funds."
-5407 - "You appear to have insufficient funds to continue betting."
-5408 - "No more bets please!"
-5409 - "No more bets ladies and gentlemen, please."
-5410 - "No more bets people."
-5411-5447: Roulette numbers, eg. "Black, 26!"
-5448 - "You win!"
-5449 - "You win sir well done."
-5450 - "Congratulations sir!"
-5451 - "Sorry sir, regulars only."
-5452 - "The house does not recognize your limit at this table sir."
-5453 - "Thank you sir have a nice day!"
-5454 - "Thank you for playing sir!"
-5455 - "One dollar pays out!"
-5456 - "Two dollars pays out!"
-5457 - "Five dollars pays out!"
-5458 - "Ten dollars pays out."
-5459 - "Twenty dollars pays out."
-5460 - "Forty dollars pays out."
-5461 - "Jackpot!"
-5462 - "Another win for sir!"
-5463 - "Congratulations sir, you're having quite a run."
-5464 - "I hope sir's luck holds!"
+5400 - «Робіть ваші ставки!»
+5401 - «Робіть ваші ставки, пані та панове.»
+5402 - «Було зроблено пропозицію про кредит, сер.»
+5403 - «Заклад готовий запропонувати вам кредит, сер.»
+5404 - «Заклад визнає кредитний рейтинг пана».
+5405 - «У пана недостатньо грошей, щоб зробити наступну ставку».
+5406 - «Вибачте, сер, у вас недостатньо коштів».
+5407 - «Здається, у вас недостатньо коштів для продовження ставок».
+5408 - «Будь ласка, не робіть більше ставок!»
+5409 - «Ставок більше немає, пані та панове, будь ласка».
+5410 - «Ставок більше немає».
+5411-5447 - номери рулетки, наприклад, «Чорне, 26!»
+5448 - «Ви виграли!»
+5449 - «Ви виграли, сер. Молодець.»
+5450 - «Вітаємо, сер!»
+5451 - «Вибачте, сер, тільки для постійних клієнтів».
+5452 - «Заклад не визнає ваш ліміт за цим столом, сер».
+5453 - «Дякую, сер, гарного дня!»
+5454 - «Дякуємо за гру, сер!»
+5455 - «Виплата один долар!»
+5456 - «Виплата два долари!»
+5457 - «П'ять доларів!»
+5458 - «Десять доларів!»
+5459 - «Двадцять доларів!»
+5460 - «Виграно сорок доларів».
+5461 - «Джекпот!»
+5462 - «Ще один виграш для пана!»
+5463 - «Вітаємо, сер, у вас чудова серія.»
+5464 - «Сподіваюся, сер, удача не покине вас!»
 ```
 
-#### Boat School
+#### Школа човнярів
 
 ```
-6200 - Seagulls
-6201 - "Welcome to the boat school."
-6202 - "To pass, you must achieve bronze or higher in all five tests."
-6203 - "To view a demonstration of each test, please use the TV over there."
-6204 - "Passing the test, will unlock the next test."
-6205 - "You can come back and check you scores or take new tests, at any time."
+6200 - Чайки
+6201 - «Ласкаво просимо до човнової школи.»
+6202 - «Щоб пройти навчання, ви повинні отримати бронзу або вище у всіх п'яти тестах».
+6203 - «Щоб переглянути демонстрацію кожного тесту, будь ласка, скористайтеся телевізором он там.»
+6204 - «Пройшовши тест, ви розблокуєте наступний тест».
+6205 - «Ви можете повернутися і перевірити свої результати або пройти нові тести в будь-який час».
 ```
 
 #### Random/Extra
 
 ```
-3200 - Air horn
-3201 - Air horn (longer than previous one)
-3400 - Air conditioning
-3401 - Continuous ringing bell
-3600 - Calling tone
-3800 - Videotape (continuous)
-4400 - Barber trimming hair (electric razor).
-6000 - Blast door sliding
-6001 - Repeating siren (repeats every 2 seconds).
-6002 - Heavy door
-6003 - Electricity (could be used for tazer)
-6400 - Blip ('door buzzer' in game files)
-6401 - Lift bell rings
-39000 - "What would your mother think?"
-39002 - "Filth like you always have to pay for sex!"
+3200 - Повітряний гудок
+3201 - Сирена (довша за попередню)
+3400 - Кондиціонер
+3401 - Безперервний дзвінок
+3600 - Сигнал виклику
+3800 - Відеокасета (безперервна)
+4400 - Підстригання волосся перукарем (електробритва)
+6000 - Розсувні протиударні двері
+6001 - Повторювана сирена (повторюється кожні 2 секунди).
+6002 - Важкі двері
+6003 - Електрика (може використовуватися для електрошокера)
+6400 - Блимання («дверний дзвінок» у файлах гри)
+6401 - Дзвінок ліфта
+39000 - «Що б подумала твоя мати?»
+39002 - «Бруд, як ти, завжди повинен платити за секс!»
 ```
 
-#### 0.3d Sound IDs
+#### 0.3d Ідентифікатори звуку
 
 ```
-"ALDEA MALVADA" - 2000
-"ANGEL PINE" - 2001
-"ARCO DEL OESTE" - 2002
-"AVISPA COUNTRY CLUB" - 2003
-"BACK O BEYOND" - 2004
-"BATTERY POINT" - 2005
-"BAYSIDE" - 2006
-"BAYSIDE MARINA" - 2007
-"BAYSIDE TUNNEL" - 2008
-"BEACON HILL" - 2009
-"BLACKFIELD" - 2010
-"BLACKFIELD CHAPEL" - 2011
-"BLACKFIELD INTERSECTION" - 2012
-"BLUEBERRY ACRES" - 2013
-"BLUEBERRY" - 2014
-"BONE COUNTY" - 2015
-"CALIGULAS PALACE" - 2016
-"CALTON HEIGHTS" - 2017
-"CHINATOWN" - 2018
-"CITY HALL" - 2019
-"COME A LOT" - 2020
-"COMMERCE" - 2021
-"CONFERENCE CENTRE" - 2022
-"CRANBERRY STATION" - 2023
-"DILLIMORE" - 2024
-"DOHERTY" - 2025
-"DOWNTOWN" - 2026
-"DOWNTOWN LOS SANTOS" - 2027
-"EAST LOS SANTOS" - 2028
-"EAST BEACH" - 2029
-"EASTER BASIN" - 2030
-"EASTER BAY AIRPORT" - 2031
-"EASTER BAY BLUFFS CHEMICAL PLANT" - 2032
-"EASTER TUNNEL" - 2033
-"EL CASTILLO DEL DIABLO" - 2034
-"EL CORONA" - 2035
-"EL QUEBRADOS" - 2036
-"ESPLANADE EAST" - 2037
-"ESPLANADE NORTH" - 2038
-"FALLEN TREE" - 2039
-"FALLOW BRIDGE" - 2040
-"FERN RIDGE" - 2041
-"FINANCIAL" - 2042
-"FISHERS LAGOON" - 2043
-"FLINT COUNTY" - 2044
-"FLINT INTERSECTION" - 2045
-"FLINT RANGE" - 2046
-"FLINT WATER" - 2047
-"FORT CARSON" - 2048
-"FOSTER VALLEY" - 2049
-"FREDERICK BRIDGE" - 2050
-"GANTON" - 2051
-"GANT BRIDGE" - 2052
-"GARCIA" - 2053
-"GARVER BRIDGE" - 2054
-"GLEN PARK" - 2055
-"GREENGLASS COLLEGE" - 2056
-"GREEN PALMS" - 2057
-"HAMPTON BARNS" - 2058
-"HANKYPANKY POINT" - 2059
-"HARRY GOLD PARKWAY" - 2060
-"HASHBERRY" - 2061
-"HILLTOP FARM" - 2062
-"HUNTER QUARRY" - 2063
-"IDLEWOOD" - 2064
-"JULIUS THRUWAY EAST" - 2065
-"JULIUS THRUWAY NORTH" - 2066
-"JULIUS THRUWAY SOUTH" - 2067
-"JULIUS THRUWAY WEST" - 2068
-"JUNIPER HILL" - 2069
-"JUNIPER HOLLOW" - 2070
-"KACC MILITARY FUELS" - 2071
-"KINCAID BRIDGE" - 2072
-"KINGS" - 2073
-"LAS BARRANCAS" - 2074
-"LAS BRUJAS" - 2075
-"LAS PAYASADAS" - 2076
-"LAST DIME MOTEL" - 2077
-"LAS VENTURAS" - 2078
-"LEAFY HOLLOW" - 2079
-"LIL PROBE INN" - 2080
-"LINDEN SIDE" - 2081
-"LINDEN STATION" - 2082
-"LITTLE MEXICO" - 2083
-"LAS COLINAS" - 2084
-"LOS FLORES" - 2085
-"LOS SANTOS" - 2086
-"LOS SANTOS INLET" - 2087
-"LOS SANTOS INTERNATIONAL" - 2088
-"LOS SEPULCROS" - 2089
-"LAS VENTURAS AIRPORT" - 2090
-"LVA FREIGHT DEPOT" - 2091
-"MARINA" - 2092
-"MARKET" - 2093
-"MARKET STATION" - 2094
-"MARTIN BRIDGE" - 2095
-"MISSIONARY HILL" - 2096
-"MONTGOMERY" - 2097
-"MONTGOMERY INTERSECTION" - 2098
-"MOUNT CHILLIAD" - 2099
-"MULHOLLAND" - 2100
-"MULHOLLAND INTERSECTION" - 2101
-"NORTHSTAR ROCK" - 2102
-"OCEAN DOCKS" - 2103
-"OCEAN FLATS" - 2104
-"OCTANE SPRINGS" - 2105
-"OLD VENTURAS STRIP" - 2106
-"OPEN OCEAN" - 2107
-"PALLISADES" - 2108
-"PALOMINO CREEK" - 2109
-"PARADISO" - 2110
-"PILGRAMS CREEK" - 2111
-"PILSON INTERSECTIION" - 2112
-"PLAYA DEL SEVILLE" - 2113
-"PRICKLE PINE" - 2114
-"QUEENS" - 2115
-"RANDOLPH INDUSTRIAL ESTATE" - 2116
-"RED COUNTY" - 2117
-"REDSANDS EAST" - 2118
-"REDSANDS WEST" - 2119
-"REGULAR TOM" - 2120
-"RICHMAN" - 2121
-"ROCA ESCALANTE" - 2122
-"ROCKSHORE EAST" - 2123
-"ROCKSHORE WEST" - 2124
-"RODEO" - 2125
-"ROYALE CASINO" - 2126
-"SAN ANDREAS SOUND" - 2127
-"SAN FIERRO" - 2128
-"SAN FIERRO BAY" - 2129
-"SANTA FLORA" - 2130
-"SANTA MARIA BEACH" - 2131
-"SHADY CREEKS" - 2132
-"SHERMAN RESERVOIR" - 2133
-"SOBELL RAILYARDS" - 2134
-"SPINYBED" - 2135
-"STARFISH CASINO" - 2136
-"SUNNYSIDE" - 2137
-"TEMPLE" - 2138
-"THE BIG EAR RADIOTELESCOPE" - 2139
-"THE CAMELS TOE" - 2140
-"THE CLOWNS POCKET" - 2141
-"THE EMERALD ISLE" - 2142
-"THE FARM" - 2143
-"THE FOUR DRAGONS CASINO" - 2144
-"THE HIGH ROLLER" - 2145
-"THE MAKO SPAN" - 2146
-"THE PANOPTICON" - 2147
-"THE PINK SWAN" - 2148
-"THE PIRATES IN MENS PANTS" - 2149
-"THE SHERMAN DAM" - 2150
-"THE VISAGE" - 2151
-"TIERRA ROBADA" - 2152
-"UNITY STATION" - 2153
-"VALLE OCULTADO" - 2154
-"VERDANT BLUFFS" - 2155
-"VERDANT MEADOWS" - 2156
-"VERONA BEACH" - 2157
-"VINEWOOD" - 2158
-"WHETSTONE" - 2159
-"WHITEWOOD ESTATES" - 2160
-"WILLOWFIELD" - 2161
-"YELLOWBELL GOLF COURSE" - 2162
-"YELLOWBELL STATION" - 2163
+«АЛЬДЕА МАЛЬВАДА» - 2000
+«СОСНА АНГЕЛА» - 2001
+«ARCO DEL OESTE» - 2002
+«AVISPA COUNTRY CLUB» - 2003
+«BACK O BEYOND» - 2004
+«BATTERY POINT» - 2005
+«BAYSIDE» - 2006
+«BAYSIDE MARINA» - 2007
+«ТУНЕЛЬ БЕЙСАЙД» - 2008
+«BEACON HILL» - 2009
+«БЛЕКФІЛД» - 2010
+«КАПЛИЦЯ БЛЕКФІЛД» - 2011
+«ПЕРЕХРЕСТЯ БЛЕКФІЛД» - 2012
+«ЧОРНИЧНІ АКРИ» - 2013
+«ЧОРНИЦЯ» - 2014
+«ОКРУГ КІСТОК» - 2015
+«ПАЛАЦ КАЛІГУЛАС» - 2016
+«КАЛТОН ХАЙТС» - 2017
+«ЧАЙНАТАУН» - 2018
+«РАТУША» - 2019
+«ПРИЇЖДЖАЮТЬ БАГАТО» - 2020
+«КОМЕРЦІЯ» - 2021
+«КОНФЕРЕНЦ-ЦЕНТР» - 2022
+«CRANBERRY STATION» - 2023
+«DILLIMORE» - 2024
+«DOHERTY» - 2025
+«ДАУНТАУН» - 2026
+«ДАУНТАУН ЛОС-САНТОС» - 2027
+«СХІДНИЙ ЛОС-САНТОС» - 2028
+«СХІДНИЙ ПЛЯЖ» - 2029
+«ІСТЕР-БЕЙ» - 2030
+«АЕРОПОРТ ІСТЕР-БЕЙ» - 2031
+«ХІМІЧНИЙ ЗАВОД ІСТЕР-БЕЙ-БЛАФФС» - 2032
+«ТУНЕЛЬ ПАСХИ» - 2033
+«ЗАМОК ДИЯВОЛА» - 2034
+«ЕЛЬ КОРОНА» - 2035
+«ЕЛЬ КЕБРАДОС» - 2036
+«СХІДНА ЕСПЛАНАДА» - 2037
+«ПІВНІЧНА ЕСПЛАНАДА» - 2038
+«ПОВАЛЕНЕ ДЕРЕВО» - 2039
+«МІСТ, ЩО ВПАВ» - 2040
+«ПАПОРОТЕВА ГРЯДА» - 2041
+«ФІНАНСОВА» - 2042
+«ФІШЕРС-ЛАГУН» - 2043
+«ОКРУГ ФЛІНТ» - 2044
+«ПЕРЕХРЕСТЯ ФЛІНТ» - 2045
+«КРЕМІННИЙ ХРЕБЕТ» - 2046
+«ФЛІНТ-УОТЕР» - 2047
+«ФОРТ КАРСОН» - 2048
+«ФОСТЕР-ВЕЛЛІ» - 2049
+«МІСТ ФРЕДЕРІКА» - 2050
+«ГАНТОН» - 2051
+«МІСТ ГАНТ» - 2052
+«ГАРСІЯ» - 2053
+«ГАРВЕР-БРІДЖ» - 2054
+«ГЛЕН ПАРК» - 2055
+«ГРІНГЛАСС КОЛЕДЖ» - 2056
+«ГРІН ПАЛМС» - 2057
+«ГЕМПТОН БАРНС» - 2058
+«ХЕНКІПАНКИ ПОЙНТ» - 2059
+«ГАРРІ ГОЛД ПАРКВЕЙ» - 2060
+«ХЕШБЕРРІ» - 2061
+«ФЕРМА НА ПАГОРБІ» - 2062
+«МИСЛИВСЬКИЙ КАР'ЄР» - 2063
+«ІДЛВУД» - 2064
+«ДЖУЛІУС ТРУВЕЙ ІСТ» - 2065
+«ДЖУЛІУС ТРУВЕЙ ПІВНІЧ» - 2066
+«ДЖУЛІУС ТРУВЕЙ ПІВДЕНЬ» - 2067
+«ДЖУЛІУС ТРУВЕЙ ВЕСТ» - 2068
+«ЯЛІВЦЕВИЙ ПАГОРБ» - 2069
+«ДЖУНІПЕР ХОЛЛОУ» - 2070
+«KACC MILITARY FUELS» - 2071
+«МІСТ КІНКЕЙД» - 2072
+«КІНГС» - 2073
+«ЛАС БАРРАНКАС» - 2074
+«ЛАС БРУХАС» - 2075
+«LAS PAYASADAS» - 2076
+«МОТЕЛЬ ОСТАННЬОЇ КОПІЙКИ» - 2077
+«ЛАС ВЕНТУРАС» - 2078
+«ЛИСТЯНА УЛОГОВИНА» - 2079
+«LIL PROBE INN» - 2080
+«ЛИПОВА СТОРОНА» - 2081
+«СТАНЦІЯ ЛИПА» - 2082
+«МАЛЕНЬКА МЕКСИКА» - 2083
+«ЛАС КОЛІНАС» - 2084
+«ЛОС ФЛОРЕС» - 2085
+«ЛОС САНТОС» - 2086
+«ЛОС-САНТОС ІНЛЕТ» - 2087
+«ЛОС-САНТОС ІНТЕРНЕШНЛ» - 2088
+«ЛОС-СЕПУЛЬКРОС» - 2089
+«АЕРОПОРТ ЛАС ВЕНТУРАС» - 2090
+«ВАНТАЖНЕ ДЕПО ІВА» - 2091
+«МАРИНА» - 2092
+«РИНОК» - 2093
+«РИНКОВИЙ ВОКЗАЛ» - 2094
+«МІСТ МАРТІНА» - 2095
+«МІСІОНЕРСЬКА ГІРКА» - 2096
+«МОНТГОМЕРІ» - 2097
+«ПЕРЕХРЕСТЯ МОНТГОМЕРІ» - 2098
+«МАУНТ ЧІЛІАД» - 2099
+«МАЛХОЛЛАНД» - 2100
+«ПЕРЕХРЕСТЯ МАЛХОЛЛАНД» - 2101
+«НОРТСТАР РОК» - 2102
+«ОКЕАНСЬКІ ДОКИ» - 2103
+«ОКЕАНСЬКІ КВАРТИРИ» - 2104
+«ОКТАН-СПРІНГС» - 2105
+«ОЛД ВЕНТУРАС СТРІП» - 2106
+«ВІДКРИТИЙ ОКЕАН» - 2107
+«ПАЛЛІСАД» - 2108
+«ПАЛОМІНО КРІК» - 2109
+«ПАРАДІЗО» - 2110
+«ПІЛГРАМ-КРІК» - 2111
+«ПЕРЕХРЕСТЯ ПІЛСОН» - 2112
+«ПЛАЙЯ-ДЕЛЬ-СЕВІЛЬЯ» - 2113
+«КОЛЮЧА СОСНА» - 2114
+«КВІНЗ» - 2115
+«РАНДОЛЬФ ІНДАСТРІАЛ ЕСТЕЙТ» - 2116
+«РЕД КАУНТІ» - 2117
+«ЧЕРВОНІ ПІСКИ СХІД» - 2118
+«РЕДСЕНДС ВЕСТ» - 2119
+«ЗВИЧАЙНИЙ ТОМ» - 2120
+«РІЧМЕН» - 2121
+«РОКА ЕСКАЛАНТЕ» - 2122
+«РОКШОР ІСТ» - 2123
+«РОКШОР ВЕСТ» - 2124
+«РОДЕО» - 2125
+«РОЯЛ КАЗИНО» - 2126
+«САН АНДРЕАС САУНД» - 2127
+«САН-ФІЄРО» - 2128
+«САН-ФІЄРО-БЕЙ» - 2129
+«САНТА-ФЛОРА» - 2130
+«САНТА-МАРІЯ-БІЧ» - 2131
+«ТІНИСТІ СТРУМКИ» - 2132
+«ВОДОСХОВИЩЕ ШЕРМАНА» - 2133
+«ЗАЛІЗНИЧНІ КОЛІЇ СОБЕЛЛ» - 2134
+«СПАЙНІБЕД» - 2135
+«КАЗИНО «МОРСЬКА ЗІРКА» - 2136
+«САННІСАЙД» - 2137
+«ХРАМ» - 2138
+«РАДІОТЕЛЕСКОП З ВЕЛИКИМ ВУХОМ» - 2139
+«ВЕРБЛЮЖИЙ ПАЛЕЦЬ» - 2140
+«КИШЕНЯ КЛОУНІВ» - 2141
+«СМАРАГДОВИЙ ОСТРІВ» - 2142
+«ФЕРМА» - 2143
+«КАЗИНО ЧОТИРЬОХ ДРАКОНІВ» - 2144
+«ХАЙРОЛЕР» - 2145
+«МАКО СПАН» - 2146
+«ПАНОПТИКУМ» - 2147
+«РОЖЕВИЙ ЛЕБІДЬ» - 2148
+«ПІРАТИ В ЧОЛОВІЧИХ ШТАНЯХ» - 2149
+«ДАМБА ШЕРМАНА» - 2150
+«ВІЗАЖ» - 2151
+«ТЬЄРРА РОБАДА» - 2152
+«СТАНЦІЯ ЄДНІСТЬ» - 2153
+«ОКУЛЬТНА ДОЛИНА» - 2154
+«ЗЕЛЕНІ КРУЧІ» - 2155
+«ЗЕЛЕНІ ЛУКИ» - 2156
+«ВЕРОНСЬКИЙ ПЛЯЖ» - 2157
+«ВИНОГРАДНЕ ДЕРЕВО» - 2158
+«ТОЧИЛЬНИЙ КАМІНЬ» - 2159
+«БІЛОВЕЗЬКІ САДИБИ» - 2160
+«ВІЛЛОУФІЛД» - 2161
+«ПОЛЕ ДЛЯ ГОЛЬФУ В ЙЕЛЛОУБЕЛЛ» - 2162
+«СТАНЦІЯ ЙЕЛЛОУБЕЛЛ» - 2163
 ```
 
 ---
   
-:::note
+:::примітка
 
-These Sound IDs work in every version!
+Ці звукові ідентифікатори працюють у всіх версіях!
 
 :::
 
-| Name                               | ID           |
+| Ім'я та ідентифікатор
 | ---------------------------------- | ------------ |
-| SOUND_CEILING_VENT_LAND            | 1002         |
-| SOUND_BONNET_DENT                  | 1009         |
-| SOUND_WHEEL_OF_FORTUNE_CLACKER     | 1027         |
-| SOUND_SHUTTER_DOOR_START           | 1035         |
-| SOUND_SHUTTER_DOOR_STOP            | 1036         |
-| SOUND_PARACHUTE_OPEN               | 1039         |
-| SOUND_AMMUNATION_BUY_WEAPON        | 1052         |
-| SOUND_AMMUNATION_BUY_WEAPON_DENIED | 1053         |
-| SOUND_SHOP_BUY                     | 1054         |
-| SOUND_SHOP_BUY_DENIED              | 1055         |
-| SOUND_RACE_321                     | 1056         |
-| SOUND_RACE_GO                      | 1057         |
-| SOUND_PART_MISSION_COMPLETE        | 1058         |
-| SOUND_GOGO_TRACK_START             | 1062 (music) |
-| SOUND_GOGO_TRACK_STOP              | 1063 (music) |
-| SOUND_DUAL_TRACK_START             | 1068 (music) |
-| SOUND_DUAL_TRACK_STOP              | 1069 (music) |
-| SOUND_BEE_TRACK_START              | 1076 (music) |
-| SOUND_BEE_TRACK_STOP               | 1077 (music) |
-| SOUND_ROULETTE_ADD_CASH            | 1083         |
-| SOUND_ROULETTE_REMOVE_CASH         | 1084         |
-| SOUND_ROULETTE_NO_CASH             | 1085         |
-| SOUND_BIKE_PACKER_CLUNK            | 1095         |
-| SOUND_AWARD_TRACK_START            | 1097 (music) |
-| SOUND_AWARD_TRACK_STOP             | 1098 (music) |
-| SOUND_MESH_GATE_OPEN_START         | 1100         |
-| SOUND_MESH_GATE_OPEN_STOP          | 1101         |
-| SOUND_PUNCH_PED                    | 1130         |
-| SOUND_AMMUNATION_GUN_COLLISION     | 1131         |
-| SOUND_CAMERA_SHOT                  | 1132         |
-| SOUND_BUY_CAR_MOD                  | 1133         |
-| SOUND_BUY_CAR_RESPRAY              | 1134         |
-| SOUND_BASEBALL_BAT_HIT_PED         | 1135         |
-| SOUND_STAMP_PED                    | 1136         |
-| SOUND_CHECKPOINT_AMBER             | 1137         |
-| SOUND_CHECKPOINT_GREEN             | 1138         |
-| SOUND_CHECKPOINT_RED               | 1139         |
-| SOUND_CAR_SMASH_CAR                | 1140         |
-| SOUND_CAR_SMASH_GATE               | 1141         |
-| SOUND_OTB_TRACK_START              | 1142         |
-| SOUND_OTB_TRACK_STOP               | 1143         |
-| SOUND_PED_HIT_WATER_SPLASH         | 1144         |
-| SOUND_RESTAURANT_TRAY_COLLISION    | 1145         |
-| SOUND_SWEETS_HORN                  | 1147         |
-| SOUND_MAGNET_VEHICLE_COLLISION     | 1148         |
-| SOUND_PROPERTY_PURCHASED           | 1149         |
-| SOUND_PICKUP_STANDARD              | 1150         |
-| SOUND_GARAGE_DOOR_START            | 1153         |
-| SOUND_GARAGE_DOOR_STOP             | 1154         |
-| SOUND_PED_COLLAPSE                 | 1163         |
-| SOUND_SHUTTER_DOOR_SLOW_START      | 1165         |
-| SOUND_SHUTTER_DOOR_SLOW_STOP       | 1166         |
-| SOUND_RESTAURANT_CJ_PUKE           | 1169         |
-| SOUND_DRIVING_AWARD_TRACK_START    | 1183 (music) |
-| SOUND_DRIVING_AWARD_TRACK_STOP     | 1184         |
-| SOUND_BIKE_AWARD_TRACK_START       | 1185 (music) |
-| SOUND_BIKE_AWARD_TRACK_STOP        | 1186         |
-| SOUND_PILOT_AWARD_TRACK_START      | 1187 (music) |
-| SOUND_PILOT_AWARD_TRACK_STOP       | 1188         |
-| SOUND_SLAP                         | 1190         |
+| SOUND_CEILING_VENT_LAND | 1002
+| ЗВУК_ВМ'ЯТИНА_КАПОТА | 1009
+| ЗВУК_КОЛЕСО_ФОРТУНИ_КЛАЦАННЯ | 1027 |
+| ЗВУК_ВІДЧИНЯЮТЬСЯ ДВЕРІ 1035
+| ЗВУК_ЗАКРИВАННЯ_ДВЕРЕЙ_ЗУПИНКА | 1036 |
+| ЗВУК_ПАРАШУТ_ВІДКРИВАЄТЬСЯ 1039
+| ЗВУК_АМУНІЦІЯ_КУПИТИ_ЗБРОЮ 1052
+| ЗВУК_АМУНІЦІЯ_КУПИТИ_ЗБРОЮ_ВІДМОВЛЕНО 1053
+| ЗВУК_МАГАЗИН_КУПИТИ_ЗБРОЮ 1054
+| ЗВУК_МАГАЗИН_КУПИТИ_ВІДМОВЛЕНО 1055
+| SOUND_RACE_321 | 1056 |
+| SOUND_RACE_GO | 1057 |
+| ЗВУКОВА_ЧАСТИНА_МІСІЇ_ВИКОНАНА | 1058
+| SOUND_GOGO_TRACK_START 1062 (музика)
+| SOUND_GOGO_TRACK_STOP | 1063 (music)
+| SOUND_DUAL_TRACK_START 1068 (music)
+| SOUND_DUAL_TRACK_STOP 1069 (музика)
+| SOUND_BEE_TRACK_START 1076 (музика)
+| SOUND_BEE_TRACK_STOP 1077 (music)
+| ЗВУК_РУЛЕТКИ_ДОДАТИ_ГРОШІ 1083
+| ЗВУК_РУЛЕТКА_ЗНЯТИ_ГРОШІ 1084
+| ЗВУК_РУЛЕТКА_БЕЗ_ГРОШЕЙ 1085
+| ЗВУК_ПАКУВАЛЬНИК_ПАКУЄ_ВЕЛОСИПЕД_СТУК 1095
+| ЗВУК_НАГОРОДИ_ТРЕК_СТАРТ | 1097 (музика)
+| SOUND_AWARD_TRACK_STOP | 1098 (music) |
+| ЗВУКОВІ_СІТКИ_БРАМА_ВІДКРИТА_СТАРТ 1100 (МУЗИКА)
+| ЗВУК_СІТКА_БРАМА_ВІДКРИТА_ЗУПИНКА | 1101 |
+| ЗВУК_УДАР_ПЕДА | 1130 |
+| ЗВУК_ЗІТКНЕННЯ БОЄПРИПАСІВ ЗІ ЗБРОЄЮ | 1131 |
+| ЗВУК_ПОСТРІЛ_КАМЕРИ | 1132 |
+| ЗВУК_КУПІВЛЯ_АВТОМОБІЛЯ_МОД 1133
+| ЗВУК_КУПІВЛЯ_АВТОМОБІЛЯ_ПЕРЕФАРБОВУВАННЯ | 1134 |
+| ЗВУК_БЕЙСБОЛЬНА_БИТА_Б'Є_ПЕДА | 1135
+| ЗВУК_ШТАМП_ПЕД 1136
+| ЗВУК_CHECKPOINT_AMBER | 1137 |
+SOUND_CHECKPOINT_GREEN | 1138 | | SOUND_CHECKPOINT_RED | 1139
+ЗВУК_CHECKPOINT_RED | 1139 | |ЗВУК_CAR_SMASH_RED | 1140
+| ЗВУК_CAR_SMASH_CAR 1140
+| ЗВУК_CAR_SMASH_GATE | 1141
+| SOUND_OTB_TRACK_START | 1142 |
+| SOUND_OTB_TRACK_STOP | 1143 |
+| ЗВУК_PED_HIT_WATER_SPLASH | 1144 |
+| ЗВУК_РЕСТОРАННИЙ_ПІДНОС_ЗІТКНЕННЯ | 1145
+| ЗВУК_СОЛОДОЩІВ_СИРЕНА | 1147
+| ЗВУК_ЗІТКНЕННЯ_МАГНІТНИХ_АВТОМОБІЛІВ | 1148
+| ЗВУК_ПРИДБАННЯ_ВЛАСНОСТІ | 1149
+| ЗВУК_ПІКАПА_СТАНДАРТ | 1150
+| ЗВУК_ВІДКРИТТЯ_ДВЕРЕЙ_ГАРАЖА | 1153
+| ЗВУК_ЗАКРИТТЯ_ДВЕРЕЙ_ГАРАЖА | 1154
+| ЗВУК_ЗАКРИТТЯ_ПЕДАЛЕЙ | 1163
+| ЗВУК_ЗАКРИВАЮТЬСЯ_ДВЕРІ_ПОВІЛЬНИЙ_СТАРТ 1165
+| ЗВУК_ЗАКРИВАЮТЬСЯ_ДВЕРІ_ПОВІЛЬНО_ЗАКРИВАЮТЬСЯ | 1166
+| ЗВУК_РЕСТОРАН_CJ_БЛЮВОТА | 1169
+| звук_нагородження_водія_трек_старт | 1183 (музика)
+| ЗВУК_НАГОРОДЖЕННЯ_АВТОМОБІЛІВ_ТРЕК_ЗУПИНКА | 1184 (МУЗИКА)
+Звук_BIKE_AWARD_TRACK_START | 1185 (музика) | | Звук_BIKE_AWARD_TRACK_START
+| ЗВУК_НАГОРОДИ_БАЙК_ТРЕК_СТОП | 1186
+| ЗВУК_ПІЛОТА_НАГОРОДИ_ТРЕКУ_СТАРТ | 1187 (музика)
+| ЗВУК_ПІЛОТА_НАГОРОДИ_ТРЕК_ЗУПИНКА | 1188
+| ЗВУК ЛЯПАСА | 1190 |
 
 ---
 
-## Old list from jbeta
+## Старий список від jbeta
 
 ```
-1002 weak hit
-1009 crash
-1020 constant machinery noise
-1021 machinery
-1022 motor, stopping
-1027 weaker hit
-1035 garage door opening
-1039 Parachute opening noise (by Maxx)
-1052 blip A
-1053 blip B
-1054 blip A (same as 1052)
-1055 blip B (same as 1053)
-1056 race: green light sound
-1057 race: red light sound (start sound)
-1058 selection sound
-1062 \*Videogame music: Go Go Space Monkey\*
-1068 \*Videogame music: Duality\*
-1076 \*Videogame music: Let´s Get Ready to Bumble\*
-1083 map: place a marker
-1084 map: remove a marker
-1085 blip C
-1095 loud hit
-1097 \*background music\*
-1100 metallic fence rattle A
-1101 metallic fence rattle B
-1130 punch A
-1131 hit wooden object?
-1132 camera click
-1133 Add Vehicle component sound (transfender)
-1134 spray can
-1135 hit
-1136 punch B
-1137 high-pitch blip A
-1138 high-pitch blip A
-1139 high-pitch blip A
-1140 crash A
-1141 crash B
-1142 stadium background noise
-1144 splash
-1145 throw a satchel??
-1147 car horn
-1148 crash C
-1149 blip (same as 1052?)
-1150 selection sound
-1153 garage door opening (same as 1035)
-1159 explosion
-1163 two-feet stomp (after jumping)
-1165 bigger garage (hangar?) doors
-1183 \*Driving school results music\*
-1185 \*Bike and boat school results Music\*
-1187 \*Flight school results music\*
-1190 slap
+1002 слабке зіткнення
+1009 аварія
+1020 постійний шум машин
+1021 машини
+1022 мотор, зупинка
+1027 слабкий удар
+1035 відчинення дверей гаража
+1039 звук розкриття парашута (від Maxx)
+1052 спалах А
+1053 спалах B
+1054 спалах A (те саме, що й 1052)
+1055 миготіння B (те саме, що й 1053)
+1056 забіг: звук зеленого світла
+1057 заїзд: звук червоного світла (звук старту)
+1058 звук вибору
+1062 \*Музика відеоігор: Go Go Space Monkey\*
+1068 \*Музика гри: Duality\*
+1076 \*Музика до відеоігор: Let's Get Ready to Bumble\*
+1083 мапа: встановити маркер
+1084 мапа: видалити маркер
+1085 блип C
+1095 гучний удар
+1097 \*фонова музика\*
+1100 брязкальце металевої огорожі A
+1101 брязкальце металевої огорожі B
+1130 удар A
+1131 удар по дерев'яному предмету?
+1132 клацання камери
+1133 Додати звук компонента транспортного засобу (крило)
+1134 балончик з фарбою
+1135 удар
+1136 удар B
+1137 високочастотний удар A
+1138 високочастотний удар А
+1139 пронизливий удар А
+1140 крах А
+1141 удар B
+1142 фоновий шум стадіону
+1144 сплеск
+1145 кидання ранця
+1147 автомобільний гудок
+1148 аварія C
+1149 спалах (те саме, що й 1052?)
+1150 звук вибору
+1153 відчинення дверей гаража (те саме, що й 1035)
+1159 вибух
+1163 тупіт двох ніг (після стрибка)
+1165 більші двері гаража (ангара?)
+1183 \*Музика результатів навчання в автошколі
+1185 \*Результати вело- та човнової школи - музика\*
+1187 \*музика результатів льотної школи\*
+1190 ляпас
 ```
 
 ```
-39047 " where's my cellphone!! "
-39051 " that's right put your hands there "
-39052 " Holy fuck I've got my phone "
-39074 " I'm listening ... "
-39076 " Aha , real interesting "
-50002 " Just Try Punk ! Just Try It ! "
-50004 " You're My World Now ! "
-50050 " Tell My Wife I Love Her "
-50051 " I'm going in "
-50052 " What The Hell ! "
-50053 " Uh , My Coffee "
-50094 " Wait Wait , think about what you're doing "
-100001 " Come On , time is money "
-100005 " Not This Car ! "
-100006 " My boss is gonna kill me "
-100007 " There goes another tip "
-100008 " OH NO MAN ! "
-100009 " Today couldn't get any worse "
-100010 " This is not good "
-100011 " You Idiot "
-100012 " Look Out! "
-100013 " What Are You Doing?! "
-100014 " Heeeeey "
-100015 " Oh Fuck "
-100016 " What The Fuck "
-100017 " Hey Man ! "
+39047 «де мій мобільний!!! »
+39051 «Ось так, поклади руки сюди.»
+39052 «Трясця, я знайшов свій телефон!»
+39074 «Я слухаю... »
+39076 «Ага, дуже цікаво»
+50002 «Спробуй панк! Спробуй! »
+50004 «Тепер ти мій світ! »
+50050 «Скажи моїй дружині, що я кохаю її»
+50051 «Я входжу»
+50052 «Якого біса! »
+50053 «Моя кава»
+50094 «Зачекай, зачекай, подумай, що ти робиш»
+100001 «Давай, час - гроші»
+100005 «Не ця машина! »
+100006 «Мій бос мене вб'є»
+100007 «Ще одні чайові»
+100008 «О, НІ! »
+100009 «Гірше вже не буде»
+100010 «Це недобре»
+100011 «Ідіот!»
+100012 «Обережно! »
+100013 «Що ти робиш?! »
+100014 «Хі-хі»
+100015 «О, бляха»
+100016 «Якого хріна?»
+100017 «Гей, чувак! »
 ```
+
+

@@ -1,248 +1,248 @@
-# Data and declarations
+# Дані та декларації
 
 ---
 
-PAWN is a typeless language. All data elements are of type “cell”, and a cell
-can hold an integral number. The size of a cell (in bytes) is system dependent
-—usually, a cell is 32-bits.
+PAWN - це безтипова мова. Усі елементи даних мають тип "комірка", а комірка
+може містити ціле число. Розмір комірки (у байтах) залежить від системи
+-зазвичай комірка має розмір 32 біти.
 
-The keyword new declares a new variable. For special declarations, the keyword
-new is replaced by static, public or stock (see below). A simple variable
-declaration creates a variable that occupies one “cell” of data memory. Unless
-it is explicitly initialized, the value of the new variable is zero.
+Ключове слово new оголошує нову змінну. Для спеціальних оголошень ключове слово
+new замінюється на static, public або stock (див. нижче). Просте оголошення змінної
+створює змінну, яка займає одну "комірку" пам'яті даних. Якщо тільки
+її явно не ініціалізовано, значення нової змінної дорівнює нулю.
 
-A variable declaration may occur:
+Може виникнути оголошення змінної:
 
-- at any position where a statement would be valid —local variables;
+- у будь-якій позиції, де оператор буде дійсним -локальні змінні;
 
-- at any position where a function declaration (native function declarations) or a function implementation would be valid —global variables;
+- у будь-якій позиції, де оголошення функції (власні оголошення функцій) або реалізація функції були б дійсними - глобальні змінні;
 
-- in the first expression of a for loop instruction —also local variables.
+- у першому виразі інструкції циклу for - також локальні змінні.
 
-**Local declarations**
+**Місцеві декларації**
 
-`A local declaration appears inside a compound statement. A local variable can only be accessed from within the compound statement, and from nested compound statements. A declaration in the first expression of a for loop instruction is also a local declaration.`
+Локальне оголошення з'являється всередині складеного оператора. Доступ до локальної змінної можна отримати лише зі складеного оператора та з вкладених складених операторів. Оголошення у першому виразі інструкції циклу for також є локальним оголошенням.
 
-**Global declarations**
+**Глобальні декларації
 
-`A global declaration appears outside a function and a global variable is accessible to any function. Global data objects can only be initialized with constant expressions.`
-
----
-
-`“for” loop: 113`
-
-`Compound statement: 112`
+Глобальне оголошення з'являється за межами функції, а глобальна змінна доступна для будь-якої функції. Глобальні об'єкти даних можна ініціалізувати тільки константними виразами.
 
 ---
 
-### • State variable declarations
+Цикл "for": 113`
 
-A state variable is a global variable with a state classifier appended at the end.
-The scope and the lifespan of the variable are restricted to the states that are
-listed in the classifier.
-
-State variables may not be initialized. In contrast to normal variables (which
-are zero after declaration —unless explicitly initialized), state variables
-hold an indeterminate value after declaration and after first entering a state in its
-classifier. Typically, one uses the state entry function(s) to properly
-initialize the state variable.
-
-### • Static local declarations
-
-A local variable is destroyed when the execution leaves the compound block
-in which the variable was created. Local variables in a function  
-only exist during the run time of that function. Each new run of the function creates
-and initializes new local variables. When a local variable is  
-declared with the keyword static rather than new, the variable remains in existence after
-the end of a function. This means that static local variables provide private,
-permanent storage that is accessible only from a single function (or compound
-block). Like global variables, static local variables can only be initialized
-with constant expressions.
-
-### • Static global declarations
-
-A static global variable behaves the same as a normal global variable, except
-that its scope is restricted to the file that the declaration resides in. To
-declare a global variable as static, replace the keyword new by static.
-
-### • Stock declarations
-
-A global variable may be declared as “stock”. A stock declaration is one that
-the parser may remove or ignore if the variable turns out not to be used in the program.
-
-Stock variables are useful in combination with stock functions. A public vari-
-able may be declared as “stock” as well —declaring public variables as “public
-stock” enables you to declare al public variables that a host application pro-
-vides in an include file, with only those variables that the script actually
-uses winding up in the P-code file.
-
-### • Public declarations
-
-Global “simple” variables (no arrays) may be declared “public” in two ways:
-
-- declare the variable using the keyword public instead of new;
-
-- start the variable name with the “@” symbol.
-
-Public variables behave like global variables, with the addition that the host
-program can also read and write public variables. A (normal) global variable
-can only be accessed by the functions in your script —the host  
-program is unaware of them. As such, a host program may require that you declare a
-variable with a specific name as “public” for special purposes —such as the
-most recent error number, or the general program state.
+Складений вираз: 112`
 
 ---
 
-`Symbolic constants: 101`
+### - Оголошення змінних стану
 
-`Stock functions: 84`
+Змінна стану - це глобальна змінна, в кінці якої додається класифікатор станів.
+Область видимості і час життя змінної обмежені станами, які
+переліченими у класифікаторі.
+
+Змінні стану не можуть бути ініціалізовані. На відміну від звичайних змінних (які
+дорівнюють нулю після оголошення, якщо їх явно не ініціалізовано), змінні стану
+мають невизначене значення після оголошення і після першого введення стану у їхньому
+класифікатора. Зазвичай, для правильної ініціалізації змінної стану використовують функцію(ї) введення стану
+належним чином ініціалізувати змінну стану.
+
+### - Статичні локальні оголошення
+
+Локальна змінна знищується, коли виконання виходить зі складеного блоку
+в якому змінна була створена. Локальні змінні у функції
+існують тільки під час виконання цієї функції. Кожен новий запуск функції створює
+та ініціалізує нові локальні змінні. Якщо локальну змінну оголошено з ключовим словом
+оголошено з ключовим словом static, а не new, змінна залишається існуючою після
+після завершення роботи функції. Це означає, що статичні локальні змінні забезпечують приватне,
+постійне сховище, доступне лише з однієї функції (або складеного
+блоку). Як і глобальні змінні, статичні локальні змінні можна ініціалізувати лише
+константними виразами.
+
+### - Статичні глобальні оголошення
+
+Статична глобальна змінна поводиться так само, як і звичайна глобальна змінна, за винятком того, що
+що її область видимості обмежується файлом, у якому знаходиться оголошення. Щоб
+оголосити глобальну змінну статичною, замініть ключове слово new на static.
+
+### - Біржові декларації
+
+Глобальна змінна може бути оголошена як "запас". Запасне оголошення - це оголошення, яке
+синтаксичний аналізатор може видалити або проігнорувати, якщо виявиться, що змінна не використовується у програмі.
+
+Змінні запасу корисні в поєднанні з функціями запасу. Загальнодоступна змінна може бути оголошена як "запасна".
+загальнодоступні змінні також можуть бути оголошені як "запаси" - оголошення загальнодоступних змінних як "загальнодоступних
+stock" дає змогу оголосити усі загальнодоступні змінні, які надаються хост-програмою, у файлі включення, і лише ті з них, які
+у файлі включення, а у P-файлі - лише ті змінні, які фактично використовуються скриптом.
+використовуються скриптом, і лише ті змінні, які фактично використовуються у файлі P-коду.
+
+### - Публічні декларації
+
+Глобальні "прості" змінні (без масивів) можуть бути оголошені "загальнодоступними" двома способами:
+
+- оголошуйте змінну з ключовим словом public замість new;
+
+- починайте назву змінної з символу "@".
+
+Загальнодоступні змінні поводяться так само, як і глобальні, з тією лише різницею, що хост-програма
+програма також може читати і записувати загальнодоступні змінні. До (звичайної) глобальної змінної
+може бути доступна лише функціям вашого скрипту - хост-програма
+програма не знає про них. Таким чином, головна програма може вимагати, щоб ви оголосили змінну з певним ім'ям
+змінну з певним іменем як "загальнодоступну" для спеціальних цілей - наприклад, для
+наприклад, номер останньої помилки або загальний стан програми.
 
 ---
 
-• Constant variables
+Символічні константи: 101`
 
-It is sometimes convenient to be able to create a variable that is initialized
-once and that may not be modified. Such a variable behaves much like a symbolic
-constant, but it still is a variable.
+`Функції акцій: 84`
 
-To declare a constant variable, insert the keyword const between the keyword
-that starts the variable declaration —new, static, public or stock— and the
-variable name.
+---
 
-Examples:
+- Постійні змінні
+
+Іноді зручно мати можливість створити змінну, яка ініціалізується
+один раз і яку не можна змінювати. Така змінна поводиться подібно до символьної
+константа, але це все одно змінна.
+
+Щоб оголосити константну змінну, вставте ключове слово const між ключовим словом
+з якого починається оголошення змінної - new, static, public або stock - і
+іменем змінної.
+
+Приклади:
 
 ```c
 
 new const address[4] = { 192, 0, 168, 66 }
 
-public const status           /* initialized to zero */
+public const status /* ініціалізовано нулем */
 
 ```
 
-Three typical situations where one may use a constant variable are:
+Три типові ситуації, в яких можна використовувати константну змінну:
 
-- To create an “array” constant; symbolic constants cannot be indexed.
+- Створити константу "масиву"; символічні константи не можна індексувати.
 
-- For a public variable that should be set by the host application, and only by the host application. See the preceding section for public variables.
+- Для загальнодоступної змінної, яка має бути встановлена хост-програмою, і тільки нею. Про загальнодоступні змінні див. попередній розділ.
 
-- A special case is to mark array arguments to functions as const. Array arguments are always passed by reference, declaring them as const guards against unintentional modification. Refer to page 72 for an example of const function arguments.
-
----
-
-`See also “multidimensional arrays”, page 66`
+- Окремим випадком є позначення аргументів масиву у функціях як const. Аргументи-масиви завжди передаються за посиланням, оголошення їх як const захищає від ненавмисної модифікації. Приклад аргументів константних функцій наведено на сторінці 72.
 
 ---
 
-### • Arrays (single dimension)
+`Див. також "Багатовимірні масиви", стор. 66`.
 
-The syntax name[constant] declares name to be an array of “constant” el-
-ements, where each element is a single cell. The name is a placeholder of an
-identifier name of your choosing and constant is a positive non-zero value;
-constant may be absent. If there is no value between the brackets, the num-
-ber of elements is set equal to the number of initiallers
-—see the example below.
+---
 
-The array index range is “zero based” which means that the first element is at
-name[0] and the last element is name[constant-1].
+### - Масиви (одновимірні)
 
-### • Initialization
+Синтаксис name[constant] оголошує ім'я масивом "константних" ел
+де кожен елемент є окремою коміркою. Ім'я є заповнювачем імені ідентифікатора
+ідентифікатора на ваш вибір, а константа є додатним ненульовим значенням;
+константа може бути відсутня. Якщо між дужками немає ніякого значення, то кількість елементів дорівнює
+елементів дорівнює кількості ініціалізаторів
+-див. приклад нижче.
 
-Data objects can be initialized at their declaration. The initialler of a
-global data object must be a constant. Arrays, global or local, must also be
-initialized with constants.
+Діапазон індексів масиву є "нульовим", що означає, що перший елемент знаходиться за адресою
+name[0], а останній елемент - name[constant-1].
 
-Uninitialized data defaults to zero.
-Examples:
+### - Ініціалізація
 
-Listing: good declaration
+Об'єкти даних можуть бути ініціалізовані при їх оголошенні. Ініціалізатор
+глобального об'єкту даних повинен бути константою. Масиви, глобальні або локальні, також повинні бути
+ініціалізовані константами.
+
+Неініціалізовані дані за замовчуванням дорівнюють нулю.
+Приклади:
+
+Лістинг: хороша декларація
 
 ```c
 
 new i = 1
-new j                                   /* j is zero */
-new k = ’a’                             /* k has character code for letter ’a’ */
+new j /* j дорівнює нулю */
+new k = 'a' /* k має код символу для літери 'a' */
 
-new a[] = {1,4,9,16,25}                 /* a has 5 elements */
-new s1[20] = {’a’,’b’}                  /* the other 18 elements are 0 */
+new a[] = {1,4,9,16,25}                 /* a містить 5 елементів */
+new s1[20] = {'a','b'}                  /* інші 18 елементів дорівнюють 0 */
 
-new s2[] = "Hello world..."             /* a unpacked string */
+new s2[] = "Hello world..."             /* розпакований рядок */
 
 ```
 
-Examples of invalid declarations:
+Приклади недійсних декларацій:
 
-Listing: bad declarations
+Перелік: погані декларації
 
 ```c
 
-new c[3] = 4                            /* an array cannot be set to a value */
-new i = "Good-bye"                      /* only an array can hold a string */
-new q[]                                 /* unknown size of array */
-new p[2] = { i + j, k - 3 }             /* array initiallers must be constants */
+new c[3] = 4 /* масиву не можна присвоювати значення */
+new i = "Good-bye" /* тільки масив може містити рядок */
+new q[] /* невідомий розмір масиву */
+new p[2] = { i + j, k - 3 }             /* ініціалізатори масиву повинні бути константами */
 
 ```
 
 ---
 
-`Constants: 98`
+`Константи: 98
 
 ---
 
-### • Progressive initiallers for arrays
+### - Прогресивні ініціалізатори для масивів
 
-The ellipsis operator continues the progression of the initialisation
-constants for an array, based on the last two initialized elements. The ellipsis operator
-(three dots, or “...”) initializes the array up to its declared size.
+Оператор еліпсису продовжує послідовність ініціалізації констант
+констант для масиву, виходячи з двох останніх ініціалізованих елементів. Оператор еліпсису
+(три крапки, або "...") ініціалізує масив до оголошеного розміру.
 
-Examples:
+Приклади:
 
-Listing: array initializers
+Лістинг: ініціалізатори масивів
 
 ```c
 
-new a[10] = { 1, ... }                  /* sets all ten elements to 1 */
-new b[10] = { 1, 2, ... }               /* sets: 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 */
-new c[8] = { 1, 2, 40, 50, ... }        /* sets: 1, 2, 40, 50, 60, 70, 80, 90 */
-new d[10] = { 10, 9, ... }              /* sets: 10, 9, 8, 7, 6, 5, 4, 3, 2, 1 */
+new a[10] = { 1, ... }                  /* встановлює усі десять елементів в 1 */
+new b[10] = { 1, 2, ... }               /* встановлює: 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 */
+new c[8] = { 1, 2, 40, 50, ... }        /* набори: 1, 2, 40, 50, 60, 70, 80, 90 */
+new d[10] = { 10, 9, ... }              /* набори: 10, 9, 8, 7, 6, 5, 4, 3, 2, 1 */ ** набори: 10, 9, 8, 7, 6, 5, 4, 3, 2, 1
 
 ```
 
-### • array initialization and enumerations
+### - ініціалізація масивів та зчислення
 
-The array size may be set with a constant that represents an  
-enumeration: an example of this is the “priority queue” sample program at page 21. When
-individual fields of the enumeration have a size, the associated array elements
-are interpreted as sub-arrays, on occasion. For an example of this behaviour,
-see the rpn calculator program at page 30.
+Розмір масиву може бути задано константою, яка представляє собою
+зчислення: прикладом цього є приклад програми "черга пріоритетів" на сторінці 21. Коли
+окремі поля зчислення мають розмір, пов'язані з ними елементи масиву
+іноді інтерпретуються як підмасиви. Приклад такої поведінки,
+див. у програмі rpn calculator на сторінці 30.
 
-The sub-array syntax applies as well to the initialization of an “enumerated”
-array. Referring again to the “priority queue” sample program, to initialize a
-“message” array with fixed values, the syntax is:
+Синтаксис підмасиву застосовується також для ініціалізації "перерахованого"
+масиву. Знову звертаючись до прикладу програми "черга пріоритетів", для ініціалізації масиву
+масиву "повідомлення" з фіксованими значеннями, синтаксис має вигляд
 
-Listing: array initializers
+Лістинг: ініціалізатори масивів
 
 ```c
 
-enum message /* declaration copied from "QUEUE.P" */
+enum message /* оголошення, скопійоване з "QUEUE.P" */
     {
         text[40 char],
-        priority
+        пріоритет
     }
 
 new msg[message] = { !"new message", 1 }
 
 ```
 
-The initialler consists of a string (a literal array) and a value; these go
-into the fields “text” and “priority” respectively.
+Ініціалізатор складається з рядка (літерального масиву) і значення; вони потрапляють
+у поля "text" та "priority" відповідно.
 
-### • Multi-dimensional arrays
+### - Багатовимірні масиви
 
-Multi-dimensional arrays are arrays that contain references to the sub-arrays.∗
-That is, a two-dimensional array is an “array of single-dimensional arrays”.
-Below are a few examples of declarations of two-dimensional arrays.
+Багатовимірні масиви - це масиви, які містять посилання на підмасиви*.
+Тобто, двовимірний масив - це "масив одновимірних масивів".
+Нижче наведено кілька прикладів оголошення двовимірних масивів.
 
-Listing: Two-dimensional arrays
+Список: Двовимірні масиви
 
 ```c
 
@@ -251,39 +251,39 @@ new b[3][2] = { { 1, 2 }, { 3, 4 }, { 5, 6 } }
 new c[3][3] = { { 1 }, { 2, ...}, { 3, 4, ... } }
 new d[2][5] = { !"agreement", !"dispute" }
 new e[2][] = { "OK", "Cancel" }
-new f[][] = { "OK", "Cancel" }
+new f[][] = { "OK", "Скасувати" }
 
 ```
 
 ---
 
-###### ∗ The current implementation of the Pawn compiler supports only arrays with up to two dimensions.
+###### ∗ Поточна реалізація компілятора Pawn підтримує лише масиви до двох вимірів
 
 ---
 
-As the last two declarations (variable “e” en “f”) show, the final dimension
-of an array may have an unspecified length, in which case the length of each
-sub-array is determined from the related initializer. Every sub-array may have
-a different size; in this particular example, “e[1][5]” contains the letter ”l”
-from the word “Cancel”, but “e[0][5]” is invalid because the length of the
-sub-array “e[0]” is only three cells (containing the letters “O”, “K” and a
-zero terminator).
+Як показують останні два оголошення (змінні "e" та "f"), кінцевий розмір масиву
+масиву може мати невизначену довжину, у цьому випадку довжина кожного
+підмасиву визначається з відповідного ініціалізатора. Кожен підмасив може мати
+різний розмір; у цьому прикладі "e[1][5]" містить літеру "l"
+зі слова "Cancel", але "e[0][5]" є недійсним, оскільки довжина підмасиву
+підмасиву "e[0]" складає лише три комірки (що містять літери "O", "K" та
+нульовий термінатор).
 
-The difference between the declarations for arrays “e” and “f” is that in we
-let the compiler count the number of initializers for the major dimension —
-“sizeof f” is 2, like “sizeof e” (see the next section on the sizeof operator).
+Різниця між оголошеннями для масивів "e" та "f" полягає в тому, що в оголошенні we
+дозволимо компілятору підрахувати кількість ініціалізаторів для головного виміру -
+"sizeof f" дорівнює 2, як і "sizeof e" (див. наступний розділ про оператор sizeof).
 
-### • Arrays and the sizeof operator
+### - Масиви та оператор sizeof
 
-The sizeof operator returns the size of a variable in “elements”. For a simple
-(non-compound) variable, the result of sizeof is always 1, because an element
-is a cell for a simple variable.
+Оператор sizeof повертає розмір змінної в "елементах". Для простої
+(не складеної) змінної результат sizeof завжди дорівнює 1, оскільки елемент
+це комірка для простої змінної.
 
-An array with one dimension holds a number of cells and the sizeof operator
-returns that number. The snippet below would therefore print “5” at  
-the display, because the array “msg” holds four characters (each in one cell) plus a zero-terminator:
+Масив з одним виміром містить кількість комірок, а оператор sizeof
+повертає це число. Отже, у фрагменті нижче на екран буде виведено "5", тому що масив "msg" містить чотири символи
+оскільки масив "msg" містить чотири символи (кожен в одній комірці) плюс нуль-термінатор:
 
-Listing: sizeof operator
+Лістинг: оператор sizeof
 
 ```c
 
@@ -292,80 +292,80 @@ printf("%d", sizeof msg);
 
 ```
 
-With multi-dimensional arrays, the sizeof operator can return the number
-of elements in each dimension. For the last (minor) dimension, an  
-element will again be a cell, but for the major dimension(s), an element is a sub-array.
-In the following code snippet, observe that the syntax sizeof matrix refers
-to the major dimension of the two-dimensional array and the syntax sizeof
-matrix[] refers to the minor dimension of the array. The values that
-this snippet prints are 3 and 2 (for the major and minor dimensions respectively):
+Для багатовимірних масивів оператор sizeof може повертати кількість
+елементів у кожному вимірі. Для останнього (молодшого) виміру елемент
+знову буде коміркою, але для основних вимірів елемент буде підмасивом.
+У наведеному нижче фрагменті коду зверніть увагу, що синтаксис sizeof matrix посилається
+на головний вимір двовимірного масиву, а синтаксис sizeof
+matrix[] відноситься до молодшого виміру масиву. Значення, які
+виводяться у цьому фрагменті - 3 і 2 (для головного і другорядного вимірів відповідно):
 
-Listing: sizeof operator and multidimensional arrays
+Лістинг: оператор sizeof та багатовимірні масиви
 
 ```c
 
 new matrix[3][2] = { { 1, 2 }, { 3, 4 }, { 5, 6 } }
-printf("%d %d", sizeof matrix, sizeof matrix[]);
+printf("%d %d", розмір матриці, розмір матриці[]);
 
 ```
 
-The application of the sizeof operator on multi-dimensional arrays is especially convenient when used as a default value for function arguments.
+Застосування оператора sizeof до багатовимірних масивів особливо зручно, коли він використовується як значення за замовчуванням для аргументів функції.
 
 ---
 
-`Default function arguments and sizeof: 77`
+`Аргументи функцій за замовчуванням та sizeof: 77`
 
 ---
 
-### • Tag names
+### - Імена тегів
 
-A tag is a label that denotes the objective of —or the meaning of— a variable,
-a constant or a function result. Tags are optional, their only purpose is to
-allow a stronger compile-time error checking of operands in expressions, of function
-arguments and of array indices.
+Тег - це мітка, яка позначає мету - або значення - змінної,
+константи або результату функції. Мітки не є обов'язковими, їх єдине призначення полягає у тому, щоб
+уможливити ефективнішу перевірку на помилки під час компіляції операндів у виразах, аргументів функцій та індексів масивів.
+аргументів функцій та індексів масивів.
 
-A tag consists of a symbol name followed by a colon; it has the same syntax as a label. A tag precedes
-the symbol name of a variable, constant or function.
+Тег складається з назви символу, за якою слідує двокрапка; він має такий самий синтаксис, як і мітка. Тег передує
+імені символу змінної, константи або функції.
 
-In an assignment, only the right hand of the “=” sign may be tagged.
-Examples of valid tagged variable and constant definitions are:
+У присвоюванні можна позначати лише праву частину знаку "=".
+Приклади допустимих визначень змінних та констант з тегами наведено нижче:
 
-Listing: tag names
+Лістинг: назви тегів
 
 ```c
 
-new bool:flag = true            /* "flag" can only hold "true" or "false" */
+new bool:flag = true /* "flag" може мати тільки значення "true" або "false" */.
 
 const error:success = 0
-const error:fatal= 1
+const error:fatal = 1
 const error:nonfatal = 2
 
 error:errno = fatal
 
 ```
 
-The sequence of the constants success, fatal and nonfatal could more con-
-veniently be declared using an enum instruction, as illustrated below.  
-The enumeration instruction below creates four constants, success, fatal, non-
-fatal and error, all with the tag error.
+Послідовність констант success, fatal і nonfatal можна було б більш
+зручніше оголосити за допомогою інструкції перечислення, як показано нижче.  
+Наведена нижче інструкція перечислення створює чотири константи: success, fatal, non-
+fatal і error, усі з тегом error.
 
-Listing: enumerations
+Лістинг: перерахування
 
 ```c
 
 enum error {
     success,
     fatal,
-    nonfatal,
+    non-fatal,
 }
 
 ```
 
-A typical use of “tagged” enum’s is in conjunction with arrays. If every field
-of an array has a distinct purpose, you can use a tagged enum to declare the size
-of an array and to add tag checking to the array usage in a single step:
+Типове використання "мічених" зчислень - у поєднанні з масивами. Якщо кожне поле
+масиву має окреме призначення, ви можете використовувати теговане зчислення для оголошення розміру
+масиву і додати перевірку тегів до використання масиву за один крок:
 
-Listing: enumerations and arrays
+Лістинг: перерахування та масиви
 
 ```c
 
@@ -374,10 +374,10 @@ enum rectangle
     left,
     top,
     right,
-    bottom
+    нижній
 }
 
-new my_rect[rectangle] /* array is declared as having 4 cells */
+new my_rect[rectangle] /* масив оголошено як такий, що має 4 комірки */
 
 my_rect[left] = 10
 my_rect[top] = 5
@@ -389,37 +389,37 @@ for (new i = 0; rectangle:i < rectangle; ++i)
 
 ```
 
-After the declaration of “my_rect” above, you can access the second field of
-my_rect with “my_rect[top]”, but saying “my_rect[1]” will give a parser
-diagnostic (a warning or error message). A tag override (or a tag cast) adjusts
-a function, constant or variable to the desired tag name. The for loop at the
-last two lines in the preceding example depicts this: the loop variable i
-is a plain, untagged cell, an it must be cast to the tag rectangle before using it
-as an index in the array my_rect. Note that the enum construct has created
-both a constant and a tag with the name “rectangle”.
+Після оголошення "my_rect" вище, ви можете отримати доступ до другого поля
+my_rect за допомогою "my_rect[top]", але якщо вказати "my_rect[1]", синтаксичний аналізатор видасть
+діагностику (попередження або повідомлення про помилку). Перевизначення тегу (або приведення тегу) пристосовує
+функцію, константу або змінну до потрібного імені тегу. Цикл for на рівні
+у двох останніх рядках попереднього прикладу показує це: змінна циклу i
+є звичайною коміркою без тегів, і її потрібно привести до прямокутника тегів, перш ніж використовувати її
+як індекс у масиві my_rect. Зверніть увагу, що конструкція перечислення створила
+і константу, і тег з іменем "rectangle".
 
-Tag names introduced so far started with a lower case letter; these are “weak”
-tags. Tag names that start with an upper case letter are “strong” tags. The
-difference between weak and strong tags is that weak tags may, in a few circum-
-stances, be dropped implicitly by the pawn parser —so that a weakly tagged
-expression becomes an untagged expression. The tag checking mechanism verifies the following situations:
+Назви тегів, запроваджених до цього часу, починаються з малої літери; це "слабкі"
+мітки. Назви тегів, які починаються з великої літери, є "сильними" тегами. Різниця між
+різниця між слабкими і сильними тегами полягає у тому, що слабкі теги можуть, за певних обставин, неявно скидатися пішаками.
+парсер може неявно відкидати слабкі теґи, так що слабкий теґований вираз стає нетеґованим.
+вираз стає виразом без тегів. Механізм перевірки тегів перевіряє наступні ситуації:
 
-- When the expressions on both sides of a binary operator have a different tag, or when one of the expressions is tagged and the other is not, the compiler issues a “tag mismatch” diagnostic. There is no difference between weak and strong tags in this situation.
+- Коли вирази з обох боків бінарного оператора мають різні теги, або коли один з виразів позначено тегом, а інший ні, компілятор видає діагностику "невідповідність тегів". У цій ситуації немає різниці між слабкими та сильними тегами.
 
-- There is a special case for the assignment operator: the compiler issues diagnostic if the variable on the left side of an assignment operator has a tag, and the expression on the right side either has a different tag or is untagged. However, if the variable on the left of the assignment operator is untagged, it accepts an expression (on the right side) with a weak tag. In other words, a weak tag is dropped in an assignment when the lvalue is untagged.
+- Для оператора присвоювання існує особливий випадок: компілятор видає діагностичне повідомлення, якщо змінна в лівій частині оператора присвоювання має мітку, а вираз у правій частині або має іншу мітку, або не має мітки. Однак, якщо змінна зліва від оператора присвоювання не має мітки, вона приймає вираз (у правій частині) зі слабкою міткою. Іншими словами, слабкий тег опускається при присвоюванні, коли значення l не позначено.
 
-- Passing arguments to functions follows the rule for assignments. The compiler issues a diagnostic when the formal parameter (in a function definition) has a tag and the actual parameter (in the function call) either is untagged or has a different tag. However, if the formal parameter is untagged, it also accepts a parameter with any weak tag.
+- Передача аргументів у функції відбувається за правилами присвоювання. Компілятор видає діагностику, коли формальний параметр (у визначенні функції) має тег, а фактичний параметр (у виклику функції) або не має тегу, або має інший тег. Однак, якщо формальний параметр не позначено тегом, він також приймає параметр з будь-яким слабким тегом.
 
-- An array may specify a tag for every dimension, see the “my_rect” example above. Tag checking array indices follows the rule of binary operator tag checking: there is no difference between weak and strong tags.
-
----
-
-`Label syntax: 112`
-
-`“enum” statement: 101`
-
-`“lvalue”: the variable on the left side in an assignment, see page 104`
+- Масив може вказувати тег для кожного виміру, див. приклад "my_rect" вище. Перевірка тегів індексів масиву відбувається за правилом перевірки тегів бінарних операторів: немає різниці між слабкими та сильними тегами.
 
 ---
 
-[Go Back to Contents](00-Contents.md)
+`Синтаксис мітки: 112`
+
+Оператор перебору: 101`
+
+`"lvalue": змінна зліва у присвоюванні, див. сторінку 104`.
+
+---
+
+[Повернутися до змісту](00-Contents.md)

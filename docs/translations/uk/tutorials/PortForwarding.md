@@ -1,72 +1,74 @@
 ---
-title: Port Forwarding
-description: Server port forwarding tutorial.
+назва: Port Forwarding
+description: Підручник з переадресації серверних портів.
 ---
 
-**Welcome to the Port Forward tutorial!**
+**Ласкаво просимо до підручника з переадресації портів!
 
-So, you have arrived to the Port Forward tutorial, made by Leopard.
+Отже, ви потрапили до підручника з переадресації портів, створеного Leopard.
 
-All you need is a samp-server or omp-server and a router. If you have not a router, then you don't need to port forward!
+Все, що вам потрібно - це samp-сервер або omp-сервер і роутер. Якщо у вас немає роутера, то вам не потрібно переадресовувати порт!
 
-## The Start
+## Початок
 
-Ok, so here's the start, start off by finding your **gateway**. Assume that you have vista. Click start, click on the search field, and write **cmd**. Then a black box appears. Enter the following; **ipconfig**. Wait for the text to load, then look though it. Keep searching until you find _**gateway**_, and don't close the black box!
+Гаразд, почнемо з того, що знайдемо ваш **шлюз**. Припустимо, що у вас є Vista. Натисніть кнопку «Пуск», клацніть на полі пошуку і введіть **cmd**. Після цього з'явиться чорне вікно. Введіть наступне; **ipconfig**. Зачекайте, поки текст завантажиться, а потім перегляньте його. Продовжуйте пошук, поки не знайдете _**gateway**_, і не закривайте чорну скриньку!
 
-When you have found it, open your favorite web browser. When it's loaded, head over to the adress bar and type in the _**gateway**_ value (example: 192.168.0.1/192.168.1.1). Press enter.
+Коли ви його знайдете, відкрийте ваш улюблений веб-браузер. Коли він завантажиться, перейдіть до адресного рядка і введіть значення _**gateway**_ (наприклад: 192.168.0.1/192.168.1.1). Натисніть клавішу Enter.
 
-## Router Configuration
+## Налаштування маршрутизатора
 
-Well done, you've made it to the router's configuration page. What we've got left to do is port forward now.
+Молодці, ви потрапили на сторінку конфігурації маршрутизатора. Тепер нам залишилося переадресувати порт.
 
-So.. there are a category in that page that is named one of the followings;
+Отже, на цій сторінці є категорія, яка має одну з наступних назв;
 
-- Virtual Server
-- Port Forwarding
-- Port Control
-- Application Sharing
-- Anything with `port` in its name.
+- Віртуальний сервер
+- Переадресація портів
+- Керування портами
+- Спільний доступ до додатків
+- Все, що містить `port` у назві.
 
-If you have found it, click on it. Then, click the 'Add new', 'New Port' or some else button that will toggle opening a new port.
+Якщо ви знайшли такий порт, натисніть на нього. Потім натисніть кнопку «Додати новий», «Новий порт» або іншу кнопку, яка перемикає відкриття нового порту.
 
-Enter the following details:
-
-```
-Port: YOUR_PORT (standard: 7777)
-Port Type: UDP
-Enabled: Yes
-**IP: Continue the 3rd Step**
-```
-
-Now you need to know your computer IP address.
-
-## Getting the IP, Continuing
-
-Now, maximize the black box and look though the text again, until you see _IPv4_. It should be in a format like this: **192.168.0.100**. Copy it, and there you have it! Continue with the Information in the router's homepage. For example, my ip is 192.168.0.100
+Введіть наступні дані:
 
 ```
-Port: YOUR_PORT (standard: 7777)
-Port Type: UDP
-Enabled: Yes
+Порт: ВАШ_ПОРТ (стандартно: 7777)
+Тип порту: UDP
+Увімкнено Так
+**IP: продовжити 3-й крок**
+```
+
+Тепер вам потрібно знати IP-адресу вашого комп'ютера.
+
+## Отримання IP-адреси, продовження
+
+Тепер розгорніть чорний ящик і перегляньте текст ще раз, поки не побачите _IPv4_. Вона має бути у такому форматі: **192.168.0.100**. Скопіюйте його, і все готово! Продовжуйте з інформацією на домашній сторінці роутера. Наприклад, мій ip 192.168.0.100
+
+```
+Порт: YOUR_PORT (стандартний: 7777)
+Тип порту: UDP
+Увімкнено Так
 IP: 192.168.0.100
 ```
 
-And press **save**. Then your done. AND! Don't forget to **port forward in Windows Firewall**. This is a little tutorial;
+І натисніть **зберегти**. Тоді все готово. І! Не забудьте **переключити пропуск у брандмауері Windows**. Це невелика інструкція;
 
-Go to the start menu, enter "firewall" in the search field and select the "Windows Firewall". Open it and click _Change preferences_. New window pop-up. Click the _Exceptions_ tab, click the _Add port.._ and then fill in this information;
+Перейдіть до меню «Пуск», введіть «брандмауер» у полі пошуку і виберіть «Брандмауер Windows». Відкрийте його і натисніть _Змінити параметри_. З'явиться нове вікно. Перейдіть на вкладку _Винятки_, натисніть _Додати порт.._ і заповніть цю інформацію;
 
 ```
-Name: SA-MP Server (name it whatever you want)
-Port Number: YOUR_PORT (standard: 7777)
-Protocol: UDP
+Назва: SA-MP Server (назвіть його як завгодно)
+Номер порту: ВАШ_ПОРТ (стандартно: 7777)
+Протокол: UDP
 ```
 
-Then your done! Click ok and close it. Launch the server, and see if its working. If it is, go to your SA-MP Client and enter: localhost:YOUR_PORT(standard: 7777). If the ping changes, then your server is working fully. Now you just need to go to:
+Тоді все готово! Натисніть ок і закрийте його. Запустіть сервер і перевірте, чи він працює. Якщо так, перейдіть до свого SA-MP-клієнта і введіть: localhost:YOUR_PORT(стандартний: 7777). Якщо пінг змінився, то ваш сервер працює повністю. Тепер вам просто потрібно зайти на
 
 [WhatIsMyIP.COM](http://whatismyip.com).
 
-## The finish
+## Фініш
 
-Once there, get the ip that is on your screen. Go again to your SA-MP Client, add that ip to your favorites and add YOUR_PORT (standard: 7777) at the end. If its working,
+Опинившись там, отримайте ip, який відображається на вашому екрані. Знову перейдіть до свого SA-MP-клієнта, додайте цей ip до вибраного і додайте YOUR_PORT (стандартно: 7777) в кінці. Якщо все працює,
 
-**CONGRATULATIONS**! _You have port-forwarded_!
+**ВІТАЄМО! Ви переадресували порт!
+
+

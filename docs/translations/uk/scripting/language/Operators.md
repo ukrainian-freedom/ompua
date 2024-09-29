@@ -1,55 +1,55 @@
 ---
-title: "Keywords: Operators"
+title: "Ключові слова: Оператори"
 ---
 
-## `char`
+## "Чар
 
-char returns the number of cells required to hold the given number of characters in a packed string. I.e. the number of 4-byte cells required to hold a given number of bytes. For example:
+char повертає кількість комірок, необхідних для зберігання заданої кількості символів в упакованому рядку. Тобто кількість 4-байтових комірок, необхідних для зберігання заданої кількості байт. Наприклад:
 
 ```c
 4 char
 ```
 
-Returns 1.
+Повертає 1.
 
 ```c
 3 char
 ```
 
-Returns 1 (you can't have 3/4 of a variable).
+Повертає 1 (не можна мати 3/4 змінної).
 
 ```c
-256 char
+256 символів
 ```
 
-Returns 64 (256 divided by 4).
+Повертає 64 (256 ділиться на 4).
 
-This is generally used in variable declarations.
+Зазвичай це використовується в оголошеннях змінних.
 
 ```c
-new
+новий
     someVar[40 char];
 ```
 
-Will make an array 10 cells big.
+Створить масив розміром 10 комірок.
 
-For more information on packed strings read pawn-lang.pdf.
+Для отримання додаткової інформації про упаковані рядки читайте pawn-lang.pdf.
 
-## `defined`
+## "визначено
 
-Checks if a symbol exists. Generally used in #if statements:
+Перевіряє, чи існує символ. Зазвичай використовується в операторах #if:
 
 ```c
-new
+новий
     someVar = 5;
-#if defined someVar
+#якщо визначено someVar
     printf("%d", someVar);
 #else
-    #error The variable 'someVar' isn't defined
+    #error Змінна 'someVar' не визначена
 #endif
 ```
 
-Most commonly it's used to check if a define is defined and generate code accordingly:
+Найчастіше він використовується для перевірки того, чи визначено дефініцію, і відповідно генерує код:
 
 ```c
 #define FILTERSCRIPT
@@ -73,62 +73,62 @@ public OnGameModeInit()
 
 ## `sizeof`
 
-Returns the size in ELEMENTS of an array:
+Повертає розмір в ELEMENTS масиву:
 
 ```c
-new
+новий
     someVar[10];
 printf("%d", sizeof (someVar));
 ```
 
-Output:
+Виходьте:
 
 ```c
 10
 ```
 
-And:
+І:
 
 ```c
-new
+новий
     someVar[2][10];
 printf("%d %d", sizeof (someVar), sizeof (someVar[]));
 ```
 
-Gives:
+Дає:
 
 ```c
 2 10
 ```
 
-## `state`
+## "Держава".
 
-This again is related to the PAWN autonoma code and thus not covered here.
+Це знову ж таки пов'язано з автономним кодом PAWN і тому тут не розглядається.
 
-## `tagof`
+## "Тагоф
 
-This returns a number representing the tag of a variable:
+Повертає число, що представляє тег змінної:
 
 ```c
-new
+новий
     someVar,
     Float:someFloat;
 printf("%d %d", tagof (someVar), tagof (someFloat));
 ```
 
-Gives:
+Дає:
 
 ```c
 -./,),(-*,( -1073741820
 ```
 
-Which is a slight bug but basically means:
+Це невелика помилка, але по суті це означає:
 
 ```c
 0x80000000 0xC0000004
 ```
 
-To check, for example, if a variable is a float (with the tag 'Float:'):
+Щоб перевірити, наприклад, чи є змінна змінною з плаваючою комою (з тегом 'Float:'):
 
 ```c
 new Float: fValue = 6.9;
@@ -141,6 +141,8 @@ if (tag == tagof (Float:))
 }
 else
 {
-    print("not a float");
+    print("не число");
 }
 ```
+
+

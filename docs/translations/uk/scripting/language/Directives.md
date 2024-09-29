@@ -1,96 +1,96 @@
 ---
-title: "Keywords: Directives"
+title: "Ключові слова: Директиви"
 ---
 
-Directives are instructions passed to the compiler to control how it interprets your source code.
+Директиви - це вказівки, які передаються компілятору для керування інтерпретацією вашого вихідного коду.
 
-## `#assert`
+## "Стверджую
 
-This checks if constant expression is true and if not halts the compile.
+Перевіряється, чи константний вираз істинний, і якщо ні, то компіляція зупиняється.
 
 ```c
 #define MOO 10
 #assert MOO > 5
 ```
 
-This will compile fine.
+Це буде скомпільовано добре.
 
 ```c
 #define MOO 1
 #assert MOO > 5
 ```
 
-That won't and will give a fatal error. This is similar to:
+Це не допоможе і призведе до фатальної помилки. Це схоже на:
 
 ```c
-#define MOO 1
+#визначити MOO 1
 #if MOO <= 5
-    #error MOO check failed
+    #error Перевірка MOO не вдалася
 #endif
 ```
 
-However assert will give an error of:
+Однак стверджувати дасть похибку:
 
 ```
-Assertation failed: 1 > 5
+Твердження не виконано: 1 > 5
 ```
 
-Wheras the second will give an error of:
+Тоді як другий дасть похибку в розмірі:
 
 ```
-User error: Moo check failed
+Помилка користувача: Не вдалося виконати перевірку му
 ```
 
-Which may or may not be helpful.
+Що може бути корисним, а може й ні.
 
-## `#define`
+## "Визначити
 
-`#define` is a text replacement directive, wherever the first symbol of the define is found the rest of it will be placed.
+`#define` - це директива заміни тексту, де б не знаходився перший символ дефініції, там буде розміщено решту.
 
 ```c
-#define MOO 7
+#визначити MOO 7
 printf("%d", MOO);
 ```
 
-Will be changed to:
+Буде змінено на:
 
 ```c
 printf("%d", 7);
 ```
 
-This is why all defines are lost in decompilation as they don't exist when the code is compiled (all directives are pre-processed). Defines don't have to contain numbers:
+Ось чому всі визначення втрачаються при декомпіляції, оскільки вони не існують під час компіляції коду (всі директиви попередньо обробляються). Визначення не обов'язково повинні містити числа:
 
 ```c
 #define PL new i = 0; i < MAX_PLAYERS; i++) if (IsPlayerConnected(i)
 
-for(PL) printf("%d connected", i);
+for(PL) printf("%d підключено", i);
 ```
 
-Will compile to the player loop we all know and love (despise). Notice how the brackets are used here, some from the for and some from the define macro(the replacement).
+Компілюватиметься до циклу програвача, який ми всі знаємо і любимо (зневажаємо). Зверніть увагу, як тут використано дужки, деякі з них від for, а деякі від макросу define (заміна).
 
-Another little known fact about defines is that they can be multi-line if you escape the new line. Generally a new line ends the define however the following is valid:
+Ще одним маловідомим фактом про визначення є те, що вони можуть бути багаторядковими, якщо ви переходите на новий рядок. Зазвичай новий рядок завершує визначення, однак наступне є дійсним:
 
 ```c
-#define PL \
+#визначити PL \
         new i = 0; i < MAX_PLAYERS; i++) \
                 if (IsPlayerConnected(i)
 
 printf("%d", MOO(6));
 ```
 
-That will output 42 (no, not chosen randomly). Notice the excessive brackets in the define? This is because defines are straight text replacements so that will compile as:
+Буде виведено 42 (ні, не випадкове число). Помітили надмірну кількість дужок у визначенні? Це тому, що визначення є заміною прямого тексту, тому вони будуть скомпільовані як:
 
 ```c
 printf("%d", ((6) * 7));
 ```
 
-That's fine as it is but let's take this example:
+Це добре, але давайте візьмемо цей приклад:
 
 ```c
 printf("%d", MOO(5 + 6));
 ```
 
-You would expect that to compile to output 77 ((5 + 6) \* 7) and with the brackets it will, however without the brackets you have:
+Можна було б очікувати, що компіляція виведе 77 ((5 + 6) \* 7) і з дужками так і буде, але без дужок у вас їх немає:
 
 ```c
 #define MOO(%0) \
@@ -99,36 +99,36 @@ You would expect that to compile to output 77 ((5 + 6) \* 7) and with the bracke
 printf("%d", MOO(5 + 6));
 ```
 
-Which converts to:
+Що перетворюється на:
 
 ```c
 printf("%d", MOO(5 + 6 * 7));
 ```
 
-Which, due to the order of operations, compules as (5 + (6 \* 7)), whiche is 47 and very wrong. One interesting fact about the parameters is that if you have too many, the last one is all the extra ones. So doing:
+Що, зважаючи на порядок виконання операцій, складається як (5 + (6 \* 7)), що дорівнює 47 і є дуже неправильним. Цікавим фактом про параметри є те, що якщо їх занадто багато, то останній параметр - це всі зайві. Так і відбувається:
 
 ```c
 #define PP(%0,%1) \
         printf(%0, %1)
 
-PP(%s %s %s, "hi", "hello", "hi");
+PP(%s %s %s, "привіт", "привіт", "привіт");
 ```
 
-Will infact print:
+Напечатає:
 
 ```
-hi hello hi
+Привіт, привіт, привіт.
 ```
 
-As `%1` contains "hi", "hello", "hi". You may have also noticed the use of `#` to convert a literal into a string. This is a SA-MP only feature and can be useful. It was just added here to give a disting distinguishing between the parameters.
+Як `%1` містить "hi", "hello", "hi". Ви також могли помітити використання `#` для перетворення літерала у рядок. Ця функція доступна лише для SA-MP і може бути корисною. Її було додано для того, щоб чіткіше розрізняти параметри.
 
-## `#else`
+## Інакше.
 
-`#else` is like else, but for #if instead of if.
+`#else` схоже на else, але для #if замість if.
 
-## `#elseif`
+## Якщо ні, то я не знаю, що робити далі.
 
-`#elseif` is like else if but for #if.
+`#elseif` - це як інакше, якби не #if.
 
 ```c
 #define MOO 10
@@ -142,102 +142,102 @@ As `%1` contains "hi", "hello", "hi". You may have also noticed the use of `#` t
 #endif
 ```
 
-## `#emit`
+## Я не знаю, що робити далі.
 
-This directive is unlisted in the pawn-lang.pdf table however does exist. It is basically an inline compiler. If you know AMX you can use this to put AMX opcodes directly into your code. The one limitation is that is allows only one argument. Syntax: `#emit <opcode> <argument>`. `<argument>` can be a rational number, integer or (local or global) symbol(variables, functions and labels). The list of opcodes and their meaning can be found in Pawn Toolkit ver. 3664.
+Ця директива не вказана у таблиці pawn-lang.pdf, але вона існує. По суті, це вбудований компілятор. Якщо ви знаєте AMX, ви можете використовувати її, щоб вставити опкоди AMX безпосередньо у ваш код. Єдиним обмеженням є те, що він допускає лише один аргумент. Синтаксис: `#emit <опкод> <аргумент>`. <Аргумент> може бути раціональним числом, цілим числом або (локальним чи глобальним) символом (змінні, функції та мітки). Список опкодів та їх значення можна знайти у Pawn Toolkit ver. 3664.
 
 ## `#endif`
 
-`#endif` is like a close brace for if. #if doesn't use braces, everything is conditionally added up to the corresponding #endif.
+`#endif` подібний до закриваючої дужки для if. У #if не використовуються дужки, все умовно додається до відповідного #endif.
 
 ## `#endinput, #endscript`
 
-This stops the inclusion of a single file.
+Це зупиняє включення одного файлу.
 
-## `#error`
+## Помилка.
 
-This halts the compiler instantly and gives a custom error message. See #assert for an example.
+Це миттєво зупиняє компілятор і видає спеціальне повідомлення про помилку. Дивіться приклад #assert.
 
-## `#if`
+## "Якщо
 
-`#if` is to the proprocessor what if is to code. You can choose exactly what to compile and what not to from here. For example consider the following code:
+`#if` - це для пропроцесора, що if - для коду. Звідси ви можете вибрати, що саме компілювати, а що ні. Для прикладу розглянемо наступний код:
 
 ```c
 #define LIMIT 10
 
 if (LIMIT < 10)
 {
-    printf("Limit too low");
+    printf("Ліміт занадто низький");
 }
 ```
 
-That will compile as:
+Це буде скомпільовано як:
 
 ```c
 if (10 < 10)
 {
-    printf("Limit too low");
+    printf("Ліміт занадто низький");
 }
 ```
 
-Which will clearly never be true and the compiler knows it - so it tells you so, giving you a "constant expression" warning. The question is, if it will never be true what's the point of including it at all? You could just remove the code but then there will be no checks if someone changes LIMIT and recompiles. This is what #if is for. Unlike normal if which gives a warning if the expression is constant, #if expressions MUST be constant. So:
+Що, очевидно, ніколи не буде істинним, і компілятор знає це, тому він повідомляє вам про це, видаючи попередження про "константний вираз". Питання в тому, що якщо це ніколи не буде істинним, то який сенс взагалі його включати? Ви можете просто видалити код, але тоді не буде ніяких перевірок, якщо хтось змінить LIMIT і перекомпілює. Ось для чого потрібен #if. На відміну від звичайного if, який видає попередження, якщо вираз є константою, вираз #if ПОВИНЕН бути константою. Отже:
 
 ```c
 #define LIMIT 10
 
 #if LIMIT < 10
-    #error Limit too low
+    #error Занадто низький ліміт
 #endif
 ```
 
-That will check that the limit is not too small when you compile and if it is will give a compile time error, rather than you having to test the mode to see if there's something wrong. This also means that no excess code is generated. Note the lack of brackets too, you can use them, and may need them in more complex expressions, but they're not required.
+Це дозволить перевірити, що ліміт не є занадто малим під час компіляції, і якщо він є замалим, то буде видано помилку під час компіляції, замість того, щоб ви тестували режим, щоб побачити, чи все гаразд. Це також означає, що не буде згенеровано зайвого коду. Зверніть увагу на відсутність дужок, ви можете використовувати їх, і вони можуть знадобитися у більш складних виразах, але вони не є обов'язковими.
 
-Here's another example:
+Ось ще один приклад:
 
 ```c
 #define LIMIT 10
 
 if (LIMIT < 10)
 {
-    printf("Limit less than 10");
+    printf("Ліміт менше 10");
 }
 else
 {
-    printf("Limit equal to or above 10");
+    printf("Межа дорівнює або перевищує 10");
 }
 ```
 
-Again this is a constant check, which will give a warning, but both prints will be compiled when we KNOW only one will ever run. Using #if this becomes:
+Знову ж таки, це постійна перевірка, яка видасть попередження, але обидва роздруківки будуть скомпільовані, коли ми знатимемо, що буде виконано лише одну з них. Використовуючи #if це стає:
 
 ```c
 #define LIMIT 10
 
 #if LIMIT < 10
-    printf("Limit less than 10");
+    printf("Ліміт менше 10");
 #else
-    printf("Limit equal to or above 10");
+    printf("Ліміт дорівнює або перевищує 10");
 #endif
 ```
 
-That way only the printf which is required will be compiled and the other one will still be in your source code incase they change LIMIT and recompile, but won't be included in the code as it's not needed. This way also means the pointless if isn't run every time your code is run, which is always good.
+Таким чином, буде скомпільовано лише той printf, який потрібно, а інший залишиться у вашому коді на випадок зміни LIMIT і перекомпіляції, але не буде включений до коду, оскільки він не потрібен. Цей спосіб також означає, що безглуздий if не буде виконуватися кожного разу, коли виконується ваш код, що завжди добре.
 
-## `#include`
+## "Включити
 
-This takes all the code from a specified file and inserts it into your code at the point at which the include line is. There are two types of include: relative and system (I just made those terms up, if you have better ones please say). Relative includes use double quotes around the filename and are located relative to the current file, so:
+Вона бере весь код з вказаного файлу і вставляє його у ваш код у місці, де знаходиться рядок включення. Існує два типи включень: відносні та системні (я щойно вигадав ці терміни, якщо у вас є кращі, будь ласка, скажіть). Відносні включають використовують подвійні лапки навколо імені файлу і розташовуються відносно поточного файлу, тому:
 
 ```c
 #include "me.pwn"
 ```
 
-would include the file "me.pwn" from the same directory as the file including that file. The other type, system, includes the file from the "include" directory that is located either in same directory as is Pawn compiler or parent directory(paths:"include","../include"):
+включатиме файл "me.pwn" з того ж каталогу, що і файл, що включає цей файл. Інший тип, system, включає файл з каталогу "include", який знаходиться або у тому ж каталозі, що і компілятор Pawn, або у батьківському каталозі (шляхи: "include", "../include"):
 
 ```c
 #include "<me>"
 ```
 
-Would include the file "me.inc" (note the lack of extension, you can specify one if the file is not .p (not .pwn) or .inc) from the pawno/include directory (assuming you're using pawno).
+Включить файл "me.inc" (зверніть увагу на відсутність розширення, ви можете вказати його, якщо файл не є .p (не .pwn) або .inc) з каталогу pawno/include (за умови, що ви використовуєте pawno).
 
-Both these types can take directories:
+Обидва ці типи можуть приймати каталоги:
 
 ```c
 #include "folder/me.pwn"
@@ -247,33 +247,33 @@ Both these types can take directories:
 #include <folder/me>
 ```
 
-Both of those will include a file one directory down from their respective default directories. If the file does not exist compile fails instantly.
+Обидва варіанти включатимуть файл, розташований на один каталог нижче від відповідних каталогів за замовчуванням. Якщо файл не існує, компіляція миттєво завершиться невдачею.
 
-## `#pragma`
+## "Прагма
 
-This is one of the most complex directives. It has a number of options to control how your script works. An example setting would look like:
+Це одна з найскладніших директив. Вона має ряд опцій для керування роботою вашого скрипта. Приклад налаштування виглядатиме так:
 
 ```c
 #pragma ctrlchar '$'
 ```
 
-That changes the escape character from \ to $, so a new line, instead of being "\r\n" (windows CR-LF) would be "$r\$n". Many of the options are designed to control amx compilation for embedded systems and so limit things which are really almost unlimited on a PC, they are all listed in pawn-lang.pdf but only selected ones relevant to SA:MP are here:
+Це змінює символ екранування з \ на $, тому новий рядок замість "\r\n" (вікна CR-LF) матиме вигляд "$r\$n". Багато з цих параметрів призначено для керування компіляцією amx для вбудованих систем і тому вони обмежують можливості, які на ПК є майже необмеженими, всі вони перелічені у pawn-lang.pdf, але тут наведено лише вибрані з них, що стосуються SA:MP:
 
-| Name       | Values                        | Description                                                                                                                                                                                                                                                                                                                                                             |
+| Ім'я, значення, опис.
 | ---------- | ----------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| codepage   | name/value                    | Sets the Unicode codepage to use for strings.                                                                                                                                                                                                                                                                                                                           |
-| compress   | 1/0                           | Unsupported in SA-MP - don't try to use it.                                                                                                                                                                                                                                                                                                                             |
-| deprecated | symbol                        | Generated a warning if the given symbol is used to tell people there's a better version available.                                                                                                                                                                                                                                                                      |
-| dynamic    | value(generally a power of 2) | Sets the size of memory (in cells) assigned to the stack and heap. Required if you get excess memory usage warning after compilation. (A weird table after the compiler copyright line)                                                                                                                                                                                 |
-| library    | dll name                      | Widley incorrectly used in SA-MP. This specifies the dll to get the native functions defined in the file it is from. It does not define a file **as** a library.                                                                                                                                                                                                        |
-| pack       | 1/0                           | Swap the meanings of !"" and "". See pawn-lang.pdf for more information on packed strings.                                                                                                                                                                                                                                                                              |
-| tabsize    | value                         | Another widely misused setting. This should be used to set the size of a tab to avoid compiler warnings which are wrong due to spaces and tabs being used interchangably. This is set to 4 in SA:MP as that is the size of a tab in pawno. Setting this to 0 will surpress all your indentation warnings but is highly unadvised as it allows entirely unreadable code. |
-| unused     | symbol                        | Like deprecated this appears after the symbol you wish to surpress the "symbol is never used" warning for. Generally the preferred method of doing this is by using stock however this is not always applicable (e.g. function parameters cannot not be compiled).                                                                                                      |
+| codepage | ім'я/значення | Задає кодову сторінку Unicode, яку слід використовувати для рядків.                                                                                                                                                                                                                                                                                                                           |
+| compress | 1/0 | Не підтримується у SA-MP - не намагайтеся його використовувати.                                                                                                                                                                                                                                                                                                                             |
+| застарілий символ | Створює попередження у разі використання цього символу, щоб повідомити про наявність кращої версії.                                                                                                                                                                                                                                                                      |
+| динамічне значення (зазвичай степінь 2) | Встановлює розмір пам'яті (у комірках), призначеної для стеку та купи. Потрібно, якщо після компіляції ви отримуєте попередження про надмірне використання пам'яті. (Дивна таблиця після рядка про авторські права компілятора)
+бібліотека | ім'я бібліотеки | ім'я dll | Вкрай некоректно використовується у SA-MP. Це вказує бібліотеці на отримання власних функцій, визначених у файлі, з якого вона походить. Це не визначає файл **як** бібліотеку.                                                                                                                                                                                                        |
+| pack | 1/0 | Поміняти місцями значення !"" і "". Докладнішу інформацію про упаковані рядки наведено у pawn-lang.pdf.                                                                                                                                                                                                                                                                              |
+| tabsize | значення | Ще один параметр, який часто використовують не за призначенням. Його слід використовувати для встановлення розміру табуляції, щоб уникнути попереджень компілятора, які є помилковими через взаємозамінне використання пробілів і табуляцій. У SA:MP цей параметр має значення 4, оскільки саме таким є розмір табуляції у pawno. Значення 0 ігнорує всі попередження щодо відступів, але вкрай не рекомендується, оскільки це може призвести до нечитабельного коду. |
+| невикористовуваний | символ | Подібно до deprecated, він з'являється після символу, для якого ви хочете витіснити попередження "символ ніколи не використовується". Загалом, найкращим методом для цього є використання запасів, однак це не завжди можливо (наприклад, параметри функції не можуть не компілюватися).                                                                                                      |
 
-### Deprecated
+### Застаріла.
 
 ```c
-new
+новий
     gOldVariable = 5;
 
 #pragma deprecated gOldVariable
@@ -281,19 +281,19 @@ new
 main() {printf("%d", gOldVariable);}
 ```
 
-That will give a warning that gOldVariable should not be used anymore. This is mostly useful for functions to preserve backwards compatability while updating the API.
+Це призведе до попередження про те, що gOldVariable більше не слід використовувати. Це здебільшого корисно для функцій, які зберігають зворотну сумісність при оновленні API.
 
-### `#tryinclude`
+### `#tryinclude``
 
-This is similar to #include but if the file doesn't exist the compilation doesn't fail. This is useful for only including features in your script if a person has the correct plugin installed (or at least the plugin include):
+Це схоже на #include, але якщо файл не існує, компіляція не завершиться невдачею. Це корисно для включення функцій у ваш скрипт, якщо у користувача встановлений правильний плагін (або, принаймні, плагін include):
 
-**myinc.inc**
+**myinc.inc**.
 
 ```c
-#if defined _MY_INC_INC
+#if визначено _MY_INC_INC
     #endinput
 #endif
-#define _MY_INC_INC
+#визначити _MY_INC_INC
 
 stock MyIncFunc() {printf("Hello");}
 ```
@@ -305,26 +305,26 @@ stock MyIncFunc() {printf("Hello");}
 
 main()
 {
-    #if defined _MY_INC_INC
+    #if визначено _MY_INC_INC
         MyIncFunc();
     #endif
 }
 ```
 
-That will only call MyIncFunc if the file with it in was found and compiled. This, as stated before, is good for things like IRC plugins to check if they actually have the plugin.
+Це призведе до виклику MyIncFunc лише у тому випадку, якщо файл з ним було знайдено і скомпільовано. Це, як зазначалося раніше, добре підходить для таких речей, як плагіни IRC, щоб перевірити, чи вони дійсно мають цей плагін.
 
-### `#undef`
+### Не знаю.
 
-Removes a previously defined macro or constant symbol.
+Видаляє попередньо визначений макрос або символ константи.
 
 ```c
-#define MOO 10
+#визначити MOO 10
 printf("%d", MOO);
 #undef MOO
 printf("%d", MOO);
 ```
 
-That will fail to compile as MOO doesn't exist anymore by the time the second printf is reached.
+Він не скомпілюється, оскільки MOO більше не існує на момент досягнення другого printf.
 
 ```c
 enum {
@@ -333,5 +333,7 @@ enum {
 
 printf("%d", e_example);
 #undef e_example
-printf("%d", e_example); // fatal error
+printf("%d", e_example); // фатальна помилка
 ```
+
+

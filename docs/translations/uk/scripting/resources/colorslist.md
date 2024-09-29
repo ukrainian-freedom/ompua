@@ -1,49 +1,49 @@
 ---
-title: Color List
-description: Colors are everywhere in SA-MP - vehicles, player names and blips, textdraws, gametext, chat, 3D texts and dialogs (as color embedding)! Below you can find information about these different things.
-sidebar_label: Color List
+заголовок: Список кольорів
+description: Кольори в SA-MP всюди - транспортні засоби, імена гравців та бліпи, текстові малюнки, ігровий текст, чат, 3D-тексти та діалоги (як вбудовування кольорів)! Нижче ви можете знайти інформацію про ці різні речі.
+sidebar_label: Список кольорів
 ---
 
-## Chat text and player color
+## Текст чату та колір гравця
 
-Colors in SA-MP are generally represented in hexadecimal notation (though integers can be used also). A chattext or player color looks like this: 0xRRGGBBAA.
+Кольори у SA-MP зазвичай представлено у шістнадцятковій системі числення (хоча можна використовувати і цілі числа). Текст чату або колір програвача має такий вигляд: 0xRRGGBBAA.
 
-_RR_ is the red part of the color, _GG_ the green and _BB_ the blue. _AA_ is the alpha value. If FF is used there, the color will display without transparency and if 00 is used, it will be invisible.
+_RR_ - це червона частина кольору, _GG_ - зелена і _BB_ - синя. _AA_ - це значення альфа. Якщо там використовується FF, то колір буде відображатися без прозорості, а якщо 00, то він буде невидимим.
 
-For the Hex code for these colors, go to the [Hex colors](hexcolors) page.
+Шістнадцяткові коди цих кольорів наведено на сторінці [Шістнадцяткові кольори](hexcolors).
 
 ---
   
-### Alpha values (transparency)
+### Альфа-значення (прозорість)
 
-The following images display the effect of transparency values used with a white quare under the player marker and left to the saving floppy icon. Increments of 0x11 (decimal 17) are used for demonstration, but of course you can use any value.
+На наступних зображеннях показано вплив значень прозорості, що використовуються з білим квадратом під маркером програвача і ліворуч від піктограми збереження дискети. Для демонстрації використано значення 0x11 (десяткове 17), але, звичайно, ви можете використовувати будь-яке значення.
 
 ![Image:trans_matrix.png](/images/colorList/transparency/trans_matrix.png)
 
 ---
   
-### Doing math
+### Виконуємо математичні обчислення
 
-Since colors are just numbers it is possible to calculate with them, although it may not always make sense. For example, it is possible to adjust the player's radar marker visibility (see above) while keeping their current color the same, regardless of what is is.
+Оскільки кольори - це просто числа, з ними можна обчислювати, хоча це не завжди має сенс. Наприклад, можна налаштувати видимість маркерів радарів гравця (див. вище), зберігаючи їхній поточний колір незмінним, незалежно від того, що є насправді.
 
 ```c
 SetPlayerMarkerVisibility(playerid, alpha = 0xFF)
 {
     new oldcolor, newcolor;
 
-    alpha = clamp(alpha, 0x00, 0xFF); // if an out-of-range value is supplied we'll fix it here first
-    oldcolor = GetPlayerColor(playerid); // get their color - Note: SetPlayerColor must have been used beforehand
+    alpha = clamp(alpha, 0x00, 0xFF); // якщо передано значення поза діапазоном, спочатку виправимо його тут
+    oldcolor = GetPlayerColor(playerid); // отримуємо їх колір - Примітка: SetPlayerColor має бути використаний до цього
 
-    newcolor = (oldcolor & ~0xFF) | alpha; // first we strip of all alpha data (& ~0xFF) and then we replace it with our desired value (| alpha)
-    return SetPlayerColor(playerid, newcolor); // returns 1 if it succeeded, 0 otherwise
+    newcolor = (oldcolor & ~0xFF) | alpha; // спочатку видаляємо всі дані альфа (& ~0xFF), а потім замінюємо їх на потрібне нам значення (| alpha)
+    return SetPlayerColor(playerid, newcolor); // повертаємо 1, якщо вдалося, 0 інакше
 }
 ```
 
 ---
   
-### Convert string to value with pawn
+### Перетворення рядка у значення з пішаком
 
-Since the colors are just numbers you have to convert them sometimes from an input string "RRGGBBAA" to its number. This can be done using sscanf or the following function:
+Оскільки кольори є лише числами, іноді потрібно перетворити вхідний рядок «RRGGBBAA» у його номер. Це можна зробити за допомогою sscanf або наступної функції:
 
 ```c
 stock HexToInt(string[])
@@ -66,82 +66,82 @@ stock HexToInt(string[])
 }
 ```
 
-Use HexToInt("RRGGBBAA") and you'll get a usable number as result for [SetPlayerColor](../functions/SetPlayerColor).
+Використовуйте HexToInt(«RRGGBBAA») і ви отримаєте придатне для використання число як результат для [SetPlayerColor](../functions/SetPlayerColor).
 
 ---
   
-### Color embedding
+### Вбудовування кольорів
 
-It is possible to use colors within text in [client messages](../functions/SendClientMessage"), [dialogs](../functions/ShowPlayerDialog), [3D text labels](../functions/Create3DTextLabel), [object material texts](../functions/SetObjectMaterialText) and [vehicle numberplates](../functions/SetVehicleNumberPlate").
+Можна використовувати кольори у тексті у [клієнтських повідомленнях](../functions/SendClientMessage«), [діалогах](../functions/ShowPlayerDialog), [3D текстових мітках](../functions/Create3DTextLabel), [текстах матеріалів об'єктів](../functions/SetObjectMaterialText) та [автомобільних номерах](../functions/SetVehicleNumberPlate»).
 
-It is very similar to [gametext colors](../resources/gametextstyles), but allows any color to be used.
+Він дуже схожий на [gametext colors](../resources/gametextstyles), але дозволяє використовувати будь-який колір.
 
-:::caution
+:::попередження
 
-This type of color embedding does not work in textdraws. See [GameTextStyle](../resources/gametextstyles).
+Цей тип вбудовування кольорів не працює у textdraws. Дивіться [GameTextStyle](../resources/gametextstyles).
 
 :::
 
 ---
   
-#### Example
+#### Приклад
 
 ```c
-{FFFFFF}Hello this is {00FF00}green {FFFFFF}and this is {FF0000}red
+{FFFFFF}Привіт, це {00FF00}зелений {FFFFFF}, а це {FF0000}червоний
 ```
 
-Hello this is green and this is red
+Привіт, це зелений, а це червоний
 
 ![Image:Example1.png](/images/colorList/Example1.png)
 
 ---
   
-#### Another example
+#### Ще один приклад
 
 ![Image:Cembed.png](/images/colorList/Cembed.png)  
-The code for the above chat line looks like this:
+Код вищенаведеного рядка чату виглядає наступним чином:
 
 ```c
-SendClientMessage(playerid, COLOR_WHITE, "Welcome to {00FF00}M{FFFFFF}a{FF0000}r{FFFFFF}c{00FF00}o{FFFFFF}'{FF0000}s {FFFFFF}B{00FF00}i{FFFFFF}s{FF0000}t{FFFFFF}r{00FF00}o{FFFFFF}!");
+SendClientMessage(playerid, COLOR_WHITE, «Welcome to {00FF00}M{FFFFFF}a{FF0000}r{FFFFFF}c{00FF00}o{FFFFFF}'{FF0000}s {FFFFFF}B{00FF00}i{FFFFFF}s{FF0000}t{FFFFFF}r{00FF00}o{FFFFFF}!»);
 ```
 
-You can define colors to use like so:
+Ви можете визначити кольори для використання таким чином:
 
 ```c
-#define COLOR_RED_EMBED "{FF0000}"
+#define COLOR_RED_EMBED «{FF0000}»
 
-SendClientMessage(playerid, -1, "This is white and "COLOR_RED_EMBED"this is red.");
+SendClientMessage(playerid, -1, «Це білий, а “COLOR_RED_EMBED ”це червоний.»);
 ```
 
-Or
+Або
 
 ```c
-#define COLOR_RED_EMBED "FF0000"
+#define COLOR_RED_EMBED «FF0000»
 
-SendClientMessage(playerid, -1, "This is white and {"COLOR_RED_EMBED"}this is red.");
+SendClientMessage(playerid, -1, «Це біле, а {»COLOR_RED_EMBED«}це червоне.»);
 ```
 
-The second example would be better as is it clearer that embedding is used.
+Другий приклад був би кращим, оскільки з нього зрозуміліше, що використовується вбудовування.
 
 ---
   
-#### Using GetPlayerColor
+#### Використання GetPlayerColor
 
-To use a player's color as an embedded color, you must first remove the alpha value. To do this, perform a logical right shift.
+Щоб використовувати колір гравця як вбудований колір, потрібно спочатку видалити значення альфа. Для цього виконайте логічний зсув вправо.
 
 ```c
 new msg[128];
-format(msg, sizeof(msg), "{ffffff}This is white and {%06x}this is the player's color!", GetPlayerColor(playerid) >>> 8);
-SendClientMessage(playerid, 0xffffffff, msg);
+format(msg, sizeof(msg), «{ffffff}Це білий, а {%06x}це колір гравця!», GetPlayerColor(playerid) >>> 8);
+SendClientMessage(playerid, 0xffffffffff, msg);
 ```
 
-The %x is the placeholder for hexadecimal values, the 6 ensures that the output string will always be six characters long and the 0 will pad it with zeros if it's not. Note that [GetPlayerColor](../resources/GetPlayerColor) only works properly if [SetPlayerColor](../resources/SetPlayerColor) has been used beforehand.
+Символ %x є заповнювачем для шістнадцяткових значень, 6 гарантує, що вихідний рядок завжди матиме довжину шість символів, а 0 доповнить його нулями, якщо це не так. Зауважте, що [GetPlayerColor](../resources/GetPlayerColor) працює належним чином лише за умови попереднього використання [SetPlayerColor](../resources/SetPlayerColor).
 
-The colors used in color embedding are not like normal hex colors in Pawn. There is no '0x' prefix and no alpha value (last 2 digits).
+Кольори, що використовуються у вбудовуванні кольорів, не схожі на звичайні гекс-кольори у Pawn. У них немає префікса '0x' та значення альфа (останні 2 цифри).
 
 ---
   
-### Color Pickers
+### Підбирачі кольорів
 
 - [SA-MP Colorpicker v1.1.0](http://www.gtavision.com/index.php?section=downloads&site=download&id=1974)
 - [December.com](http://www.december.com/html/spec/color.html)
@@ -153,53 +153,55 @@ The colors used in color embedding are not like normal hex colors in Pawn. There
   
 ## GameText
 
-For GameText colors you can use special tags to set the following text to a specific color.
+Для кольорів GameText ви можете використовувати спеціальні теги, щоб встановити певний колір для наступного тексту.
 
 ```c
-~r~    red
-~g~    green
-~b~    blue
-~w~    white
-~y~    yellow
-~p~    purple
-~l~    black
-~h~    lighter color
+~r~ червоний
+~g~ зелений
+~b~ синій
+~w~ білий
+~жовтий
+~фіолетовий
+~чорний
+~h~ світліший колір
 ```
 
-Game text colour tags can be used to form different colours easily. The below colours are not exactly the same colour as above tags.
+За допомогою тегів кольору в ігровому тексті можна легко створювати різні кольори. Наведені нижче кольори не є точно такими самими, як у наведених вище тегах.
 
 ```c
-~y~                yellow
-~r~~h~             light red
-~r~~h~~h~          red pink
-~r~~h~~h~~h~       dark pink
-~r~~h~~h~~h~~h~    light red pink
-~r~~h~~h~~h~~h~~h~ pink
-~g~~h~             light green
-~g~~h~~h~          more light green
-~g~~h~~h~~h~       sea green
-~g~~h~~h~~h~~h~    offwhite
-~b~~h~             blue
-~b~~h~~h~          purplish blue
-~b~~h~~h~~h~       light blue
-~y~~h~~h~          offwhite
-~p~~h~             medium pink
+~y~ жовтий
+~r~~h~ світло-червоний
+~r~~h~~h~ червоний рожевий
+~r~~h~~h~~h~~h~ темно-рожевий
+~світло-червоний рожевий
+~рожевий
+~світло-зелений
+~ще світло-зелений
+~морська зелень
+~білосніжний
+~синій
+~пурпурно-синій
+~світло-блакитний
+~білосніжний
+~середньо-рожевий
 ```
 
 ---
   
-### Example
+### Приклад
 
 ```c
-~w~Hello this is ~b~blue ~w~and this is ~r~red
+~Привіт, це синій, а це червоний.
 ```
 
-[![Image:Blueandred.png](/images/colorList/Blueandred.png)
+[![Зображення:Blueandred.png](/images/colorList/Blueandred.png)
 
-Now these colors are pretty dark. You can make them brighter by using **~h~** after the color code:
+Зараз ці кольори досить темні. Ви можете зробити їх яскравішими, використовуючи **~h~** після коду кольору:
 
 ```c
-~w~Hello this is ~b~~h~blue ~w~and this is ~r~~h~red
+~w~Привіт, це ~b~~h~синій ~w~а це ~r~~h~червоний
 ```
 
 [![Image:Blueandred2.png](/images/colorList/Blueandred2.png)
+
+

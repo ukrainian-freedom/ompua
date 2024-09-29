@@ -1,54 +1,54 @@
-# Pitfalls: differences from C
+# Підводні камені: відмінності від C
 
 ---
 
-- PAWN lacks the typing mechanism of C. PAWN is an “integer-only” variety of C; there are no structures or unions, and floating point support must be implemented with user-defined operators and the help of native functions.
+- У PAWN відсутній механізм типізації C. PAWN - це "цілочисельний" різновид C; у ній немає структур та об'єднань, а підтримка плаваючої точки має бути реалізована за допомогою визначених користувачем операторів та власних функцій.
 
-- The accepted syntax for rational numbers is stricter than that of floating point values in C. Values like “.5” and “6.” are acceptable in C, but in PAWN one must write “0.5” and “6.0” respectively. In C, the decimal period is optional if an exponent is included, so one can write “2E8”; PAWN does not accept the upper case “E” (use a lower case “e”) and it requires the decimal point: e.g. “2.0e8”. See page 98 for more information.
+- Прийнятий синтаксис для раціональних чисел суворіший, ніж для значень з плаваючою комою у C. Такі значення, як ".5" та "6." є прийнятними у C, але у PAWN потрібно писати "0.5" та "6.0" відповідно. У C десяткова крапка не є обов'язковою, якщо експонента включена, тому можна написати "2E8"; PAWN не приймає верхній регістр "E" (використовуйте нижній регістр "e") і вимагає десяткову крапку: наприклад, "2.0e8". Додаткову інформацію див. на сторінці 98.
 
-- PAWN does not provide “pointers”. For the purpose of passing function arguments by reference, PAWN provides a “reference” argument, (page 71). The “placeholder” argument replaces some uses of the NULL pointer (page 75).
+- PAWN не надає "вказівників". Для передачі аргументів функції за посиланням у PAWN передбачено аргумент "посилання" (стор. 71). Аргумент "заповнювач" замінює деякі випадки використання вказівника NULL (стор. 75).
 
-- Numbers can have hexadecimal, decimal or binary radix. Octal radix is not supported. See “Constants” on page 98. Hexadecimal numbers must start with “0x” (a lower case “x”), the prefix “0X” is invalid.
+- Числа можуть мати шістнадцятковий, десятковий або двійковий радікс. Вісімковий радікс не підтримується. Див. розділ "Константи" на сторінці 98. Шістнадцяткові числа повинні починатися з "0x" (маленької літери "x"), префікс "0X" є неприпустимим.
 
-- Escape sequences (“\n”, “\t”, etc.) are the same, except for “\ddd” where “ddd” represent three decimal digits, instead of the octal digits that C/C++ uses. The backslash (“\”) may be replaced with another symbol; see #pragma ctrlchar on page 120 —notably, previous versions of PAWN used the caret (“^”) as the escape character.
+- Послідовності екранування ("\n", "\t" і т.д.) такі самі, за винятком "\ddd", де "ddd" позначає три десяткові цифри, замість вісімкових цифр, які використовуються у C/C++. Зворотну косу риску ("\") можна замінити іншим символом; див. розділ #pragma ctrlchar на сторінці 120 - зауважте, що у попередніх версіях PAWN як символ екранування використовувався символ каретки ("^").
 
-- Cases in a switch statement are not “fall through”. Only a single instruction may (and must) follow each case label. To execute multiple instructions, you must use a compound statement. The default clause of a switch statement must be the last clause of the switch statement. More on page 115. In C/C++, switch is a “conditional goto”, akin to Fortran’s calculated labels. In PAWN, switch is a structured “if”.
+- Регістри в операторі switch не "пропадають". Після кожної мітки регістру може (і повинна) виконуватися лише одна інструкція. Щоб виконати декілька інструкцій, потрібно використовувати складений оператор. Інструкція за замовчуванням повинна бути останньою інструкцією в операторі switch. Детальніше на сторінці 115. У C/C++ switch - це "умовний перехід", подібний до обчислюваних міток у Fortran. У PAWN switch - це структуроване "if".
 
-- A break statement breaks out of loops only. In C/C⁺⁺, the break statement also ends a case in a switch statement. Switch statements are implemented differently in PAWN (see page 115).
+- Оператор break виводить тільки з циклів. У C/C⁺⁺ оператор break також завершує випадок в операторі switch. У PAWN оператори switch реалізовано по-іншому (див. сторінку 115).
 
-- PAWN supports “array assignment”, with the restriction that both arrays must have the same size. For example, if “a” and “b” are both arrays with 6 cells, the expression “a = b” is valid. Next to literal strings, PAWN also supports literal arrays, allowing the expression “a = {0,1,2,3,4,5}” (where “a” is an array variable with 6 elements).
+- PAWN підтримує "присвоювання масивів", з обмеженням, що обидва масиви повинні мати однаковий розмір. Наприклад, якщо "a" і "b" є масивами по 6 комірок, вираз "a = b" є правильним. Крім буквених рядків, PAWN також підтримує буквені масиви, дозволяючи вираз "a = {0,1,2,3,4,5}" (де "a" - це змінна масиву з 6 елементами).
 
-- _char_ is an operator, not a type. See page 110 and the tips on page 137.
+- _char_ - це оператор, а не тип. Див. сторінку 110 та підказки на сторінці 137.
 
-- _defined_ is an operator, not a preprocessor directive. The defined operator in PAWN operates on constants (with const and enum), global variables, local variables and functions.
+- _defined_ - це оператор, а не директива препроцесора. Оператор defined у PAWN оперує константами (за допомогою const та enum), глобальними змінними, локальними змінними та функціями.
 
-- The _sizeof_ operator returns the size of a variable in “elements”, not in “bytes”. An element may be a cell or a sub-array. See page 109 for details.
+- Оператор _sizeof_ повертає розмір змінної в "елементах", а не в байтах. Елементом може бути комірка або підмасив. Докладні відомості див. на сторінці 109.
 
-- The empty instruction is an empty compound block, not a semicolon (page 112). This modification avoids a frequent error.
+- Порожня інструкція є порожнім складеним блоком, а не крапкою з комою (сторінка 112). Ця модифікація дозволяє уникнути поширеної помилки.
 
-- The compiler directives differ from C’s preprocessor commands. Notably, the #define directive is incompatible with that of C/C⁺⁺, and #ifdef and #ifndef are replaced by the more general #if directive (see “Directives” on page 117). To create numeric constants, see also page 101; to create string constants, see also page 93.
+- Директиви компілятора відрізняються від команд препроцесора C. Зокрема, директива #define несумісна з директивами C/C⁺⁺, а #ifdef та #ifndef замінено на більш загальну директиву #if (див. розділ "Директиви" на сторінці 117). Про створення числових констант див. також сторінку 101; про створення рядкових констант див. також сторінку 93.
 
-- Text substitutions (preprocessor macros; see the #define directive) are not matched across lines. That is, the text that you want to match and replace with a #define macro must appear on a single line. The definition of a #define macro must also appear on a single line.
+- Текстові заміни (макроси препроцесора; див. директиву #define) не зіставляються між рядками. Тобто, текст, який ви хочете зіставити і замінити макросом #define, повинен знаходитися в одному рядку. Визначення макросу #define також має бути в одному рядку.
 
-- The direction for truncation for the operator “/” is always towards the smaller value, where -2 is smaller than -1. The “%” operator always gives a positive result, regardless of the signs of the operands. See page 104.
+- Напрямок усікання для оператора "/" завжди в бік меншого значення, де -2 менше, ніж -1. Оператор "%" завжди дає позитивний результат, незалежно від знаків операндів. Дивіться сторінку 104.
 
-- There is no unary “+” operator, which is a “no-operation” operator anyway.
+- Немає унарного оператора "+", який у будь-якому випадку є оператором "без дії".
 
-- Three of the bitwise operators have different precedence than in C. The precedence levels of the “&”, “^” and | operators is higher than the rela- tional operators (Dennis Ritchie explained that these operators got their low precedence levels in C because early C compilers did not yet have the logical “&&” and || operators, so the bitwise “&” and | were used instead).
+- Три бітові оператори мають інший пріоритет, ніж у C. Рівень пріоритету операторів "&", "^" і | вищий, ніж у операторів відношення (Денніс Рітчі пояснив, що ці оператори отримали низький рівень пріоритету у C тому, що ранні компілятори C ще не мали логічних операторів "&&" і ||, тому замість них використовувалися бітові "&" і |).
 
-- The “extern” keyword does not exist in PAWN; the current implementation of the compiler has no “linking phase”. To create a program from several source files, add all source files the compilers command line, or create one main project script file that “#include’s” all other source files. The PAWN compiler can optimize out functions and global variables that you do not use. See pages 63 and 84 for details.
+- У PAWN не існує ключового слова "extern"; поточна реалізація компілятора не має "фази компонування". Щоб створити програму з декількох вихідних файлів, додайте всі вихідні файли до командного рядка компілятора або створіть один головний файл сценарію проєкту, який "#include" всі інші вихідні файли. Компілятор PAWN може оптимізувати функції та глобальні змінні, які ви не використовуєте. Докладні відомості наведено на сторінках 63 і 84.
 
-- In most situations, forward declarations of functions (i.e., prototypes) are not necessary. PAWN is a two-pass compiler, it will see all functions on the first pass and use them in the second pass. User-defined operators must be declared before use, however.
+- У більшості ситуацій прямі оголошення функцій (тобто прототипи) не є необхідними. PAWN є двопрохідним компілятором, він побачить усі функції на першому проході і використає їх на другому. Однак, оператори, визначені користувачем, повинні бути оголошені перед використанням.
 
-If provided, forward declarations must match exactly with the function def-
-inition, parameter names may not be omitted from the prototype or differ
-from the function definition. PAWN cares about parameter names in pro-
-totypes because of the “named parameters” feature. One uses prototypes
-to call forwardly declared functions. When doing so with named param-
-eters, the compiler must already know the names of the parameters (and
-their position in the parameter list). As a result, the parameter names in a
-prototype must be equal to the ones in the definition.
+Якщо передбачено, форвардні оголошення повинні точно збігатися з описом функції
+імена параметрів не можуть бути відсутніми у прототипі або відрізнятися від
+від визначення функції. PAWN піклується про імена параметрів у прототипах завдяки функції "іменовані параметри".
+типах завдяки функції "іменовані параметри". Прототипи використовуються
+для виклику прямо оголошених функцій. Коли ви робите це з іменованими параметрами, компілятор повинен
+компілятор вже повинен знати імена параметрів (і
+їх розташування у списку параметрів). Як наслідок, імена параметрів у прототипі
+у прототипі повинні збігатися з іменами у визначенні.
 
 ---
 
-[Go Back to Contents](00-Contents.md)
+[Повернутися до змісту](00-Contents.md)

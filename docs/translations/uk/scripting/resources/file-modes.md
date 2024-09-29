@@ -1,17 +1,19 @@
 ---
-title: File Modes
-description: The modes to open the file with.
+заголовок: Режими файлів
+description: Режими, за допомогою яких слід відкривати файл.
 ---
 
 :::note
 
-These file modes are used by [fopen](../functions/fopen).
+Ці режими файлів використовуються командою [fopen](../functions/fopen).
 
 :::
 
-| Mode         | Description                                                                               |
+| Режим | Опис
 | ------------ | ----------------------------------------------------------------------------------------- |
-| io_read      | Reads from the file.                                                                      |
-| io_write     | Write in the file, or create the file if it does not exist. Erases all existing contents. |
-| io_readwrite | Reads the file or creates it if it doesn't already exist.                                 |
-| io_append    | Appends (adds) to file, write-only. If the file does not exist, it is created.            |
+| io_read | Читає з файлу.                                                                      |
+| io_write | Записати у файл або створити файл, якщо його не існує. Стирає увесь наявний вміст. |
+| io_readwrite | Читає файл або створює його, якщо він не існує.                                 |
+| io_append | Дописує (додає) до файлу, лише для запису. Якщо файл не існує, він створюється.            |
+
+

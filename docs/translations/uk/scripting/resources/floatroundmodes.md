@@ -1,19 +1,21 @@
 ---
-title: Floatround Modes
-description: The rounding modes used with floatround.
-sidebar_label: Floatround Modes
+заголовок: Floatround Modes
+description: Режими округлення, що використовуються з floatround.
+sidebar_label: Режими округлення
 ---
 
 :::info
 
-A list of possible floatround modes which can be used by [floatround](../functions/floatround).
+Список можливих режимів округлення, які може використовувати [floatround](../functions/floatround).
 
 :::
 
-| Mode                | Description                                                                                         |
+| Режим | Опис
 | ------------------- | --------------------------------------------------------------------------------------------------- |
-| floatround_round    | Round to the nearest integer. A fractional part of exactly 0.5 rounds upwards (this is the default) |
-| floatround_floor    | Round downwards                                                                                     |
-| floatround_ceil     | Round upwards                                                                                       |
-| floatround_tozero   | Round downwards for positive values and upwards for negative values ("truncate")                    |
-| floatround_unbiased | The same as floatround_round                                                                        |
+| floatround_round | Округлити до найближчого цілого. Дробова частина з точністю до 0.5 округляється у більшу сторону (це значення за замовчуванням)
+| floatround_floor | Округлити в меншу сторону
+| floatround_ceil | Округлити в більшу сторону
+| floatround_tozero | Округлювати вниз для додатних значень і вгору для від'ємних значень («усікати»)
+| floatround_unbiased | Те саме, що й floatround_round
+
+

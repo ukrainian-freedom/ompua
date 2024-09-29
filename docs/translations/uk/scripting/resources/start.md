@@ -1,32 +1,32 @@
 ---
-title: Scripting Basics
-description: A short tutorial guiding you through the basics of the Pawn language and SA-MP/open.mp APIs.
-sidebar_label: Scripting Basics
+заголовок: Основи написання сценаріїв
+description: Короткий підручник, який допоможе вам розібратися з основами мови Pawn та APIs SA-MP/open.mp.
+sidebar_label: Основи написання сценаріїв
 ---
 
-Below is an example of possibly the most basic script you can write:
+Нижче наведено приклад, можливо, найпростішого скрипта, який ви можете написати:
 
 ```c
 #include <a_samp>
 
 main()
 {
-    print("Hello World!");
+    print(«Hello World!»);
     return 1;
 }
 ```
 
-The various aspects will be covered in turn but we'll start by looking at the first line.
+Ми розглянемо різні аспекти по черзі, але почнемо з першого рядка.
 
 ---
   
-## Include
+## Включити
 
 ```c
 #include <a_samp>
 ```
 
-This basically loads the code from pawno/includes/a_samp.inc into your script, so everything it has you can use. One of the things it has is:
+Це, по суті, завантажує код з pawno/includes/a_samp.inc у ваш скрипт, тож ви можете використовувати все, що там є. Одна з речей, що там є, це:
 
 ```c
 #include <core>
@@ -41,81 +41,81 @@ This basically loads the code from pawno/includes/a_samp.inc into your script, s
 #include <a_sampdb>
 ```
 
-This includes all the other files in that directory so by adding that one line you have access to all the functions in SA:MP (more on functions later).
+Це включає всі інші файли у цьому каталозі, тому, додавши цей рядок, ви отримаєте доступ до всіх функцій SA:MP (більше про функції пізніше).
 
 ---
   
-## Calls
+## Виклики
 
-The next part has two sides of a function call. main() is a function which you write the code for and is called from elsewhere, print(string\[\]) is a function with the code elsewhere which you call. Currently all this will do is load, print a string (i.e. print "Hello World!" (without the ""s) (a tradition in all scripting languages)) to the server console and end. The:
+Наступна частина має дві сторони виклику функції. main() - це функція, для якої ви пишете код і яка викликається з іншого місця, print(string\[\]) - це функція з кодом в іншому місці, яку ви викликаєте. Наразі все, що буде зроблено, це завантажено, надруковано рядок (наприклад, надруковано «Hello World!» (без «»s") (традиція у всіх мовах сценаріїв)) до консолі сервера і завершить роботу. У прикладі:
 
 ```c
-return 1;
+повертає 1;
 ```
 
-Passes a value (1) back to the place which called main to tell it what happened (the exact value passed here doesn't matter but in other places it does). You now have your first (very basic) script. If you select file->new in pawno it will give you a much bigger start point will all the callbacks in (see below), including main (which isn't technically a callback but acts like one).
+Повертає значення (1) туди, звідки був зроблений виклик main, щоб повідомити йому про те, що сталося (точне значення, передане тут, не має значення, але в інших місцях - має). Тепер у вас є ваш перший (дуже простий) скрипт. Якщо ви виберете file->new у pawno, це дасть вам набагато більшу відправну точку для всіх зворотних викликів (див. нижче), включно з main (який технічно не є зворотним викликом, але діє як такий).
 
 ---
   
-## Statements
+## Оператори
 
-The print and return lines have ';' (a semi colon) on them, this just denotes the end of a statement (a statement is a group of one or more functions and operators which together do something, similar to a sentence in common language). Most people put separate statements on separate lines but this is not required, it just makes things clearer, the following is equally valid:
-
-```c
-main() { print("Hello World!"); return 1; }
-```
-
-The {}s (braces (curly brackets), not parenthesis (brackets)) enclose a group of statements which should be executed together (like a paragraph in common language). If you did:
+Рядки виводу та повернення мають символ ';' (крапка з комою), який позначає кінець оператора (оператор - це група з однієї або декількох функцій та операторів, які разом щось роблять, подібно до речення у звичайній мові). Більшість людей ставлять окремі оператори на окремі рядки, але це не обов'язково, це просто робить речі більш зрозумілими, наступний варіант є рівноцінним:
 
 ```c
-main() print("Hello World!"); return 1;
+main() { print(«Hello World!»); return 1; }
 ```
 
-You would get an error because now the "return 1;" statement is not grouped so is not part of main. Braces group a set of statements into a single statement (called a compound statement) and functions have a single statement with them. Without the braces print and return are entirely separate statements, so there's two or them so, as a function can only have a single statement, the second is not in a function, which code can't be.
-
-But generally, you can expand compound statements with the use of the comma (,) operator but this is not suggested as it is not the best coding practice. An example follows:
+Дужки {} (фігурні дужки, а не круглі дужки) об'єднують групу операторів, які мають виконуватися разом (як абзац у звичайній мові). Наприклад:
 
 ```c
-main() print("Hello World!"), return 1;
+main() print(«Hello World!»); return 1;
 ```
 
-# Functions
+Ви отримаєте помилку, оскільки тепер оператор return 1; не згрупований і не є частиною main. Дужки групують набір операторів в один оператор (так званий складений оператор), і функції мають з ними один оператор. Без фігурних дужок оператори print і return є повністю окремими операторами, тому їх буде два або більше, оскільки функція може мати тільки один оператор, другого у функції немає, а в коді цього бути не може.
 
-A function is basically a chunk of code which does something and can be told to do this thing from somewhere else. It can also pass data about what it did back to the place which told it to run (the place which "called" it).
+Загалом, ви можете розширювати складені оператори за допомогою оператора кома (,), але ми не рекомендуємо цього робити, оскільки це не найкраща практика кодування. Нижче наведено приклад:
+
+```c
+main() print(«Hello World!»), return 1;
+```
+
+# Функції
+
+Функція - це фрагмент коду, який виконує певну дію, і якому можна наказати виконати цю дію з іншого місця. Вона також може передавати дані про те, що вона зробила, туди, звідки її було запущено (місце, яке її «викликало»).
 
 ---
   
-## Calling
+## Виклик
 
 ```c
-print("Hello World!");
+print(«Hello World!»);
 ```
 
-As described in [Starting out](/wiki/Scripting_Basics#Starting_out "Scripting Basics"), this calls the function called "print" (defined in a_samp.inc, which is why you need to include it) and tells it to display something in the server console (the word hello).
+Як описано у [Початок роботи](/wiki/Scripting_Basics#Початок роботи «Основи написання сценаріїв»), це викликає функцію з назвою «print» (визначену у файлі a_samp.inc, саме тому вам потрібно включити його) і наказує їй вивести щось у консоль сервера (слово hello).
 
-A function consists of the function name (e.g. print), which tells the system which chunk of code you want to call, and a parameter list, enclosed in ()s after the function name, which pass additional data to the function to help it run. If you didn't have parameters you would need millions of functions:
+Функція складається з імені функції (наприклад, print), яке вказує системі, який фрагмент коду ви хочете викликати, і списку параметрів, укладеного в ()s після імені функції, які передають функції додаткові дані, що допомагають їй працювати. Якби у вас не було параметрів, вам би знадобилися мільйони функцій:
 
 ```c
 printa();
 printaa();
 printab();
 printac();
-etc...
+і т.д...
 ```
 
-Functions can have as many parameters as you like, from 0 up (there may be an upper limit but it's at least 128):
+Функції можуть мати скільки завгодно параметрів, від 0 до 128 (може бути верхня межа, але не менше 128):
 
 ```c
-printf("Hello World!", 1, 2, 3, 4, 5, 6);
+printf(«Hello World!», 1, 2, 3, 4, 5, 6);
 ```
 
-Don't worry about what that function does for now, just that it has 7 parameters, each separated by a comma.
+Не турбуйтеся поки що про те, що робить ця функція, просто вона має 7 параметрів, кожен з яких розділено комою.
 
 ---
   
-## Defining
+## Визначення
 
-As well as being able to call existing functions you can also write and call your own:
+Окрім можливості викликати існуючі функції, ви також можете писати і викликати власні:
 
 ```c
 #include <a_samp>
@@ -127,12 +127,12 @@ main()
 
 MyFunction()
 {
-    print("Hello World!");
+    print(«Hello World!»);
     return 1;
 }
 ```
 
-This just does exactly the same as the original code but is arranged differently. When main() is called when the mode is started (it's called automatically) it calls the new custom function called MyFunction(). This function prints the message in the server console then returns the number 1 to main(). main() takes the returned value (1) and then returns it to the server itself (i.e. the place which called main in the first place). As "return MyFunction();" is a single statement you could do:
+Цей код робить те саме, що й оригінальний, але оформлений по-іншому. Коли main() викликається під час запуску режиму (він викликається автоматично), вона викликає нову користувацьку функцію MyFunction(). Ця функція виводить повідомлення в консоль сервера, а потім повертає число 1 в main(). main() приймає повернуте значення (1) і повертає його на сам сервер (тобто туди, звідки було викликано main()). Оскільки «return MyFunction();» - це єдиний оператор, який ви могли б зробити:
 
 ```c
 #include <a_samp>
@@ -141,12 +141,12 @@ main() return MyFunction();
 
 MyFunction()
 {
-    print("Hello World!");
+    print(«Hello World!»);
     return 1;
 }
 ```
 
-But most people don't for clarity. You can also not use the MyFunction return value at all and do:
+Але більшість людей так не роблять для наочності. Ви також можете взагалі не використовувати значення, що повертається функцією MyFunction, і так і роблять:
 
 ```c
 #include <a_samp>
@@ -159,23 +159,23 @@ main()
 
 MyFunction()
 {
-    print("Hello World!");
+    print(«Hello World!»);
     return 1;
 }
 ```
 
 ---
   
-## Parameters
+## Параметри
 
-Parameters are a type of [variable](/wiki/Scripting_Basics#Variables "Scripting Basics") which you don't need to declare as they come from the place which called the function:
+Параметри - це тип [змінної](/wiki/Scripting_Basics#Змінні «Основи програмування»), які не потрібно оголошувати, оскільки вони надходять з місця виклику функції:
 
 ```c
 #include <a_samp>
 
 main()
 {
-    return MyFunction("Hello World!");
+    return MyFunction(«Hello World!»);
 }
 
 MyFunction(string[])
@@ -185,164 +185,164 @@ MyFunction(string[])
 }
 ```
 
-This code still does the same thing but we're now telling MyFunction() what to display. The call passes the string "Hello World!" to the function where it is stored in a variable called string (the \[\] means it's an [array](/wiki/Scripting_Basics#Arrays "Scripting Basics") as explained later). The print function is the called, passing the contents of the string variable, we know it's a variable because it doesn't have the "" any more.
+Цей код робить те саме, але тепер ми вказуємо функції MyFunction(), що саме виводити. Виклик передає рядок «Hello World!» до функції, де він зберігається у змінній з назвою string (знак \[\] означає, що це [масив](/wiki/Scripting_Basics#Arrays «Основи написання сценаріїв»), як пояснюється далі). Викликається функція print, яка передає вміст змінної string, ми знаємо, що це змінна, оскільки вона більше не має символу «».
 
-# Variables
+# Змінні
 
-A variable is basically a bit of memory, it's where data is stored and can be changed and read as required. Variables are one or more cells, a cell is 32 bits (4 bytes) big and by default signed so they can store from -2147483648 to 2147483647 (although -2147483648 is poorly defined in PAWN and gives odd results if displayed). A variable made from more than one cell is called an array, strings are a special type of array where each cell holds a character of the string (or 4 characters in packed strings, but they're not covered here).
+Змінна - це, по суті, частина пам'яті, де зберігаються дані, які можна змінювати і зчитувати за потреби. Змінні - це одна або декілька комірок, комірка має розмір 32 біти (4 байти) і за замовчуванням підписана, тому вони можуть зберігати від -2147483648 до 2147483647 (хоча -2147483648 погано визначена в PAWN і дає дивні результати при відображенні). Змінна, що складається з більш ніж однієї комірки, називається масивом, рядки - це особливий тип масиву, де кожна комірка містить символ рядка (або 4 символи в упакованих рядках, але вони тут не розглядаються).
 
 ---
   
-## Declaration
+## Оголошення
 
-To create a new variable you have to declare it:
+Щоб створити нову змінну, її потрібно оголосити:
 
 ```c
-new
+новий
     myVariable;
 ```
 
-This tells the system to create a new variable called myVariable, the initial value of this variable will be 0.
+Це вказує системі створити нову змінну з назвою myVariable, початковим значенням якої буде 0.
 
 ---
   
-## Setting
+## Встановлення
 
 ```c
-new
+новий
     myVariable = 7;
 ```
 
-This declares a new variable and sets it's initial value to 7, so printing the variable now will give 7. To display a variable which isn't a string we need to go back to the printf() function mentioned earlier and do:
+Тут оголошується нова змінна і встановлюється її початкове значення 7, тому при виведенні змінної на друк ми отримаємо 7. Щоб вивести на екран змінну, яка не є рядком, нам потрібно повернутися до функції printf(), згаданої раніше, і виконати наступні дії:
 
 ```c
-new
+новий
     myVariable = 7;
-printf("%d", myVariable);
+printf(«%d», myVariable);
 ```
 
-Again, for now all you need to know is that this will print the value of myVariable (i.e. 7 at this point) to the server.
+Знову ж таки, поки що все, що вам потрібно знати, це те, що ми виведемо значення myVariable (тобто 7 на даний момент) на сервер.
 
 ```c
-new
+новий
     myVariable = 7;
-printf("%d", myVariable);
+printf(«%d», myVariable);
 myVariable = 8;
-printf("%d", myVariable);
+printf(«%d», myVariable);
 ```
 
-That code will print 7, change the value of the variable to 8 and display the new value in the server window too. There are many other things you can do to variables, some are listed below, most are listed elsewhere:
+Цей код виведе 7, змінить значення змінної на 8 і також відобразить нове значення у вікні сервера. Існує багато інших речей, які можна робити зі змінними, деякі з них наведено нижче, більшість описано деінде:
 
 ```c
 myVariable = myVariable + 4;
 ```
 
-Sets the value of myVariable to the old value of myVariable plus 4, i.e. increase it's value by 4. This can also be written as:
+Встановлює значення змінної myVariable до старого значення myVariable плюс 4, тобто збільшує її значення на 4. Це також можна записати так:
 
 ```c
 myVariable += 4;
 ```
 
-Which just means "increase myVariable by 4".
+Що просто означає «збільшити myVariable на 4».
 
 ```c
 myVariable -= 4;
 ```
 
-That will decrease the value by 4.
+Це зменшить значення на 4.
 
 ```c
 myVariable *= 4;
 ```
 
-That will multiply the value by 4.
+Збільшить значення на 4.
 
 ```c
 myVariable /= 4;
 ```
 
-That will divide the value by 4.
+Поділить значення на 4.
 
 ---
   
-## Arrays
+## Масиви
 
-### Declaration
+### Оголошення
 
 ---
   
-An array is a variable in which you can store multiple pieces of data at once and access them dynamically. An array is declared to a set size at compile time so you need to know how many pieces of data you need to store in advance, a good example of this is the very common MAX_PLAYERS array, this will have one slot for every possibly connected player, so you know data for one player will not interfere with data for another player (more on defines later).
+Масив - це змінна, в якій можна зберігати декілька даних одночасно і мати до них динамічний доступ. Масив оголошується встановленого розміру під час компіляції, тому вам потрібно знати, скільки частин даних вам потрібно зберігати заздалегідь, хорошим прикладом цього є дуже поширений масив MAX_PLAYERS, він матиме по одному слоту для кожного можливо підключеного гравця, тому ви знаєте, що дані для одного гравця не будуть заважати даним для іншого гравця (більше про визначення пізніше).
 
 ```c
-new
+новий
     myArray[5];
 ```
 
-That code will declare an array 5 slots big, so you can store 5 pieces of normal data at once in that single what you can't do is something like the following:
+Цей код оголошує масив розміром 5 слотів, тому ви можете зберігати в ньому 5 звичайних даних одночасно, чого не можна зробити, наприклад, наступним чином:
 
 ```c
-new
+новий
     myVariable = 5,
     myArray[myVariable];
 ```
 
-That code looks like it would create an array the size of whatever number is stored in myVariable (here 5 but it could be anything), but you can't do this. In PAWN the memory for variables is assigned when you compile your code, this means arrays are always one size, you can't set the size to anything you like whenever you like.
+Цей код виглядає так, ніби він створить масив розміром з будь-яке число, що зберігається у myVariable (тут 5, але це може бути будь-що), але ви не можете цього зробити. У PAWN пам'ять для змінних виділяється під час компіляції коду, це означає, що масиви завжди одного розміру, ви не можете встановити розмір, який вам подобається, коли вам заманеться.
 
 ---
   
-### Accessing
+### Доступ
 
-To set a value in an array you need to say which part of the array you want to store the data in, this CAN be done with another variable:
+Щоб встановити значення в масиві, вам потрібно вказати, в якій частині масиву ви хочете зберігати дані, це можна зробити за допомогою іншої змінної:
 
 ```c
-new
+новий
     myArray[5];
 myArray[2] = 7;
 ```
 
-This will declare an array with 5 slots and give the THIRD slot a value of 7, given that variables always start as 0 this will make the values in the array:
+Тут буде оголошено масив з 5 слотами і присвоєно ТРЕТЬОМУ слоту значення 7, враховуючи, що змінні завжди починаються з 0, це зробить значення в масиві рівними:
 
 ```
 0, 0, 7, 0, 0
 ```
 
-Why is it not:
+Чому це не так?
 
 ```
 0, 7, 0, 0, 0
 ```
 
-you're wondering? It's because counting actually starts from the number 0, not 1. Consider the following:
+вам цікаво? Тому що лічба насправді починається з числа 0, а не з 1. Подумай про наступне:
 
 ```
 2, 4, 6, 8
 ```
 
-If you go through the list then after the number 2 you have already had one number (the 2), this means that if you are counting the numbers by the time you reach the number 4 you are already at one, you're not at one when you reach the 2, you're at zero. Thus the 2 is at position zero and the 4 is at position one, and thus it follows that the 6 is at position two, which is where the 7 in the first example above is. If we label the slots for the first example we get:
+Якщо ви пройдетеся по списку, то після цифри 2 у вас вже буде одна цифра (2), це означає, що якщо ви рахуєте числа, то коли ви дійдете до цифри 4, ви вже будете на одиниці, а коли ви дійдете до цифри 2, ви вже будете на нулі. Таким чином, 2 знаходиться на нульовій позиції, а 4 - на одиниці, і з цього випливає, що 6 знаходиться на другій позиції, тобто там, де знаходиться 7 у першому прикладі вище. Якщо ми позначимо слоти для першого прикладу, то отримаємо
 
 ```
 0 1 2 3 4
 0 0 7 0 0
 ```
 
-There are five slots but as you can see, and this is very important, THERE IS NO SLOT FIVE, doing the following could crash your server:
+Є п'ять слотів, але, як ви бачите, і це дуже важливо, НЕТ П'ЯТОГО СЛОТА, тому наступні дії можуть призвести до аварійного завершення роботи вашого сервера:
 
 ```c
-new
+новий
     myArray[5];
 myArray[5] = 7;
 ```
 
-As mentioned above the array index (the index is the slot to which you're writing) can be anything, a number, a variable, or even a function which returns a value.
+Як було сказано вище, індекс масиву (індекс - це слот, в який ви пишете) може бути чим завгодно, числом, змінною або навіть функцією, яка повертає значення.
 
 ```c
-new
+новий
     myArray[5],
     myIndex = 2;
 myArray[myIndex] = 7;
 ```
 
-Once you have an array and an index you can use that block exactly as if it were any other variable:
+Коли у вас є масив та індекс, ви можете використовувати цей блок так само, як і будь-яку іншу змінну:
 
 ```c
 myArray[2] = myArray[2] + 1;
@@ -352,12 +352,12 @@ myArray[2]++;
 
 ---
   
-### Example
+### Приклад
 
-As mentioned above a common type of array is the MAX_PLAYERS array. MAX_PLAYERS is not a variable, it's a define which is explained later, but for now accept that it is a constant number equal to the max number of players a server can hold (this by default is 500, even if you change the number in your server.cfg file). The following code uses normal variables to hold data for 4 players and do something with those players in a function (for simplicity's sake assume MAX_PLAYERS is 4 for now):
+Як згадувалося вище, поширеним типом масиву є масив MAX_PLAYERS. MAX_PLAYERS - це не змінна, це визначення, яке буде пояснено пізніше, а поки що вважайте, що це константне число, яке дорівнює максимальній кількості гравців, яку може вмістити сервер (за замовчуванням це 500, навіть якщо ви зміните це число у вашому файлі server.cfg). Наступний код використовує звичайні змінні для зберігання даних про 4 гравців і робить щось з ними у функції (для простоти припустимо, що MAX_PLAYERS дорівнює 4):
 
 ```c
-new
+новий
     gPlayer0,
     gPlayer1,
     gPlayer2,
@@ -367,20 +367,20 @@ SetPlayerValue(playerid, value)
 {
     switch(playerid)
     {
-        case 0: gPlayer0 = value; // is the same as doing if (playerid == 0)
-        case 1: gPlayer1 = value; // is the same as doing if (playerid == 1)
-        case 2: gPlayer2 = value; // is the same as doing if (playerid == 2)
-        case 3: gPlayer3 = value; // is the same as doing if (playerid == 3)
+        case 0: gPlayer0 = value; // те саме, що і if (playerid == 0)
+        case 1: gPlayer1 = value; // те саме, що й if (playerid == 1)
+        case 2: gPlayer2 = value; // те саме, що й if (playerid == 2)
+        case 3: gPlayer3 = value; // те саме, що й if (playerid == 3)
     }
 }
 ```
 
-See the section on control structures for more information on what's going on there, also note this could be done as a switch but that's less clear for the example and effectively the same code anyway.
+Дивіться розділ про керуючі структури для отримання додаткової інформації про те, що там відбувається, також зверніть увагу, що це можна було б зробити як перемикач, але це менш зрозуміло для прикладу і, по суті, той самий код у будь-якому випадку.
 
-Now compare that to using an array with one slot per player, bearing in mind an array index can be any value:
+Тепер порівняйте це з використанням масиву з одним слотом на гравця, маючи на увазі, що індекс масиву може бути будь-яким значенням:
 
 ```c
-new
+новий
     gPlayers[MAX_PLAYERS];
 
 SetPlayerValue(playerid, value)
@@ -389,80 +389,80 @@ SetPlayerValue(playerid, value)
 }
 ```
 
-That will create a global array (see section on scope) with one slot for every player, then the function will assign whatever is in the variable "value" to the slot for the player specified. The first example was large with only four players, using 4 lines per player, that's 2000 lines for 500 players (if can be less but it's still a lot), the second version is a single line no matter how many players you have.
+Це створить глобальний масив (див. розділ про область видимості) з одним слотом для кожного гравця, після чого функція присвоїть значення змінної «value» слоту для вказаного гравця. Перший приклад був великим, з чотирма гравцями, використовуючи 4 рядки на гравця, тобто 2000 рядків для 500 гравців (можна і менше, але все одно багато), друга версія - це один рядок, незалежно від того, скільки у вас гравців.
 
 ---
   
-## Strings
+## Рядки
 
-### Basic use
+### Базове використання
 
 ---
   
-A string is a special type of array, one which is used to hold multiple characters to create a word or sentence or other human readable text. A character is one byte big (although there are extended sets where a character is multiple bytes but these are not well defined in SA:MP) and by default a character takes up one cell (one normal variable or one array slot). Characters are encoded in a system called [ASCII](http://www.asciitable.com/ "http://www.asciitable.com/"), the character "A" is represented by the number 65, telling the system to display a number will give 65, telling the system to display a character will give a capital a. Obviously is a single character takes up a single cell multiple characters (i.e. text) will take up multiple cells, collections of cells, as just explained, are called arrays.
+Рядок - це спеціальний тип масиву, який використовується для зберігання декількох символів для створення слова, речення або іншого тексту, придатного для читання людиною. Символ має розмір в один байт (хоча існують розширені набори, де символ може бути більшим за байт, але вони недостатньо чітко визначені у SA:MP), і за замовчуванням символ займає одну комірку (одну звичайну змінну або один слот масиву). Символи кодуються у системі, яка називається [ASCII](http://www.asciitable.com/ «http://www.asciitable.com/»), символ «A» представлений числом 65, якщо сказати системі відобразити число, вона отримає 65, якщо сказати системі відобразити символ, вона отримає велику літеру a. Очевидно, що один символ займає одну комірку, кілька символів (тобто текст) займатимуть кілька комірок, колекції комірок, як щойно пояснювалося, називаються масивами.
 
-Strings in PAWN (and other languages) are what's called "NULL terminated", this means that when 0 is reached, the string ends. This is not the same as the character "0", represented by the number 48, this is the NULL character, represented by the number 0. This means that you can have a string array 20 cells large but only have a string 3 characters long if the fourth character is the NULL character, signalling the end of the string. You can not however have a string 20 characters long as the NULL character MUST be in the string, so in a 20 cell array you can have a 19 character string and a NULL termination character.
-
-```c
-new
-    myString[16] = "Hello World!";
-```
-
-That code declares a new string with enough space for a 15 character string and sets it initially to the 5 character string "Hello World!", the double quotes around the text indicate that it's a string. Internally the array will look like:
-
-```
-104 101 108 108 111 0 x x x x x x x x x x
-```
-
-The "x"s mean anything, in this example they will all be 0 but as they're after the null character is doesn't matter what they are, they won't affect the string.
-
-Strings can be manipulated like normal arrays, for example:
+Рядки у PAWN (та інших мовах) мають так зване «NULL завершення», це означає, що коли досягається 0, рядок завершується. Це не те саме, що символ «0», представлений цифрою 48, це символ NULL, представлений цифрою 0. Це означає, що ви можете мати масив рядків розміром 20 комірок, але мати рядок довжиною 3 символи, якщо четвертим символом буде символ NULL, що позначає кінець рядка. Однак ви не можете мати рядок довжиною 20 символів, оскільки символ NULL ОБОВ'ЯЗКОВО має бути у рядку, тому у масиві з 20 клітинок ви можете мати рядок з 19 символів і символ завершення NULL.
 
 ```c
-new
-    myString[16] = "Hello World!";
+новий
+    myString[16] = «Hello World!»;
+```
+
+Цей код оголошує новий рядок, в якому достатньо місця для 15-символьного рядка, і спочатку встановлює його в 5-символьний рядок «Hello World!», подвійні лапки навколо тексту вказують на те, що це рядок. Внутрішньо масив буде виглядати наступним чином:
+
+```
+104 101 108 108 111 0 x x x x x x x x x x x x
+```
+
+Символи «x» можуть означати що завгодно, у цьому прикладі всі вони будуть 0, але оскільки вони стоять після нульового символу, не має значення, що це за символи, вони не впливають на рядок.
+
+Рядками можна маніпулювати, наприклад, як звичайними масивами:
+
+```c
+новий
+    myString[16] = «Hello World!»;
 myString[1] = 97;
 ```
 
-Will change the character in slot 1 to the character represented by the number 97 (a lower case "a"), resulting in the string reading "hallo". This can be written much more readably and easy to edit as:
+Замінить символ у слоті 1 на символ, представлений числом 97 (мала літера «a»), у результаті чого рядок матиме вигляд «hallo». Це можна записати набагато зручніше для читання і легше для редагування як:
 
 ```c
-new
-    myString[16] = "Hello World!";
+новий
+    myString[16] = «Hello World!»;
 myString[1] = 'a';
 ```
 
-The single quotes around the "a" mean it's a character, not a string, characters don't need to be NULL terminated as they're only ever one cell long, they can also be used interchangeably with numbers if you know what they represent.
+Одинарні лапки навколо «a» означають, що це символ, а не рядок, символи не потрібно завершувати NULL, оскільки вони завжди мають довжину лише в одну комірку, їх також можна використовувати як взаємозамінні з числами, якщо ви знаєте, що вони означають.
 
 ```c
-new
-    myString[16] = "Hello World!";
+новий
+    myString[16] = «Hello World!»;
 myString[1] = '\0';
 ```
 
-'\\0' is two characters, however the \\ is a special character which modifies the next character, \\0 means NULL, that code is the same as doing:
+'\\0' - це два символи, але \\ - це спеціальний символ, який змінює наступний символ, \\0 означає NULL, цей код аналогічний коду do:
 
 ```c
-new
-    myString[16] = "Hello World!";
+новий
+    myString[16] = «Hello World!»;
 myString[1] = 0;
 ```
 
-But is NOT the same as doing:
+Але це НЕ те саме, що робити:
 
 ```c
-new
-    myString[16] = "Hello World!";
+новий
+    myString[16] = «Hello World!»;
 myString[1] = '0';
 ```
 
-The first and second versions will result in the string being simply:
+У першому та другому варіантах рядок буде мати простий вигляд:
 
 ```
 h
 ```
 
-The third version will result in the string being:
+Третій варіант призведе до того, що рядок матиме вигляд
 
 ```
 h0llo
@@ -470,63 +470,63 @@ h0llo
 
 ---
   
-### Escape character
+### Екранний символ
 
-As briefly mentioned a backslash is a special character, doing:
+Як вже було сказано, зворотна коса риска - це спеціальний символ, що виконує:
 
 ```
 '\'
 ```
 
-or:
+або:
 
 ```
-"\"
+«\»
 ```
 
-Will give a compiler error because the \ modifies the next character so those constants will not be ended correctly, this can be used to create characters which can't normally be created, for example:
+Викличе помилку компілятора, оскільки \ змінює наступний символ, тому ці константи не будуть завершуватися правильно, це може бути використано для створення символів, які зазвичай не можуть бути створені, наприклад, для створення символів, які не можуть бути створені:
 
 ```c
-new
-    myString[4] = "\"";
+новий
+    myString[4] = «\»»;
 ```
 
-That code will create a string consisting of only a double quote, normally a double quote signals the end of a written string but the backslash makes the double quote immediately after it a part of the string, and the double quote after that ends the string instead. Other special characters are:
+Цей код створить рядок, що складається лише з подвійних лапок, зазвичай подвійні лапки сигналізують про кінець записаного рядка, але зворотна коса риска робить подвійні лапки одразу після них частиною рядка, а подвійні лапки після них замість цього завершують рядок. Інші спеціальні символи
 
-| Code   | Name            | Purpose                                                                                                 |
+| Код | Назва | Призначення
 | ------ | --------------- | ------------------------------------------------------------------------------------------------------- |
-| \0     | NULL character  | Ends a string.                                                                                          |
-| EOS    | NULL character  | (same as above)                                                                                         |
-| \n     | Line feed       | use \n for a new line in Linux (also works in Windows)                                                  |
-| \r     | Carriage return | Use \r\n for a new line in Windows                                                                      |
-| \\\\   | Backslash       | Used to put an actual backslash in a string                                                             |
-| \'     | Single quote    | Used to use an actual single quote as a character in single quotes (use: '\'')                          |
-| \"     | Double quotes   | Used to put an actual double quote in a string                                                          |
-| \xNNN; | Hex number      | Used to set the character to the character represented by the hex number specified in place on NNN      |
-| \NNN;  | Number          | Used to set the character to the character represented by the number specified in place of NNN (see \0) |
+| \0 | NULL символ | Закінчує рядок.                                                                                          
+| EOS | NULL символ | (те ж саме, що і вище)
+\n | Переведення рядка | Використовуйте \n для переходу на новий рядок у Linux (також працює у Windows)
+\r | Повернення каретки | Використовуйте \r\n для переходу на новий рядок у Windows
+\\\\ | Зворотна коса риска | Використовується для додавання власне зворотної косої риски до рядка
+| \' | Одинарні лапки | Використовується для використання власне одинарних лапок як символу в одинарних лапках (використовується: '\'')
+| \»     Подвійні лапки | Використовується для того, щоб помістити фактичні подвійні лапки в рядок | | \
+| \xNNN; | Шістнадцяткове число | Використовується для встановлення символу на символ, представлений шістнадцятковим числом, зазначеним на місці NNN
+| \NNN; | Число | Використовується для встановлення символу на символ, представлений числом, вказаним на місці NNN (див. \0)
 
-Used to set the character to the character represented by the number specified in place of NNN (see \\0)
+Використовується для встановлення символу на символ, представлений числом, вказаним замість NNN (див. \\0)
 
-There are others but those are the main ones.
+Є й інші, але це основні.
 
 ---
   
-## Tags
+## Теги
 
-A tag is an additional piece of information on a variable which defines where it can be used, providing information about its functionality. Tags can be strong (starting with a capitalized letter) or weak. For example:
+Тег - це додаткова інформація про змінну, яка визначає, де вона може бути використана, і надає інформацію про її функціональність. Теги можуть бути сильними (починаються з великої літери) або слабкими. Наприклад:
 
 ```c
-new
+новий
     Float:a = 6.0;
 ```
 
-The "Float" part is the tag, this defines this variable as a float (non-whole/real number) and determines where it can be used.
+Частина «Float» - це тег, який визначає цю змінну як змінну з плаваючою точкою (неціле/дійсне число) і визначає, де вона може бути використана.
 
 ```c
 native SetGravity(Float:gravity);
 ```
 
-This means the SetGravity function takes a single parameter which has to be a float, for example:
+Це означає, що функція SetGravity приймає єдиний параметр, який має бути, наприклад, плаваючою величиною:
 
 ```c
 SetGravity(6.0);
@@ -535,80 +535,80 @@ new
 SetGravity(fGrav);
 ```
 
-That will set the gravity to 6 (6.0 as a float) then 5 (5.0 as a float). Using the wrong tag in the wrong place will often give a tag mismatch:
+Це встановить гравітацію на 6 (6.0 як число з плаваючою комою), а потім на 5 (5.0 як число з плаваючою комою). Використання неправильного тегу у неправильному місці часто призводить до невідповідності тегів:
 
 ```c
 SetGravity(MyTag:7);
 ```
 
-That will try set the gravity to 7 with the tag "MyTag", that is clearly not a "Float" so is wrong. Also note that tags are case sensitive.
+Це буде спроба встановити гравітацію на 7 з тегом «MyTag», який явно не є «Float», тому є неправильним. Також зауважте, що теги чутливі до регістру.
 
-Custom tags can be defined by users:
+Користувачі можуть визначати власні теги:
 
 ```c
 new myTag: variable = 0,
 
-    AppleTag: another = 1;
+    AppleTag: інший = 1;
 ```
 
-This is perfectly valid, however, when adding these two variables _directly_, you must use '\_:' to 'de-tag' them, otherwise the compiler will produce a 'tag mismatch' warning.
+Це цілком коректно, однак, при додаванні цих двох змінних _безпосередньо_, ви повинні використовувати '\_:', щоб «де-тегувати» їх, інакше компілятор видасть попередження про «невідповідність тегів».
 
 ---
   
-## Scope
+## Область видимості
 
-Scope is where a variable can be used. There are four main scopes: local, local static, global and global static. All variables can only be used after they are declared so this is right:
+Область видимості - це область застосування змінної. Існує чотири основні області видимості: локальна, локальна статична, глобальна та глобальна статична. Усі змінні можна використовувати лише після їх оголошення, тому це правильно:
 
 ```c
-new
+новий
     var = 4;
-printf("%d", var);
+printf(«%d», var);
 ```
 
-This is wrong:
+Це неправильно:
 
 ```c
-printf("%d", var);
-new
+printf(«%d», var);
+новий
     var = 4;
 ```
 
 ---
   
-### local
+### локальна
 
-A local variable is one declared "new" inside a function or part of a function:
+Локальна змінна - це змінна, оголошена як new всередині функції або частини функції:
 
 ```c
 MyFunc()
 {
-    new
+    новий
         var1 = 4;
-    printf("%d", var1);
+    printf(«%d», var1);
     {
-        // var1 still exists as this is a lower level
-        new
+        // var1 все ще існує, оскільки це нижчий рівень
+        новий
             var2 = 8;
-        printf("%d %d", var1, var2);
+        printf(«%d %d», var1, var2);
     }
-    // var2 no longer exists as this is a higher level
+    // var2 більше не існує, оскільки це вищий рівень
 }
-// var1 no longer exists
+// var1 більше не існує
 ```
 
-Local variables are reset every time, for example:
+Локальні змінні скидаються кожного разу, наприклад:
 
 ```c
 for (new i = 0; i < 3; i++)
 {
-    new
+    новий
         j = 1;
-    printf("%d", j);
+    printf(«%d», j);
     j++;
 }
 ```
 
-Will print:
+Буде надруковано:
 
 ```
 1
@@ -616,44 +616,44 @@ Will print:
 1
 ```
 
-Because j is created, printed, incremented then destroyed, then the code loops.
+Оскільки j створюється, виводиться, збільшується, потім знищується, то код зациклюється.
 
 ---
   
-### static local
+### статичний локальний
 
-A static local can be used in the same place as a local but doesn't forget it's old value, for example:
+Статичний локал може бути використаний там же, де і локальний, але не забуває про своє старе значення, наприклад:
 
 ```c
 MyFunc()
 {
-    static
+    статичний
         var1 = 4;
-    printf("%d", var1);
+    printf(«%d», var1);
     {
-        // var1 still exists as this is a lower level
-        static
+        // var1 все ще існує, оскільки це нижчий рівень
+        статичний
             var2 = 8;
-        printf("%d %d", var1, var2);
+        printf(«%d %d», var1, var2);
     }
-    // var2 no longer exists as this is a higher level
+    // var2 більше не існує, оскільки це більш високий рівень
 }
-// var1 no longer exists
+// var1 більше не існує
 ```
 
-That code will behave exactly the same as the new example, however this:
+Цей код буде поводитися точно так само, як і новий приклад, але з деякими змінами:
 
 ```c
 for (new i = 0; i < 3; i++)
 {
-    static
+    статичний
         j = 1;
-    printf("%d", j);
+    printf(«%d», j);
     j++;
 }
 ```
 
-Will print:
+Буде надруковано:
 
 ```
 1
@@ -661,44 +661,44 @@ Will print:
 3
 ```
 
-Because `j` is static so remembers its old value.
+Оскільки `j` є статичним, то запам'ятовує своє старе значення.
 
 ---
   
-### global
+### глобальні
 
-Global variables are declared outside a function and can be used in any functions:
+Глобальні змінні оголошуються за межами функції і можуть бути використані в будь-яких функціях:
 
 ```c
-new
+новий
     gMyVar = 4;
 
 MyFunc()
 {
-    printf("%d", gMyVar);
+    printf(«%d», gMyVar);
 }
 ```
 
-They are never reset or lost.
+Вони ніколи не скидаються і не губляться.
 
 ---
   
-### global static
+### глобальні статичні
 
-Global static variables are like normal globals but can only be used in the file in which they are declared:
+Глобальні статичні змінні схожі на звичайні глобали, але можуть бути використані лише у файлі, в якому вони оголошені:
 
 File1:
 
 ```c
-static
+статичний
     gsMyVar = 4;
 
 MyFunc()
 {
-    printf("%d", gsMyVar);
+    printf(«%d», gsMyVar);
 }
 
-#include "File2"
+#include «File2»
 ```
 
 File2:
@@ -706,9 +706,11 @@ File2:
 ```c
 MyFunc2()
 {
-    // This is wrong as gsMyVar doesn't exist here
-    printf("%d", gsMyVar);
+    // Це неправильно, оскільки gsMyVar тут не існує
+    printf(«%d», gsMyVar);
 }
 ```
 
-static can also be applied to functions in the same way.
+static також може бути застосовано до функцій у такий самий спосіб.
+
+

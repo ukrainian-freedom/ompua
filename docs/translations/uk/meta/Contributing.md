@@ -1,219 +1,220 @@
 ---
-title: Contributing
-description: How to contribute to the SA-MP Wiki and open.mp documentation.
+назва: Сприяння
+опис: Як зробити внесок до вікі SA-MP та документації open.mp.
 ---
 
-This documentation source is open for anyone to contribute changes to! All you need is a [GitHub](https://github.com) account and some spare time. You don't even need to know Git, you can do it all from the web interface!
+Це джерело документації відкрито для будь-кого, хто може внести зміни! Все, що вам потрібно - це обліковий запис [GitHub](https://github.com) і трохи вільного часу. Вам навіть не потрібно знати Git, ви можете робити все через веб-інтерфейс!
 
-If you want to help maintain a specific language, open a PR against the [`CODEOWNERS`](https://github.com/openmultiplayer/web/blob/master/CODEOWNERS) file and add a line for your language directory with your username.
+Якщо ви хочете допомогти у підтримці певної мови, відкрийте PR проти файлу [`CODEOWNERS`](https://github.com/openmultiplayer/web/blob/master/CODEOWNERS) і додайте рядок для вашого мовного каталогу з вашим ім'ям користувача.
 
-## Editing Content
+## Редагування вмісту
 
-On each page, there's a button that takes you to the GitHub page for editing:
+На кожній сторінці є кнопка, яка переносить вас на сторінку GitHub для редагування:
 
-![Edit this page link present on each wiki page](images/contributing/edit-this-page.png)
+![Посилання на редагування цієї сторінки є на кожній вікі-сторінці](images/contributing/edit-this-page.png)
 
-For example, clicking this on [SetVehicleAngularVelocity](../scripting/functions/SetVehicleAngularVelocity) takes you to [this page](https://github.com/openmultiplayer/web/blob/master/docs/scripting/functions/SetVehicleAngularVelocity.md) which presents you with a text editor to make changes to the file (assuming you're logged in to GitHub).
+Наприклад, натиснувши на [SetVehicleAngularVelocity](../scripting/functions/SetVehicleAngularVelocity), ви потрапите на [цю сторінку](https://github.com/openmultiplayer/web/blob/master/docs/scripting/functions/SetVehicleAngularVelocity.md), де буде представлено текстовий редактор для внесення змін до файлу (за умови, що ви увійшли на GitHub).
 
-Make your edit and submit a "Pull Request" this means the Wiki maintainers and other community members can review your change, discuss whether it needs additional changes and then merge it.
+Внесіть зміни і надішліть «Запит на вилучення» - це означає, що вікіконтролери та інші учасники спільноти можуть переглянути ваші зміни, обговорити, чи потребують вони додаткових змін, а потім об'єднати їх.
 
-## Adding New Content
+## Додавання нового вмісту
 
-Adding new content is a little more involved. You can do it two ways:
+Додавання нового вмісту є дещо складнішим процесом. Ви можете зробити це двома способами:
 
-### GitHub Interface
+## Інтерфейс GitHub
 
-When browsing a directory on GitHub, there's an Add file button on the top right corner of the file list:
+Під час перегляду каталогу на GitHub у верхньому правому куті списку файлів є кнопка «Додати файл»:
 
-![Add file button](images/contributing/add-new-file.png)
+![Кнопка Додати файл](images/contributing/add-new-file.png)
 
-You can either upload a Markdown file you've written already or write it directly into the GitHub text editor.
+Ви можете завантажити вже написаний вами файл Markdown або написати його безпосередньо в текстовому редакторі GitHub.
 
-The file _must_ have a `.md` extension and contain Markdown. For more information about Markdown, check out [this guide](https://guides.github.com/features/mastering-markdown/).
+Файл _повинен_ мати розширення `.md` і містити Markdown. Щоб дізнатися більше про Markdown, перегляньте [цей посібник] (<https://guides.github.com/features/mastering-markdown/>).
 
-Once that's done, hit "Propose new file" and a Pull Request will be opened for review.
+Після цього натисніть «Запропонувати новий файл», і буде відкрито запит на витягування для розгляду.
 
 ### Git
 
-If you want to use Git, all you need to do is clone the Wiki repository with:
+Якщо ви хочете використовувати Git, все, що вам потрібно зробити, це клонувати сховище Вікі за допомогою:
 
 ```sh
 git clone https://github.com/openmultiplayer/wiki.git
 ```
 
-Open it in your favourite editor. I recommend Visual Studio Code as it has some great tooling for editing and formatting Markdown files. As you can see, I'm writing this using Visual Studio Code!
+Відкрийте його у вашому улюбленому редакторі. Я рекомендую Visual Studio Code, оскільки він має чудові інструменти для редагування та форматування файлів Markdown. Як ви можете бачити, я пишу це за допомогою Visual Studio Code!
 
-![Visual Studio Code markdown preview](images/contributing/vscode.png)
+![Попередній перегляд розмітки Visual Studio Code](images/contributing/vscode.png)
 
-I recommend two extensions to make your experience better:
+Я рекомендую два розширення, щоб зробити ваш досвід кращим:
 
-- [markdownlint](https://marketplace.visualstudio.com/items?itemName=DavidAnson.vscode-markdownlint) by David Anson - this is an extension that makes sure your Markdown is formatted correctly. It prevents some syntactical and semantic mistakes. Not all the warnings are important, but some can help improve readability. Use best judgement and if in doubt, just ask a reviewer!
-- [Prettier](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode) by the Prettier.js Team - this is a formatter that will automatically format your Markdown files so they all use a consistent style. The Wiki repository has some settings in its `package.json` that the extension should automatically use. Be sure to enable "Format On Save" in your editor settings so your Markdown files will be automatically formatted every time you save!
+- [markdownlint](https://marketplace.visualstudio.com/items?itemName=DavidAnson.vscode-markdownlint) від Девіда Енсона - це розширення, яке гарантує, що ваш Markdown буде відформатовано правильно. Воно запобігає деяким синтаксичним і семантичним помилкам. Не всі попередження є важливими, але деякі з них можуть допомогти покращити читабельність. Використовуйте найкраще судження, а якщо є сумніви, просто запитайте рецензента!
+- [Prettier](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode) від команди Prettier.js - це форматер, який автоматично форматує ваші Markdown-файли, щоб всі вони використовували єдиний стиль. Вікі-репозиторій має деякі налаштування у файлі `package.json`, які розширення має використовувати автоматично. Не забудьте увімкнути «Форматувати при збереженні» у налаштуваннях вашого редактора, щоб ваші файли Markdown автоматично форматувалися при кожному збереженні!
 
-## Notes, Tips and Conventions
+## Примітки, поради та умовні позначення
 
-### Internal Links
+### Внутрішні посилання
 
-Don't use absolute URLs for inter-site links. Use relative paths.
+Не використовуйте абсолютні URL-адреси для міжсайтових посилань. Використовуйте відносні шляхи.
 
 - ❌
 
   ```md
-  To be used with [OnPlayerClickPlayer](https://www.open.mp/docs/scripting/callbacks/OnPlayerClickPlayer)
+  Використовується з [OnPlayerClickPlayer](https://www.open.mp/docs/scripting/callbacks/OnPlayerClickPlayer)
   ```
 
 - ✔
 
   ```md
-  To be used with [OnPlayerClickPlayer](../callbacks/OnPlayerClickPlayer)
+  Використовується з [OnPlayerClickPlayer](../callbacks/OnPlayerClickPlayer)
   ```
 
-`../` means "go up one directory" so if the file you're editing is inside the `functions` directory and you're linking to `callbacks` you use `../` to go up to `scripting/` then `callbacks/` to enter the callbacks directory, then the filename (without `.md`) of the callback you want to link.
+`../` означає «піднятися на одну директорію вище», тому якщо файл, який ви редагуєте, знаходиться в директорії `functions`, а ви посилаєтесь на `callbacks`, ви використовуєте `../` для переходу до `скриптів/`, потім `callbacks/` для входу в директорію callbacks, потім ім'я файлу (без `.md`) зворотного виклику, який ви хочете зв'язати.
 
-### Images
+### Зображення
 
-Images go inside a subdirectory inside `/static/images`. Then when you link an image in a `![]()` you just use `/images/` as the base path (no need for `static` that's just for the repository).
+Зображення знаходяться в підкаталозі всередині `/static/images`. Потім, коли ви посилаєте зображення за допомогою `![]()`, ви просто використовуєте `/images/` як базовий шлях (не потрібно використовувати `static`, який призначений лише для сховища).
 
-If in doubt, read another page that uses images and copy how its done there.
+Якщо ви сумніваєтеся, прочитайте іншу сторінку, яка використовує зображення, і скопіюйте, як це робиться там.
 
-### Metadata
+### Метадані
 
-The first thing in _any_ document here should be metadata:
+Перше, що має бути у _будь-якому_ документі, це метадані:
 
 ```mdx
 ---
-title: My Documentation
-description: This is a page about stuff and things and burgers, yay!
+заголовок: Моя документація
+опис: Це сторінка про речі, речі та бургери, ура!
 ---
 ```
 
-Every page should include a title and a description.
+Кожна сторінка повинна мати назву та опис.
 
-For a full list of what can go between the `---`, check out [the Docusaurus documentation](https://v2.docusaurus.io/docs/markdown-features#markdown-headers).
+Повний список того, що може бути між `---`, див. у [документації Docusaurus](https://v2.docusaurus.io/docs/markdown-features#markdown-headers).
 
-### Headings
+### Заголовки
 
-Don't create a level 1 heading (`<h1>`) with `#` as this is generated automatically. Your first heading should _always_ be `##`
+Не створюйте заголовок першого рівня (`<h1>`) за допомогою `#`, оскільки він генерується автоматично. Вашим першим заголовком має _завжди_ бути `##`.
 
 - ❌
 
   ```md
-  # My Title
+  # Моя назва
 
-  This is documentation for ...
+  Це документація до ...
 
-  # Sub-Section
+  # Підрозділ
   ```
 
 - ✔
 
   ```md
-  This is documentation for ...
+  Це документація для ...
 
-  ## Sub-Section
+  ## Підрозділу
   ```
 
-### Use `Code` Snippets For Technical References
+### Використовуйте фрагменти ``коду`` для технічних посилань
 
-When writing a paragraph that contains function names, numbers, expressions or anything that's not standard written language, surround them with \`backticks\` like that. This makes it easier to separate language for describing things from references to technical elements such as function names and pieces of code.
+Під час написання абзацу, який містить назви функцій, числа, вирази або будь-що інше, що не є стандартною письмовою мовою, оточіть їх \«галочками\», як показано нижче. Це полегшує відокремлення мови опису від посилань на технічні елементи, такі як імена функцій та фрагменти коду.
 
 - ❌
 
-  > The fopen function will return a value with a tag of type File:, there is no problem on that line as the return value is being stored to a variable also with a tag of File: (note the cases are the same too). However on the next line the value 4 is added to the file handle. 4 has no tag [...]
+  > Функція fopen поверне значення з тегом типу File:, у цьому рядку немає жодних проблем, оскільки значення, що повертається, зберігається у змінній, яка також має тег File: (зверніть увагу, що регістри однакові). Однак у наступному рядку до дескриптора файлу додається значення 4. 4 не має тегу [...].
 
 - ✔
 
-  > The `fopen` function will return a value with a tag of type `File:`, there is no problem on that line as the return value is being stored to a variable also with a tag of `File:` (note the cases are the same too). However on the next line the value `4` is added to the file handle. `4` has no tag
+  > Функція `fopen` поверне значення з тегом типу `File:`, у цьому рядку немає жодних проблем, оскільки значення, що повертається, зберігається у змінній також з тегом `File:` (зауважте, що регістри також однакові). Однак у наступному рядку до дескриптора файлу додається значення `4`. `4` не має тегу
 
-In the above example, `fopen` is a function name, not an English word, so surrounding it with `code` snippet markers helps distinguish it from other content.
+У наведеному вище прикладі `fopen` - це ім'я функції, а не англійське слово, тому оточення його маркерами фрагментів `code` допомагає відрізнити його від іншого вмісту.
 
-Also, if the paragraph is referring to a block of example code, this helps the reader associate the words with the example.
+Крім того, якщо абзац посилається на блок коду прикладу, це допомагає читачеві пов'язати слова з прикладом.
 
-### Tables
+### Таблиці
 
-If a table has headings, they go in the top part:
+Якщо таблиця має заголовки, вони розміщуються у верхній частині:
 
 - ❌
 
   ```md
-  |         |                                      |
+  | | |
   | ------- | ------------------------------------ |
-  | Health  | Engine Status                        |
-  | 650     | Undamaged                            |
-  | 650-550 | White Smoke                          |
-  | 550-390 | Grey Smoke                           |
-  | 390-250 | Black Smoke                          |
-  | < 250   | On fire (will explode seconds later) |
+  | Здоров'я. Стан двигуна.
+  | 650. Не пошкоджений.
+  | 650-550. Білий дим.
+  | 550-390. Сірий дим.
+  | 390-250 - чорний дим.
+  < 250 = горить (вибухне через кілька секунд)
   ```
 
 - ✔
 
-  ```md
-  | Health  | Engine Status                        |
+  МД
+  | Здоров'я. Стан двигуна.
   | ------- | ------------------------------------ |
-  | 650     | Undamaged                            |
-  | 650-550 | White Smoke                          |
-  | 550-390 | Grey Smoke                           |
-  | 390-250 | Black Smoke                          |
-  | < 250   | On fire (will explode seconds later) |
+  | 650. Не пошкоджений.
+  | 650-550 - білий дим.
+  | 550-390. Сірий дим.
+  | 390-250 - чорний дим.
+  < 250 | У вогні (вибухне через кілька секунд)
+
   ```
 
-## Migrating from SA-MP Wiki
+## Перенесено з SA-MP Wiki
 
-Most of the content has been moved, but if you find a page that's missing, here's a short guide for converting content to Markdown.
+Більшість вмісту було перенесено, але якщо ви знайшли сторінку, якої не вистачає, ось короткий посібник з перетворення вмісту до Markdown.
 
-### Getting the HTML
+### Отримання HTML
 
-1. Click this button
+1. Натисніть цю кнопку
 
    (Firefox)
 
-   ![image](images/contributing/04f024579f8d.png)
+   ![зображення](images/contributing/04f024579f8d.png)
 
    (Chrome)
 
    ![image](images/contributing/f62bb8112543.png)
 
-2. Hover the top left of the main wiki page, in the left margin or the corner until you see `#content`
+2. Наведіть курсор на лівий верхній кут головної вікі-сторінки, на ліве поле або на кут, поки не побачите напис `#content`.
 
-   ![image](images/contributing/65761ffbc429.png)
+   ![зображення](images/contributing/65761ffbc429.png)
 
-   Or search for `<div id=content>`
+   Або шукайте `<div id=content>'
 
    ![image](images/contributing/77befe2749fd.png)
 
-3. Copy the inner HTML of that element
+3. Скопіюйте внутрішній HTML цього елемента
 
    ![image](images/contributing/8c7c75cfabad.png)
 
-   Now you have _only_ the HTML code for the actual _content_ of the page, the stuff we care about, and you can convert it to Markdown.
+   Тепер у вас є _лише_ HTML-код для фактичного _вмісту_ сторінки, того, що нас цікавить, і ви можете перетворити його у Markdown.
 
-### Converting HTML to Markdown
+### Перетворення HTML у Markdown
 
-For converting basic HTML (no tables) to Markdown use:
+Для перетворення простого HTML (без таблиць) в Markdown використовуйте:
 
-https://mixmark-io.github.io/turndown/
+<https://mixmark-io.github.io/turndown/>
 
 ![image](images/contributing/77f4ea555bbb.png)
 
-^^ Notice now it screwed up the table completely...
+^^ Зверніть увагу, що тепер він повністю зіпсував таблицю...
 
-### HTML Tables to Markdown Tables
+### Таблиці HTML на таблиці розмітки
 
-Because the above tool does not support tables, use this tool:
+Оскільки наведений вище інструмент не підтримує таблиці, скористайтеся цим інструментом:
 
-https://jmalarcon.github.io/markdowntables/
+<https://jmalarcon.github.io/markdowntables/>
 
-And copy only the `<table>` element in:
+І скопіюйте тільки елемент `<table>`:
 
 ![image](images/contributing/57f171ae0da7.png)
 
-### Cleaning Up
+### Очищення
 
-The conversion likely won't be perfect. So you'll have to do a bit of manual cleanup. The formatting extensions listed above should help with that but you may still need to just spend some time doing manual work.
+Перетворення, швидше за все, не буде ідеальним. Тому вам доведеться трохи почистити вручну. Розширення форматування, перелічені вище, допоможуть вам у цьому, але, можливо, вам все одно доведеться витратити трохи часу на ручну роботу.
 
-If you don't have time, don't worry! Submit an unfinished draft and someone else can pick up where you left off!
+Якщо у вас немає часу, не хвилюйтеся! Надішліть незавершену чернетку, і хтось інший зможе продовжити з того місця, де ви зупинилися!
 
-## License Agreement
+## Ліцензійна угода
 
-All open.mp projects have a [Contributor License Agreement](https://cla-assistant.io/openmultiplayer/homepage). This basically just means you agree to let us use your work, and put it under an open-source license. When you open a Pull Request for the first time, the CLA-Assistant bot will post a link where you can sign the agreement.
+Усі проєкти open.mp мають [Ліцензійну угоду учасника] (<https://cla-assistant.io/openmultiplayer/homepage>). По суті, це означає, що ви погоджуєтесь дозволити нам використовувати вашу роботу і поширювати її під ліцензією з відкритим вихідним кодом. Коли ви вперше відкриваєте Pull Request, бот CLA-Assistant опублікує посилання, за яким ви зможете підписати угоду.

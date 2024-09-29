@@ -1,19 +1,19 @@
 ---
-title: Plugin Development Guide
-description: A guide to developing plugins
+заголовок: Посібник з розробки плагінів
+description: Керівництво по розробці плагінів
 ---
 
-## Introduction
+## Вступ
 
-I decided to create this topic to address issues and questions that are frequently asked about plugin development. I'm no where near an expert when it comes to C/++, or the plugin SDK, i am simply sharing what i have come to learn over my time of developing plugins. Hopefully once this topic is done it will become more of a group project with other users contributing information that i might not know, or have forgotten to include. This is a pretty big topic to try and cover, so i will need assistance.
+Я вирішив створити цю тему, щоб відповісти на питання, які часто задають про розробку плагінів. Я не є експертом з C/++ або SDK плагінів, я просто ділюся тим, що дізнався за час розробки плагінів. Сподіваюся, коли ця тема буде завершена, вона стане більш груповим проєктом з іншими користувачами, які надаватимуть інформацію, яку я міг не знати або забути включити. Це досить велика тема, яку я намагатимуся висвітлити, тому мені знадобиться допомога.
 
-## This is not a C/++ help forum
+## Це не довідковий форум з C/++
 
-People seem to be very confused when it comes to this post. I've seen a lot of people ask completely valid questions regarding the plugin SDK who end up with multiple "This is not a C/++ help forum!" quotes. Just because someone is expected to know the languages **doesn't** mean they're not allowed to ask questions about the actual SDK! There is a difference between asking what a pointer is, and asking something like how to create callbacks!
+Здається, люди дуже збентежені, коли справа доходить до цього допису. Я бачив багато людей, які ставлять цілком слушні запитання щодо SDK плагіна, які закінчуються кількома цитатами «Це не довідковий форум з C/++!». Те, що від когось очікується знання мов, **не** означає, що їм заборонено задавати питання про сам SDK! Є різниця між питанням про те, що таке вказівник, і питанням про те, як створювати зворотні виклики!
 
-With that being said there are excellent sites and forums dedicated to teaching and answering questions about C/++. Here are a few that i have used:
+З огляду на це, є чудові сайти та форуми, присвячені навчанню та відповідям на запитання про C/++. Ось декілька з них, якими я користувався:
 
-These sites have excellent tutorials to learn from:
+На цих сайтах є чудові навчальні посібники, за якими можна вчитися:
 
 cprogramming.com
 
@@ -21,7 +21,7 @@ cplusplus.com
 
 learncpp.com
 
-If you get stuck on a C/++ issue you can use one of these forums to ask for assistance:
+Якщо ви застрягли на проблемі з C/++, ви можете скористатися одним з цих форумів, щоб попросити про допомогу:
 
 dreamincode.net
 
@@ -29,76 +29,76 @@ stackoverflow.com
 
 ## FAQ
 
-### Quick Questions
+### Швидкі запитання
 
-**Question:** How are plugins made?
+**Питання:** Як створюються плагіни?
 
-- **Answer:** Plugins are made in C/++ using the plugin SDK. This FAQ assumes you know C/++ already, and will provide some information on the actual SDK later on in the article.
+- **Відповідь:** Плагіни створюються на C/++ за допомогою SDK плагінів. Цей FAQ припускає, що ви вже знаєте C/++, і надасть деяку інформацію про SDK пізніше в статті.
 
-**Question:** Can i create a plugin in a programming language other than C/++?
+**Запитання:** Чи можна створити плагін на іншій мові програмування, ніж C/++?
 
-- **Answer:** It's possible in theory. There have been attempts at porting the SA-MP plugin SDK to the programming language D, which supports C's application binary interface. While I've never seen a fully working plugin written in D, this example has shed light on the possibility of writing plugins in languages that support C/++. There also has been talk about the possibility of bindings, but i've yet to see any backing on this.
+- **Відповідь:** Теоретично це можливо. Були спроби перенесення SDK плагіна SA-MP на мову програмування D, яка підтримує прикладний двійковий інтерфейс C. Хоча я ніколи не бачив повністю робочого плагіна, написаного на D, цей приклад проливає світло на можливість написання плагінів на мовах, що підтримують C/++. Також говорили про можливість прив'язок, але я ще не бачив жодних підтверджень цьому.
 
-**Question:** How can i get my plugin to be multiplatform (Available on linux and windows)?
+**Питання:** Як зробити мій плагін багатоплатформним (доступним для linux та windows)?
 
-- Answer: Linux and windows are two different operating systems which both have their own differing API's and implementations. Getting your code to work on both platforms means you have to use platform independent code or a sort of framework that handles everything having to do with platforms FOR you. After you're sure your code doesn't rely on any one API, you simply have to compile your code in your desired environment (once again, this guide assumes you know how to do this).
+- Відповідь: Linux та Windows - це дві різні операційні системи, які мають свої власні API та реалізації. Щоб ваш код працював на обох платформах, вам потрібно використовувати незалежний від платформи код або своєрідний фреймворк, який обробляє все, що пов'язано з платформами, ЗА вас. Після того, як ви переконалися, що ваш код не залежить від жодного API, вам просто потрібно скомпілювати код у потрібному вам середовищі (знову ж таки, цей посібник передбачає, що ви знаєте, як це зробити).
 
-**Question:** Can my plugin use memory hacking?
+**Питання:** Чи може мій плагін використовувати хакерство пам'яті?
 
-- Answer: To be honest this is a sort of grey area. Using memory hacking to hook callbacks or call functions seems to be completely acceptable. Anything that modifies the servers memory seems to be off limits (See This). If your planing on making a plugin that needs to use memory hacking for anything other callback hooking or function calling, ask permission before hand and get approval before posting; That honestly is the best way to find out!
+- Відповідь: Чесно кажучи, це свого роду сіра зона. Використання злому пам'яті для під'єднання зворотних викликів або виклику функцій здається цілком прийнятним. Все, що модифікує пам'ять сервера, здається, знаходиться за межами дозволеного (див. тут). Якщо ви плануєте створити плагін, який має використовувати злом пам'яті для чогось іншого, крім під'єднання зворотного виклику або виклику функцій, запитайте дозволу заздалегідь і отримайте схвалення перед публікацією; це, чесно кажучи, найкращий спосіб з'ясувати, чи можна це зробити!
 
-**Question:** Is it possible to make a plugin that **\_\_\_\_\_\_** ?
+**Питання:** Чи можна створити плагін, який **\_\_\_\_\_\_\_\_** ?
 
-- **Answer:** In most cases any idea is completely possible to implement. It may require a stand alone application that communicates to the plugin, but its likely possible. Questions like these should **not** be posted. You heard the answer, now move on! This is not a plugin request section. Hopefully there will be a day when there is enough plugin creators to have a section or sticky topic for requests (This guide is designed to introduce and help new plugin developers, so lets hope).
+- **Відповідь:** У більшості випадків будь-яку ідею цілком можливо реалізувати. Для цього може знадобитися окрема програма, яка буде взаємодіяти з плагіном, але це цілком можливо. Такі питання не повинні **не повинні** публікуватися. Ви почули відповідь, тепер рухайтеся далі! Це не розділ запитів на плагіни. Сподіваємося, що настане день, коли буде достатньо розробників плагінів, щоб створити розділ або окрему тему для запитів (цей посібник призначений для ознайомлення і допомоги новим розробникам плагінів, тож будемо сподіватися).
 
-**Question:** What IDE/Compiler should i use for **\_\_\_\_\_\_** ?
+**Питання:** Яку IDE/компілятор слід використовувати для **\_\_\_\_\_\_\_\_** ?
 
-- **Answer:** That is completely up to you! I personally will be using VC++ 2010 express as my windows IDE and Compiler, and plan on using g++ for my Linux compiler. Just mess around with different options and see which one you like the best!
+- **Відповідь:** Це повністю залежить від вас! Особисто я використовуватиму VC++ 2010 express як середовище розробки та компілятор для Windows, а також планую використовувати g++ як компілятор для Linux. Просто пограйтеся з різними варіантами і подивіться, який з них вам подобається найбільше!
 
-**Question:** What is a module definition file (.def)?
+**Питання:** Що таке файл визначення модуля (.def)?
 
-- **Answer:** A module definition file is a special file in the Visual Studio IDE that provides the linker with information about the program that's being linked. When it comes to writing plugins for SA-MP we only really use the "EXPORTS" statement which provides information about our exported functions. We'll be looking at this statement later in the article.
+- **Відповідь:** Файл визначення модуля - це спеціальний файл в IDE Visual Studio, який надає компонувальнику інформацію про програму, що компонується. Коли справа доходить до написання плагінів для SA-MP, ми використовуємо лише інструкцію «EXPORTS», яка надає інформацію про наші експортовані функції. Ми розглянемо цей оператор пізніше у статті.
 
-**Question:** When i release a plugin, does it have to have the source with it?
+**Питання:** Коли я випускаю плагін, чи повинен він мати вихідний код разом з ним?
 
-- **Answer:** If you're releasing something on this forum it **always** has to have the source with it. Plugins are no exception (unless the plugin is approved by a developer to be posted without a source - maybe an anti-cheat?).
+- **Відповідь:** Якщо ви публікуєте щось на цьому форумі, воно **завжди** повинно мати вихідний код. Плагіни не є винятком (якщо тільки розробник не схвалив розміщення плагіна без вихідного коду - можливо, для захисту від обману?).
 
-## Getting started
+## Початок роботи
 
-You would be shocked how many times i get asked "How do i get started with plugin development?". I decided to add this entire section to answer that question! Just because you know the language doesn't mean you know your way around the IDE after all; I think that's especially true when it comes to VC++ 2010. Visual studio can be a very intimidating place to new users. I hardly think its fair to just hand you the plugin SDK without showing you around first! Messing with property pages/the linker can easily scare people away, so I'm going to guide you through it.
+Ви були б шоковані, як часто мене запитують: «Як почати розробку плагінів?». Я вирішив додати цей розділ, щоб відповісти на це питання! Просто тому, що ви знаєте мову, ще не означає, що ви знаєте, як поводитися в IDE; я думаю, що це особливо вірно, коли мова йде про VC++ 2010. Візуальна студія може бути дуже страшним місцем для нових користувачів. Я не думаю, що буде справедливо просто дати вам SDK плагінів, не показавши вам, як тут все влаштовано! Робота зі сторінками властивостей та компонувальником може легко відлякати людей, тому я проведу вас через це.
 
-**Note:** If you chose to use a different IDE/compiler that targets Windows, you're out of luck! It seems that the only way to successfully export functions is to use a module definition file (.DEF). I've tried to include an alternative method in this article using \_\_declspec(dllexport), but this simply didn't work due to the \_\_stdcall calling convention mangling the exported function's names (See: [Here](https://pastebin.com/y3xkVY70)).
+**Примітка:** Якщо ви вирішили використовувати іншу IDE/компілятор, орієнтований на Windows, вам не пощастило! Схоже, що єдиним способом успішного експорту функцій є використання файлу визначення модуля (.DEF). Я спробував включити у цю статтю альтернативний метод за допомогою \_\_declspec(dllexport), але він просто не спрацював через правила виклику \_\_stdcall, які спотворюють імена експортованих функцій (див.: [Тут](https://pastebin.com/y3xkVY70)).
 
-Here are the downloads you'll need for this section:
+Ось список програм, які вам знадобляться для цього розділу:
 
-**Visual C++ 2010 express:** [Free download](https://visualstudio.microsoft.com/vs/express/)
+**Visual C++ 2010 express:** [Безкоштовне завантаження](https://visualstudio.microsoft.com/vs/express/)
 
-**Plugin SDK (Plain):** [Download](https://github.com/Zeex/samp-plugin-sdk)
+**Plugin SDK (Plain):** [Завантажити](https://github.com/Zeex/samp-plugin-sdk)
 
-- The first thing we want to do is create a new project. Select file->new->project to do just that.
+- Перше, що ми хочемо зробити, це створити новий проєкт. Для цього виберіть файл->новий->проєкт.
 
-- Once you create a new project its going to ask you what type of project you're creating. Select Win32 project, enter a project name, and press OK to continue.
+- Після створення нового проєкту програма запитає вас про тип проєкту, який ви створюєте. Виберіть пункт проєкт Win32, введіть назву проєкту і натисніть кнопку OK для продовження.
 
-- Once your project setting are taken care of this dialog should appear. Press next to continue.
-- After you clicked continue you should see this dialog popup asking for your application type and settings. For the type select DLL (Dynamic-link library) and for the settings select empty project. Once you're done press the finish button at the bottom.
+- Після того, як параметри проєкту буде визначено, має з'явитися таке діалогове вікно. Натисніть кнопку Далі, щоб продовжити.
+- Після натискання кнопки продовжити ви побачите це діалогове вікно, яке запитає про тип і параметри вашої програми. Для типу виберіть DLL (бібліотека динамічних посилань), а для налаштувань - порожній проєкт. Закінчивши, натисніть кнопку «Готово» внизу.
 
-- The next thing we want to do is go to our solution explorer. The solution explorer is normally on the left side of the IDE. If you accidentally disabled it you can enable it once again by pressing CTRL+ALT+L or by selecting view->other windows->solution explorer. Once you find the solution explorer right click the project name (In this example its "Test") and select properties.
+- Наступне, що ми хочемо зробити, це перейти до нашого провідника рішень. Зазвичай провідник рішень знаходиться у лівій частині IDE. Якщо ви випадково вимкнули його, ви можете увімкнути його знову, натиснувши комбінацію клавіш CTRL+ALT+L або вибравши перегляд->інші вікна->оглядач рішень. Знайшовши провідник рішень, клацніть правою кнопкою миші на назві проєкту (у нашому прикладі це «Test») і виберіть властивості.
 
-- Once you see the property pages navigate to Configuration properties->Linker->Input on the left side. Once you're there you want to add a module definition file. You can name this file anything you like as long as it has a ".def" extension at the end of it; People normally name def files after their project. Once you've named your definition file press OK.
+- Після того, як ви побачите сторінки властивостей, перейдіть до пункту Властивості конфігурації->Зв'язувач->Введення з лівого боку. Після цього вам потрібно додати файл визначення модуля. Ви можете назвати цей файл як завгодно, якщо він має розширення «.def» у кінці; зазвичай люди називають файли def на честь свого проєкту. Після того, як ви назвали файл визначення, натисніть кнопку OK.
 
-- Now all we have to do is add our files (this includes our definition file!). To add a file to your project navigate to the solution explorer again, right click the project name, click add, and then select new item. In this example we'll be adding our definition file. Since there isnt an option for definition files, just pick a source file (.cpp) and type the name of the module definition file you decided on (Note: Make sure you include the ".def" extension, other wise a ".cpp" extension will be added!). After this is done add a source file for the project the same way (except dont add an extension). Most people use the name "Main" for there main source file.
+- Тепер все, що нам потрібно зробити, це додати наші файли (це стосується і нашого файлу визначення!). Щоб додати файл до проєкту, знову перейдіть до провідника рішень, клацніть правою кнопкою миші на назві проєкту, виберіть пункт «Додати», а потім виберіть «Новий елемент». У цьому прикладі ми додамо наш файл визначення. Оскільки не існує опції для файлів визначення, просто виберіть вихідний файл (.cpp) і введіть ім'я файлу визначення модуля, який ви вирішили (Примітка: Переконайтеся, що ви включили розширення «.def», інакше буде додано розширення «.cpp»!). Після цього додайте вихідний файл проєкту таким же чином (за винятком того, що не додавайте розширення). Більшість людей використовують назву «Main» для головного вихідного файлу.
 
-- Before we can start adding anything to our two currently empty files, we have to actually add the SDK to the project. If you haven't already, download the SDK from the link that was provided in the beginning of this section. Once its downloaded, extract the SDK folder into your current project's directory. Note This part is optional: I personally like to create filters to organize all our files and code. A filter is an organizational tool in visual studio that creates folders in your project, but doesn't create corresponding Windows folders (its recommended to create matching window folders). To create a filter right click your project in the solution explorer->add->New Filter and select a name for your filter (Name it SDK in this case).
+- Перш ніж ми зможемо почати додавати щось до наших двох наразі порожніх файлів, ми повинні додати SDK до проєкту. Якщо ви цього ще не зробили, завантажте SDK за посиланням, яке було надано на початку цього розділу. Після завантаження розпакуйте теку SDK до каталогу вашого поточного проєкту. Зауваження Ця частина є необов'язковою: особисто мені подобається створювати фільтри для впорядкування всіх наших файлів і коду. Фільтр - це організаційний інструмент у Visual Studio, який створює папки у вашому проєкті, але не створює відповідні папки у Windows (рекомендується створювати відповідні папки у вікнах). Щоб створити фільтр, клацніть правою кнопкою миші ваш проєкт у провіднику рішень->додати->Новий фільтр і виберіть ім'я для фільтра (у цьому випадку назвіть його SDK).
 
-- The next step is to add all the SDK files to our current project. To add existing files to a project simply right click the folder or project you wish to add them to and select add -> Existing item. You'll want to add everything that is inside the SDK folder in your project directory (Note: You can select multiple files by holding Ctrl while clicking the files to add). For folder consistency we're gonna create another filter inside the SDK filter, and name it amx. You'll of course want to add all the contents of the SDK\amx\ folder into the amx filter.
+- Наступним кроком буде додавання всіх файлів SDK до нашого поточного проєкту. Щоб додати наявні файли до проєкту, просто клацніть правою кнопкою миші на теці або проєкті, до якого ви бажаєте їх додати, і виберіть пункт меню Додати -> Наявний елемент. Вам потрібно буде додати все, що знаходиться у теці SDK у каталозі вашого проєкту (Примітка: Ви можете вибрати декілька файлів, утримуючи клавішу Ctrl під час натискання на файли, які потрібно додати). Для узгодженості папок ми створимо ще один фільтр всередині фільтра SDK і назвемо його amx. Звичайно, ви захочете додати весь вміст теки SDK\amx\ до фільтра amx.
 
-Now it's time to get this plugin compiled! You should have a module definition file and a source file open if you followed the instructions correctly; If not, go back a few steps and follow the instructions carefully. Go ahead and copy and paste the following information into their corresponding files. Don't worry if you don't understand any of it, we'll be addressing it all in the next section.
+Тепер настав час скомпілювати плагін! Якщо ви правильно виконали інструкції, у вас повинні відкритися файл визначення модуля і вихідний файл; якщо ні, поверніться на кілька кроків назад і уважно виконайте інструкції. Скопіюйте та вставте наступну інформацію у відповідні файли. Не хвилюйтеся, якщо вам щось незрозуміло, ми розглянемо це у наступному розділі.
 
-### Source file (\*.cpp)
+### Вихідний файл (\*.cpp)
 
 ```cpp
-#include "SDK\amx\amx.h"
-#include "SDK\plugincommon.h"
+#include «SDK\amx\amx.h»
+#include «SDK\plugincommon.h»
 
 
 typedef void (*logprintf_t)(const char* format, ...);
@@ -108,7 +108,7 @@ extern void *pAMXFunctions;
 
 cell AMX_NATIVE_CALL HelloWorld(AMX* amx, cell* params)
 {
-    logprintf("This was printed from the Test plugin! Yay!");
+    logprintf(«Це було виведено з тестового плагіна! Ура!»);
     return 1;
 }
 
@@ -122,18 +122,18 @@ PLUGIN_EXPORT bool PLUGIN_CALL Load(void **ppData)
     pAMXFunctions = ppData[PLUGIN_DATA_AMX_EXPORTS];
     logprintf = (logprintf_t) ppData[PLUGIN_DATA_LOGPRINTF];
 
-    logprintf(" * Test plugin was loaded.");
+    logprintf(« * Завантажено тестовий плагін.»);
     return true;
 }
 
 PLUGIN_EXPORT void PLUGIN_CALL Unload()
 {
-    logprintf(" * Test plugin was unloaded.");
+    logprintf(« * Тестовий плагін було вивантажено.»);
 }
 
 AMX_NATIVE_INFO PluginNatives[] =
 {
-    {"HelloWorld", HelloWorld},
+    {«HelloWorld», HelloWorld},
     {0, 0}
 };
 
@@ -149,540 +149,540 @@ PLUGIN_EXPORT int PLUGIN_CALL AmxUnload( AMX *amx )
 }
 ```
 
-### Module definition file (\*.def)
+### Файл визначення модуля (\*.def)
 
 ```cpp
-EXPORTS
-      Supports
-      Load
-      Unload
+ЕКСПОРТИ
+      Підтримка
+      Завантажити
+      Вивантажити
       AmxLoad
       AmxUnload
 ```
 
-## Examining the code
+## Вивчення коду
 
-In this section we'll be taking a look at some of the defines, structures, and functions that the SA-MP plugin SDK has to offer. You should have a comfortable understanding of C/++ before proceeding, as i will **just** be explaining SDK related information once we hit the coded segments. From here on out, there wont be any hand holding!
+У цьому розділі ми розглянемо деякі визначення, структури та функції, які пропонує SDK плагіна SA-MP. Перед тим, як продовжити, ви повинні добре розуміти мову C/++, оскільки я пояснюватиму інформацію, пов'язану з SDK, лише після того, як ми дійдемо до закодованих сегментів коду. З цього моменту я не буду тримати вас за руку!
 
-### The module definition file
+### Файл визначення модуля
 
-Before we take a look at the code, we're gonna check out the module definition file we created in the previous section. First of all, what exactly is a module definition file? We know its a visual studio exclusive feature, but what exactly does it do? Its simple! A module definition file provides information to the linker about the code that is being linked. There are a lot of rules and statements that can be used in these files, but we're just gonna talk about one, the EXPORTS statement.
+Перш ніж ми подивимося на код, ми перевіримо файл визначення модуля, який ми створили в попередньому розділі. Перш за все, що таке файл визначення модуля? Ми знаємо, що це ексклюзивна функція візуальної студії, але що саме вона робить? Все просто! Файл визначення модуля надає інформацію компонувальнику про код, який компонується. Існує багато правил і операторів, які можна використовувати в цих файлах, але ми поговоримо лише про один з них - оператор EXPORTS.
 
-#### What is "**EXPORTS**"
+#### Що таке «**ЕКСПОРТ**»
 
-Exports is a statement that allows us to... well, export stuff to our application! Why do we do this? Because we have to, its as simple as that. The functions we export are entry points in our DLL file. Applications can only touch the functions in our DLL that we export; if we don't export them they remain private to the DLL file. We don't want that now, do we? No. So we export everything that that application is going to be directly accessing.
+Експорт - це інструкція, яка дозволяє нам... ну, експортувати дані в наш додаток! Чому ми це робимо? Тому що ми повинні, ось так просто. Функції, які ми експортуємо, є точками входу в наш файл DLL. Додатки можуть торкатися лише тих функцій у нашій DLL, які ми експортуємо; якщо ми не експортуємо їх, вони залишаються приватними для файлу DLL. Ми ж не хочемо цього зараз, чи не так? Ні. Тому ми експортуємо все, до чого програма матиме прямий доступ.
 
-#### Exported functions
+#### Експортовані функції
 
-There are currently 6 functions that need to be exported. We use 5 of them inside of our project that we've been setting up. Don't worry about the `PLUGIN_EXPORT`, and `PLUGIN_CALL` definitions you see in the function declarations. We will be covering these along with some other important definitions (marked by green text) later in the article.
+Наразі існує 6 функцій, які потрібно експортувати. Ми використовуємо 5 з них всередині нашого проєкту, який ми створюємо. Не хвилюйтеся про визначення `PLUGIN_EXPORT` і `PLUGIN_CALL`, які ви бачите в оголошеннях функцій. Ми розглянемо їх разом з деякими іншими важливими визначеннями (позначеними зеленим кольором) пізніше у статті.
 
-| Functions            | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
+| Функції | Опис
 | -------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **Supports()**       | This function tells the server what capabilities our plugin will have based on what it returns. Generally we only use 3 support flags in plugins: **SUPPORTS_VERSION**, **SUPPORTS_AMX_NATIVES**, and **SUPPORTS_PROCESS_TICK**.                                                                                                                                                                                                                                                                         |
-| **Load(void\*\*)**   | The Load function is pretty straight forward. This is called when the plugin is loaded and gets passed an array of addresses that the plugin will use to function. The two indexes we typically use are **PLUGIN_DATA_AMX_EXPORTS**, and **PLUGIN_DATA_LOGPRINTF**.                                                                                                                                                                                                                                      |
-| **Unload()**         | Unload is called when the plugin is unloaded (server is shutdown).                                                                                                                                                                                                                                                                                                                                                                                                                                       |
-| **AmxLoad(AMX\*)**   | This is called when a new AMX instance is loaded into the server. This will be called for every filterscript/gamemode! Because of this it isn't a good idea to store a single AMX instance for the entire plugin, instead use a queue/list/vector. In this function we also register our custom native functions we wish to provide PAWN with.                                                                                                                                                           |
-| **AmxUnload(AMX\*)** | This function is called when ever an AMX instance is unloaded. If you store AMX instances, make sure you remove them. Otherwise you'll have instances to non-existing gamemodes/filterscripts.                                                                                                                                                                                                                                                                                                           |
-| **ProcessTick()**    | ProcessTick is a function that gets called on every iteration of the server's loop. People generally use this function as a method of managing time by keeping track of the amount of ticks that have passed. The SA-MP server is said to have a sleep time of 5ms, so if 50 ticks go by you have an idea of the elapsed time (5 \* 50 = 250ms). **Note:** Anyone who uses threads in their plugins and require PAWN interaction needs to use this function to ensure PAWN isnt busy doing another task! |
+**Supports()** | Ця функція повідомляє серверу, які можливості матиме наш плагін, виходячи з того, що вона повертає. Зазвичай ми використовуємо лише 3 прапори підтримки у плагінах: **SUPPORTS_VERSION**, **SUPPORTS_AMX_NATIVES** і **SUPPORTS_PROCESS_TICK**.                                                                                                                                                                                                                                                                         |
+| **Load(void\*\*)** | Функція Load досить проста. Вона викликається при завантаженні плагіна і отримує масив адрес, які плагін буде використовувати для роботи. Зазвичай ми використовуємо два індекси: **PLUGIN_DATA_AMX_EXPORTS** та **PLUGIN_DATA_LOGPRINTF**.                                                                                                                                                                                                                                      |
+| **Unload()** | Unload викликається, коли плагін вивантажується (сервер вимикається).                                                                                                                                                                                                                                                                                                                                                                                                                                       |
+| **AmxLoad(AMX\*)** | Викликається, коли на сервер завантажується новий екземпляр AMX. Він буде викликаний для кожного скрипту/режиму гри! Тому не варто зберігати один екземпляр AMX для всього плагіна, натомість використовуйте чергу/список/вектор. У цій функції ми також реєструємо наші власні нативні функції, які ми хочемо надати PAWN.                                                                                                                                                           |
+**AmxUnload(AMX\*)** | Ця функція викликається щоразу, коли вивантажується екземпляр AMX. Якщо ви зберігаєте екземпляри AMX, переконайтеся, що ви їх видалили. Інакше ви матимете екземпляри для неіснуючих ігрових режимів/фільтрскриптів.                                                                                                                                                                                                                                                                                                           |
+| **ProcessTick()** | ProcessTick - це функція, яка викликається на кожній ітерації циклу сервера. Люди зазвичай використовують цю функцію як метод керування часом, відстежуючи кількість пройдених тиків. Вважається, що сервер SA-MP має час сну 5 мс, тому, якщо пройшло 50 тиків, ви маєте уявлення про час, що минув (5 \* 50 = 250 мс). **Примітка:** Усім, хто використовує потоки у своїх плагінах і потребує взаємодії з PAWN, слід використовувати цю функцію, щоб переконатися, що PAWN не зайнятий виконанням іншого завдання! |
 
-### Defines and structures
+### Визначення та структури
 
-Now comes the fun part, we get to take a look at the code! You'll probably notice right off the bat that we're using a ton of defines and structures through our little example from the previous section. If you haven't ever developed a SA-MP plugin before, these can appear very confusing and even intimidating. We'll be shedding some light on these defines and structures in this section.
+Тепер настає найцікавіша частина, ми подивимось на код! Ви, мабуть, одразу помітите, що ми використовуємо багато визначень та структур у нашому маленькому прикладі з попереднього розділу. Якщо ви ніколи раніше не розробляли SA-MP плагіни, вони можуть здатися вам дуже заплутаними і навіть лякаючими. У цьому розділі ми проллємо трохи світла на ці визначення та структури.
 
-| Defines/Structures          | Description                                                                                                                                                                                                                                                                                                                                                                                                             |
+| Визначення/структури | Опис
 | --------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **cell**                    | A "cell" is a typedef that is simply there for portability. PAWN offers support for 16bit, 32bit, and 64bit integers. The typedef "cell" will always be the correct size while "int" might not be. Generally with SA-MP plugins, this typedef will always be a 32bit integer. **Note:** There is also a "ucell" typedef for unsigned integers, but this is hardly used.                                                 |
-| **AMX_NATIVE_CALL**         | This defines the calling convention that our native functions will use. At the moment its defined to nothing, so the default will be used.                                                                                                                                                                                                                                                                              |
-| **AMX**                     | The name of this structure should be pretty clear, its an AMX instance. This structure has tons of information relating to the data segments along with tons of other amx related information. This structure must be present in all native function declarations along with a cell pointer to the passed parameters; Without this info we dont know what script is calling our native, nor do we know what was passed. |
-| **PLUGIN_EXPORT**           | This is defined as "PLUGIN_EXTERN_C".                                                                                                                                                                                                                                                                                                                                                                                   |
-| **PLUGIN_EXTERN_C**         | If using a C++ compiler this is defined as "extern "C"". This is for compatibility with C. C++ offers things like function overloading so additional information like the number/size of arguments is stored with the function's name, this is refered to as "name mangling". When this define is used, it tells C++ to use C-style linkage and thus avoids C++ name mangling.                                          |
-| **PLUGIN_CALL**             | This define tells C/++ what calling convention to use for our exported functions. If you use a compiler targeting windows, this is defined as \_\_stdcall. Otherwise its defined as nothing and the default convention is used.                                                                                                                                                                                         |
-| **SUPPORTS_VERSION**        | This define is to be used in a bit mask that is returned by our "Supports()" function. This flag is used to check for compatibility with the server.                                                                                                                                                                                                                                                                    |
-| **SUPPORTS_AMX_NATIVES**    | This is yet another define that is to be used by our "Supports()" function. Any plugin that uses AMX functions must use this flag! Without this flag you'll get a run time 19 error due to your natives not registering with the server (amx_Register).                                                                                                                                                                 |
-| **SUPPORTS_PROCESS_TICK**   | Our last flag for our "Supports()" function. If you're going to be using the "ProcessTick()" function, you have to add this to our "Supports()" function's returned bit mask.                                                                                                                                                                                                                                           |
-| **PLUGIN_DATA_AMX_EXPORTS** | This is used as an index to the multidimensional array that gets passed on Load. This particular index holds the AMX function table. All plugins must use this index to assign the address of the function table to pAMXFunctions.                                                                                                                                                                                      |
-| **PLUGIN_DATA_LOGPRINTF**   | Yet another index that is to be used with the multidimensional array that gets passed on Load. This index holds the address of the logprintf function which prints information and saves said information to the server's log file. If your plugin uses this function you must use this index to assign the address to the logprintf function pointer.                                                                  |
-| **AMX_NATIVE_INFO**         | This struct is used in conjunction with amx_Register. It contains a string that holds your new native's name, and a pointer to it's address.                                                                                                                                                                                                                                                                            |
+| «Комірка» - це типізоване визначення, яке існує лише для зручності перенесення. PAWN підтримує 16-, 32- та 64-розрядні цілі числа. Типізований тип «комірка» завжди матиме правильний розмір, у той час як «int» може не відповідати. Зазвичай у плагінах SA-MP цей тип завжди буде 32-бітним цілим числом. **Примітка:** Існує також типізація «ucell» для цілих беззнакових чисел, але вона майже не використовується.                                                 |
+**AMX_NATIVE_CALL** | Цей параметр визначає угоду про виклик, яку використовуватимуть наші рідні функції. Наразі вона не визначена, тому буде використано значення за замовчуванням.                                                                                                                                                                                                                                                                              |
+| **AMX** | Назва цієї структури має бути досить зрозумілою, це екземпляр AMX. Ця структура містить багато інформації про сегменти даних, а також багато іншої інформації, пов'язаної з amx. Ця структура має бути присутня у всіх оголошеннях нативних функцій разом із вказівником комірки на передані параметри; без цієї інформації ми не знаємо, який скрипт викликає нашу нативну функцію, а також не знаємо, що було передано. |
+| **PLUGIN_EXPORT** | Визначається як «PLUGIN_EXTERN_C».                                                                                                                                                                                                                                                                                                                                                                                   |
+| **PLUGIN_EXTERN_C** | Якщо використовується компілятор C++, це визначено як «extern “C”». Це зроблено для сумісності з C. C++ пропонує такі речі, як перевантаження функцій, тому додаткова інформація, така як кількість/розмір аргументів, зберігається разом з іменем функції, це називається «спотворенням імені». Коли використовується це визначення, воно вказує C++ використовувати зв'язування у стилі C і таким чином уникає спотворення імен у C++.                                          |
+| **PLUGIN_CALL** | Цей визначник вказує C++, яку угоду про виклик використовувати для наших експортованих функцій. Якщо ви використовуєте компілятор, орієнтований на роботу з вікнами, він визначається як \_\_stdcall. В іншому випадку він не визначений, і використовується угода за замовчуванням.                                                                                                                                                                                         |
+| **ВЕРСІЯ_ПІДТРИМКИ** | Цю ознаку слід використовувати у бітовій масці, яку повертає наша функція «Supports()». Цей прапорець використовується для перевірки сумісності з сервером.                                                                                                                                                                                                                                                                    |
+| **SUPPORTS_AMX_NATIVES** | Це ще одна змінна, яка буде використовуватися функцією «Supports()». Будь-який плагін, який використовує функції AMX, повинен використовувати цей прапор! Без цього прапора ви отримаєте помилку 19 під час виконання через те, що ваші нативні функції не зареєстровані на сервері (amx_Register).
+| **SUPPORTS_PROCESS_TICK** | Останній прапорець для нашої функції «Supports()». Якщо ви збираєтеся використовувати функцію «ProcessTick()», ви повинні додати його до бітової маски функції «Supports()», що повертається.                                                                                                                                                                                                                                           |
+| **PLUGIN_DATA_AMX_EXPORTS** | Використовується як індекс багатовимірного масиву, який передається при завантаженні. Цей конкретний індекс містить таблицю функцій AMX. Усі плагіни повинні використовувати цей індекс для присвоєння адреси таблиці функцій pAMXFunctions.                                                                                                                                                                                      |
+| **PLUGIN_DATA_LOGPRINTF** | Ще один індекс, який слід використовувати з багатовимірним масивом, що передається при завантаженні. Цей індекс містить адресу функції logprintf, яка друкує інформацію і зберігає її у файлі журналу сервера. Якщо ваш плагін використовує цю функцію, ви повинні використовувати цей індекс для присвоєння адреси вказівнику функції logprintf.                                                                  |
+| **AMX_NATIVE_INFO** | Ця структура використовується разом з amx_Register. Вона містить рядок, який містить ім'я вашої нової нативної системи та вказівник на її адресу.                                                                                                                                                                                                                                                                            |
 
-There are a few other important definitions that relate to AMX function errors, but they're already documented inside of the amx header. So instead of reinventing the wheel, I'm just going to post the enum with all the error codes and their corresponding comments. **Note:** Every amx function, with the exception of amx_NativeInfo, returns one of these error codes if a problem was encountered.
+Є ще декілька важливих визначень, які стосуються помилок функцій AMX, але вони вже задокументовані у заголовку amx. Тому замість того, щоб вигадувати велосипед, я просто опублікую зчислення з усіма кодами помилок та відповідними коментарями. **Примітка:** Кожна функція amx, за винятком amx_NativeInfo, повертає один з цих кодів помилок, якщо виникла проблема.
 
 ```cpp
-enum
+зчислення
 {
   AMX_ERR_NONE,
-  /* reserve the first 15 error codes for exit codes of the abstract machine */
-  AMX_ERR_EXIT,         /* forced exit */
-  AMX_ERR_ASSERT,       /* assertion failed */
-  AMX_ERR_STACKERR,     /* stack/heap collision */
-  AMX_ERR_BOUNDS,       /* index out of bounds */
-  AMX_ERR_MEMACCESS,    /* invalid memory access */
-  AMX_ERR_INVINSTR,     /* invalid instruction */
-  AMX_ERR_STACKLOW,     /* stack underflow */
-  AMX_ERR_HEAPLOW,      /* heap underflow */
-  AMX_ERR_CALLBACK,     /* no callback, or invalid callback */
-  AMX_ERR_NATIVE,       /* native function failed */
-  AMX_ERR_DIVIDE,       /* divide by zero */
-  AMX_ERR_SLEEP,        /* go into sleepmode - code can be restarted */
-  AMX_ERR_INVSTATE,     /* invalid state for this access */
+  /* зарезервувати перші 15 кодів помилок для кодів виходу з абстрактної машини */
+  AMX_ERR_EXIT, /* примусовий вихід */
+  AMX_ERR_ASSERT, /* не вдалося виконати твердження */
+  AMX_ERR_STACKERR, /* зіткнення стеку/купки */
+  AMX_ERR_BOUNDS, /* індекс вийшов за межі */
+  AMX_ERR_MEMACCESS, /* некоректний доступ до пам'яті */
+  AMX_ERR_INVINSTR, /* некоректна інструкція */
+  AMX_ERR_STACKLOW, /* переповнення стеку */
+  AMX_ERR_HEAPLOW, /* переповнення динамічної пам'яті */
+  AMX_ERR_CALLBACK, /* немає зворотного виклику, або невірний зворотний виклик */
+  AMX_ERR_NATIVE, /* не вдалося виконати рідну функцію */
+  AMX_ERR_DIVIDE, /* ділення на нуль */
+  AMX_ERR_SLEEP, /* перейти у сплячий режим - код можна перезапустити */
+  AMX_ERR_INVSTATE, /* неприпустимий стан для цього доступу */
 
-  AMX_ERR_MEMORY = 16,  /* out of memory */
-  AMX_ERR_FORMAT,       /* invalid file format */
-  AMX_ERR_VERSION,      /* file is for a newer version of the AMX */
-  AMX_ERR_NOTFOUND,     /* function not found */
-  AMX_ERR_INDEX,        /* invalid index parameter (bad entry point) */
-  AMX_ERR_DEBUG,        /* debugger cannot run */
-  AMX_ERR_INIT,         /* AMX not initialized (or doubly initialized) */
-  AMX_ERR_USERDATA,     /* unable to set user data field (table full) */
-  AMX_ERR_INIT_JIT,     /* cannot initialize the JIT */
-  AMX_ERR_PARAMS,       /* parameter error */
-  AMX_ERR_DOMAIN,       /* domain error, expression result does not fit in range */
-  AMX_ERR_GENERAL,      /* general error (unknown or unspecific error) */
+  AMX_ERR_MEMORY = 16, /* за межами пам'яті */
+  AMX_ERR_FORMAT, /* неприпустимий формат файлу */
+  AMX_ERR_VERSION, /* файл для більш нової версії AMX */
+  AMX_ERR_NOTFOUND, /* функцію не знайдено */
+  AMX_ERR_INDEX, /* невірний параметр індексу (погана точка входу) */
+  AMX_ERR_DEBUG, /* не вдається запустити відлагоджувач */
+  AMX_ERR_INIT, /* AMX не ініціалізовано (або двічі ініціалізовано) */
+  AMX_ERR_USERDATA, /* не вдається встановити поле даних користувача (таблиця переповнена) */
+  AMX_ERR_INIT_JIT, /* не вдається ініціалізувати JIT*/.
+  AMX_ERR_PARAMS, /* помилка параметрів */
+  AMX_ERR_DOMAIN, /* помилка домену, результат виразу не поміщається в діапазон */
+  AMX_ERR_GENERAL, /* загальна помилка (невідома або неспецифічна помилка) */
 };
 ```
 
-## Amx functions
+## Функції amx
 
-The amx functions are very well documented documented inside of the PAWN implementers guide, which can be found here. Instead of reinventing the wheel and explaining all the functions in my own words, im simply going to copy them here from the implementers guide, and make them a bit more presentable; I believe this will make the content much more accessible. With that said, this section will be mostly a reference for the next section which is focused on something that the implementers guide lacks, example code. Note: I will only be covering the functions that i think are vital for plugins (for now). Anything else can be found in the implementers guide, just make sure you use the version i linked to in this section!
+Функції amx дуже добре задокументовано у посібнику для реалізаторів PAWN, який можна знайти тут. Замість того, щоб вигадувати велосипед і пояснювати всі функції своїми словами, я просто скопіюю їх сюди з посібника для реалізаторів і зроблю їх трохи більш презентабельними; я вважаю, що це зробить вміст набагато доступнішим. З огляду на це, цей розділ буде здебільшого посиланням на наступний розділ, який зосереджується на тому, чого бракує у посібнику для реалізаторів, а саме на прикладах коду. Примітка: Я розглядатиму лише ті функції, які, на мою думку, є життєво важливими для плагінів (поки що). Все інше можна знайти у посібнику для реалізаторів, просто переконайтеся, що ви використовуєте версію, на яку я дав посилання у цьому розділі!
 
-### Key
+### Ключ
 
-\+ => Not Available
+\+ => Не доступний
 
 ## amx_Allot
 
-\- Reserve heap space in the abstract machine
+\- Зарезервувати місце у купі в абстрактній машині
 
-### Syntax
+### Синтаксис
 
 ```cpp
 int amx_Allot(AMX *amx, int cells, cell *amx_addr, cell **phys_addr);
 ```
 
-| Parameter    | Description                                                                                                                                                              |
+| Параметр | Опис |
 | ------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| **amx**      | The abstract machine.                                                                                                                                                    |
-| **cells**    | The number of cells to reserve.                                                                                                                                          |
-| **amx_addr** | The address of the allocated cell as the pawn program (that runs in the abstract machine) can access it. phys_addr The address of the cell for C/C++ programs to access. |
+| Абстрактна машина.                                                                                                                                                    |
+**cells** | Кількість зарезервованих комірок.                                                                                                                                          |
+**amx_addr** | Адреса виділеної комірки для доступу програми-пішака (яка працює на абстрактній машині). phys_addr Адреса комірки для доступу програм на мові C/C++. |
 
-**Notes:** In earlier releases of pawn, arrays and strings had to be passed to a script after explicitly allocating memory for it on the amx stack. In the current release, this functionality has been largely replaced by the functions amx_PushArray and amx_PushString. A pawn function can only access memory inside its abstract machine. If a parameter is to be passed “by reference” to a pawn function, one must pass the address of that parameter to amx_Exec. In addition, that address itself must be within the address range of the abstract machine too. An added complexity is that the abstract machine uses addresses that are relative to the data section of the abstract machine, and the host program uses address relative to the environment that the operating system gives it.
+**Примітки:** У попередніх версіях pawn масиви та рядки потрібно було передавати скрипту після явного виділення пам'яті для них у стеку amx. У поточному випуску цю функціональність значною мірою замінено функціями amx_PushArray та amx_PushString. Функція-пішак може отримати доступ до пам'яті лише всередині своєї абстрактної машини. Якщо у пішакову функцію потрібно передати параметр «за посиланням», то в amx_Exec потрібно передати адресу цього параметра. Крім того, ця адреса також повинна знаходитись у діапазоні адрес абстрактної машини. Додаткова складність полягає в тому, що абстрактна машина використовує адреси, які відносяться до секції даних абстрактної машини, а хост-програма використовує адресу відносно оточення, яке надає їй операційна система.
 
-amx_Allot allocates memory cells inside the abstract machine and it returns two addresses. The amx_addr parameter is the address of the variable relative to the “data section” of the abstract machine; this is the value you should pass to amx_Exec (via amx_Push). Pa- rameter phys_addr holds the address relative to the host program’s address space. So a C/C++ program can use this address and write into the allocated memory. After amx_Exec returns, you may inspect the memory block (the pawn function called by amx_Exec may have written into it) and finally release it by calling amx_Release.
+amx_Allot виділяє комірки пам'яті всередині абстрактної машини і повертає дві адреси. Параметр amx_addr - це адреса змінної відносно «секції даних» абстрактної машини; саме це значення ви повинні передати amx_Exec (через amx_Push). Параметр phys_addr містить адресу відносно адресного простору хост-програми. Таким чином, C/C++ програма може використати цю адресу і записати у виділену пам'ять. Після повернення amx_Exec ви можете оглянути блок пам'яті (можливо, в нього записалася функція pawn, викликана amx_Exec) і, нарешті, звільнити його викликом amx_Release.
 
-**See also:** [amx_Exec](#amx_Exec), [amx_PushArray](#amx_PushArray), [amx_PushString](#amx_PushString), [amx_Release](#amx_Release)
+**Дивіться також:** [amx_Exec](#amx_exec), [amx_PushArray](#amx_pusharray), [amx_PushString](#amx_pushstring), [amx_Release](#amx_release)
 
 ## amx_ctof
 
-\- Cast “cell” to “float”
+\- Привести «комірку» до «числа з плаваючою комою»
 
-### Syntax
+### Синтаксис
 
 ```cpp
-[float] amx_ctof([cell] c);
+[float] amx_ctof([комірка] c);
 ```
 
-| Parameter | Description                                    |
+| Параметр | Опис
 | --------- | ---------------------------------------------- |
-| **c**     | The value to cast from “cell” type to “float”. |
+| Значення для приведення з типу «комірка» до типу «float». |
 
-**Returns:** The same bit pattern, but now as a floating point type.
+**Повертає:** Той самий бітовий шаблон, але тепер як тип з плаваючою комою.
 
-**Notes:** This macro casts a “cell” type into a “float” type without changing the bit pattern. A normal type cast in C/C++ changes the memory representation of the expression so that its numeric value in IEEE 754 format comes closest to the original integer value. The pawn parser and abstract machine store floating point values in a cell — when retrieving a floating point value from a cell, the bit pattern must not be changed.
+**Примітки:** Цей макрос приводить тип «комірка» до типу «з плаваючою комою» без зміни бітової схеми. Звичайне приведення типів у C/C++ змінює представлення виразу у пам'яті так, щоб його числове значення у форматі IEEE 754 було максимально наближеним до початкового цілочисельного значення. Синтаксичний аналізатор та абстрактна машина зберігають значення з плаваючою комою у комірці - при отриманні значення з плаваючою комою з комірки не потрібно змінювати бітову структуру.
 
-**See also:** [amx_ftoc](#amx_ftoc)
+**Дивіться також:** [amx_ftoc](#amx_ftoc)
 
 ## amx_Exec
 
-\- Run code
+\- Виконати код
 
-### Syntax
+### Синтаксис
 
 ```cpp
   int amx_Exec(AMX *amx, long *retval, int index);
 ```
 
-| Parameter  | Description                                                                                                                                                                                                                                   |
+| Параметр | Опис
 | ---------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **amx**    | The abstract machine from which to call a function.                                                                                                                                                                                           |
-| **retval** | Will hold the return value of the called function uponreturn. This parameter may be NULL if you are notinterested in the return value.                                                                                                        |
-| **index**  | An index into the “public function table”; it indicatesthe function to execute. See amx_FindPublic formoreinformation. Use AMX_EXEC_MAIN to start executingat the main function, and AMX_EXEC_CONT to continueexecution from a “sleep state”. |
+**amx** | Абстрактна машина, з якої можна викликати функцію.                                                                                                                                                                                           |
+| **retval** | Міститиме значення, що повертається викликаною функцією після повернення. Цей параметр може бути NULL, якщо вас не цікавить значення, що повертається.                                                                                                        |
+| **index** | Індекс у «таблиці загальнодоступних функцій»; вказує на функцію, яку слід виконати. Дивіться інформацію в amx_FindPublic. Використовуйте AMX_EXEC_MAIN для початку виконання головної функції, а AMX_EXEC_CONT для продовження виконання зі стану «сну». |
 
-**Notes:** This function runs the script, starting at the indicated function. It calls the callback function for any native function call that the code in the amx makes. amx_Exec assumes that all native functions are correctly initialized with amx_Register.
+**Примітки:** Ця функція запускає скрипт, починаючи з вказаної функції. Вона викликає функцію зворотного виклику для будь-якого виклику власної функції, який виконує код в amx. amx_Exec припускає, що всі власні функції правильно ініціалізовані за допомогою amx_Register.
 
-**See also:** [amx_FindPublic](#amx_FindPublic), [amx_Register](#amx_Register)
+**Дивіться також:** [amx_FindPublic](#amx_findpublic), [amx_Register](#amx_register)
 
 ## amx_FindPublic
 
-\- Return the index of a public function
+\- Повернути індекс загальнодоступної функції
 
-### Syntax
+### Синтаксис
 
 ```cpp
 int amx_FindPublic(AMX *amx, char *funcname, int *index);
 ```
 
-| Parameter    | Description                                                                  |
+| Параметр | Опис
 | ------------ | ---------------------------------------------------------------------------- |
-| **amx**      | The abstract machine.                                                        |
-| **funcname** | The name of the public function to find.                                     |
-| **index**    | Upon return, this parameter holds the index of therequested public function. |
+| Абстрактна машина.                                                        |
+**funcname** | Ім'я публічної функції для пошуку.                                     |
+**index** | При поверненні цей параметр містить індекс запитуваної загальнодоступної функції. |
 
-**See also:** [amx_Exec](#amx_Exec), amx_FindNative+, amx_FindPubVar+, amx_GetPublic+, amx_NumPublics+
+**Дивіться також:** [amx_Exec](#amx_exec), amx_FindNative+, amx_FindPubVar+, amx_GetPublic+, amx_NumPublics+
 
 ## amx_ftoc
 
-\- Cast “float” to “cell”
+\- Приведення «float» до «cell»
 
-### Syntax
+### Синтаксис
 
 ```cpp
 [cell] amx_ftoc([float] f);
 ```
 
-| Parameter | Description                                    |
+| Параметр | Опис
 | --------- | ---------------------------------------------- |
-| **f**     | The value to cast from “float” type to “cell”. |
+**f** | Значення для приведення з типу «float» до типу «комірка». |
 
-**Returns:** The same bit pattern, but now as a “cell” type.
+**Повертає:** Той самий бітовий шаблон, але тепер як тип «комірка».
 
-**Notes:** This macro casts a “float” type into a “cell” type without changing the bit pattern. A normal type cast in C/C++ changes the memory representation of the expression so that its numeric value in integer format is the integral (truncated) value of the original rational value. The pawn parser and abstract machine store floating point values in a cell —when storing a floating point value in a cell, the bit pattern must not be changed.
+**Примітки:** Цей макрос приводить тип «float» до типу «комірка» без зміни бітової схеми. Звичайне приведення типів у C/C++ змінює представлення виразу у пам'яті так, що його числове значення у цілочисельному форматі є інтегральним (усіченим) значенням вихідного раціонального значення. Синтаксичний аналізатор та абстрактна машина зберігають значення з плаваючою комою у комірці - при зберіганні значення з плаваючою комою у комірці розрядність не повинна змінюватися.
 
-**See also:** [amx_ctof](#amx_ctof)
+**Дивіться також:** [amx_ctof](#amx_ctof)
 
 ## amx_GetAddr
 
-\- Resolve an AMX address
+\- Розв'язати AMX-адресу
 
-### Syntax
+### Синтаксис
 
 ```cpp
-int amx_GetAddr(AMX *amx,cell amx_addr,cell **phys_addr);
+int amx_GetAddr(AMX *amx,комірка amx_addr,комірка **phys_addr);
 ```
 
-| Parameter     | Description                                                                                                                                                                                    |
+| Параметр | Опис
 | ------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **amx**       | The abstract machine.                                                                                                                                                                          |
-| **amx_addr**  | The address relative to the abstract machine.                                                                                                                                                  |
-| **phys_addr** | A pointer to the variable that will hold the memoryaddress of the indicated cell. If the amx_addr parame-ter is not a valid address inside the abstract machine,phys_addr will be set to NULL. |
+| Абстрактна машина.                                                                                                                                                                          |
+**amx_addr** | Адреса відносно абстрактної машини.                                                                                                                                                  |
+| **phys_addr** | Вказівник на змінну, яка міститиме адресу пам'яті вказаної комірки. Якщо параметр amx_addr не є дійсною адресою всередині абстрактної машини, phys_addr буде встановлено у NULL.
 
-**Notes:** This function returns the memory address of an address in the abstract machine. One typically uses this function in an extension module, because it allows you to access variables inside the abstract machine.
+**Примітки:** Ця функція повертає адресу пам'яті для адреси в абстрактній машині. Цю функцію зазвичай використовують у модулях розширення, оскільки вона дозволяє отримати доступ до змінних всередині абстрактної машини.
 
 ## amx_GetString
 
-\- Retrieve a string from the abstract machine
+\- Отримати рядок з абстрактної машини
 
-### Syntax
+### Синтаксис
 
 ```cpp
 int amx_GetString(char *dest, cell *source, int use_wchar, size_t size);
 ```
 
-| Parameter     | Description                                                                                                                                                                   |
+| Параметр | Опис
 | ------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **dest**      | A pointer to a character array of sufficient size to holdthe converted source string.                                                                                         |
-| **source**    | A pointer to the source string. Use amx_GetAddr toconvert a string address in the amx to the physicaladdress.                                                                 |
-| **use_wchar** | A non-zero value interprets the dest argument as apointer to “wide characters” —i.e. wchar_t, regard-less of its char type. This allows the function to storeUnicode strings. |
-| **size**      | The maximum number of characters to store in dest,including the terminating zero byte. If the string inthe source is longer, the string in dest will be trun-cated.           |
+**dest** | Вказівник на символьний масив достатнього розміру, щоб вмістити перетворений вихідний рядок.                                                                                         |
+| **source** | Вказівник на вихідний рядок. Використовуйте amx_GetAddr для перетворення рядкової адреси в amx на фізичну адресу.                                                                 |
+| **use_wchar** | Ненульове значення інтерпретує аргумент dest як вказівник на «широкі символи» - тобто wchar_t, незалежно від його типу char. Це дозволяє функції зберігати рядки у форматі Unicode. |
+| **size** | Максимальна кількість символів для зберігання у dest, включаючи завершальний нульовий байт. Якщо рядок у джерелі довший, то рядок у dest буде урізано.           |
 
-**Notes:** This function converts both packed strings and unpacked strings from the “pawn” format to the “C format. When retrieving an unpacked string with parameter use_wchar set to zero, the function may truncate characters from wide characters to 8-bit ASCII/ANSI.
+**Примітки:** Ця функція перетворює як запаковані, так і розпаковані рядки з формату «pawn» у формат «C». При отриманні розпакованого рядка з параметром use_wchar, встановленим у нуль, функція може усікати символи з широких символів до 8-бітних ASCII/ANSI.
 
-**See also:** [amx_SetString](#amx_SetString)
+**Дивіться також:** [amx_SetString](#amx_setstring)
 
 ## amx_Push
 
-\- Pass a numeric argument “by-value”
+\- Передати числовий аргумент «за значенням»
 
-### Syntax
+### Синтаксис
 
 ```cpp
-int amx_Push(AMX *amx, cell value);
+int amx_Push(AMX *amx, значення комірки);
 ```
 
-| Parameter | Description                               |
+| Параметр | Опис
 | --------- | ----------------------------------------- |
-| **amx**   | The abstract machine.                     |
-| **value** | The value to pass to the public function. |
+| Абстрактна машина.                     |
+| Значення, що передається до публічної функції. |
 
-**Notes:** Any parameters to a public function must be pushed to the function before calling amx_Exec. If a public function has multiple arguments, the arguments must be pushed int reverse order.
+**Примітки:** Будь-які параметри до загальнодоступної функції мають бути передані у функцію перед викликом amx_Exec. Якщо загальнодоступна функція має декілька аргументів, аргументи слід передавати у зворотному порядку.
 
-**See also:** [amx_Exec](#amx_Exec), [amx_PushArray](#amx_PushArray), [amx_PushString](#amx_PushString)
+**Дивіться також:** [amx_Exec](#amx_exec), [amx_PushArray](#amx_pusharray), [amx_PushString](#amx_pushstring)
 
 ## amx_PushArray
 
-\- Pass an argument or array “by-reference”
+\- Передати аргумент або масив «за посиланням»
 
-### Syntax
+### Синтаксис
 
 ```cpp
 int amx_PushArray(AMX *amx, cell *amx_addr, cell **phys_addr, const cell array[], int numcells);
 ```
 
-| Parameter     | Description                                                                                                                                                              |
+| Параметр | Опис
 | ------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| **amx**       | The abstract machine.                                                                                                                                                    |
-| **amx_addr**  | The address of the allocated cell as the pawn program (that runs in the abstract machine) can access it, needed to release the memory block. This parameter may be NULL. |
-| **phys_addr** | The address of the cell for C/C++ programs to access. This parameter may be NULL.                                                                                        |
-| **array**     | The array of values to pass to the public function. A single cell that must be passed by-reference is regarded as a single-cell array.                                   |
-| **numcells**  | The number of elements in the array.                                                                                                                                     |
+| **amx** | Абстрактна машина.                                                                                                                                                    |
+| **amx_addr** | Адреса виділеної комірки, за якою програма-пішак (яка працює в абстрактній машині) може отримати доступ до неї, необхідний для звільнення блоку пам'яті. Цей параметр може бути NULL. |
+| **phys_addr** | Адреса комірки для доступу програм на мові C/C++. Цей параметр може бути NULL.                                                                                        |
+| **array** | Масив значень для передачі у загальнодоступну функцію. Окрема комірка, яку потрібно передати за посиланням, розглядається як масив з однієї комірки.                                   |
+| **numcells** | Кількість елементів у масиві.                                                                                                                                     |
 
-**Notes:** Any parameters to a public function must be pushed to the function before calling amx_Exec. If a public function has multiple arguments, the arguments must be pushed int reverse order. The function allocates memory for the array inside the “heap” of the abstract machine. This memory must be freed with amx_Release. See function amx_Allot for details on the parameters amx_addr and phys_addr.
+**Примітки:** Будь-які параметри до загальнодоступної функції мають бути передані у функцію перед викликом amx_Exec. Якщо загальнодоступна функція має декілька аргументів, аргументи повинні бути передані в зворотному порядку. Функція виділяє пам'ять для масиву всередині «купи» абстрактної машини. Ця пам'ять повинна бути звільнена за допомогою amx_Release. Дивіться функцію amx_Allot для отримання детальної інформації про параметри amx_addr та phys_addr.
 
-**See also:** [amx_Exec](#amx_Exec), [amx_Push](#amx_Push), [amx_PushString](#amx_PushString), [amx_Release](#amx_Release)
+**Дивіться також:** [amx_Exec](#amx_exec), [amx_Push](#amx_push), [amx_PushString](#amx_pushstring), [amx_Release](#amx_release)
 
 ## amx_PushString
 
-\- Pass a string argument
+\- Передати аргумент у вигляді рядка
 
-### Syntax
+### Синтаксис
 
 ```cpp
-int amx PushString(AMX *amx, cell *amx_addr, cell **phys_addr, const char *string, int pack, int use_wchar);
+int amx PushString(AMX *amx, комірка *amx_addr, комірка **phys_addr, const char *string, int pack, int use_wchar);
 ```
 
-| Parameter     | Description                                                                                                                                                                      |
+| Параметр | Опис
 | ------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **amx**       | The abstract machine.                                                                                                                                                            |
-| **amx_addr**  | The address of the allocated cell as the pawn program (that runs in the abstract machine) can access it, needed to release the memory block. This parameter may be NULL.         |
-| **phys_addr** | The address of the cell for C/C++ programs to access. This parameter may be NULL.                                                                                                |
-| **string**    | The string to pass to the public function.                                                                                                                                       |
-| **pack**      | Non-zero to convert the source string to a packed string in the abstract machine, zero to convert the source string to a cell string.                                            |
-| **use_wchar** | A non-zero value interprets the string argument as a pointer to “wide characters” i.e. wchar_t, regardless of its char type. This allows the function to accept Unicode strings. |
+| **amx** | Абстрактна машина.                                                                                                                                                            |
+| **amx_addr** | Адреса виділеної комірки, за якою програма-пішак (яка працює в абстрактній машині) може отримати доступ до неї, необхідний для звільнення блоку пам'яті. Цей параметр може бути NULL.         |
+| **phys_addr** | Адреса комірки для доступу програм на мові C/C++. Цей параметр може бути NULL.                                                                                                |
+| **string** | Рядок для передачі у загальнодоступну функцію.                                                                                                                                       |
+**pack** | Ненульове значення для перетворення вихідного рядка в упакований рядок в абстрактній машині, нульове - для перетворення вихідного рядка в рядок комірок.                                            |
+| **use_wchar** | Ненульове значення інтерпретує рядковий аргумент як вказівник на «широкі символи», тобто wchar_t, незалежно від його типу char. Це дозволяє функції приймати рядки у кодуванні Unicode. |
 
-**Notes:** Any parameters to a public function must be pushed to the function before calling amx_Exec. If a public function has multiple arguments, the arguments must be pushed int reverse order. The function allocates memory for the array inside the “heap” of the abstract machine. This memory must be freed with amx_Release. See function amx_Allot for details on the parameters amx_addr and phys_addr. When you pass in an Unicode string and request a packed format in the abstract machine (i.e. both pack and use_wchar are true), the characters are truncated to 8-bits.
+**Примітки:** Будь-які параметри до загальнодоступної функції мають бути передані у функцію перед викликом amx_Exec. Якщо загальнодоступна функція має декілька аргументів, аргументи повинні бути передані у зворотному порядку. Функція виділяє пам'ять для масиву всередині «купи» абстрактної машини. Ця пам'ять повинна бути звільнена за допомогою amx_Release. Дивіться функцію amx_Allot для отримання детальної інформації про параметри amx_addr та phys_addr. Коли ви передаєте рядок Unicode і запитуєте упакований формат в абстрактній машині (тобто і pack, і use_wchar мають значення true), символи усікаються до 8 біт.
 
-**See also:** [amx_Exec](#amx_Exec), [amx_Push](#amx_Push), [amx_PushArray](#amx_PushArray), [amx_Release](#amx_Release), [amx_SetString](#amx_SetString)
+**Дивіться також:** [amx_Exec](#amx_exec), [amx_Push](#amx_push), [amx_PushArray](#amx_pusharray), [amx_Release](#amx_release), [amx_SetString](#amx_setstring)
 
 ## amx_Register
 
-\- Make native functions known
+\- Зробити нативні функції відомими
 
-### Syntax
+### Синтаксис
 
 ```cpp
 int amx Register(AMX *amx, AMX NATIVE INFO *list, int number);
 ```
 
-| Parameter  | Description                                                                                                                                                                                        |
+| Параметр | Опис
 | ---------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **amx**    | The abstract machine.                                                                                                                                                                              |
-| **list**   | An array with structures where each structure holdsa pointer to the name of a native function and a function pointer. The list is optionally terminated with astructure holding two NULL pointers. |
-| **number** | The number of structures in the list array, or -1 if thelist ends with a structure holding two NULL pointers.                                                                                      |
+| Абстрактна машина.                                                                                                                                                                              |
+| **list** | Масив зі структурами, де кожна структура містить вказівник на ім'я власної функції та вказівник на функцію. Список необов'язково завершується структурою, що містить два NULL-покажчики. |
+| **number** | Кількість структур у масиві list, або -1, якщо список закінчується структурою, що містить два вказівники NULL.                                                                                      |
 
-**Notes:** On success, this function returns 0 (AMX_ERR_NONE). If this function returns the error code AMX_ERR_NOTFOUND, one or more native functions that are used by the pawn program are not found in the provided list. You can call amx_Register again to register additional function lists.
+**Примітки:** У разі успіху ця функція повертає 0 (AMX_ERR_NONE). Якщо ця функція повертає код помилки AMX_ERR_NOTFOUND, це означає, що у наданому списку не знайдено одну або декілька власних функцій, які використовуються ломбардною програмою. Ви можете повторно викликати amx_Register для реєстрації додаткових списків функцій.
 
-To check whether all native functions used in the compiled script have been registered, call amx_Register with the parameter list set to NULL. This call will not register any new native functions, but still return AMX_ERR_NOTFOUND if any native function is unregistered.
+Щоб перевірити, чи всі нативні функції, що використовуються у скомпільованому скрипті, було зареєстровано, викличте amx_Register зі списком параметрів, встановленим у NULL. Цей виклик не зареєструє жодних нових власних функцій, але все одно поверне AMX_ERR_NOTFOUND, якщо будь-яку власну функцію не буде зареєстровано.
 
-**See also:** amx_NativeInfo+
+**Дивіться також:** amx_NativeInfo+
 
 ## amx_Release
 
-\- Free heap space in the abstract machine
+\- Звільнити місце у купі в абстрактній машині
 
-### Syntax
+### Синтаксис
 
 ```cpp
-int amx Release(AMX *amx,cell amx_addr);
+int amx Release(AMX *amx,комірка amx_addr);
 ```
 
-| Parameter    | Description                                                                                                                                                               |
+| Параметр | Опис
 | ------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **amx**      | The abstract machine.                                                                                                                                                     |
-| **amx_addr** | The address of the allocated cell as the pawn program (that runs in the abstract machine) sees it. This value is returned by amx_Allot, amx_PushArray and amx_PushString. |
+| Абстрактна машина.                                                                                                                                                     |
+| **amx_addr** | Адреса виділеної комірки, як її бачить програма-пішак (яка працює в абстрактній машині). Це значення повертається функціями amx_Allot, amx_PushArray та amx_PushString. |
 
-**Notes:** amx_Allot allocates memory on the heap in ascending order (the heap grows upwards). amx_Release frees all memory above the value of the input parameter amx_addr. That is, a single call to amx_Release can free multiple calls to amx_Allot if you pass the amx_addr value of the first allocation.amx_PushArray and amx_PushString use amx_Allot internally, so the same procedure applies to these functions as well.
+**Примітки:** amx_Allot виділяє пам'ять у купі у порядку зростання (купа росте вгору). amx_Release звільняє всю пам'ять вище значення вхідного параметра amx_addr. Тобто, один виклик amx_Release може звільнити декілька викликів amx_Allot, якщо передати значення amx_addr першого виділення. amx_PushArray та amx_PushString використовують amx_Allot внутрішньо, тому та сама процедура застосовується і до цих функцій.
 
-**See also:** [amx_Allot](#amx_Allot), [amx_PushArray](#amx_PushArray), [amx_PushString](#amx_PushString)
+**Дивіться також:** [amx_Allot](#amx_allot), [amx_PushArray](#amx_pusharray), [amx_PushString](#amx_pushstring)
 
 ## amx_SetString
 
-\- Store a string in the abstract machine
+\- Зберегти рядок в абстрактній машині
 
-### Syntax
+### Синтаксис
 
 ```cpp
 int amx SetString(cell *dest, char *source, int pack, int use_wchar, size_t size);
 ```
 
-| Parameter     | Description                                                                                                                                                                                         |
+| Параметр | Опис
 | ------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **dest**      | A pointer to a character array in the amx where the converted string is stored. Use amx_GetAddr to convert a string address in the amx to the physical address.                                     |
-| **source**    | A pointer to the source string.                                                                                                                                                                     |
-| **pack**      | Non-zero to convert the source string to a packed string in the abstract machine, zero to convert the source string to a cell string.                                                               |
-| **string**    | The string to pass to the public function.                                                                                                                                                          |
-| **use_wchar** | A non-zero value interprets the string argument as a pointer to “wide characters” i.e. wchar_t, regardless of its char type. This allows the function to accept Unicode strings.                    |
-| **size**      | The maximum number of cells to store in dest, including the terminating zero byte or cell. If the string in the source is longer than can fit in the number of cells in dest, it will be truncated. |
+**dest** | Вказівник на масив символів у amx, де зберігається перетворений рядок. Використовуйте amx_GetAddr для перетворення адреси рядка в amx у фізичну адресу.                                     |
+| **source** | Вказівник на вихідний рядок.                                                                                                                                                                     |
+**pack** | Ненульове значення для перетворення вихідного рядка у запакований рядок в абстрактній машині, нульове значення для перетворення вихідного рядка у рядок комірок.                                                               |
+| Рядок** | Рядок для передачі у загальнодоступну функцію.                                                                                                                                                          |
+| Ненульове значення інтерпретує аргумент рядка як вказівник на «широкі символи», тобто wchar_t, незалежно від його типу char. Це дозволяє функції приймати рядки у кодуванні Unicode.                    |
+| **size** | Максимальна кількість комірок для зберігання у dest, включаючи завершальний нульовий байт або комірку. Якщо рядок у джерелі довший за кількість комірок у dest, він буде усічений. |
 
-**Notes:** When you pass in an Unicode string and request a packed format in the abstract machine (i.e. both pack and use_wchar are true), the characters are truncated to 8-bits.
+**Примітки:** Якщо ви передаєте рядок у кодуванні Unicode і запитуєте упакований формат в абстрактній машині (тобто і pack, і use_wchar мають значення true), символи буде урізано до 8 біт.
 
-**See also:** [amx_GetString](#amx_GetString)
+**Дивіться також:** [amx_GetString](#amx_getstring)
 
 ## amx_StrLen
 
-\- Get the string length in characters
+\- Отримати довжину рядка у символах
 
-### Syntax
+### Синтаксис
 
 ```cpp
 int amx_StrLen(const cell *cstring, int *length);
 ```
 
-| Parameter   | Description                                             |
+| Параметр | Опис
 | ----------- | ------------------------------------------------------- |
-| **cstring** | The string in the abstract machine.                     |
-| **length**  | This parameter will hold the string length upon return. |
+| **cstring** | Рядок в абстрактній машині.                     |
+| **length** | Цей параметр буде містити довжину рядка після повернення. |
 
-**Notes:** This function determines the length in characters of the string, not including the zero-terminating character (or cell). A packed string occupies less cells than its number if characters. If the cstring parameter is NULL, the length parameter is set to zero (0) and the function returns with an error code. For converting unpacked strings to UTF-8, function amx_UTF8Len may be more convenient.
+**Примітки:** Ця функція визначає довжину рядка у символах, не враховуючи нульовий символ (або комірку). Упакований рядок займає менше комірок, ніж його кількість символів. Якщо параметр cstring дорівнює NULL, параметр length дорівнює нулю (0) і функція повертає код помилки. Для перетворення розпакованих рядків до UTF-8 може бути зручнішою функція amx_UTF8Len.
 
-**See also:** [amx_GetAddr](#amx_GetAddr), [amx_GetString](#amx_GetString), [amx_SetString](#amx_SetString), [amx_StrParam](#amx_StrParam), amx_UTF8Len+
+**Дивіться також:** [amx_GetAddr](#amx_getaddr), [amx_GetString](#amx_getstring), [amx_SetString](#amx_setstring), [amx_StrParam](#amx_strparam), amx_UTF8Len+
 
 ## amx_StrParam
 
-\- Get a string parameter from an abstract machine
+\- Отримати рядковий параметр з абстрактної машини
 
-### Syntax
+### Синтаксис
 
 ```cpp
 amx_StrParam([AMX*] amx, int] param, [char*] result);
 ```
 
-| Parameter  | Description                                     |
+| Параметр | Опис
 | ---------- | ----------------------------------------------- |
-| **amx**    | The abstract machine.                           |
-| **param**  | The parameter number.                           |
-| **result** | A variable that will hold the result on return. |
+| Абстрактна машина.                           |
+| Номер параметра.                           |
+| Результат - змінна, яка буде містити результат при поверненні. |
 
-**Notes:** This macro allocates a block of memory (with alloca) and copies a string parameter (to a native function) in that block. See page 56 for an example of using this macro.
+**Примітки:** Цей макрос виділяє блок пам'яті (за допомогою alloca) і копіює у цей блок рядковий параметр (у власну функцію). Приклад використання цього макросу наведено на сторінці 56.
 
-**See also:** [amx_GetAddr](#amx_GetAddr), [amx_GetString](#amx_GetString), [amx_StrLen](#amx_StrLen)
+**Дивіться також:** [amx_GetAddr](#amx_getaddr), [amx_GetString](#amx_getstring), [amx_StrLen](#amx_strlen)
 
-## Amx function examples
+## Приклади функцій amx
 
-In an attempt at avoiding huge text walls, I've decided to add comments to the code explaining what I'm doing instead of typing it out in the topic. It's probably a good idea to have the wiki article open as a reference while reading the examples.
+Намагаючись уникнути величезних текстових стін, я вирішив додати коментарі до коду, які пояснюють, що я роблю, замість того, щоб писати це в темі. Можливо, це гарна ідея, щоб вікі-стаття була відкрита як довідник під час читання прикладів.
 
-### Registering natives
+### Реєстрація нативних користувачів
 
-Every single function we provide PAWN with has to be registered so the abstract machine can be aware of its existence. So i think its probably a good idea to start off with amx_Regester! Luckily we actually already used an example of registering a native one of our previous sections, so I'll be using that example again and adding some comments.
+Кожна функція, яку ми надаємо PAWN, має бути зареєстрована, щоб абстрактна машина знала про її існування. Тому я вважаю, що це, мабуть, гарна ідея почати з amx_Regester! На щастя, ми вже використовували приклад реєстрації нативної функції у попередніх розділах, тому я використаю його знову і додам деякі коментарі.
 
 ```cpp
-//An array of the functions we wish to register with the abstract machine.
+//Масив функцій, які ми хочемо зареєструвати в абстрактній машині.
 AMX_NATIVE_INFO PluginNatives[] =
 {
-    //Here we specify our native functions information and terminate the array with two null values.
-    {"HelloWorld", HelloWorld},
+    //Тут ми вказуємо інформацію про наші нативні функції і завершуємо масив двома нульовими значеннями.
+    {«HelloWorld», HelloWorld},
     {0, 0}
 };
 
 PLUGIN_EXPORT int PLUGIN_CALL AmxLoad( AMX *amx )
 {
-    //Here we register our natives to the abstract machine. Note how we're using -1. Normally this would have to be the number of
-    //functions we're registering, but since we terminated the array with two null values, we can specify -1.
+    //Тут ми реєструємо наші нативні дані на абстрактній машині. Зверніть увагу, як ми використовуємо -1. Зазвичай це має бути кількість
+    //функцій, які ми реєструємо, але оскільки ми завершили масив двома нульовими значеннями, ми можемо вказати -1.
     return amx_Register(amx, PluginNatives, -1);
 }
 ```
 
-- ### Getting a string and its length
+- ### Отримання рядка та його довжини
 
 ```cpp
-//This function demonstrates: how to get a string (and its length) from PAWN.
+//Ця функція демонструє: як отримати рядок (та його довжину) з PAWN.
 //PAWN native: native PrintPawnString(const str[]);
 cell AMX_NATIVE_CALL PrintPawnString(AMX* amx, cell* params)
 {
     int
-        len = NULL,
+        len = NULL
         ret = NULL;
 
-    cell *addr  = NULL;
+    cell *addr = NULL;
 
-    //Get the address of our string param (str) and then get its length
+    //Отримуємо адресу нашого рядка param (str) і потім отримуємо його довжину
     amx_GetAddr(amx, params[1], &addr);
     amx_StrLen(addr, &len);
 
-    //if the length of input isnt 0
+    //якщо довжина вхідних даних не рівна 0
     if(len)
     {
-        //We increase len because we want to make room for the terminating null char when we allocate memory.
-        //Also because GetString's size parameter counts the null chracter, we have to specify the length
-        //of the string + 1; otherwise our string will be truncated to make room for the null char (we'd lose 1 character).
+        //Ми збільшуємо len, тому що хочемо звільнити місце для завершального нульового символу при виділенні пам'яті.
+        //Також, оскільки параметр розміру GetString враховує нульовий символ, ми повинні вказати довжину
+        //рядка + 1; інакше наш рядок буде урізано, щоб звільнити місце для нульового символу (ми втратимо 1 символ).
         len++;
 
-        //Allocate memory to hold our string we're passing (str) and then "get" the string using our allocated memory to store it.
+        //Виділяємо пам'ять для зберігання рядка, який ми передаємо (str), а потім «отримуємо» рядок, використовуючи виділену пам'ять для його зберігання.
         char* text = new char[ len ];
         amx_GetString(text, addr, 0, len);
 
-        //Use logprintf to print out string (text). We dont use std::cout because it doesnt write to the server log (only the console).
+        //Вивести рядок (text) за допомогою logprintf. Ми не використовуємо std::cout, тому що вона не пише в лог сервера (тільки в консоль).
         logprintf(text);
 
-        //Deallocate our memory...
+        //Звільняємо пам'ять...
         delete[] text;
     }
-    return 1;
+    повернути 1;
 }
 ```
 
-### Alternative way to get a string
+### Альтернативний спосіб отримання рядка
 
-I decided to add this section because i know people are going to be tempted by the simplicity of it, and i think they should know the risks and problems that can come from it.
+Я вирішив додати цей розділ, тому що знаю, що люди можуть спокуситися простотою цього способу, і вважаю, що вони повинні знати про ризики і проблеми, які можуть виникнути у зв'язку з ним.
 
 ```cpp
-//This function demonstrates: an alternative method to getting strings from pawn- and the possible risks that come with it.
+//Ця функція демонструє: альтернативний метод отримання рядків з pawn- і можливі ризики, які з ним пов'язані.
 //PAWN native: native PrintPawnString2(const str[]);
 cell AMX_NATIVE_CALL PrintPawnString2(AMX* amx, cell* params)
 {
-    //This method is NOT recomended as the amx_StrParam macro uses the alloca function which is NOT a standard in C, OR C++.
-    //Using this method comes with risks of overflowing the stack (If you allocate large amounts of memory) and also
-    //gives you the risk of bugs (this function is machine AND compiler dependent- some implementations are said to be bugged).
+    //Цей метод НЕ рекомендується використовувати, оскільки макрос amx_StrParam використовує функцію alloca, яка не є стандартом ні в C, ні в C++.
+    //Використання цього методу пов'язане з ризиком переповнення стеку (якщо виділяється великий об'єм пам'яті), а також
+    //дає вам ризик помилок (ця функція залежить від машини та компілятора - деякі реалізації вважаються багнутими).
 
     char* text = NULL;
     amx_StrParam(amx, params[1], text);
 
-    //Check if text is null
+    //Перевірити, чи текст рівний нулю
     if(text != NULL)
     {
-        //Use logprintf to print out string (text). We dont use std::cout because it doesnt write to the server log (only the console).
+        //Вивести рядок (text) за допомогою logprintf. Ми не використовуємо std::cout, тому що вона не пише в лог сервера (тільки в консоль).
         logprintf(text);
     }
-    return 1;
+    повернути 1;
 
 ```
 
-### How to set a string
+### Як задати рядок
 
 ```cpp
-//This function demonstrates: how to modify a PAWN string.
+//Данна функція демонструє: як модифікувати рядок PAWN.
 //PAWN native: native SetPawnString(str[], len = sizeof(str));
 cell AMX_NATIVE_CALL SetPawnString(AMX* amx, cell* params)
 {
-    const string message = "This is a string from C/++!!";
+    const string message = «Це рядок з мови C/++!!!»;
     cell* addr = NULL;
 
-    //Get the address of our string parameter (str) and store our message
+    //Отримуємо адресу нашого рядкового параметру (str) і зберігаємо наше повідомлення
     amx_GetAddr(amx, params[1], &addr);
     amx_SetString(addr, message.c_str(), 0, 0, params[2]);
     return 1;
 }
 ```
 
-### Casting and returning floats
+### Приведення та повернення чисел з плаваючою комою
 
 ```cpp
-//This function demonstrates: how to cast a float to a PAWN float, and return it.
+//Данна функція демонструє: приведення плаваючого типу до типу PAWN та його повернення.
 //PAWN native: native Float:ReturnPawnFloatVal();
 cell AMX_NATIVE_CALL ReturnPawnFloatVal(AMX* amx, cell* params)
 {
-    //Since PAWN is a typeless language it stores everything as a 32bit integer and relies on tags to handle special data.
-    //A floating point number is no exception to this; It's a still 32bit int, but it has a Float tag to show that it shouldnt
-    //be treated like an regular integer. So how do we convert a float to an 32bit integer (for PAWN) without losing data?
-    //The answer is the amx_ftoc macro!
+    //Оскільки PAWN є безтиповою мовою, вона зберігає все як 32-бітне ціле число і покладається на теги для обробки спеціальних даних.
+    //Число з плаваючою комою не є винятком; це все ще 32-бітний int, але він має тег Float, який показує, що його не слід
+    //поводитися з ним як зі звичайним цілим числом. Отже, як перетворити число з плаваючою комою у 32-бітне ціле (для PAWN) без втрати даних?
+    //Відповідь - макрос amx_ftoc!
 
-    //The macro amx_ftoc type casts a float into a cell while preserving its bit pattern (amx_ctof does the inverse).
+    //Макрос з типом amx_ftoc приводить плаваючу комірку до комірки зі збереженням її бітової структури (amx_ctof робить зворотній процес).
     const float f = 22.624f;
     return amx_ftoc(f);
 }
 ```
 
-### Passing parameters by reference
+### Передача параметрів за посиланням
 
 ```cpp
-//This function demonstrates: How to pass parameters by reference.
+//Ця функція демонструє: Як передавати параметри за посиланням.
 //PAWN native: native SetPawnReferenceVars(&value1, &Float:value2);
 cell AMX_NATIVE_CALL SetPawnReferenceVars(AMX* amx, cell* params)
 {
@@ -691,44 +691,44 @@ cell AMX_NATIVE_CALL SetPawnReferenceVars(AMX* amx, cell* params)
 
     cell* addr[2] = {NULL, NULL};
 
-    //Get the addresses of "value1" and "value2"
+    //Отримати адреси «value1» та «value2»
     amx_GetAddr(amx, params[1], &addr[0]);
     amx_GetAddr(amx, params[2], &addr[1]);
 
-    //Dereference our pointers and assign our values. Remember to ALWAYS use the macro "amx_ftoc" to convert floats into
-    //cells (the appropriate float format for PAWN)!
+    //Роздиференціюємо наші вказівники і присвоюємо їм наші значення. Не забувайте ЗАВЖДИ використовувати макрос «amx_ftoc» для перетворення чисел з плаваючою комою у
+    //комірку (відповідний формат для PAWN)!
     *addr[0] = val;
     *addr[1] = amx_ftoc(val2);
 
-    return 1;
+    повернути 1;
 }
 ```
 
-### Getting and modding array values
+### Отримання та модифікація значень масивів
 
 ```cpp
-//This function demonstrates: how to get and modify array values.
+//Дана функція демонструє: отримання та модифікацію значень масиву.
 //PAWN native: native PrintPawnArray(arr[], size = sizeof(arr));
 cell AMX_NATIVE_CALL PrintPawnArray(AMX* amx, cell* params)
 {
-    //Make sure there's something to print...
+    //Переконатись, що є що друкувати...
     if(params[2] > 0)
     {
         cell* addr = NULL;
 
-        //Get the address of the first value in our PAWN array.
+        //Здобуваємо адресу першого значення у нашому масиві PAWN.
         amx_GetAddr(amx, params[1], &addr);
 
         for(int i = 0, l = params[2]; i < l; i++)
         {
-            //This is pretty straight forward: We dereference the addr pointer to get our value to print.
-            //You should know this already, but arrays and pointers are almost the same thing, so we can use pointer
-            //arithmetic to add an offset OR just use the subscript operator (in the end *(addr+1) and addr[1] are the same).
-            logprintf("arr[%d] = %d", i, *(addr + i));
+            //Це досить просто: Ми розіменовуємо вказівник addr, щоб отримати наше значення для друку.
+            //Ви вже повинні це знати, але масиви і вказівники - це майже одне і те ж, тому ми можемо використовувати вказівник
+            //арифметику для додавання зсуву АБО просто використовуємо оператор підстановки (зрештою *(addr+1) і addr[1] - це одне й те саме).
+            logprintf(«arr[%d] = %d», i, *(addr + i));
 
-            //If you wanted to modify the array you would just change its value by dereferencing addr and assigning a new value.
-            //You should know this as well, im just adding it in for completeness. Here we change the first value of our array
-            //to 5 (Note: Since its the first value, no offset it used).
+            //Якби ви хотіли змінити масив, ви б просто змінили його значення, розіменявши addr і присвоївши йому нове значення.
+            //Ви маєте це знати, я просто додаю це для повноти картини. Тут ми змінюємо перше значення нашого масиву
+            //на 5 (Примітка: оскільки це перше значення, зміщення не використовується).
 
             // *(addr) = 5;
         }
@@ -737,10 +737,10 @@ cell AMX_NATIVE_CALL PrintPawnArray(AMX* amx, cell* params)
 }
 ```
 
-### Call a callback
+### Викликати зворотний виклик
 
 ```cpp
-//This function demonstrates: How to call a callback that is in a PAWN script.
+//Ця функція демонструє: Як викликати зворотній виклик, що знаходиться у скрипті PAWN.
 //PAWN native: native EmitPawnCallback();
 cell AMX_NATIVE_CALL EmitPawnCallback(AMX* amx, cell* params)
 {
@@ -748,124 +748,124 @@ cell AMX_NATIVE_CALL EmitPawnCallback(AMX* amx, cell* params)
 
     const cell var = 3;
     const cell arr[] = {100, 4, 33};
-    const string str = "Some random message from C++.";
+    const string str = «Якесь випадкове повідомлення з C++.»;
 
 
-    //Pawn callback: forward OnPawnCallbackEmitted(var, arr[], str[]);
-    //Find our callback and store its place in the public function table (it's index) into our idx var.
-    if(!amx_FindPublic(amx, "OnPawnCallbackEmitted", &idx))
+    //Пішаковий колбек: переслати OnPawnCallbackEmitted(var, arr[], str[]);
+    //Знаходимо наш колбек і записуємо його місце в таблиці публічних функцій (його індекс) в наш idx var.
+    if(!amx_FindPublic(amx, «OnPawnCallbackEmitted», &idx))
     {
-        cell
+        комірка
             ret,
             addr;
 
-        //Here we push our arguments to our function. Note that if the function has multiple arguments you have to push your
-        //values in reverse order! Thats why we're pushing the string first, then the array, and finally our integer.
+        //Тут ми передаємо аргументи у нашу функцію. Зверніть увагу, що якщо функція має декілька аргументів, ви повинні передавати свої
+        //значення у зворотному порядку! Ось чому ми передаємо спочатку рядок, потім масив, і, нарешті, наше ціле число.
 
         amx_PushString(amx, &addr, NULL, str.c_str(), NULL, NULL);
         //amx_PushArray(amx, NULL, NULL, arr, sizeof(arr) / sizeof(cell));
 
-        cell
+        комірка
             amx_addr,
             *phys_addr;
 
-        //For some reason amx_PushArray seems to be crashing the server, and i have NO idea why. My usage should be completely
-        //valid judging from the implementers guide, and the code itself. Since the function isnt working we'll have to
-        //use the old method and allocate the memory, set it, and push it all ourselves. This is pretty straight forward. We
-        //allocate memory on the heap using amx_Allot (this returns 2 addresses- one of the location in the abstract machine
-        //(amx_addr), and one relative to the actual server's address space (phsy_addr - which we can use in C++)). Once the
-        //memory is allocated we use memcpy to copy the memory from our array to our phys_addr address location.
+        //З деяких причин amx_PushArray призводить до падіння сервера, і я не маю жодного уявлення чому. Моє використання повинно бути повністю
+        //правильним, судячи з керівництва для реалізаторів та самого коду. Оскільки функція не працює, нам доведеться
+        //використовувати старий метод і виділяти пам'ять, встановлювати і запускати все самостійно. Це досить просто. Виділяємо пам'ять
+        //виділяємо пам'ять на купі за допомогою amx_Allot (повертає 2 адреси - одна з них на абстрактній машині
+        //(amx_addr), а іншу - відносно реального адресного простору сервера (phsy_addr - яку ми можемо використати у C++)). Після того, як
+        //пам'ять виділено, ми використовуємо memcpy для копіювання пам'яті з нашого масиву до адресної області phys_addr.
         amx_Allot(amx, sizeof(arr) / sizeof(cell), &amx_addr, &phys_addr);
         memcpy(phys_addr, arr, sizeof(arr));
         amx_Push(amx, amx_addr);
 
-        //Push our integer value
+        //Виштовхуємо наше цілочисельне значення
         amx_Push(amx, var);
 
-        //Execute our function using our previously obtained idx var.
-        //Note: This function's second parameter is what the callback returned (Can be NULL if you're not interested in return values).
+        //Виконуємо нашу функцію, використовуючи отриманий раніше ідентифікатор idx var.
+        //Примітка: Другий параметр цієї функції - це те, що повернув зворотній виклик (може бути NULL, якщо вас не цікавлять значення, що повертаються).
         amx_Exec(amx, &ret, idx);
 
-        //Release our memory that we allocated. The function amx_Alloc allocates memory on the heap in the abstract machine.
-        //The functions amx_PushString and amx_PushArray both use this function internally so you have to release the memory every time
-        //you use one of those functions. NOTE: We used both amx_PushString and amx_PushArray, and yet we only have ONE release call.
-        //This is because memory on the heap is allocated in ascending order! amx_Release release all the memory above a certain point
-        //(the second parameter, amx_addr - which is our addr variable). Since it does this we ONLY store the address from the amx_PushString
-        //call, as it'll delete everything from that point on.
+        //Звільняємо пам'ять, яку ми виділили. Функція amx_Alloc виділяє пам'ять на кучі в абстрактній машині.
+        //Функції amx_PushString та amx_PushArray використовують цю функцію внутрішньо, тому вам доведеться звільняти пам'ять кожного разу
+        //якщо ви використовуєте одну з цих функцій. Зауваження: Ми використали обидві функції amx_PushString та amx_PushArray, але маємо лише ОДИН виклик звільнення.
+        //Це тому, що пам'ять на купі виділяється у порядку зростання! amx_Release звільняє всю пам'ять вище певної точки
+        //(другий параметр, amx_addr - це наша змінна addr). Оскільки вона це робить, ми зберігаємо ЛИШЕ адресу з виклику amx_PushString
+        //виклику, оскільки з цієї точки все буде видалено.
         amx_Release(amx, addr);
 
-        //Print the return value (for completeness).
-        logprintf("EmitPawnCallback NOTE:  OnPawnCallbackEmitted callback returned %d!", ret);
+        //Виводимо значення, що повертається (для повноти картини).
+        logprintf(«EmitPawnCallback NOTE: OnPawnCallbackEmitted callback повернув %d!», ret);
 
     }
     return 1;
 ```
 
-## Calling natives and hooking callbacks
+## Виклик нативів та перехоплення зворотних викликів
 
-Before i get into callback hooking or SA-MP native calling, i thought i should shed light on something first. Some people seem to think that plugins are a replacement for PAWN, this simply isnt the case. Plugins were designed to provide functionality TO PAWN, not to serve as a replacement for it. There are times when developing something as a plugin rather then a PAWN script doesnt make sense- its important to ask yourself if you should really be coding something as a plugin rather then a pawn script.
+Перш ніж я перейду до під'єднання зворотного виклику або виклику нативних функцій SA-MP, я подумав, що спочатку я повинен пролити світло на деякі моменти. Дехто вважає, що плагіни є заміною PAWN, але це не так. Плагіни було розроблено для надання функціональності PAWN, а не для заміни його. Бувають випадки, коли розробка чогось як плагіна, а не скрипта PAWN, не має сенсу - важливо запитати себе, чи дійсно ви повинні кодувати щось як плагін, а не як скрипт PAWN.
 
-There are a lot of different methods you can use for both callback hooking and sa-mp native calling. Im only going to be focusing on one method oh each for now though.
+Існує багато різних методів, які ви можете використовувати як для зворотного виклику, так і для власного виклику sa-mp. Але зараз я зосереджуся лише на одному методі з кожного з них.
 
-### Invoke
+### Invoke (Викликати)
 
-Invoke is a SA-MP native function calling method that was created by incognito. You can find it [here](https://github.com/Dystans/SA-MP_Invoke_2.0). Please note that there is a text file in there containing a function with tons of SA-MP native function calls. This is vital for invoke, and must be added to your plugin's include file. Invoke will not work if you dont have a public PAWN function that uses all the SA-MP natives your plugin requires. This function is only so invoke can find the addresses of the natives, and should **never** actually be used anywhere.
+Invoke - це метод виклику власних функцій SA-MP, який було створено інкогніто. Ви можете знайти його [тут](https://github.com/Dystans/SA-MP_Invoke_2.0). Зверніть увагу, що там є текстовий файл, який містить функцію з безліччю викликів власних функцій SA-MP. Це життєво важливо для виклику і має бути додано до включаємого файлу вашого плагіна. Invoke не працюватиме, якщо у вас немає публічної функції PAWN, яка використовує усі власні функції SA-MP, що потрібні вашому плагіну. Ця функція потрібна лише для того, щоб invoke міг знайти адреси нативних модулів, і її не слід **ніколи** використовувати.
 
-#### Getting started
+#### Початок роботи
 
-Before we can start calling SA-MP natives, we have to setup Invoke. The first thing we have to do is include it inside of our project, you should remember how to do this from the previous "Getting started" section. Once you have the files added to your project there are just a few simple steps to get Invoke working:
+Перш ніж ми зможемо почати викликати SA-MP нативну бібліотеку, нам потрібно налаштувати Invoke. Перше, що нам потрібно зробити, це включити його до нашого проєкту, ви повинні пам'ятати, як це зробити з попереднього розділу «Початок роботи». Після того, як ви додали файли до вашого проєкту, є лише кілька простих кроків, щоб змусити Invoke працювати:
 
-- Include the invoke header.
-- Allocate memory for the invoke instance under Load.
-- Push back the amx_list member variable every time a new AMX instance is loaded under AmxLoad.
-- Every time a script gets unloaded, iterate through Invoke's amx_list, find the unloaded AMX instance, and erase it under AmxUnload.
-- Create a native that calls Invoke's "getAddresses" member function for PAWN to use when a filterscript or gamemode is loaded that uses our plugin.
+- Додайте заголовок виклику.
+- Виділіть пам'ять для екземпляра invoke у розділі Load.
+- Відсувайте змінну-член amx_list щоразу, коли завантажується новий екземпляр AMX в AmxLoad.
+- Кожного разу, коли скрипт вивантажується, перебирати amx_list Invoke, знаходити вивантажений екземпляр AMX і видаляти його за допомогою AmxUnload.
+- Створіть нативний код, який викликає функцію-член Invoke «getAddresses» для PAWN, щоб використовувати його, коли завантажується скрипт фільтрів або ігровий режим, який використовує наш плагін.
 
-Thats about it for getting invoke setup for your plugin. The only thing left to do is to add the public PAWN function found in the invoke package (the txt file we spoke of earlier) to your plugin's include, and use the native from the last setup step when a script is loaded. Anyone who will be creating plugins for public release, i encourage you to look into THIS post. It allows for a clean seamless "hook" of the OnGameModeInit/OnFilterScriptInit callbacks so you can register SA-MP's native addresses while not forcing the end user to add a function into those callbacks themselves.
+Це все, що потрібно зробити для налаштування invoke для вашого плагіна. Єдине, що залишилося зробити, це додати публічну функцію PAWN, знайдену в пакеті invoke (txt-файл, про який ми говорили раніше), до включення вашого плагіна, і використовувати власну функцію з останнього кроку налаштування при завантаженні скрипту. Всім, хто буде створювати плагіни для публічного релізу, я рекомендую ознайомитися з цією статтею. Він дозволяє створити чистий безшовний «гачок» зворотних викликів OnGameModeInit/OnFilterScriptInit, щоб ви могли зареєструвати рідні адреси SA-MP, не змушуючи кінцевого користувача додавати функцію у ці виклики самостійно.
 
-**Note:** Im aware that explaining this in text form probably isnt ideal for most newer users; however these are all standard C/++ tasks that you should already be familiar with- and those that arent (ie: creating a native) were already explained! If you're having trouble following along, i suggest getting a bit more familiar with C/++. With that being said though there will be an updated source code file (along with an actual include for our plugin) later on in this article with comments on everything we've learned so far. Look at that updated source file if you have any problems.
+**Примітка:** Я усвідомлюю, що пояснення цього у текстовій формі, можливо, не є ідеальним для більшості користувачів-початківців; однак це все стандартні завдання C/++, з якими ви вже маєте бути знайомі, а ті, що не є такими (тобто, створення нативних функцій), вже було пояснено! Якщо у вас виникають проблеми з розумінням, я пропоную трохи більше ознайомитися з C/++. З огляду на це, пізніше в цій статті буде оновлено файл вихідного коду (разом з фактичним включенням нашого плагіна) з коментарями про все, що ми дізналися до цього часу. Якщо у вас виникнуть проблеми, зверніться до цього оновленого файлу коду.
 
-#### Adding SA-MP natives
+#### Додавання нативних SA-MP-файлів
 
-Sadly invoke isnt magic, and does require maintenance to add new natives or remove deprecated ones. The version from the previous section has all the natives from the 0.2.2 version of SA-MP, so its missing all the newer functions. For these two reasons i decided to add this section! If someone is nice enough to add all the missing natives i will update the invoke package and include them in the credits- if not, i suggest adding natives on an as needed basis.
+На жаль, виклик invoke не є магією, і потребує обслуговування для додавання нових або вилучення застарілих нативних програм. Версія з попереднього розділу містить усі нативні компоненти з версії 0.2.2 SA-MP, тому у ній не вистачає нових функцій. З цих двох причин я вирішив додати цей розділ! Якщо хтось буде достатньо добрим, щоб додати всі відсутні функції, я оновлю пакунок invoke і додам їх до титрів - якщо ні, я пропоную додавати функції за потребою.
 
-Inside of the invoke header you should see a big array of function names (the array is appropriately called "name") and a lot of static "Native" structure declarations. To add a native you simply have to add its name to the array of names, and declare a Native structure with the appropriate information- name, and parameter specifiers. There are a lot of available parameter specifiers available to use:
+Всередині заголовка invoke ви побачите великий масив імен функцій (масив відповідно називається «name») і багато статичних оголошень «нативних» структур. Щоб додати нативну функцію, ви просто додаєте її ім'я до масиву імен і оголошуєте нативну структуру з відповідною інформацією - ім'ям і специфікаторами параметрів. Існує багато доступних специфікаторів параметрів, які можна використовувати:
 
 ```cpp
-i = integer
-f = float value
-s = string
-v = reference variable (GetPlayerPos, GetPlayerKeys, etc.)
-p = string var (GetPlayerName etc.)
+i = ціле число
+f = значення з плаваючою комою
+s = рядок
+v = змінна-посилання (GetPlayerPos, GetPlayerKeys тощо)
+p = string var (GetPlayerName і т.д.)
 ```
 
-**Remember to update the public PAWN function that calls all the natives.** Any time you add a native you need to also add it to said public function.
+**Не забудьте оновити публічну функцію PAWN, яка викликає всі нативні компоненти.** Щоразу, коли ви додаєте нативний компонент, ви також повинні додати його до згаданої публічної функції.
 
-#### Calling natives
+#### Виклик нативних функцій
 
-Invoke uses the variadic member function appropriately named "callNative" to call natives. The parameters for this function are a pointer to a Native structure (see previous section) containing info on the native function, and an ellipsis for all the parameters for said native function. The function returns the return value of the native that is being called. Here is an example function that calls multiple natives, with differing parameter types (int, reference, and string var).
+Для виклику нативів Invoke використовує варіадну функцію-член з відповідною назвою «callNative». Параметрами цієї функції є вказівник на структуру Native (див. попередній розділ), що містить інформацію про нативну функцію, та еліпсис для всіх параметрів цієї нативної функції. Функція повертає значення нативної функції, яка викликається. Ось приклад функції, яка викликає декілька нативних функцій з різними типами параметрів (int, посилання та рядок var).
 
 ```cpp
-//This function demonstrates: how to use invoke to call SA-MP natives.
+//Ця функція демонструє: як використовувати invoke для виклику нативів SA-MP.
 //PAWN native: native WhereIsPlayer(playerid);
 cell AMX_NATIVE_CALL WhereIsPlayer(AMX* amx, cell* params)
 {
-    float
-        x = NULL,
-        y = NULL,
+    з плаваючою комою
+        x = NULL
+        y = NULL
         z = NULL;
 
-    //Get the player's position (and check to see if he is even connected).
+    //Отримаємо позицію гравця (і перевіримо, чи він взагалі підключений).
     if(g_Invoke->callNative(&PAWN::GetPlayerPos, params[1], &x, &y, &z))
     {
         char name[24];
 
-        //Get the rest of the player's information (name, interior, and virtualworld) and print it.
+        //Здобуваємо решту інформації про гравця (ім'я, інтер'єр та віртуальний світ) та виводимо її на екран.
         g_Invoke->callNative(&PAWN::GetPlayerName, params[1], name);
         int interior = g_Invoke->callNative(&PAWN::GetPlayerInterior, params[1]);
         int virtualworld = g_Invoke->callNative(&PAWN::GetPlayerVirtualWorld, params[1]);
 
-        logprintf("%s is at X: %.2f, Y: %.2f, Z: %.2f (Virtual world: %d, Interior %d).", name, x, y, z, virtualworld, interior);
+        logprintf(«%s знаходиться за адресою X: %.2f, Y: %.2f, Z: %.2f (Віртуальний світ: %d, Інтер'єр %d).», name, x, y, z, virtualworld, interior);
         return 1;
 
     }
@@ -873,77 +873,77 @@ cell AMX_NATIVE_CALL WhereIsPlayer(AMX* amx, cell* params)
 }
 ```
 
-### Hooking callbacks
+### Підключення функцій зворотного виклику
 
-Using the invoke method, there is no 100% transparent hooking method when it comes to callbacks. Plugins that want to hook callbacks that are using invoke have go through PAWN to do so. You can create a native function that you can call inside the PAWN callback you wish to hook, and use that native as a sort of pseudo callback. You can do this in a manner that requires no work on the end user by using the ALS hooking method.
+Використання методу invoke не є на 100% прозорим методом підключення, коли мова йде про зворотні виклики. Плагіни, які хочуть підключати функції зворотного виклику, що використовують invoke, повинні робити це через PAWN. Ви можете створити власну функцію, яку можна викликати всередині зворотного виклику PAWN, який ви хочете підчепити, і використовувати її як псевдо-зворотний виклик. Ви можете зробити це у спосіб, який не вимагає від кінцевого користувача ніякої роботи, використовуючи метод ALS-перехоплення.
 
-The first step is obviously creating the native (remember to add it to our list of natives to register, and also add it in your include later on). The callback i decided to hook is OnPlayerConnect, so im gonna write a native function that has the same arguments as the callback, and then add the code that requires the callback (in this case a little joke).
+Першим кроком, очевидно, є створення нативної функції (не забудьте додати її до нашого списку нативних функцій для реєстрації, а також додати її до вашого include пізніше). Функція зворотного виклику, яку я вирішив підчепити, називається OnPlayerConnect, тому я напишу нативну функцію з тими самими аргументами, що й функція зворотного виклику, а потім додам код, який викликає зворотний виклик (в даному випадку це буде невеликий жарт).
 
 ```cpp
-//This function demonstrates: how to write a native to act as a callback.
+//Ця функція демонструє: як написати нативну функцію для роботи в якості колбеку.
 //PAWN native: native TEST_Hook_OnPlayerConnnect(playerid);
 cell AMX_NATIVE_CALL TEST_Hook_OnPlayerConnnect(AMX* amx, cell* params)
 {
-    //Get the players name
+    //Отримати ім'я гравця
     char name[24];
     g_Invoke->callNative(&PAWN::GetPlayerName, params[1], name);
 
-    //Check if his name is "Mario".
-    if(string("Mario") == name)
+    //Перевірити, чи його ім'я «Mario».
+    if(string(«Mario») == name)
     {
-        //If it is send our funny little message and kick him.
-        g_Invoke->callNative(&PAWN::SendClientMessage, params[1], 0xFFFFFFFF, "Sorry {FF0000}Mario, {FFFFFF}but your princess is in another server.");
+        //Якщо це так, то відправляємо наше кумедне повідомлення і копаємо його ногою.
+        g_Invoke->callNative(&PAWN::SendClientMessage, params[1], 0xFFFFFFFF, «Вибач {FF0000}Маріо, {FFFFFF}але твоя принцеса на іншому сервері.»);
         g_Invoke->callNative(&PAWN::Kick, params[1]);
     }
     return 1;
 }
 ```
 
-TEST_Hook_OnPlayerConnnect will now act as our plugin's OnPlayerConnect callback. Since our plugin's name is "Test" and its rather short i decided to let that act as our prefix for hooking. You generally want something unique for your prefixes so you dont collide with other people's plugins/includes. **Note:** We still have to call this function from PAWN using the ALS method we spoke of earlier for user convenience. Since Y_Less does a great job of explaining the ALS method, there's really no point for me to go into details about it, i will simply provide hooking example for our TEST_Hook_OnPlayerConnect callback. This should be put in your plugins include file.
+TEST_Hook_OnPlayerConnnect тепер діятиме як функція зворотного виклику OnPlayerConnect нашого плагіна. Оскільки ім'я нашого плагіна «Test» і воно досить коротке, я вирішив використати його як префікс для підключення. Зазвичай вам потрібно щось унікальне для ваших префіксів, щоб не стикатися з чужими плагінами/інклюдами. **Примітка:** Нам все одно доведеться викликати цю функцію з PAWN за допомогою методу ALS, про який ми говорили раніше, для зручності користувача. Оскільки Y_Less чудово пояснює метод ALS, мені немає сенсу вдаватися в подробиці, я просто надам приклад підключення хука для нашого зворотного виклику TEST_Hook_OnPlayerConnect. Його слід помістити у файл включення вашого плагіна.
 
 ```cpp
 public OnPlayerConnect(playerid)
 {
-    TEST_Hook_OnPlayerConnnect(playerid);
+    TEST_Hook_OnPlayerConnect(playerid);
     //..
 
-    if(funcidx("TEST_OnPlayerConnect") != -1)
+    if(funcidx(«TEST_OnPlayerConnect») != -1)
     {
-        return CallLocalFunction("TEST_OnPlayerConnect", "d", playerid);
+        return CallLocalFunction(«TEST_OnPlayerConnect», «d», playerid);
     }
     return 1;
 }
 
-#if defined _ALS_OnPlayerConnect
+#if визначено _ALS_OnPlayerConnect
     #undef OnPlayerConnect
 #else
-    #define _ALS_OnPlayerConnect
+    #визначити _ALS_OnPlayerConnect
 #endif
 #define OnPlayerConnect TEST_OnPlayerConnect
 
 forward TEST_OnPlayerConnect(playerid);
 ```
 
-## Closing
+## Закриття
 
-Some of you experienced plugin developers might be wondering why i didnt include the GDK in the "Calling natives and hooking callbacks" section. I decided to leave it out for two reasons. The first being that i simply do not have that much available time anymore, and couldnt spare any getting used to this new system. The second reason is that the GDK is very experimental and currently is struggling with crashes amongst other problems. Im quite aware of the speed differences between Invoke and GDK, and definitely will add it some time in the future if no one else does (remember, this is suppose to be a community driven thing). I think its best to wait for some more of the issues to be ironed out for now though (zeex is an amazing coder, and im sure he'll iron everything out ).
+Деякі з вас, досвідчені розробники плагінів, можуть здивуватися, чому я не включив GDK до розділу «Виклик нативів та під'єднання зворотних викликів». Я вирішив не включати його з двох причин. Перша з них полягає в тому, що я просто не маю більше вільного часу, і не можу витрачати його на звикання до цієї нової системи. Друга причина полягає в тому, що GDK є дуже експериментальною і наразі бореться зі збоями серед інших проблем. Я цілком усвідомлюю різницю у швидкості між Invoke та GDK, і, безумовно, додам її колись у майбутньому, якщо ніхто інший цього не зробить (пам'ятайте, що це має бути справа рук спільноти). Я думаю, що поки що краще зачекати, поки деякі проблеми буде вирішено (zeex - чудовий програміст, і я впевнений, що він все виправить).
 
-Also, as i promised, here is the update include/source file with comments on everything we've hopefully learned:
+Також, як я і обіцяв, ось оновлений включаючий/вихідний файл з коментарями про все, що ми, сподіваюсь, дізналися:
 
-### Plugin include
+### Плагін include
 
 ```cpp
-//Anything with the prefix "TEST" should be changed if you called your plugin something
-//different. This also goes for the plugin code (TEST_Hook_OnPlayerConnect specifically).
-#if defined _TEST_INCLUDED
+//Все з префіксом «TEST» має бути змінено, якщо ви назвали свій плагін якось
+//іншим. Це стосується і коду плагіна (зокрема, TEST_Hook_OnPlayerConnect).
+#if визначено _TEST_INCLUDED
     #endinput
 #endif
-#define _TEST_INCLUDED
-#pragma library Test
+#визначити _TEST_INCLUDED
+#бібліотека прагматики Test
 
-#include <a_samp>
+#include <samp>
 
-//Example natives
+//Приклади нативів
 native PrintPawnString(const str[]);
 native PrintPawnString2(const str[]);
 native SetPawnString(str[], len = sizeof(str));
@@ -954,27 +954,27 @@ native EmitPawnCallback();
 native WhereIsPlayer(playerid);
 native TEST_Hook_OnPlayerConnnect(playerid);
 
-//Invoke native
+//Викликати native
 native Invoke_GetAddresses();
 
 
-//Callback hooks
+//Хуки зворотного виклику
 public OnPlayerConnect(playerid)
 {
-    TEST_Hook_OnPlayerConnnect(playerid);
+    TEST_Hook_OnPlayerConnect(playerid);
     //..
 
-    if(funcidx("TEST_OnPlayerConnect") != -1)
+    if(funcidx(«TEST_OnPlayerConnect») != -1)
     {
-        return CallLocalFunction("TEST_OnPlayerConnect", "d", playerid);
+        return CallLocalFunction(«TEST_OnPlayerConnect», «d», playerid);
     }
     return 1;
 }
 
-#if defined _ALS_OnPlayerConnect
+#if визначено _ALS_OnPlayerConnect
     #undef OnPlayerConnect
 #else
-    #define _ALS_OnPlayerConnect
+    #визначити _ALS_OnPlayerConnect
 #endif
 #define OnPlayerConnect TEST_OnPlayerConnect
 
@@ -985,21 +985,21 @@ public OnGameModeInit()
     Invoke_GetAddresses();
     //..
 
-    if(funcidx("TEST_OnGameModeInit") != -1)
+    if(funcidx(«TEST_OnGameModeInit») != -1)
     {
-        return CallLocalFunction("TEST_OnGameModeInit", "");
+        return CallLocalFunction(«TEST_OnGameModeInit», «»);
     }
     return 1;
 }
 
-#if defined _ALS_OnGameModeInit
+#if визначено _ALS_OnGameModeInit
     #undef OnGameModeInit
 #else
-    #define _ALS_OnGameModeInit
+    #визначити _ALS_OnGameModeInit
 #endif
 #define OnGameModeInit TEST_OnGameModeInit
 
-forward TEST_OnGameModeInit();
+переслати TEST_OnGameModeInit();
 
 
 public OnFilterScriptInit()
@@ -1007,24 +1007,24 @@ public OnFilterScriptInit()
     Invoke_GetAddresses();
     //..
 
-    if(funcidx("TEST_OnFilterScriptInit") != -1)
+    if(funcidx(«TEST_OnFilterScriptInit») != -1)
     {
-        return CallLocalFunction("TEST_OnFilterScriptInit", "");
+        return CallLocalFunction(«TEST_OnFilterScriptInit», «»);
     }
     return 1;
 }
 
-#if defined _ALS_OnFilterScriptInit
+#if визначено _ALS_OnFilterScriptInit
     #undef OnFilterScriptInit
 #else
-    #define _ALS_OnFilterScriptInit
+    #визначити _ALS_OnFilterScriptInit
 #endif
 #define OnFilterScriptInit TEST_OnFilterScriptInit
 
 forward TEST_OnFilterScriptInit();
 
 
-//Public function for invoke
+//Публічна функція для виклику
 forward InvokeFunction();
 public InvokeFunction()
 {
@@ -1033,45 +1033,45 @@ public InvokeFunction()
     new iVar;
 
     // a_samp.inc
-    SendClientMessage(0, 0, "");
-    SendClientMessageToAll(0, "");
+    SendClientMessage(0, 0, «»);
+    SendClientMessageToAll(0, «»);
     SendDeathMessage(0, 0, 0);
-    GameTextForAll("", 0, 0);
-    GameTextForPlayer(0, "", 0, 0);
+    GameTextForAll(«», 0, 0);
+    GameTextForPlayer(0, «», 0, 0);
     GetTickCount();
     GetMaxPlayers();
-    SetGameModeText("");
+    SetGameModeText(«»);
     SetTeamCount(0);
-    AddPlayerClass(0, 0.0, 0.0, 0.0, 0.0, 0, 0, 0, 0, 0, 0);
-    AddPlayerClassEx(0, 0, 0.0, 0.0, 0.0, 0.0, 0, 0, 0, 0, 0, 0);
-    AddStaticVehicle(0, 0.0, 0.0, 0.0, 0.0, 0, 0);
-    AddStaticVehicleEx(0, 0.0, 0.0, 0.0, 0.0, 0, 0, 0);
-    AddStaticPickup(0, 0, 0.0, 0.0, 0.0);
+    AddPlayerClass(0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
+    AddPlayerClassEx(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+    AddStaticVehicle(0, 0, 0.0, 0.0, 0.0, 0.0, 0.0, 0, 0);
+    AddStaticVehicleEx(0, 0.0, 0.0, 0.0, 0.0, 0.0, 0, 0, 0);
+    AddStaticPickup(0, 0, 0, 0.0, 0.0, 0.0, 0.0);
     ShowNameTags(0);
     ShowPlayerMarkers(0);
     GameModeExit();
     SetWorldTime(0);
     GetWeaponName(0, Var, sizeof( Var ) );
     EnableTirePopping(0);
-    AllowInteriorWeapons(0);
+    Дозволити внутрішню зброю(0);
     SetWeather(0);
     SetGravity(0.0);
-    AllowAdminTeleport(0);
+    Дозволити адмін-телепорт(0);
     SetDeathDropAmount(0);
-    CreateExplosion(0.0, 0.0, 0.0, 0, 0.0);
-    //SetDisabledWeapons();
+    CreateExplosion(0.0, 0.0, 0.0, 0.0, 0, 0.0);
+    //ВстановитиВідключенуЗброю();
     EnableZoneNames(0);
     IsPlayerAdmin(0);
     Kick(0);
     Ban(0);
-    SendRconCommand("");
-    ShowPlayerDialog(0,0,0,"lol","lol","lol","lol");
+    SendRconCommand(«»);
+    ShowPlayerDialog(0,0,0, «lol», «lol», «lol», «lol», «lol»);
 
     // a_players.inc
-    SetSpawnInfo(0, 0, 0, 0.0, 0.0, 0.0, 0.0, 0, 0, 0, 0, 0,0);
+    SetSpawnInfo(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,0);
     SpawnPlayer(0);
-    SetPlayerPos(0, 0.0, 0.0, 0.0);
-//  SetPlayerPosFindZ(0, 0.0, 0.0, 0.0);
+    SetPlayerPos(0, 0.0, 0.0, 0.0, 0.0);
+// SetPlayerPosFindZ(0, 0.0, 0.0, 0.0, 0.0);
     GetPlayerPos(0, fVar, fVar, fVar);
     SetPlayerFacingAngle(0,0.0);
     GetPlayerFacingAngle(0,fVar);
@@ -1095,7 +1095,7 @@ public InvokeFunction()
     GetPlayerWeaponData(0, 0, iVar, iVar );
     GivePlayerMoney(0,0);
     ResetPlayerMoney(0);
-    SetPlayerName(0, "");
+    SetPlayerName(0, «»);
     GetPlayerMoney(0);
     GetPlayerState(0);
     GetPlayerIp(0, Var, sizeof( Var ));
@@ -1106,19 +1106,19 @@ public InvokeFunction()
     PutPlayerInVehicle(0, 0,0);
     GetPlayerVehicleID(0);
     RemovePlayerFromVehicle(0);
-    TogglePlayerControllable(0,0);
-    PlayerPlaySound(0, 0, 0.0, 0.0,0.0);
-    SetPlayerCheckpoint(0, 0.0, 0.0, 0.0,0.0);
+    TogglePlayerControlable(0,0);
+    PlayerPlaySound(0, 0, 0, 0.0, 0.0,0.0);
+    SetPlayerCheckpoint(0, 0.0, 0.0, 0.0, 0.0,0.0);
     DisablePlayerCheckpoint(0);
-    SetPlayerRaceCheckpoint(0, 0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,0.0);
+    SetPlayerRaceCheckpoint(0, 0, 0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,0.0);
     DisablePlayerRaceCheckpoint(0);
-    SetPlayerWorldBounds(0,0.0,0.0,0.0,0.0);
-    SetPlayerMarkerForPlayer(0, 0,0);
+    SetPlayerWorldBounds(0,0.0,0.0,0.0,0.0,0.0);
+    SetPlayerMarkerForPlayer(0, 0, 0);
     ShowPlayerNameTagForPlayer(0, 0,0);
-    SetPlayerMapIcon(0, 0, 0.0, 0.0, 0.0, 0,0);
+    SetPlayerMapIcon(0, 0, 0, 0,0, 0,0, 0,0, 0,0, 0,0);
     RemovePlayerMapIcon(0,0);
-    SetPlayerCameraPos(0,0.0, 0.0, 0.0);
-    SetPlayerCameraLookAt(0, 0.0, 0.0, 0.0);
+    SetPlayerCameraPos(0,0.0, 0.0, 0.0, 0.0);
+    SetPlayerCameraLookAt(0, 0.0, 0.0, 0.0, 0.0);
     SetCameraBehindPlayer(0);
     AllowPlayerTeleport(0,0);
     IsPlayerConnected(0);
@@ -1137,10 +1137,10 @@ public InvokeFunction()
     CreateVehicle(0,0.0,0.0,0.0,0.0,0,0,0);
     DestroyVehicle(0);
     GetVehiclePos(0,fVar,fVar,fVar);
-    SetVehiclePos(0,0.0,0.0,0.0);
+    SetVehiclePos(0,0.0,0.0,0.0,0.0);
     GetVehicleZAngle(0,fVar);
     SetVehicleZAngle(0,0.0);
-    SetVehicleParamsForPlayer(0,0,0,0);
+    SetVehicleParamsForPlayer(0,0,0,0,0);
     SetVehicleToRespawn(0);
     LinkVehicleToInterior(0,0);
     AddVehicleComponent(0,0);
@@ -1152,45 +1152,45 @@ public InvokeFunction()
     DetachTrailerFromVehicle(0);
     IsTrailerAttachedToVehicle(0);
     GetVehicleModel(0);
-    SetVehicleNumberPlate(0,"");
+    SetVehicleNumberPlate(0,«»);
     SetVehicleVirtualWorld(0,0);
     GetVehicleVirtualWorld(0);
 
-    ApplyAnimation(0,"","",1.0,0,0,0,0,0);
+    ApplyAnimation(0,«»,«»,1.0,0,0,0,0,0);
 
     // a_objects.inc
     CreateObject(0,0.0,0.0,0.0,0.0,0.0,0.0);
-    SetObjectPos(0,0.0,0.0,0.0);
+    SetObjectPos(0,0.0,0.0,0.0,0.0);
     GetObjectPos(0,fVar,fVar,fVar);
-    SetObjectRot(0,0.0,0.0,0.0);
+    SetObjectRot(0,0.0,0.0,0.0,0.0);
     GetObjectRot(0,fVar,fVar,fVar);
     IsValidObject(0);
     DestroyObject(0);
     MoveObject(0,0.0,0.0,0.0,0.0);
     StopObject(0);
     CreatePlayerObject(0,0,0.0,0.0,0.0,0.0,0.0,0.0);
-    SetPlayerObjectPos(0,0,0.0,0.0,0.0);
+    SetPlayerObjectPos(0,0,0,0,0,0,0,0,0);
     GetPlayerObjectPos(0,0,fVar,fVar,fVar);
     GetPlayerObjectRot(0,0,fVar,fVar,fVar);
-    SetPlayerObjectRot(0,0,0.0,0.0,0.0);
+    SetPlayerObjectRot(0,0,0.0,0.0,0.0,0.0);
     IsValidPlayerObject(0,0);
     DestroyPlayerObject(0,0);
-    MovePlayerObject(0,0,0.0,0.0,0.0,0.0);
+    MovePlayerObject(0,0,0,0,0,0,0,0,0,0,0);
     StopPlayerObject(0,0);
 
-    // Menu's
-    CreateMenu("", 0, 0.0, 0.0, 0.0, 0.0);
+    // Меню
+    CreateMenu(«», 0, 0.0, 0.0, 0.0, 0.0, 0.0);
     DestroyMenu(Menu:0);
-    AddMenuItem(Menu:0, 0, "");
-    SetMenuColumnHeader(Menu:0, 0, "");
+    AddMenuItem(Menu:0, 0, «»);
+    SetMenuColumnHeader(Menu:0, 0, «»);
     ShowMenuForPlayer(Menu:0, 0);
     HideMenuForPlayer(Menu:0, 0);
     IsValidMenu(Menu:0);
     DisableMenu(Menu:0);
     DisableMenuRow(Menu:0,0);
 
-    // Textdraw
-    TextDrawCreate(0.0,0.0,"");
+    // Намалювати текст
+    TextDrawCreate(0.0,0.0,«»);
     TextDrawDestroy(Text:0);
     TextDrawLetterSize(Text:0, 0.0,0.0);
     TextDrawTextSize(Text:0, 0.0,0.0);
@@ -1208,8 +1208,8 @@ public InvokeFunction()
     TextDrawShowForAll(Text:0);
     TextDrawHideForAll(Text:0);
 
-    // Others
-    funcidx("");
+    // Інші
+    funcidx(«»);
     gettime(iVar,iVar,iVar);
     getdate(iVar,iVar,iVar);
     tickcount(iVar);
@@ -1218,13 +1218,13 @@ public InvokeFunction()
 }
 ```
 
-### Plugin source code
+### Вихідний код плагіна
 
 ```cpp
-#include "SDK\amx\amx.h"
-#include "SDK\plugincommon.h"
+#include «SDK\amx\amx.h»
+#include «SDK\plugincommon.h»
 
-#include "Invoke.h"
+#include «Invoke.h»
 
 #include <string>
 #include <vector>
@@ -1239,45 +1239,45 @@ logprintf_t logprintf;
 extern void *pAMXFunctions;
 
 
-using namespace std;
+з використанням простору імен std;
 
 
-//This function demonstrates: how to get a string (and its length) from PAWN.
+//Ця функція демонструє: як отримати рядок (та його довжину) з PAWN.
 //PAWN native: native PrintPawnString(const str[]);
 cell AMX_NATIVE_CALL PrintPawnString(AMX* amx, cell* params)
 {
     int
-        len = NULL,
+        len = NULL
         ret = NULL;
 
-    cell *addr  = NULL;
+    cell *addr = NULL;
 
-    //Get the address of our string param (str) and then get its length
+    //Отримуємо адресу нашого рядка param (str) і потім отримуємо його довжину
     amx_GetAddr(amx, params[1], &addr);
     amx_StrLen(addr, &len);
 
-    //if the length of input isnt 0
+    //якщо довжина вхідних даних не рівна 0
     if(len)
     {
-        //We increase len because we want to make room for the terminating null char when we allocate memory.
-        //Also because GetString's size parameter counts the null chracter, we have to specify the length
-        //of the string + 1; otherwise our string will be truncated to make room for the null char (we'd lose 1 character).
+        //Ми збільшуємо len, тому що хочемо звільнити місце для завершального нульового символу при виділенні пам'яті.
+        //Також, оскільки параметр розміру GetString враховує нульовий символ, ми повинні вказати довжину
+        //рядка + 1; інакше наш рядок буде урізано, щоб звільнити місце для нульового символу (ми втратимо 1 символ).
         len++;
 
-        //Allocate memory to hold our string we're passing (str) and then "get" the string using our allocated memory to store it.
+        //Виділяємо пам'ять для зберігання рядка, який ми передаємо (str), а потім «отримуємо» рядок, використовуючи виділену пам'ять для його зберігання.
         char* text = new char[ len ];
         amx_GetString(text, addr, 0, len);
 
-        //Use logprintf to print out string (text). We dont use std::cout because it doesnt write to the server log (only the window).
+        //Вивести рядок (text) за допомогою logprintf. Ми не використовуємо std::cout, тому що вона не пише в лог сервера (тільки у вікно).
         logprintf(text);
 
-        //Deallocate our memory...
+        //Звільняємо пам'ять...
         delete[] text;
     }
-    return 1;
+    повернути 1;
 }
 
-//This function demonstrates: How to call a callback that is in a PAWN script.
+//Ця функція демонструє: Як викликати функцію зворотного виклику, яка знаходиться у скрипті PAWN.
 //PAWN native: native EmitPawnCallback();
 cell AMX_NATIVE_CALL EmitPawnCallback(AMX* amx, cell* params)
 {
@@ -1285,108 +1285,108 @@ cell AMX_NATIVE_CALL EmitPawnCallback(AMX* amx, cell* params)
 
     const cell var = 3;
     const cell arr[] = {100, 4, 33};
-    const string str = "Some random message from C++.";
+    const string str = «Якесь випадкове повідомлення з C++.»;
 
 
-    //Pawn callback: forward OnPawnCallbackEmitted(var, arr[], str[]);
-    //Find our callback and store its place in the public function table (it's index) into our idx var.
-    if(!amx_FindPublic(amx, "OnPawnCallbackEmitted", &idx))
+    //Пішаковий колбек: переслати OnPawnCallbackEmitted(var, arr[], str[]);
+    //Знаходимо наш колбек і записуємо його місце в таблиці публічних функцій (його індекс) в наш idx var.
+    if(!amx_FindPublic(amx, «OnPawnCallbackEmitted», &idx))
     {
-        cell
+        комірка
             ret,
             addr;
 
-        //Here we push our arguments to our function. Note that if the function has multiple arguments you have to push your
-        //values in reverse order! Thats why we're pushing the string first, then the array, and finally our integer.
+        //Тут ми передаємо аргументи у нашу функцію. Зверніть увагу, що якщо функція має декілька аргументів, ви повинні передавати свої
+        //значення у зворотному порядку! Ось чому ми передаємо спочатку рядок, потім масив, і, нарешті, наше ціле число.
 
         amx_PushString(amx, &addr, NULL, str.c_str(), NULL, NULL);
         //amx_PushArray(amx, NULL, NULL, arr, sizeof(arr) / sizeof(cell));
 
-        cell
+        комірка
             amx_addr,
             *phys_addr;
 
-        //For some reason amx_PushArray seems to be crashing the server, and i have NO idea why. My usage should be completely
-        //valid judging from the implementers guide, and the code itself. Since the function isnt working we'll have to
-        //use the old method and allocate the memory, set it, and push it all ourselves. This is pretty straight forward. We
-        //allocate memory on the heap using amx_Allot (this returns 2 addresses- one of the location in the abstract machine
-        //(amx_addr), and one relative to the actual server's address space (phsy_addr - which we can use in C++)). Once the
-        //memory is allocated we use memcpy to copy the memory from our array to our phys_addr address location.
+        //З деяких причин amx_PushArray призводить до падіння сервера, і я не маю жодного уявлення чому. Моє використання повинно бути повністю
+        //правильним, судячи з керівництва для реалізаторів та самого коду. Оскільки функція не працює, нам доведеться
+        //використовувати старий метод і виділяти пам'ять, встановлювати і запускати все самостійно. Це досить просто. Виділяємо пам'ять
+        //виділяємо пам'ять на купі за допомогою amx_Allot (повертає 2 адреси - одна з них на абстрактній машині
+        //(amx_addr), а іншу - відносно реального адресного простору сервера (phsy_addr - яку ми можемо використати у C++)). Після того, як
+        //пам'ять виділено, ми використовуємо memcpy для копіювання пам'яті з нашого масиву до адресної області phys_addr.
         amx_Allot(amx, sizeof(arr) / sizeof(cell), &amx_addr, &phys_addr);
         memcpy(phys_addr, arr, sizeof(arr));
         amx_Push(amx, amx_addr);
 
-        //Push our integer value
+        //Виштовхуємо наше цілочисельне значення
         amx_Push(amx, var);
 
-        //Execute our function using our previously obtained idx var.
-        //Note: This function's second parameter is what the callback returned (Can be NULL if you're not interested in return values).
+        //Виконуємо нашу функцію, використовуючи отриманий раніше ідентифікатор idx var.
+        //Примітка: Другий параметр цієї функції - це те, що повернув зворотній виклик (може бути NULL, якщо вас не цікавлять значення, що повертаються).
         amx_Exec(amx, &ret, idx);
 
-        //Release our memory that we allocated. The function amx_Alloc allocates memory on the heap in the abstract machine.
-        //The functions amx_PushString and amx_PushArray both use this function internally so you have to release the memory every time
-        //you use one of those functions. NOTE: We used both amx_PushString and amx_PushArray, and yet we only have ONE release call.
-        //This is because memory on the heap is allocated in ascending order! amx_Release release all the memory above a certain point
-        //(the second parameter, amx_addr - which is our addr variable). Since it does this we ONLY store the address from the amx_PushString
-        //call, as it'll delete everything from that point on.
+        //Звільняємо пам'ять, яку ми виділили. Функція amx_Alloc виділяє пам'ять на кучі в абстрактній машині.
+        //Функції amx_PushString та amx_PushArray використовують цю функцію внутрішньо, тому вам доведеться звільняти пам'ять кожного разу
+        //якщо ви використовуєте одну з цих функцій. Зауваження: Ми використали обидві функції amx_PushString та amx_PushArray, але маємо лише ОДИН виклик звільнення.
+        //Це тому, що пам'ять на купі виділяється у порядку зростання! amx_Release звільняє всю пам'ять вище певної точки
+        //(другий параметр, amx_addr - це наша змінна addr). Оскільки вона це робить, ми зберігаємо ЛИШЕ адресу з виклику amx_PushString
+        //виклику, оскільки з цієї точки все буде видалено.
         amx_Release(amx, addr);
 
-        //Print the return value (for completeness).
-        logprintf("EmitPawnCallback NOTE:  OnPawnCallbackEmitted callback returned %d!", ret);
+        //Виводимо значення, що повертається (для повноти картини).
+        logprintf(«EmitPawnCallback NOTE: OnPawnCallbackEmitted callback повернув %d!», ret);
 
     }
     return 1;
 }
 
 
-//This function demonstrates: an alternative method to getting strings from pawn- and the possible risks that come with it.
+//Ця функція демонструє: альтернативний метод отримання рядків з pawn- і можливі ризики, які з ним пов'язані.
 //PAWN native: native PrintPawnString2(const str[]);
 cell AMX_NATIVE_CALL PrintPawnString2(AMX* amx, cell* params)
 {
-    //This method is NOT recomended as the amx_StrParam macro uses the alloca function which is NOT a standard in C, OR C++.
-    //Using this method comes with risks of overflowing the stack (If you allocate large amounts of memory) and also
-    //gives you the risk of bugs (this function is machine AND compiler dependent- some implementations are said to be bugged).
+    //Цей метод НЕ рекомендується використовувати, оскільки макрос amx_StrParam використовує функцію alloca, яка не є стандартом ні в мові C, ні в мові C++.
+    //Використання цього методу пов'язане з ризиком переповнення стеку (якщо виділяється великий об'єм пам'яті), а також
+    //дає вам ризик помилок (ця функція залежить від машини та компілятора - деякі реалізації вважаються багнутими).
 
     char* text = NULL;
     amx_StrParam(amx, params[1], text);
 
-    //Check if text is null
+    //Перевірити, чи текст рівний нулю
     if(text != NULL)
     {
-        //Use logprintf to print out string (text). We dont use std::cout because it doesnt write to the server log (only the window).
+        //Вивести рядок (text) за допомогою logprintf. Ми не використовуємо std::cout, тому що вона не пише в лог сервера (тільки у вікно).
         logprintf(text);
     }
     return 1;
 }
 
-//This function demonstrates: how to modify a PAWN string.
+//Ця функція демонструє: як модифікувати рядок PAWN.
 //PAWN native: native SetPawnString(str[], len = sizeof(str));
 cell AMX_NATIVE_CALL SetPawnString(AMX* amx, cell* params)
 {
-    const string message = "This is a string from C/++!!";
+    const string message = «Це рядок з мови C/++!!!»;
     cell* addr = NULL;
 
-    //Get the address of our string parameter (str) and store our message
+    //Отримуємо адресу нашого рядкового параметру (str) і зберігаємо наше повідомлення
     amx_GetAddr(amx, params[1], &addr);
     amx_SetString(addr, message.c_str(), 0, 0, params[2]);
     return 1;
 }
 
-//This function demonstrates: how to cast a float to a PAWN float.
+//Ця функція демонструє: як приводити плаваюче число до плаваючого типу PAWN.
 //PAWN native: native Float:ReturnPawnFloatVal();
 cell AMX_NATIVE_CALL ReturnPawnFloatVal(AMX* amx, cell* params)
 {
-    //Since PAWN is a typeless language it stores everything as a 32bit integer and relies on tags to handle special data.
-    //A floating point number is no exception to this; It's a still 32bit int, but it has a Float tag to show that it shouldnt
-    //be treated like an regular integer. So how do we convert a float to an 32bit integer (for PAWN) without losing data?
-    //The answer is the amx_ftoc macro!
+    //Оскільки PAWN є безтиповою мовою, вона зберігає все як 32-бітне ціле число і покладається на теги для обробки спеціальних даних.
+    //Число з плаваючою комою не є винятком; це все ще 32-бітний int, але він має тег Float, який показує, що його не слід
+    //поводитися з ним як зі звичайним цілим числом. Отже, як перетворити число з плаваючою комою у 32-бітне ціле (для PAWN) без втрати даних?
+    //Відповідь - макрос amx_ftoc!
 
-    //The macro amx_ftoc type casts a float into a cell while preserving its bit pattern (amx_ctof does the inverse).
+    //Макрос з типом amx_ftoc приводить плаваючу комірку до комірки зі збереженням її бітової структури (amx_ctof робить зворотній процес).
     const float f = 22.624f;
     return amx_ftoc(f);
 }
 
-//This function demonstrates: How to pass parameters by reference.
+//Ця функція демонструє: Як передавати параметри за посиланням.
 //PAWN native: native SetPawnReferenceVars(&value1, &Float:value2);
 cell AMX_NATIVE_CALL SetPawnReferenceVars(AMX* amx, cell* params)
 {
@@ -1395,40 +1395,40 @@ cell AMX_NATIVE_CALL SetPawnReferenceVars(AMX* amx, cell* params)
 
     cell* addr[2] = {NULL, NULL};
 
-    //Get the addresses of "value1" and "value2"
+    //Отримати адреси «value1» та «value2»
     amx_GetAddr(amx, params[1], &addr[0]);
     amx_GetAddr(amx, params[2], &addr[1]);
 
-    //Dereference our pointers and assign our values. Remember to ALWAYS use the macro "amx_ftoc" to convert floats into
-    //cells (the appropriate float format for PAWN)!
+    //Роздиференціюємо наші вказівники і присвоюємо їм наші значення. Не забувайте ЗАВЖДИ використовувати макрос «amx_ftoc» для перетворення чисел з плаваючою комою у
+    //комірку (відповідний формат для PAWN)!
     *addr[0] = val;
     *addr[1] = amx_ftoc(val2);
 
-    return 1;
+    повернути 1;
 }
 
-//This function demonstrates: how to get and modify array values.
+//Ця функція демонструє: як отримувати та модифікувати значення масиву.
 //PAWN native: native PrintPawnArray(arr[], size = sizeof(arr));
 cell AMX_NATIVE_CALL PrintPawnArray(AMX* amx, cell* params)
 {
-    //Make sure there's something to print...
+    //Переконатись, що є що друкувати...
     if(params[2] > 0)
     {
         cell* addr = NULL;
 
-        //Get the address of the first value in our PAWN array.
+        //Здобуваємо адресу першого значення у нашому масиві PAWN.
         amx_GetAddr(amx, params[1], &addr);
 
         for(int i = 0, l = params[2]; i < l; i++)
         {
-            //This is pretty straight forward: We dereference the addr pointer to get our value to print.
-            //You should know this already, but arrays and pointers are almost the same thing, so we can use pointer
-            //arithmetic to add an offset OR just use the subscript operator (in the end *(addr+1) and addr[1] are the same).
-            logprintf("arr[%d] = %d", i, *(addr + i));
+            //Це досить просто: Ми розіменовуємо вказівник addr, щоб отримати наше значення для друку.
+            //Ви вже повинні це знати, але масиви і вказівники - це майже одне і те ж, тому ми можемо використовувати вказівник
+            //арифметику для додавання зсуву АБО просто використовуємо оператор підстановки (зрештою *(addr+1) і addr[1] - це одне й те саме).
+            logprintf(«arr[%d] = %d», i, *(addr + i));
 
-            //If you wanted to modify the array you would just change its value by dereferencing addr and assigning a new value.
-            //You should know this as well, im just adding it in for completeness. Here we change the first value of our array
-            //to 5 (Note: Since its the first value, no offset it used).
+            //Якби ви хотіли змінити масив, ви б просто змінили його значення, розіменявши addr і присвоївши йому нове значення.
+            //Ви маєте це знати, я просто додаю це для повноти картини. Тут ми змінюємо перше значення нашого масиву
+            //на 5 (Примітка: оскільки це перше значення, зміщення не використовується).
 
             // *(addr) = 5;
         }
@@ -1436,119 +1436,119 @@ cell AMX_NATIVE_CALL PrintPawnArray(AMX* amx, cell* params)
     return 1;
 }
 
-//This function demonstrates: setting up invoke (fetching the addresses of our natives).
+//Ця функція демонструє: налаштування invoke (отримання адрес наших нативів).
 //PAWN native: native Invoke_GetAddresses();
 cell AMX_NATIVE_CALL Invoke_GetAddresses(AMX* amx, cell* params)
 {
     return g_Invoke->getAddresses();
 }
 
-//This function demonstrates: how to use invoke to call SA-MP natives.
+//Ця функція демонструє: як використовувати invoke для виклику SA-MP нативів.
 //PAWN native: native WhereIsPlayer(playerid);
 cell AMX_NATIVE_CALL WhereIsPlayer(AMX* amx, cell* params)
 {
-    float
-        x = NULL,
-        y = NULL,
+    з плаваючою комою
+        x = NULL
+        y = NULL
         z = NULL;
 
-    //Get the player's position (and check to see if he is even connected).
+    //Отримаємо позицію гравця (і перевіримо, чи він взагалі підключений).
     if(g_Invoke->callNative(&PAWN::GetPlayerPos, params[1], &x, &y, &z))
     {
         char name[24];
 
-        //Get the rest of the player's information (name, interior, and virtualworld) and print it.
+        //Здобуваємо решту інформації про гравця (ім'я, інтер'єр та віртуальний світ) та виводимо її на екран.
         g_Invoke->callNative(&PAWN::GetPlayerName, params[1], name);
         int interior = g_Invoke->callNative(&PAWN::GetPlayerInterior, params[1]);
         int virtualworld = g_Invoke->callNative(&PAWN::GetPlayerVirtualWorld, params[1]);
 
-        logprintf("%s is at X: %.2f, Y: %.2f, Z: %.2f (Virtual world: %d, Interior %d).", name, x, y, z, virtualworld, interior);
+        logprintf(«%s знаходиться за адресою X: %.2f, Y: %.2f, Z: %.2f (Віртуальний світ: %d, Інтер'єр %d).», name, x, y, z, virtualworld, interior);
         return 1;
 
     }
     return 0;
 }
 
-//This function demonstrates: how to write a native to act as a callback.
+//Ця функція демонструє: як написати native для роботи в якості зворотного виклику.
 //PAWN native: native TEST_Hook_OnPlayerConnnect(playerid);
 cell AMX_NATIVE_CALL TEST_Hook_OnPlayerConnnect(AMX* amx, cell* params)
 {
-    //Get the players name
+    //Отримати ім'я гравця
     char name[24];
     g_Invoke->callNative(&PAWN::GetPlayerName, params[1], name);
 
-    //Check if his name is "Mario".
-    if(string("Mario") == name)
+    //Перевірити, чи його ім'я «Mario».
+    if(string(«Mario») == name)
     {
-        //If it is send our funny little message and kick him.
-        g_Invoke->callNative(&PAWN::SendClientMessage, params[1], 0xFFFFFFFF, "Sorry {FF0000}Mario, {FFFFFF}but your princess is in another server.");
+        //Якщо це так, то відправляємо наше кумедне повідомлення і копаємо його ногою.
+        g_Invoke->callNative(&PAWN::SendClientMessage, params[1], 0xFFFFFFFF, «Вибач {FF0000}Маріо, {FFFFFF}але твоя принцеса на іншому сервері.»);
         g_Invoke->callNative(&PAWN::Kick, params[1]);
     }
     return 1;
 }
 
 
-//This function tells the server what capabilities our plugin will have based on what it returns. Generally we only use 3 support flags
-//in plugins: SUPPORTS_VERSION, SUPPORTS_AMX_NATIVES, and SUPPORTS_PROCESS_TICK.
+//Ця функція повідомляє серверу, які можливості матиме наш плагін, виходячи з того, що вона повертає. Зазвичай ми використовуємо лише 3 прапори підтримки
+//в плагінах: SUPPORTS_VERSION, SUPPORTS_AMX_NATIVES та SUPPORTS_PROCESS_TICK.
 PLUGIN_EXPORT unsigned int PLUGIN_CALL Supports()
 {
-    //Note: If you're using the ProccessTick function, remember to export it in the .def file!
+    //Примітка: Якщо ви використовуєте функцію ProcessTick, не забудьте експортувати її у файлі .def!
     return SUPPORTS_VERSION | SUPPORTS_AMX_NATIVES | SUPPORTS_PROCESS_TICK;
 }
 
-//The Load function is pretty straight forward. This is called when the plugin is loaded and gets passed an array of addresses that the plugin
-//will use to function. The two indexes we typically use are PLUGIN_DATA_AMX_EXPORTS, and PLUGIN_DATA_LOGPRINTF.
+//Функція Load досить проста. Вона викликається при завантаженні плагіна і отримує масив адрес, які плагін
+//буде використовувати для роботи. Зазвичай ми використовуємо два індекси: PLUGIN_DATA_AMX_EXPORTS та PLUGIN_DATA_LOGPRINTF.
 PLUGIN_EXPORT bool PLUGIN_CALL Load(void **ppData)
 {
-    //allocate memory for out g_Invoke instance
+    //виділити пам'ять для зовнішнього екземпляру g_Invoke
     g_Invoke = new Invoke;
 
-    //Assign the addresses of our AMX function table/logprintf function to their corasponding pointers.
+    //Присвоюємо адреси нашої таблиці AMX-функцій та функції logprintf відповідним вказівникам.
     pAMXFunctions = ppData[PLUGIN_DATA_AMX_EXPORTS];
     logprintf = (logprintf_t) ppData[PLUGIN_DATA_LOGPRINTF];
 
-    logprintf("* Test plugin was loaded.");
+    logprintf(«* Тестовий плагін було завантажено.»);
     return true;
 }
 
-//Unload is called when the plugin is unloaded (server shutdown).
+//Unload викликається при вивантаженні плагіна (завершенні роботи сервера).
 PLUGIN_EXPORT void PLUGIN_CALL Unload()
 {
-    logprintf("* Test plugin was unloaded.");
+    logprintf(«* Тестовий плагін було вивантажено.»);
 }
 
-//Our array of native info for amx_Register (function name and address).
+//Наш масив нативної інформації для amx_Register (назва та адреса функції).
 AMX_NATIVE_INFO PluginNatives[] =
 {
-    {"PrintPawnString", PrintPawnString},
-    {"PrintPawnString2", PrintPawnString2},
-    {"SetPawnString", SetPawnString},
-    {"ReturnPawnFloatVal", ReturnPawnFloatVal},
-    {"SetPawnReferenceVars", SetPawnReferenceVars},
-    {"PrintPawnArray", PrintPawnArray},
-    {"EmitPawnCallback", EmitPawnCallback},
-    {"WhereIsPlayer", WhereIsPlayer},
-    {"Invoke_GetAddresses", Invoke_GetAddresses},
-    {"TEST_Hook_OnPlayerConnnect", TEST_Hook_OnPlayerConnnect},
+    {«PrintPawnString», PrintPawnString},
+    {«PrintPawnString2», PrintPawnString2},
+    {«SetPawnString», SetPawnString},
+    {«Повернути значення пішака», ReturnPawnFloatVal},
+    {«SetPawnReferenceVars», SetPawnReferenceVars},
+    {«Роздрукувати масив пішаків», PrintPawnArray},
+    {«EmitPawnCallback», EmitPawnCallback},
+    {«Де гравець», WhereIsPlayer},
+    {«Викликати_GetAddresses», Invoke_GetAddresses},
+    {«TEST_Hook_OnPlayerConnnect», TEST_Hook_OnPlayerConnnect},
     {0, 0}
 };
 
-//This function is called when a new AMX instance is loaded into the server. This will be called for every filterscript/gamemode! Because of this it isnt
-//a good idea to store a single AMX instance for the entire plugin, instead use a queue/list/vector. In this function we also register our custom
-//native functions we wish to provide PAWN with.
+//Ця функція викликається, коли на сервер завантажується новий екземпляр AMX. Вона буде викликана для кожного скрипту/режиму гри! Через це не варто
+//не варто зберігати один екземпляр AMX для всього плагіна, натомість використовуйте чергу/список/вектор. У цій функції ми також реєструємо наші кастомні
+//нативні функції, які ми хочемо надати PAWN.
 PLUGIN_EXPORT int PLUGIN_CALL AmxLoad( AMX *amx )
 {
-    //Any time a script is loaded we want to add it to invoke's AMX list, so we push back the list with the instance.
+    //Щоразу, коли завантажується скрипт, ми хочемо додати його до AMX-списку invoke, тому ми відсуваємо список назад разом з екземпляром.
     g_Invoke->amx_list.push_back(amx);
     return amx_Register(amx, PluginNatives, -1);
 }
 
-//This function is called when every an AMX instance is unloaded. If you store AMX instances, make sure you remove them. Otherwise you'll have instances to
-//non-existing gamemodes/filterscripts.
+//Ця функція викликається при вивантаженні кожного екземпляра AMX. Якщо ви зберігаєте екземпляри AMX, обов'язково видаліть їх. Інакше ви матимете екземпляри для
+//неіснуючих ігрових режимів/скриптів фільтрів.
 PLUGIN_EXPORT int PLUGIN_CALL AmxUnload( AMX *amx )
 {
-    //Every script that is unloaded needs to get removed from our AMX instance list. So we iterate through our list and find the instance that is being
-    //unloaded, and we earase it from the list.
+    //Кожен скрипт, який вивантажується, має бути видалений з нашого списку екземплярів AMX. Отже, ми перебираємо наш список і знаходимо екземпляр, який вивантажується
+    //вивантажується, і видаляємо його зі списку.
     for(list<AMX *>::iterator i = g_Invoke->amx_list.begin(); i != g_Invoke->amx_list.end(); ++i)
     {
         if(*i == amx)
@@ -1560,10 +1560,10 @@ PLUGIN_EXPORT int PLUGIN_CALL AmxUnload( AMX *amx )
     return AMX_ERR_NONE;
 }
 
-//ProcessTick is a function that gets called on every iteration of the server's loop. People generally use this function as a method of managing time by
-//keeping track of the amount of ticks that have passed. The SA-MP server is said to have a sleep time of 5ms, so if 50 ticks go by you have an idea of
-// the elapsed time (5 * 50 = 250ms). Note: Anyone who uses threads in their plugins and require PAWN interaction needs to use this function to ensure
-//PAWN isnt busy doing another task!
+//ProcessTick - це функція, яка викликається на кожній ітерації циклу сервера. Зазвичай люди використовують цю функцію як метод управління часом шляхом
+//відстежуючи кількість пройдених тиків. Вважається, що сервер SA-MP має час сну 5 мс, тому, якщо пройшло 50 тиків, ви маєте уявлення про
+// про час, що минув (5 * 50 = 250 мс). Зауваження: Усім, хто використовує потоки у своїх плагінах і потребує взаємодії з PAWN, слід використовувати цю функцію, щоб переконатися, що
+//що PAWN не зайнятий виконанням іншого завдання!
 PLUGIN_EXPORT void PLUGIN_CALL ProcessTick()
 {
     static int tick = 0;
@@ -1571,24 +1571,24 @@ PLUGIN_EXPORT void PLUGIN_CALL ProcessTick()
 
     tick++;
 
-    //Use the modulo operator to see if NYAN_COUNT ticks have passed (100 tick. 5ms sleep time * 100 ticks = 500ms).
+    //Використовуємо оператор по модулю, щоб перевірити, чи пройшли тики NYAN_COUNT (100 тиків. 5 мс часу сну * 100 тиків = 500 мс).
     if(!(tick % NYAN_COUNT))
     {
-        //If 100 ticks have passed send our funny little message to everyone.
-        const char nyan[] = "{FF0000}NYAN {FFA500}NYAN {FFFF00}NYAN {00FF00}NYAN {0000FF}NYAN {551A8B}NYAN";
+        //Якщо пройшло 100 тиків, відправляємо наше кумедне маленьке повідомлення всім.
+        const char nyan[] = «{FF0000}NYAN {FFA500}NYAN {FFFF00}NYAN {00FF00}NYAN {0000FF}NYAN {551A8B}NYAN»;
         g_Invoke->callNative(&PAWN::SendClientMessageToAll, 0, nyan);
     }
 }
 ```
 
-## Special thanks
+## Особлива подяка
 
-**RyDeR`** - For contributing the pictures from his plugin tutorial.
+**RyDeR`** - за надання зображень з його підручника з плагіна.
 
-**Incognito** - For Invoke, information about ProcessTick, and for all the help over my time learning C++.
+**Incognito** - за Invoke, інформацію про ProcessTick та за всю допомогу під час вивчення C++.
 
-**Zeex/0x5A656578** - For GDK (will be included some time), and for volunteering to answer questions about GDK.
+**Zeex/0x5A656578** - за GDK (буде включено колись) і за те, що зголосився відповісти на запитання про GDK.
 
-**Y_Less** - For being generally awesome and constantly helping me when ever im completely baffled.
+**Y_Less** - За те, що він взагалі чудовий і постійно допомагає мені, коли я зовсім заплутався.
 
-**Techboy123** - For a ton of productive chats, help, and for listening to my complaints.
+**Techboy123** - за безліч продуктивних чатів, допомогу та вислуховування моїх скарг.

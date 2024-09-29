@@ -1,363 +1,365 @@
-# Proposed function library
+# Бібліотека запропонованих функцій
 
 ---
 
-Since PAWN is targeted as an application extension language, most of the
-functions that are accessible to PAWN programs will be specific to the  
-host application. Nevertheless, a small set of functions may prove useful  
-to many environments.
+Оскільки PAWN розроблено як мову розширення додатків, більшість функцій
+функцій, доступних для програм PAWN, будуть специфічними для
+хост-програми. Тим не менш, невеликий набір функцій може виявитися корисним
+у багатьох середовищах.
 
-### • Core functions
+### - Основні функції
 
-The “core” module consists of a set of functions that support the  
-language itself. Several of the functions are needed to pull arguments out of a variable
-argument list (see page 80).
+"Ядро" модуля складається з набору функцій, які підтримують саму мову
+саму мову. Деякі з цих функцій потрібні для витягування аргументів зі змінної
+список аргументів (див. сторінку 80).
 
-| clamp    |                                                                                                             |  Force a value inside a range |
+| Затиснути | | Примусити значення всередині діапазону
 | -------- | ----------------------------------------------------------------------------------------------------------- | ----------------------------: |
-| Syntax   | clamp(value, min=cellmin, max=cellmax)                                                                      |                               |
-|          | value                                                                                                       | The value to force in a range |
-|          | min                                                                                                         |   The low bound of the range. |
-|          | max                                                                                                         |  The high bound of the range. |
-| Returns  | value if it is in the range min – max; min if value is lower than min; and max if value is higher than max. |                               |
-| See also | max, min                                                                                                    |                               |
+| Синтаксис: clamp(value, min=cellmin, max=cellmax)
+| значення | Значення, яке потрібно затиснути в діапазоні
+| min - нижня межа діапазону. |
+| max - верхня межа діапазону. |
+| Повертає значення, якщо воно знаходиться у діапазоні min - max; min, якщо значення менше за min; і max, якщо значення більше за max. | |
+| Дивіться також max, min
 
-| funcidx |                                                                                                                                                                                                                                                           | Return a public funtion index |
+| funcidx | | Повертає індекс публічної функції
 | ------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------: |
-| Syntax  | funcidx(const name[])                                                                                                                                                                                                                                     |                               |
-| Returns | The index of the named public function. If no public function with the given name exists, funcidx returns −1.                                                                                                                                             |                               |
-| Notes:  | A host application runs a public function from the script by passing the public function’s index to amx_Exec. With this function, the script can query the index of a public function, and thereby return the “next function to call” to the application. |                               |
+| Синтаксис: funcidx(const name[])
+| Повертає індекс названої загальнодоступної функції. Якщо загальнодоступної функції з таким іменем не існує, funcidx повертає -1.                                                                                                                                             | |
+| Примітки:  | Хост-додаток запускає загальнодоступну функцію зі скрипта, передаючи індекс загальнодоступної функції до amx_Exec. За допомогою цієї функції скрипт може запитувати індекс загальнодоступної функції і таким чином повертати програмі "наступну функцію для виклику". | |
 
-| getarg   |                                                                                                                                                                                                       |                                         Get an argument |
+| Отримати аргумент.
 | -------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------: |
-| Syntax   | getarg(arg, index=0)                                                                                                                                                                                  |                                                         |
-|          | arg                                                                                                                                                                                                   | The argument sequence number, use 0 for first argument. |
-|          | index                                                                                                                                                                                                 |              The index, in case arg refers to an array. |
-| Returns  | The value of the argument                                                                                                                                                                             |                                                         |
-| Notes:   | This function retrieves an argument from a variable argument list. When the argument is an array, the index parameter specifies the index into the array. The return value is the retrieved argument. |                                                         |
-| See also | numargs, setarg                                                                                                                                                                                       |                                                         |
+| Синтаксис getarg(arg, index=0)
+| arg | | Порядковий номер аргументу, використовуйте 0 для першого аргументу. |
+| | | | index | Індекс, якщо arg посилається на масив. |
+| Повертає значення аргументу.
+| Примітки:   | Ця функція отримує аргумент зі змінного списку аргументів. Якщо аргумент є масивом, параметр index вказує індекс у масиві. Значенням, що повертається, є знайдений аргумент. | |
+| Дивіться також numargs, setarg
 
-| heapspace |                                                                                                                                                                            | Return free heap space |
+| Повернути вільне місце в пам'яті.
 | --------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------: |
-| Syntax    | heapspace()                                                                                                                                                                |                        |
-| Returns   | The free space on the heap. The stack and the heap occupy a shared memory area, so this value indicates the number of bytes that is left for either the stack or the heap. |                        |
-| Notes:    | In absence of recursion, the pawn parser can also give an estimate of the required stack/heap space.                                                                       |                        |
+| Синтаксис: heapspace()
+| Повертає вільний простір у купі. Стек і купа займають спільну область пам'яті, тому це значення вказує на кількість байт, яка залишилася для стека або купи. | |
+| Примітки:    | За відсутності рекурсії синтаксичний аналізатор пішаків також може дати оцінку необхідного об'єму стеку/купки.                                                                       | |
 
-| max      |                                       |                    Return the highest of two numbers |
-| -------- | ------------------------------------- | ---------------------------------------------------: |
-| Syntax   | max(value1, value2)                   |                                                      |
-|          | value1                                |                                                      |
-|          | value2                                | The two values for which to find the highest number. |
-| Returns  | The higher value of value1 and value2 |                                                      |
-| See also | clamp, min                            |                                                      |
+| Повернути найбільше з двох чисел.
+| -------- | ------------------------------------- | ---------------------------------------------------: 
+| Синтаксис max(value1, value2)
+| значення1
+| значення2 | Два значення, для яких потрібно знайти найбільше число. |
+| Повертає найбільше значення значення1 та значення2.
+| Дивіться також: clamp, min
 
-| min      |                                       |                    Return the lowest of two numbers |
-| -------- | ------------------------------------- | --------------------------------------------------: |
-| Syntax   | min(value1, value2)                   |                                                     |
-|          | value1                                |                                                     |
-|          | value2                                | The two values for which to find the lowest number. |
-| Returns  | The lowest value of value1 and value2 |                                                     |
-| See also | clamp, max                            |                                                     |
+| Повернути найменше з двох чисел.
+| -------- | ------------------------------------- | --------------------------------------------------: 
+| Синтаксис: min(value1, value2)
+| значення1 значення2
+| значення2 | | Два значення, для яких потрібно знайти найменше число. |
+| Повертає найменше значення значення1 та значення2.
+| Дивіться також: clamp, max
 
-| numargs  |                                                                                                                | Return the number of arguments |
+| numargs | | Повернути кількість аргументів
 | -------- | -------------------------------------------------------------------------------------------------------------- | -----------------------------: |
-| Syntax   | numargs()                                                                                                      |                                |
-| Returns  | The number of arguments passed to a function; numargs is useful inside functions with a variable argument list |                                |
-| See also | getarg, setarg                                                                                                 |                                |
+| Синтаксис numargs()
+| Повертає кількість аргументів, переданих у функцію; numargs корисний всередині функцій зі змінним списком аргументів
+| Дивіться також | getarg, setarg
 
-| random  |                                                                                                                                                                                                                                                                                                                                               |   Return a pseudo-random number |
+| Випадкове число. Повертає псевдовипадкове число.
 | ------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------: |
-| Syntax  | random(max)                                                                                                                                                                                                                                                                                                                                   |                                 |
-|         | max                                                                                                                                                                                                                                                                                                                                           | The limit for the random number |
-| Returns | A pseudo-random number in the range 0 - max-1                                                                                                                                                                                                                                                                                                 |                                 |
-| Notes:  | The standard random number generator of pawn is likely a linear congruential pseudo-random number generator with a range and a period of 2³¹. Linear congruential pseudo-random number generators suffer from serial correlation (especially in the low bits) and it is unsuitable for applications that require high-quality random numbers. |                                 |
+| Синтаксис: random(max)
+| max - межа для випадкового числа.
+| Повертає псевдовипадкове число в діапазоні 0 - max-1
+| Примітки:  | Стандартний генератор випадкових чисел пішака, ймовірно, є лінійним конгруентним генератором псевдовипадкових чисел з діапазоном і періодом 2³¹. Лінійні конгруентні генератори псевдовипадкових чисел страждають від послідовної кореляції (особливо в молодших розрядах) і не підходять для застосувань, які вимагають високоякісних випадкових чисел. | |
 
-| setarg   |                                                                                                                                                                   |                                                        |
+| Сетарг.
 | -------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------- | -----------------------------------------------------: |
-| Syntax   | setarg(arg, index=0, value)                                                                                                                                       |                                                        |
-|          | arg                                                                                                                                                               | The argument sequence number, use 0 for first argument |
-|          | index                                                                                                                                                             |              The index, in case arg refers to an array |
-|          | value                                                                                                                                                             |                       The value to set the argument to |
-| Returns  | true on success and false if the argument or the index are invalid                                                                                                |                                                        |
-| Notes:   | This function sets the value of an argument from a variable argument list. When the argument is an array, the index parameter specifies the index into the array. |                                                        |
-| See also | getarg, numargs                                                                                                                                                   |                                                        |
+| Синтаксис | setarg(arg, index=0, value)
+| arg | Порядковий номер аргументу, використовуйте 0 для першого аргументу
+| | | index | Індекс, якщо arg посилається на масив | | | value | Значення, яке потрібно встановити
+| значення | Значення, яке потрібно встановити для аргументу
+| Повертає значення true у разі успіху та false, якщо аргумент або індекс є недійсними
+| Примітки:   | Ця функція встановлює значення аргументу зі списку аргументів змінної. Якщо аргумент є масивом, параметр index задає індекс у масиві. | |
+| Дивіться також getarg, numargs
 
-| swapchars |                                                                                                 |                  Swap bytes in a cell |
+| Замінити байти в комірці.
 | --------- | ----------------------------------------------------------------------------------------------- | ------------------------------------: |
-| Syntax    | swapchars(c)                                                                                    |                                       |
-|           | c                                                                                               | The value for which to swap the bytes |
-| Returns   | A value where the bytes in parameter "c" are swapped (the lowest byte becomes the highest byte) |                                       |
+| Синтаксис: swapchars(c)
+| Значення, для якого потрібно поміняти місцями байти
+| Повертає значення, де байти у параметрі "c" поміняно місцями (молодший байт стає старшим)
 
-| tolower  |                                                                                                                                                      |       Convert a character to lower case |
+| tolower | | Перетворити символ у нижній регістр
 | -------- | ---------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------: |
-| Syntax   | tolower(c)                                                                                                                                           |                                         |
-|          | c                                                                                                                                                    | The character to convert to lower case. |
-| Returns  | The upper case variant of the input character, if one exists, or the unchanged character code of “c” if the letter “c” has no lower case equivalent. |                                         |
-| Notes:   | Support for accented characters is platform-dependent                                                                                                |                                         |
-| See also | toupper                                                                                                                                              |                                         |
+| Синтаксис tolower(c)
+| c - символ, який потрібно перетворити в нижній регістр. |
+| Повертає варіант вхідного символу у верхньому регістрі, якщо такий існує, або незмінений код символу "c", якщо літера "c" не має еквівалента у нижньому регістрі. | |
+| Примітки:   | Підтримка символів з наголосом залежить від платформи.
+| Див. також розпізнавання символів
 
-| toupper  |                                                                                                                                                      |       Convert a character to upper case |
+| toupper | | Перетворити символ у верхній регістр
 | -------- | ---------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------: |
-| Syntax   | toupper(c)                                                                                                                                           |                                         |
-|          | c                                                                                                                                                    | The character to convert to upper case. |
-| Returns  | The lower case variant of the input character, if one exists, or the unchanged character code of “c” if the letter “c” has no upper case equivalent. |                                         |
-| Notes:   | Support for accented characters is platform-dependent                                                                                                |                                         |
-| See also | tolower                                                                                                                                              |                                         |
+| Синтаксис toupper(c)
+| c - символ, який потрібно перетворити у верхній регістр. |
+| Повертає варіант символу у нижньому регістрі, якщо такий існує, або незмінений код символу "c", якщо літера "c" не має еквівалента у верхньому регістрі. | |
+| Примітки:   | Підтримка символів з наголосом залежить від платформи.
+| Див. також нижче
 
 ---
 
-Properties are general purpose names or values. The property list
-routines maintain a list of these name/value pairs that is shared among all abstract
-machines. The property list is therefore a way for concurrent abstract machines
-to exchange information.
+Властивості - це імена або значення загального призначення. Список властивостей
+підтримує список цих пар імен/значень, який є спільним для всіх абстрактних
+машинами. Таким чином, список властивостей є способом для паралельних абстрактних машин
+обмінюватися інформацією.
 
-All “property maintenance” functions have an optional “id” parameter. You
-can use this parameter to indicate which abstract machine the property belongs
-to. (A host application that supports concurrent abstract machines will usually
-provide each abstract machine with a unique id.) When querying (or deleting)
-a property, the id value that you pass in is matched to the id values of the
-list.
+Всі функції "обслуговування властивостей" мають необов'язковий параметр "id". Ви
+ви можете використовувати цей параметр, щоб вказати, до якої абстрактної машини належить властивість
+належить властивість. (Основна програма, яка підтримує паралельні абстрактні машини, зазвичай
+надає кожній абстрактній машині унікальний ідентифікатор). При запиті (або видаленні)
+властивості, значення ідентифікатора, яке ви передаєте, порівнюється зі значеннями ідентифікаторів у списку
+списку.
 
-A property is identified with its “abstract machine id” plus either a name or  
-a value. The name-based interface allows you to attach a value (e.g. the handle
-of an object) to a name of your choosing. The value-based interface allows you
-to attach a string to a number. The difference between the two is basically the
-search key versus the output parameter.
+Властивість ідентифікується за допомогою її "абстрактного ідентифікатора машини" плюс ім'я або
+значенням. Інтерфейс на основі імен дозволяє прикріпити значення (наприклад, дескриптор об'єкта) до імені на ваш розсуд.
+об'єкта) до довільного імені. Інтерфейс на основі значення дозволяє вам
+приєднати рядок до числа. Різниця між цими двома способами полягає, в основному, у
+ключем пошуку та параметром виводу.
 
-All property maintenance functions have a “name” and a “value” parameter.
-Only one of this pair must be filled in. When you give the value, the getprop-
-erty function stores the result in the string argument and the setproperty
-function reads the string to store from the string argument.
+Усі функції обслуговування властивостей мають параметр "ім'я" і параметр "значення".
+Тільки один з цієї пари повинен бути заповнений. Коли ви вказуєте значення, функція getprop
+erty зберігає результат у рядковому аргументі, а функція setproperty
+зчитує рядок для збереження з рядкового аргументу.
 
-The number of properties that you can add is limited only by available memory.
+Кількість властивостей, які ви можете додати, обмежена лише доступною пам'яттю.
 
-**getproperty(id=0, const name[]=“”, value=cellmin, string[]=“”)**
+**getproperty(id=0, const name[]="", value=cellmin, string[]="")**
 
-    Returns the value of a property when the name is passed in; fills in the
-    string argument when the value is passed in. The name string may
-    either be a packed or an unpacked string. If the property does not
-    exist, this function returns zero.
+    Повертає значення властивості, коли передається ім'я; заповнює аргумент
+    рядковий аргумент, коли передається значення. Рядок імені може бути
+    може бути як запакованим, так і не запакованим рядком. Якщо властивість не існує
+    не існує, функція повертає нуль.
 
-**setproperty(id=0, const name[]=“”, value=cellmin, const string[]=“”)**
+**setproperty(id=0, const name[]="", value=cellmin, const string[]="")**
 
-    Add a new property or change an existing property.
+    Додайте нову властивість або змініть існуючу.
 
-**deleteproperty(id=0, const name[]=“”, value=cellmin)**
+**deleteproperty(id=0, const name[]="", value=cellmin)**
 
-    Returns the value of the property and subsequently removes it. If the
-    property does not exist, the function returns zero.
+    Повертає значення властивості і згодом видаляє його. Якщо властивість
+    не існує, функція повертає нуль.
 
-**existproperty(id=0, const name[]=“”, value=cellmin)**
+**existproperty(id=0, const name[]="", value=cellmin)**
 
-    Returns true if the property exists and false otherwise.
+    Повертає true, якщо властивість існує, і false в іншому випадку.
 
-### • Console functions
+### - Функції консолі
 
-For testing purposes, the console functions that read user input and that out-
-put strings in a scrollable window or on a standard terminal display are often
-convenient. Not all terminal types and implementations may implement all
-functions —especially the functions that clear the screen, set foreground and
-background colours and control the cursor position, require an extended terminal control.
+Для тестування функції консолі, які зчитують введений користувачем рядок і виводять його у прокручуваному вікні або на екрані терміналу, часто
+виводять рядки у вікно з прокруткою або на стандартний дисплей терміналу, часто бувають
+зручними. Не всі типи терміналів та реалізації можуть реалізовувати усі
+функції - особливо функції очищення екрана, встановлення кольорів переднього і
+кольору переднього і заднього планів та керування положенням курсору, потребують розширеного керування терміналом.
 
 **getchar(echo=true)**
 
-    Read one character from the keyboard and return it. The function can
-    optionally echo the character on the console window.
+    Прочитати один символ з клавіатури і повернути його. Функція може
+    опціонально повторювати символ у вікні консолі.
 
 **getstring(string[], size=sizeof string, bool**
 
-    pack=false): Read a string from the keyboard. Function getstring
-    stops reading when either the enter key is typed, or the maximum
-    length is reached. The maximum length is in cells (not characters)
-    and it includes a terminating nul character. The function can read
-    both packed and unpacked strings; when reading a packed string, the
-    function may read more characters than the size parameter specifies,
-    because each cell holds multiple characters. The return value is the
-    number of characters read, excluding the terminating nul character.
+    pack=false): Зчитати рядок з клавіатури. Функція getstring
+    припиняє читання, коли буде натиснуто клавішу enter або досягнуто максимальної
+    досягається максимальна довжина. Максимальна довжина вимірюється у комірках (не символах)
+    і включає завершальний нульовий символ. Функція може читати
+    як упаковані, так і неупаковані рядки; при читанні упакованого рядка функція
+    може прочитати більше символів, ніж задано параметром size,
+    оскільки кожна комірка містить декілька символів. Значенням, що повертається, є
+    кількість прочитаних символів, за винятком завершального нульового символу.
 
-**getvalue(base=10, end=‘ r’, ...)**
+**getvalue(base=10, end=' r', ...)**
 
-    Read a value (a signed number) from the keyboard. The getvalue
-    function allows you to read in a numeric radix from 2 to 36 (the base
-    parameter) with decimal radix by default.
+    Зчитати значення (знакове число) з клавіатури. Функція getvalue
+    дозволяє зчитувати в числовому радіусі від 2 до 36 (параметр base
+    параметр) з десятковим радіксом за замовчуванням.
 
-    By default the input ends when the user types the enter key, but
-    one or more different keys may be selected (the end parameter and
-    subsequent). In the list of terminating keys, a positive number (like
-    ’\r’) displays the key and terminates input, and a negative number
-    terminates input without displaying the terminating key.
+    За замовчуванням введення закінчується, коли користувач натискає клавішу введення, але
+    можна вибрати одну або декілька різних клавіш (параметр end і
+    наступний). У списку клавіш завершення введення додатне число (наприклад
+    '\r') відображає клавішу і завершує введення, а від'ємне число
+    завершує введення без відображення клавіші завершення.
 
 **print(const string[], foreground=-1, background=-1)**
 
-    Prints a simple string on the console. The foreground and background
-    colours may be optionally set (but note that a terminal or a host
-    application may not support colours). See setattr below for a list of
-    colours.
+    Виводить на консоль простий рядок. Кольори переднього і заднього планів
+    можна встановити за бажанням (але зауважте, що термінал або хост-програма
+    програма може не підтримувати кольори). Список кольорів наведено у розділі setattr нижче.
+    кольорів.
 
 **printf(const format[], ...)**
 
-    Prints a string with embedded codes:
+    Виводить рядок з вбудованими кодами:
 
-    %b   print a number at this position in binary radix
+    %b вивести число на цій позиції в двійковому радіксі
 
-    %c   a character at this position
+    %c символ у цій позиції
 
-    %d   print a number at this position in decimal radix
+    %d вивести число у цій позиції у десятковому форматі
 
-    %f   print a floating point number at this position (assuming floating
-    point support is present)
+    %f вивести число з плаваючою комою у цій позиції (припускаючи підтримку плаваючої
+    з плаваючою комою)
 
-    %q   print a fixed point number at this position (assuming fixed point
-    support is present)
+    %q вивести число з фіксованою комою у цій позиції (якщо підтримується фіксована кома
+    присутня підтримка фіксованої крапки)
 
-    %r   print either a floating point number or a fixed point number at this
-    position, depending on what is available; if both floating point and
-    fixed point support is present, %r is equivalent to %f (i.e. printing
-    a floating point number)
+    %r виводить або число з плаваючою комою, або число з фіксованою комою у цій позиції
+    позиції, залежно від того, що доступно; якщо присутня підтримка як плаваючої, так і
+    фіксованої точки, %r еквівалентний %f (тобто друкує
+    число з плаваючою комою)
 
-    %s   print a character string at this position
+    %s виводить рядок символів у цій позиції
 
-    %x   print a number at this position in hexadecimal radix
+    %x вивести число у цій позиції у шістнадцятковому форматі з радіусом
 
-    The printf function works similarly to the printf function of the C language.
+    Функція printf працює подібно до функції printf мови C.
 
 **clrscr()**
 
-    Clears the console and sets the cursor in the upper left corner.
+    Очищає консоль і встановлює курсор у верхньому лівому куті.
 
-**clreol()**
+**clreol()**.
 
-    Clears the line at which the cursor is, from the position of the cursor
-    to the right margin of the console. This function does not move the
-    cursor.
+    Очищає рядок, на якому знаходиться курсор, від позиції курсору
+    до правого краю консолі. Ця функція не переміщує
+    курсор.
 
 **gotoxy(x=1, y=1)**
 
-    Sets the cursor position on the console.
-    The upper left corner is at (1,1).
+    Встановлює положення курсору на консолі.
+    Верхній лівий кут знаходиться на (1,1).
 
 **setattr(foreground=-1, background=-1)**
 
-    Sets foreground and background colours for the text written onto the
-    console. When either of the two parameters is negative (or absent), the
-    respective colour setting will not be changed. The colour value must
-    be a value between zero and seven, as per the ANSI Escape sequences, ISO 6429.
+    Встановлює кольори переднього та заднього плану для тексту, написаного на консолі
+    консолі. Якщо один з двох параметрів має від'ємне значення (або відсутній), то
+    відповідний параметр кольору не буде змінено. Значення кольору має бути
+    бути значенням від нуля до семи, відповідно до ANSI Escape-послідовностей, ISO 6429.
 
-    Predefined constants for the colours are black (0), red (1),
-    green (2), yellow (3), blue (4), magenta (5), cyan (6) and white (7).
+    Наперед визначені константи для кольорів: чорний (0), червоний (1),
+    зелений (2), жовтий (3), синій (4), пурпурний (5), блакитний (6) та білий (7).
 
-### • Date/time functions
+### - Функції дати/часу
 
-Functions to get and set the current date and time, as well as a millisecond
-resolution “event” timer are described in an application note entitled “Time
-Functions Library” that is available separately.
+Функції отримання та встановлення поточної дати та часу, а також мілісекундного
+таймер "події" з мілісекундною роздільною здатністю описано у примітці до програми "Бібліотека функцій часу", яку можна завантажити окремо.
+Бібліотека функцій часу", яку можна завантажити окремо.
 
-### • File input/output
+### - Введення/виведення файлів
 
-Functions for handling text and binary files, with direct support for UTF-8 text
-files, is described in an application note entitled “File I/O Support Library”
-that is available separately.
+Функції для роботи з текстовими та двійковими файлами, з прямою підтримкою текстових файлів у кодуванні UTF-8
+файлів у кодуванні UTF-8, описано у примітці до програми "Бібліотека підтримки файлового вводу/виводу"
+яку можна отримати окремо.
 
-### • Fixed point arithmetic
+### - Арифметика з фіксованою комою
 
-The fixed-point decimal arithmetic module for pawn is described in an appli-
-cation note entitled “Fixed Point Support Library” that is available
-separately.
+Модуль десяткової арифметики з фіксованою комою для пішака описано у прикладній записці під назвою "Бібліотека підтримки арифметики з фіксованою комою".
+"Бібліотека підтримки числення з фіксованою комою", яка доступна
+окремо.
 
-### • Floating point arithmetic
+### - Арифметика з плаваючою комою
 
-The floating-point arithmetic module for pawn is described in an application
-note entitled “Floating Point Support Library” that is available separately.
+Модуль арифметики з плаваючою комою для пішака описано у додатку
+"Бібліотека підтримки обчислень з плаваючою комою", яка доступна окремо.
 
-### • String manipulation
+### - Маніпуляції з рядками
 
-A general set of string manipulation functions, operating on both packed and
-unpacked strings, is described in an application note entitled “String Manipu-
-lation Library” that is available separately.
+Загальний набір функцій маніпулювання рядками, які працюють як з упакованими, так і з
+розпакованими рядками, описано у примітці до програми під назвою "Бібліотека маніпулювання рядками", яка
+"Бібліотека маніпулювання рядками", яку можна отримати окремо.
 
-### • DLL call interface
+### - інтерфейс виклику DLL
 
-The version of the abstract machine that is build as a Dynamic Link Library
-for Microsoft Windows has a general purpose function to call a function from
-any DLL in memory. Two companion functions load a DLL from disk into
-memory and unload it. The functions have been set up so that it is possible to
-run the same compiled script in both 16-bit and 32-bit versions of Microsoft Windows.
+Версія абстрактної машини, яка зібрана у вигляді бібліотеки динамічних посилань
+для Microsoft Windows має функцію загального призначення для виклику функції з
+будь-якої DLL у пам'яті. Дві допоміжні функції завантажують DLL з диска у
+і вивантажують її з пам'яті. Функції налаштовано таким чином, щоб можна було
+запускати один і той самий скомпільований скрипт як у 16-бітній, так і у 32-бітній версіях Microsoft Windows.
 
-All string parameters may be in both packed or unpacked form.
+Всі рядкові параметри можуть бути як в упакованому, так і в розпакованому вигляді.
 
 **calldll(const dllname[], const function[], const typestr[], ...)**
 
-    Parameter dllname is the module name of the DLL, typically this is the
-    same as the filename. If the DLL cannot be found, calldll tries again
-    after appending “16” or “32” to the filename, depending on whether
-    you run the 16-bit or the 32-bit version of the abstract machine. For
-    example, if you set dllname to “USER”, calldll connects to USER in
-    the 16-bit version of the abstract machine and to USER32 in the 32-bit
-    version.
+    Параметр dllname - це ім'я модуля DLL, зазвичай це
+    збігається з назвою файлу. Якщо DLL не вдасться знайти, calldll спробує ще раз
+    після додавання "16" або "32" до імені файлу, залежно від того, чи
+    ви використовуєте 16-бітну або 32-бітну версію абстрактної машини. Наприклад
+    Наприклад, якщо ви задасте dllname як "USER", calldll з'єднається з користувачем USER у
+    16-бітній версії абстрактної машини і до USER32 у 32-бітній
+    версії.
 
-    Parameter function is the name of the function in the DLL. In the
-    16-bit version of, this name is case insensitive, but in the 32-bit version
-    of Microsoft Windows, names of exported functions are case sensitive.
-    In the 32-bit version of the abstract machine, if function cannot be
-    found, calldll appends an upper case “A” to the name and tries again
+    Параметр функції - це ім'я функції в DLL. У
+    16-бітній версії це ім'я не залежить від регістру, але у 32-бітній версії
+    Microsoft Windows імена експортованих функцій є чутливими до регістру.
+    У 32-бітній версії абстрактної машини, якщо функцію не вдається
+    знайти, calldll додає до імені велику літеру "A" і повторює спробу
 
-    —many functions in 32-bit Windows exist in two varieties: ANSI and
-    “Wide”, and these functions are suffixed with an “A” or a “W” respec-
-    tively. So if function is “MessageBox”, calldll will call MessageBox
-    in the 16-bit version of Windows and MessageBoxA in the 32-bit ver-
-    sion.
+    -багато функцій у 32-розрядній Windows існують у двох різновидах: ANSI та
+    "Wide", і ці функції мають суфікс "A" або "W" відповідно.
+    Відповідно, ці функції позначаються суфіксом "A" або "W". Отже, якщо функція має суфікс "MessageBox", то calldll викличе MessageBox
+    у 16-бітній версії Windows і MessageBoxA у 32-бітній версії.
+    версії.
 
-    The string parameter typestr indicates the number of arguments that
-    the function (in the DLL) takes and what the types are. For every
-    argument, you add one letter to the typestr string:
+    Рядковий параметр typestr вказує на кількість аргументів, які
+    функція (у DLL) приймає, та їхні типи. Для кожного
+    аргументу ви додаєте одну літеру до рядка typestr:
 
-    h   a Windows “handle” (HWND, HDC, HPALETTE, HMEM, etc.)
+    h "хендл" Windows (HWND, HDC, HPALETTE, HMEM тощо)
 
-    i   an integer with a “native size” (16-bit or 32-bit, depending on the
-    “bitness” of the abstract machine).
+    i ціле число з "власним розміром" (16-бітним або 32-бітним, залежно від
+    "розрядності" абстрактної машини).
 
-    l   a 32-bit integer
+    l 32-бітне ціле число
 
-    p   a packed string
+    p упакований рядок
 
-    s   an unpacked string
+    s розпакований рядок
 
-    w   a 16-bit unsigned integer
+    w 16-бітне ціле число без знаку
 
-    When the letter is in lower case, the corresponding parameter is passed
-    “by value”; when it is in upper case, it is passed “by reference”. The
-    difference between packed and unpacked strings is only relevant when
-    the parameter is passed by reference.
+    Якщо літера у нижньому регістрі, відповідний параметр передається
+    "за значенням"; якщо літера у верхньому регістрі, вона передається "за посиланням". Різниця
+    між упакованими та неупакованими рядками має значення лише тоді, коли
+    параметр передається за посиланням.
 
 **loaddll(const dllname[])**
 
-    Loads the specified DLL into memory (or increments its usage count
-    it were already loaded). The name in parameter dllname may contain
-    a full path. If no path is specified, Microsoft Windows searches in its
-    system directories for the DLL. Similarly to the calldll function, this
+    Завантажує вказану DLL у пам'ять (або збільшує лічильник її використання
+    якщо вона вже була завантажена). Ім'я у параметрі dllname може містити
+    повний шлях. Якщо шлях не вказано, Microsoft Windows шукає DLL у своїх
+    системних каталогах шукає бібліотеку DLL. Подібно до функції calldll, ця функція
 
-    function appends “16” or “32” to the DLL name if the DLL cannot
-    be found, and then tries again.
+    додає "16" або "32" до імені DLL, якщо DLL не вдається
+    знайти, а потім повторює спробу.
 
 **freedll(const dllname[])**
 
-    Decrements the DLL’s usage count and, if the count becomes zero,
-    removes the DLL from memory. The name in parameter dllname may
-    contain a full path, but the path information is ignored. Similarly to
-    the calldll function, this function appends “16” or “32” to the DLL
-    name if the DLL cannot be found, and then tries again.
+    Зменшує лічильник використання DLL і, якщо лічильник дорівнює нулю,
+    видаляє DLL з пам'яті. Ім'я у параметрі dllname може
+    може містити повний шлях до бібліотеки, але інформація про шлях ігнорується. Подібно до функції
+    функція calldll, ця функція додає "16" або "32" до імені DLL
+    якщо DLL не вдається знайти, а потім повторює спробу.
 
 **iswin32()**
 
-    Returns true if the abstract machine is the 32-bit version (running in
-    a 32-bit version of Microsoft Windows); returns false if the abstract
-    machine is the 16-bit version (running either on Windows 3.1x or on
-    any later version of Microsoft Windows).
+    Повертає true, якщо абстрактна машина є 32-розрядною (працює у
+    32-розрядної версії Microsoft Windows); повертає false, якщо абстрактна
+    є 16-розрядною версією (працює або у Windows 3.1x, або у
+    будь-якій пізнішій версії Microsoft Windows).
 
 ---
 
-`amx_Exec: see the “Implementor’s Guide”`
+`amx_Exec: див. "Посібник реалізатора"`.
 
 ---
 
-[Go Back to Contents](00-Contents.md)
+[Повернутися до змісту](00-Contents.md)
+
+

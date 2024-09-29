@@ -1,93 +1,95 @@
 ---
-title: GameText Styles
-description: GameText Styles used in textdraws and gametext.
+заголовок: GameText Styles
+description: Стилі GameText, що використовуються в текстових малюнках та ігровому тексті.
 ---
 
-This page covers everything you need to know about gametext styles, and how they can be used in textdraws and in text rendered for a (single) player.
-Mainly used by [GameText](../functions/GameTextForPlayer) and [GameTextForAll](../functions/GameTextForAll).
+На цій сторінці описано все, що вам потрібно знати про стилі ігрового тексту, а також про те, як їх можна використовувати у текстомалюнках та тексті, що виводиться для (одиночного) гравця.
+Переважно використовується [GameText](../functions/GameTextForPlayer) та [GameTextForAll](../functions/GameTextForAll).
 
 ---
   
-## Text Colors
-It is possible to draw certain parts of your text in different colors. To do this, you simply need to use the colour slugs listed below, and encapsulate the part of your text which you want to draw in a specific color (e.g. \~y\~I'm drawn in yellow!\~y\~).
+## Кольори тексту
+Існує можливість намалювати певні частини тексту різними кольорами. Для цього вам просто потрібно використати наведені нижче кольорові ковпачки та інкапсулювати частину тексту, яку ви хочете намалювати певним кольором (наприклад, \~y\~I'm drawn in yellow!\~y\~).
 
-| Code                 | Colour                                 | Description                                      |
+| Код | Колір | Опис
 | -------------------- | -------------------------------------- | ------------------------------------------------ |
-| N/A                  | ![](/images/gameTextStyles/-.png)      | Default colour, has no code.                     |
-| `~h~`                | ![](/images/gameTextStyles/h.png)      | Lighter version of the default colour.           |
-| `~h~~h~`             | ![](/images/gameTextStyles/hh.png)     | Lighter version of the default colour.           |
-| `~r~`                | ![](/images/gameTextStyles/r.png)      | Has five levels of lightening.                   |
-| `~r~~h~`             | ![](/images/gameTextStyles/rh.png)     |                                                  |
-| `~r~~h~~h~`          | ![](/images/gameTextStyles/rhh.png)    |                                                  |
-| `~r~~h~~h~~h~`       | ![](/images/gameTextStyles/rhhh.png)   |                                                  |
-| `~r~~h~~h~~h~~h~`    | ![](/images/gameTextStyles/rhhhh.png)  |                                                  |
-| `~r~~h~~h~~h~~h~~h~` | ![](/images/gameTextStyles/rhhhhh.png) |                                                  |
-| `~g~`                | ![](/images/gameTextStyles/g.png)      | Has four levels of lightening.                   |
-| `~g~~h~`             | ![](/images/gameTextStyles/gh.png)     |                                                  |
-| `~g~~h~~h~`          | ![](/images/gameTextStyles/ghh.png)    |                                                  |
-| `~g~~h~~h~~h~`       | ![](/images/gameTextStyles/ghhh.png)   |                                                  |
-| `~g~~h~~h~~h~~h~`    | ![](/images/gameTextStyles/ghhhh.png)  | Same as `~y~~h~~h~`.                             |
-| `~b~`                | ![](/images/gameTextStyles/b.png)      | Has three levels of lightening.                  |
-| `~b~~h~`             | ![](/images/gameTextStyles/bh.png)     |                                                  |
-| `~b~~h~~h~`          | ![](/images/gameTextStyles/bhh.png)    |                                                  |
-| `~b~~h~~h~~h~`       | ![](/images/gameTextStyles/bhhh.png)   |                                                  |
-| `~p~`                | ![](/images/gameTextStyles/p.png)      | Has two levels of lightening.                    |
-| `~p~~h~`             | ![](/images/gameTextStyles/ph.png)     |                                                  |
-| `~p~~h~~h~`          | ![](/images/gameTextStyles/phh.png)    |                                                  |
-| `~y~`                | ![](/images/gameTextStyles/y.png)      | Has two levels of lightening.                    |
-| `~y~~h~`             | ![](/images/gameTextStyles/yh.png)     |                                                  |
-| `~y~~h~~h~`          | ![](/images/gameTextStyles/yhh.png)    | Same as `~g~~h~~h~~h~~h~`.                       |
-| `~l~`                | ![](/images/gameTextStyles/l.png)      | Lower case "L".  Can't be lightened.             |
-| `~w~ (or ~s~)`       | ![](/images/gameTextStyles/w.png)      | Has one level of lightening.                     |
-| `~w~~h~ (or ~s~~h~)` | ![](/images/gameTextStyles/wh.png)     | All colours become this when lightened too much. |
+| N/A | ![](/images/gameTextStyles/-.png) | Колір за замовчуванням, не має коду.                     |
+| `~h~` | ![](/images/gameTextStyles/h.png) | Світліша версія кольору за замовчуванням.           |
+| `~h~~h~` | ![](/images/gameTextStyles/hh.png) | Світліша версія кольору за замовчуванням.           |
+| `~r~` | ![](/images/gameTextStyles/r.png) | Має п'ять рівнів освітлення.                   |
+| `~r~~h~` | ![](/images/gameTextStyles/rh.png) | ||П'ять рівнів висвітлення.
+| «Зброя»! ![](/images/gameTextStyles/rhh.png) | | | «Зброя»!
+`~r~~h~~h~~h~~h~` | ![](/images/gameTextStyles/rhhh.png) | || | `~r~~h~~h~~h~` | ![](/images/gameTextStyles/rhhh.png)
+| «Я не хочу, щоб ви знали, що я не хочу, щоб ви знали, що я не хочу, щоб ви знали, що я не хочу, щоб ви знали, що я не хочу, щоб ви знали, що я не хочу, щоб ви знали, що я не хочу, щоб ви знали, що я не хочу, щоб ви знали, що я не хочу.
+`~r~~h~~h~~h~~h~~h~~h~~h~` | ![](/images/gameTextStyles/rhhhhh.png) | ||g~` | ![](/images/gameTextStyles/rhhhhh.png) | ||g~` | !
+| `~g~` | ![](/images/gameTextStyles/g.png) | Має чотири рівні освітлення.                   |
+| `~g~~h~` | ![](/images/gameTextStyles/gh.png) | | ¦ ¦ ¦ ¦ ¦ ¦ ¦ ¦ ¦ ¦ ¦ ¦
+| «Зображення»! ![](/images/gameTextStyles/ghh.png) | | | «Зображення» - це зображення тексту.
+«Зброя» ![](/images/gameTextStyles/ghhh.png) | | | “Зброя” ![](/images/gameTextStyles/ghhh.png) | | | “Зброя” !
+| `~g~~h~~h~~h~~h~~h~` | ![](/images/gameTextStyles/ghhhh.png) | Те саме, що й `~y~~h~~h~`.                             |
+| `~b~` | ![](/images/gameTextStyles/b.png) | Має три рівні освітлення.                  |
+| «У нас є три рівні освітлення.
+| «Я не знаю, що це таке» ![](/images/gameTextStyles/bhh.png) | | | «Я не знаю, що це таке» !
+| «Я не хочу, щоб ви знали, що я не хочу, щоб ви знали, що я не хочу, щоб ви знали, що я не хочу, щоб ви знали, що я не хочу, щоб ви знали, що я не хочу, щоб ви знали, що я не хочу, щоб ви знали, що я не хочу, щоб ви знали.
+| `~p~` | ![](/images/gameTextStyles/p.png) | Має два рівні освітлення.                    |
+| `~p~~h~` | ![](/images/gameTextStyles/ph.png) | | ¦ ¦ ¦ ¦ ¦ ¦ ¦ ¦ ¦
+| `~p~~h~~h~` | ![](/images/gameTextStyles/phh.png) | | ¦ ¦ ¦ ¦ ¦ ¦ ¦ ¦ ¦ ¦ ¦ ¦
+| `~y~` | ![](/images/gameTextStyles/y.png) | Має два рівні освітлення.                    |
+| `~y~~h~` | ![](/images/gameTextStyles/yh.png) | |
+| `~y~~h~~h~~h~` | ![](/images/gameTextStyles/yhh.png) | Те саме, що й `~g~~h~~h~~h~~h~~h~~h~`.                       |
+| `~l~` | ![](/images/gameTextStyles/l.png) | Мала літера «L».  Не можна освітлити.             |
+| `~w~ (або ~s~)` | ![](/images/gameTextStyles/w.png) | Має один рівень освітлення.                     |
+| `~w~~h~ (або ~s~~h~)` | ![](/images/gameTextStyles/wh.png) | Усі кольори стають такими, якщо їх занадто освітлити. |
 
 ---
   
-## Special Text Letters
-Unlike text colors, these slugs do not require encapsulation. They can be used as-is.
+## Спеціальні текстові літери
+На відміну від текстових кольорів, ці плагіни не потребують інкапсуляції. Їх можна використовувати як є.
 
-|  Code  | Description                                                                                                                        |
+| Код | Опис
 | ------ | ---------------------------------------------------------------------------------------------------------------------------------- |
-| `~n~` | New line                                                                                                                            |
-| `~h~` | Turn selected colours lighter.  Text can appear between the main colour and the lightening, for example `~r~Hello ~h~world` will make "Hello" red and "world" slightly lighter red. |
-| `~u~` | Up arrow (gray)                                                                                                                     |
-| `~d~` | Down arrow (gray)                                                                                                                   |
-| `~<~` | Left arrow (gray)                                                                                                                   |
-| `~>~` | Right arrow (gray)                                                                                                                  |
-| `~]~` | Displays a `*` symbol (Only in text styles 3, 4 and 5)                                                                              |
-| `~k~` | Keyboard key mapping (e.g. `~k~~VEHICLE_TURRETLEFT~` and `~k~~PED_FIREWEAPON~`). Look [here](../resources/keys) for a list of keys. |
+| Новий рядок.
+| `~h~` | Зробити вибрані кольори світлішими.  Текст може з'являтися між основним кольором і освітленням, наприклад, `~r~Hello ~h~world` зробить «Hello» червоним, а «world» трохи світлішим червоним. |
+| `~u~` | Стрілка вгору (сірого кольору)
+| «d» - стрілка вниз (сіра).
+| Стрілка вліво (сіра).
+| Вправо (сіра).
+| `~]~` | Відображає символ `*` (лише у текстових стилях 3, 4 і 5)
+| `~k~` | Відображення клавіш клавіатури (наприклад, `~k~~VEHICLE_TURRETLEFT~` і `~k~~PED_FIREWEAPON~`). Список клавіш дивіться [тут](../resources/keys). |
 
-:::caution
+:::попередження
 
-Be careful, using too many text colors or special characters in one gametext may crash every player the gametext is shown to. Additionally, avoid using an uneven usage of the `~` character. Example: `~~r~Hello, ~g~how are ~y~you?`
+Будьте обережні, використання занадто великої кількості кольорів тексту або спеціальних символів в одному ігровому тексті може призвести до аварійного завершення гри у кожного гравця, якому цей текст буде показано. Крім того, уникайте нерівномірного використання символу `~`. Приклад: `~~r~Hello, ~g~how are ~y~you?`
 
 :::
 
-## Text Styles
-You can use the following text styles in game texts.
+## Стилі тексту
+У текстах гри можна використовувати такі стилі тексту.
 
-|  Style  | Preview                                | Description                                                                                                              |
+| Стиль | Попередній перегляд | Опис
 | ------- | -------------------------------------- | ------------------------------------------------------------------------------------------------------------------------ |
-| Style 0 | ![](/images/gameTextStyles/style0.png) | Appears for 9 seconds regardless of time setting. Hides textdraws and any other gametext on screen (fixed in fixes.inc)  |
-| Style 1 | ![](/images/gameTextStyles/style1.png) | Fades out after 8 seconds, regardless of time set. If you have a time setting longer than that, it will re-appear after fading out and repeat until the time ends (fixed in fixes.inc) |
-| Style 2 | ![](/images/gameTextStyles/style2.png) | N/A                                                                                                                      |
-| Style 3 | ![](/images/gameTextStyles/style3.png) | N/A                                                                                                                      |
-| Style 4 | ![](/images/gameTextStyles/style4.png) | N/A                                                                                                                      |
-| Style 5 | ![](/images/gameTextStyles/style5.png) | Displays for 3 seconds, regardless of what time you set. Will refuse to be shown if it is 'spammed' (fixed in fixes.inc) |
-| Style 6 | ![](/images/gameTextStyles/style6.png) | N/A                                                                                                                      |
+| Стиль 0 | ![](/images/gameTextStyles/style0.png) | З'являється на 9 секунд незалежно від налаштувань часу. Приховує текстові малюнки та будь-який інший ігровий текст на екрані (виправлено у fixes.inc)
+| Стиль 1 | ![](/images/gameTextStyles/style1.png) | Зникає через 8 секунд, незалежно від встановленого часу. Якщо ви встановили довший час, він знову з'явиться після зникнення і повторюватиметься, доки не закінчиться час (виправлено у файлі fixes.inc)
+| Стиль 2 | ![](/images/gameTextStyles/style2.png) | N/A
+| Стиль 3 ! ![](/images/gameTextStyles/style3.png) | N/A
+Стиль 4 ! ![](/images/gameTextStyles/style4.png) | N/A | | Стиль 5 ! ![](/images/gameTextStyles/style4.png) | N/A | | Стиль 6 !
+| Стиль 5 | ![](/images/gameTextStyles/style5.png) | Показується протягом 3 секунд, незалежно від того, який час ви встановили. Відмовиться показуватися, якщо його «заспамлено» (виправлено у fixes.inc)
+| Стиль 6 | ![](/images/gameTextStyles/style6.png) | N/A
 
 ---
   
-## Text Styles added by [fixes.inc](https://github.com/pawn-lang/sa-mp-fixes)
+## Стилі тексту додано у [fixes.inc](https://github.com/pawn-lang/sa-mp-fixes)
 
-|  Style   | Preview                                 | Description                                        |
+| Стиль | Попередній перегляд | Опис
 | -------- | --------------------------------------- | -------------------------------------------------- |
-| Style 7  | ![](/images/gameTextStyles/style7.png)  | Based on SA vehicle names.                         |
-| Style 8  | ![](/images/gameTextStyles/style8.png)  | Based on SA location names.                        |
-| Style 9  | ![](/images/gameTextStyles/style9.png)  | Based on SA radio station names (once selected).   |
-| Style 10 | ![](/images/gameTextStyles/style10.png) | Based on SA radio station names (while switching). |
-| Style 11 | ![](/images/gameTextStyles/style11.png) | Based on SA positive money.                        |
-| Style 12 | ![](/images/gameTextStyles/style12.png) | Based on SA negative money.                        |
-| Style 13 | ![](/images/gameTextStyles/style13.png) | Based on SA stunt bonuses.                         |
-| Style 14 | ![](/images/gameTextStyles/style14.png) | Based on SA in-game clock.                         |
-| Style 15 | ![](/images/gameTextStyles/style15.png) | Based on SA notification popup.                    |
+| Стиль 7 | ![](/images/gameTextStyles/style7.png) | На основі назв транспортних засобів SA.                         |
+| Стиль 8 | ![](/images/gameTextStyles/style8.png) | На основі назв локацій SA.                        |
+| Стиль 9 ! ![](/images/gameTextStyles/style9.png) | На основі назв радіостанцій SA (якщо вибрано).   |
+| Стиль 10 | ![](/images/gameTextStyles/style10.png) | На основі назв радіостанцій SA (під час перемикання). |
+| Стиль 11 | ![](/images/gameTextStyles/style11.png) | На основі позитивних грошей SA.                        |
+| Стиль 12 ![](/images/gameTextStyles/style12.png) | На основі негативних грошей SA.                        |
+| Стиль 13 ![](/images/gameTextStyles/style13.png) | На основі бонусів за трюки SA.                         |
+| Стиль 14 ![](/images/gameTextStyles/style14.png) | На основі ігрового годинника SA.                         |
+| Стиль 15 - ![](/images/gameTextStyles/style15.png) - На основі спливаючого вікна сповіщень SA.                    |
+
+

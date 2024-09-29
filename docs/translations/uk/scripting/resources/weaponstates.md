@@ -1,14 +1,16 @@
 ---
-title: Weapon States
-description: Weapon State Constants.
+назва: Weapon States
+description: Константи стану зброї.
 ---
 
-The following weapon states are available, used by [GetPlayerWeaponState](../functions/GetPlayerWeaponState) function:
+Доступні наступні стани зброї, які використовуються функцією [GetPlayerWeaponState](../functions/GetPlayerWeaponState):
 
-| ID  | Definition               | Description                                                                                       |
+| Ідентифікатор | Визначення | Опис
 | --- | ------------------------ | ------------------------------------------------------------------------------------------------- |
-| -1  | WEAPONSTATE_UNKNOWN      | Unknown (set when in a vehicle, in spectating or when the [player state](../functions/GetPlayerState) is PLAYER_STATE_SPAWNED) |
-| 0   | WEAPONSTATE_NO_BULLETS   | The player's current weapon has no ammo remaining                                                 |
-| 1   | WEAPONSTATE_LAST_BULLET  | The player's current weapon has a single bullet left                                              |
-| 2   | WEAPONSTATE_MORE_BULLETS | The player's current weapon has more than one bullet left                                         |
-| 3   | WEAPONSTATE_RELOADING    | The player is reloading his/her current weapon                                                    |
+-1 | WEAPONSTATE_UNKNOWN | Невідомий (встановлюється, якщо гравець перебуває в транспортному засобі, спостерігає або коли [State of player](../functions/GetPlayerState) має значення PLAYER_STATE_SPAWNED) |
+| 0 | WEAPONSTATE_NO_BULLETS | У поточній зброї гравця не залишилося набоїв
+| 1 | WEAPONSTATE_LAST_BULLET | У поточній зброї гравця залишилася одна куля
+| 2 | WEAPONSTATE_MORE_BULLETS | У поточній зброї гравця залишилося більше однієї кулі
+| 3 | WEAPONSTATE_RELOADING | Гравець перезаряджає свою поточну зброю
+
+
